@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>dev.suresh</groupId>
+  <artifactId>sample-app</artifactId>
+  <version>1.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>Sample App</name>
+  <description>A sample repo for maven project.</description>
+  <url>${github.url}</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.build.outputTimestamp>2020-04-19T01:51:00Z</project.build.outputTimestamp>
+    <github.url>https://github.com/sureshg/openjdk-playground</github.url>
+    <github.pkg.url>https://maven.pkg.github.com/sureshg/openjdk-playground</github.pkg.url>
+
+    <!-- Application config -->
+    <app.main.class>org.openjdk.jmh.Main</app.main.class>
+    <executable.name>sample-app</executable.name>
+    <uberjar.name>uber</uberjar.name>
+
+    <!-- Compiler versions -->
+    <javac.target>11</javac.target>
+    <maven.version>3.6</maven.version>
+    <kotlin.version>1.3.72</kotlin.version>
+    <kotlin.compiler.jvmTarget>${javac.target}</kotlin.compiler.jvmTarget>
+
+    <!-- Dependency versions -->
+    <jmh.version>1.23</jmh.version>
+    <jmh.generator>default</jmh.generator>
+    <slf4j.version>1.7.30</slf4j.version>
+    <jsr305.version>3.0.2</jsr305.version>
+
+    <!-- plugin versions -->
+    <compiler.plugin.version>3.8.1</compiler.plugin.version>
+    <shade.plugin.version>3.2.3</shade.plugin.version>
+    <enforcer.plugin.version>3.0.0-M3</enforcer.plugin.version>
+    <dependency.plugin.version>3.1.2</dependency.plugin.version>
+    <clean.plugin.version>3.1.0</clean.plugin.version>
+    <deploy.plugin.version>3.0.0-M1</deploy.plugin.version>
+    <install.plugin.version>3.0.0-M1</install.plugin.version>
+    <jar.plugin.version>3.1.2</jar.plugin.version>
+    <javadoc.plugin.version>3.0.1</javadoc.plugin.version>
+    <resources.plugin.version>3.1.0</resources.plugin.version>
+    <site.plugin.version>3.7.1</site.plugin.version>
+    <source.plugin.version>3.0.1</source.plugin.version>
+    <surefire.plugin.version>3.0.0-M2</surefire.plugin.version>
+    <execjar.plugin.version>1.5.0</execjar.plugin.version>
+    <exec.plugin.version>1.6.0</exec.plugin.version>
+    <release.plugin.version>2.5.3</release.plugin.version>
+    <gpg.plugin.version>1.6</gpg.plugin.version>
+    <google-java-format.version>1.8</google-java-format.version>
+    <gitcommit.plugin.version>2.2.5</gitcommit.plugin.version>
+    <conveofmt.plugin.version>2.6.0</conveofmt.plugin.version>
+    <versions.plugin.version>2.7</versions.plugin.version>
+    <build-helper.plugin.version>3.0.0</build-helper.plugin.version>
+    <checkstyle.plugin.version>3.1.1</checkstyle.plugin.version>
+    <nexus-staging.plugin.version>1.6.8</nexus-staging.plugin.version>
+    <gpg.plugin.version>1.6</gpg.plugin.version>
+    <execjar.plugin.version>1.5.0</execjar.plugin.version>
+    <spotbug.plugin.version>3.1.12</spotbug.plugin.version>
+  </properties>
+
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+
+  <inceptionYear>2020</inceptionYear>
+  <scm>
+    <connection>scm:git:${github.url}.git</connection>
+    <developerConnection>scm:git:${github.url}.git
+    </developerConnection>
+    <url>${github.url}</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <issueManagement>
+    <system>github</system>
+    <url>${github.url}/issues</url>
+  </issueManagement>
+
+  <developers>
+    <developer>
+      <name>Suresh</name>
+      <url>https://suresh.dev</url>
+      <organization>Github</organization>
+      <organizationUrl>${github.url}</organizationUrl>
+    </developer>
+  </developers>
+
+  <!-- Default to Github pkg repo -->
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>sureshg</name>
+      <url>${github.pkg.url}</url>
+      <uniqueVersion>true</uniqueVersion>
+    </repository>
+    <snapshotRepository>
+      <id>github</id>
+      <name>sureshg</name>
+      <url>${github.pkg.url}</url>
+      <uniqueVersion>false</uniqueVersion>
+    </snapshotRepository>
+    <site>
+      <id>mvn-site</id>
+      <url>dav:https://repo.com/content/sites/mvn-site/sample-app/</url>
+    </site>
+  </distributionManagement>
+
+  <!-- Dependency management -->
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-bom</artifactId>
+        <version>${kotlin.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.openjdk.jmh</groupId>
+        <artifactId>jmh-core</artifactId>
+        <version>${jmh.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.openjdk.jmh</groupId>
+        <artifactId>jmh-generator-annprocess</artifactId>
+        <version>${jmh.version}</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <!-- Logging -->
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-simple</artifactId>
+        <version>${slf4j.version}</version>
+        <scope>runtime</scope>
+      </dependency>
+
+      <!-- Nullability -->
+      <dependency>
+        <groupId>com.google.code.findbugs</groupId>
+        <artifactId>jsr305</artifactId>
+        <version>${jsr305.version}</version>
+        <scope>provided</scope>
+      </dependency>
+
+    </dependencies>
+  </dependencyManagement>
+
+  <!-- Dependencies -->
+  <dependencies>
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib-jdk8</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.openjdk.jmh</groupId>
+      <artifactId>jmh-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.openjdk.jmh</groupId>
+      <artifactId>jmh-generator-annprocess</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <!-- Kotlin compiler plugin -->
+        <plugin>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-maven-plugin</artifactId>
+          <version>${kotlin.version}</version>
+        </plugin>
+
+        <!-- Java compiler plugin -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${compiler.plugin.version}</version>
+        </plugin>
+
+        <!-- Maven shade (uber jar) plugin -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-shade-plugin</artifactId>
+          <version>${shade.plugin.version}</version>
+        </plugin>
+
+        <!-- Maven version enforcer -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>${enforcer.plugin.version}</version>
+        </plugin>
+
+        <!-- Maven exec plugin -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>${exec.plugin.version}</version>
+        </plugin>
+
+        <!-- Maven build helper plugin -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>${build-helper.plugin.version}</version>
+        </plugin>
+
+        <!-- Enable JUnit5 unit tests. -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${surefire.plugin.version}</version>
+          <configuration>
+            <redirectTestOutputToFile>false</redirectTestOutputToFile>
+          </configuration>
+        </plugin>
+
+        <!-- Enable javadoc artifacts. -->
+        <plugin>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>${javadoc.plugin.version}</version>
+          <configuration>
+            <reportOutputDirectory>${project.basedir}/docs</reportOutputDirectory>
+            <destDir>docs/javadocs</destDir>
+          </configuration>
+          <executions>
+            <execution>
+              <id>attach-javadocs</id>
+              <goals>
+                <goal>jar</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
+        <!-- Enable source artifacts. -->
+        <plugin>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>${source.plugin.version}</version>
+          <executions>
+            <execution>
+              <id>attach-sources</id>
+              <goals>
+                <goal>jar-no-fork</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
+        <!-- Generate maven site. -->
+        <plugin>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>${site.plugin.version}</version>
+        </plugin>
+
+        <!-- Checkstyle plugin -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <version>${checkstyle.plugin.version}</version>
+          <configuration>
+            <configLocation>codestyle/checkstyle.xml</configLocation>
+            <excludes>**/module-info.java,**/target/**/*,**/protocols/**/*</excludes>
+            <encoding>UTF-8</encoding>
+            <consoleOutput>true</consoleOutput>
+            <failsOnError>true</failsOnError>
+            <violationSeverity>warning</violationSeverity>
+            <failOnViolation>true</failOnViolation>
+            <linkXRef>false</linkXRef>
+          </configuration>
+          <executions>
+            <execution>
+              <id>validate</id>
+              <phase>validate</phase>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
+        <!-- SpotBugs Plugin -->
+        <plugin>
+          <groupId>com.github.spotbugs</groupId>
+          <artifactId>spotbugs-maven-plugin</artifactId>
+          <version>${spotbug.plugin.version}</version>
+          <dependencies>
+            <!-- overwrite dependency on spotbugs if you want to specify the version of spotbugs -->
+            <dependency>
+              <groupId>com.github.spotbugs</groupId>
+              <artifactId>spotbugs</artifactId>
+              <version>${spotbug.plugin.version}</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+
+        <!-- Dependency plugin to manipulate artifacts -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>${dependency.plugin.version}</version>
+        </plugin>
+
+        <!--Add git Properties to manifest-->
+        <plugin>
+          <groupId>pl.project13.maven</groupId>
+          <artifactId>git-commit-id-plugin</artifactId>
+          <version>${gitcommit.plugin.version}</version>
+        </plugin>
+
+        <!-- Create really executable jar from uber jar -->
+        <plugin>
+          <groupId>org.skife.maven</groupId>
+          <artifactId>really-executable-jar-maven-plugin</artifactId>
+          <version>${execjar.plugin.version}</version>
+          <configuration>
+            <flags>-Xmx1G -client -Djava.security.egd=file:/dev/./urandom</flags>
+            <programFile>${executable.name}</programFile>
+          </configuration>
+          <executions>
+            <execution>
+              <phase>package</phase>
+              <goals>
+                <goal>really-executable-jar</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
+        <!-- Automatically format all Java code using the Google Java Style:
+            https://google.github.io/styleguide/javaguide.html -->
+        <plugin>
+          <groupId>com.coveo</groupId>
+          <artifactId>fmt-maven-plugin</artifactId>
+          <version>${conveofmt.plugin.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>format</goal>
+              </goals>
+              <phase>process-sources</phase>
+            </execution>
+          </executions>
+          <dependencies>
+            <dependency>
+              <groupId>com.google.googlejavaformat</groupId>
+              <artifactId>google-java-format</artifactId>
+              <version>${google-java-format.version}</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>${clean.plugin.version}</version>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>${deploy.plugin.version}</version>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>${install.plugin.version}</version>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>${jar.plugin.version}</version>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>${resources.plugin.version}</version>
+        </plugin>
+
+        <!-- Maven release plugin -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>${release.plugin.version}</version>
+          <configuration>
+            <arguments>-Dmaven.test.skip=true</arguments>
+            <localCheckout>true</localCheckout> <!-- must be true -->
+            <tagNameFormat>v@{project.version}</tagNameFormat>
+          </configuration>
+        </plugin>
+
+        <!-- Sonatype staging plugin-->
+        <plugin>
+          <groupId>org.sonatype.plugins</groupId>
+          <artifactId>nexus-staging-maven-plugin</artifactId>
+          <version>${nexus-staging.plugin.version}</version>
+          <extensions>true</extensions>
+          <configuration>
+            <serverId>ossrh</serverId>
+            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+          </configuration>
+        </plugin>
+
+        <!-- GPG signing plugin -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-gpg-plugin</artifactId>
+          <version>${gpg.plugin.version}</version>
+          <executions>
+            <execution>
+              <id>sign-artifacts</id>
+              <phase>verify</phase>
+              <goals>
+                <goal>sign</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
+      </plugins>
+    </pluginManagement>
+
+    <!-- Configure Plugins -->
+    <plugins>
+
+      <!-- Kotlin-maven-plugin should be run before maven-compiler-plugin -->
+      <plugin>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-maven-plugin</artifactId>
+        <executions>
+
+          <!-- Add kapt execution before compile -->
+          <execution>
+            <id>kapt</id>
+            <goals>
+              <goal>kapt</goal>
+            </goals>
+            <configuration>
+              <sourceDirs>
+                <sourceDir>src/main/kotlin</sourceDir>
+                <sourceDir>src/main/java</sourceDir>
+              </sourceDirs>
+              <!-- Specify your annotation processors here. -->
+              <annotationProcessorPaths/>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>compile</id>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+            <configuration>
+              <sourceDirs>
+                <sourceDir>${project.basedir}/src/main/kotlin</sourceDir>
+                <sourceDir>${project.basedir}/src/main/java</sourceDir>
+              </sourceDirs>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>test-compile</id>
+            <goals>
+              <goal>test-compile</goal>
+            </goals>
+            <configuration>
+              <sourceDirs>
+                <sourceDir>${project.basedir}/src/test/kotlin</sourceDir>
+                <sourceDir>${project.basedir}/src/test/java</sourceDir>
+              </sourceDirs>
+            </configuration>
+          </execution>
+        </executions>
+
+        <configuration>
+          <args>
+            <!-- Enable strict mode for JSR-305 annotations -->
+            <arg>-progressive</arg>
+            <arg>-Xjsr305=strict</arg>
+            <arg>-Xjvm-default=enable</arg>
+            <arg>-Xassertions=jvm</arg>
+            <arg>-Xuse-experimental=kotlin.ExperimentalStdlibApi</arg>
+            <arg>-Xopt-in=kotlin.RequiresOptIn</arg>
+            <arg>-Xopt-in=kotlinx.serialization.ImplicitReflectionSerializer</arg>
+          </args>
+        </configuration>
+      </plugin>
+
+      <!-- Compile the java code -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <compilerVersion>${javac.target}</compilerVersion>
+          <source>${javac.target}</source>
+          <release>${javac.target}</release>
+        </configuration>
+
+        <executions>
+          <!-- Replacing default-compile as it is treated specially by maven -->
+          <execution>
+            <id>default-compile</id>
+            <phase>none</phase>
+          </execution>
+          <!-- Replacing default-testCompile as it is treated specially by maven -->
+          <execution>
+            <id>default-testCompile</id>
+            <phase>none</phase>
+          </execution>
+
+          <execution>
+            <id>java-compile</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+
+          <execution>
+            <id>java-test-compile</id>
+            <phase>test-compile</phase>
+            <goals>
+              <goal>testCompile</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Package all the dependencies into the JAR -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <finalName>${uberjar.name}</finalName>
+              <transformers>
+                <transformer
+                  implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <mainClass>${app.main.class}</mainClass>
+                </transformer>
+                <transformer
+                  implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+              </transformers>
+              <filters>
+                <filter>
+                  <!--
+                      Shading signed JARs will fail without this.
+                      http://stackoverflow.com/questions/999489/invalid-signature-file-when-attempting-to-run-a-jar
+                  -->
+                  <artifact>*:*</artifact>
+                  <excludes>
+                    <exclude>META-INF/*.SF</exclude>
+                    <exclude>META-INF/*.DSA</exclude>
+                    <exclude>META-INF/*.RSA</exclude>
+                  </excludes>
+                </filter>
+              </filters>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Enforces Maven version -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>enforce-maven</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireMavenVersion>
+                  <message>Maven ${maven.version}.0 or higher required.</message>
+                  <version>[${maven.version},)</version>
+                </requireMavenVersion>
+                <requireJavaVersion>
+                  <version>${javac.target}</version>
+                </requireJavaVersion>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+  </build>
+
+  <!-- Sample Profile -->
+  <profiles>
+    <profile>
+      <id>release</id>
+    </profile>
+  </profiles>
+
+</project>

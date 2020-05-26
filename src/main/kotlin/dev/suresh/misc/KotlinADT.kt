@@ -1,0 +1,45 @@
+package dev.suresh.misc
+import kotlin.math.*
+
+sealed class Tree<out T>
+
+object Empty : Tree<Nothing>() {
+    override fun toString() = "Empty"
+}
+
+data class Node<T>(
+    val value: T,
+    val right: Tree<T> = Empty,
+    val left: Tree<T> = Empty
+) : Tree<T>()
+
+
+fun <T : Number> Tree<T>.sum(): Long = when (this) {
+    Empty -> 0
+    is Node -> value.toLong() + left.sum() + right.sum()
+}
+
+fun <T> Tree<T>.depth(): Int = when (this) {
+    Empty -> 0
+    is Node -> max(left.depth(),right.depth()) + 1
+}
+
+
+//fun <T> Tree<T>.printTree(depth: Int = 0) {
+//    val indent = " ".repeat(depth)
+//    when (this) {
+//        Empty -> return
+//        is Node -> {
+//            println("$indent $value")
+//            println("$indent ${left.}")
+//            value.toLong() + left.sum() + right.sum()
+//        }
+//    }
+//}
+
+fun main() {
+
+    val tree = Node(10, Node(5, left = Node(5, right = Node(4,right = Node(7))), right = Node(23, left = Node(6))))
+    println(tree.depth())
+
+}
