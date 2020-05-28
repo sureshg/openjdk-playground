@@ -83,7 +83,7 @@ object Versions {
     const val openapiGen = "4.3.1"
 
     // Plugins
-    const val gradle = "6.4.1"
+    const val gradle = "6.5-rc-1"
     const val ktlintPlugin = "9.2.1"
     const val dokka = "0.10.1"
     const val shadow = "5.2.0"
