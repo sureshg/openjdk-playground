@@ -239,16 +239,16 @@ sourceSets.main {
    * ###### Lazy ([Confiuration Avoidance API](https://docs.gradle.org/current/userguide/task_configuration_avoidance.html))
 
      ```kotlin
-     val t: TaskProvider<Jar> = named<Jar>("jar")          // Get existing task
+     val t: TaskProvider<Jar> = named<Jar>("jar"){}        // Get existing task
      val u: TaskProvider<Jar> = register<Jar>("jar"){}     // Create new task
      val v: TaskProvider<Jar> by registering(Jar::class){} // Create task using property delegate
      val jar: TaskProvider<Task> by existing // Get task using property delegate
      
-val foo: FooTask by existing            // Take Task type from val (Kotlin 1.4)
+     val foo: FooTask by existing            // Take Task type from val (Kotlin 1.4)
      val bar: BarTask by registering {}      // Take Task type from val (Kotlin 1.4)
      ```
-     
-     
+
+
 
 ##### 6. [Enabling Java preview feature](https://docs.gradle.org/current/userguide/building_java_projects.html#sec:feature_preview)
 

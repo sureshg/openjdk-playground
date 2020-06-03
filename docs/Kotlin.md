@@ -60,7 +60,19 @@ https://github.com/JoseAlcerreca/kotlin-std-fun
 
   https://www.packtpub.com/application-development/hands-cryptography-java-video
 
+  LJC Talk - https://www.youtube.com/watch?v=Ll_NK0SZy6Q&t=2148s (Continuous Deployment of JVM applications)
 
+Junit5 - https://www.youtube.com/watch?v=VP0vb-FxyNw
+
+StampedLock - https://www.youtube.com/watch?v=QER63oNLpAE
+
+Phaser - https://www.youtube.com/watch?v=Xro4KwoMNJ8
+
+https://www.youtube.com/watch?v=J3QZ5gfCtAg - Defog
+
+https://www.youtube.com/results?search_query=completablefuture+and+completionstage
+
+https://www.youtube.com/watch?v=I4HICQ-KoV4 (Dependency Management with Gradle)
 
 ### Courses
 
