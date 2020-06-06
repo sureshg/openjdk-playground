@@ -1,5 +1,7 @@
 ### Build & Run
 
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/sureshg/openjdk-playground/CI?label=Build&style=for-the-badge)](https://github.com/sureshg/openjdk-playground/actions)  [![Docker Image Version](https://img.shields.io/docker/v/sureshg/openjdk-latest?label=Docker%20Hub&style=for-the-badge)](https://hub.docker.com/repository/docker/sureshg/openjdk-latest)
+
 ```bash
 # Set JDK to latest (Use SDKMAN)
 $ sdk i java jdk-15-loom ~/openjdk/jdk-15-loom.jdk/Contents/Home/
@@ -7,9 +9,13 @@ $ sdk u java jdk-15-loom
 
 # Build jar
 $ ./gradlew clean build
+$ ./gradlew jibDockerBuild // For docker images.
 
 # Run with preview features enabled. 
 $ java -showversion --enable-preview -jar build/libs/openjdk-latest-0.0.1-uber.jar
+
+# Run the application container.
+$ docker run -it --rm --name openjdk-latest sureshg/openjdk-latest
 
 # Check the dependency version updates.
 $ ./gradlew  dependencyUpdates
