@@ -14,4 +14,4 @@ val String.isNonStable: Boolean
 /**
  * Checks if the project has snapshot version.
  */
-fun Project.hasSnapshotVersion() = toString().endsWith("SNAPSHOT", true)
+fun Project.hasSnapshotVersion() = version.toString().endsWith("SNAPSHOT", true)

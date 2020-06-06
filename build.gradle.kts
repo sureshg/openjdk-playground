@@ -6,6 +6,7 @@ plugins {
     application
     kotlinJvm
     kotlinxSerialization
+    googleJib
     shadow
     benmanesVersions
     gitProperties
@@ -21,7 +22,11 @@ val jdkVersion = JavaVersion.toVersion(15)
 
 application {
     mainClassName = "dev.suresh.Main"
-    applicationDefaultJvmArgs += "--enable-preview"
+    applicationDefaultJvmArgs += listOf(
+        "-showversion",
+        "--enable-preview",
+        "-Djava.security.egd=file:/dev/./urandom"
+    )
 }
 
 java {
@@ -41,8 +46,31 @@ release {
     revertOnFail = true
 }
 
+jib {
+    from {
+        image = "openjdk:15-jdk-slim"
+    }
+
+    to {
+        image = "sureshg/${project.name}"
+        tags = setOf(project.version.toString(), "latest")
+    }
+    container {
+        mainClass = application.mainClassName
+        jvmFlags = application.applicationDefaultJvmArgs.toList()
+    }
+}
+
 repositories {
     mavenCentral()
+}
+
+// For dependencies that are needed for development only,
+// creates a devOnly configuration and add it.
+val devOnly: Configuration by configurations.creating
+
+configurations {
+    devOnly
 }
 
 tasks {
@@ -87,6 +115,7 @@ tasks {
     test {
         useJUnitPlatform()
         jvmArgs("--enable-preview")
+        classpath += devOnly
         testLogging {
             events = setOf(
                 TestLogEvent.PASSED,

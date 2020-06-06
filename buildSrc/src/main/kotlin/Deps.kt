@@ -11,6 +11,7 @@ object Versions {
     const val kotlinxReflectLite = "1.0.0"
     const val kotlinImmutableColl = "0.1"
     const val kotlinIO = "0.1.4"
+    const val micronaut = "2.0.0.M3"
     const val jsr305 = "3.0.2"
     const val clikt = "2.7.0"
     const val colormath = "1.4.0"
@@ -81,13 +82,14 @@ object Versions {
     const val shrinkwrap = "3.1.4"
     const val mockserver = "5.10.0"
     const val openapiGen = "4.3.1"
+    const val methanol = "1.2.0"
 
     // Plugins
-    const val gradle = "6.5-rc-1"
+    const val gradle = "6.5"
     const val ktlintPlugin = "9.2.1"
     const val dokka = "0.10.1"
     const val shadow = "5.2.0"
-    const val googleJib = "1.0.0"
+    const val googleJib = "2.3.0"
     const val sonarqube = "2.7"
     const val nemerosaVersioning = "2.8.2"
     const val springboot = "2.2.6.RELEASE"
@@ -166,6 +168,9 @@ object Deps {
     const val moshiKotlin = "com.squareup.moshi:moshi-kotlin:${Versions.moshi}"
     const val moshiKotlinCodegen = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshi}"
     const val moshiAdapters = "com.squareup.moshi:moshi-adapters:${Versions.moshi}"
+
+    const val micronautBom = "io.micronaut:micronaut-bom:${Versions.micronaut}"
+    const val methanol = "com.github.mizosoft.methanol:methanol:${Versions.methanol}"
 
     const val bouncyCastle = "org.bouncycastle:bcprov-jdk15on:${Versions.bouncyCastle}"
     const val conscryptUber = "org.conscrypt:conscrypt-openjdk-uber:${Versions.conscrypt}"
@@ -277,10 +282,8 @@ inline val PluginDependenciesSpec.kotlinxSerialization get() = kotlin("plugin.se
 inline val PluginDependenciesSpec.kotlinKapt get() = kotlin("kapt") version Versions.kotlin
 inline val PluginDependenciesSpec.kotlinSpring get() = kotlin("plugin.spring") version Versions.kotlin
 inline val PluginDependenciesSpec.kotlinAllOpen get() = kotlin("plugin.allopen") version Versions.kotlin
-// Kotlin Compiler Plugins
-//jib
-//protobuf
 
+//protobuf ...
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version Versions.shadow
 inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version Versions.benmanesVersions
 inline val PluginDependenciesSpec.ktlint get() = id("org.jlleitschuh.gradle.ktlint") version Versions.ktlintPlugin
@@ -293,5 +296,6 @@ inline val PluginDependenciesSpec.mavenPublishAuth get() = id("org.datlowe.maven
 inline val PluginDependenciesSpec.javafx get() = id("org.openjfx.javafxplugin") version Versions.javafxPlugin
 inline val PluginDependenciesSpec.jmh get() = id("me.champeau.gradle.jmh") version Versions.jmhPlugin
 inline val PluginDependenciesSpec.mrjar get() = id("com.lingocoder.mrjar") version Versions.mrjar
+inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.jib") version Versions.googleJib
 inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boot") version Versions.springboot
 inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version Versions.springDepMgmt
