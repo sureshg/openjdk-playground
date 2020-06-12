@@ -10,6 +10,7 @@ plugins {
     shadow
     benmanesVersions
     gitProperties
+    googleJavaFormat
     `maven-publish`
     mavenPublishAuth
     gradleRelease
@@ -135,11 +136,19 @@ tasks {
         isFailOnError = false
     }
 
+    // Google java format
+    verifyGoogleJavaFormat {
+        ignoreFailures = true
+        source("src/main")
+        include("**/*.java")
+    }
+
     // Uber jar
     shadowJar {
         archiveClassifier.set("uber")
         description = "Create a fat JAR of $archiveFileName and runtime dependencies."
         mergeServiceFiles()
+        // relocate("okio", "shaded.okio")
         doLast {
             val fatJar = archiveFile.get().asFile
             println("FatJar: ${fatJar.path} (${fatJar.length().toDouble() / (1_000 * 1_000)} MB)")
@@ -148,7 +157,7 @@ tasks {
 
     // Release depends on publish.
     afterReleaseBuild {
-        dependsOn(":publish")
+        dependsOn(publish)
     }
 
     // Disallow release candidates as upgradable versions from stable versions

@@ -212,6 +212,8 @@ kotlin {
         create("java11") {
             kotlin.srcDirs("src/main/java11")
         }
+        
+        val test by creating{}
     }
 }
 
@@ -311,6 +313,11 @@ if (JavaVersion.current().isJava11Compatible) {
         }
     }
 }
+```
+
+```bash
+$ ./gradlew dependencies --configuration implementation  // Dependencies
+$ ./gradlew clean build --dry-run   // Task Dependencies
 ```
 
 
