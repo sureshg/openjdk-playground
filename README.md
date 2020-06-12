@@ -1,6 +1,6 @@
 ### Build & Run
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/sureshg/openjdk-playground/CI?label=Build&style=for-the-badge)](https://github.com/sureshg/openjdk-playground/actions)  [![Docker Image Version](https://img.shields.io/docker/v/sureshg/openjdk-latest?label=Docker%20Hub&style=for-the-badge)](https://hub.docker.com/repository/docker/sureshg/openjdk-latest)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/sureshg/openjdk-playground/CI?label=Build&style=for-the-badge)](https://github.com/sureshg/openjdk-playground/actions)  [![Docker Image Version](https://img.shields.io/docker/v/sureshg/openjdk-latest?label=Docker%20Hub&style=for-the-badge)](https://hub.docker.com/r/sureshg/openjdk-latest)
 
 ```bash
 # Set JDK to latest (Use SDKMAN)
