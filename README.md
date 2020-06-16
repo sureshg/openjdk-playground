@@ -12,7 +12,7 @@ $ ./gradlew clean build
 $ ./gradlew jibDockerBuild // For docker images.
 
 # Run with preview features enabled. 
-$ java -showversion --enable-preview -jar build/libs/openjdk-latest-0.0.1-uber.jar
+$ java -showversion --enable-preview -XX:+UseZGC -jar build/libs/openjdk-latest-1.0.0-uber.jar
 
 # Run the application container.
 $ docker run -it --rm --name openjdk-latest sureshg/openjdk-latest
@@ -51,4 +51,3 @@ $ ./gradlew  dependencyUpdates
       ```bash
       $ vegeta plot -title "Threads vs Loom Virtual Threads"  vthread-results.bin thread-results.bin > plot.html && open plot.html
       ```
-
