@@ -23,9 +23,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import okhttp3.tls.internal.TlsUtil;
 
-/**
- * An HTTPS server with virtual thread executor for all request handling.
- */
+/** An HTTPS server with virtual thread executor for all request handling. */
 public class WebServer {
 
   public static void main(String[] args) throws Exception {
@@ -52,70 +50,89 @@ public class WebServer {
     var url = "https://localhost:" + sockAddr.getPort();
     out.printf("Started the server on %s%n", url);
 
-    var client = HttpClient.newBuilder()
-        .connectTimeout(Duration.ofSeconds(2 * 1000))
-        .sslContext(selfSignedCert.sslContext())
-        .version(Version.HTTP_2)
-        .executor(execSvc)
-        .build();
+    var client =
+        HttpClient.newBuilder()
+            .connectTimeout(Duration.ofSeconds(2 * 1000))
+            .sslContext(selfSignedCert.sslContext())
+            .version(Version.HTTP_2)
+            .executor(execSvc)
+            .build();
 
     out.printf("Sending 500 concurrent requests to %s...%n", url);
-    var futures = IntStream.range(1, 500)
-        .mapToObj((i) ->
-            CompletableFuture.supplyAsync(() -> {
-              try {
-                HttpResponse<String> res = client.send(
-                    HttpRequest.newBuilder()
-                        .uri(URI.create(url))
-                        .build(), BodyHandlers.ofString());
-                out.printf("<-- Response (%s): %s%n", Thread.currentThread().getName(), res.body());
-                return res.body();
-              } catch (Exception e) {
-                throw new RuntimeException(e);
-              }
-            }, execSvc).exceptionally(Throwable::getMessage)
-        ).collect(Collectors.toList());
+    var futures =
+        IntStream.range(1, 500)
+            .mapToObj(
+                (i) ->
+                    CompletableFuture.supplyAsync(
+                            () -> {
+                              try {
+                                HttpResponse<String> res =
+                                    client.send(
+                                        HttpRequest.newBuilder().uri(URI.create(url)).build(),
+                                        BodyHandlers.ofString());
+                                var thread = Thread.currentThread();
+                                out.printf(
+                                    "<-- Response (%s-%s): %s%n",
+                                    thread.getName(),
+                                    thread.isVirtual() ? "Virtual" : "Regular",
+                                    res.body());
+                                return res.body();
+                              } catch (Exception e) {
+                                throw new RuntimeException(e);
+                              }
+                            },
+                            execSvc)
+                        .exceptionally(Throwable::getMessage))
+            .collect(Collectors.toList());
 
     // Wait for all tasks to complete and prints the response.
     CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new))
-        .handle((v, t) -> { //or thenRun
+        .handle(
+            (v, t) -> { // or thenRun
               // Finally stop the server.
               httpsServer.stop(1);
-              return futures.stream()
-                  .map(CompletableFuture::join)
-                  .collect(toList());
-            }
-        ).thenAccept((r) -> {
-      for (int i = 0; i < r.size(); i++) {
-        out.printf("%d : %s%n", i + 1, r.get(i));
-      }
-    });
+              return futures.stream().map(CompletableFuture::join).collect(toList());
+            })
+        .thenAccept(
+            (r) -> {
+              for (int i = 0; i < r.size(); i++) {
+                out.printf("%d : %s%n", i + 1, r.get(i));
+              }
+            });
   }
 
   /**
    * Disable hostname verification of JDK http client.
    *
-   * http://mail.openjdk.java.net/pipermail/net-dev/2018-November/011912.html
+   * <p>http://mail.openjdk.java.net/pipermail/net-dev/2018-November/011912.html
    */
   private static void disableHostnameVerification() {
-    System.setProperty("jdk.internal.httpclient.disableHostnameVerification",
-        Boolean.TRUE.toString());
+    System.setProperty(
+        "jdk.internal.httpclient.disableHostnameVerification", Boolean.TRUE.toString());
   }
 
-  /**
-   * Http root handler.
-   */
+  /** Http root handler. */
   private static void rootHandle(HttpExchange exchange) throws IOException {
-    out.printf("--> Request (%s): %s - %s%n", Thread.currentThread().getName(),
-        exchange.getRequestMethod(), exchange.getRequestURI());
+    var thread = Thread.currentThread();
+    out.printf(
+        "--> Request (%s-%s): %s - %s%n",
+        thread.getName(),
+        thread.isVirtual() ? "Virtual" : "Regular",
+        exchange.getRequestMethod(),
+        exchange.getRequestURI());
     var resHeaders = exchange.getResponseHeaders();
     resHeaders.add("Content-Type", "application/json");
 
-    var response = """
-        { "id" : %s, "version" : "%s" }
-        """.formatted(Thread.currentThread().getId(), System.getProperty("java.vm.version"))
-        .strip()
-        .getBytes(UTF_8);
+    var response =
+        """
+        { "id" : %s, "version" : "%s","type" : "%s" }
+        """
+            .formatted(
+                thread.getId(),
+                System.getProperty("java.vm.version"),
+                thread.isVirtual() ? "Virtual" : "Regular")
+            .strip()
+            .getBytes(UTF_8);
     exchange.sendResponseHeaders(200, response.length);
     var resBody = exchange.getResponseBody();
 
@@ -129,20 +146,21 @@ public class WebServer {
     resBody.close();
   }
 
-  /**
-   * Http /top path handler.
-   */
+  /** Http /top path handler. */
   private static void topHandle(HttpExchange exchange) throws IOException {
-    var top = ProcessHandle.allProcesses()
-        .map(ps -> String.format(
-            "%8d %8d %10s %26s %-40s",
-            ps.pid(),
-            ps.parent().map(ProcessHandle::pid).orElse(0L),
-            ps.info().startInstant().map(Object::toString).orElse("-"),
-            ps.info().commandLine().orElse("-"),
-            ps.info().user().orElse("-")))
-        .collect(joining("<br>")
-        ).getBytes(UTF_8);
+    var top =
+        ProcessHandle.allProcesses()
+            .map(
+                ps ->
+                    String.format(
+                        "%8d %8d %10s %26s %-40s",
+                        ps.pid(),
+                        ps.parent().map(ProcessHandle::pid).orElse(0L),
+                        ps.info().startInstant().map(Object::toString).orElse("-"),
+                        ps.info().commandLine().orElse("-"),
+                        ps.info().user().orElse("-")))
+            .collect(joining("<br>"))
+            .getBytes(UTF_8);
 
     out.printf("Got %s - %s%n", exchange.getRequestMethod(), exchange.getRequestURI());
     var resHeaders = exchange.getResponseHeaders();

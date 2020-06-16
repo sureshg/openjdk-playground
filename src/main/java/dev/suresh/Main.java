@@ -8,10 +8,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-record Person(String nname, int age) {
-
-}
-
+record Person(String nname, int age) {}
 
 public class Main {
 
@@ -21,18 +18,16 @@ public class Main {
 
   public static List<Person> topN(List<Person> persons, int count) {
 
-    record PersonX(Person p, int score) {
+    record PersonX(Person p, int score) {}
 
-    }
-
-    var list = persons.stream()
-        //  .map(p -> new PersonX(p, computeScore(p)))
-        .sorted(Comparator.comparing(Main::computeScore))
-        .limit(count)
-        // .map(PersonX::p)
-        .collect(Collectors.toList());
+    var list =
+        persons.stream()
+            //  .map(p -> new PersonX(p, computeScore(p)))
+            .sorted(Comparator.comparing(Main::computeScore))
+            .limit(count)
+            // .map(PersonX::p)
+            .collect(Collectors.toList());
     return list;
-
   }
 
   public static void main(String[] args) {
@@ -45,21 +40,22 @@ public class Main {
       System.out.println(i);
     }
 
-//    Socket socket = new Socket();
-//
-//    try (var is = socket.getInputStream();
-//        var isr = new InputStreamReader(is);
-//        var br = new BufferedReader(isr)) {
-//      br.readLine();
-//
-//    } catch (IOException e) {
-//    }
+    //    Socket socket = new Socket();
+    //
+    //    try (var is = socket.getInputStream();
+    //        var isr = new InputStreamReader(is);
+    //        var br = new BufferedReader(isr)) {
+    //      br.readLine();
+    //
+    //    } catch (IOException e) {
+    //    }
 
-    var ms = """
+    var ms =
+        """
         abcdefg
         adbcdeg \t 1234 \\n
         \sxyxxs \\n absd \\
-        1234  \n 
+        1234  \n
         679999
         \u2022
         ---------
@@ -70,15 +66,12 @@ public class Main {
     new DevServer().run();
     new MavenResolver().run();
 
-    record T(String a) {
+    record T(String a) {}
 
-    }
     record T1(String b) implements Runnable {
 
       @Override
-      public void run() {
-
-      }
+      public void run() {}
     }
 
     var rec = Rec.of("sdsds");
@@ -97,21 +90,14 @@ public class Main {
 
   @Override
   public boolean equals(Object o) {
-    return (this == o) ||
-        (o instanceof Main x) &&
-            this.age == x.age &&
-            Objects.equals(this.name, x.name);
-
+    return (this == o)
+        || (o instanceof Main x) && this.age == x.age && Objects.equals(this.name, x.name);
   }
 }
 
-class RecordSuper {
+class RecordSuper {}
 
-}
-
-interface RecInterface {
-
-}
+interface RecInterface {}
 
 record Rec<T>(T name, int age, String addr) implements RecInterface {
 
@@ -129,19 +115,13 @@ record Rec<T>(T name, int age, String addr) implements RecInterface {
     this(name, 0);
   }
 
-
   public T name() {
     return name;
   }
 
-  private void test() {
-
-  }
+  private void test() {}
 
   public static Rec of(String name) {
     return new Rec<String>("sdsdsd");
   }
 }
-
-
-

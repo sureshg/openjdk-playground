@@ -1,4 +1,5 @@
 package dev.suresh.misc
+
 import kotlin.math.*
 
 sealed class Tree<out T>
@@ -21,7 +22,7 @@ fun <T : Number> Tree<T>.sum(): Long = when (this) {
 
 fun <T> Tree<T>.depth(): Int = when (this) {
     Empty -> 0
-    is Node -> max(left.depth(),right.depth()) + 1
+    is Node -> max(left.depth(), right.depth()) + 1
 }
 
 
@@ -39,7 +40,10 @@ fun <T> Tree<T>.depth(): Int = when (this) {
 
 fun main() {
 
-    val tree = Node(10, Node(5, left = Node(5, right = Node(4,right = Node(7))), right = Node(23, left = Node(6))))
+    val tree = Node(
+        10,
+        Node(5, left = Node(5, right = Node(4, right = Node(7))), right = Node(23, left = Node(6)))
+    )
     println(tree.depth())
 
 }
