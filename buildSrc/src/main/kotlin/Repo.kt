@@ -1,5 +1,7 @@
 import org.gradle.api.*
 
+// releaseBuild -> "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+// else         -> "https://oss.sonatype.org/content/repositories/snapshots"
 /**
  * Check if it's a non stable (RC) version.
  */

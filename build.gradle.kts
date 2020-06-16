@@ -8,9 +8,9 @@ plugins {
     kotlinxSerialization
     googleJib
     shadow
+    spotless
     benmanesVersions
     gitProperties
-    googleJavaFormat
     `maven-publish`
     mavenPublishAuth
     gradleRelease
@@ -26,6 +26,8 @@ application {
     applicationDefaultJvmArgs += listOf(
         "-showversion",
         "--enable-preview",
+        "-XX:+PrintCommandLineFlags",
+        "-XX:+UseZGC",
         "-Djava.security.egd=file:/dev/./urandom"
     )
 }
@@ -60,6 +62,31 @@ jib {
         mainClass = application.mainClassName
         jvmFlags = application.applicationDefaultJvmArgs.toList()
     }
+}
+
+spotless {
+    java {
+        googleJavaFormat(Versions.googleJavaFormat)
+    }
+
+    kotlin {
+        ktlint(Versions.ktlint).userData(mapOf("disabled_rules" to "no-wildcard-imports"))
+        targetExclude("$buildDir/**/*.kt", "bin/**/*.kt")
+        // licenseHeader(License.Apache)
+    }
+
+    kotlinGradle {
+        ktlint(Versions.ktlint)
+        target("*.gradle.kts")
+    }
+
+    format("misc") {
+        target("**/*.md", "**/.gitignore")
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
+
+    isEnforceCheck = false
 }
 
 repositories {
@@ -99,6 +126,7 @@ tasks {
             verbose = true
             jvmTarget = "13"
             javaParameters = true
+            allWarningsAsErrors = true
             freeCompilerArgs += listOf(
                 "-progressive",
                 "-Xjsr305=strict",
@@ -134,13 +162,6 @@ tasks {
     javadoc {
         // Preview feature will fail for javadoc
         isFailOnError = false
-    }
-
-    // Google java format
-    verifyGoogleJavaFormat {
-        ignoreFailures = true
-        source("src/main")
-        include("**/*.java")
     }
 
     // Uber jar
