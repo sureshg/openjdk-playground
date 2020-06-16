@@ -72,7 +72,7 @@ object Versions {
     const val caffeine = "2.6.2"
     const val cache2k = "1.2.0.Final"
     const val kolor = "0.0.2"
-    const val ktlint = "0.36.0"
+    const val ktlint = "0.37.0"
     const val mockk = "1.10.0"
     const val reactiveStreams = "1.0.2"
     const val reactor = "3.2.5.RELEASE"
@@ -83,19 +83,22 @@ object Versions {
     const val mockserver = "5.10.0"
     const val openapiGen = "4.3.1"
     const val methanol = "1.2.0"
+    const val rocker = "1.3.0"
+    const val jgrapht = "1.5.0"
 
     // Plugins
     const val gradle = "6.5"
-    const val ktlintPlugin = "9.2.1"
     const val dokka = "0.10.1"
-    const val shadow = "5.2.0"
+    const val shadow = "6.0.0"
     const val googleJib = "2.4.0"
     const val sonarqube = "2.7"
     const val nemerosaVersioning = "2.8.2"
     const val springboot = "2.2.6.RELEASE"
     const val springDepMgmt = "1.0.9.RELEASE"
     const val buildSrcVersions = "0.3.2"
-    const val googleJavaFormat = "0.9"
+    const val spotless = "4.3.0"
+    const val spotbugs = "4.3.0"
+    const val googleJavaFormat = "1.8"
     const val benmanesVersions = "0.28.0"
     const val buildScanPlugin = "2.0.2"
     const val gitPublishPlugin = "1.0.1"
@@ -205,6 +208,8 @@ object Deps {
     const val jimfs = "com.google.jimfs:jimfs:${Versions.jimfs}"
     const val jsr305 = "com.google.code.findbugs:jsr305:${Versions.jsr305}"
     const val petitparser = "com.github.petitparser:petitparser-core:${Versions.petitparser}"
+    const val rocker = "com.fizzed:rocker:${Versions.rocker}"
+    const val jgrapht = "org.jgrapht:jgrapht-core:${Versions.jgrapht}"
 
     const val clikt = "com.github.ajalt:clikt:${Versions.clikt}"
     const val mordant = "com.github.ajalt:mordant:${Versions.mordant}"
@@ -286,10 +291,10 @@ inline val PluginDependenciesSpec.kotlinAllOpen get() = kotlin("plugin.allopen")
 //protobuf ...
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version Versions.shadow
 inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version Versions.benmanesVersions
-inline val PluginDependenciesSpec.ktlint get() = id("org.jlleitschuh.gradle.ktlint") version Versions.ktlintPlugin
 inline val PluginDependenciesSpec.gitProperties get() = id("com.gorylenko.gradle-git-properties") version Versions.gitProperties
 inline val PluginDependenciesSpec.dokka get() = id("org.jetbrains.dokka") version Versions.dokka
-inline val PluginDependenciesSpec.googleJavaFormat get() = id("com.github.sherter.google-java-format") version Versions.googleJavaFormat
+inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.gradle.spotless") version Versions.spotless
+inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version Versions.spotbugs
 inline val PluginDependenciesSpec.githubRelease get() = id("com.github.breadmoirai.github-release") version Versions.githubRelease
 inline val PluginDependenciesSpec.gradleRelease get() = id("net.researchgate.release") version Versions.gradleRelease
 inline val PluginDependenciesSpec.mavenPublishAuth get() = id("org.datlowe.maven-publish-auth") version Versions.mavenPublishAuth
