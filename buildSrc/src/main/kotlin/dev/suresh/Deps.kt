@@ -1,39 +1,17 @@
 package dev.suresh
 
 object Versions {
-    const val ktlint = "0.37.0"
+
+    const val commonmark = "0.15.1"
+    const val jsoup = "1.13.1"
+
 }
 
 object Libs {
-    const val androidGradlePlugin = "com.android.tools.build:gradle:4.1.0-alpha10"
 
-    const val mvRx = "com.airbnb.android:mvrx:1.3.0"
-
-    const val threeTenBp = "org.threeten:threetenbp:1.4.4"
-    const val threeTenBpNoTzdb = "$threeTenBp:no-tzdb"
-    const val threeTenAbp = "com.jakewharton.threetenabp:threetenabp:1.2.4"
-
-    const val gravitySnapHelper = "com.github.rubensousa:gravitysnaphelper:2.2.1"
-
-    const val timber = "com.jakewharton.timber:timber:4.7.1"
-
-    const val tmdbJava = "com.uwetrottmann.tmdb2:tmdb-java:2.2.0"
-    const val traktJava = "com.uwetrottmann.trakt5:trakt-java:6.5.0"
-
-    const val appauth = "net.openid:appauth:0.7.1"
-
-    const val junit = "junit:junit:4.13"
-    const val robolectric = "org.robolectric:robolectric:4.3.1"
-    const val mockK = "io.mockk:mockk:1.10.0"
-
-    const val leakCanary = "com.squareup.leakcanary:leakcanary-android:2.3"
-
-    const val store = "com.dropbox.mobile.store:store4:4.0.0-alpha05"
-
-    object Insetter {
-        private const val version = "0.2.2"
-        const val dbx = "dev.chrisbanes:insetter-dbx:$version"
-        const val ktx = "dev.chrisbanes:insetter-ktx:$version"
+    object Markup {
+        const val commonmark = "com.atlassian.commonmark:commonmark:${Versions.commonmark}"
+        const val jsoup = "org.jsoup:jsoup:${Versions.jsoup}"
     }
 
     object Accompanist {
@@ -52,7 +30,8 @@ object Libs {
         const val gmsGoogleServices = "com.google.gms:google-services:4.3.3"
 
         const val openSourceLicensesPlugin = "com.google.android.gms:oss-licenses-plugin:0.10.2"
-        const val openSourceLicensesLibrary = "com.google.android.gms:play-services-oss-licenses:17.0.0"
+        const val openSourceLicensesLibrary =
+            "com.google.android.gms:play-services-oss-licenses:17.0.0"
     }
 
     object Kotlin {
@@ -194,8 +173,10 @@ object Libs {
 
     object AssistedInject {
         private const val version = "0.5.2"
-        const val annotationDagger2 = "com.squareup.inject:assisted-inject-annotations-dagger2:$version"
-        const val processorDagger2 = "com.squareup.inject:assisted-inject-processor-dagger2:$version"
+        const val annotationDagger2 =
+            "com.squareup.inject:assisted-inject-annotations-dagger2:$version"
+        const val processorDagger2 =
+            "com.squareup.inject:assisted-inject-processor-dagger2:$version"
     }
 
     object Roomigrant {

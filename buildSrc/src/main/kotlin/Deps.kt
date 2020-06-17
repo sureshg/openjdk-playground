@@ -287,8 +287,6 @@ inline val PluginDependenciesSpec.kotlinxSerialization get() = kotlin("plugin.se
 inline val PluginDependenciesSpec.kotlinKapt get() = kotlin("kapt") version Versions.kotlin
 inline val PluginDependenciesSpec.kotlinSpring get() = kotlin("plugin.spring") version Versions.kotlin
 inline val PluginDependenciesSpec.kotlinAllOpen get() = kotlin("plugin.allopen") version Versions.kotlin
-
-//protobuf ...
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version Versions.shadow
 inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version Versions.benmanesVersions
 inline val PluginDependenciesSpec.gitProperties get() = id("com.gorylenko.gradle-git-properties") version Versions.gitProperties
