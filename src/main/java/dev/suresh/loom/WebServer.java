@@ -50,13 +50,12 @@ public class WebServer {
     var url = "https://localhost:" + sockAddr.getPort();
     out.printf("Started the server on %s%n", url);
 
-    var client =
-        HttpClient.newBuilder()
-            .connectTimeout(Duration.ofSeconds(2 * 1000))
-            .sslContext(selfSignedCert.sslContext())
-            .version(Version.HTTP_2)
-            .executor(execSvc)
-            .build();
+    var client = HttpClient.newBuilder()
+                          .connectTimeout(Duration.ofSeconds(2))
+                          .sslContext(selfSignedCert.sslContext())
+                          .version(Version.HTTP_2)
+                          .executor(execSvc)
+                          .build();
 
     out.printf("Sending 500 concurrent requests to %s...%n", url);
     var futures =

@@ -122,7 +122,7 @@ $ native-image --no-server                       \
                -H:+AddAllCharsets                         \
                -H:+ReportExceptionStackTraces             \ Print stacktrace of underlying exception    
                -H:Class=micronaut.test.Application
- 
+
  # Other misc configs.           
               -H:+TraceClassInitialization
               -H:IncludeResourceBundles=test.HelpFormatterMessages \
@@ -241,4 +241,30 @@ closeComment: >
 mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
 
 https://dart-services.appspot.com/api/dartservices/v2/compileDDC
+
+## **Truststore**
+
+To create a `RootCA` PKCS#12 trust-store of the given URL
+
+```bash
+
+# Extract the server certificates.
+$ echo -n | openssl s_client -showcerts -connect google.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > globalsign.crt
+
+# Create/Add trust store
+$ keytool -importcert -trustcacerts -alias globalsign-rootca -storetype PKCS12 -keystore globalsign-rootca.p12 -storepass changeit -file globalsign.crt
+
+# Add intermediate certs (Optional)
+$ keytool -importcert -keystore globalsign-rootca.p12 -alias CA-intermediate -storepass changeit -file CA-intermediate.cer
+
+# Show PKCS#12 info.
+$ openssl pkcs12 -info -password pass:changeit -in globalsign-rootca.p12
+$ keytool -list -keystore globalsign-rootca.p12 --storetype pkcs12 -storepass changeit 
+
+# Create a new PKCS#12 store from certs
+$ openssl pkcs12 -export -chain -out keystore.p12 -inkey private.key -password pass:test123 \
+                  -in client.crt -certfile client.crt -CAfile cacert.crt -name client-key \
+                  -caname root-ca
+
+```
 

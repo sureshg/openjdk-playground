@@ -416,6 +416,10 @@ $ ./mvnw versions:commit
 ##### 1. [Micronaut](https://micronaut.io/launch/) 
 
 ```bash
+$ curl https://launch.micronaut.io/demo.zip -o demo.zip
+$ unzip demo.zip -d demo && cd demo && ./gradlew run --continuous --watch-fs
+
+// OR
 $ curl 'https://launch.micronaut.io/create/DEFAULT/dev.suresh.sample-app?lang=kotlin&build=gradle&test=junit&javaVersion=JDK_11&features=http-client&features=data-jdbc&features=jdbc-hikari&features=kotlin-extension-functions&features=graalvm' \
      --compressed \
       -o sample-app.zip

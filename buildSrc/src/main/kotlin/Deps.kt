@@ -11,9 +11,9 @@ object Versions {
     const val kotlinxReflectLite = "1.0.0"
     const val kotlinImmutableColl = "0.1"
     const val kotlinIO = "0.1.4"
-    const val micronaut = "2.0.0.M3"
+    const val micronaut = "2.0.0"
     const val jsr305 = "3.0.2"
-    const val clikt = "2.7.0"
+    const val clikt = "2.8.0"
     const val colormath = "1.4.0"
     const val mordant = "1.2.1"
     const val moshi = "1.9.2"
@@ -85,18 +85,21 @@ object Versions {
     const val methanol = "1.2.0"
     const val rocker = "1.3.0"
     const val jgrapht = "1.5.0"
+    const val googleAuto = "1.0-rc7"
 
     // Plugins
     const val gradle = "6.5"
     const val dokka = "0.10.1"
     const val shadow = "6.0.0"
+    const val micronautPlugin = "1.0.0.M4"
     const val googleJib = "2.4.0"
     const val sonarqube = "2.7"
     const val nemerosaVersioning = "2.8.2"
     const val springboot = "2.2.6.RELEASE"
     const val springDepMgmt = "1.0.9.RELEASE"
     const val buildSrcVersions = "0.3.2"
-    const val spotless = "4.3.0"
+    const val changelog = "0.3.2"
+    const val spotless = "4.4.0"
     const val spotbugs = "4.3.0"
     const val googleJavaFormat = "1.8"
     const val benmanesVersions = "0.28.0"
@@ -181,6 +184,8 @@ object Deps {
     const val sshj = "com.hierynomus:sshj:${Versions.sshj}"
     const val smbj = "com.hierynomus:smbj:${Versions.smbj}"
     const val asn1 = "com.hierynomus:asn-one:${Versions.asn1}"
+
+    const val autoService = "com.google.auto.service:auto-service:${Versions.googleAuto}"
 
     const val slf4jApi = "org.slf4j:slf4j-api:${Versions.slf4j}"
     const val slf4jSimple = "org.slf4j:slf4j-simple:${Versions.slf4j}"
@@ -287,10 +292,14 @@ inline val PluginDependenciesSpec.kotlinxSerialization get() = kotlin("plugin.se
 inline val PluginDependenciesSpec.kotlinKapt get() = kotlin("kapt") version Versions.kotlin
 inline val PluginDependenciesSpec.kotlinSpring get() = kotlin("plugin.spring") version Versions.kotlin
 inline val PluginDependenciesSpec.kotlinAllOpen get() = kotlin("plugin.allopen") version Versions.kotlin
+inline val PluginDependenciesSpec.kotlinNoArg get() = kotlin("plugin.noarg") version Versions.kotlin
+inline val PluginDependenciesSpec.kotlinJpa get() = kotlin("plugin.jpa") version Versions.kotlin
+inline val PluginDependenciesSpec.kotlinScript get() = kotlin("plugin.scripting") version Versions.kotlin
+inline val PluginDependenciesSpec.dokka get() = id("org.jetbrains.dokka") version Versions.dokka
+inline val PluginDependenciesSpec.changelog get() = id("org.jetbrains.changelog") version Versions.changelog
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version Versions.shadow
 inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version Versions.benmanesVersions
 inline val PluginDependenciesSpec.gitProperties get() = id("com.gorylenko.gradle-git-properties") version Versions.gitProperties
-inline val PluginDependenciesSpec.dokka get() = id("org.jetbrains.dokka") version Versions.dokka
 inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.gradle.spotless") version Versions.spotless
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version Versions.spotbugs
 inline val PluginDependenciesSpec.githubRelease get() = id("com.github.breadmoirai.github-release") version Versions.githubRelease
@@ -302,3 +311,5 @@ inline val PluginDependenciesSpec.mrjar get() = id("com.lingocoder.mrjar") versi
 inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.jib") version Versions.googleJib
 inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boot") version Versions.springboot
 inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version Versions.springDepMgmt
+inline val PluginDependenciesSpec.micronautApplication get() = id("io.micronaut.application") version Versions.micronautPlugin
+inline val PluginDependenciesSpec.micronautLibrary get() = id("io.micronaut.library") version Versions.micronautPlugin

@@ -9,6 +9,7 @@ plugins {
     googleJib
     shadow
     spotless
+    changelog
     benmanesVersions
     gitProperties
     `maven-publish`
@@ -38,15 +39,6 @@ java {
     modularity.inferModulePath.set(false)
     // withSourcesJar()
     // withJavadocJar()
-}
-
-gitProperties {
-    gitPropertiesDir = "${project.buildDir}/resources/main/META-INF/${project.name}"
-    customProperties["kotlin"] = Versions.kotlin
-}
-
-release {
-    revertOnFail = true
 }
 
 jib {
@@ -89,13 +81,35 @@ spotless {
     isEnforceCheck = false
 }
 
+gitProperties {
+    gitPropertiesDir = "${project.buildDir}/resources/main/META-INF/${project.name}"
+    customProperties["kotlin"] = Versions.kotlin
+}
+
+release {
+    revertOnFail = true
+}
+
+changelog {
+    version = project.version.toString()
+    path = "${project.projectDir}/CHANGELOG.md"
+    headerFormat = "[{0}]"
+    headerArguments = listOf("${project.version}")
+    itemPrefix = "-"
+    keepUnreleasedSection = true
+    unreleasedTerm = "Unreleased"
+}
+
 repositories {
     mavenCentral()
 }
 
 // For dependencies that are needed for development only,
 // creates a devOnly configuration and add it.
-val devOnly: Configuration by configurations.creating
+val devOnly: Configuration by configurations.creating {
+    // extendsFrom(configurations["testImplementation"])
+    // or val testImplementation by configurations
+}
 
 configurations {
     devOnly
