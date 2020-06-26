@@ -7,11 +7,9 @@
 
 ## [1.0.0]
 
-## [1.0.0]
-
 ### Added
 - Project Loom Sample
 - Java15 examples
 - Kotlin examples
 
-[Unreleased]: https://gecgithub01.walmart.com/oneops/torbit-client/compare/1.5.1...HEAD
+[Unreleased]: https://github.com/sureshg/openjdk-playground/compare/1.0.0...HEAD

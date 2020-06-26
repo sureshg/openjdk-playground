@@ -91,7 +91,7 @@ object Versions {
     const val gradle = "6.5"
     const val dokka = "0.10.1"
     const val shadow = "6.0.0"
-    const val micronautPlugin = "1.0.0.M4"
+    const val micronautPlugin = "1.0.0.M7"
     const val googleJib = "2.4.0"
     const val sonarqube = "2.7"
     const val nemerosaVersioning = "2.8.2"
