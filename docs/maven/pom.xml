@@ -41,6 +41,7 @@
     <compiler.plugin.version>3.8.1</compiler.plugin.version>
     <shade.plugin.version>3.2.3</shade.plugin.version>
     <enforcer.plugin.version>3.0.0-M3</enforcer.plugin.version>
+    <extra-enforcer-rules.plugin.version>1.2</extra-enforcer-rules.plugin.version>
     <dependency.plugin.version>3.1.2</dependency.plugin.version>
     <clean.plugin.version>3.1.0</clean.plugin.version>
     <deploy.plugin.version>3.0.0-M1</deploy.plugin.version>
@@ -595,6 +596,7 @@
             </goals>
             <configuration>
               <rules>
+                <dependencyConvergence/>
                 <requireMavenVersion>
                   <message>Maven ${maven.version}.0 or higher required.</message>
                   <version>[${maven.version},)</version>
@@ -606,6 +608,13 @@
             </configuration>
           </execution>
         </executions>
+        <dependencies>
+          <dependency>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>extra-enforcer-rules</artifactId>
+            <version>${extra-enforcer-rules.plugin.version}</version>
+          </dependency>
+        </dependencies>
       </plugin>
 
     </plugins>
