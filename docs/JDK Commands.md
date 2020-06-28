@@ -405,7 +405,16 @@ $ ./mvnw versions:revert // Rollback
 $ ./mvnw versions:commit
 ```
 
+##### 6. [Dependency Tree](https://search.maven.org/search?q=fc:kotlin.text.Regex)
 
+```bash
+# Show all orginal versions, not the resolved ones.
+$ ./mvnw dependency:tree -Dverbose -Dincludes=org.jetbrains.kotlin:kotlin-stdlib
+$ ./mvnw clean verify
+
+# Search Artifacts by class
+https://search.maven.org/search?q=fc:kotlin.text.Regex
+```
 
 
 
