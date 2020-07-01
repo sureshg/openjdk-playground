@@ -20,7 +20,7 @@ plugins {
 group = "dev.suresh"
 description = "OpenJDK latest release playground!"
 val gitUrl: String by project
-val jdkVersion = JavaVersion.toVersion(15)
+val jdkVersion = JavaVersion.toVersion(16)
 
 application {
     mainClassName = "dev.suresh.Main"

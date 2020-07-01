@@ -1,5 +1,6 @@
 package dev.suresh;
 
+import dev.suresh.loom.LoomServer;
 import dev.suresh.mvn.MavenResolver;
 import dev.suresh.server.DevServer;
 import java.util.Comparator;
@@ -65,6 +66,7 @@ public class Main {
 
     new DevServer().run();
     new MavenResolver().run();
+    LoomServer.run();
 
     record T(String a) {}
 
@@ -101,10 +103,8 @@ interface RecInterface {}
 
 record Rec<T>(T name, int age, String addr) implements RecInterface {
 
-  public Rec {
-    this.name = name;
-    this.age = age;
-    this.addr = addr;
+  Rec {
+    Objects.requireNonNull(name);
   }
 
   public Rec(T name, int age) {

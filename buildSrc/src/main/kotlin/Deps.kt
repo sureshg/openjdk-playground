@@ -88,7 +88,7 @@ object Versions {
     const val googleAuto = "1.0-rc7"
 
     // Plugins
-    const val gradle = "6.5"
+    const val gradle = "6.5.1"
     const val dokka = "0.10.1"
     const val shadow = "6.0.0"
     const val micronautPlugin = "1.0.0.M7"
