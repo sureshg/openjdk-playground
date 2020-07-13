@@ -9,7 +9,7 @@ plugins {
     googleJib
     shadow
     spotless
-    changelog
+    spotlessChangelog
     benmanesVersions
     gitProperties
     `maven-publish`
@@ -88,16 +88,6 @@ gitProperties {
 
 release {
     revertOnFail = true
-}
-
-changelog {
-    version = project.version.toString()
-    path = "${project.projectDir}/CHANGELOG.md"
-    headerFormat = "[{0}]"
-    headerArguments = listOf("${project.version}")
-    itemPrefix = "-"
-    keepUnreleasedSection = true
-    unreleasedTerm = "Unreleased"
 }
 
 repositories {

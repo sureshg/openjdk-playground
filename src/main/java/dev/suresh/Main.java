@@ -121,7 +121,7 @@ record Rec<T>(T name, int age, String addr) implements RecInterface {
 
   private void test() {}
 
-  public static Rec of(String name) {
-    return new Rec<String>("sdsdsd");
+  public static Rec<String> of(String name) {
+    return new Rec<>("sdsdsd");
   }
 }

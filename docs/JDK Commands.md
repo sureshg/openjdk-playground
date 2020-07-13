@@ -80,6 +80,19 @@ $ jdeprscan --release 14 app.jar
 
 
 
+```bash
+$ kotlinc -include-runtime -java-parameters -jvm-target 11 -progressive App.kt -d app.jar
+$ java -showversion -jar app.jar
+$ native-image --no-fallback --no-server -jar app.jar
+
+$ chmod +x app   
+$ file app
+$ otool -L app
+$ time ./app
+```
+
+
+
 ####  Java Cryptography & Security
 
 ------
