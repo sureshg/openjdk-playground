@@ -95,6 +95,11 @@ public class Main {
     return (this == o)
         || (o instanceof Main x) && this.age == x.age && Objects.equals(this.name, x.name);
   }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, age);
+  }
 }
 
 class RecordSuper {}

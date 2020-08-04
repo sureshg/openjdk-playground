@@ -2,19 +2,11 @@
 
 
 
-
-
 https://github.com/JoseAlcerreca/kotlin-std-fun
-
-
 
 #### Blogs
 
 * [Coroutines Design document](https://github.com/Kotlin/KEEP/blob/master/proposals/coroutines.md) 
-
-
-
-
 
 ### Videos
 

@@ -47,7 +47,8 @@ class DevServer {
 
             val req = Request.Builder()
                 .header("User-Agent", OkHttp.VERSION)
-                .url(server.url("/")).build()
+                .url(server.url("/"))
+                .build()
 
             client.newCall(req)
                 .execute()

@@ -5,7 +5,9 @@ plugins {
     java
     application
     kotlinJvm
+    kotlinKapt
     kotlinxSerialization
+    dokka
     googleJib
     shadow
     spotless
@@ -16,11 +18,6 @@ plugins {
     mavenPublishAuth
     gradleRelease
 }
-
-group = "dev.suresh"
-description = "OpenJDK latest release playground!"
-val gitUrl: String by project
-val jdkVersion = JavaVersion.toVersion(16)
 
 application {
     mainClassName = "dev.suresh.Main"
@@ -34,28 +31,12 @@ application {
 }
 
 java {
-    sourceCompatibility = jdkVersion
-    targetCompatibility = jdkVersion
     modularity.inferModulePath.set(false)
     // withSourcesJar()
     // withJavadocJar()
 }
 
-jib {
-    from {
-        image = "openjdk:15-jdk-slim"
-    }
-
-    to {
-        image = "sureshg/${project.name}"
-        tags = setOf(project.version.toString(), "latest")
-    }
-    container {
-        mainClass = application.mainClassName
-        jvmFlags = application.applicationDefaultJvmArgs.toList()
-    }
-}
-
+// Formatting
 spotless {
     java {
         googleJavaFormat(Versions.googleJavaFormat)
@@ -83,7 +64,22 @@ spotless {
 
 gitProperties {
     gitPropertiesDir = "${project.buildDir}/resources/main/META-INF/${project.name}"
-    customProperties["kotlin"] = Versions.kotlin
+    customProperties["kotlin"] = kotlinVersion
+}
+
+jib {
+    from {
+        image = "openjdk:${javaVersion}-jdk-slim"
+    }
+
+    to {
+        image = "sureshg/${project.name}"
+        tags = setOf(project.version.toString(), "latest")
+    }
+    container {
+        mainClass = application.mainClassName
+        jvmFlags = application.applicationDefaultJvmArgs.toList()
+    }
 }
 
 release {
@@ -92,6 +88,9 @@ release {
 
 repositories {
     mavenCentral()
+    jcenter()
+    maven(Repo.KotlinEAP.url)
+    maven(Repo.KotlinDev.url)
 }
 
 // For dependencies that are needed for development only,
@@ -112,13 +111,12 @@ tasks {
         options.apply {
             encoding = "UTF-8"
             isIncremental = true
+            release.set(javaVersion)
             compilerArgs.addAll(
                 listOf(
                     "--enable-preview",
                     "-Xlint:all",
-                    "-parameters",
-                    "--release", // Compile for the specified Java SE release platform APIs
-                    jdkVersion.majorVersion
+                    "-parameters"
                 )
             )
         }
@@ -128,18 +126,22 @@ tasks {
     withType<KotlinCompile>().configureEach {
         kotlinOptions {
             verbose = true
-            jvmTarget = "13"
+            jvmTarget = kotlinJvmTarget
+            languageVersion = kotlinLangVersion
             javaParameters = true
-            allWarningsAsErrors = true
+            allWarningsAsErrors = false
             freeCompilerArgs += listOf(
                 "-progressive",
                 "-Xjsr305=strict",
                 "-Xjvm-default=enable",
                 "-Xassertions=jvm",
+                "-Xinline-classes",
+                "-XXLanguage:+NewInference",
                 "-Xopt-in=kotlin.RequiresOptIn",
-                "-Xopt-in=kotlinx.serialization.ImplicitReflectionSerializer",
-                "-Xuse-experimental=kotlin.ExperimentalStdlibApi",
-                "-Xjavac-arguments=--enable-preview"
+                "-Xopt-in=kotlin.ExperimentalStdlibApi",
+                "-Xopt-in=kotlin.ExperimentalUnsignedTypes",
+                "-Xopt-in=kotlin.time.ExperimentalTime",
+                "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
             )
         }
     }
@@ -159,13 +161,23 @@ tasks {
             showExceptions = true
             showCauses = true
             showStackTraces = true
+            showStandardStreams = true
         }
         reports.html.isEnabled = true
     }
 
+    // Javadoc
     javadoc {
-        // Preview feature will fail for javadoc
-        isFailOnError = false
+        isFailOnError = true
+        (options as CoreJavadocOptions).apply {
+            addBooleanOption("-enable-preview", true)
+            addStringOption("-release", javaVersion.toString())
+        }
+    }
+
+    // Kotlin Doc
+    dokkaHtml {
+        outputDirectory = "$buildDir/dokka"
     }
 
     // Uber jar
@@ -194,24 +206,6 @@ tasks {
         reportfileName = "report"
     }
 
-    // Sources jar (lazy)
-    val sourcesJar by registering(Jar::class) {
-        //kotlin.sourceSets.main.get().kotlin
-        from(sourceSets.main.get().allSource)
-        archiveClassifier.set("sources")
-    }
-
-    // Javadoc jar (lazy)
-    val javadocJar by registering(Jar::class) {
-        from(javadoc)
-        archiveClassifier.set("javadoc")
-    }
-
-    artifacts {
-        archives(sourcesJar)
-        archives(javadocJar)
-    }
-
     // Reproducible builds
     withType<AbstractArchiveTask>().configureEach {
         isPreserveFileTimestamps = false
@@ -220,12 +214,31 @@ tasks {
 
     // Gradle Wrapper
     wrapper {
-        gradleVersion = Versions.gradle
+        gradleVersion = gradleRelease
         distributionType = Wrapper.DistributionType.BIN
     }
 
     // Default task
     defaultTasks("clean", "tasks", "--all")
+}
+
+// Sources jar
+val sourcesJar by tasks.registering(Jar::class) {
+    //kotlin.sourceSets.main.get().kotlin
+    from(sourceSets.main.get().allSource)
+    archiveClassifier.set("sources")
+}
+
+// Javadoc jar
+val javadocJar by tasks.registering(Jar::class) {
+    from(tasks.javadoc)
+    archiveClassifier.set("javadoc")
+}
+
+// Dokka html doc
+val dokkaHtmlJar by tasks.registering(Jar::class) {
+    from(tasks.dokkaHtml)
+    archiveClassifier.set("htmldoc")
 }
 
 dependencies {
@@ -241,6 +254,7 @@ dependencies {
     implementation(Deps.retrofit)
     implementation(Deps.retrofitSerializationAdapter)
     implementation(Deps.clikt)
+    implementation(Deps.certifikit)
     implementation(Deps.mordant)
     implementation(Deps.slf4jApi)
     implementation(Deps.shrinkwrap)
@@ -250,6 +264,9 @@ dependencies {
     testImplementation(Deps.junitJupiter)
     testImplementation(Deps.slf4jSimple)
     testImplementation(Deps.mockk)
+
+    // Dokka Plugins (dokkaHtmlPlugin, dokkaGfmPlugin)
+    // dokkaPlugin(Deps.Dokka.kotlinAsJavaPlugin)
 }
 
 publishing {
@@ -262,14 +279,16 @@ publishing {
     publications {
         register<MavenPublication>("mavenJava") {
             from(components["java"])
-            // artifact(sourcesJar.get())
-            artifact(tasks.shadowJar.get())
+            artifact(sourcesJar.get())
+            artifact(javadocJar.get())
+            artifact(dokkaHtmlJar.get())
+            // artifact(tasks.shadowJar.get())
 
             pom {
                 packaging = "jar"
                 description.set(project.description)
                 inceptionYear.set("2020")
-                url.set(gitUrl)
+                url.set(githubProject)
 
                 developers {
                     developer {
@@ -290,15 +309,15 @@ publishing {
                 }
 
                 scm {
-                    url.set(gitUrl)
+                    url.set(githubProject)
                     tag.set("HEAD")
-                    connection.set("scm:git:$gitUrl.git")
-                    developerConnection.set("scm:git:$gitUrl.git")
+                    connection.set("scm:git:$githubProject.git")
+                    developerConnection.set("scm:git:$githubProject.git")
                 }
 
                 issueManagement {
                     system.set("github")
-                    url.set("$gitUrl/issues")
+                    url.set("$githubProject/issues")
                 }
             }
         }

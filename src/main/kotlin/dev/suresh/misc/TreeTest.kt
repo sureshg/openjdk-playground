@@ -1,6 +1,6 @@
 package dev.suresh.misc
 
-fun main() {
+fun main2() {
     val root = generateSequence(Node1(1)) { prev ->
         // Repeatedly generate parent nodes that link to the previous node as their left children
         Node1(prev.data + 1, prev, null)

@@ -1,17 +1,29 @@
-@file:Suppress("unused")
-
 import org.gradle.kotlin.dsl.*
 import org.gradle.plugin.use.*
 
+/**
+ * Platform versions (Global)
+ */
+val javaVersion = "javaVersion".systemProp.toInt()
+val kotlinVersion = "KotlinVersion".systemProp
+val kotlinJvmTarget = "kotlinJvmTarget".systemProp
+val kotlinLangVersion = "kotlinLangVersion".systemProp
+val gradleRelease = "gradleRelease".systemProp
+val githubProject = "githubProject".systemProp
+
+/**
+ * Dependency versions.
+ */
 object Versions {
-    // Deps
-    const val kotlin = "1.3.72"
-    const val coroutines = "1.3.7"
-    const val kotlinSerialization = "0.20.0"
+    const val coroutines = "1.3.8-1.4.0-rc"
+    const val kotlinxSerialization = "1.0-M1-1.4.0-rc"
+    const val kotlinxAtomicfu = "0.14.3-1.4.0-rc"
     const val kotlinxReflectLite = "1.0.0"
     const val kotlinImmutableColl = "0.1"
     const val kotlinIO = "0.1.4"
+    const val ktor = "1.3.2-1.4.0-rc"
     const val micronaut = "2.0.0"
+
     const val jsr305 = "3.0.2"
     const val clikt = "2.8.0"
     const val colormath = "1.4.0"
@@ -19,8 +31,10 @@ object Versions {
     const val moshi = "1.9.2"
     const val okhttp = "4.8.0"
     const val okio = "2.2.0"
+    const val certifikit = "0.1.0"
     const val ok2Curl = "0.4.5"
     const val retrofit = "2.9.0"
+    const val turbine = "0.1.1"
     const val commonsCodec = "1.11"
     const val rsocket = "0.11.16"
     const val failsafe = "2.3.3"
@@ -86,12 +100,11 @@ object Versions {
     const val rocker = "1.3.0"
     const val jgrapht = "1.5.0"
     const val googleAuto = "1.0-rc7"
+    const val jgitver = "0.12.0"
 
     // Plugins
-    const val gradle = "6.5.1"
-    const val dokka = "0.10.1"
     const val shadow = "6.0.0"
-    const val micronautPlugin = "1.0.0.M7"
+    const val micronautPlugin = "1.0.0.M9"
     const val googleJib = "2.4.0"
     const val sonarqube = "2.7"
     const val nemerosaVersioning = "2.8.2"
@@ -99,39 +112,42 @@ object Versions {
     const val springDepMgmt = "1.0.9.RELEASE"
     const val buildSrcVersions = "0.3.2"
     const val changelog = "0.4.0"
-    const val spotless = "5.0.0"
+    const val spotless = "5.1.0"
     const val spotlessChangelog = "2.0.0"
     const val spotbugs = "4.3.0"
     const val googleJavaFormat = "1.8"
-    const val benmanesVersions = "0.28.0"
+    const val benmanesVersions = "0.29.0"
     const val buildScanPlugin = "2.0.2"
     const val gitPublishPlugin = "1.0.1"
     const val swaggerGen = "2.16.0"
-    const val gitProperties = "2.2.2"
+    const val gitProperties = "2.2.3"
     const val githubRelease = "2.2.12"
     const val gradleRelease = "2.8.1"
     const val mavenPublishAuth = "2.0.2"
     const val javafxPlugin = "0.0.7"
     const val jmhPlugin = "0.4.8"
     const val mrjar = "0.0.16"
+    const val jgitPlugin = "0.10.0-rc03"
+    const val reckon = "0.12.0"
+    const val mkdocs = "2.0.1"
 }
 
 object Deps {
-    const val kotlinBom = "org.jetbrains.kotlin:kotlin-bom:${Versions.kotlin}"
-    const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
-    const val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}"
-    const val kotlinxReflectLite =
-        "org.jetbrains.kotlinx:kotlinx.reflect.lite:${Versions.kotlinxReflectLite}"
-    const val kotlinTest = "org.jetbrains.kotlin:kotlin-test:${Versions.kotlin}"
-    const val kotlinTestJunit = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}"
+    val kotlinBom = "org.jetbrains.kotlin:kotlin-bom:$kotlinVersion"
+    val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+    val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
+    val kotlinTest = "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
+    val kotlinTestJunit = "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
 
     const val kotlinxSerializationRuntime =
-        "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinSerialization}"
+        "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinxSerialization}"
     const val kotlinxSerializationproperties =
-        "org.jetbrains.kotlinx:kotlinx-serialization-properties:${Versions.kotlinSerialization}"
+        "org.jetbrains.kotlinx:kotlinx-serialization-properties:${Versions.kotlinxSerialization}"
     const val kotlinxSerializationProtobuf =
-        "org.jetbrains.kotlinx:kotlinx-serialization-protobuf:${Versions.kotlinSerialization}"
+        "org.jetbrains.kotlinx:kotlinx-serialization-protobuf:${Versions.kotlinxSerialization}"
     const val kotlinxSerializationYaml = "com.charleskorn.kaml:kaml:${Versions.kaml}"
+    const val kotlinxReflectLite =
+        "org.jetbrains.kotlinx:kotlinx.reflect.lite:${Versions.kotlinxReflectLite}"
 
     const val kotlinIO = "org.jetbrains.kotlinx:kotlinx-io-jvm:${Versions.kotlinIO}"
     const val kotlinImmutableColl =
@@ -159,6 +175,7 @@ object Deps {
     const val okhttpDigest = "com.baulsupp:okhttp-digest:0.4.0"
     const val okhttpDoh = "com.squareup.okhttp3:okhttp-dnsoverhttps:${Versions.okhttp}"
     const val ok2Curl = "com.github.mrmike:ok2curl:${Versions.ok2Curl}"
+    const val certifikit = "app.cash.certifikit:certifikit:${Versions.certifikit}"
 
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     const val retrofitConverterMoshi = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
@@ -175,10 +192,10 @@ object Deps {
     const val moshiKotlin = "com.squareup.moshi:moshi-kotlin:${Versions.moshi}"
     const val moshiKotlinCodegen = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshi}"
     const val moshiAdapters = "com.squareup.moshi:moshi-adapters:${Versions.moshi}"
+    const val turbine = "app.cash.turbine:turbine:${Versions.turbine}"
 
     const val micronautBom = "io.micronaut:micronaut-bom:${Versions.micronaut}"
     const val methanol = "com.github.mizosoft.methanol:methanol:${Versions.methanol}"
-
     const val bouncyCastle = "org.bouncycastle:bcprov-jdk15on:${Versions.bouncyCastle}"
     const val conscryptUber = "org.conscrypt:conscrypt-openjdk-uber:${Versions.conscrypt}"
     const val tink = "com.google.crypto.tink:tink:${Versions.tink}"
@@ -266,6 +283,7 @@ object Deps {
     const val junitJupiterParams = "org.junit.jupiter:junit-jupiter-params:${Versions.junit}"
     const val shrinkwrap =
         "org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-depchain:${Versions.shrinkwrap}"
+    const val jgitver = "fr.brouillard.oss:jgitver:${Versions.jgitver}"
 
     const val assertjCore = "org.assertj:assertj-core:${Versions.assertj}"
     const val kotlinPowerAssert =
@@ -282,21 +300,43 @@ object Deps {
     const val mockito = "org.mockito:mockito-core:${Versions.mockito}"
     const val mockserver = "org.mock-server:mockserver-netty:${Versions.mockserver}"
     const val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlin}"
+
+    object Smile {
+        const val version = "2.5.0"
+        const val plot = "com.github.haifengl:smile-plot:$version"
+        const val core = "com.github.haifengl:smile-core:$version"
+        const val vega = "com.github.haifengl:smile-scala_2.13:$version"
+    }
+
+    object Dokka {
+        const val version = "1.4.0-rc-24"
+        const val gradlePlugin = "org.jetbrains.dokka:dokka-gradle-plugin:$version"
+        const val javadocPlugin = "org.jetbrains.dokka:javadoc-plugin:$version"
+        const val kotlinAsJavaPlugin = "org.jetbrains.dokka:kotlin-as-java-plugin:$version"
+        const val gfmPlugin = "org.jetbrains.dokka:gfm-plugin:$version"
+        const val jekyllPlugin = "org.jetbrains.dokka:jekyll-plugin:$version"
+        const val mathjaxPlugin = "org.jetbrains.dokka:mathjax-plugin:$version"
+    }
 }
+
+/**
+ * Returns the system properties value of the given string.
+ */
+val String.systemProp: String get() = System.getProperty(this, "")
 
 /**
  * PluginId Extensions
  */
-
-inline val PluginDependenciesSpec.kotlinJvm get() = kotlin("jvm") version Versions.kotlin
-inline val PluginDependenciesSpec.kotlinxSerialization get() = kotlin("plugin.serialization") version Versions.kotlin
-inline val PluginDependenciesSpec.kotlinKapt get() = kotlin("kapt") version Versions.kotlin
-inline val PluginDependenciesSpec.kotlinSpring get() = kotlin("plugin.spring") version Versions.kotlin
-inline val PluginDependenciesSpec.kotlinAllOpen get() = kotlin("plugin.allopen") version Versions.kotlin
-inline val PluginDependenciesSpec.kotlinNoArg get() = kotlin("plugin.noarg") version Versions.kotlin
-inline val PluginDependenciesSpec.kotlinJpa get() = kotlin("plugin.jpa") version Versions.kotlin
-inline val PluginDependenciesSpec.kotlinScript get() = kotlin("plugin.scripting") version Versions.kotlin
-inline val PluginDependenciesSpec.dokka get() = id("org.jetbrains.dokka") version Versions.dokka
+inline val PluginDependenciesSpec.kotlinJvm get() = kotlin("jvm") version kotlinVersion
+inline val PluginDependenciesSpec.kotlinxSerialization get() = kotlin("plugin.serialization") version kotlinVersion
+inline val PluginDependenciesSpec.kotlinKapt get() = kotlin("kapt") version kotlinVersion
+inline val PluginDependenciesSpec.kotlinSpring get() = kotlin("plugin.spring") version kotlinVersion
+inline val PluginDependenciesSpec.kotlinAllOpen get() = kotlin("plugin.allopen") version kotlinVersion
+inline val PluginDependenciesSpec.kotlinNoArg get() = kotlin("plugin.noarg") version kotlinVersion
+inline val PluginDependenciesSpec.kotlinJpa get() = kotlin("plugin.jpa") version kotlinVersion
+inline val PluginDependenciesSpec.kotlinScript get() = kotlin("plugin.scripting") version kotlinVersion
+inline val PluginDependenciesSpec.kotlinxAtomicfu get() = kotlin("kotlinx-atomicfu") version Versions.kotlinxAtomicfu
+inline val PluginDependenciesSpec.dokka get() = id("org.jetbrains.dokka") version Deps.Dokka.version
 inline val PluginDependenciesSpec.changelog get() = id("org.jetbrains.changelog") version Versions.changelog
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version Versions.shadow
 inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version Versions.benmanesVersions
@@ -315,3 +355,6 @@ inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boo
 inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version Versions.springDepMgmt
 inline val PluginDependenciesSpec.micronautApplication get() = id("io.micronaut.application") version Versions.micronautPlugin
 inline val PluginDependenciesSpec.micronautLibrary get() = id("io.micronaut.library") version Versions.micronautPlugin
+inline val PluginDependenciesSpec.jgitPlugin get() = id("fr.brouillard.oss.gradle.jgitver") version Versions.jgitPlugin
+inline val PluginDependenciesSpec.reckon get() = id("org.ajoberstar.reckon") version Versions.reckon
+inline val PluginDependenciesSpec.mkdocs get() = id("ru.vyarus.mkdocs") version Versions.mkdocs

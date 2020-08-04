@@ -38,7 +38,7 @@ fun <T> Tree<T>.depth(): Int = when (this) {
 //    }
 //}
 
-fun main() {
+fun main1() {
 
     val tree = Node(
         10,

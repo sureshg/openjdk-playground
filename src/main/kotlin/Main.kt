@@ -8,7 +8,9 @@ fun main() {
         is Result.Error.NonRecException -> TODO()
         Result.InProgress -> TODO()
     }.exhaustive
+
 }
+// https://github.com/cortinico/kscript-template
 
 sealed class Result<out T> {
     data class Success<T : Any>(val data: T) : Result<T>()
