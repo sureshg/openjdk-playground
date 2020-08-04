@@ -214,7 +214,7 @@ tasks {
     // Gradle Wrapper
     wrapper {
         gradleVersion = gradleRelease
-        distributionType = Wrapper.DistributionType.BIN
+        distributionType = Wrapper.DistributionType.ALL
     }
 
     // Default task
