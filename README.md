@@ -33,7 +33,7 @@ $ java -showversion --enable-preview -XX:+UseZGC -jar build/libs/openjdk-latest-
 ### Run the application container
 ```bash
 $ ./gradlew jibDockerBuild
-$ docker run -it --rm --name openjdk-latest sureshg/openjdk-latest 
+$ docker run -it --rm --name openjdk-latest sureshg/openjdk-latest
 ```
 
 #### Load testing the Loom Web Server
@@ -46,7 +46,7 @@ $ docker run -it --rm --name openjdk-latest sureshg/openjdk-latest
   - Set the os `ulimit` for Vegeta
       ```bash
       $ ulimit -n 4096 // FD limit
-      $ ulimit -u 1024 // processes limit 
+      $ ulimit -u 1024 // processes limit
       ```
   - Run with kernel threads.
       ```bash
@@ -61,20 +61,20 @@ $ docker run -it --rm --name openjdk-latest sureshg/openjdk-latest
       $ vegeta report -type=json vthread-results.bin > vthread-metrics.json
       $ cat vthread-results.bin | vegeta report -type="hist[0,100ms,200ms,300ms]"
       $ cat vthread-results.bin | vegeta plot -title "Virtual Threads" > plot.html && open plot.html
-      ```   
+      ```
   - Combine the results and plot a single graph.
       ```bash
       $ vegeta plot -title "Threads vs Loom Virtual Threads"  vthread-results.bin thread-results.bin > plot.html && open plot.html
       ```
-    
- <!-- 
+
+ <!--
  https://kotlinlang.org/api/latest/kotlin.test/
- https://github.com/marketplace/actions/download-openjdk 
+ https://github.com/marketplace/actions/download-openjdk
  https://github.com/sormuras/junit5-looming/blob/master/.github/workflows/main.yml
- 
+
  Add HomeBrew for java apps - https://github.com/JakeWharton/homebrew-repo
  https://github.com/JakeWharton/picnic
  https://github.com/h0tk3y/better-parse
  https://github.com/marketplace/actions/setup-java-jdk
- https://github.com/actions/cache/blob/main/examples.md#java---gradle 				
+ https://github.com/actions/cache/blob/main/examples.md#java---gradle
  -->

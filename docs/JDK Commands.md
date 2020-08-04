@@ -28,13 +28,13 @@ $ java  --enable-preview Foo
 $ jshell --enable-preview
 ```
 
-- [JEP12](https://openjdk.java.net/jeps/12)   
+- [JEP12](https://openjdk.java.net/jeps/12)
 
 - [Preview Features](https://docs.oracle.com/en/java/javase/13/language/preview-language-and-vm-features.html)
 
 - [Gradle - Enabling Java preview features](https://docs.gradle.org/current/userguide/building_java_projects.html#sec:feature_preview)
 
-  
+
 
 ##### 3. Java Platform Module Systems (JPMS)
 
@@ -52,7 +52,7 @@ $ java --show-module-resolution java.base
 $ javap -p -v <classfile>
 ```
 
-* **[Javap Pastebin](https://javap.yawk.at/)** 
+* **[Javap Pastebin](https://javap.yawk.at/)**
 
 
 
@@ -85,7 +85,7 @@ $ kotlinc -include-runtime -java-parameters -jvm-target 11 -progressive App.kt -
 $ java -showversion -jar app.jar
 $ native-image --no-fallback --no-server -jar app.jar
 
-$ chmod +x app   
+$ chmod +x app
 $ file app
 $ otool -L app
 $ time ./app
@@ -107,7 +107,7 @@ $ time ./app
 
    ```bash
 // This is Unsafe. Don't use in prod.
--Djdk.tls.allowUnsafeServerCertChange=true 
+-Djdk.tls.allowUnsafeServerCertChange=true
 -Dsun.security.ssl.allowUnsafeRenegotiation=true
    ```
 
@@ -127,7 +127,7 @@ edg ...
   http.nonProxyHosts
   ```
 
-  
+
 
 - Env vars
 
@@ -137,9 +137,9 @@ edg ...
   export NO_PROXY=master.hostname.example.com
   ```
 
-  
 
-- 
+
+-
 
 | Protocol  |                            Config                            |                         Description                          |
 | :-------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
@@ -174,7 +174,7 @@ http.nonProxyHosts
 
 - ##### [Building Kotlin JVM Libraries](https://guides.gradle.org/building-kotlin-jvm-libraries/)
 
-  
+
 
 ##### 2. Create new Java `SourceSet`
 
@@ -190,7 +190,7 @@ sourceSets {
 
 -  [SourceSet](https://docs.gradle.org/current/userguide/building_java_projects.html#sec:java_source_sets)
 
-  
+
 
 ##### 3. Custom SourceSet directories
 
@@ -225,7 +225,7 @@ kotlin {
         create("java11") {
             kotlin.srcDirs("src/main/java11")
         }
-        
+
         val test by creating{}
     }
 }
@@ -258,7 +258,7 @@ sourceSets.main {
      val u: TaskProvider<Jar> = register<Jar>("jar"){}     // Create new task
      val v: TaskProvider<Jar> by registering(Jar::class){} // Create task using property delegate
      val jar: TaskProvider<Task> by existing // Get task using property delegate
-     
+
      val foo: FooTask by existing            // Take Task type from val (Kotlin 1.4)
      val bar: BarTask by registering {}      // Take Task type from val (Kotlin 1.4)
      ```
@@ -276,7 +276,7 @@ tasks.withType<Test> {
 }
 tasks.withType<JavaExec> {
     jvmArgs("--enable-preview")
-}    
+}
 ```
 
 
@@ -343,7 +343,7 @@ $ ./gradlew clean build --dry-run   // Task Dependencies
 * https://github.com/raphw/byte-buddy/blob/master/.github/workflows/main.yml#L92-L109
 * https://github.com/raphw/byte-buddy/blob/master/.github/scripts/install-jdk.sh
 * https://blog.autsoft.hu/publishing-an-android-library-to-mavencentral-in-2019/
-* 
+*
 
 
 
@@ -377,7 +377,7 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
           <compilerArg>--enable-preview</compilerArg>
         </configuration>
       </plugin>
-      
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
@@ -385,7 +385,7 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
           <argLine>--enable-preview</argLine>
         </configuration>
       </plugin>
-      
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
@@ -435,7 +435,7 @@ https://search.maven.org/search?q=fc:kotlin.text.Regex
 
 ------
 
-##### 1. [Micronaut](https://micronaut.io/launch/) 
+##### 1. [Micronaut](https://micronaut.io/launch/)
 
 ```bash
 $ curl https://launch.micronaut.io/demo.zip -o demo.zip
@@ -510,7 +510,7 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
 
 ##### 5. Github Actions
 
-- [Github Actions For Java](https://help.github.com/en/actions/language-and-framework-guides/github-actions-for-java)     
+- [Github Actions For Java](https://help.github.com/en/actions/language-and-framework-guides/github-actions-for-java)
 
 - [Github Maven Package](https://help.github.com/en/packages/using-github-packages-with-your-projects-ecosystem)
 
@@ -565,7 +565,7 @@ Release/*
         ${{ runner.os }}-gradle-
   ```
 
-  * String format 
+  * String format
 
   ```yaml
   ${{ hashFiles(format('{0}{1}', github.workspace, '/test.lock')) }}
@@ -589,12 +589,12 @@ Release/*
     if: startsWith(runner.os, 'Linux')
     if: startsWith(runner.os, 'macOS')
     if: startsWith(runner.os, 'Windows')
-    
+
     // check if security bot
     $ if: github.base_ref == 'master' && github.actor == 'dependabot[bot]'
     ```
 
-    
+
 
   * Docker hub push - https://github.com/marketplace/actions/build-and-push-docker-images
 
@@ -607,25 +607,25 @@ Release/*
     $ docker push docker.pkg.github.com/sureshg/repo/app:${VERSION}
     ```
 
-    
+
 
   * Service container
 
     ```yaml
-    services: 
+    services:
        postgres:
          image: postgres:10.8
          env:
            POSTGRES_USER: postgres
            POSTGRES_PASSWORD: postgres
-         options: 
+         options:
          ports:
            - 5432/tcp
      ...
      ${{ jobs.services.postgres.ports[5432] }}
     ```
 
-    
+
 
 Dart
 
@@ -737,7 +737,7 @@ $ strings -a $(which native-image) | grep -i com.oracle.svm.core.VM
 * GraalVm demos - https://github.com/graalvm/graalvm-demos
 * https://medium.com/graalvm/simplifying-native-image-generation-with-maven-plugin-and-embeddable-configuration-d5b283b92f57
 * https://github.com/oracle/graal/blob/master/substratevm/CLASS-INITIALIZATION.md
-* https://search.maven.org/artifact/org.graalvm.nativeimage/svm/20.0.0/jar 
+* https://search.maven.org/artifact/org.graalvm.nativeimage/svm/20.0.0/jar
 * https://github.com/graalvm/graalvm-ce-dev-builds/releases/
 * Examples:
   * https://github.com/38leinaD/bpmn-diff/tree/master/.github/workflows
@@ -757,14 +757,9 @@ $ strings -a $(which native-image) | grep -i com.oracle.svm.core.VM
 
 * Tools
 
-  * https://utteranc.es/ - Comments Widgets 
+  * https://utteranc.es/ - Comments Widgets
   * https://orchid.run/wiki/learn/tutorials/how-to-document-kotlin
   * http://casual-effects.com/markdeep/
   * https://www.mkdocs.org/ (eg: https://github.com/hexagonkt/hexagon/tree/master/hexagon_site)
   * Github publish example - https://github.com/hexagonkt/hexagon/blob/master/.github/workflows/main.yml
-  * 
-
-  
-
-
-
+  *

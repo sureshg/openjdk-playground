@@ -6,7 +6,6 @@ fun main2() {
         Node1(prev.data + 1, prev, null)
     }.take(100_000).last()
     println(root.depth)
-
 }
 
 data class Node1<T>(val data: T, val left: Node1<T>? = null, val right: Node1<T>? = null)
@@ -19,4 +18,3 @@ val <T> Node1<T>?.depth: Int
             right.depth
         ) + 1
     }
-

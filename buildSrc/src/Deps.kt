@@ -31,7 +31,7 @@ object Versions {
     const val moshi = "1.9.2"
     const val okhttp = "4.8.0"
     const val okio = "2.2.0"
-    const val certifikit = "0.1.0"
+    const val certifikit = "0.2.0"
     const val ok2Curl = "0.4.5"
     const val retrofit = "2.9.0"
     const val turbine = "0.1.1"
@@ -310,12 +310,12 @@ object Deps {
 
     object Dokka {
         const val version = "1.4.0-rc-24"
-        const val gradlePlugin = "org.jetbrains.dokka:dokka-gradle-plugin:$version"
-        const val javadocPlugin = "org.jetbrains.dokka:javadoc-plugin:$version"
-        const val kotlinAsJavaPlugin = "org.jetbrains.dokka:kotlin-as-java-plugin:$version"
-        const val gfmPlugin = "org.jetbrains.dokka:gfm-plugin:$version"
-        const val jekyllPlugin = "org.jetbrains.dokka:jekyll-plugin:$version"
-        const val mathjaxPlugin = "org.jetbrains.dokka:mathjax-plugin:$version"
+        val gradlePlugin = "org.jetbrains.dokka:dokka-gradle-plugin:$kotlinVersion"
+        val javadocPlugin = "org.jetbrains.dokka:javadoc-plugin:$kotlinVersion"
+        val kotlinAsJavaPlugin = "org.jetbrains.dokka:kotlin-as-java-plugin:$kotlinVersion"
+        val gfmPlugin = "org.jetbrains.dokka:gfm-plugin:$kotlinVersion"
+        val jekyllPlugin = "org.jetbrains.dokka:jekyll-plugin:$kotlinVersion"
+        val mathjaxPlugin = "org.jetbrains.dokka:mathjax-plugin:$kotlinVersion"
     }
 }
 
@@ -335,8 +335,8 @@ inline val PluginDependenciesSpec.kotlinAllOpen get() = kotlin("plugin.allopen")
 inline val PluginDependenciesSpec.kotlinNoArg get() = kotlin("plugin.noarg") version kotlinVersion
 inline val PluginDependenciesSpec.kotlinJpa get() = kotlin("plugin.jpa") version kotlinVersion
 inline val PluginDependenciesSpec.kotlinScript get() = kotlin("plugin.scripting") version kotlinVersion
+inline val PluginDependenciesSpec.dokka get() = id("org.jetbrains.dokka") version kotlinVersion
 inline val PluginDependenciesSpec.kotlinxAtomicfu get() = kotlin("kotlinx-atomicfu") version Versions.kotlinxAtomicfu
-inline val PluginDependenciesSpec.dokka get() = id("org.jetbrains.dokka") version Deps.Dokka.version
 inline val PluginDependenciesSpec.changelog get() = id("org.jetbrains.changelog") version Versions.changelog
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version Versions.shadow
 inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version Versions.benmanesVersions

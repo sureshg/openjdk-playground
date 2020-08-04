@@ -49,7 +49,7 @@ spotless {
     }
 
     kotlinGradle {
-        ktlint(Versions.ktlint)
+        ktlint(Versions.ktlint).userData(mapOf("disabled_rules" to "no-wildcard-imports"))
         target("*.gradle.kts")
     }
 
@@ -59,7 +59,7 @@ spotless {
         endWithNewline()
     }
 
-    isEnforceCheck = false
+    // isEnforceCheck = false
 }
 
 gitProperties {
@@ -69,7 +69,7 @@ gitProperties {
 
 jib {
     from {
-        image = "openjdk:${javaVersion}-jdk-slim"
+        image = "openjdk:$javaVersion-jdk-slim"
     }
 
     to {
@@ -90,7 +90,6 @@ repositories {
     mavenCentral()
     jcenter()
     maven(Repo.KotlinEAP.url)
-    maven(Repo.KotlinDev.url)
 }
 
 // For dependencies that are needed for development only,
@@ -224,7 +223,7 @@ tasks {
 
 // Sources jar
 val sourcesJar by tasks.registering(Jar::class) {
-    //kotlin.sourceSets.main.get().kotlin
+    // kotlin.sourceSets.main.get().kotlin
     from(sourceSets.main.get().allSource)
     archiveClassifier.set("sources")
 }

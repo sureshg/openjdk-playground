@@ -12,7 +12,6 @@ import java.util.function.*
 import java.util.stream.Collectors.joining
 import kotlin.system.*
 
-
 object LoomServer {
 
     private val execSvc = Executors.newVirtualThreadExecutor()
@@ -44,7 +43,6 @@ object LoomServer {
         val url = "https://localhost:${httpsServer.address.port}"
         println("Started the server on $url")
 
-
         val client = HttpClient.newBuilder()
             .connectTimeout(Duration.ofSeconds(5))
             .sslContext(selfSignedCert.sslContext())
@@ -52,20 +50,22 @@ object LoomServer {
             .executor(execSvc)
             .build()
 
-
         println("Sending 500 concurrent requests to $url")
         val futures = (1..500).map {
-            CompletableFuture.supplyAsync(Supplier {
-                val res = client.send(
-                    HttpRequest.newBuilder()
-                        .uri(URI.create(url))
-                        .build(),
-                    BodyHandlers.ofString()
-                )
-                val thread = Thread.currentThread()
-                println("<--- Response(${thread.name}-${thread.id}-${thread.isVirtual}): ${res.body()}")
-                res.body()
-            }, execSvc).exceptionally(Throwable::message)
+            CompletableFuture.supplyAsync(
+                Supplier {
+                    val res = client.send(
+                        HttpRequest.newBuilder()
+                            .uri(URI.create(url))
+                            .build(),
+                        BodyHandlers.ofString()
+                    )
+                    val thread = Thread.currentThread()
+                    println("<--- Response(${thread.name}-${thread.id}-${thread.isVirtual}): ${res.body()}")
+                    res.body()
+                },
+                execSvc
+            ).exceptionally(Throwable::message)
         }
 
         // Wait for all tasks to complete and prints the response.
@@ -86,13 +86,14 @@ object LoomServer {
         // Simulate blocking call.
         sleep(Duration.ofMillis(100))
         ex.responseHeaders.add("Content-Type", "application/json")
-        val res = """
-                                { 
-                                   "id" : ${thread.id}, 
-                                   "version" : ${System.getProperty("java.vm.version")},
-                                   "virtual" : ${thread.isVirtual} 
-                                }
-                               """.trimIndent().toByteArray()
+        val res =
+            """
+            { 
+               "id" : ${thread.id}, 
+               "version" : ${System.getProperty("java.vm.version")},
+               "virtual" : ${thread.isVirtual} 
+            }
+            """.trimIndent().toByteArray()
 
         ex.sendResponseHeaders(200, res.size.toLong())
         ex.responseBody.apply {
@@ -104,9 +105,13 @@ object LoomServer {
     private fun top(ex: HttpExchange) {
         println("---> Request: ${ex.requestMethod} - ${ex.requestURI}")
         val res = ProcessHandle.allProcesses().map {
-            "${it.pid()} ${it.parent().map(ProcessHandle::pid).orElse(0)} ${it.info().startInstant()
-                .map(Instant::toString).orElse("-")} ${it.info().commandLine()
-                .orElse("-")} ${it.info().user().orElse("-")}"
+            "${it.pid()} ${it.parent().map(ProcessHandle::pid).orElse(0)} ${
+            it.info().startInstant()
+                .map(Instant::toString).orElse("-")
+            } ${
+            it.info().commandLine()
+                .orElse("-")
+            } ${it.info().user().orElse("-")}"
         }.collect(joining("<br>")).toByteArray()
 
         ex.responseHeaders.add("Content-Type", "text/html; charset=UTF-8")
@@ -123,8 +128,4 @@ object LoomServer {
      */
     private fun disableHostnameVerification() =
         System.setProperty("jdk.internal.httpclient.disableHostnameVerification", "true")
-
 }
-
-
-

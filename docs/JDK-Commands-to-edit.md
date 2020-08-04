@@ -6,11 +6,11 @@ $ jdeps --jdk-internals build/libs/xxxxx.jar
 $ jlink --compress=2 --strip-debug --no-header-files --no-man-pages --add-modules java.base,jdk.jfr --module-path jmods  --output custom-jre
 
 // Common options.
--Xms128m 
--Xmx2048m 
--ea 
--XX:+UseCompressedOops 
--Dfile.encoding=UTF-8 
+-Xms128m
+-Xmx2048m
+-ea
+-XX:+UseCompressedOops
+-Dfile.encoding=UTF-8
 -Djava.net.preferIPv4Stack=true
 -Djava.security.egd=file:/dev/./urandom
 
@@ -20,16 +20,16 @@ $ jlink --compress=2 --strip-debug --no-header-files --no-man-pages --add-module
 -XX:HeapDumpPath=$USER_HOME/java_error_in_app.hprof
 
 // G1GC and GCLogs
--XX:+UseG1GC 
--XX:MaxGCPauseMillis=200 
--XX:InitiatingHeapOccupancyPercent=70 
--XX:+PrintGC 
--XX:+PrintGCDateStamps 
--XX:+PrintGCDetails 
--Xloggc:/log/gclogs/app-gc.log  
--XX:+UseGCLogFileRotation 
--XX:NumberOfGCLogFiles=15 
--XX:GCLogFileSize=10M 
+-XX:+UseG1GC
+-XX:MaxGCPauseMillis=200
+-XX:InitiatingHeapOccupancyPercent=70
+-XX:+PrintGC
+-XX:+PrintGCDateStamps
+-XX:+PrintGCDetails
+-Xloggc:/log/gclogs/app-gc.log
+-XX:+UseGCLogFileRotation
+-XX:NumberOfGCLogFiles=15
+-XX:GCLogFileSize=10M
 
 // Helpful NPE
 $ java -XX:+ShowCodeDetailsInExceptionMessages Main.java
@@ -39,7 +39,7 @@ $ java -XX:+ShowCodeDetailsInExceptionMessages Main
 
 
 // ZGC
-$ java -XX:+UnlockExperimentalVMOptions -XX:+UseZGC 
+$ java -XX:+UnlockExperimentalVMOptions -XX:+UseZGC
 
 // NUMA
 $ java -XX:+UseNUMA
@@ -49,7 +49,7 @@ $ java -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
 
 // JFR
 
-// CDS 
+// CDS
 
 // Remote Debugging
 $ java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
@@ -61,7 +61,7 @@ $ -Djdk.tracePinnedThreads=full
 
 // Build Tools
 $ ./gradlew wrapper --gradle-version=6.1 --distribution-type=bin
-$ ./gradlew clean dependencyUpdates -Drevision=release 
+$ ./gradlew clean dependencyUpdates -Drevision=release
 $ ./gradlew properties
 
 $  mvn -N io.takari:maven:wrapper -Dmaven=3.6.3
@@ -80,12 +80,12 @@ $ jcmd <pid> VM.flags
 
 // #### Print All VM Options #####
 // -XX:+PrintFlagsWithComments - For debug builds
-$ java -XX:+PrintFlagsFinal -XX:+UnlockDiagnosticVMOptions -XX:+UnlockExperimentalVMOptions -version 
+$ java -XX:+PrintFlagsFinal -XX:+UnlockDiagnosticVMOptions -XX:+UnlockExperimentalVMOptions -version
 
 // Java Mission control (AdoptOpenJDk)
 // Requires java 1.8
 $ cd ~/install/openjdk/JMC/JDK Mission Control.app/Contents/MacOS
-$ ./jmc -vm $JAVA_HOME/bin 
+$ ./jmc -vm $JAVA_HOME/bin
 or
 $ open JDK\ Mission\ Control.app --args -vm ~/.jenv/versions/1.8/bin
 
@@ -102,7 +102,7 @@ $ /graal-xxx/bin/java -Dgraal.PGOInstrument=myclass.iprof MyClass
 $ native-image --pgo=myclass.iprof MyClass
 
 //Build Native Image
-$ native-image --no-server                       \   
+$ native-image --no-server                       \
                -J-Xmx3g                          \
                -J-Dapp.props=value         \  Sys property for java program
                -Dfoo=bar                   \  Image build/run-time system property
@@ -113,17 +113,17 @@ $ native-image --no-server                       \
                --report-unsupported-elements-at-runtime \
                --allow-incomplete-classpath             \
                --enable-https                           \
-              
+
                -H:Name=micronaut-test      \  Biinary name
                -H:-ParseRuntimeOptions     \  Avoid parsing -D options at runtime.
                -H:IncludeResources=logback.xml|application.yml|bootstrap.yml \
                -H:ConfigurationFileDirectories=/var/config  \
                -H:+PrintUniverse                          \ Print information about classes, methods, and fields
                -H:+AddAllCharsets                         \
-               -H:+ReportExceptionStackTraces             \ Print stacktrace of underlying exception    
+               -H:+ReportExceptionStackTraces             \ Print stacktrace of underlying exception
                -H:Class=micronaut.test.Application
 
- # Other misc configs.           
+ # Other misc configs.
               -H:+TraceClassInitialization
               -H:IncludeResourceBundles=test.HelpFormatterMessages \
               --initialize-at-run-time=java.lang.Math\$RandomNumberGeneratorHolder \
@@ -133,7 +133,7 @@ $ native-image --no-server                       \
               or -H:EnableURLProtocols=http,https
               --enable-all-security-services                      \
               -H:Log=registerResource:                            \
-              -H:+PrintAnalysisStatistics                         \ 
+              -H:+PrintAnalysisStatistics                         \
               // New type flow analysts
               -H:+RemoveSaturatedTypeFlows                         \
 
@@ -183,7 +183,7 @@ Docker Commmands
 -----------------
 
 $  docker run \
-  #      --cap-add=SYS_ADMIN 
+  #      --cap-add=SYS_ADMIN
          --rm \
          -it \
          --name native-image \
@@ -196,7 +196,7 @@ $  docker run \
 
 #### SpringBoot
 $ curl https://start.spring.io/starter.zip -d bootVersion=2.2.4.RELEASE -d dependencies=web -o demo.zip
-$ unzip demo.zip 
+$ unzip demo.zip
 $ ./mvnw package
 $ java -jar target/demo-0.0.1-SNAPSHOT.jar
 $ curl -X GET http://localhost:8080/
@@ -218,12 +218,12 @@ vegeta plot -title threads results.nthread.bin results.vthread.bin > plot.html
     }
     "test" { }
 }
-                 
+
 
 
 - Cloud ctl gradle kts update to github
 - Reprodicuble gradle build
-- Github action complete for dart and Graal AOT 
+- Github action complete for dart and Graal AOT
 
 
 
@@ -259,7 +259,7 @@ $ keytool -importcert -keystore globalsign-rootca.p12 -alias CA-intermediate -st
 
 # Show PKCS#12 info.
 $ openssl pkcs12 -info -password pass:changeit -in globalsign-rootca.p12
-$ keytool -list -keystore globalsign-rootca.p12 --storetype pkcs12 -storepass changeit 
+$ keytool -list -keystore globalsign-rootca.p12 --storetype pkcs12 -storepass changeit
 
 # Create a new PKCS#12 store from certs
 $ openssl pkcs12 -export -chain -out keystore.p12 -inkey private.key -password pass:test123 \
@@ -267,4 +267,3 @@ $ openssl pkcs12 -export -chain -out keystore.p12 -inkey private.key -password p
                   -caname root-ca
 
 ```
-

@@ -14,7 +14,6 @@ data class Node<T>(
     val left: Tree<T> = Empty
 ) : Tree<T>()
 
-
 fun <T : Number> Tree<T>.sum(): Long = when (this) {
     Empty -> 0
     is Node -> value.toLong() + left.sum() + right.sum()
@@ -25,8 +24,7 @@ fun <T> Tree<T>.depth(): Int = when (this) {
     is Node -> max(left.depth(), right.depth()) + 1
 }
 
-
-//fun <T> Tree<T>.printTree(depth: Int = 0) {
+// fun <T> Tree<T>.printTree(depth: Int = 0) {
 //    val indent = " ".repeat(depth)
 //    when (this) {
 //        Empty -> return
@@ -36,7 +34,7 @@ fun <T> Tree<T>.depth(): Int = when (this) {
 //            value.toLong() + left.sum() + right.sum()
 //        }
 //    }
-//}
+// }
 
 fun main1() {
 
@@ -45,5 +43,4 @@ fun main1() {
         Node(5, left = Node(5, right = Node(4, right = Node(7))), right = Node(23, left = Node(6)))
     )
     println(tree.depth())
-
 }

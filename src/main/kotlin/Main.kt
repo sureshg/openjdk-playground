@@ -8,7 +8,6 @@ fun main() {
         is Result.Error.NonRecException -> TODO()
         Result.InProgress -> TODO()
     }.exhaustive
-
 }
 // https://github.com/cortinico/kscript-template
 

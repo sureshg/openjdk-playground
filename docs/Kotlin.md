@@ -6,7 +6,7 @@ https://github.com/JoseAlcerreca/kotlin-std-fun
 
 #### Blogs
 
-* [Coroutines Design document](https://github.com/Kotlin/KEEP/blob/master/proposals/coroutines.md) 
+* [Coroutines Design document](https://github.com/Kotlin/KEEP/blob/master/proposals/coroutines.md)
 
 ### Videos
 
@@ -85,6 +85,3 @@ https://www.youtube.com/watch?v=I4HICQ-KoV4 (Dependency Management with Gradle)
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
 ```
-
-
-
