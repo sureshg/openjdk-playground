@@ -32,8 +32,8 @@ application {
 
 java {
     modularity.inferModulePath.set(false)
-    // withSourcesJar()
-    // withJavadocJar()
+    withSourcesJar()
+    withJavadocJar()
 }
 
 // Formatting
@@ -221,19 +221,6 @@ tasks {
     defaultTasks("clean", "tasks", "--all")
 }
 
-// Sources jar
-val sourcesJar by tasks.registering(Jar::class) {
-    // kotlin.sourceSets.main.get().kotlin
-    from(sourceSets.main.get().allSource)
-    archiveClassifier.set("sources")
-}
-
-// Javadoc jar
-val javadocJar by tasks.registering(Jar::class) {
-    from(tasks.javadoc)
-    archiveClassifier.set("javadoc")
-}
-
 // Dokka html doc
 val dokkaHtmlJar by tasks.registering(Jar::class) {
     from(tasks.dokkaHtml)
@@ -278,8 +265,6 @@ publishing {
     publications {
         register<MavenPublication>("mavenJava") {
             from(components["java"])
-            artifact(sourcesJar.get())
-            artifact(javadocJar.get())
             artifact(dokkaHtmlJar.get())
             // artifact(tasks.shadowJar.get())
 

@@ -236,6 +236,13 @@ sourceSets.main {
         kotlin.srcDirs("src/main/kotlin", "src-gen/main/kotlin")
     }
 }
+
+// Sources Jar
+val sourcesJar by tasks.registering(Jar::class) {
+    // kotlin.sourceSets.main.get().kotlin
+    from(sourceSets.main.get().allSource)
+    archiveClassifier.set("sources")
+}
 ```
 
 
