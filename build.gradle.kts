@@ -177,6 +177,18 @@ tasks {
     // Kotlin Doc
     dokkaHtml {
         outputDirectory = "$buildDir/dokka"
+        dokkaSourceSets {
+            register("main") {
+                moduleDisplayName = project.name
+                jdkVersion = kotlinJvmTarget.toInt()
+                includes = listOf("README.md")
+                sourceLink {
+                    path = "src/main/kotlin"
+                    url = "$githubProject/tree/master/src/main/kotlin"
+                    lineSuffix = "#L"
+                }
+            }
+        }
     }
 
     // Uber jar

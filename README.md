@@ -1,4 +1,4 @@
-### Build & Run
+# Module OpenJDK PlayGround
 
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/sureshg/openjdk-playground/CI?label=Build&logo=Github&style=for-the-badge)](https://github.com/sureshg/openjdk-playground/actions)
 [![Docker Image Version](https://img.shields.io/docker/v/sureshg/openjdk-latest?color=RED&label=Docker%20Image&logo=Docker&logoColor=CYAN&style=for-the-badge)](https://hub.docker.com/r/sureshg/openjdk-latest)
@@ -30,7 +30,7 @@ $ ./gradlew  dependencyUpdates
 $ java -showversion --enable-preview -XX:+UseZGC -jar build/libs/openjdk-latest-1.0.0-uber.jar
 ```
 
-### Run the application container
+#### Run the application container
 ```bash
 $ ./gradlew jibDockerBuild
 $ docker run -it --rm --name openjdk-latest sureshg/openjdk-latest
