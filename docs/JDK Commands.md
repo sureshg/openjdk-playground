@@ -770,3 +770,35 @@ $ strings -a $(which native-image) | grep -i com.oracle.svm.core.VM
   * https://www.mkdocs.org/ (eg: https://github.com/hexagonkt/hexagon/tree/master/hexagon_site)
   * Github publish example - https://github.com/hexagonkt/hexagon/blob/master/.github/workflows/main.yml
   *
+
+#### Awesome Svgs 
+
+#####    Illustrations
+
+- https://undraw.co/illustrations
+- https://www.manypixels.co/gallery/
+- https://www.pixeltrue.com/free-illustrations
+
+#####    Background
+
+-  https://www.svgbackgrounds.com/ 
+
+#####     Icons
+
+- https://icons.getbootstrap.com/
+- https://material.io/resources/icons/?style=baseline (not sag)
+- https://fontawesome.com/v4.7.0/icons/ (not sag)
+- https://systemuicons.com/
+- https://www.visiwig.com/icons/
+- https://standart.io/
+- https://thenounproject.com/
+- https://www.flaticon.com/
+- https://ionicons.com/
+
+#####     Tools
+
+- https://jakearchibald.github.io/svgomg/
+- https://css-tricks.com/tools-for-optimizing-svg/
+- https://imageoptim.com/mac
+- https://xmlgraphics.apache.org/batik/
+- https://github.com/svg/svgo-osx-folder-action

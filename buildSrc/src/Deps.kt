@@ -106,6 +106,7 @@ object Versions {
     const val shadow = "6.0.0"
     const val micronautPlugin = "1.0.0.M9"
     const val googleJib = "2.4.0"
+    const val protobuf = "0.8.12"
     const val sonarqube = "2.7"
     const val nemerosaVersioning = "2.8.2"
     const val springboot = "2.2.6.RELEASE"
@@ -339,6 +340,7 @@ inline val PluginDependenciesSpec.dokka get() = id("org.jetbrains.dokka") versio
 inline val PluginDependenciesSpec.kotlinxAtomicfu get() = kotlin("kotlinx-atomicfu") version Versions.kotlinxAtomicfu
 inline val PluginDependenciesSpec.changelog get() = id("org.jetbrains.changelog") version Versions.changelog
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version Versions.shadow
+inline val PluginDependenciesSpec.protobuf get() = id("com.google.protobuf") version Versions.protobuf
 inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version Versions.benmanesVersions
 inline val PluginDependenciesSpec.gitProperties get() = id("com.gorylenko.gradle-git-properties") version Versions.gitProperties
 inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version Versions.spotless

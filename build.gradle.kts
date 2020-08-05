@@ -8,6 +8,7 @@ plugins {
     kotlinKapt
     kotlinxSerialization
     dokka
+    protobuf
     googleJib
     shadow
     spotless
