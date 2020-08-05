@@ -12,6 +12,7 @@ plugins {
     googleJib
     shadow
     spotless
+    jacoco
     spotlessChangelog
     benmanesVersions
     gitProperties
@@ -164,6 +165,14 @@ tasks {
             showStandardStreams = true
         }
         reports.html.isEnabled = true
+    }
+
+    // Code Coverage
+    jacocoTestReport {
+        reports {
+            html.isEnabled = true
+        }
+        dependsOn(test)
     }
 
     // Javadoc

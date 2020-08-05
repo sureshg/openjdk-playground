@@ -771,7 +771,7 @@ $ strings -a $(which native-image) | grep -i com.oracle.svm.core.VM
   * Github publish example - https://github.com/hexagonkt/hexagon/blob/master/.github/workflows/main.yml
   *
 
-#### Awesome Svgs 
+#### Awesome Svgs
 
 #####    Illustrations
 
@@ -781,7 +781,7 @@ $ strings -a $(which native-image) | grep -i com.oracle.svm.core.VM
 
 #####    Background
 
--  https://www.svgbackgrounds.com/ 
+-  https://www.svgbackgrounds.com/
 
 #####     Icons
 
