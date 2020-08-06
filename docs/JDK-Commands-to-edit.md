@@ -69,8 +69,8 @@ $ ./gradlew properties
 $ mvn -N io.takari:maven:wrapper -Dmaven=3.6.3
 $ ./mvnw dependency:tree
 $ ./mvnw dependency:tree -Ddetail=true
-$ ./mvnw dependency:tree -Dverbose -Dincludes=org.jetbrains.kotlin:kotlin-stdlib 
-$ ./mvnw clean versions:display-dependency-updates versions:display-plugin-updates 
+$ ./mvnw dependency:tree -Dverbose -Dincludes=org.jetbrains.kotlin:kotlin-stdlib
+$ ./mvnw clean versions:display-dependency-updates versions:display-plugin-updates
 $ ./mvnw clean verify
 ```
 
