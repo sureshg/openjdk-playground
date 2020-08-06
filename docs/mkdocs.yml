@@ -1,0 +1,53 @@
+strict: true
+dev_addr: 0.0.0.0:8000
+
+site_name: OpenJDK PlayGround
+site_url: https://suresh.dev/openjdk-playground
+repo_name: sureshg/openjdk-playground
+repo_url: https://github.com/sureshg/openjdk-playground
+site_description: A sample repo to test the latest OpenJDK releases for both Java and Kotlin.
+site_author: Suresh
+site_dir: docs
+copyright: 'Copyright &copy; 2020 Suresh.'
+remote_branch: master
+
+edit_uri: edit/master/docs/apidoc
+docs_dir: openjdk-playground
+
+theme:
+  name: 'material'
+  favicon: images/favicon.png
+  logo: images/logo.png
+  palette:
+    primary: 'deep purple'
+    accent: 'white'
+  feature:
+    tabs: true
+  font:
+    text: Roboto Regular 400
+    code: Roboto Mono
+
+markdown_extensions:
+  - smarty
+  - codehilite:
+      guess_lang: false
+  - footnotes
+  - meta
+  - toc:
+      permalink: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.emoji
+  - pymdownx.tilde
+  - tables
+
+nav:
+  - 'Overview': Overview.md
+  - 'Change Log': CHANGELOG.md
+  - 'Build 🌿': https://github.com/sureshg/openjdk-playground/actions
+  - 'Github 🍁': https://github.com/sureshg/openjdk-playground

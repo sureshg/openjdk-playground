@@ -64,9 +64,18 @@ $ ./gradlew wrapper --gradle-version=6.1 --distribution-type=bin
 $ ./gradlew clean dependencyUpdates -Drevision=release
 $ ./gradlew properties
 
-$  mvn -N io.takari:maven:wrapper -Dmaven=3.6.3
-$ ./mvnw clean versions:display-dependency-updates versions:display-plugin-updates
+
+```bash
+$ mvn -N io.takari:maven:wrapper -Dmaven=3.6.3
 $ ./mvnw dependency:tree
+$ ./mvnw dependency:tree -Ddetail=true
+$ ./mvnw dependency:tree -Dverbose -Dincludes=org.jetbrains.kotlin:kotlin-stdlib 
+$ ./mvnw clean versions:display-dependency-updates versions:display-plugin-updates 
+$ ./mvnw clean verify
+```
+
+
+
 # List maven deps
 $ ./mvnw -B -DoutputFile=target/deps.txt -DskipTests clean dependency:list install
 
@@ -128,7 +137,7 @@ $ native-image --no-server                       \
               -H:IncludeResourceBundles=test.HelpFormatterMessages \
               --initialize-at-run-time=java.lang.Math\$RandomNumberGeneratorHolder \
               --initialize-at-build-time                          \
-              or --initialize-at-build-time=com.oneops.client.Cms \
+              or --initialize-at-build-time=com.xxx..             \
               --enable-url-protocols=http,https                   \
               or -H:EnableURLProtocols=http,https
               --enable-all-security-services                      \
@@ -143,7 +152,7 @@ https://github.com/graalvm/graalvm-demos/tree/master/native-image-configure-exam
 // Assisted configuration for Native-Image
 ## or config-output-dir=
 $ java  -agentlib:native-image-agent=experimental-class-loader-support,
-                  config-merge-dir=${buildDir}/src/main/resources/META-INF/native-image/com.oneops/oneops-cloud-ctl,
+                  config-merge-dir=${buildDir}/src/main/resources/META-INF/native-image/dev.suresh/my-app,
                   config-write-period-secs=300,
                   config-write-initial-delay-secs=5 ...
 

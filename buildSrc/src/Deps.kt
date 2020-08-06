@@ -19,7 +19,7 @@ object Versions {
     const val kotlinxSerialization = "1.0-M1-1.4.0-rc"
     const val kotlinxAtomicfu = "0.14.3-1.4.0-rc"
     const val kotlinxReflectLite = "1.0.0"
-    const val kotlinImmutableColl = "0.1"
+    const val kotlinImmutableColl = "0.3.2"
     const val kotlinIO = "0.1.4"
     const val ktor = "1.3.2-1.4.0-rc"
     const val micronaut = "2.0.0"
@@ -113,8 +113,10 @@ object Versions {
     const val springDepMgmt = "1.0.9.RELEASE"
     const val buildSrcVersions = "0.3.2"
     const val changelog = "0.4.0"
-    const val spotless = "5.1.0"
+    const val spotless = "5.1.1"
     const val spotlessChangelog = "2.0.0"
+    const val ktlintPlugin = "9.3.0"
+    const val detekt = "1.11.0-RC1"
     const val spotbugs = "4.3.0"
     const val googleJavaFormat = "1.8"
     const val benmanesVersions = "0.29.0"
@@ -131,6 +133,7 @@ object Versions {
     const val jgitPlugin = "0.10.0-rc03"
     const val reckon = "0.12.0"
     const val mkdocs = "2.0.1"
+    const val orchid = "0.21.1"
 }
 
 object Deps {
@@ -152,7 +155,7 @@ object Deps {
 
     const val kotlinIO = "org.jetbrains.kotlinx:kotlinx-io-jvm:${Versions.kotlinIO}"
     const val kotlinImmutableColl =
-        "org.jetbrains.kotlinx:kotlinx-collections-immutable:${Versions.kotlinImmutableColl}"
+        "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:${Versions.kotlinImmutableColl}"
 
     const val coroutinesCore =
         "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
@@ -346,6 +349,8 @@ inline val PluginDependenciesSpec.gitProperties get() = id("com.gorylenko.gradle
 inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version Versions.spotless
 inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version Versions.spotlessChangelog
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version Versions.spotbugs
+inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version Versions.ktlintPlugin
+inline val PluginDependenciesSpec.detekt get() = id("io.gitlab.arturbosch.detekt") version Versions.detekt
 inline val PluginDependenciesSpec.githubRelease get() = id("com.github.breadmoirai.github-release") version Versions.githubRelease
 inline val PluginDependenciesSpec.gradleRelease get() = id("net.researchgate.release") version Versions.gradleRelease
 inline val PluginDependenciesSpec.mavenPublishAuth get() = id("org.datlowe.maven-publish-auth") version Versions.mavenPublishAuth
@@ -360,3 +365,4 @@ inline val PluginDependenciesSpec.micronautLibrary get() = id("io.micronaut.libr
 inline val PluginDependenciesSpec.jgitPlugin get() = id("fr.brouillard.oss.gradle.jgitver") version Versions.jgitPlugin
 inline val PluginDependenciesSpec.reckon get() = id("org.ajoberstar.reckon") version Versions.reckon
 inline val PluginDependenciesSpec.mkdocs get() = id("ru.vyarus.mkdocs") version Versions.mkdocs
+inline val PluginDependenciesSpec.orchid get() = id("com.eden.orchidPlugin") version Versions.orchid

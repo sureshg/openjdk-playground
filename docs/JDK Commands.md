@@ -788,12 +788,18 @@ $ strings -a $(which native-image) | grep -i com.oracle.svm.core.VM
 - https://icons.getbootstrap.com/
 - https://material.io/resources/icons/?style=baseline (not sag)
 - https://fontawesome.com/v4.7.0/icons/ (not sag)
+- https://simpleicons.org/ (Brand Icons - good one)
 - https://systemuicons.com/
 - https://www.visiwig.com/icons/
 - https://standart.io/
 - https://thenounproject.com/
 - https://www.flaticon.com/
 - https://ionicons.com/
+
+#####     Emojis
+
+- https://emojipedia.org/search/
+- https://github.com/twitter/twemoji/tree/master/assets
 
 #####     Tools
 
@@ -802,3 +808,18 @@ $ strings -a $(which native-image) | grep -i com.oracle.svm.core.VM
 - https://imageoptim.com/mac
 - https://xmlgraphics.apache.org/batik/
 - https://github.com/svg/svgo-osx-folder-action
+
+
+
+```bash
+$ pip3 install mkdocs-macros-plugin
+$ ./gradlew dokka
+$ cp  docs/mkdocs.yml build/dokka
+$ cp -R docs/images build/dokka/my-app
+$ cp CHANGELOG.md build/dokka/my-app/CHANGELOG.md
+$ cp README.md build/dokka/my-app/Overview.md
+$ Fix the img reference on Overview.md
+$ cd build/dokka
+$ mkdocs build
+```
+
