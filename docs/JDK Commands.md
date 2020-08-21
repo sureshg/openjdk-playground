@@ -72,7 +72,7 @@ $ jdeprscan --release 14 app.jar
 
 
 
-
+**-XX:+IgnoreUnrecognizedVMOptions**
 
  `-XX:MaxRAM=16g  `
 
@@ -81,14 +81,34 @@ $ jdeprscan --release 14 app.jar
 
 
 ```bash
-$ kotlinc -include-runtime -java-parameters -jvm-target 11 -progressive App.kt -d app.jar
+$ kotlinc -version -verbose -include-runtime -Xuse-ir -java-parameters -jvm-target 11 -api-version 1.4 -language-version 1.4 -progressive App.kt -d app.jar
 $ java -showversion -jar app.jar
 $ native-image --no-fallback --no-server -jar app.jar
 
 $ chmod +x app
 $ file app
 $ otool -L app
+$ objdump -section-headers  app
 $ time ./app
+```
+
+**JMC**
+
+```bash
+# https://adoptopenjdk.net/jmc.html
+# http://jdk.java.net/jmc/
+# http://hirt.se/blog/?p=1196
+
+# JDK should be in - /Library/Java/JavaVirtualMachines/jdk-14.0.2.jdk/Contents/Home/
+$ curl https://ci.adoptopenjdk.net/view/JMC/job/jmc-build/job/master/lastSuccessfulBuild/artifact/target/products/org.openjdk.jmc-8.0.0-SNAPSHOT-macosx.cocoa.x86_64.tar.gz | tar xv -
+
+$ mv JDK\ Mission\ Control.app /Applications/
+$ open '/Applications/JDK Mission Control.app'
+
+# To run with a JDK
+$ ./jmc -vm %JAVA_HOME%\bin
+# or
+$ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 ```
 
 
@@ -113,7 +133,12 @@ $ time ./app
 
 https://github.com/sureshg/InstallCerts/blob/master/src/main/kotlin/io/github/sureshg/extn/Certs.kt
 
-edg ...
+```bash
+// Force IPv4
+-Djava.net.preferIPv4Stack=true
+// The entropy gathering device can also be specified with the system property
+-Djava.security.egd=file:/dev/./urandom
+```
 
 
 

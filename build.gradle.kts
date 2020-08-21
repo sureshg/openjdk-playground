@@ -91,7 +91,6 @@ release {
 repositories {
     mavenCentral()
     jcenter()
-    maven(Repo.KotlinEAP.url)
 }
 
 // For dependencies that are needed for development only,
@@ -130,6 +129,7 @@ tasks {
             jvmTarget = kotlinJvmTarget
             languageVersion = kotlinLangVersion
             javaParameters = true
+            useIR = true
             allWarningsAsErrors = false
             freeCompilerArgs += listOf(
                 "-progressive",
@@ -142,7 +142,8 @@ tasks {
                 "-Xopt-in=kotlin.ExperimentalStdlibApi",
                 "-Xopt-in=kotlin.ExperimentalUnsignedTypes",
                 "-Xopt-in=kotlin.time.ExperimentalTime",
-                "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+                "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+                "-Xopt-in=kotlinx.serialization.ExperimentalSerializationApi"
             )
         }
     }
@@ -253,7 +254,7 @@ dependencies {
     implementation(enforcedPlatform(Deps.kotlinBom))
     implementation(enforcedPlatform(Deps.okhttpBom))
     implementation(kotlin("stdlib-jdk8"))
-    implementation(Deps.kotlinxSerializationRuntime)
+    implementation(Deps.kotlinxSerializationCore)
     implementation(Deps.kotlinxSerializationproperties)
     implementation(Deps.okhttp)
     implementation(Deps.okhttpMockWebServer)
@@ -266,6 +267,7 @@ dependencies {
     implementation(Deps.mordant)
     implementation(Deps.slf4jApi)
     implementation(Deps.shrinkwrap)
+    compileOnly(Deps.kotlinxAtomicfu)
     // implementation(platform("org.apache.maven.resolver:maven-resolver:1.4.1"))
     // implementation("org.apache.maven:maven-resolver-provider:3.6.3")
     testImplementation(Deps.coroutinesJdk8)
