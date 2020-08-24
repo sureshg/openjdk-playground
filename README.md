@@ -9,7 +9,8 @@
 #### Setup OpenJDK
 ```bash
 # Set JDK to latest (Use SDKMAN)
-$ sdk i java jdk-16-loom ~/openjdk/jdk-16-loom.jdk/Contents/Home
+$ curl -sSL https://jdk.java.net/loom | grep -m1 -Eioh "https:.*osx-x64_bin.tar.gz" | xargs curl | tar xvz -
+$ sdk i java jdk-16-loom ./jdk-16.jdk
 $ sdk u java jdk-16-loom
 ```
 
@@ -68,13 +69,13 @@ $ docker run -it --rm --name openjdk-latest sureshg/openjdk-latest
       ```
 
  <!--
- https://kotlinlang.org/api/latest/kotlin.test/
+ https://www.eclipse.org/jetty/documentation/current/high-load.html
+ https://webtide.com/lies-damned-lies-and-benchmarks-2/
+
  https://github.com/marketplace/actions/download-openjdk
  https://github.com/sormuras/junit5-looming/blob/master/.github/workflows/main.yml
 
- Add HomeBrew for java apps - https://github.com/JakeWharton/homebrew-repo
  https://github.com/JakeWharton/picnic
  https://github.com/h0tk3y/better-parse
- https://github.com/marketplace/actions/setup-java-jdk
  https://github.com/actions/cache/blob/main/examples.md#java---gradle
  -->

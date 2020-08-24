@@ -256,6 +256,7 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation(Deps.kotlinxSerializationCore)
     implementation(Deps.kotlinxSerializationproperties)
+    implementation(Deps.Jetty.server)
     implementation(Deps.okhttp)
     implementation(Deps.okhttpMockWebServer)
     implementation(Deps.okhttpTLS)

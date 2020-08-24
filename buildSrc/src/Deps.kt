@@ -113,7 +113,7 @@ object Versions {
     const val springDepMgmt = "1.0.9.RELEASE"
     const val buildSrcVersions = "0.3.2"
     const val changelog = "0.4.0"
-    const val spotless = "5.1.1"
+    const val spotless = "5.1.2"
     const val spotlessChangelog = "2.0.0"
     const val ktlintPlugin = "9.3.0"
     const val detekt = "1.11.0-RC1"
@@ -322,6 +322,15 @@ object Deps {
         val gfmPlugin = "org.jetbrains.dokka:gfm-plugin:$version"
         val jekyllPlugin = "org.jetbrains.dokka:jekyll-plugin:$version"
         val mathjaxPlugin = "org.jetbrains.dokka:mathjax-plugin:$version"
+    }
+
+    object Jetty {
+        const val version = "11.0.0.beta1"
+        const val bom = "org.eclipse.jetty:jetty-bom:$version"
+        const val server = "org.eclipse.jetty:jetty-server:$version"
+        const val util = "org.eclipse.jetty:jetty-util:$version"
+        const val slf4j = "org.eclipse.jetty:jetty-slf4j-impl:$version"
+        const val testHelper = "org.eclipse.jetty:jetty-test-helper:$version"
     }
 }
 

@@ -113,6 +113,26 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 
 
 
+#### Containers
+
+------
+
+##### Java Container logs
+
+```bash
+$ docker run -it --rm --memory=256m --cpus=1 -v /:/host --name jdk-15 openjdk:15-jdk-slim java -Xlog:os=trace,os+container=trace -version
+```
+
+##### Access Docker desktop LinuxKit VM on MacOS
+
+```bash
+$ docker run -it --rm --memory=256m --cpus=1 -v /:/host --name alpine alpine
+ /# chroot /host
+  # docker version
+```
+
+
+
 ####  Java Cryptography & Security
 
 ------
