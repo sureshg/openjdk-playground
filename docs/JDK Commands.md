@@ -92,6 +92,22 @@ $ objdump -section-headers  app
 $ time ./app
 ```
 
+##### **Kotlin Script**
+
+```bash
+#!/usr/bin/env -S kotlinc -script --
+// sudo snap install --classic kotlin
+// ./hello.main.kts
+
+@file:DependsOn("com.github.ajalt:clikt:2.8.0")
+
+println("Hello Kotlin Script")
+```
+
+
+
+
+
 **JMC**
 
 ```bash
@@ -619,8 +635,8 @@ Release/*
 
   * String format
 
-  ```yaml
-  ${{ hashFiles(format('{0}{1}', github.workspace, '/test.lock')) }}
+  ```bash
+  // ${{ hashFiles(format('{0}{1}', github.workspace, '/test.lock')) }}
   ```
 
   * Use outout between steps
