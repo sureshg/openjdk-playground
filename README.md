@@ -5,6 +5,7 @@
 [![OpenJDK Version](https://img.shields.io/badge/OpenJDK-Version--16-green?logo=java&style=for-the-badge&logoColor=cyan)](https://jdk.java.net/)
 [![Kotlin release](https://img.shields.io/github/release/JetBrains/kotlin.svg?label=Kotlin&logo=kotlin&style=for-the-badge)](https://github.com/JetBrains/kotlin/releases/latest)
 [![javadoc](https://javadoc.io/badge2/org.jetbrains.kotlin/kotlin-stdlib/javadoc.svg?logo=kotlin&style=for-the-badge)](https://javadoc.io/doc/org.jetbrains.kotlin/kotlin-stdlib)
+<a href="https://deploy.cloud.run"><img src="https://deploy.cloud.run/button.svg" alt="CloudRun" title="CloudRun" width="18%"></a>
 
 #### Setup OpenJDK
 ```bash
@@ -69,6 +70,8 @@ $ docker run -it --rm --name openjdk-latest sureshg/openjdk-latest
       ```
 
  <!--
+ Cloud Run ==> https://github.com/jamesward/hello-kotlin-ktor
+
  https://www.eclipse.org/jetty/documentation/current/high-load.html
  https://webtide.com/lies-damned-lies-and-benchmarks-2/
 
@@ -78,4 +81,6 @@ $ docker run -it --rm --name openjdk-latest sureshg/openjdk-latest
  https://github.com/JakeWharton/picnic
  https://github.com/h0tk3y/better-parse
  https://github.com/actions/cache/blob/main/examples.md#java---gradle
+
+ https://github.com/android/gradle-recipes
  -->
