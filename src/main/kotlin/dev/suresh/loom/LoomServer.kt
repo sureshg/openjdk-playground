@@ -8,7 +8,6 @@ import java.net.http.*
 import java.net.http.HttpResponse.BodyHandlers
 import java.time.*
 import java.util.concurrent.*
-import java.util.function.*
 import java.util.stream.Collectors.joining
 import kotlin.system.*
 
@@ -53,7 +52,7 @@ object LoomServer {
         println("Sending 500 concurrent requests to $url")
         val futures = (1..500).map {
             CompletableFuture.supplyAsync(
-                Supplier {
+                {
                     val res = client.send(
                         HttpRequest.newBuilder()
                             .uri(URI.create(url))

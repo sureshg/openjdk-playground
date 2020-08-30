@@ -636,7 +636,7 @@ Release/*
   * String format
 
   ```bash
-  // ${{ hashFiles(format('{0}{1}', github.workspace, '/test.lock')) }}
+   ${{ hashFiles(format('{0}{1}', github.workspace, '/test.lock')) }}
   ```
 
   * Use outout between steps
