@@ -1,6 +1,6 @@
 package dev.suresh;
 
-import dev.suresh.loom.LoomServer;
+import dev.suresh.loom.jetty.JettyServerKt;
 import dev.suresh.mvn.MavenResolver;
 import dev.suresh.server.DevServer;
 import java.util.Comparator;
@@ -63,10 +63,11 @@ public class Main {
         """;
     System.out.println(ms);
     System.out.println(ms.translateEscapes());
+    System.out.println("Record Test: " + new Person("Hello Kotlin", 8));
 
     new DevServer().run();
     new MavenResolver().run();
-    LoomServer.run();
+    JettyServerKt.run(8080);
 
     record T(String a) {}
 

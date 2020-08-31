@@ -5,7 +5,7 @@
 [![OpenJDK Version](https://img.shields.io/badge/OpenJDK-Version--16-green?logo=java&style=for-the-badge&logoColor=cyan)](https://jdk.java.net/)
 [![Kotlin release](https://img.shields.io/github/release/JetBrains/kotlin.svg?label=Kotlin&logo=kotlin&style=for-the-badge)](https://github.com/JetBrains/kotlin/releases/latest)
 [![javadoc](https://javadoc.io/badge2/org.jetbrains.kotlin/kotlin-stdlib/javadoc.svg?logo=kotlin&style=for-the-badge)](https://javadoc.io/doc/org.jetbrains.kotlin/kotlin-stdlib)
-<a href="https://deploy.cloud.run"><img src="https://deploy.cloud.run/button.svg" alt="CloudRun" title="CloudRun" width="18%"></a>
+<a href="https://deploy.cloud.run"><img src="https://deploy.cloud.run/button.svg" alt="CloudRun" title="CloudRun" width="19%"></a>
 
 #### Setup OpenJDK
 ```bash

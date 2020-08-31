@@ -5,16 +5,18 @@ import org.eclipse.jetty.http.*
 import org.eclipse.jetty.server.*
 import org.eclipse.jetty.server.handler.*
 import org.eclipse.jetty.util.*
+import org.eclipse.jetty.util.component.*
 import java.net.http.*
+import java.time.*
 import java.time.Duration
 import java.util.concurrent.*
 import kotlin.time.*
 
 fun main() {
-    run(8081)
+    run()
 }
 
-fun run(port: Int) {
+fun run(port: Int = 8080) {
     println("Starting the Jetty server on $port...")
     val tp = LoomThreadPool()
     // val tp = QueuedThreadPool(500)
@@ -23,6 +25,7 @@ fun run(port: Int) {
         val connector = ServerConnector(this)
         connector.port = port
         addConnector(connector)
+
         handler = HandlerList(
             HelloHandler(),
             DefaultHandler(),
@@ -34,57 +37,92 @@ fun run(port: Int) {
     println("Server started at ${server.uri}")
 
     val took = measureTime {
-        // pumpRequests(server, 100)
+        pumpRequests(server, 500)
     }
     println("Took ${took.inSeconds} seconds")
 
     // Finally stop the server.
     println("Shutting down the server!")
-    server.join()
-    // server.stop()
-    // server.destroy()
-    // LifeCycle.stop(server)
+    LifeCycle.stop(server)
+    // server.join()
 }
 
-fun pumpRequests(server: Server, count: Int) {
+fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 60L) {
     require(count > 0)
     println("Sending $count concurrent requests to ${server.uri}")
+
     val client = HttpClient.newBuilder()
         .connectTimeout(Duration.ofSeconds(10))
-        .version(HttpClient.Version.HTTP_2)
+        .executor(Executors.newVirtualThreadExecutor())
+        .version(HttpClient.Version.HTTP_1_1)
         .build()
 
     val factory = Thread.builder().virtual().name("VirtualThreadPool-", 1).factory()
     val execSvc = Executors.newThreadExecutor(factory)
+    val results = execSvc.withDeadline(Instant.now().plusSeconds(deadlineInSec))
+        .use {
+            (1..count).map { n ->
+                it.submitTask {
+                    try {
+                        println("---> $n. Sending Request")
+                        val res = client.send(
+                            HttpRequest.newBuilder().uri(server.uri).build(),
+                            HttpResponse.BodyHandlers.ofString()
+                        )
+                        val thread = Thread.currentThread()
+                        println("<--- $n. Response(${thread.name}-${thread.id}-${thread.isVirtual}): ${res.body()}")
+                        Result.success(res.body())
+                    } catch (e: Exception) {
+                        Result.failure(e)
+                    }
+                }
+            }
+        }
 
-    // val execSvc = Executors.newFixedThreadPool(count)
-    val futures = (1..count).map { n ->
-        CompletableFuture.supplyAsync(
-            {
-                println("---> $n. Sending Request")
-                val res = client.send(
-                    HttpRequest.newBuilder()
-                        .uri(server.uri)
-                        .build(),
-                    HttpResponse.BodyHandlers.ofString()
-                )
-                val thread = Thread.currentThread()
-                println("<--- $n. Response(${thread.name}-${thread.id}-${thread.isVirtual}): ${res.body()}")
-                res.body()
-            },
-            execSvc
-        ).exceptionally(Throwable::message)
+// // Client using async style.
+//    val futures = (1..count).map { n ->
+//        CompletableFuture.supplyAsync(
+//            {
+//                println("---> $n. Sending Request")
+//                val res = client.send(
+//                    HttpRequest.newBuilder()
+//                        .timeout(10.seconds.toJavaDuration())
+//                        .uri(server.uri)
+//                        .build(),
+//                    HttpResponse.BodyHandlers.ofString()
+//                )
+//                val thread = Thread.currentThread()
+//                println("<--- $n. Response(${thread.name}-${thread.id}-${thread.isVirtual}): ${res.body()}")
+//                Result.success(res.body())
+//            },
+//            execSvc
+//        ).exceptionally {
+//            Result.failure(it)
+//        }
+//    }
+//
+//    // Wait for all tasks to complete and prints the response.
+//    val results = CompletableFuture.allOf(*futures.toTypedArray())
+//        .handle { _, _ -> // or thenRun
+//            futures.map { it.join() }
+//        }.join()
+
+    val (ok, err) = results.map { it.join() }.partition { it.isSuccess }
+    ok.forEachIndexed { i, r ->
+        println("$i -> ${r.getOrNull()}")
     }
 
-    // Wait for all tasks to complete and prints the response.
-    CompletableFuture.allOf(*futures.toTypedArray())
-        .handle { _, _ -> // or thenRun
-            futures.map { it.join() }
-        }.thenAccept {
-            it.forEachIndexed { i, s ->
-                println("<-- $i) $s")
-            }
-        }.join()
+    println("==== ERRORS ====")
+    err.forEachIndexed { i, r ->
+        println("err $i -> ${r.exceptionOrNull()?.message}")
+    }
+
+    println(
+        """
+        SUCCESS: ${ok.size} / ${results.size} 
+        FAILURE: ${err.size} / ${results.size}
+        """.trimIndent()
+    )
 }
 
 class HelloHandler : AbstractHandler() {
