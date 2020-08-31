@@ -110,13 +110,15 @@ tasks {
     withType<JavaCompile>().configureEach {
         options.apply {
             encoding = "UTF-8"
-            isIncremental = true
             release.set(javaVersion)
+            isIncremental = true
+            isFork = true
             compilerArgs.addAll(
                 listOf(
                     "--enable-preview",
                     "-Xlint:all",
                     "-parameters"
+                    // "-XX:+IgnoreUnrecognizedVMOptions",
                 )
             )
         }
@@ -129,6 +131,8 @@ tasks {
             jvmTarget = kotlinJvmTarget
             languageVersion = kotlinLangVersion
             javaParameters = true
+            incremental = true
+            jdkHome = System.getProperty("java.home")
             useIR = true
             allWarningsAsErrors = false
             freeCompilerArgs += listOf(
@@ -143,7 +147,8 @@ tasks {
                 "-Xopt-in=kotlin.ExperimentalUnsignedTypes",
                 "-Xopt-in=kotlin.time.ExperimentalTime",
                 "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
-                "-Xopt-in=kotlinx.serialization.ExperimentalSerializationApi"
+                "-Xopt-in=kotlinx.serialization.ExperimentalSerializationApi",
+                "-Xjavac-arguments=--enable-preview"
             )
         }
     }
