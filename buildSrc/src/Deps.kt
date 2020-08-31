@@ -23,12 +23,11 @@ object Versions {
     const val kotlinIO = "0.1.4"
     const val ktor = "1.3.2-1.4.0-rc"
     const val micronaut = "2.0.0"
-
     const val jsr305 = "3.0.2"
     const val clikt = "2.8.0"
     const val colormath = "1.4.0"
     const val mordant = "1.2.1"
-    const val moshi = "1.9.2"
+    const val moshi = "1.10.0"
     const val okhttp = "4.8.1"
     const val okio = "2.2.0"
     const val certifikit = "0.2.0"
@@ -113,7 +112,7 @@ object Versions {
     const val springDepMgmt = "1.0.9.RELEASE"
     const val buildSrcVersions = "0.3.2"
     const val changelog = "0.4.0"
-    const val spotless = "5.1.2"
+    const val spotless = "5.3.0"
     const val spotlessChangelog = "2.0.0"
     const val ktlintPlugin = "9.3.0"
     const val detekt = "1.11.0-RC1"
@@ -331,6 +330,10 @@ object Deps {
         const val util = "org.eclipse.jetty:jetty-util:$version"
         const val slf4j = "org.eclipse.jetty:jetty-slf4j-impl:$version"
         const val testHelper = "org.eclipse.jetty:jetty-test-helper:$version"
+    }
+
+    object Config {
+        const val hoplite = "com.sksamuel.hoplite:hoplite:1.0.3"
     }
 }
 
