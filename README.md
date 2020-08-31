@@ -10,8 +10,9 @@
 #### Setup OpenJDK
 ```bash
 # Set JDK to latest (Use SDKMAN)
+$ sdk rm java jdk-16-loom
 $ curl -sSL https://jdk.java.net/loom | grep -m1 -Eioh "https:.*osx-x64_bin.tar.gz" | xargs curl | tar xvz -
-$ sdk i java jdk-16-loom ./jdk-16.jdk
+$ sdk i java jdk-16-loom ./jdk-16.jdk/Contents/Home
 $ sdk u java jdk-16-loom
 ```
 
