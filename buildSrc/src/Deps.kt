@@ -63,7 +63,7 @@ object Versions {
     const val jimfs = "1.1"
     const val netty = "4.1.32.Final"
     const val retrofitCoroutinesAdapter = "0.9.2"
-    const val retrofitSerializationAdapter = "0.6.0"
+    const val retrofitSerializationAdapter = "0.7.0"
     const val retrofitReactorAdapter = "2.1.0"
     const val kaml = "0.17.0"
     const val ztExec = "1.10"
@@ -103,7 +103,7 @@ object Versions {
 
     // Plugins
     const val shadow = "6.0.0"
-    const val micronautPlugin = "1.0.0.M9"
+    const val micronautPlugin = "1.0.0.RC10"
     const val googleJib = "2.5.0"
     const val protobuf = "0.8.13"
     const val sonarqube = "2.7"
@@ -119,14 +119,14 @@ object Versions {
     const val detektCompilerPlugin = "0.3.1"
     const val spotbugs = "4.3.0"
     const val googleJavaFormat = "1.8"
-    const val benmanesVersions = "0.29.0"
+    const val benmanesVersions = "0.30.0"
     const val buildScanPlugin = "2.0.2"
     const val gitPublishPlugin = "1.0.1"
     const val swaggerGen = "2.16.0"
     const val gitProperties = "2.2.3"
     const val githubRelease = "2.2.12"
     const val gradleRelease = "2.8.1"
-    const val mavenPublishAuth = "2.0.2"
+    const val mavenRepoAuth = "3.0.3"
     const val javafxPlugin = "0.0.7"
     const val jmhPlugin = "0.4.8"
     const val mrjar = "0.0.16"
@@ -314,7 +314,7 @@ object Deps {
     }
 
     object Dokka {
-        const val version = "1.4.0-rc"
+        val version = kotlinVersion
         val gradlePlugin = "org.jetbrains.dokka:dokka-gradle-plugin:$version"
         val javadocPlugin = "org.jetbrains.dokka:javadoc-plugin:$version"
         val kotlinAsJavaPlugin = "org.jetbrains.dokka:kotlin-as-java-plugin:$version"
@@ -367,7 +367,7 @@ inline val PluginDependenciesSpec.detekt get() = id("io.gitlab.arturbosch.detekt
 inline val PluginDependenciesSpec.detektCompilerPlugin get() = id("io.github.detekt.gradle.compiler-plugin") version Versions.detektCompilerPlugin
 inline val PluginDependenciesSpec.githubRelease get() = id("com.github.breadmoirai.github-release") version Versions.githubRelease
 inline val PluginDependenciesSpec.gradleRelease get() = id("net.researchgate.release") version Versions.gradleRelease
-inline val PluginDependenciesSpec.mavenPublishAuth get() = id("org.datlowe.maven-publish-auth") version Versions.mavenPublishAuth
+inline val PluginDependenciesSpec.mavenRepoAuth get() = id("org.hibernate.build.maven-repo-auth") version Versions.mavenRepoAuth
 inline val PluginDependenciesSpec.javafx get() = id("org.openjfx.javafxplugin") version Versions.javafxPlugin
 inline val PluginDependenciesSpec.jmh get() = id("me.champeau.gradle.jmh") version Versions.jmhPlugin
 inline val PluginDependenciesSpec.mrjar get() = id("com.lingocoder.mrjar") version Versions.mrjar

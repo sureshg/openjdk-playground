@@ -1,5 +1,6 @@
 import org.gradle.api.tasks.testing.logging.*
 import org.jetbrains.kotlin.gradle.tasks.*
+import java.net.*
 
 plugins {
     java
@@ -17,7 +18,7 @@ plugins {
     benmanesVersions
     gitProperties
     `maven-publish`
-    mavenPublishAuth
+    mavenRepoAuth
     gradleRelease
 }
 
@@ -192,17 +193,17 @@ tasks {
 
     // Kotlin Doc
     dokkaHtml {
-        outputDirectory = "$buildDir/dokka"
-        dokkaSourceSets {
-            register("main") {
-                moduleDisplayName = project.name
-                jdkVersion = kotlinJvmTarget.toInt()
-                includes = listOf("README.md")
-                sourceLink {
-                    path = "src/main/kotlin"
-                    url = "$githubProject/tree/master/src/main/kotlin"
-                    lineSuffix = "#L"
-                }
+        outputDirectory.set(buildDir.resolve("dokka"))
+        dokkaSourceSets.configureEach {
+            moduleDisplayName.set(project.name)
+            includes.from("README.md")
+            jdkVersion.set(kotlinJvmTarget.toInt())
+            noStdlibLink.set(false)
+            noJdkLink.set(false)
+            sourceLink {
+                localDirectory.set(file("src/main/kotlin"))
+                remoteUrl.set(URL("$githubProject/tree/master/src/main/kotlin"))
+                remoteLineSuffix.set("#L")
             }
         }
     }
