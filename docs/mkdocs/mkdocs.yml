@@ -7,7 +7,7 @@ site_description: A sample repo to test the latest OpenJDK releases for both Jav
 site_author: Suresh
 
 site_dir: docs
-docs_dir: openjdk-playground
+docs_dir: openjdk-latest
 
 repo_name: sureshg/openjdk-playground
 repo_url: https://github.com/sureshg/openjdk-playground
@@ -31,7 +31,7 @@ extra:
 # Configuration
 theme:
   name: 'material'
-  custom_dir: docs/overrides
+  # custom_dir: docs/overrides
 
   # 404 page
   static_templates:
@@ -49,10 +49,25 @@ theme:
     - tabs
 
   palette:
-    primary: 'deep purple'
-    accent: 'white'
+    - primary: deep purple
+    - accent: white
+    - scheme: default
+      primary: deep purple
+      accent: white
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+
+    - scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+
   feature:
     tabs: true
+
   font:
     text: Roboto Regular 400
     code: Roboto Mono
@@ -107,7 +122,6 @@ markdown_extensions:
 # Page tree
 nav:
   - '🌿 Home': Overview.md
-      - API: https://suresh.dev
   - '🚀 Getting started':
       - Installation: Overview.md
   - '🌸 Build':

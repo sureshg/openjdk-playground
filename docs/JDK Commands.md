@@ -129,56 +129,9 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 
 
 
-#### Containers
-
-------
-
-##### Java Container logs
-
-```bash
-$ docker run -it --rm --memory=256m --cpus=1 -v /:/host --name jdk-15 openjdk:15-jdk-slim java -Xlog:os=trace,os+container=trace -version
-```
-
-##### Access Docker desktop LinuxKit VM on MacOS
-
-```bash
-$ docker run -it --rm --memory=256m --cpus=1 -v /:/host --name alpine alpine
- /# chroot /host
-  # docker version
-```
-
- Netscat Webserver
-
-```bash
-FROM alpine
-
-ENTRYPOINT while :; do nc -k -l -p $PORT -e sh -c 'echo -e "HTTP/1.1 200 OK\n\n hello, world"'; done
-# https://github.com/jamesward/hello-netcat
-# docker build -t hello-netcat .
-# docker run -p 8080:8080 -e PORT=8080 -it hello-netcat
-```
-
-Forwards Logs
-
-```bash
-# forward request and error logs to docker log collector
-RUN ln -sf /dev/stdout /var/log/nginx/access.log \
- && ln -sf /dev/stderr /var/log/nginx/error.log
-
-# OR output directly to
-/proc/self/fd/1 (STDOUT)
-/proc/self/fd/2 (STDERR)
-
-# https://docs.docker.com/config/containers/logging/configure/
-```
-
-
-
 ####  Java Cryptography & Security
 
 ------
-
-
 
 ##### 🚨 [Security Developer’s Guide](https://docs.oracle.com/en/java/javase/14/security/index.html)
 
@@ -446,7 +399,7 @@ $ ./gradlew clean build --dry-run   // Task Dependencies
 
 ##### 1. [Public Maven Repositories](https://www.deps.co/guides/public-maven-repositories/)
 
--  https://mvnrepository.com/repos
+- https://mvnrepository.com/repos
 - https://maven.google.com/web/index.html
 
 ##### 2. [Create a Project](http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)

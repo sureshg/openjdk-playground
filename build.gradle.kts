@@ -1,4 +1,5 @@
 import org.gradle.api.tasks.testing.logging.*
+import org.jetbrains.dokka.gradle.*
 import org.jetbrains.kotlin.gradle.tasks.*
 import java.net.*
 
@@ -191,8 +192,8 @@ tasks {
         }
     }
 
-    // Kotlin Doc
-    dokkaHtml {
+    // Dokka config
+    withType<DokkaTask>().configureEach {
         outputDirectory.set(buildDir.resolve("dokka"))
         dokkaSourceSets.configureEach {
             moduleDisplayName.set(project.name)
