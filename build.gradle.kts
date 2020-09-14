@@ -24,7 +24,7 @@ plugins {
 }
 
 application {
-    mainClassName = "dev.suresh.Main"
+    mainClass.set("dev.suresh.Main")
     applicationDefaultJvmArgs += listOf(
         "-showversion",
         "--enable-preview",
@@ -32,12 +32,18 @@ application {
         "-XX:+UseZGC",
         "-Djava.security.egd=file:/dev/./urandom"
     )
+    // For backward compatibility
+    mainClassName = mainClass.get()
 }
 
 java {
-    modularity.inferModulePath.set(false)
     withSourcesJar()
     withJavadocJar()
+
+    modularity.inferModulePath.set(false)
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(javaVersion))
+    }
 }
 
 // Formatting
@@ -62,7 +68,6 @@ spotless {
         trimTrailingWhitespace()
         endWithNewline()
     }
-
     // isEnforceCheck = false
 }
 
@@ -81,7 +86,7 @@ jib {
         tags = setOf(project.version.toString(), "latest")
     }
     container {
-        mainClass = application.mainClassName
+        mainClass = application.mainClass.get()
         jvmFlags = application.applicationDefaultJvmArgs.toList()
     }
 }
@@ -107,7 +112,6 @@ configurations {
 }
 
 tasks {
-
     // Configure "compileJava" and "compileTestJava" tasks.
     withType<JavaCompile>().configureEach {
         options.apply {
@@ -134,7 +138,7 @@ tasks {
             languageVersion = kotlinLangVersion
             javaParameters = true
             incremental = true
-            jdkHome = System.getProperty("java.home")
+            jdkHome = javaToolchainPath // System.getProperty("java.home")
             useIR = true
             allWarningsAsErrors = false
             freeCompilerArgs += listOf(
@@ -278,8 +282,10 @@ dependencies {
     compileOnly(Deps.kotlinxAtomicfu)
     // implementation(platform("org.apache.maven.resolver:maven-resolver:1.4.1"))
     // implementation("org.apache.maven:maven-resolver-provider:3.6.3")
+
     testImplementation(Deps.coroutinesJdk8)
     testImplementation(Deps.junitJupiter)
+    testImplementation(kotlin("test-junit5"))
     testImplementation(Deps.slf4jSimple)
     testImplementation(Deps.mockk)
 

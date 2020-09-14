@@ -28,7 +28,7 @@ object Versions {
     const val colormath = "1.4.0"
     const val mordant = "1.2.1"
     const val moshi = "1.10.0"
-    const val okhttp = "4.8.1"
+    const val okhttp = "4.9.0"
     const val okio = "2.2.0"
     const val certifikit = "0.2.0"
     const val ok2Curl = "0.4.5"
@@ -96,7 +96,6 @@ object Versions {
     const val mockserver = "5.10.0"
     const val openapiGen = "4.3.1"
     const val methanol = "1.2.0"
-    const val rocker = "1.3.0"
     const val jgrapht = "1.5.0"
     const val googleAuto = "1.0-rc7"
     const val jgitver = "0.12.0"
@@ -112,21 +111,21 @@ object Versions {
     const val springDepMgmt = "1.0.9.RELEASE"
     const val buildSrcVersions = "0.3.2"
     const val changelog = "0.4.0"
-    const val spotless = "5.3.0"
+    const val spotless = "5.5.1"
     const val spotlessChangelog = "2.0.0"
     const val ktlintPlugin = "9.3.0"
     const val detekt = "1.11.0-RC1"
     const val detektCompilerPlugin = "0.3.1"
     const val spotbugs = "4.3.0"
     const val googleJavaFormat = "1.8"
-    const val benmanesVersions = "0.30.0"
+    const val benmanesVersions = "0.31.0"
     const val buildScanPlugin = "2.0.2"
     const val gitPublishPlugin = "1.0.1"
     const val swaggerGen = "2.16.0"
     const val gitProperties = "2.2.3"
     const val githubRelease = "2.2.12"
     const val gradleRelease = "2.8.1"
-    const val mavenRepoAuth = "3.0.3"
+    const val mavenRepoAuth = "3.0.4"
     const val javafxPlugin = "0.0.7"
     const val jmhPlugin = "0.4.8"
     const val mrjar = "0.0.16"
@@ -236,7 +235,6 @@ object Deps {
     const val jimfs = "com.google.jimfs:jimfs:${Versions.jimfs}"
     const val jsr305 = "com.google.code.findbugs:jsr305:${Versions.jsr305}"
     const val petitparser = "com.github.petitparser:petitparser-core:${Versions.petitparser}"
-    const val rocker = "com.fizzed:rocker:${Versions.rocker}"
     const val jgrapht = "org.jgrapht:jgrapht-core:${Versions.jgrapht}"
 
     const val clikt = "com.github.ajalt:clikt:${Versions.clikt}"
@@ -286,6 +284,8 @@ object Deps {
     const val junitJupiterApi = "org.junit.jupiter:junit-jupiter-api:${Versions.junit}"
     const val junitJupiterEngine = "org.junit.jupiter:junit-jupiter-engine:${Versions.junit}"
     const val junitJupiterParams = "org.junit.jupiter:junit-jupiter-params:${Versions.junit}"
+
+
     const val shrinkwrap =
         "org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-depchain:${Versions.shrinkwrap}"
     const val jgitver = "fr.brouillard.oss:jgitver:${Versions.jgitver}"
@@ -314,13 +314,13 @@ object Deps {
     }
 
     object Dokka {
-        val version = kotlinVersion
-        val gradlePlugin = "org.jetbrains.dokka:dokka-gradle-plugin:$version"
-        val javadocPlugin = "org.jetbrains.dokka:javadoc-plugin:$version"
-        val kotlinAsJavaPlugin = "org.jetbrains.dokka:kotlin-as-java-plugin:$version"
-        val gfmPlugin = "org.jetbrains.dokka:gfm-plugin:$version"
-        val jekyllPlugin = "org.jetbrains.dokka:jekyll-plugin:$version"
-        val mathjaxPlugin = "org.jetbrains.dokka:mathjax-plugin:$version"
+        const val version = "1.4.0"
+        const val gradlePlugin = "org.jetbrains.dokka:dokka-gradle-plugin:$version"
+        const val javadocPlugin = "org.jetbrains.dokka:javadoc-plugin:$version"
+        const val kotlinAsJavaPlugin = "org.jetbrains.dokka:kotlin-as-java-plugin:$version"
+        const val gfmPlugin = "org.jetbrains.dokka:gfm-plugin:$version"
+        const val jekyllPlugin = "org.jetbrains.dokka:jekyll-plugin:$version"
+        const val mathjaxPlugin = "org.jetbrains.dokka:mathjax-plugin:$version"
     }
 
     object Jetty {
@@ -334,6 +334,11 @@ object Deps {
 
     object Config {
         const val hoplite = "com.sksamuel.hoplite:hoplite:1.0.3"
+    }
+
+    object TemplateEngine {
+        const val jte = "gg.jte:jte:1.1.0"
+        const val rocker = "com.fizzed:rocker:1.3.0"
     }
 }
 

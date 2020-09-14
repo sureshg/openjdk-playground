@@ -1,4 +1,5 @@
 import org.gradle.api.*
+import org.gradle.jvm.toolchain.*
 
 /**
  * Maven and gradle repositories.
@@ -43,6 +44,11 @@ sealed class Repo(val name: String, val url: String) {
         name = "Kotlin Dev",
         url = "https://dl.bintray.com/kotlin/kotlin-dev"
     )
+
+    object Jetbrains : Repo(
+        name = "Jetbrains Dev",
+        url = "https://packages.jetbrains.team/maven/p/ui/dev"
+    )
 }
 
 /**
@@ -60,5 +66,19 @@ val String.isNonStable: Boolean
  * Checks if the project has snapshot version.
  */
 fun Project.hasSnapshotVersion() = version.toString().endsWith("SNAPSHOT", true)
+
+/**
+ * Returns the JDK install path provided by the [JavaToolchainService]
+ */
+val Project.javaToolchainPath
+    get(): String {
+        val javaToolchains = extensions.getByName("javaToolchains") as JavaToolchainService
+        return javaToolchains.launcherFor {
+            languageVersion.set(JavaLanguageVersion.of(javaVersion))
+        }.orNull
+            ?.metadata
+            ?.installationPath?.toString()
+            ?: error("Requested JDK version ($javaVersion) is not available.")
+    }
 
 
