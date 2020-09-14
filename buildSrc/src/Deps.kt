@@ -41,7 +41,7 @@ object Versions {
     const val assertj = "3.11.1"
     const val kotlinPowerAssert = "0.3.0"
     const val graal = "20.0.0"
-    const val junit = "5.6.2"
+    const val junit = "5.7.0"
     const val truth = "1.0.1"
     const val mockito = "2.26.0"
     const val awaitility = "3.1.6"
@@ -102,7 +102,7 @@ object Versions {
 
     // Plugins
     const val shadow = "6.0.0"
-    const val micronautPlugin = "1.0.0.RC10"
+    const val micronautPlugin = "1.0.0.RC11"
     const val googleJib = "2.5.0"
     const val protobuf = "0.8.13"
     const val sonarqube = "2.7"
@@ -118,7 +118,7 @@ object Versions {
     const val detektCompilerPlugin = "0.3.1"
     const val spotbugs = "4.3.0"
     const val googleJavaFormat = "1.8"
-    const val benmanesVersions = "0.31.0"
+    const val benmanesVersions = "0.33.0"
     const val buildScanPlugin = "2.0.2"
     const val gitPublishPlugin = "1.0.1"
     const val swaggerGen = "2.16.0"
@@ -133,6 +133,7 @@ object Versions {
     const val reckon = "0.12.0"
     const val mkdocs = "2.0.1"
     const val orchid = "0.21.1"
+    const val kotless = "0.1.6"
 }
 
 object Deps {
@@ -385,3 +386,4 @@ inline val PluginDependenciesSpec.jgitPlugin get() = id("fr.brouillard.oss.gradl
 inline val PluginDependenciesSpec.reckon get() = id("org.ajoberstar.reckon") version Versions.reckon
 inline val PluginDependenciesSpec.mkdocs get() = id("ru.vyarus.mkdocs") version Versions.mkdocs
 inline val PluginDependenciesSpec.orchid get() = id("com.eden.orchidPlugin") version Versions.orchid
+inline val PluginDependenciesSpec.kotless get() = id("io.kotless") version Versions.kotless
