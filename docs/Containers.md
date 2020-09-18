@@ -6,6 +6,19 @@
 
 ------
 
+- Offical Java Images
+
+  ```bash
+  # Oracle OpenJDK
+  $ docker pull container-registry.oracle.com/java/openjdk:latest
+  $ docker run -it --rm --name openjdk container-registry.oracle.com/java/openjdk
+
+  # Openjdk on DockerHub
+  $ docker pull openjdk:15-jdk-slim
+  ```
+
+
+
 - ##### Java Container logs
 
   ```bash
@@ -22,7 +35,7 @@
     # docker version
   ```
 
-#####
+
 
 - ##### Netscat Webserver
 

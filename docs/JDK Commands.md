@@ -62,7 +62,7 @@ $ javap -p -v <classfile>
 $ java -XX:+UseParallelGC ...
  ```
 
-
+JPMS Parallel GC
 
 Scan deprecated APIs
 
@@ -460,7 +460,7 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
 ##### 5. [Update Version number](http://www.mojohaus.org/versions-maven-plugin/)
 
 ```bash
-$ ./mvnw versions:set -DnewVersion=1.0.1 -DprocessAllModules -DgenerateBackupPoms=false
+$ ./mvnw versions:set -DnewVersion=1.0.1-SNAPSHOT -DprocessAllModules -DgenerateBackupPoms=false
 $ ./mvnw versions:revert // Rollback
 $ ./mvnw versions:commit
 ```

@@ -47,74 +47,52 @@ fun run(port: Int = 8080) {
     // server.join()
 }
 
-fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 60L) {
+fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
     require(count > 0)
-    println("Sending $count concurrent requests to ${server.uri}")
+    println("Sending $count concurrent requests to ${server.uri} and wait for $deadlineInSec seconds...")
 
     val client = HttpClient.newBuilder()
         .connectTimeout(Duration.ofSeconds(10))
-        .executor(Executors.newVirtualThreadExecutor())
         .version(HttpClient.Version.HTTP_1_1)
         .build()
 
     val factory = Thread.builder().virtual().name("VirtualThreadPool-", 1).factory()
     val execSvc = Executors.newThreadExecutor(factory)
     val results = execSvc.withDeadline(Instant.now().plusSeconds(deadlineInSec))
-        .use {
-            (1..count).map { n ->
-                it.submitTask {
+        .use { exec ->
+            (1..count).map {
+                exec.submitTask {
                     try {
-                        println("---> $n. Sending Request")
+                        println("---> $it. Sending Request")
                         val res = client.send(
                             HttpRequest.newBuilder().uri(server.uri).build(),
                             HttpResponse.BodyHandlers.ofString()
                         )
-                        val thread = Thread.currentThread()
-                        println("<--- $n. Response(${thread.name}-${thread.id}-${thread.isVirtual}): ${res.body()}")
+
+                        println("<--- $it. Response($threadInfo): ${res.body()}")
                         Result.success(res.body())
-                    } catch (e: Exception) {
-                        Result.failure(e)
+                    } catch (t: Throwable) {
+                        Result.failure(t)
                     }
                 }
             }
         }
 
-// // Client using async style.
-//    val futures = (1..count).map { n ->
-//        CompletableFuture.supplyAsync(
-//            {
-//                println("---> $n. Sending Request")
-//                val res = client.send(
-//                    HttpRequest.newBuilder()
-//                        .timeout(10.seconds.toJavaDuration())
-//                        .uri(server.uri)
-//                        .build(),
-//                    HttpResponse.BodyHandlers.ofString()
-//                )
-//                val thread = Thread.currentThread()
-//                println("<--- $n. Response(${thread.name}-${thread.id}-${thread.isVirtual}): ${res.body()}")
-//                Result.success(res.body())
-//            },
-//            execSvc
-//        ).exceptionally {
-//            Result.failure(it)
-//        }
-//    }
-//
-//    // Wait for all tasks to complete and prints the response.
-//    val results = CompletableFuture.allOf(*futures.toTypedArray())
-//        .handle { _, _ -> // or thenRun
-//            futures.map { it.join() }
-//        }.join()
+    // Clear the interrupt status
+    println("Checking if the current thread has been interrupted: ${Thread.interrupted()}")
 
     val (ok, err) = results.map { it.join() }.partition { it.isSuccess }
     ok.forEachIndexed { i, r ->
-        println("$i -> ${r.getOrNull()}")
+        println("${i + 1} -> ${r.getOrNull()}")
     }
 
     println("==== ERRORS ====")
     err.forEachIndexed { i, r ->
-        println("err $i -> ${r.exceptionOrNull()?.message}")
+        val msg = when (val ex = r.exceptionOrNull()) {
+            is InterruptedException -> "Task interrupted/cancelled due to timeout!"
+            else -> ex?.cause?.message
+        }
+        println("ERROR ${i + 1} -> $msg")
     }
 
     println(
@@ -130,7 +108,7 @@ class HelloHandler : AbstractHandler() {
         target: String?,
         baseRequest: Request?,
         request: HttpServletRequest?,
-        response: HttpServletResponse?
+        response: HttpServletResponse?,
     ) {
         Thread.sleep(2 * 1000)
         response?.apply {
@@ -140,7 +118,9 @@ class HelloHandler : AbstractHandler() {
                 """
                 {
                   "server" : "Loom-${Jetty.VERSION}",
-                  "target" : $target
+                  "Java"   : ${JavaVersion.VERSION},
+                  "Thread" : ${Thread.currentThread()}
+                  "target" : $target,
                  }
                 """.trimIndent()
             )
@@ -148,3 +128,5 @@ class HelloHandler : AbstractHandler() {
         }
     }
 }
+
+val threadInfo get() = Thread.currentThread().run { "$name-$id-$isVirtual" }

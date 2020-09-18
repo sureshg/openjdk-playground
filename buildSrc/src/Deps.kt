@@ -21,7 +21,6 @@ object Versions {
     const val kotlinxReflectLite = "1.0.0"
     const val kotlinImmutableColl = "0.3.2"
     const val kotlinIO = "0.1.4"
-    const val ktor = "1.3.2-1.4.0-rc"
     const val micronaut = "2.0.0"
     const val jsr305 = "3.0.2"
     const val clikt = "2.8.0"
@@ -91,7 +90,6 @@ object Versions {
     const val reactor = "3.2.5.RELEASE"
     const val ff4j = "1.3.0"
     const val jmh = "1.21"
-    const val petitparser = "2.3.1"
     const val shrinkwrap = "3.1.4"
     const val mockserver = "5.10.0"
     const val openapiGen = "4.3.1"
@@ -235,7 +233,6 @@ object Deps {
     const val openpdf = "com.github.librepdf:openpdf:${Versions.openpdf}"
     const val jimfs = "com.google.jimfs:jimfs:${Versions.jimfs}"
     const val jsr305 = "com.google.code.findbugs:jsr305:${Versions.jsr305}"
-    const val petitparser = "com.github.petitparser:petitparser-core:${Versions.petitparser}"
     const val jgrapht = "org.jgrapht:jgrapht-core:${Versions.jgrapht}"
 
     const val clikt = "com.github.ajalt:clikt:${Versions.clikt}"
@@ -246,7 +243,6 @@ object Deps {
     const val jline = "org.jline:jline:${Versions.jline}"
     const val jlineTerminal = "org.jline:jline-terminal:${Versions.jline}"
     const val jlineReader = "org.jline:jline-reader:${Versions.jline}"
-    const val ztExec = "org.zeroturnaround:zt-exec:${Versions.ztExec}"
     const val brotli = "org.brotli:dec:${Versions.brotli}"
 
     const val asm = "org.ow2.asm:asm:${Versions.asm}"
@@ -340,6 +336,43 @@ object Deps {
     object TemplateEngine {
         const val jte = "gg.jte:jte:1.1.0"
         const val rocker = "com.fizzed:rocker:1.3.0"
+        const val stringTemplate = "org.antlr:ST4:4.3.1"
+    }
+
+    object Parser {
+        const val antlr4 = "org.antlr:antlr4:4.8"
+        const val petitparser = "com.github.petitparser:petitparser-core:2.3.1"
+    }
+
+    object Process {
+        const val nuprocess = "com.zaxxer:nuprocess:2.0.1"
+        const val ztexec = "org.zeroturnaround:zt-exec:1.12"
+    }
+
+    object Ktor {
+        const val version = "1.4.0"
+        const val bom = "io.ktor:ktor-bom:$version"
+        const val serverCore = "io.ktor:ktor-server-core:$version"
+        const val serverCio = "io.ktor:ktor-server-cio:$version"
+    }
+
+    object Markup {
+        const val commonmark = "com.atlassian.commonmark:commonmark:0.15.1"
+        const val jsoup = "org.jsoup:jsoup:1.13.1"
+    }
+
+    object Logging {
+
+        object Logback {
+            const val classic = "ch.qos.logback:logback-classic:1.2.3"
+        }
+    }
+
+    object Cli {
+        const val clikt = "com.github.ajalt.clikt:clikt:3.0.1"
+        const val mordant = "com.github.ajalt:mordant:1.2.1"
+        const val colormath = "com.github.ajalt.colormath:colormath:2.0.0"
+        const val picnic = "com.jakewharton.picnic:picnic:0.4.0"
     }
 }
 

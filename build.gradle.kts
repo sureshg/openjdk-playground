@@ -21,6 +21,7 @@ plugins {
     `maven-publish`
     mavenRepoAuth
     gradleRelease
+    common
 }
 
 application {
@@ -50,6 +51,7 @@ java {
 spotless {
     java {
         googleJavaFormat(Versions.googleJavaFormat)
+        toggleOffOn()
     }
 
     kotlin {
@@ -205,10 +207,14 @@ tasks {
             jdkVersion.set(kotlinJvmTarget.toInt())
             noStdlibLink.set(false)
             noJdkLink.set(false)
+            // sourceRoots.setFrom(file("src/main/kotlin"))
             sourceLink {
                 localDirectory.set(file("src/main/kotlin"))
                 remoteUrl.set(URL("$githubProject/tree/master/src/main/kotlin"))
                 remoteLineSuffix.set("#L")
+            }
+            externalDocumentationLink {
+                url.set(URL("https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/"))
             }
         }
     }
