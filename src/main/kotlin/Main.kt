@@ -8,6 +8,8 @@ fun main() {
         is Result.Error.NonRecException -> TODO()
         Result.InProgress -> TODO()
     }.exhaustive
+
+    println("Security Manager: ${System.getSecurityManager()}")
 }
 // https://github.com/cortinico/kscript-template
 

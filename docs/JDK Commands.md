@@ -62,6 +62,33 @@ $ javap -p -v <classfile>
 $ java -XX:+UseParallelGC ...
  ```
 
+
+
+##### 6. Show Java VM/Property Settings
+
+```bash
+$ java -Xinternalversion
+$ java -XshowSettings:all --version
+```
+
+
+
+##### 7. [JVMCI (Graal) Compiler](https://openjdk.java.net/jeps/317)
+
+```bash
+$ java -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
+```
+
+
+
+##### 8. Loom Carrier thread config
+
+```bash
+$ java -Djdk.defaultScheduler.parallelism=1
+```
+
+
+
 JPMS Parallel GC
 
 Scan deprecated APIs
@@ -106,8 +133,6 @@ println("Hello Kotlin Script")
 
 
 
-
-
 **JMC**
 
 ```bash
@@ -118,7 +143,8 @@ println("Hello Kotlin Script")
 # JDK should be in - /Library/Java/JavaVirtualMachines/jdk-14.0.2.jdk/Contents/Home/
 $ curl https://ci.adoptopenjdk.net/view/JMC/job/jmc-build/job/master/lastSuccessfulBuild/artifact/target/products/org.openjdk.jmc-8.0.0-SNAPSHOT-macosx.cocoa.x86_64.tar.gz | tar xv -
 
-$ mv JDK\ Mission\ Control.app /Applications/
+$ rm -rf "/Applications/JDK Mission Control.app"
+$ mv "JDK Mission Control.app" /Applications
 $ open '/Applications/JDK Mission Control.app'
 
 # To run with a JDK
@@ -166,9 +192,7 @@ https://github.com/sureshg/InstallCerts/blob/master/src/main/kotlin/io/github/su
   http.nonProxyHosts
   ```
 
-
-
-- Env vars
+- **Env vars**
 
   ```bash
   export HTTP_PROXY=http://USERNAME:PASSWORD@10.0.1.1:8080/
@@ -178,7 +202,11 @@ https://github.com/sureshg/InstallCerts/blob/master/src/main/kotlin/io/github/su
 
 
 
--
+##### 3. Java Networking Properties
+
+​      https://cr.openjdk.java.net/~iris/se/15/latestSpec/api/java.base/java/net/doc-files/net-properties.html
+
+
 
 | Protocol  |                            Config                            |                         Description                          |
 | :-------: | :----------------------------------------------------------: | :----------------------------------------------------------: |

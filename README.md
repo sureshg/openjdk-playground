@@ -30,7 +30,19 @@ $ ./gradlew  dependencyUpdates
 
 #### Run with `preview features` enabled
 ```bash
-$ java -showversion --enable-preview -XX:+UseZGC -jar build/libs/openjdk-latest-1.0.0-uber.jar
+$ java --show-version \
+       --enable-preview \
+       -Xmx256M \
+       -XX:+UseZGC \
+       -XX:ConcGCThreads=2 \
+       -XX:ZUncommitDelay=60 \
+       -Xlog:gc\* \
+       -XX:+PrintCommandLineFlags \
+       -Djava.security.egd=file:/dev/./urandom \
+       -jar build/libs/openjdk-latest-1.0.0-uber.jar
+
+# Other Options
+# -XX:+IgnoreUnrecognizedVMOptions
 ```
 
 #### Run the application container
@@ -70,10 +82,32 @@ $ docker run -it --rm --name openjdk-latest sureshg/openjdk-latest
       $ vegeta plot -title "Threads vs Loom Virtual Threads"  vthread-results.bin thread-results.bin > plot.html && open plot.html
       ```
 
+##### JMPS Config
+```java
+// src/main/kotlin/module-info.java
+module dev.suresh.openjdklatest {
+  requires kotlin.stdlib.jdk8;
+  requires java.net.http;
+  requires org.eclipse.jetty.server;
+  requires jdk.jfr;
+  requires jdk.httpserver;
+  requires shrinkwrap.resolver.api.maven;
+  requires okhttp3;
+  requires okhttp3.tls;
+  requires okhttp3.mockwebserver;
+
+  exports dev.suresh.loom.jetty;
+  exports dev.suresh.mvn;
+  exports dev.suresh.server;
+}
+```
+
  <!--
  Http APIs to test - https://api.github.com/repos/jetbrains/kotlin
 
- Cloud Run ==> https://github.com/jamesward/hello-kotlin-ktor
+ Cloud Run --> https://github.com/jamesward/hello-kotlin-ktor
+
+ GC Tuning --> https://docs.oracle.com/en/java/javase/15/gctuning/
 
  https://www.eclipse.org/jetty/documentation/current/high-load.html
  https://webtide.com/lies-damned-lies-and-benchmarks-2/

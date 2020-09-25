@@ -15,23 +15,8 @@ val githubProject = "githubProject".systemProp
  * Dependency versions.
  */
 object Versions {
-    const val coroutines = "1.3.9"
-    const val kotlinxSerialization = "1.0.0-RC"
-    const val kotlinxAtomicfu = "0.14.4"
-    const val kotlinxReflectLite = "1.0.0"
-    const val kotlinImmutableColl = "0.3.2"
-    const val kotlinIO = "0.1.4"
     const val micronaut = "2.0.0"
     const val jsr305 = "3.0.2"
-    const val clikt = "2.8.0"
-    const val colormath = "1.4.0"
-    const val mordant = "1.2.1"
-    const val moshi = "1.10.0"
-    const val okhttp = "4.9.0"
-    const val okio = "2.2.0"
-    const val certifikit = "0.2.0"
-    const val ok2Curl = "0.4.5"
-    const val retrofit = "2.9.0"
     const val turbine = "0.1.1"
     const val commonsCodec = "1.11"
     const val rsocket = "0.11.16"
@@ -40,34 +25,18 @@ object Versions {
     const val assertj = "3.11.1"
     const val kotlinPowerAssert = "0.3.0"
     const val graal = "20.0.0"
-    const val junit = "5.7.0"
     const val truth = "1.0.1"
-    const val mockito = "2.26.0"
     const val awaitility = "3.1.6"
     const val kotest = "3.4.2"
-    const val sshj = "0.26.0"
     const val jol = "0.9"
-    const val slf4j = "1.7.30"
-    const val mockitoKotlin = "2.1.0"
-    const val conscrypt = "1.4.1"
-    const val tink = "1.2.1"
     const val asm = "7.3.1"
     const val byteBuddy = "1.9.7"
-    const val loggingRetrofit = "0.10.0"
-    const val bouncyCastle = "1.60"
     const val brotli = "0.1.2"
     const val commonsIO = "2.6"
     const val jnrJffi = "1.2.18"
     const val jnrUnixSocket = "0.21"
     const val jimfs = "1.1"
     const val netty = "4.1.32.Final"
-    const val retrofitCoroutinesAdapter = "0.9.2"
-    const val retrofitSerializationAdapter = "0.7.0"
-    const val retrofitReactorAdapter = "2.1.0"
-    const val kaml = "0.17.0"
-    const val ztExec = "1.10"
-    const val jline = "3.9.0"
-    const val picnic = "0.3.1"
     const val eclipseCollections = "9.2.0"
     const val trov4j = "1.0.20181211"
     const val japicmp = "0.13.0"
@@ -79,28 +48,21 @@ object Versions {
     const val jibCore = "0.1.1"
     const val swaggerUI = "3.10.0"
     const val swaggerCodegenCli = "3.0.0"
-    const val smbj = "0.9.1"
     const val asn1 = "0.1.0"
-    const val caffeine = "2.6.2"
-    const val cache2k = "1.2.0.Final"
     const val kolor = "0.0.2"
     const val ktlint = "0.37.0"
-    const val mockk = "1.10.0"
     const val reactiveStreams = "1.0.2"
     const val reactor = "3.2.5.RELEASE"
     const val ff4j = "1.3.0"
     const val jmh = "1.21"
-    const val shrinkwrap = "3.1.4"
-    const val mockserver = "5.10.0"
     const val openapiGen = "4.3.1"
     const val methanol = "1.2.0"
     const val jgrapht = "1.5.0"
-    const val googleAuto = "1.0-rc7"
     const val jgitver = "0.12.0"
 
     // Plugins
     const val shadow = "6.0.0"
-    const val micronautPlugin = "1.0.0.RC11"
+    const val micronautPlugin = "1.0.0.RC12"
     const val googleJib = "2.5.0"
     const val protobuf = "0.8.13"
     const val sonarqube = "2.7"
@@ -109,7 +71,7 @@ object Versions {
     const val springDepMgmt = "1.0.9.RELEASE"
     const val buildSrcVersions = "0.3.2"
     const val changelog = "0.4.0"
-    const val spotless = "5.5.1"
+    const val spotless = "5.6.1"
     const val spotlessChangelog = "2.0.0"
     const val ktlintPlugin = "9.3.0"
     const val detekt = "1.11.0-RC1"
@@ -135,87 +97,11 @@ object Versions {
 }
 
 object Deps {
-    val kotlinBom = "org.jetbrains.kotlin:kotlin-bom:$kotlinVersion"
-    val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
-    val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
-    val kotlinTest = "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
-    val kotlinTestJunit = "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
-
-    const val kotlinxSerializationCore =
-        "org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinxSerialization}"
-    const val kotlinxSerializationproperties =
-        "org.jetbrains.kotlinx:kotlinx-serialization-properties:${Versions.kotlinxSerialization}"
-    const val kotlinxSerializationProtobuf =
-        "org.jetbrains.kotlinx:kotlinx-serialization-protobuf:${Versions.kotlinxSerialization}"
-    const val kotlinxSerializationYaml = "com.charleskorn.kaml:kaml:${Versions.kaml}"
-    const val kotlinxReflectLite =
-        "org.jetbrains.kotlinx:kotlinx.reflect.lite:${Versions.kotlinxReflectLite}"
-    const val kotlinxAtomicfu = "org.jetbrains.kotlinx:atomicfu:${Versions.kotlinxAtomicfu}"
-
-    const val kotlinIO = "org.jetbrains.kotlinx:kotlinx-io-jvm:${Versions.kotlinIO}"
-    const val kotlinImmutableColl =
-        "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:${Versions.kotlinImmutableColl}"
-
-    const val coroutinesCore =
-        "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
-    const val coroutinesJdk8 =
-        "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:${Versions.coroutines}"
-    const val coroutinesReactor = "org.jetbrains.kotlinx:coroutines-reactor:${Versions.coroutines}"
-    const val coroutinesTest =
-        "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
-    const val coroutinesDebug =
-        "org.jetbrains.kotlinx:kotlinx-coroutines-debug:${Versions.coroutines}"
-
-    const val okio = "com.squareup.okio:okio:${Versions.okio}"
-    const val okhttpBom = "com.squareup.okhttp3:okhttp-bom:${Versions.okhttp}"
-    const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
-    const val okhttpMockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.okhttp}"
-    const val okhttpSse = "com.squareup.okhttp3:okhttp-sse:${Versions.okhttp}"
-    const val okhttpLoggingInterceptor =
-        "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp}"
-    const val okhttpTLS = "com.squareup.okhttp3:okhttp-tls:${Versions.okhttp}"
-    const val okhttpUDS = "com.squareup.okhttp3.sample:unixdomainsockets:${Versions.okhttp}"
-    const val okhttpDigest = "com.baulsupp:okhttp-digest:0.4.0"
-    const val okhttpDoh = "com.squareup.okhttp3:okhttp-dnsoverhttps:${Versions.okhttp}"
-    const val ok2Curl = "com.github.mrmike:ok2curl:${Versions.ok2Curl}"
-    const val certifikit = "app.cash.certifikit:certifikit:${Versions.certifikit}"
-
-    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
-    const val retrofitConverterMoshi = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
-    const val retrofitLogging =
-        "com.nightlynexus.logging-retrofit:logging:${Versions.loggingRetrofit}"
-    const val retrofitReactorAdapter =
-        "com.jakewharton.retrofit:retrofit2-reactor-adapter:${Versions.retrofitReactorAdapter}"
-    const val retrofitCoroutinesAdapter =
-        "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:${Versions.retrofitCoroutinesAdapter}"
-    const val retrofitSerializationAdapter =
-        "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.retrofitSerializationAdapter}"
-
-    const val moshi = "com.squareup.moshi:moshi:${Versions.moshi}"
-    const val moshiKotlin = "com.squareup.moshi:moshi-kotlin:${Versions.moshi}"
-    const val moshiKotlinCodegen = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshi}"
-    const val moshiAdapters = "com.squareup.moshi:moshi-adapters:${Versions.moshi}"
-    const val turbine = "app.cash.turbine:turbine:${Versions.turbine}"
-
     const val micronautBom = "io.micronaut:micronaut-bom:${Versions.micronaut}"
     const val methanol = "com.github.mizosoft.methanol:methanol:${Versions.methanol}"
-    const val bouncyCastle = "org.bouncycastle:bcprov-jdk15on:${Versions.bouncyCastle}"
-    const val conscryptUber = "org.conscrypt:conscrypt-openjdk-uber:${Versions.conscrypt}"
-    const val tink = "com.google.crypto.tink:tink:${Versions.tink}"
-    const val sshj = "com.hierynomus:sshj:${Versions.sshj}"
-    const val smbj = "com.hierynomus:smbj:${Versions.smbj}"
     const val asn1 = "com.hierynomus:asn-one:${Versions.asn1}"
 
-    const val autoService = "com.google.auto.service:auto-service:${Versions.googleAuto}"
-
-    const val slf4jApi = "org.slf4j:slf4j-api:${Versions.slf4j}"
-    const val slf4jSimple = "org.slf4j:slf4j-simple:${Versions.slf4j}"
-    const val slf4jNop = "org.slf4j:slf4j-nop:${Versions.slf4j}"
-
-    const val caffeine = "com.github.ben-manes.caffeine:caffeine:${Versions.caffeine}"
-    const val cache2kApi = "org.cache2k:cache2k-api:${Versions.cache2k}"
-    const val cache2kCore = "org.cache2k:cache2k-core:${Versions.cache2k}"
-
+    const val turbine = "app.cash.turbine:turbine:${Versions.turbine}"
     const val jibCore = "com.google.cloud.tools:jib-core:${Versions.jibCore}"
     const val failsafe = "net.jodah:failsafe:${Versions.failsafe}"
     const val typetools = "net.jodah:typetools:${Versions.typetools}"
@@ -234,15 +120,6 @@ object Deps {
     const val jimfs = "com.google.jimfs:jimfs:${Versions.jimfs}"
     const val jsr305 = "com.google.code.findbugs:jsr305:${Versions.jsr305}"
     const val jgrapht = "org.jgrapht:jgrapht-core:${Versions.jgrapht}"
-
-    const val clikt = "com.github.ajalt:clikt:${Versions.clikt}"
-    const val mordant = "com.github.ajalt:mordant:${Versions.mordant}"
-    const val colormath = "com.github.ajalt:colormath:${Versions.colormath}"
-    const val picnic = "com.jakewharton.picnic:picnic:${Versions.picnic}"
-
-    const val jline = "org.jline:jline:${Versions.jline}"
-    const val jlineTerminal = "org.jline:jline-terminal:${Versions.jline}"
-    const val jlineReader = "org.jline:jline-reader:${Versions.jline}"
     const val brotli = "org.brotli:dec:${Versions.brotli}"
 
     const val asm = "org.ow2.asm:asm:${Versions.asm}"
@@ -258,10 +135,6 @@ object Deps {
     const val reactorCore = "io.projectreactor:reactor-core:${Versions.reactor}"
     const val reactorTest = "io.projectreactor:reactor-test:${Versions.reactor}"
 
-    const val eclipseCollections =
-        "org.eclipse.collections:eclipse-collections:${Versions.eclipseCollections}"
-    const val eclipseCollectionsApi =
-        "org.eclipse.collections:eclipse-collections-api:${Versions.eclipseCollections}"
     const val trov4j = "org.jetbrains.intellij.deps:trove4j:${Versions.trov4j}"
     const val ff4j = "org.ff4j:ff4j-core:${Versions.ff4j}"
     const val jmhCore = "org.openjdk.jmh:jmh-core:${Versions.jmh}"
@@ -277,14 +150,7 @@ object Deps {
     const val swaggerUI = "org.webjars:swagger-ui:${Versions.swaggerUI}"
     const val swaggerCodegenCli =
         "io.swagger.codegen.v3:swagger-codegen-cli:${Versions.swaggerCodegenCli}"
-    const val junitJupiter = "org.junit.jupiter:junit-jupiter:${Versions.junit}"
-    const val junitJupiterApi = "org.junit.jupiter:junit-jupiter-api:${Versions.junit}"
-    const val junitJupiterEngine = "org.junit.jupiter:junit-jupiter-engine:${Versions.junit}"
-    const val junitJupiterParams = "org.junit.jupiter:junit-jupiter-params:${Versions.junit}"
 
-
-    const val shrinkwrap =
-        "org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-depchain:${Versions.shrinkwrap}"
     const val jgitver = "fr.brouillard.oss:jgitver:${Versions.jgitver}"
 
     const val assertjCore = "org.assertj:assertj-core:${Versions.assertj}"
@@ -298,20 +164,45 @@ object Deps {
     const val kotestAssertions = "io.kotlintest:kotlintest-assertions:${Versions.kotest}"
     const val kotestJUnit5Runner = "io.kotest:kotest-runner-junit5-jvm:${Versions.kotest}"
 
-    const val mockk = "io.mockk:mockk:${Versions.mockk}"
-    const val mockito = "org.mockito:mockito-core:${Versions.mockito}"
-    const val mockserver = "org.mock-server:mockserver-netty:${Versions.mockserver}"
-    const val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlin}"
+    object Kotlin {
+        val bom = "org.jetbrains.kotlin:kotlin-bom:$kotlinVersion"
+        val stdLib8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+        val reflect = "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
+        val test = "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
+        val testJunit = "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
 
-    object Smile {
-        const val version = "2.5.0"
-        const val plot = "com.github.haifengl:smile-plot:$version"
-        const val core = "com.github.haifengl:smile-core:$version"
-        const val vega = "com.github.haifengl:smile-scala_2.13:$version"
+        object Coroutines {
+            const val version = "1.3.9"
+            const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
+            const val jdk8 = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$version"
+            const val reactor = "org.jetbrains.kotlinx:coroutines-reactor:$version"
+            const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
+            const val debug = "org.jetbrains.kotlinx:kotlinx-coroutines-debug:$version"
+        }
+    }
+
+    object Kotlinx {
+        const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.1.0"
+        const val reflectLite = "org.jetbrains.kotlinx:kotlinx.reflect.lite:1.0.0"
+        const val atomicfu = "org.jetbrains.kotlinx:atomicfu:0.14.4"
+        const val io = "org.jetbrains.kotlinx:kotlinx-io-jvm:0.1.16"
+        const val cli = "org.jetbrains.kotlinx:kotlinx-cli:0.3"
+        const val collectionsImmutable = "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:0.3.3"
+
+        object Serialization {
+            const val version = "1.0.0-RC2"
+            const val core = "org.jetbrains.kotlinx:kotlinx-serialization-core:$version"
+            const val json = "org.jetbrains.kotlinx:kotlinx-serialization-json:$version"
+            const val cbor = "org.jetbrains.kotlinx:kotlinx-serialization-cbor:$version"
+            const val hocon = "org.jetbrains.kotlinx:kotlinx-serialization-hocon:$version"
+            const val protobuf = "org.jetbrains.kotlinx:kotlinx-serialization-protobuf:$version"
+            const val properties = "org.jetbrains.kotlinx:kotlinx-serialization-properties:$version"
+            const val yaml = "com.charleskorn.kaml:kaml:0.17.0"
+        }
     }
 
     object Dokka {
-        const val version = "1.4.0"
+        const val version = "1.4.10"
         const val gradlePlugin = "org.jetbrains.dokka:dokka-gradle-plugin:$version"
         const val javadocPlugin = "org.jetbrains.dokka:javadoc-plugin:$version"
         const val kotlinAsJavaPlugin = "org.jetbrains.dokka:kotlin-as-java-plugin:$version"
@@ -329,6 +220,73 @@ object Deps {
         const val testHelper = "org.eclipse.jetty:jetty-test-helper:$version"
     }
 
+    const val okio = "com.squareup.okio:okio:2.2.0"
+
+    object OkHttp {
+            const val version = "4.9.0"
+            const val bom = "com.squareup.okhttp3:okhttp-bom:$version"
+            const val okhttp = "com.squareup.okhttp3:okhttp:$version"
+            const val mockWebServer = "com.squareup.okhttp3:mockwebserver:$version"
+            const val sse = "com.squareup.okhttp3:okhttp-sse:$version"
+            const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$version"
+            const val tls = "com.squareup.okhttp3:okhttp-tls:$version"
+            const val uds = "com.squareup.okhttp3.sample:unixdomainsockets:$version"
+            const val doh = "com.squareup.okhttp3:okhttp-dnsoverhttps:$version"
+            const val digest = "com.baulsupp:okhttp-digest:0.4.0"
+            const val curl = "com.github.mrmike:ok2curl:0.4.5"
+    }
+
+    object Retrofit {
+        const val version = "2.9.0"
+        const val retrofit = "com.squareup.retrofit2:retrofit:$version"
+        const val converterMoshi = "com.squareup.retrofit2:converter-moshi:$version"
+        const val logging = "com.nightlynexus.logging-retrofit:logging:0.10.0"
+        const val reactorAdapter = "com.jakewharton.retrofit:retrofit2-reactor-adapter:2.1.0"
+        const val coroutinesAdapter = "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
+        const val koltinxSerializationAdapter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.7.0"
+    }
+
+    object Moshi {
+        const val version = "1.10.0"
+        const val moshi = "com.squareup.moshi:moshi:$version"
+        const val moshiKotlin = "com.squareup.moshi:moshi-kotlin:$version"
+        const val kotlinCodegen = "com.squareup.moshi:moshi-kotlin-codegen:$version"
+        const val adapters = "com.squareup.moshi:moshi-adapters:$version"
+    }
+
+    object Google {
+        object Auto {
+          const val version = "1.0-rc7"
+          const val serviceAnnotations = "com.google.auto.service:auto-service-annotations:$version"
+          const val service = "com.google.auto.service:auto-service:$version"
+        }
+    }
+
+    object Cache {
+        const val caffeine = "com.github.ben-manes.caffeine:caffeine:2.6.2"
+
+        object Cache2k {
+            const val version = "1.2.0.Final"
+            const val api = "org.cache2k:cache2k-api:$version"
+            const val core = "org.cache2k:cache2k-core:$version"
+        }
+    }
+
+    object Junit {
+        const val version = "5.7.0"
+        const val jupiter = "org.junit.jupiter:junit-jupiter:$version"
+        const val jupiterApi = "org.junit.jupiter:junit-jupiter-api:$version"
+        const val jupiterEngine = "org.junit.jupiter:junit-jupiter-engine:$version"
+        const val jupiterParams = "org.junit.jupiter:junit-jupiter-params:$version"
+    }
+
+    object Mock {
+        const val mockk = "io.mockk:mockk:1.10.0"
+        const val mockito = "org.mockito:mockito-core:2.26.0"
+        const val mockserver = "org.mock-server:mockserver-netty:5.10.0"
+        const val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
+    }
+
     object Config {
         const val hoplite = "com.sksamuel.hoplite:hoplite:1.0.3"
     }
@@ -340,6 +298,7 @@ object Deps {
     }
 
     object Parser {
+        const val betterParse = "com.github.h0tk3y.betterParse:better-parse:0.4.0"
         const val antlr4 = "org.antlr:antlr4:4.8"
         const val petitparser = "com.github.petitparser:petitparser-core:2.3.1"
     }
@@ -363,9 +322,20 @@ object Deps {
 
     object Logging {
 
+        object Slf4j {
+            const val version = "1.7.30"
+            const val api = "org.slf4j:slf4j-api:$version"
+            const val simple = "org.slf4j:slf4j-simple:$version"
+            const val nop = "org.slf4j:slf4j-nop:$version"
+        }
+
         object Logback {
             const val classic = "ch.qos.logback:logback-classic:1.2.3"
         }
+    }
+
+    object Monitoring {
+        const val beacon = "com.github.sbridges:beacon:0.9.3"
     }
 
     object Cli {
@@ -373,6 +343,47 @@ object Deps {
         const val mordant = "com.github.ajalt:mordant:1.2.1"
         const val colormath = "com.github.ajalt.colormath:colormath:2.0.0"
         const val picnic = "com.jakewharton.picnic:picnic:0.4.0"
+        const val crossword = "com.jakewharton.crossword:crossword:0.1.1"
+
+        object JLine {
+            const val version = "3.9.0"
+            const val jline = "org.jline:jline:$version"
+            const val jlineTerminal = "org.jline:jline-terminal:$version"
+            const val jlineReader = "org.jline:jline-reader:$version"
+        }
+    }
+
+    object ML {
+
+        object Tribuo {
+            const val bom = "org.tribuo:tribuo-all:4.0.1"
+        }
+
+        object Smile {
+            const val version = "2.5.0"
+            const val plot = "com.github.haifengl:smile-plot:$version"
+            const val core = "com.github.haifengl:smile-core:$version"
+            const val vega = "com.github.haifengl:smile-scala_2.13:$version"
+        }
+    }
+
+    object TLS {
+        const val sslContext = "io.github.hakky54:sslcontext-kickstart:5.2.2"
+        const val certifikit = "app.cash.certifikit:certifikit:0.2.0"
+        const val bouncyCastle = "org.bouncycastle:bcprov-jdk15on:1.60"
+        const val conscryptUber = "org.conscrypt:conscrypt-openjdk-uber:1.4.1"
+        const val tink = "com.google.crypto.tink:tink:1.2.1"
+        const val sshj = "com.hierynomus:sshj:0.26.0"
+        const val smbj = "com.hierynomus:smbj:0.9.1"
+    }
+
+    object Decompiler {
+        const val jd = "org.jd:jd-core:1.1.3"
+        const val cfr = "org.benf:cfr:0.150"
+    }
+
+    object Maven {
+        const val shrinkwrap = "org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-depchain:3.1.4"
     }
 }
 

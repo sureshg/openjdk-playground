@@ -37,15 +37,11 @@ $ java -XX:+ShowCodeDetailsInExceptionMessages Main.java
 $ javac -g Main.java
 $ java -XX:+ShowCodeDetailsInExceptionMessages Main
 
-
 // ZGC
 $ java -XX:+UnlockExperimentalVMOptions -XX:+UseZGC
 
 // NUMA
 $ java -XX:+UseNUMA
-
-// JVMCI (Graal) Compiler
-$ java -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
 
 // JFR
 

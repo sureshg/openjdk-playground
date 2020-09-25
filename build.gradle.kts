@@ -27,7 +27,7 @@ plugins {
 application {
     mainClass.set("dev.suresh.Main")
     applicationDefaultJvmArgs += listOf(
-        "-showversion",
+        "--show-version",
         "--enable-preview",
         "-XX:+PrintCommandLineFlags",
         "-XX:+UseZGC",
@@ -44,6 +44,12 @@ java {
     modularity.inferModulePath.set(false)
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(javaVersion))
+    }
+}
+
+kapt {
+    javacOptions {
+        option("--enable-preview")
     }
 }
 
@@ -192,6 +198,7 @@ tasks {
     // Javadoc
     javadoc {
         isFailOnError = true
+        // modularity.inferModulePath.set(true)
         (options as CoreJavadocOptions).apply {
             addBooleanOption("-enable-preview", true)
             addStringOption("-release", javaVersion.toString())
@@ -201,20 +208,33 @@ tasks {
     // Dokka config
     withType<DokkaTask>().configureEach {
         outputDirectory.set(buildDir.resolve("dokka"))
-        dokkaSourceSets.configureEach {
-            moduleDisplayName.set(project.name)
-            includes.from("README.md")
-            jdkVersion.set(kotlinJvmTarget.toInt())
-            noStdlibLink.set(false)
-            noJdkLink.set(false)
-            // sourceRoots.setFrom(file("src/main/kotlin"))
-            sourceLink {
-                localDirectory.set(file("src/main/kotlin"))
-                remoteUrl.set(URL("$githubProject/tree/master/src/main/kotlin"))
-                remoteLineSuffix.set("#L")
-            }
-            externalDocumentationLink {
-                url.set(URL("https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/"))
+        moduleName.set(project.name)
+
+        dokkaSourceSets {
+            configureEach {
+                displayName.set("JVM")
+                includes.from("README.md")
+                jdkVersion.set(kotlinJvmTarget.toInt())
+                noStdlibLink.set(false)
+                noJdkLink.set(false)
+                // sourceRoots.setFrom(file("src/main/kotlin"))
+
+                sourceLink {
+                    localDirectory.set(file("src/main/kotlin"))
+                    remoteUrl.set(URL("$githubProject/tree/master/src/main/kotlin"))
+                    remoteLineSuffix.set("#L")
+                }
+
+                externalDocumentationLink {
+                    url.set(URL("https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/"))
+                }
+
+                perPackageOption {
+                    prefix.set("kotlin")
+                    skipDeprecated.set(false)
+                    reportUndocumented.set(true) // Emit warnings about not documented members
+                    includeNonPublic.set(false)
+                }
             }
         }
     }
@@ -268,32 +288,34 @@ val dokkaHtmlJar by tasks.registering(Jar::class) {
 }
 
 dependencies {
-    implementation(enforcedPlatform(Deps.kotlinBom))
-    implementation(enforcedPlatform(Deps.okhttpBom))
+    implementation(enforcedPlatform(Deps.Kotlin.bom))
+    implementation(enforcedPlatform(Deps.OkHttp.bom))
     implementation(kotlin("stdlib-jdk8"))
-    implementation(Deps.kotlinxSerializationCore)
-    implementation(Deps.kotlinxSerializationproperties)
+    implementation(Deps.Kotlinx.Serialization.json)
+    implementation(Deps.Kotlinx.Serialization.properties)
     implementation(Deps.Jetty.server)
-    implementation(Deps.okhttp)
-    implementation(Deps.okhttpMockWebServer)
-    implementation(Deps.okhttpTLS)
-    implementation(Deps.okhttpLoggingInterceptor)
-    implementation(Deps.retrofit)
-    implementation(Deps.retrofitSerializationAdapter)
-    implementation(Deps.clikt)
-    implementation(Deps.certifikit)
-    implementation(Deps.mordant)
-    implementation(Deps.slf4jApi)
-    implementation(Deps.shrinkwrap)
-    compileOnly(Deps.kotlinxAtomicfu)
+    implementation(Deps.OkHttp.okhttp)
+    implementation(Deps.OkHttp.mockWebServer)
+    implementation(Deps.OkHttp.tls)
+    implementation(Deps.OkHttp.loggingInterceptor)
+    implementation(Deps.Retrofit.retrofit)
+    implementation(Deps.Retrofit.koltinxSerializationAdapter)
+    implementation(Deps.Cli.clikt)
+    implementation(Deps.Cli.mordant)
+    implementation(Deps.Logging.Slf4j.api)
+    implementation(Deps.Maven.shrinkwrap)
+    implementation(Deps.TLS.certifikit)
+    implementation(Deps.Google.Auto.serviceAnnotations)
+    compileOnly(Deps.Kotlinx.atomicfu)
+    kapt(Deps.Google.Auto.service)
     // implementation(platform("org.apache.maven.resolver:maven-resolver:1.4.1"))
     // implementation("org.apache.maven:maven-resolver-provider:3.6.3")
 
-    testImplementation(Deps.coroutinesJdk8)
-    testImplementation(Deps.junitJupiter)
+    testImplementation(Deps.Kotlin.Coroutines.jdk8)
+    testImplementation(Deps.Junit.jupiter)
     testImplementation(kotlin("test-junit5"))
-    testImplementation(Deps.slf4jSimple)
-    testImplementation(Deps.mockk)
+    testImplementation(Deps.Logging.Slf4j.simple)
+    testImplementation(Deps.Mock.mockk)
 
     // Dokka Plugins (dokkaHtmlPlugin, dokkaGfmPlugin)
     // dokkaPlugin(Deps.Dokka.kotlinAsJavaPlugin)
