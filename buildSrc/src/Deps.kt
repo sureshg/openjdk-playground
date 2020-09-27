@@ -122,6 +122,7 @@ object Deps {
     const val jgrapht = "org.jgrapht:jgrapht-core:${Versions.jgrapht}"
     const val brotli = "org.brotli:dec:${Versions.brotli}"
 
+    const val funcj = "org.typemeta:funcj:0.6.16"
     const val asm = "org.ow2.asm:asm:${Versions.asm}"
     const val asmUtil = "org.ow2.asm:asm-util:${Versions.asm}"
     const val byteBuddy = "net.bytebuddy:byte-buddy:${Versions.byteBuddy}"
@@ -178,6 +179,13 @@ object Deps {
             const val reactor = "org.jetbrains.kotlinx:coroutines-reactor:$version"
             const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
             const val debug = "org.jetbrains.kotlinx:kotlinx-coroutines-debug:$version"
+        }
+
+        object Ksp {
+            const val version = "1.4.10-dev-experimental-20200924"
+            const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
+            const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
+            const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.2.11"
         }
     }
 
@@ -255,10 +263,10 @@ object Deps {
     }
 
     object Google {
-        object Auto {
+        object AutoService {
           const val version = "1.0-rc7"
-          const val serviceAnnotations = "com.google.auto.service:auto-service-annotations:$version"
-          const val service = "com.google.auto.service:auto-service:$version"
+          const val annotations = "com.google.auto.service:auto-service-annotations:$version"
+          const val processor = "com.google.auto.service:auto-service:$version"
         }
     }
 
@@ -281,7 +289,7 @@ object Deps {
     }
 
     object Mock {
-        const val mockk = "io.mockk:mockk:1.10.0"
+        const val mockk = "io.mockk:mockk:1.10.2"
         const val mockito = "org.mockito:mockito-core:2.26.0"
         const val mockserver = "org.mock-server:mockserver-netty:5.10.0"
         const val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
@@ -299,6 +307,7 @@ object Deps {
 
     object Parser {
         const val betterParse = "com.github.h0tk3y.betterParse:better-parse:0.4.0"
+        const val funcj = "org.typemeta:funcj-parser:0.6.16"
         const val antlr4 = "org.antlr:antlr4:4.8"
         const val petitparser = "com.github.petitparser:petitparser-core:2.3.1"
     }
@@ -318,6 +327,11 @@ object Deps {
     object Markup {
         const val commonmark = "com.atlassian.commonmark:commonmark:0.15.1"
         const val jsoup = "org.jsoup:jsoup:1.13.1"
+    }
+
+    object CodeGen {
+        const val javapoet = "com.squareup:javapoet:1.13.0"
+        const val kotlinPoet = "com.squareup:kotlinpoet:1.6.0"
     }
 
     object Logging {
@@ -385,6 +399,10 @@ object Deps {
     object Maven {
         const val shrinkwrap = "org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-depchain:3.1.4"
     }
+
+    object OS {
+        const val oshi ="com.github.oshi:oshi-core:5.2.5"
+    }
 }
 
 /**
@@ -404,6 +422,7 @@ inline val PluginDependenciesSpec.kotlinNoArg get() = kotlin("plugin.noarg") ver
 inline val PluginDependenciesSpec.kotlinJpa get() = kotlin("plugin.jpa") version kotlinVersion
 inline val PluginDependenciesSpec.kotlinScript get() = kotlin("plugin.scripting") version kotlinVersion
 inline val PluginDependenciesSpec.dokka get() = id("org.jetbrains.dokka") version Deps.Dokka.version
+inline val PluginDependenciesSpec.ksp get() = id("symbol-processing") version Deps.Kotlin.Ksp.version
 inline val PluginDependenciesSpec.changelog get() = id("org.jetbrains.changelog") version Versions.changelog
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version Versions.shadow
 inline val PluginDependenciesSpec.protobuf get() = id("com.google.protobuf") version Versions.protobuf

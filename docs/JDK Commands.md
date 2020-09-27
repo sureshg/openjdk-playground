@@ -81,10 +81,14 @@ $ java -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
 
 
 
-##### 8. Loom Carrier thread config
+##### 8. Loom config
 
 ```bash
+# Carrier thread count
 $ java -Djdk.defaultScheduler.parallelism=1
+
+# Trace pinned thread while holding monitors.
+$ java -Djdk.tracePinnedThreads=full
 ```
 
 

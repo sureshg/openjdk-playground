@@ -9,5 +9,13 @@
  * [semver]: https://semver.org
  */
 object App {
+    /**
+     * Application version.
+     */
     const val VERSION = "$projectVersion"
+
+    /**
+     * Kotlin library version.
+     */
+    const val KOTLIN_VERSION = "$kotlinVersion"
 }

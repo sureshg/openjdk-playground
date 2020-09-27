@@ -7,6 +7,7 @@ plugins {
     java
     application
     kotlinJvm
+    ksp
     kotlinKapt
     kotlinxSerialization
     dokka
@@ -45,6 +46,10 @@ java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(javaVersion))
     }
+}
+
+kotlin {
+    // explicitApi()
 }
 
 kapt {
@@ -106,6 +111,7 @@ release {
 repositories {
     mavenCentral()
     jcenter()
+    google()
 }
 
 // For dependencies that are needed for development only,
@@ -165,6 +171,9 @@ tasks {
                 "-Xjavac-arguments=--enable-preview"
             )
         }
+
+        // Generate the templates.
+        dependsOn(copyTemplates)
     }
 
     // JUnit5
@@ -305,9 +314,9 @@ dependencies {
     implementation(Deps.Logging.Slf4j.api)
     implementation(Deps.Maven.shrinkwrap)
     implementation(Deps.TLS.certifikit)
-    implementation(Deps.Google.Auto.serviceAnnotations)
+    implementation(Deps.Google.AutoService.annotations)
     compileOnly(Deps.Kotlinx.atomicfu)
-    kapt(Deps.Google.Auto.service)
+    kapt(Deps.Google.AutoService.processor)
     // implementation(platform("org.apache.maven.resolver:maven-resolver:1.4.1"))
     // implementation("org.apache.maven:maven-resolver-provider:3.6.3")
 

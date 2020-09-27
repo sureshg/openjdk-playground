@@ -1,5 +1,5 @@
 fun main() {
-    println("Hello Kotlin!")
+    println("Hello Kotlin! ${App.KOTLIN_VERSION}")
     val s: Result<Int> = Result.Success(10)
     when (s) {
         is Result.Success -> 1
