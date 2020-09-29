@@ -50,11 +50,6 @@ $ java -XX:+UseNUMA
 // Remote Debugging
 $ java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
 
-// Loom
-$ -Djdk.tracePinnedThreads=full
-  -Djdk.defaultScheduler.parallelism=2
-  -Djdk.defaultScheduler.lifo=false (FIFO by default)
-
 // Build Tools
 $ ./gradlew wrapper --gradle-version=6.1 --distribution-type=bin
 $ ./gradlew clean dependencyUpdates -Drevision=release

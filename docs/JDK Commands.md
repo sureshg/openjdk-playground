@@ -88,7 +88,9 @@ $ java -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
 $ java -Djdk.defaultScheduler.parallelism=1
 
 # Trace pinned thread while holding monitors.
-$ java -Djdk.tracePinnedThreads=full
+$ java -Djdk.tracePinnedThreads=short|full
+
+$java -Djdk.defaultScheduler.lifo=false (FIFO by default)
 ```
 
 

@@ -39,6 +39,7 @@ $ java --show-version \
        -Xlog:gc\* \
        -XX:+PrintCommandLineFlags \
        -Djava.security.egd=file:/dev/./urandom \
+       -Djdk.tracePinnedThreads=short \
        -jar build/libs/openjdk-latest-1.0.0-uber.jar
 
 # Other Options
@@ -104,6 +105,7 @@ module dev.suresh.openjdklatest {
 
  <!--
  Http APIs to test - https://api.github.com/repos/jetbrains/kotlin
+                   - https://httpbin.org/
 
  Cloud Run --> https://github.com/jamesward/hello-kotlin-ktor
 
