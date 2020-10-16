@@ -109,9 +109,9 @@ module dev.suresh.openjdklatest {
  Http APIs to test - https://api.github.com/repos/jetbrains/kotlin
                    - https://httpbin.org/
 
- Cloud Run --> https://github.com/jamesward/hello-kotlin-ktor
+ Cloud Run - https://github.com/jamesward/hello-kotlin-ktor
 
- GC Tuning --> https://docs.oracle.com/en/java/javase/15/gctuning/
+ GC Tuning - https://docs.oracle.com/en/java/javase/15/gctuning/
 
  https://www.eclipse.org/jetty/documentation/current/high-load.html
  https://webtide.com/lies-damned-lies-and-benchmarks-2/
