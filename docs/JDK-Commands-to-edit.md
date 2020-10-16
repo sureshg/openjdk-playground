@@ -1,7 +1,3 @@
-
-// Check the module dependencies.
-$ jdeps --jdk-internals build/libs/xxxxx.jar
-
 // Jlink Commands
 $ jlink --compress=2 --strip-debug --no-header-files --no-man-pages --add-modules java.base,jdk.jfr --module-path jmods  --output custom-jre
 
@@ -18,18 +14,6 @@ $ jlink --compress=2 --strip-debug --no-header-files --no-man-pages --add-module
 -XX:+HeapDumpOnOutOfMemoryError
 -XX:ErrorFile=$USER_HOME/java_error_in_app_%p.log
 -XX:HeapDumpPath=$USER_HOME/java_error_in_app.hprof
-
-// G1GC and GCLogs
--XX:+UseG1GC
--XX:MaxGCPauseMillis=200
--XX:InitiatingHeapOccupancyPercent=70
--XX:+PrintGC
--XX:+PrintGCDateStamps
--XX:+PrintGCDetails
--Xloggc:/log/gclogs/app-gc.log
--XX:+UseGCLogFileRotation
--XX:NumberOfGCLogFiles=15
--XX:GCLogFileSize=10M
 
 // Helpful NPE
 $ java -XX:+ShowCodeDetailsInExceptionMessages Main.java
@@ -78,9 +62,7 @@ $ jcmd <pid> VM.system_properties
 $ jcmd <pid> VM.command_line
 $ jcmd <pid> VM.flags
 
-// #### Print All VM Options #####
-// -XX:+PrintFlagsWithComments - For debug builds
-$ java -XX:+PrintFlagsFinal -XX:+UnlockDiagnosticVMOptions -XX:+UnlockExperimentalVMOptions -version
+
 
 // Java Mission control (AdoptOpenJDk)
 // Requires java 1.8

@@ -69,11 +69,40 @@ $ java -XX:+UseParallelGC ...
 ```bash
 $ java -Xinternalversion
 $ java -XshowSettings:all --version
+
+# VM extra options
+$  java -XX:+UnlockExperimentalVMOptions -XX:+UnlockDiagnosticVMOptions -XX:+PrintFlagsFinal -version
 ```
 
+* [VM Options](https://www.oracle.com/java/technologies/javase/vmoptions-jsp.html)
 
 
-##### 7. [JVMCI (Graal) Compiler](https://openjdk.java.net/jeps/317)
+
+##### 7. Scan deprecated APIs
+
+```bash
+# Print dependency summary
+$ jdeps -summary  app.jar
+
+# Check the dependencies on JDK internal APIs
+$ jdeps --jdk-internals --classpath libs.jar app.jar
+
+# List of module dependences to be used in JLink
+$ jdeps --ignore-missing-deps --print-module-deps  app.jar
+
+# Generate module-info
+$ jdeps --generate-module-info ./  app.jar
+
+# List all deprecated APIs for a release
+$ jdeprscan --for-removal --release 16 --list
+
+# Scan deprecated APIs
+$ jdeprscan --for-removal --release 16 app.jar
+```
+
+https://openjdk.java.net/jeps/320
+
+##### 8. [JVMCI (Graal) Compiler](https://openjdk.java.net/jeps/317)
 
 ```bash
 $ java -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
@@ -81,7 +110,7 @@ $ java -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
 
 
 
-##### 8. Loom config
+##### 9. Loom config
 
 ```bash
 # Carrier thread count
@@ -90,18 +119,30 @@ $ java -Djdk.defaultScheduler.parallelism=1
 # Trace pinned thread while holding monitors.
 $ java -Djdk.tracePinnedThreads=short|full
 
-$java -Djdk.defaultScheduler.lifo=false (FIFO by default)
+# Default scheduler algo
+$ java -Djdk.defaultScheduler.lifo=false (FIFO by default)
+```
+
+
+
+##### 10. G1GC and GCLogs
+
+```bash
+-XX:+UseG1GC
+-XX:MaxGCPauseMillis=200
+-XX:InitiatingHeapOccupancyPercent=70
+-XX:+PrintGC
+-XX:+PrintGCDateStamps
+-XX:+PrintGCDetails
+-Xloggc:/log/gclogs/app-gc.log
+-XX:+UseGCLogFileRotation
+-XX:NumberOfGCLogFiles=15
+-XX:GCLogFileSize=10M
 ```
 
 
 
 JPMS Parallel GC
-
-Scan deprecated APIs
-
-```bash
-$ jdeprscan --release 14 app.jar
-```
 
 
 

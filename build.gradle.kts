@@ -108,12 +108,6 @@ release {
     revertOnFail = true
 }
 
-repositories {
-    mavenCentral()
-    jcenter()
-    google()
-}
-
 // For dependencies that are needed for development only,
 // creates a devOnly configuration and add it.
 val devOnly: Configuration by configurations.creating {
@@ -162,6 +156,7 @@ tasks {
                 "-Xassertions=jvm",
                 "-Xinline-classes",
                 "-XXLanguage:+NewInference",
+                "-Xruntime-string-concat=enable",
                 "-Xopt-in=kotlin.RequiresOptIn",
                 "-Xopt-in=kotlin.ExperimentalStdlibApi",
                 "-Xopt-in=kotlin.ExperimentalUnsignedTypes",
@@ -253,6 +248,8 @@ tasks {
         archiveClassifier.set("uber")
         description = "Create a fat JAR of $archiveFileName and runtime dependencies."
         mergeServiceFiles()
+        // Don't create modular shadow jar
+        exclude("module-info.class")
         // relocate("okio", "shaded.okio")
         doLast {
             val fatJar = archiveFile.get().asFile
@@ -296,13 +293,22 @@ val dokkaHtmlJar by tasks.registering(Jar::class) {
     archiveClassifier.set("htmldoc")
 }
 
+repositories {
+    mavenCentral()
+    jcenter()
+    google()
+    maven(url = "https://kotlin.bintray.com/kotlinx/")
+}
+
 dependencies {
     implementation(enforcedPlatform(Deps.Kotlin.bom))
     implementation(enforcedPlatform(Deps.OkHttp.bom))
     implementation(kotlin("stdlib-jdk8"))
     implementation(Deps.Kotlinx.Serialization.json)
     implementation(Deps.Kotlinx.Serialization.properties)
+    implementation(Deps.Kotlinx.dateTime)
     implementation(Deps.Jetty.server)
+    implementation(Deps.Jetty.servletApi)
     implementation(Deps.OkHttp.okhttp)
     implementation(Deps.OkHttp.mockWebServer)
     implementation(Deps.OkHttp.tls)
@@ -311,10 +317,12 @@ dependencies {
     implementation(Deps.Retrofit.koltinxSerializationAdapter)
     implementation(Deps.Cli.clikt)
     implementation(Deps.Cli.mordant)
+    implementation(Deps.Cli.crossword)
     implementation(Deps.Logging.Slf4j.api)
     implementation(Deps.Maven.shrinkwrap)
     implementation(Deps.TLS.certifikit)
     implementation(Deps.Google.AutoService.annotations)
+    implementation(Deps.Jackson.databind)
     compileOnly(Deps.Kotlinx.atomicfu)
     kapt(Deps.Google.AutoService.processor)
     // implementation(platform("org.apache.maven.resolver:maven-resolver:1.4.1"))

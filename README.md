@@ -104,6 +104,8 @@ module dev.suresh.openjdklatest {
 ```
 
  <!--
+ Idiomatic Gradle  - https://github.com/jjohannes/idiomatic-gradle
+
  Http APIs to test - https://api.github.com/repos/jetbrains/kotlin
                    - https://httpbin.org/
 
