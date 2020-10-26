@@ -24,7 +24,6 @@ object Versions {
     const val typetools = "0.6.2"
     const val assertj = "3.11.1"
     const val kotlinPowerAssert = "0.3.0"
-    const val graal = "20.0.0"
     const val truth = "1.0.1"
     const val awaitility = "3.1.6"
     const val kotest = "3.4.2"
@@ -43,7 +42,6 @@ object Versions {
     const val openpdf = "1.2.9"
     const val orsonpdf = "1.8"
     const val jfreesvg = "3.3"
-    const val jibCore = "0.1.1"
     const val swaggerUI = "3.10.0"
     const val swaggerCodegenCli = "3.0.0"
     const val kolor = "0.0.2"
@@ -68,7 +66,7 @@ object Versions {
     const val springDepMgmt = "1.0.9.RELEASE"
     const val buildSrcVersions = "0.3.2"
     const val changelog = "0.4.0"
-    const val spotless = "5.6.1"
+    const val spotless = "5.7.0"
     const val spotlessChangelog = "2.0.0"
     const val ktlintPlugin = "9.3.0"
     const val detekt = "1.11.0-RC1"
@@ -79,7 +77,7 @@ object Versions {
     const val buildScanPlugin = "2.0.2"
     const val gitPublishPlugin = "1.0.1"
     const val swaggerGen = "2.16.0"
-    const val gitProperties = "2.2.3"
+    const val gitProperties = "2.2.4"
     const val githubRelease = "2.2.12"
     const val gradleRelease = "2.8.1"
     const val mavenRepoAuth = "3.0.4"
@@ -96,70 +94,6 @@ object Versions {
 }
 
 object Deps {
-    const val micronautBom = "io.micronaut:micronaut-bom:${Versions.micronaut}"
-    const val methanol = "com.github.mizosoft.methanol:methanol:${Versions.methanol}"
-
-    const val turbine = "app.cash.turbine:turbine:${Versions.turbine}"
-    const val jibCore = "com.google.cloud.tools:jib-core:${Versions.jibCore}"
-    const val failsafe = "net.jodah:failsafe:${Versions.failsafe}"
-    const val typetools = "net.jodah:typetools:${Versions.typetools}"
-    const val nettyResolveDns = "io.netty:netty-resolver-dns:${Versions.netty}"
-    const val jffi = "com.github.jnr:jffi:${Versions.jnrJffi}"
-    const val jnrUnixSocket = "com.github.jnr:jnr-unixsocket:${Versions.jnrUnixSocket}"
-    const val commonsIO = "commons-io:commons-io:${Versions.commonsIO}"
-    const val commonsCodec = "commons-codec:commons-codec:${Versions.commonsCodec}"
-    const val jjwt = "io.jsonwebtoken:jjwt-api:${Versions.jjwt}"
-    const val jjwtImpl = "io.jsonwebtoken:jjwt-impl:${Versions.jjwt}"
-    const val jjwtJackson = "io.jsonwebtoken:jjwt-jackson:${Versions.jjwt}"
-    const val jfreesvg = "org.jfree:jfreesvg:${Versions.jfreesvg}"
-    const val orsonpdf = "com.orsonpdf:orsonpdf:${Versions.orsonpdf}"
-    const val openpdf = "com.github.librepdf:openpdf:${Versions.openpdf}"
-    const val jimfs = "com.google.jimfs:jimfs:${Versions.jimfs}"
-    const val jsr305 = "com.google.code.findbugs:jsr305:${Versions.jsr305}"
-    const val jgrapht = "org.jgrapht:jgrapht-core:${Versions.jgrapht}"
-
-    const val funcj = "org.typemeta:funcj:0.6.16"
-    const val asm = "org.ow2.asm:asm:${Versions.asm}"
-    const val asmUtil = "org.ow2.asm:asm-util:${Versions.asm}"
-    const val byteBuddy = "net.bytebuddy:byte-buddy:${Versions.byteBuddy}"
-    const val jol = "org.openjdk.jol:jol-core:${Versions.jol}"
-    const val japicmp = "com.github.siom79.japicmp:japicmp:${Versions.japicmp}"
-    const val kolor = "com.andreapivetta.kolor:kolor:${Versions.kolor}"
-
-    const val reactiveStreams = "org.reactivestreams:reactive-streams:${Versions.reactiveStreams}"
-    const val reactiveStreamsFlowAdapters =
-        "org.reactivestreams:reactive-streams-flow-adapters:${Versions.reactiveStreams}"
-    const val reactorCore = "io.projectreactor:reactor-core:${Versions.reactor}"
-    const val reactorTest = "io.projectreactor:reactor-test:${Versions.reactor}"
-
-    const val trov4j = "org.jetbrains.intellij.deps:trove4j:${Versions.trov4j}"
-    const val ff4j = "org.ff4j:ff4j-core:${Versions.ff4j}"
-    const val jmhCore = "org.openjdk.jmh:jmh-core:${Versions.jmh}"
-    const val jmhGenAnnprocess = "org.openjdk.jmh:jmh-generator-annprocess:${Versions.jmh}"
-
-    const val graalSdk = "org.graalvm.sdk:graal-sdk:${Versions.graal}"
-    const val graalSvm = "org.graalvm.nativeimage:svm:${Versions.graal}"
-
-    const val rsocketCore = "io.rsocket:rsocket-core:${Versions.rsocket}"
-    const val rsocketNetty = "io.rsocket:rsocket-transport-netty:${Versions.rsocket}"
-
-    const val openapiGen = "org.openapitools:openapi-generator:${Versions.openapiGen}"
-    const val swaggerUI = "org.webjars:swagger-ui:${Versions.swaggerUI}"
-    const val swaggerCodegenCli =
-        "io.swagger.codegen.v3:swagger-codegen-cli:${Versions.swaggerCodegenCli}"
-
-    const val jgitver = "fr.brouillard.oss:jgitver:${Versions.jgitver}"
-
-    const val assertjCore = "org.assertj:assertj-core:${Versions.assertj}"
-    const val kotlinPowerAssert =
-        "com.bnorm.power:kotlin-power-assert:${Versions.kotlinPowerAssert}"
-    const val googleTruth = "com.google.truth:truth:${Versions.truth}"
-
-    const val awaitility = "org.awaitility:awaitility:${Versions.awaitility}"
-    const val awaitilityKotlin = "org.awaitility:awaitility-kotlin:${Versions.awaitility}"
-
-    const val kotestAssertions = "io.kotlintest:kotlintest-assertions:${Versions.kotest}"
-    const val kotestJUnit5Runner = "io.kotest:kotest-runner-junit5-jvm:${Versions.kotest}"
 
     object Kotlin {
         val bom = "org.jetbrains.kotlin:kotlin-bom:$kotlinVersion"
@@ -178,7 +112,7 @@ object Deps {
         }
 
         object Ksp {
-            const val version = "1.4.10-dev-experimental-20201009"
+            const val version = "1.4.10-dev-experimental-20201023"
             const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
             const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
             const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.2.11"
@@ -207,7 +141,7 @@ object Deps {
     }
 
     object Dokka {
-        const val version = "1.4.10"
+        const val version = "1.4.10.2"
         const val gradlePlugin = "org.jetbrains.dokka:dokka-gradle-plugin:$version"
         const val javadocPlugin = "org.jetbrains.dokka:javadoc-plugin:$version"
         const val kotlinAsJavaPlugin = "org.jetbrains.dokka:kotlin-as-java-plugin:$version"
@@ -221,7 +155,7 @@ object Deps {
     }
 
     object Jetty {
-        const val version = "11.0.0.beta2"
+        const val version = "11.0.0.beta3"
         const val bom = "org.eclipse.jetty:jetty-bom:$version"
         const val server = "org.eclipse.jetty:jetty-server:$version"
         const val servlet = "org.eclipse.jetty:jetty-servlet:$version"
@@ -257,6 +191,7 @@ object Deps {
             "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
         const val koltinxSerializationAdapter =
             "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
+        const val scarlet = "com.tinder.scarlet:scarlet:0.2.5"
     }
 
     object Moshi {
@@ -273,6 +208,20 @@ object Deps {
             const val annotations = "com.google.auto.service:auto-service-annotations:$version"
             const val processor = "com.google.auto.service:auto-service:$version"
         }
+
+        object Jib {
+            const val core = "com.google.cloud.tools:jib-core:0.1.1"
+        }
+    }
+
+    object Graal {
+        const val version = "20.2.0"
+        const val sdk = "org.graalvm.sdk:graal-sdk:$version"
+        const val svm = "org.graalvm.nativeimage:svm:$version"
+        const val js = "org.graalvm.js:js:$version"
+        const val jsScriptEngine = "org.graalvm.js:js-scriptengine:$version"
+        const val profiler = "org.graalvm.tools:profiler:$version"
+        const val chromeinspector = "org.graalvm.tools:chromeinspector:$version"
     }
 
     object Cache {
@@ -441,6 +390,68 @@ object Deps {
     object Reflection {
         const val jandex = "org.jboss:jandex:2.2.1.Final"
     }
+
+    const val micronautBom = "io.micronaut:micronaut-bom:${Versions.micronaut}"
+    const val methanol = "com.github.mizosoft.methanol:methanol:${Versions.methanol}"
+
+    const val turbine = "app.cash.turbine:turbine:${Versions.turbine}"
+    const val failsafe = "net.jodah:failsafe:${Versions.failsafe}"
+    const val typetools = "net.jodah:typetools:${Versions.typetools}"
+    const val nettyResolveDns = "io.netty:netty-resolver-dns:${Versions.netty}"
+    const val jffi = "com.github.jnr:jffi:${Versions.jnrJffi}"
+    const val jnrUnixSocket = "com.github.jnr:jnr-unixsocket:${Versions.jnrUnixSocket}"
+    const val commonsIO = "commons-io:commons-io:${Versions.commonsIO}"
+    const val commonsCodec = "commons-codec:commons-codec:${Versions.commonsCodec}"
+    const val jjwt = "io.jsonwebtoken:jjwt-api:${Versions.jjwt}"
+    const val jjwtImpl = "io.jsonwebtoken:jjwt-impl:${Versions.jjwt}"
+    const val jjwtJackson = "io.jsonwebtoken:jjwt-jackson:${Versions.jjwt}"
+    const val jfreesvg = "org.jfree:jfreesvg:${Versions.jfreesvg}"
+    const val orsonpdf = "com.orsonpdf:orsonpdf:${Versions.orsonpdf}"
+    const val openpdf = "com.github.librepdf:openpdf:${Versions.openpdf}"
+    const val jimfs = "com.google.jimfs:jimfs:${Versions.jimfs}"
+    const val jsr305 = "com.google.code.findbugs:jsr305:${Versions.jsr305}"
+    const val jgrapht = "org.jgrapht:jgrapht-core:${Versions.jgrapht}"
+    const val jsonPath = "com.jayway.jsonpath:json-path:2.4.0"
+
+    const val funcj = "org.typemeta:funcj:0.6.16"
+    const val asm = "org.ow2.asm:asm:${Versions.asm}"
+    const val asmUtil = "org.ow2.asm:asm-util:${Versions.asm}"
+    const val byteBuddy = "net.bytebuddy:byte-buddy:${Versions.byteBuddy}"
+    const val jol = "org.openjdk.jol:jol-core:${Versions.jol}"
+    const val japicmp = "com.github.siom79.japicmp:japicmp:${Versions.japicmp}"
+    const val kolor = "com.andreapivetta.kolor:kolor:${Versions.kolor}"
+
+    const val reactiveStreams = "org.reactivestreams:reactive-streams:${Versions.reactiveStreams}"
+    const val reactiveStreamsFlowAdapters =
+        "org.reactivestreams:reactive-streams-flow-adapters:${Versions.reactiveStreams}"
+    const val reactorCore = "io.projectreactor:reactor-core:${Versions.reactor}"
+    const val reactorTest = "io.projectreactor:reactor-test:${Versions.reactor}"
+
+    const val trov4j = "org.jetbrains.intellij.deps:trove4j:${Versions.trov4j}"
+    const val ff4j = "org.ff4j:ff4j-core:${Versions.ff4j}"
+    const val jmhCore = "org.openjdk.jmh:jmh-core:${Versions.jmh}"
+    const val jmhGenAnnprocess = "org.openjdk.jmh:jmh-generator-annprocess:${Versions.jmh}"
+
+    const val rsocketCore = "io.rsocket:rsocket-core:${Versions.rsocket}"
+    const val rsocketNetty = "io.rsocket:rsocket-transport-netty:${Versions.rsocket}"
+
+    const val openapiGen = "org.openapitools:openapi-generator:${Versions.openapiGen}"
+    const val swaggerUI = "org.webjars:swagger-ui:${Versions.swaggerUI}"
+    const val swaggerCodegenCli =
+        "io.swagger.codegen.v3:swagger-codegen-cli:${Versions.swaggerCodegenCli}"
+
+    const val jgitver = "fr.brouillard.oss:jgitver:${Versions.jgitver}"
+
+    const val assertjCore = "org.assertj:assertj-core:${Versions.assertj}"
+    const val kotlinPowerAssert =
+        "com.bnorm.power:kotlin-power-assert:${Versions.kotlinPowerAssert}"
+    const val googleTruth = "com.google.truth:truth:${Versions.truth}"
+
+    const val awaitility = "org.awaitility:awaitility:${Versions.awaitility}"
+    const val awaitilityKotlin = "org.awaitility:awaitility-kotlin:${Versions.awaitility}"
+
+    const val kotestAssertions = "io.kotlintest:kotlintest-assertions:${Versions.kotest}"
+    const val kotestJUnit5Runner = "io.kotest:kotest-runner-junit5-jvm:${Versions.kotest}"
 }
 
 /**

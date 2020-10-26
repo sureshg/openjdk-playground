@@ -42,7 +42,12 @@ $ jshell --enable-preview
 $ java --list-modules
 $ java --describe-module java.se
 $ java --show-module-resolution java.base
+
+# Replace upgradeable modules in the runtime image
+$ java --upgrade-module-path $DIR
 ```
+
+* [Java Compiler Upgradeable module]( https://docs.oracle.com/en/java/javase/15/docs/api/java.compiler/module-summary.html)
 
 
 
@@ -100,13 +105,20 @@ $ jdeprscan --for-removal --release 16 --list
 $ jdeprscan --for-removal --release 16 app.jar
 ```
 
-https://openjdk.java.net/jeps/320
+    * [Java EE Maven artifacts](https://openjdk.java.net/jeps/320)
+
+
 
 ##### 8. [JVMCI (Graal) Compiler](https://openjdk.java.net/jeps/317)
 
 ```bash
-$ java -XX:+UnlockExperimentalVMOptions -XX:+UseJVMCICompiler
+$ java -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCI -XX:+UseJVMCICompiler
+
+# To see that Graal is actually being loaded
+$ java -Dgraal.ShowConfiguration=info
 ```
+
+-  [GraalJS OpenJDK Demo](https://github.com/graalvm/graal-js-jdk11-maven-demo)
 
 
 
@@ -138,6 +150,13 @@ $ java -Djdk.defaultScheduler.lifo=false (FIFO by default)
 -XX:+UseGCLogFileRotation
 -XX:NumberOfGCLogFiles=15
 -XX:GCLogFileSize=10M
+```
+
+JFR
+
+```bash
+-XX:StartFlightRecording:filename=recording.jfr
+-XX:FlightRecorderOptions:stackdepth=256
 ```
 
 
