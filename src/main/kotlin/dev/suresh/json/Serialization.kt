@@ -42,7 +42,7 @@ fun main() {
     deprecatedMethod()
 
     // LocalDate     --> Period
-    // LodalDateTime --> Duration
+    // LocalDateTime --> Duration
 
     val today = LocalDateTime.now()
     println(today.plus(Duration.ofDays(1)))
