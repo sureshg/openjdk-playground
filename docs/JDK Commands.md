@@ -79,6 +79,7 @@ $ java -XshowSettings:all --version
 $  java -XX:+UnlockExperimentalVMOptions -XX:+UnlockDiagnosticVMOptions -XX:+PrintFlagsFinal -version
 ```
 
+* [Java Options](https://docs.oracle.com/en/java/javase/15/docs/specs/man/java.html)
 * [VM Options](https://www.oracle.com/java/technologies/javase/vmoptions-jsp.html)
 
 

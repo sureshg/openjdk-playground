@@ -103,7 +103,7 @@ object Deps {
         val testJunit = "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
 
         object Coroutines {
-            const val version = "1.3.9"
+            const val version = "1.4.0"
             const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
             const val jdk8 = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$version"
             const val reactor = "org.jetbrains.kotlinx:coroutines-reactor:$version"
@@ -129,7 +129,7 @@ object Deps {
             "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:0.3.3"
 
         object Serialization {
-            const val version = "1.0.0"
+            const val version = "1.0.1"
             const val core = "org.jetbrains.kotlinx:kotlinx-serialization-core:$version"
             const val json = "org.jetbrains.kotlinx:kotlinx-serialization-json:$version"
             const val cbor = "org.jetbrains.kotlinx:kotlinx-serialization-cbor:$version"
