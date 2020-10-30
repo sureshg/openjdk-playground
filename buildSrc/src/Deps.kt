@@ -391,6 +391,11 @@ object Deps {
         const val jandex = "org.jboss:jandex:2.2.1.Final"
     }
 
+    object Faker {
+        const val java = "com.github.javafaker:javafaker:1.0.2"
+        const val kotlin = "io.github.serpro69:kotlin-faker:1.5.0"
+    }
+
     const val micronautBom = "io.micronaut:micronaut-bom:${Versions.micronaut}"
     const val methanol = "com.github.mizosoft.methanol:methanol:${Versions.methanol}"
 
@@ -452,8 +457,6 @@ object Deps {
 
     const val kotestAssertions = "io.kotlintest:kotlintest-assertions:${Versions.kotest}"
     const val kotestJUnit5Runner = "io.kotest:kotest-runner-junit5-jvm:${Versions.kotest}"
-
-    const val javaFaker = "com.github.javafaker:javafaker:1.0.2"
 }
 
 /**
