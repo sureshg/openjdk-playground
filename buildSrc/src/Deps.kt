@@ -452,6 +452,8 @@ object Deps {
 
     const val kotestAssertions = "io.kotlintest:kotlintest-assertions:${Versions.kotest}"
     const val kotestJUnit5Runner = "io.kotest:kotest-runner-junit5-jvm:${Versions.kotest}"
+
+    const val javaFaker = "com.github.javafaker:javafaker:1.0.2"
 }
 
 /**
