@@ -79,7 +79,7 @@ $ java -XshowSettings:all --version
 $  java -XX:+UnlockExperimentalVMOptions -XX:+UnlockDiagnosticVMOptions -XX:+PrintFlagsFinal -version
 ```
 
-* [Java Options](https://docs.oracle.com/en/java/javase/15/docs/specs/man/java.html)
+* [Java Options*](https://docs.oracle.com/en/java/javase/15/docs/specs/man/java.html)
 * [VM Options](https://www.oracle.com/java/technologies/javase/vmoptions-jsp.html)
 
 
@@ -219,6 +219,8 @@ $ ./jmc -vm %JAVA_HOME%\bin
 # or
 $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 ```
+
+- [VisualVM](https://visualvm.github.io/)
 
 
 
@@ -470,8 +472,14 @@ if (JavaVersion.current().isJava11Compatible) {
 ```
 
 ```bash
-$ ./gradlew dependencies --configuration implementation  // Dependencies
-$ ./gradlew clean build --dry-run   // Task Dependencies
+# Dependencies
+$ ./gradlew dependencies --configuration implementation
+
+# Task Dependencies
+$ ./gradlew clean build --dry-run
+
+# Set system properties or tool options
+$ JAVA_TOOL_OPTIONS=-Dhttps.protocols=TLSv1.2 ./gradlew build
 ```
 
 
@@ -484,7 +492,6 @@ $ ./gradlew clean build --dry-run   // Task Dependencies
 * https://github.com/raphw/byte-buddy/blob/master/.github/workflows/main.yml#L92-L109
 * https://github.com/raphw/byte-buddy/blob/master/.github/scripts/install-jdk.sh
 * https://blog.autsoft.hu/publishing-an-android-library-to-mavencentral-in-2019/
-*
 
 
 

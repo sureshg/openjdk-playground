@@ -7,13 +7,11 @@
 [![javadoc](https://javadoc.io/badge2/org.jetbrains.kotlin/kotlin-stdlib/javadoc.svg?logo=kotlin&style=for-the-badge)](https://javadoc.io/doc/org.jetbrains.kotlin/kotlin-stdlib)
 <a href="https://deploy.cloud.run"><img src="https://deploy.cloud.run/button.svg" alt="CloudRun" title="CloudRun" width="18%"></a>
 
-#### Setup OpenJDK
+#### Setup OpenJDK (Loom Build)
 ```bash
-# Set JDK to latest (Use SDKMAN)
-$ sdk rm java jdk-16-loom
-$ curl -sSL https://jdk.java.net/loom | grep -m1 -Eioh "https:.*osx-x64_bin.tar.gz" | xargs curl | tar xvz -
-$ sdk i java jdk-16-loom ./jdk-16.jdk/Contents/Home
-$ sdk u java jdk-16-loom
+$ curl -s "https://get.sdkman.io" | bash
+$ sdk i java 16.ea.6.lm-open
+$ sdk u java 16.ea.6.lm-open
 ```
 
 #### Build
