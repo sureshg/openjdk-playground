@@ -73,7 +73,7 @@ object Versions {
     const val detektCompilerPlugin = "0.3.1"
     const val spotbugs = "4.3.0"
     const val googleJavaFormat = "1.8"
-    const val benmanesVersions = "0.33.0"
+    const val benmanesVersions = "0.34.0"
     const val buildScanPlugin = "2.0.2"
     const val gitPublishPlugin = "1.0.1"
     const val swaggerGen = "2.16.0"
@@ -103,7 +103,7 @@ object Deps {
         val testJunit = "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
 
         object Coroutines {
-            const val version = "1.4.0"
+            const val version = "1.4.1"
             const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
             const val jdk8 = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$version"
             const val reactor = "org.jetbrains.kotlinx:coroutines-reactor:$version"

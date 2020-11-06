@@ -931,6 +931,7 @@ $ strings -a $(which native-image) | grep -i com.oracle.svm.core.VM
 - https://material.io/resources/icons/?style=baseline (not sag)
 - https://fontawesome.com/v4.7.0/icons/ (not sag)
 - https://simpleicons.org/ (Brand Icons - good one)
+- https://github.com/microsoft/fluentui-system-icons
 - https://systemuicons.com/
 - https://www.visiwig.com/icons/
 - https://standart.io/
