@@ -10,8 +10,8 @@
 #### Setup OpenJDK (Loom Build)
 ```bash
 $ curl -s "https://get.sdkman.io" | bash
-$ sdk i java 16.ea.6.lm-open
-$ sdk u java 16.ea.6.lm-open
+$ sdk i java 16.ea.7.lm-open
+$ sdk u java 16.ea.7.lm-open
 ```
 
 #### Build
