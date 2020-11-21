@@ -22,7 +22,7 @@ plugins {
     `maven-publish`
     mavenRepoAuth
     gradleRelease
-    common
+    plugins.common
 }
 
 application {

@@ -112,7 +112,7 @@ object Deps {
         }
 
         object Ksp {
-            const val version = "1.4.10-dev-experimental-20201110"
+            const val version = "1.4.10-dev-experimental-20201120"
             const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
             const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
             const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.2.11"
