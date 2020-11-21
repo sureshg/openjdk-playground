@@ -61,7 +61,7 @@ kapt {
 // Formatting
 spotless {
     java {
-        googleJavaFormat(Versions.googleJavaFormat)
+        googleJavaFormat()
         toggleOffOn()
     }
 
@@ -81,7 +81,8 @@ spotless {
         trimTrailingWhitespace()
         endWithNewline()
     }
-    // isEnforceCheck = false
+
+    isEnforceCheck = false
 }
 
 gitProperties {
@@ -155,8 +156,8 @@ tasks {
                 "-Xjvm-default=enable",
                 "-Xassertions=jvm",
                 "-Xinline-classes",
+                "-Xstring-concat=indy-with-constants",
                 "-XXLanguage:+NewInference",
-                "-Xruntime-string-concat=enable",
                 "-Xopt-in=kotlin.RequiresOptIn",
                 "-Xopt-in=kotlin.ExperimentalStdlibApi",
                 "-Xopt-in=kotlin.ExperimentalUnsignedTypes",

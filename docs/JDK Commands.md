@@ -23,9 +23,6 @@ $ mkdir -p src/{main,test}/{java,resources}
 ```bash
 $ javac --enable-preview -release 15 Foo.java
 $ java  --enable-preview Foo
-
-# JShell with preview feature enabled
-$ jshell --enable-preview
 ```
 
 - [JEP12](https://openjdk.java.net/jeps/12)
@@ -119,11 +116,23 @@ $ java -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCI -XX:+UseJVMCICompiler
 $ java -Dgraal.ShowConfiguration=info
 ```
 
--  [GraalJS OpenJDK Demo](https://github.com/graalvm/graal-js-jdk11-maven-demo)
+- [GraalJS OpenJDK Demo](https://github.com/graalvm/graal-js-jdk11-maven-demo)
+
+  
+
+##### 9. JShell
+
+```bash
+# JShell with preview feature enabled
+$ jshell --enable-preview
+
+# Use custom startup script
+$ jshell --enable-preview --startup DEFAULT --startup ~/calc.repl
+```
 
 
 
-##### 9. Loom config
+##### 10. Loom config
 
 ```bash
 # Carrier thread count
@@ -138,7 +147,7 @@ $ java -Djdk.defaultScheduler.lifo=false (FIFO by default)
 
 
 
-##### 10. G1GC and GCLogs
+##### 11. G1GC and GCLogs
 
 ```bash
 -XX:+UseG1GC

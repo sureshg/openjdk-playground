@@ -46,7 +46,8 @@ private fun civilTime() {
         }
     }
 
-    println(local.toInstant(TimeZone.of("Europe/Berlin")).toLocalDateTime(TimeZone.of("Asia/Calcutta")))
+    println(local.toInstant(TimeZone.of("Europe/Berlin"))
+        .toLocalDateTime(TimeZone.of("Asia/Calcutta")))
 }
 
 /**

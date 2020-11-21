@@ -11,7 +11,7 @@ object Empty : Tree<Nothing>() {
 data class Node<T>(
     val value: T,
     val right: Tree<T> = Empty,
-    val left: Tree<T> = Empty
+    val left: Tree<T> = Empty,
 ) : Tree<T>()
 
 fun <T : Number> Tree<T>.sum(): Long = when (this) {
