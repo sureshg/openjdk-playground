@@ -235,7 +235,7 @@ tasks {
                 }
 
                 perPackageOption {
-                    prefix.set("kotlin")
+                    matchingRegex.set("kotlin($|\\.).*")
                     skipDeprecated.set(false)
                     reportUndocumented.set(true) // Emit warnings about not documented members
                     includeNonPublic.set(false)
