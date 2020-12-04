@@ -103,9 +103,9 @@ $ jdeprscan --for-removal --release 16 --list
 $ jdeprscan --for-removal --release 16 app.jar
 ```
 
-    * [Java EE Maven artifacts](https://openjdk.java.net/jeps/320)
+* [Java EE Maven artifacts](https://openjdk.java.net/jeps/320)
 
-
+  
 
 ##### 8. [JVMCI (Graal) Compiler](https://openjdk.java.net/jeps/317)
 
@@ -139,10 +139,15 @@ $ jshell --enable-preview --startup DEFAULT --startup ~/calc.repl
 $ java -Djdk.defaultScheduler.parallelism=1
 
 # Trace pinned thread while holding monitors.
-$ java -Djdk.tracePinnedThreads=short|full
+$ java -Djdk.tracePinnedThread=short|full
 
 # Default scheduler algo
 $ java -Djdk.defaultScheduler.lifo=false (FIFO by default)
+
+
+# Loom Install
+$ sdk rm java jdk-16-loom
+$ sdk i java jdk-16-loom ~/install/openjdk/jdk-16-loom.jdk/Contents/Home
 ```
 
 

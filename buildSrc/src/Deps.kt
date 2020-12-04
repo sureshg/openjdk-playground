@@ -103,7 +103,7 @@ object Deps {
         val testJunit = "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
 
         object Coroutines {
-            const val version = "1.4.1"
+            const val version = "1.4.2"
             const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
             const val jdk8 = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$version"
             const val reactor = "org.jetbrains.kotlinx:coroutines-reactor:$version"
@@ -120,7 +120,7 @@ object Deps {
     }
 
     object Kotlinx {
-        const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.1.0"
+        const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.1.1"
         const val reflectLite = "org.jetbrains.kotlinx:kotlinx.reflect.lite:1.0.0"
         const val atomicfu = "org.jetbrains.kotlinx:atomicfu:0.14.4"
         const val io = "org.jetbrains.kotlinx:kotlinx-io-jvm:0.1.16"
@@ -141,7 +141,7 @@ object Deps {
     }
 
     object Dokka {
-        const val version = "1.4.10.2"
+        const val version = "1.4.20"
         const val gradlePlugin = "org.jetbrains.dokka:dokka-gradle-plugin:$version"
         const val javadocPlugin = "org.jetbrains.dokka:javadoc-plugin:$version"
         const val kotlinAsJavaPlugin = "org.jetbrains.dokka:kotlin-as-java-plugin:$version"
@@ -152,6 +152,7 @@ object Deps {
 
     object OpenJDK {
         const val jol = "org.openjdk.jol:jol-core:0.14"
+        const val nashorn = "org.openjdk.nashorn:nashorn-core:15.0"
     }
 
     object Jetty {
@@ -162,7 +163,7 @@ object Deps {
         const val util = "org.eclipse.jetty:jetty-util:$version"
         const val slf4j = "org.eclipse.jetty:jetty-slf4j-impl:$version"
         const val testHelper = "org.eclipse.jetty:jetty-test-helper:$version"
-        const val servletApi = "org.eclipse.jetty.toolchain:jetty-servlet-api:4.0.4"
+        const val servletApi = "org.eclipse.jetty.toolchain:jetty-servlet-api:4.0.5"
     }
 
     const val okio = "com.squareup.okio:okio:2.2.0"
@@ -247,7 +248,7 @@ object Deps {
     }
 
     object Mock {
-        const val mockk = "io.mockk:mockk:1.10.2"
+        const val mockk = "io.mockk:mockk:1.10.3"
         const val mockito = "org.mockito:mockito-core:2.26.0"
         const val mockserver = "org.mock-server:mockserver-netty:5.10.0"
         const val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
@@ -307,7 +308,7 @@ object Deps {
     }
 
     object Jackson {
-        const val version = "2.11.3"
+        const val version = "2.12.0"
         const val databind = "com.fasterxml.jackson.core:jackson-databind:$version"
     }
 

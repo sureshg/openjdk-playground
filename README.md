@@ -10,8 +10,8 @@
 #### Setup OpenJDK (Loom Build)
 ```bash
 $ curl -s "https://get.sdkman.io" | bash
-$ sdk i java 16.ea.7.lm-open
-$ sdk u java 16.ea.7.lm-open
+$ sdk i java 16.ea.9.lm-open
+$ sdk u java 16.ea.9.lm-open
 ```
 
 #### Build
@@ -37,7 +37,7 @@ $ java --show-version \
        -Xlog:gc\* \
        -XX:+PrintCommandLineFlags \
        -Djava.security.egd=file:/dev/./urandom \
-       -Djdk.tracePinnedThreads=short \
+       -Djdk.tracePinnedThread=full \
        -jar build/libs/openjdk-latest-1.0.0-uber.jar
 
 # Other Options
