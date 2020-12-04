@@ -1,6 +1,6 @@
 rootProject.name = "openjdk-latest"
 
-/** For plugin EAP versions */
+// For plugin EAP versions
 pluginManagement {
     repositories {
         gradlePluginPortal()
@@ -17,4 +17,15 @@ pluginManagement {
             }
         }
     }
+}
+
+// Centralizing repositories declaration
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+        jcenter()
+        google()
+        maven(url = "https://kotlin.bintray.com/kotlinx/")
+    }
+    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
 }

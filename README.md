@@ -24,6 +24,9 @@ $ ./gradlew clean check
 # Check tasks dependencies and version updates
 $ ./gradlew clean build --dry-run
 $ ./gradlew  dependencyUpdates
+
+# List all available toolchains
+$ ./gradlew -q javaToolchains
 ```
 
 #### Run with `preview features` enabled

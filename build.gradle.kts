@@ -43,8 +43,10 @@ java {
     withJavadocJar()
 
     modularity.inferModulePath.set(false)
+
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(javaVersion))
+        vendor.set(JvmVendorSpec.ORACLE)
     }
 }
 
@@ -292,13 +294,6 @@ tasks {
 val dokkaHtmlJar by tasks.registering(Jar::class) {
     from(tasks.dokkaHtml)
     archiveClassifier.set("htmldoc")
-}
-
-repositories {
-    mavenCentral()
-    jcenter()
-    google()
-    maven(url = "https://kotlin.bintray.com/kotlinx/")
 }
 
 dependencies {

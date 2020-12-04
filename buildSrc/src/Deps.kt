@@ -482,29 +482,46 @@ inline val PluginDependenciesSpec.changelog get() = id("org.jetbrains.changelog"
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version Versions.shadow
 inline val PluginDependenciesSpec.protobuf get() = id("com.google.protobuf") version Versions.protobuf
 inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version Versions.benmanesVersions
-inline val PluginDependenciesSpec.gitProperties get() = id("com.gorylenko.gradle-git-properties") version Versions.gitProperties
+inline val PluginDependenciesSpec.detektCompilerPlugin get() = id("io.github.detekt.gradle.compiler-plugin") version Versions.detektCompilerPlugin
+inline val PluginDependenciesSpec.javafx get() = id("org.openjfx.javafxplugin") version Versions.javafxPlugin
+inline val PluginDependenciesSpec.jmh get() = id("me.champeau.gradle.jmh") version Versions.jmhPlugin
+inline val PluginDependenciesSpec.mrjar get() = id("com.lingocoder.mrjar") version Versions.mrjar
+inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.jib") version Versions.googleJib
+inline val PluginDependenciesSpec.kotless get() = id("io.kotless") version Versions.kotless
+inline val PluginDependenciesSpec.kordampGradle get() = id("org.kordamp.gradle.project") version Versions.kordampGradle
+inline val PluginDependenciesSpec.gradleEnforcer get() = id("org.kordamp.gradle.project-enforcer") version Versions.kordamp
+inline val PluginDependenciesSpec.jandex get() = id("org.kordamp.gradle.jandex") version Versions.kordamp
+
+// Application frameworks
+inline val PluginDependenciesSpec.micronautApplication get() = id("io.micronaut.application") version Versions.micronautPlugin
+inline val PluginDependenciesSpec.micronautLibrary get() = id("io.micronaut.library") version Versions.micronautPlugin
+inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boot") version Versions.springboot
+inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version Versions.springDepMgmt
+
+// Static Analysis and Linting
 inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version Versions.spotless
 inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version Versions.spotlessChangelog
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version Versions.spotbugs
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version Versions.ktlintPlugin
 inline val PluginDependenciesSpec.detekt get() = id("io.gitlab.arturbosch.detekt") version Versions.detekt
-inline val PluginDependenciesSpec.detektCompilerPlugin get() = id("io.github.detekt.gradle.compiler-plugin") version Versions.detektCompilerPlugin
+
+// Artifact Publish
 inline val PluginDependenciesSpec.githubRelease get() = id("com.github.breadmoirai.github-release") version Versions.githubRelease
-inline val PluginDependenciesSpec.gradleRelease get() = id("net.researchgate.release") version Versions.gradleRelease
 inline val PluginDependenciesSpec.mavenRepoAuth get() = id("org.hibernate.build.maven-repo-auth") version Versions.mavenRepoAuth
-inline val PluginDependenciesSpec.javafx get() = id("org.openjfx.javafxplugin") version Versions.javafxPlugin
-inline val PluginDependenciesSpec.jmh get() = id("me.champeau.gradle.jmh") version Versions.jmhPlugin
-inline val PluginDependenciesSpec.mrjar get() = id("com.lingocoder.mrjar") version Versions.mrjar
-inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.jib") version Versions.googleJib
-inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boot") version Versions.springboot
-inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version Versions.springDepMgmt
-inline val PluginDependenciesSpec.micronautApplication get() = id("io.micronaut.application") version Versions.micronautPlugin
-inline val PluginDependenciesSpec.micronautLibrary get() = id("io.micronaut.library") version Versions.micronautPlugin
+inline val PluginDependenciesSpec.gradleRelease get() = id("net.researchgate.release") version Versions.gradleRelease
+
+// Project version detection
 inline val PluginDependenciesSpec.jgitPlugin get() = id("fr.brouillard.oss.gradle.jgitver") version Versions.jgitPlugin
 inline val PluginDependenciesSpec.reckon get() = id("org.ajoberstar.reckon") version Versions.reckon
+inline val PluginDependenciesSpec.gitProperties get() = id("com.gorylenko.gradle-git-properties") version Versions.gitProperties
+
+// Static website
 inline val PluginDependenciesSpec.mkdocs get() = id("ru.vyarus.mkdocs") version Versions.mkdocs
 inline val PluginDependenciesSpec.orchid get() = id("com.eden.orchidPlugin") version Versions.orchid
-inline val PluginDependenciesSpec.kotless get() = id("io.kotless") version Versions.kotless
-inline val PluginDependenciesSpec.kordampGradle get() = id("org.kordamp.gradle.project") version Versions.kordampGradle
-inline val PluginDependenciesSpec.gradleEnforcer get() = id("org.kordamp.gradle.project-enforcer") version Versions.kordamp
-inline val PluginDependenciesSpec.jandex get() = id("org.kordamp.gradle.jandex") version Versions.kordamp
+
+// Packaging (JDK 14+) (https://openjdk.java.net/jeps/392)
+inline val PluginDependenciesSpec.badassRuntime get() = id("org.beryx.runtime") version "1.11.4"
+inline val PluginDependenciesSpec.badassjlink get() = id("org.beryx.jlink") version "2.22.3"
+inline val PluginDependenciesSpec.javapackager get() = id("io.github.fvarrui.javapackager.plugin") version "1.4.1"
+inline val PluginDependenciesSpec.jpackageplugin get() = id("org.panteleyev.jpackageplugin") version "0.0.2"
+
