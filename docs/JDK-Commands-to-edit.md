@@ -27,10 +27,6 @@ $ java -XX:+UnlockExperimentalVMOptions -XX:+UseZGC
 // NUMA
 $ java -XX:+UseNUMA
 
-// JFR
-
-// CDS
-
 // Remote Debugging
 $ java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
 

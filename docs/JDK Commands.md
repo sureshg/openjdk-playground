@@ -105,9 +105,45 @@ $ jdeprscan --for-removal --release 16 app.jar
 
 * [Java EE Maven artifacts](https://openjdk.java.net/jeps/320)
 
+
+
+##### 8. JPMS
+
+```bash
+# Compile all modules at once (Start from the main module)
+$ javac  --enable-preview \
+         --release 16 \
+         -parameters  \                    // Optional, Generate metadata for reflection on method parameters
+         --add-modules ALL-MODULE-PATH \   // Optional, Root modules to resolve in addition to the initial modules
+         --module-path ... \               // Optional, where to find application modules
+         --module-source-path "src" \      // Source files for multiple modules
+         -d classes  \
+         --module MainApp                  // Compile only the specified module(s) 
+
+# Package all modules (Create for all modules)
+$ jar --create \
+      --file mods/app.jar \
+      --main-class dev.suresh.MainKt \
+      --module-version 1.0 \    // Optional
+      -C app/ classes resources // Or *.class
+         
+# Launch app
+$ java  --enable-preview \
+        --show-version \
+        --show-module-resolution \
+        --module-path mods \
+        --module app   // OR <module>/<mainclass>        
+```
+
+* [JPMS Quickstart](https://openjdk.java.net/projects/jigsaw/quick-start)
+
+* [Docs and Resources](https://openjdk.java.net/projects/jigsaw/)
+
+* **[Java Modules Cheat Sheet](https://nipafx.dev/build-modules/)**
+
   
 
-##### 8. [JVMCI (Graal) Compiler](https://openjdk.java.net/jeps/317)
+##### 9. [JVMCI (Graal) Compiler](https://openjdk.java.net/jeps/317)
 
 ```bash
 $ java -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCI -XX:+UseJVMCICompiler
@@ -120,7 +156,7 @@ $ java -Dgraal.ShowConfiguration=info
 
   
 
-##### 9. JShell
+##### 10. JShell
 
 ```bash
 # JShell with preview feature enabled
@@ -132,7 +168,7 @@ $ jshell --enable-preview --startup DEFAULT --startup ~/calc.repl
 
 
 
-##### 10. Loom config
+##### 11. Loom config
 
 ```bash
 # Carrier thread count
@@ -152,7 +188,7 @@ $ sdk i java jdk-16-loom ~/install/openjdk/jdk-16-loom.jdk/Contents/Home
 
 
 
-##### 11. G1GC and GCLogs
+##### 12. G1GC and GCLogs
 
 ```bash
 -XX:+UseG1GC
@@ -167,7 +203,9 @@ $ sdk i java jdk-16-loom ~/install/openjdk/jdk-16-loom.jdk/Contents/Home
 -XX:GCLogFileSize=10M
 ```
 
-JFR
+
+
+##### 13. JFR
 
 ```bash
 -XX:StartFlightRecording:filename=recording.jfr
@@ -176,9 +214,7 @@ JFR
 
 
 
-JPMS Parallel GC
-
-
+Parallel GC
 
 **-XX:+IgnoreUnrecognizedVMOptions**
 
