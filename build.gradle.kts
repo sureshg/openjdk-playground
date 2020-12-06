@@ -4,6 +4,7 @@ import org.jetbrains.kotlin.gradle.tasks.*
 import java.net.*
 
 plugins {
+    idea
     java
     application
     kotlinJvm
@@ -36,6 +37,13 @@ application {
     )
     // For backward compatibility
     mainClassName = mainClass.get()
+}
+
+idea {
+    module {
+        isDownloadJavadoc = true
+        isDownloadSources = true
+    }
 }
 
 java {
@@ -123,6 +131,7 @@ configurations {
 }
 
 tasks {
+
     // Configure "compileJava" and "compileTestJava" tasks.
     withType<JavaCompile>().configureEach {
         options.apply {
