@@ -156,7 +156,7 @@ object Deps {
     }
 
     object Jetty {
-        const val version = "11.0.0.beta3"
+        const val version = "11.0.0"
         const val bom = "org.eclipse.jetty:jetty-bom:$version"
         const val server = "org.eclipse.jetty:jetty-server:$version"
         const val servlet = "org.eclipse.jetty:jetty-servlet:$version"
