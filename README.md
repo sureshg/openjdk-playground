@@ -126,4 +126,6 @@ module dev.suresh.openjdklatest {
  https://github.com/actions/cache/blob/main/examples.md#java---gradle
 
  https://github.com/android/gradle-recipes
+
+ CSS in Github README  - https://github.com/sindresorhus/css-in-readme-like-wat
  -->
