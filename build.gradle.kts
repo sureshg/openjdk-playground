@@ -76,13 +76,13 @@ spotless {
     }
 
     kotlin {
-        ktlint(Versions.ktlint).userData(mapOf("disabled_rules" to "no-wildcard-imports"))
+        ktlint().userData(mapOf("disabled_rules" to "no-wildcard-imports"))
         targetExclude("$buildDir/**/*.kt", "bin/**/*.kt")
         // licenseHeader(License.Apache)
     }
 
     kotlinGradle {
-        ktlint(Versions.ktlint).userData(mapOf("disabled_rules" to "no-wildcard-imports"))
+        ktlint().userData(mapOf("disabled_rules" to "no-wildcard-imports"))
         target("*.gradle.kts")
     }
 
