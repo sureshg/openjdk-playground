@@ -117,6 +117,9 @@ object Deps {
             const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
             const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.2.11"
         }
+
+        const val metadata = "me.eugeniomarletti.kotlin.metadata:kotlin-metadata:1.4.0"
+        const val metadataJvm = "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.1.0"
     }
 
     object Kotlinx {
@@ -317,7 +320,7 @@ object Deps {
     }
 
     object Cli {
-        const val clikt = "com.github.ajalt.clikt:clikt:3.0.1"
+        const val clikt = "com.github.ajalt.clikt:clikt:3.1.0"
         const val mordant = "com.github.ajalt:mordant:1.2.1"
         const val colormath = "com.github.ajalt.colormath:colormath:2.0.0"
         const val picnic = "com.jakewharton.picnic:picnic:0.4.0"
