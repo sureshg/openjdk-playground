@@ -274,6 +274,13 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 
 
 
+**Generics**
+
+    - [GenericsFAQ](http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html)
+    - [How we got Generics we have](https://cr.openjdk.java.net/~briangoetz/valhalla/erasure.html)
+
+
+
 ####  Java Cryptography & Security
 
 ------

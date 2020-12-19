@@ -36,10 +36,6 @@ public class Main {
     var queue = new LinkedList<String>();
 
     var a = Integer.valueOf(10);
-    if (a instanceof Integer i) {
-      i.byteValue();
-      System.out.println(i);
-    }
 
     //    Socket socket = new Socket();
     //
@@ -93,8 +89,9 @@ public class Main {
 
   @Override
   public boolean equals(Object o) {
-    return (this == o)
-        || (o instanceof Main x) && this.age == x.age && Objects.equals(this.name, x.name);
+    return true;
+//    return (this == o)
+//        || (o instanceof Main x) && this.age == x.age && Objects.equals(this.name, x.name);
   }
 
   @Override
