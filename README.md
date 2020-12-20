@@ -40,7 +40,7 @@ $ java --show-version \
        -Xlog:gc\* \
        -XX:+PrintCommandLineFlags \
        -Djava.security.egd=file:/dev/./urandom \
-       -Djdk.tracePinnedThread=full \
+       -Djdk.tracePinnedThreads=full \
        -jar build/libs/openjdk-latest-1.0.0-uber.jar
 
 # Other Options

@@ -175,7 +175,7 @@ $ jshell --enable-preview --startup DEFAULT --startup ~/calc.repl
 $ java -Djdk.defaultScheduler.parallelism=1
 
 # Trace pinned thread while holding monitors.
-$ java -Djdk.tracePinnedThread=short|full
+$ java -Djdk.tracePinnedThreads=short|full
 
 # Default scheduler algo
 $ java -Djdk.defaultScheduler.lifo=false (FIFO by default)

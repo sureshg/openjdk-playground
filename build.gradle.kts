@@ -33,6 +33,7 @@ application {
         "--enable-preview",
         "-XX:+PrintCommandLineFlags",
         "-XX:+UseZGC",
+        "-Djdk.tracePinnedThreads=full",
         "-Djava.security.egd=file:/dev/./urandom"
     )
     // For backward compatibility
