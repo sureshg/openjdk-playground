@@ -272,6 +272,8 @@ object Deps {
         const val funcj = "org.typemeta:funcj-parser:0.6.16"
         const val antlr4 = "org.antlr:antlr4:4.8"
         const val petitparser = "com.github.petitparser:petitparser-core:2.3.1"
+        const val javaparserCore = "com.github.javaparser:javaparser-core:3.18.0"
+        const val javaparserSSCore = "com.github.javaparser:javaparser-symbol-solver-core:3.18.0"
     }
 
     object Process {
@@ -369,8 +371,12 @@ object Deps {
     }
 
     object Decompiler {
-        const val jd = "org.jd:jd-core:1.1.3"
         const val cfr = "org.benf:cfr:0.150"
+        const val jdCore = "org.jd:jd-core:1.1.3"
+        const val procyonCore = "org.bitbucket.mstrobel:procyon-core:0.5.36"
+
+        // http://files.minecraftforge.net/maven
+        const val fernflower = "net.minecraftforge:fernflower:402"
     }
 
     object Maven {
@@ -527,4 +533,3 @@ inline val PluginDependenciesSpec.badassRuntime get() = id("org.beryx.runtime") 
 inline val PluginDependenciesSpec.badassjlink get() = id("org.beryx.jlink") version "2.22.3"
 inline val PluginDependenciesSpec.javapackager get() = id("io.github.fvarrui.javapackager.plugin") version "1.4.1"
 inline val PluginDependenciesSpec.jpackageplugin get() = id("org.panteleyev.jpackageplugin") version "0.0.2"
-
