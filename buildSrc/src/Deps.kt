@@ -327,6 +327,7 @@ object Deps {
         const val colormath = "com.github.ajalt.colormath:colormath:2.0.0"
         const val picnic = "com.jakewharton.picnic:picnic:0.4.0"
         const val crossword = "com.jakewharton.crossword:crossword:0.1.2"
+        const val progressbar = "me.tongfei:progressbar:0.9.0"
         const val jfiglet = "com.github.lalyos:jfiglet:0.0.8"
 
         object JLine {
