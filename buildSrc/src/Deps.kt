@@ -125,7 +125,7 @@ object Deps {
     object Kotlinx {
         const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.1.1"
         const val reflectLite = "org.jetbrains.kotlinx:kotlinx.reflect.lite:1.0.0"
-        const val atomicfu = "org.jetbrains.kotlinx:atomicfu:0.14.4"
+        const val atomicfu = "org.jetbrains.kotlinx:atomicfu:0.15.1"
         const val io = "org.jetbrains.kotlinx:kotlinx-io-jvm:0.1.16"
         const val cli = "org.jetbrains.kotlinx:kotlinx-cli:0.3"
         const val collectionsImmutable =
@@ -251,7 +251,7 @@ object Deps {
     }
 
     object Mock {
-        const val mockk = "io.mockk:mockk:1.10.3"
+        const val mockk = "io.mockk:mockk:1.10.4"
         const val mockito = "org.mockito:mockito-core:2.26.0"
         const val mockserver = "org.mock-server:mockserver-netty:5.10.0"
         const val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
