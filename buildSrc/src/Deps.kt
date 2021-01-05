@@ -66,7 +66,7 @@ object Versions {
     const val springDepMgmt = "1.0.9.RELEASE"
     const val buildSrcVersions = "0.3.2"
     const val changelog = "0.4.0"
-    const val spotless = "5.8.2"
+    const val spotless = "5.9.0"
     const val spotlessChangelog = "2.0.0"
     const val ktlintPlugin = "9.3.0"
     const val detekt = "1.11.0-RC1"
@@ -366,6 +366,10 @@ object Deps {
         const val bouncyCastle = "org.bouncycastle:bcprov-jdk15on:1.60"
         const val conscryptUber = "org.conscrypt:conscrypt-openjdk-uber:1.4.1"
         const val tink = "com.google.crypto.tink:tink:1.2.1"
+    }
+
+    object Security {
+        const val otp = "com.github.bastiaanjansen:otp-java:1.1.1"
         const val jkeychain = "pt.davidafsilva.apple:jkeychain:1.0.0"
         const val sshj = "com.hierynomus:sshj:0.26.0"
         const val smbj = "com.hierynomus:smbj:0.9.1"
