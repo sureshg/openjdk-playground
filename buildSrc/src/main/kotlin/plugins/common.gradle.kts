@@ -17,7 +17,8 @@ sourceSets {
  * Generate template classes.
  */
 val copyTemplates by tasks.registering(Copy::class) {
-    val version = providers.gradleProperty("version")
+    val version = providers
+        .gradleProperty("version")
         .forUseAtConfigurationTime()
         .get()
 

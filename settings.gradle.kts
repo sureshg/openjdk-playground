@@ -27,5 +27,5 @@ dependencyResolutionManagement {
         google()
         maven(url = "https://kotlin.bintray.com/kotlinx/")
     }
-    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
 }

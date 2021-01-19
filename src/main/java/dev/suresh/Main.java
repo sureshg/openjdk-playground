@@ -27,14 +27,13 @@ public class Main {
             .sorted(Comparator.comparing(Main::computeScore))
             .limit(count)
             // .map(PersonX::p)
-            .collect(Collectors.toList());
+            .toList();
     return list;
   }
 
   public static void main(String[] args) {
 
     var queue = new LinkedList<String>();
-
     var a = Integer.valueOf(10);
 
     //    Socket socket = new Socket();

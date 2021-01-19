@@ -236,7 +236,9 @@ $ objdump -section-headers  app
 $ time ./app
 ```
 
-##### **Kotlin Script**
+
+
+##### 14. Kotlin Script
 
 ```bash
 #!/usr/bin/env -S kotlinc -script --
@@ -250,7 +252,7 @@ println("Hello Kotlin Script")
 
 
 
-**JMC**
+##### 15. JMC
 
 ```bash
 # https://adoptopenjdk.net/jmc.html
@@ -274,7 +276,7 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 
 
 
-**Generics**
+##### 16. Generics
 
     - [GenericsFAQ](http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html)
     - [How we got Generics we have](https://cr.openjdk.java.net/~briangoetz/valhalla/erasure.html)
@@ -369,7 +371,21 @@ http.nonProxyHosts
 
 
 
-##### 2. Create new Java `SourceSet`
+##### 2. [Name Abbrevation](https://docs.gradle.org/6.8/userguide/command_line_interface.html#sec:name_abbreviation)
+
+```bash
+$ ./gradlew --console=plain \
+            --continuous \
+            --dry-run \
+            --no-daemon \
+            -Dauthor=Suresh \
+            -Pmyprop=myvalue \
+            cle dU
+```
+
+
+
+##### 3. Create new Java `SourceSet`
 
   ```kotlin
 sourceSets {
@@ -385,7 +401,7 @@ sourceSets {
 
 
 
-##### 3. Custom SourceSet directories
+##### 4. Custom SourceSet directories
 
 ```kotlin
 sourceSets {
@@ -404,7 +420,7 @@ sourceSets {
 
 
 
-##### 4. Kotlin SourceSets
+##### 5. Kotlin SourceSets
 
 ```kotlin
 kotlin {
@@ -440,7 +456,7 @@ val sourcesJar by tasks.registering(Jar::class) {
 
 
 
-##### 5. [Configure/Create Tasks](https://docs.gradle.org/current/userguide/kotlin_dsl.html#kotdsl:containers)
+##### 6. [Configure/Create Tasks](https://docs.gradle.org/current/userguide/kotlin_dsl.html#kotdsl:containers)
 
    * ###### Eager
 
@@ -465,7 +481,7 @@ val sourcesJar by tasks.registering(Jar::class) {
 
 
 
-##### 6. [Enabling Java preview feature](https://docs.gradle.org/current/userguide/building_java_projects.html#sec:feature_preview)
+##### 7. [Enabling Java preview feature](https://docs.gradle.org/current/userguide/building_java_projects.html#sec:feature_preview)
 
 ```kotlin
 tasks.withType<JavaCompile> {
@@ -481,7 +497,7 @@ tasks.withType<JavaExec> {
 
 
 
-##### 7. [Reproducible builds](https://docs.gradle.org/current/userguide/working_with_files.html#sec:reproducible_archives)
+##### 8. [Reproducible builds](https://docs.gradle.org/current/userguide/working_with_files.html#sec:reproducible_archives)
 
 ```kotlin
 withType<AbstractArchiveTask>().configureEach {
@@ -492,7 +508,7 @@ withType<AbstractArchiveTask>().configureEach {
 
 
 
-##### 8. [Multi Release Jar](https://blog.gradle.org/mrjars)
+##### 9. [Multi Release Jar](https://blog.gradle.org/mrjars)
 
 ```kotlin
 // See https://github.com/melix/mrjar-gradle for more on multi release jars

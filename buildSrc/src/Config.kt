@@ -1,5 +1,12 @@
 import org.gradle.api.*
 import org.gradle.jvm.toolchain.*
+import org.slf4j.*
+import kotlin.properties.*
+
+/**
+ * Build source logger
+ */
+val logger = LoggerFactory.getLogger("buildSrc")
 
 /**
  * Maven and gradle repositories.
@@ -81,4 +88,18 @@ val Project.javaToolchainPath
             ?: error("Requested JDK version ($javaVersion) is not available.")
     }
 
-
+/**
+ * System property delegate
+ */
+inline fun <reified T> sysProp(): ReadOnlyProperty<Any?, T> =
+    ReadOnlyProperty { thisRef, property ->
+        val propVal: String = System.getProperty(property.name, "")
+        logger.info("Getting System Property '${property.name}': $propVal")
+        when (T::class) {
+            String::class -> propVal
+            Int::class -> propVal.toInt()
+            Boolean::class -> propVal.toBoolean()
+            Long::class -> propVal.toLong()
+            else -> error("${T::class.simpleName} type system property is not supported!")
+        } as T
+    }

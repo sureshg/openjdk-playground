@@ -61,7 +61,7 @@ fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
     val results = execSvc.withDeadline(Instant.now().plusSeconds(deadlineInSec))
         .use { exec ->
             (1..count).map {
-                exec.submitTask {
+                exec.submit<Result<String>> {
                     try {
                         println("---> $it. Sending Request")
                         val res = client.send(
@@ -80,13 +80,12 @@ fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
 
     // Clear the interrupt status
     println("Checking if the current thread has been interrupted: ${Thread.interrupted()}")
-
     val (ok, err) = results.map { it.join() }.partition { it.isSuccess }
     ok.forEachIndexed { i, r ->
         println("${i + 1} -> ${r.getOrNull()}")
     }
 
-    println("==== ERRORS ====")
+    println("=== ERRORS ===")
     err.forEachIndexed { i, r ->
         val msg = when (val ex = r.exceptionOrNull()) {
             is InterruptedException -> "Task interrupted/cancelled due to timeout!"

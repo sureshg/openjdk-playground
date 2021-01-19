@@ -121,8 +121,7 @@ release {
     revertOnFail = true
 }
 
-// For dependencies that are needed for development only,
-// creates a devOnly configuration and add it.
+// For dependencies that are needed for development only.
 val devOnly: Configuration by configurations.creating {
     // extendsFrom(configurations["testImplementation"])
     // or val testImplementation by configurations
@@ -141,12 +140,14 @@ tasks {
             release.set(javaVersion)
             isIncremental = true
             isFork = true
+            // For Gradle worker daemon.
+            forkOptions.jvmArgs?.addAll(javaArgsList)
             compilerArgs.addAll(
                 listOf(
                     "--enable-preview",
                     "-Xlint:all",
                     "-parameters"
-                    // "-XX:+IgnoreUnrecognizedVMOptions",
+                    // "-XX:+IgnoreUnrecognizedVMOptions"
                 )
             )
         }
@@ -154,15 +155,16 @@ tasks {
 
     // Configure "compileKotlin" and "compileTestKotlin" tasks.
     withType<KotlinCompile>().configureEach {
+        usePreciseJavaTracking = true
         kotlinOptions {
             verbose = true
             jvmTarget = kotlinJvmTarget
             languageVersion = kotlinLangVersion
             javaParameters = true
             incremental = true
-            jdkHome = javaToolchainPath // System.getProperty("java.home")
             useIR = true
             allWarningsAsErrors = false
+            jdkHome = javaToolchainPath // System.getProperty("java.home")
             freeCompilerArgs += listOf(
                 "-progressive",
                 "-Xjsr305=strict",
@@ -171,6 +173,10 @@ tasks {
                 "-Xinline-classes",
                 "-Xstring-concat=indy-with-constants",
                 "-XXLanguage:+NewInference",
+                "-Xallow-result-return-type",
+                "-Xstrict-java-nullability-assertions",
+                "-Xgenerate-strict-metadata-version",
+                "-Xemit-jvm-type-annotations",
                 "-Xopt-in=kotlin.RequiresOptIn",
                 "-Xopt-in=kotlin.ExperimentalStdlibApi",
                 "-Xopt-in=kotlin.ExperimentalUnsignedTypes",

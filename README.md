@@ -10,8 +10,8 @@
 #### Setup OpenJDK (Loom Build)
 ```bash
 $ curl -s "https://get.sdkman.io" | bash
-$ sdk i java 16.ea.9.lm-open
-$ sdk u java 16.ea.9.lm-open
+$ sdk i java 17.ea.2.lm-open
+$ sdk u java 17.ea.2.lm-open
 ```
 
 #### Build
@@ -83,6 +83,14 @@ $ docker run -it --rm --name openjdk-latest sureshg/openjdk-latest
       ```bash
       $ vegeta plot -title "Threads vs Loom Virtual Threads"  vthread-results.bin thread-results.bin > plot.html && open plot.html
       ```
+
+#### Troubleshooting
+
+```bash
+# Stop Gradle and Kotlin daemon
+$ ./gradlew --stop && pkill -f KotlinCompileDaemon
+
+```
 
 ##### JMPS Config
 ```java
