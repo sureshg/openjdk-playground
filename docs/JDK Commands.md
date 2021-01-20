@@ -557,6 +557,57 @@ $ JAVA_TOOL_OPTIONS=-Dhttps.protocols=TLSv1.2 ./gradlew build
 
 
 
+#### Security & Certificates
+
+------
+
+##### 1. Truststore
+
+To create a `RootCA` PKCS#12 trust-store of the given URL
+
+```bash
+# Extract the server certificates.
+$ echo -n | openssl s_client -showcerts -connect google.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > globalsign.crt
+
+# Create/Add trust store
+$ keytool -importcert -trustcacerts -alias globalsign-rootca -storetype PKCS12 -keystore globalsign-rootca.p12 -storepass changeit -file globalsign.crt
+
+# Add intermediate certs (Optional)
+$ keytool -importcert -keystore globalsign-rootca.p12 -alias CA-intermediate -storepass changeit -file CA-intermediate.cer
+
+# Show PKCS#12 info.
+$ openssl pkcs12 -info -password pass:changeit -in globalsign-rootca.p12
+$ keytool -list -keystore globalsign-rootca.p12 --storetype pkcs12 -storepass changeit
+
+# Create a new PKCS#12 store from certs
+$ openssl pkcs12 -export -chain -out keystore.p12 -inkey private.key -password pass:test123 \
+                  -in client.crt -certfile client.crt -CAfile cacert.crt -name client-key \
+                  -caname root-ca
+
+```
+
+
+
+#####  2. Add Certs to IntelliJ Truststore
+
+
+
+```bash
+$ cacerts="$HOME/Library/Application Support/JetBrains/GoLand2020.2/ssl/cacerts"
+$ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
+$ keytool -importcert -trustcacerts -alias walmart-rootca -storetype PKCS12 -keystore $cacerts -storepass changeit -file "$HOME/Desktop/WalmartRootCA-SHA256.crt"
+$ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
+
+$ cacerts="$HOME/Library/Application Support/JetBrains/IntelliJIdea2020.2/ssl/cacerts"
+$ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
+$ keytool -importcert -trustcacerts -alias walmart-rootca -storetype PKCS12 -keystore $cacerts -storepass changeit -file "$HOME/Desktop/WalmartRootCA-SHA256.crt"
+$ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
+```
+
+
+
+
+
 #### Maven Central Release
 
 ------
@@ -765,7 +816,7 @@ Release-draft action
 
 
 
-Release/*
+Release
 
 * [Cache](https://github.com/actions/cache/blob/master/examples.md#java---gradle)
 
@@ -849,67 +900,29 @@ Release/*
 
 
 
-Dart
-
-----
-
-Dev_dependency
-
-Build_version
-
-Build_runner
-
-Create extension repo.
-
-pub run build_runner build
-
-pub run build_runner watch
-
-pedantic
-
-Json
-
-------
-
-Dep: json_annotations
-
-Dev: json_serializable
-
-Value
-
-------
-
-Build_value
-
-Build_collections
-
-Build_cli_annotations
-
-Build_cli
-
-Source_gen
-
-Yaml
-
------
-
-checked_yaml
-
-
-
-
-
-
-
 https://github.com/GoogleContainerTools/distroless
 
 https://github.com/GoogleContainerTools/jib
 
 
 
-Native-Image
+#### Native-Image
 
 ---------
+
+Graal Updater & Truffle
+
+```bash
+$ gu list
+$ gu install native-image espresso
+
+$ java -truffle [-options] class [args...]
+$ java -truffle [-options] -jar jarfile [args...]
+```
+
+
+
+SVM Substitutions
 
 ```java
 package com.newrelic.jfr.subst;

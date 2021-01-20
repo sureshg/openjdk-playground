@@ -8,6 +8,7 @@ plugins {
     java
     application
     kotlinJvm
+    binCompatValidator
     ksp
     kotlinKapt
     kotlinxSerialization
@@ -64,9 +65,14 @@ kotlin {
     // explicitApi()
 }
 
+apiValidation {
+    validationDisabled = true
+}
+
 kapt {
     javacOptions {
         option("--enable-preview")
+        option("-Xmaxerrs", 200)
     }
 }
 
@@ -180,6 +186,7 @@ tasks {
                 "-Xopt-in=kotlin.RequiresOptIn",
                 "-Xopt-in=kotlin.ExperimentalStdlibApi",
                 "-Xopt-in=kotlin.ExperimentalUnsignedTypes",
+                "-Xopt-in=kotlin.io.path.ExperimentalPathApi",
                 "-Xopt-in=kotlin.time.ExperimentalTime",
                 "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
                 "-Xopt-in=kotlinx.serialization.ExperimentalSerializationApi",

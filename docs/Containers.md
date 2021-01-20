@@ -93,6 +93,24 @@
 
 
 
+https://spring-gcp.saturnism.me/deployment/docker/container-awareness
+
+https://spring-gcp.saturnism.me/deployment/docker
+
+https://www.infoq.com/presentations/openjdk-containers/
+
+https://www.youtube.com/watch?v=Yj0sx1dvEdo
+
+https://www.youtube.com/watch?v=2IpJABPzpvw
+
+https://developers.redhat.com/devnation/tech-talks/containerjfr
+
+http://blog.gilliard.lol/2019/12/04/Clojure-Containers.html
+
+https://www.morling.dev/blog/smaller-faster-starting-container-images-with-jlink-and-appcds/
+
+https://blog.arkey.fr/2020/06/28/using-jdk-flight-recorder-and-jdk-mission-control/
+
 ## Kubernetes
 
 ------

@@ -437,7 +437,11 @@ inline val PluginDependenciesSpec.kotlinNoArg get() = kotlin("plugin.noarg") ver
 inline val PluginDependenciesSpec.kotlinJpa get() = kotlin("plugin.jpa") version kotlinVersion
 inline val PluginDependenciesSpec.kotlinScript get() = kotlin("plugin.scripting") version kotlinVersion
 inline val PluginDependenciesSpec.dokka get() = id("org.jetbrains.dokka") version Deps.Dokka.version
+inline val PluginDependenciesSpec.binCompatValidator get() = id("binary-compatibility-validator") version "0.3.0"
+
 inline val PluginDependenciesSpec.ksp get() = id("com.google.devtools.ksp") version Deps.Kotlin.Ksp.version
+inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.jib") version "2.7.1"
+
 inline val PluginDependenciesSpec.changelog get() = id("org.jetbrains.changelog") version "0.4.0"
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "6.1.0"
 inline val PluginDependenciesSpec.protobuf get() = id("com.google.protobuf") version "0.8.14"
@@ -446,7 +450,7 @@ inline val PluginDependenciesSpec.detektCompilerPlugin get() = id("io.github.det
 inline val PluginDependenciesSpec.javafx get() = id("org.openjfx.javafxplugin") version "0.0.7"
 inline val PluginDependenciesSpec.jmh get() = id("me.champeau.gradle.jmh") version "0.4.8"
 inline val PluginDependenciesSpec.mrjar get() = id("com.lingocoder.mrjar") version "0.0.16"
-inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.jib") version "2.7.1"
+
 inline val PluginDependenciesSpec.kotless get() = id("io.kotless") version "0.1.6"
 inline val PluginDependenciesSpec.kordampGradle get() = id("org.kordamp.gradle.project") version "0.40.0"
 inline val PluginDependenciesSpec.gradleEnforcer get() = id("org.kordamp.gradle.project-enforcer") version "0.7.0"
