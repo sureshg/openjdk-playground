@@ -188,7 +188,6 @@ tasks {
                 "-Xopt-in=kotlin.ExperimentalUnsignedTypes",
                 "-Xopt-in=kotlin.io.path.ExperimentalPathApi",
                 "-Xopt-in=kotlin.time.ExperimentalTime",
-                "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
                 "-Xopt-in=kotlinx.serialization.ExperimentalSerializationApi",
                 "-Xjavac-arguments=--enable-preview"
             )
@@ -350,6 +349,7 @@ dependencies {
 
     testImplementation(Deps.Kotlin.Coroutines.jdk8)
     testImplementation(Deps.Junit.jupiter)
+    testImplementation(Deps.Junit.pioneer)
     testImplementation(kotlin("test-junit5"))
     testImplementation(Deps.Logging.Slf4j.simple)
     testImplementation(Deps.Mock.mockk)

@@ -26,7 +26,7 @@ object LoomServer {
     private fun exec() {
         println("Generating a self signed cert...")
         val selfSignedCert = TlsUtil.localhost()
-        val cn = selfSignedCert.trustManager.acceptedIssuers[0].subjectDN
+        val cn = selfSignedCert.trustManager.acceptedIssuers[0].subjectX500Principal
         println("Self signed cert: $cn")
 
         // Starts HTTPS server

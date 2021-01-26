@@ -66,7 +66,7 @@ class DevServer {
                             println("${res.protocol} Peer certificates are,")
                             res.handshake?.peerCertificates?.forEach {
                                 val cert = it as X509Certificate
-                                println(cert.subjectDN)
+                                println(cert.subjectX500Principal)
                             }
                         }
                         else -> throw error("Unexpected code $res")

@@ -31,20 +31,6 @@ $ java -XX:+UseNUMA
 $ java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
 
 // Build Tools
-$ ./gradlew wrapper --gradle-version=6.1 --distribution-type=bin
-$ ./gradlew clean dependencyUpdates -Drevision=release
-$ ./gradlew properties
-
-
-```bash
-$ mvn -N io.takari:maven:wrapper -Dmaven=3.6.3
-$ ./mvnw dependency:tree
-$ ./mvnw dependency:tree -Ddetail=true
-$ ./mvnw dependency:tree -Dverbose -Dincludes=org.jetbrains.kotlin:kotlin-stdlib
-$ ./mvnw clean versions:display-dependency-updates versions:display-plugin-updates
-$ ./mvnw clean verify
-```
-
 
 
 # List maven deps

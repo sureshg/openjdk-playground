@@ -35,7 +35,7 @@ object Deps {
         }
 
         object Ksp {
-            const val version = "1.4.20-dev-experimental-20210111"
+            const val version = "1.4.20-dev-experimental-20210120"
             const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
             const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
             const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.2.11"
@@ -64,6 +64,13 @@ object Deps {
             const val properties = "org.jetbrains.kotlinx:kotlinx-serialization-properties:$version"
             const val yaml = "com.charleskorn.kaml:kaml:0.17.0"
         }
+    }
+
+    object Exposed {
+        const val version = "0.28.1"
+        const val core = "org.jetbrains.exposed:exposed-core:$version"
+        const val dao = "org.jetbrains.exposed:exposed-dao:$version"
+        const val jdbc = "org.jetbrains.exposed:exposed-jdbc:$version"
     }
 
     object Dokka {
@@ -161,16 +168,13 @@ object Deps {
         }
     }
 
-    object Apache {
-        const val calcite = "org.apache.calcite:calcite-core:1.26.0"
-    }
-
     object Junit {
         const val version = "5.7.0"
         const val jupiter = "org.junit.jupiter:junit-jupiter:$version"
         const val jupiterApi = "org.junit.jupiter:junit-jupiter-api:$version"
         const val jupiterEngine = "org.junit.jupiter:junit-jupiter-engine:$version"
         const val jupiterParams = "org.junit.jupiter:junit-jupiter-params:$version"
+        const val pioneer = "org.junit-pioneer:junit-pioneer:1.2.0"
     }
 
     object Mock {
@@ -191,12 +195,38 @@ object Deps {
     }
 
     object Parser {
-        const val betterParse = "com.github.h0tk3y.betterParse:better-parse:0.4.0"
+        const val betterParse = "com.github.h0tk3y.betterParse:better-parse:0.4.1"
         const val funcj = "org.typemeta:funcj-parser:0.6.16"
         const val antlr4 = "org.antlr:antlr4:4.8"
         const val petitparser = "com.github.petitparser:petitparser-core:2.3.1"
         const val javaparserCore = "com.github.javaparser:javaparser-core:3.18.0"
         const val javaparserSSCore = "com.github.javaparser:javaparser-symbol-solver-core:3.18.0"
+    }
+
+    object LangTools {
+        const val version = "5.2"
+        const val en = "org.languagetool:language-en:$version"
+    }
+
+    object ML {
+
+        object Tensorflow {
+            const val version = "0.2.0"
+            const val coreApi = "org.tensorflow:tensorflow-core-api:$version"
+            const val corePlatform = "org.tensorflow:tensorflow-core-platform:$version"
+            const val framework = "org.tensorflow:tensorflow-framework:$version"
+        }
+
+        object Tribuo {
+            const val bom = "org.tribuo:tribuo-all:4.0.1"
+        }
+
+        object Smile {
+            const val version = "2.5.0"
+            const val plot = "com.github.haifengl:smile-plot:$version"
+            const val core = "com.github.haifengl:smile-core:$version"
+            const val vega = "com.github.haifengl:smile-scala_2.13:$version"
+        }
     }
 
     object Process {
@@ -233,6 +263,10 @@ object Deps {
         object Logback {
             const val classic = "ch.qos.logback:logback-classic:1.2.3"
         }
+
+        object Zerolog {
+            const val core = "com.obsidiandynamics.zerolog:zerolog-core:0.30.0"
+        }
     }
 
     object Jackson {
@@ -268,27 +302,6 @@ object Deps {
         }
     }
 
-    object ML {
-
-        object Tensorflow {
-            const val version = "0.2.0"
-            const val coreApi = "org.tensorflow:tensorflow-core-api:$version"
-            const val corePlatform = "org.tensorflow:tensorflow-core-platform:$version"
-            const val framework = "org.tensorflow:tensorflow-framework:$version"
-        }
-
-        object Tribuo {
-            const val bom = "org.tribuo:tribuo-all:4.0.1"
-        }
-
-        object Smile {
-            const val version = "2.5.0"
-            const val plot = "com.github.haifengl:smile-plot:$version"
-            const val core = "com.github.haifengl:smile-core:$version"
-            const val vega = "com.github.haifengl:smile-scala_2.13:$version"
-        }
-    }
-
     object TLS {
         const val sslContext = "io.github.hakky54:sslcontext-kickstart:5.2.2"
         const val certifikit = "app.cash.certifikit:certifikit:0.2.0"
@@ -303,6 +316,17 @@ object Deps {
         const val jkeychain = "pt.davidafsilva.apple:jkeychain:1.0.0"
         const val sshj = "com.hierynomus:sshj:0.26.0"
         const val smbj = "com.hierynomus:smbj:0.9.1"
+    }
+
+    object Network {
+        const val dnsJava = "dnsjava:dnsjava:3.3.1"
+    }
+
+    object Retry {
+        const val failsafe = "net.jodah:failsafe:2.4.0"
+        const val kotlinRetry = "com.michael-bull.kotlin-retry:kotlin-retry:1.0.6"
+        const val bucket4j = "com.github.vladimir-bukhtoyarov:bucket4j-core:6.0.1"
+        const val resilience4jRetry = "io.github.resilience4j:resilience4j-retry:1.6.1"
     }
 
     object Decompiler {
@@ -325,6 +349,8 @@ object Deps {
     object Encoding {
         const val asn1 = "com.hierynomus:asn-one:0.1.0"
         const val asn1bean = "com.beanit:asn1bean:1.12.0"
+        const val gifEncoder = "com.squareup:gifencoder:0.10.1"
+        const val gifDecoder = "net.redwarp.gif:decoder:0.2.2"
     }
 
     object Compression {
@@ -388,12 +414,30 @@ object Deps {
         const val junit5Runner = "io.kotest:kotest-runner-junit5:$version"
     }
 
+    object K8S {
+        const val javaClient = "io.kubernetes:client-java:11.0.0"
+        const val fabric8 = "io.fabric8:kubernetes-client:5.0.0"
+        const val operatorSdk = "io.javaoperatorsdk:java-operator-sdk:1.7.0"
+    }
+
+    object Search {
+        const val esKotlinClient = "com.github.jillesvangurp:es-kotlin-client:1.0.2"
+    }
+
+    object Apache {
+        // Sql Parser
+        const val calcite = "org.apache.calcite:calcite-core:1.26.0"
+    }
+
+    object Grid {
+        // Hazelcast, Ignite, Coherence, Infinispan
+    }
+
     const val jsr305 = "com.google.code.findbugs:jsr305:3.0.2"
     const val micronautBom = "io.micronaut:micronaut-bom:2.0.0"
-    const val methanol = "com.github.mizosoft.methanol:methanol:1.2.0"
+    const val methanol = "com.github.mizosoft.methanol:methanol:1.4.1"
 
     const val turbine = "app.cash.turbine:turbine:0.1.1"
-    const val failsafe = "net.jodah:failsafe:2.3.3"
     const val typetools = "net.jodah:typetools:0.6.2"
     const val funcj = "org.typemeta:funcj:0.6.16"
 
@@ -411,9 +455,6 @@ object Deps {
     const val jgrapht = "org.jgrapht:jgrapht-core:1.5.0"
     const val jsonPath = "com.jayway.jsonpath:json-path:2.4.0"
 
-    const val jol = "org.openjdk.jol:jol-core:0.9"
-    const val japicmp = "com.github.siom79.japicmp:japicmp:0.13.0"
-
     const val jgitver = "fr.brouillard.oss:jgitver:0.12.0"
     const val trov4j = "org.jetbrains.intellij.deps:trove4j:1.0.20181211"
     const val ff4j = "org.ff4j:ff4j-core:1.3.0"
@@ -423,6 +464,10 @@ object Deps {
     const val googleTruth = "com.google.truth:truth:1.0.1"
     const val awaitility = "org.awaitility:awaitility:3.1.6"
     const val awaitilityKotlin = "org.awaitility:awaitility-kotlin:3.1.6"
+
+    const val jol = "org.openjdk.jol:jol-core:0.9"
+    const val japicmp = "com.github.siom79.japicmp:japicmp:0.13.0"
+    const val jfr2ctf = "de.marcphilipp.jfr2ctf:jfr2ctf:0.1.0"
 }
 
 /**
@@ -437,6 +482,7 @@ inline val PluginDependenciesSpec.kotlinNoArg get() = kotlin("plugin.noarg") ver
 inline val PluginDependenciesSpec.kotlinJpa get() = kotlin("plugin.jpa") version kotlinVersion
 inline val PluginDependenciesSpec.kotlinScript get() = kotlin("plugin.scripting") version kotlinVersion
 inline val PluginDependenciesSpec.dokka get() = id("org.jetbrains.dokka") version Deps.Dokka.version
+inline val PluginDependenciesSpec.kotlinxAtomicfu get() = id("kotlinx-atomicfu") version "0.15.1"
 inline val PluginDependenciesSpec.binCompatValidator get() = id("binary-compatibility-validator") version "0.3.0"
 
 inline val PluginDependenciesSpec.ksp get() = id("com.google.devtools.ksp") version Deps.Kotlin.Ksp.version

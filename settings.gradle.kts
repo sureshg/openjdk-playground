@@ -19,13 +19,15 @@ pluginManagement {
         google()
     }
 
-    // For KSP
     resolutionStrategy {
         eachPlugin {
             when (requested.id.id) {
-                "symbol-processing" -> useModule("com.google.devtools.ksp:symbol-processing:${requested.version}")
+                "kotlinx-atomicfu" -> useModule("org.jetbrains.kotlinx:atomicfu-gradle-plugin:${requested.version}")
                 "binary-compatibility-validator" -> useModule("org.jetbrains.kotlinx:binary-compatibility-validator:${requested.version}")
             }
         }
     }
 }
+
+// Composite Builds
+// includeBuild("build-config")

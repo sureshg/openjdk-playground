@@ -1,3 +1,5 @@
+
+
 # JDK Commands
 
 This document contains list of [Java/JDK](http://jdk.java.net/) commands which i find useful for my day to day work.
@@ -70,7 +72,11 @@ $ java -XX:+UseParallelGC ...
 
 ```bash
 $ java -Xinternalversion
+
 $ java -XshowSettings:all --version
+
+# Show all system properties
+$ java -XshowSettings:properties --version
 
 # VM extra options
 $  java -XX:+UnlockExperimentalVMOptions -XX:+UnlockDiagnosticVMOptions -XX:+PrintFlagsFinal -version
@@ -283,7 +289,7 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 
 
 
-####  Java Cryptography & Security
+####  Networking & Security
 
 ------
 
@@ -294,19 +300,32 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 ##### 1. [Allow Unsafe Server Cert Change](https://github.com/openjdk/jdk/blob/6a905b6546e288e86322ae978a1f594266aa368a/src/java.base/share/classes/sun/security/ssl/ClientHandshakeContext.java#L35-L76)
 
    ```bash
-// This is Unsafe. Don't use in prod.
+# This is Unsafe. Don't use in prod.
 -Djdk.tls.allowUnsafeServerCertChange=true
 -Dsun.security.ssl.allowUnsafeRenegotiation=true
    ```
 
-https://github.com/sureshg/InstallCerts/blob/master/src/main/kotlin/io/github/sureshg/extn/Certs.kt
 
-```bash
-// Force IPv4
--Djava.net.preferIPv4Stack=true
-// The entropy gathering device can also be specified with the system property
--Djava.security.egd=file:/dev/./urandom
-```
+
+##### 2 . Debugging TLS
+
+   * https://docs.oracle.com/en/java/javase/15/security/java-secure-socket-extension-jsse-reference-guide.html#GUID-4D421910-C36D-40A2-8BA2-7D42CCBED3C6
+
+   * https://github.com/sureshg/InstallCerts/blob/master/src/main/kotlin/io/github/sureshg/extn/Certs.kt
+
+     ```bash
+     # Turn on all debugging
+     $ java -Djavax.net.debug=all
+     
+     # Override HostsFileNameService
+     $ java -Djdk.net.hosts.file=/etc/host/style/file
+     
+     # Force IPv4
+     $ java -Djava.net.preferIPv4Stack=true
+     
+     # The entropy gathering device can also be specified with the system property
+     $ java -Djava.security.egd=file:/dev/./urandom
+     ```
 
 
 
@@ -332,15 +351,13 @@ https://github.com/sureshg/InstallCerts/blob/master/src/main/kotlin/io/github/su
 
 ##### 3. Java Networking Properties
 
-​      https://cr.openjdk.java.net/~iris/se/15/latestSpec/api/java.base/java/net/doc-files/net-properties.html
+​     http://htmlpreview.github.io/?https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/net/doc-files/net-properties.html
 
+  
 
-
-| Protocol  |                            Config                            |                         Description                          |
-| :-------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| **HTTP**  | <!-- The host name of the proxy server -->  <br/>**http.proxyHost** <br/><br/><!-- The port number, the default value being 80 --><br/>**http.proxyPort**<br/><br/><!-- A list of hosts that should be reached directly, bypassing the proxy. This is a list of patterns separated by '\|'. The patterns may start or end with a '*' for wildcards. Any host matching one of these patterns will be reached through a direct connection instead of through a proxy --><br/>**http.nonProxyHosts** | `java -Dhttp.proxyHost=webcache.example.com -Dhttp.proxyPort=8080 -Dhttp.nonProxyHosts=”localhost|host.example.com” GetURL` |
-| **HTTPS** |                                                              |                                                              |
-| **SOCKS** |                                                              |                                                              |
+| Protocol |                            Config                            |                         Description                          |
+| :------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+| **HTTP** | <!-- The host name of the proxy server -->  <br/>**http.proxyHost** <br/><br/><!-- The port number, the default value being 80 --><br/>**http.proxyPort**<br/><br/><!-- A list of hosts that should be reached directly, bypassing the proxy. This is a list of patterns separated by '\|'. The patterns may start or end with a '*' for wildcards. Any host matching one of these patterns will be reached through a direct connection instead of through a proxy --><br/>**http.nonProxyHosts** | `java -Dhttp.proxyHost=webcache.example.com -Dhttp.proxyPort=8080 -Dhttp.nonProxyHosts=”localhost|host.example.com” GetURL` |
 
 ```bash
 /* The host name of the proxy server */
@@ -352,6 +369,15 @@ http.nonProxyHosts
 ```
 
 
+
+##### 4. [HTTP Client](https://openjdk.java.net/groups/net/httpclient/#incubatingAPI) Properties
+
+```bash
+-Djdk.internal.httpclient.disableHostnameVerification
+-Djdk.httpclient.HttpClient.log=headers
+-Djdk.internal.httpclient.debug=false
+-Djdk.tls.client.protocols="TLSv1.2"
+```
 
 
 
@@ -544,7 +570,13 @@ if (JavaVersion.current().isJava11Compatible) {
 }
 ```
 
+
+
+##### 10. Update Wrapper and others
+
 ```bash
+$ ./gradlew wrapper --gradle-version=6.8 --distribution-type=bin
+
 # Dependencies
 $ ./gradlew dependencies --configuration implementation
 
@@ -553,6 +585,15 @@ $ ./gradlew clean build --dry-run
 
 # Set system properties or tool options
 $ JAVA_TOOL_OPTIONS=-Dhttps.protocols=TLSv1.2 ./gradlew build
+
+# Dependency updates
+$ ./gradlew clean dependencyUpdates -Drevision=release
+
+# Displays the properties
+$ ./gradlew properties
+
+# Gradle run with arguments
+$ ./gradlew run --args="<JFR_FILE>"
 ```
 
 
@@ -595,16 +636,14 @@ $ openssl pkcs12 -export -chain -out keystore.p12 -inkey private.key -password p
 ```bash
 $ cacerts="$HOME/Library/Application Support/JetBrains/GoLand2020.2/ssl/cacerts"
 $ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
-$ keytool -importcert -trustcacerts -alias walmart-rootca -storetype PKCS12 -keystore $cacerts -storepass changeit -file "$HOME/Desktop/WalmartRootCA-SHA256.crt"
+$ keytool -importcert -trustcacerts -alias rootca -storetype PKCS12 -keystore $cacerts -storepass changeit -file "$HOME/Desktop/RootCA-SHA256.crt"
 $ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
 
 $ cacerts="$HOME/Library/Application Support/JetBrains/IntelliJIdea2020.2/ssl/cacerts"
 $ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
-$ keytool -importcert -trustcacerts -alias walmart-rootca -storetype PKCS12 -keystore $cacerts -storepass changeit -file "$HOME/Desktop/WalmartRootCA-SHA256.crt"
+$ keytool -importcert -trustcacerts -alias rootca -storetype PKCS12 -keystore $cacerts -storepass changeit -file "$HOME/Desktop/RootCA-SHA256.crt"
 $ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
 ```
-
-
 
 
 
@@ -683,7 +722,15 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
 
 
 
-##### 5. [Update Version number](http://www.mojohaus.org/versions-maven-plugin/)
+##### 5. Maven Wrapper
+
+```bash
+$ mvn -N io.takari:maven:wrapper -Dmaven=3.6.3
+```
+
+
+
+##### 6. [Update Version number](http://www.mojohaus.org/versions-maven-plugin/)
 
 ```bash
 $ ./mvnw versions:set -DnewVersion=1.0.1-SNAPSHOT -DprocessAllModules -DgenerateBackupPoms=false
@@ -691,12 +738,19 @@ $ ./mvnw versions:revert // Rollback
 $ ./mvnw versions:commit
 ```
 
-##### 6. [Dependency Tree](https://search.maven.org/search?q=fc:kotlin.text.Regex)
+
+
+##### 7. [Dependency Tree](https://search.maven.org/search?q=fc:kotlin.text.Regex)
 
 ```bash
 # Show all orginal versions, not the resolved ones.
+$ ./mvnw dependency:tree
+$ ./mvnw dependency:tree -Ddetail=true
 $ ./mvnw dependency:tree -Dverbose -Dincludes=org.jetbrains.kotlin:kotlin-stdlib
 $ ./mvnw clean verify
+
+# Dependency and plugin updates
+$ ./mvnw clean versions:display-dependency-updates versions:display-plugin-updates
 
 # Search Artifacts by class
 https://search.maven.org/search?q=fc:kotlin.text.Regex
@@ -1024,6 +1078,7 @@ $ strings -a $(which native-image) | grep -i com.oracle.svm.core.VM
 - https://thenounproject.com/
 - https://www.flaticon.com/
 - https://ionicons.com/
+- https://icons8.com/
 
 #####     Emojis
 

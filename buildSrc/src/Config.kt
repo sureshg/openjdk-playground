@@ -89,10 +89,23 @@ val Project.javaToolchainPath
     }
 
 /**
+ * Returns the current OS name.
+ */
+val os by lazy {
+    val os = System.getProperty("os.name")
+    when {
+        os == "Mac OS X" -> "macos"
+        os.startsWith("Win") -> "windows"
+        os.startsWith("Linux") -> "linux"
+        else -> error("Unsupported OS: $os")
+    }
+}
+
+/**
  * System property delegate
  */
 inline fun <reified T> sysProp(): ReadOnlyProperty<Any?, T> =
-    ReadOnlyProperty { thisRef, property ->
+    ReadOnlyProperty { _, property ->
         val propVal: String = System.getProperty(property.name, "")
         logger.info("Getting System Property '${property.name}': $propVal")
         when (T::class) {
