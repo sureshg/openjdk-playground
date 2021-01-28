@@ -22,10 +22,10 @@ public class Main {
 
     var list =
         persons.stream()
-            //  .map(p -> new PersonX(p, computeScore(p)))
             .sorted(Comparator.comparing(Main::computeScore))
+            .map(p -> new PersonX(p, computeScore(p)))
             .limit(count)
-            // .map(PersonX::p)
+            .map(PersonX::p)
             .toList();
     return list;
   }
@@ -87,9 +87,8 @@ public class Main {
 
   @Override
   public boolean equals(Object o) {
-    return true;
-//    return (this == o)
-//        || (o instanceof Main x) && this.age == x.age && Objects.equals(this.name, x.name);
+    return (this == o)
+        || (o instanceof Main x) && this.age == x.age && Objects.equals(this.name, x.name);
   }
 
   @Override

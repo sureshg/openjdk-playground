@@ -1077,6 +1077,7 @@ $ strings -a $(which native-image) | grep -i com.oracle.svm.core.VM
 - https://standart.io/
 - https://thenounproject.com/
 - https://www.flaticon.com/
+- https://www.iconfinder.com/
 - https://ionicons.com/
 - https://icons8.com/
 
