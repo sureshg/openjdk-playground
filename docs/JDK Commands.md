@@ -194,9 +194,16 @@ $ sdk i java jdk-16-loom ~/install/openjdk/jdk-16-loom.jdk/Contents/Home
 
 
 
-##### 12. G1GC and GCLogs
+##### 12. [Unified GC Logging](https://openjdk.java.net/jeps/158#Simple-Examples:)
+
+
 
 ```bash
+$  java -Xlog:help
+```
+
+```bash
+# For G1GC
 -XX:+UseG1GC
 -XX:MaxGCPauseMillis=200
 -XX:InitiatingHeapOccupancyPercent=70
@@ -218,15 +225,11 @@ $ sdk i java jdk-16-loom ~/install/openjdk/jdk-16-loom.jdk/Contents/Home
 -XX:FlightRecorderOptions:stackdepth=256
 ```
 
-
-
-Parallel GC
-
-**-XX:+IgnoreUnrecognizedVMOptions**
-
- `-XX:MaxRAM=16g  `
-
-`-XX:MaxGCPauseMillis=30`
+```bash
+-XX:+HeapDumpOnOutOfMemoryError
+-XX:ErrorFile=$USER_HOME/java_error_in_app_%p.log
+-XX:HeapDumpPath=$USER_HOME/java_error_in_app.hprof
+```
 
 
 
@@ -594,6 +597,16 @@ $ ./gradlew properties
 
 # Gradle run with arguments
 $ ./gradlew run --args="<JFR_FILE>"
+```
+
+ 
+
+Refresh dependencies
+
+```bash
+$ ./gradlew clean build --refresh-dependencies
+# Or
+$ rm -rf ~/.gradle/caches
 ```
 
 
@@ -964,7 +977,11 @@ https://github.com/GoogleContainerTools/jib
 
 ---------
 
-Graal Updater & Truffle
+##### 1. [Workshop](https://github.com/krisfoster/Native-Image-Workshop)
+
+
+
+##### 2. Graal Updater & Truffle
 
 ```bash
 $ gu list
@@ -976,7 +993,7 @@ $ java -truffle [-options] -jar jarfile [args...]
 
 
 
-SVM Substitutions
+##### 3. SVM Substitutions
 
 ```java
 package com.newrelic.jfr.subst;
@@ -1033,6 +1050,16 @@ $ strings -a $(which native-image) | grep -i com.oracle.svm.core.VM
   * https://github.com/micronaut-projects/micronaut-starter/tree/master/.github/workflows
 
 * https://jamesward.com/2020/05/07/graalvm-native-image-tips-tricks/
+
+
+
+### [Minecraft Server](https://github.com/itzg/docker-minecraft-server)
+
+```bash
+$ docker run -d -p 25565:25565 --name mc itzg/minecraft-server:adopt15
+```
+
+
 
 ### Blogs
 

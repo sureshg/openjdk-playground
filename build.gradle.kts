@@ -18,12 +18,14 @@ plugins {
     shadow
     spotless
     jacoco
+    kotlinPowerAssert
     spotlessChangelog
     benmanesVersions
     gitProperties
     `maven-publish`
     mavenRepoAuth
     gradleRelease
+    dependencyAnalyze
     plugins.common
 }
 
@@ -32,11 +34,21 @@ application {
     applicationDefaultJvmArgs += listOf(
         "--show-version",
         "--enable-preview",
+        "-Xmx128M",
         "-XX:+PrintCommandLineFlags",
         "-XX:+UseZGC",
-        "-Xlog:gc*",
+        "-Xlog:gc*:/tmp/$name-gc.log",
+        "-XX:StartFlightRecording:filename=/tmp/$name.jfr,settings=default.jfc,name=$name,maxsize=100m,dumponexit=true",
+        "-XX:FlightRecorderOptions:stackdepth=128",
+        "-XX:+HeapDumpOnOutOfMemoryError",
+        "-XX:HeapDumpPath=/tmp/$name.hprof",
+        "-XX:ErrorFile=/tmp/java-error-$name-%p.log",
+        "-Djdk.attach.allowAttachSelf=true",
         "-Djdk.tracePinnedThreads=full",
         "-Djava.security.egd=file:/dev/./urandom"
+        // "-XX:+IgnoreUnrecognizedVMOptions",
+        // "-XX:NativeMemoryTracking=summary",
+        // "-Djava.net.preferIPv4Stack=true"
     )
     // For backward compatibility
     mainClassName = mainClass.get()
@@ -86,6 +98,9 @@ spotless {
     kotlin {
         ktlint().userData(mapOf("disabled_rules" to "no-wildcard-imports"))
         targetExclude("$buildDir/**/*.kt", "bin/**/*.kt")
+        endWithNewline()
+        indentWithSpaces()
+        trimTrailingWhitespace()
         // licenseHeader(License.Apache)
     }
 
@@ -109,6 +124,7 @@ gitProperties {
 }
 
 jib {
+
     from {
         image = "openjdk:$javaVersion-jdk-slim"
     }
@@ -297,6 +313,11 @@ tasks {
         reportfileName = "report"
     }
 
+    // Disable dependency analysis.
+    analyzeClassesDependencies.get().enabled = false
+    analyzeTestClassesDependencies.get().enabled = false
+    analyzeDependencies.get().enabled = false
+
     // Reproducible builds
     withType<AbstractArchiveTask>().configureEach {
         isPreserveFileTimestamps = false
@@ -322,7 +343,7 @@ val dokkaHtmlJar by tasks.registering(Jar::class) {
 dependencies {
     implementation(enforcedPlatform(Deps.Kotlin.bom))
     implementation(enforcedPlatform(Deps.OkHttp.bom))
-    implementation(kotlin("stdlib-jdk8"))
+    implementation(Deps.Kotlin.stdlibJdk8)
     implementation(Deps.Kotlinx.Serialization.json)
     implementation(Deps.Kotlinx.Serialization.properties)
     implementation(Deps.Kotlinx.dateTime)
@@ -344,6 +365,7 @@ dependencies {
     implementation(Deps.Jackson.databind)
     compileOnly(Deps.Kotlinx.atomicfu)
     kapt(Deps.Google.AutoService.processor)
+
     // implementation(platform("org.apache.maven.resolver:maven-resolver:1.4.1"))
     // implementation("org.apache.maven:maven-resolver-provider:3.6.3")
 
@@ -390,7 +412,7 @@ publishing {
                 licenses {
                     license {
                         name.set("The Apache Software License, Version 2.0")
-                        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                        url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
                         distribution.set("repo")
                     }
                 }

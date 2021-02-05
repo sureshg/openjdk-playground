@@ -1,4 +1,4 @@
-rootProject.name = "openjdk-latest"
+rootProject.name = "openjdk-playground"
 
 // Centralizing repositories declaration
 dependencyResolutionManagement {
@@ -15,7 +15,6 @@ dependencyResolutionManagement {
 pluginManagement {
     repositories {
         gradlePluginPortal()
-        jcenter()
         google()
     }
 

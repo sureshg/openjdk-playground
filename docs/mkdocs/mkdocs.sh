@@ -7,7 +7,7 @@ set -eu
 # pip3 install mkdocs-minify-plugin
 
 project_dir="$(dirname "$(realpath "$0")")"/../..
-project_name=openjdk-latest
+project_name=openjdk-playground
 build_dir="build/dokka"
 
 pushd "$project_dir" >/dev/null

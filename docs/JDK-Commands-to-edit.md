@@ -10,19 +10,12 @@ $ jlink --compress=2 --strip-debug --no-header-files --no-man-pages --add-module
 -Djava.net.preferIPv4Stack=true
 -Djava.security.egd=file:/dev/./urandom
 
-// Heap dump
--XX:+HeapDumpOnOutOfMemoryError
--XX:ErrorFile=$USER_HOME/java_error_in_app_%p.log
--XX:HeapDumpPath=$USER_HOME/java_error_in_app.hprof
 
 // Helpful NPE
 $ java -XX:+ShowCodeDetailsInExceptionMessages Main.java
 // -g enables debugging info (like local var name)
 $ javac -g Main.java
 $ java -XX:+ShowCodeDetailsInExceptionMessages Main
-
-// ZGC
-$ java -XX:+UnlockExperimentalVMOptions -XX:+UseZGC
 
 // NUMA
 $ java -XX:+UseNUMA

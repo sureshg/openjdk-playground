@@ -94,9 +94,9 @@ val Project.javaToolchainPath
 val os by lazy {
     val os = System.getProperty("os.name")
     when {
-        os == "Mac OS X" -> "macos"
-        os.startsWith("Win") -> "windows"
-        os.startsWith("Linux") -> "linux"
+        os.equals("Mac OS X", ignoreCase = true) -> "macos"
+        os.startsWith("Win", ignoreCase = true) -> "windows"
+        os.startsWith("Linux", ignoreCase = true) -> "linux"
         else -> error("Unsupported OS: $os")
     }
 }

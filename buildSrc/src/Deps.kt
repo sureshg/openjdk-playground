@@ -1,3 +1,4 @@
+import org.gradle.api.artifacts.dsl.*
 import org.gradle.kotlin.dsl.*
 import org.gradle.plugin.use.*
 
@@ -20,10 +21,13 @@ object Deps {
 
     object Kotlin {
         val bom = "org.jetbrains.kotlin:kotlin-bom:$kotlinVersion"
-        val stdLib8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+        val stdlibJdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
         val reflect = "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
         val test = "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
         val testJunit = "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
+        val scriptRuntime = "org.jetbrains.kotlin:kotlin-script-runtime:$kotlinVersion"
+        val scriptUtil = "org.jetbrains.kotlin:kotlin-script-util:$kotlinVersion"
+        val scriptJsr223 = "org.jetbrains.kotlin:kotlin-scripting-jsr223:$kotlinVersion"
 
         object Coroutines {
             const val version = "1.4.2"
@@ -35,14 +39,22 @@ object Deps {
         }
 
         object Ksp {
-            const val version = "1.4.20-dev-experimental-20210120"
+            const val version = "1.4.20-dev-experimental-20210203"
             const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
             const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
             const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.2.11"
         }
 
+        object Data {
+            const val deeplearning = "org.jetbrains.kotlin-deeplearning:api:0.1.1"
+            const val letsPlotKotlin = "org.jetbrains.lets-plot-kotlin:lets-plot-kotlin-api:1.2.0"
+            const val sparkApi = "org.jetbrains.kotlinx.spark:kotlin-spark-api-3.0:1.0.0-preview2"
+        }
+
         const val metadata = "me.eugeniomarletti.kotlin.metadata:kotlin-metadata:1.4.0"
         const val metadataJvm = "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.1.0"
+        const val zipSigner = "org.jetbrains.marketplace:zip-signer:0.8"
+        const val markdown = "org.jetbrains:markdown:0.2.0.pre-61"
     }
 
     object Kotlinx {
@@ -71,6 +83,7 @@ object Deps {
         const val core = "org.jetbrains.exposed:exposed-core:$version"
         const val dao = "org.jetbrains.exposed:exposed-dao:$version"
         const val jdbc = "org.jetbrains.exposed:exposed-jdbc:$version"
+        const val opentracing = "com.github.fstien:exposed-opentracing:0.2.1"
     }
 
     object Dokka {
@@ -96,13 +109,13 @@ object Deps {
         const val util = "org.eclipse.jetty:jetty-util:$version"
         const val slf4j = "org.eclipse.jetty:jetty-slf4j-impl:$version"
         const val testHelper = "org.eclipse.jetty:jetty-test-helper:$version"
-        const val servletApi = "org.eclipse.jetty.toolchain:jetty-servlet-api:4.0.5"
+        const val servletApi = "org.eclipse.jetty.toolchain:jetty-servlet-api:4.0.6"
     }
 
     const val okio = "com.squareup.okio:okio:2.2.0"
 
     object OkHttp {
-        const val version = "4.9.0"
+        const val version = "4.9.1"
         const val bom = "com.squareup.okhttp3:okhttp-bom:$version"
         const val okhttp = "com.squareup.okhttp3:okhttp:$version"
         const val mockWebServer = "com.squareup.okhttp3:mockwebserver:$version"
@@ -174,7 +187,7 @@ object Deps {
         const val jupiterApi = "org.junit.jupiter:junit-jupiter-api:$version"
         const val jupiterEngine = "org.junit.jupiter:junit-jupiter-engine:$version"
         const val jupiterParams = "org.junit.jupiter:junit-jupiter-params:$version"
-        const val pioneer = "org.junit-pioneer:junit-pioneer:1.2.0"
+        const val pioneer = "org.junit-pioneer:junit-pioneer:1.3.0"
     }
 
     object Mock {
@@ -196,11 +209,17 @@ object Deps {
 
     object Parser {
         const val betterParse = "com.github.h0tk3y.betterParse:better-parse:0.4.1"
-        const val funcj = "org.typemeta:funcj-parser:0.6.16"
-        const val antlr4 = "org.antlr:antlr4:4.8"
         const val petitparser = "com.github.petitparser:petitparser-core:2.3.1"
+
+        const val antlr4 = "org.antlr:antlr4:4.8"
+        const val funcj = "org.typemeta:funcj-parser:0.6.16"
+
         const val javaparserCore = "com.github.javaparser:javaparser-core:3.18.0"
         const val javaparserSSCore = "com.github.javaparser:javaparser-symbol-solver-core:3.18.0"
+
+        const val jflex = "de.jflex:jflex:1.8.2"
+        const val javacc = "net.java.dev.javacc:javacc:7.0.10"
+        const val jparsec = "org.jparsec:jparsec:3.1"
     }
 
     object LangTools {
@@ -281,12 +300,20 @@ object Deps {
     object Cli {
         const val clikt = "com.github.ajalt.clikt:clikt:3.1.0"
         const val textIO = "org.beryx:text-io:3.4.1"
-        const val mordant = "com.github.ajalt:mordant:1.2.1"
+        const val mordant = "com.github.ajalt.mordant:mordant:2.0.0-alpha2"
         const val colormath = "com.github.ajalt.colormath:colormath:2.0.0"
         const val picnic = "com.jakewharton.picnic:picnic:0.4.0"
         const val crossword = "com.jakewharton.crossword:crossword:0.1.2"
         const val progressbar = "me.tongfei:progressbar:0.9.0"
+        const val progressKt = "com.importre:progress:0.1.0"
+
+        const val jexerTui = "com.gitlab.klamonte:jexer:0.3.2"
+        const val asciiGraph = "com.mitchtalmadge:ascii-data:1.4.0"
+        const val barcodes = "com.github.walleth.console-barcodes:lib:0.2"
+        // https://github.com/topics/ascii-art?l=java
+
         const val jfiglet = "com.github.lalyos:jfiglet:0.0.8"
+        const val bananaFiglet = "io.leego:banana:2.0.1"
 
         object JLine {
             const val version = "3.9.0"
@@ -309,6 +336,7 @@ object Deps {
         const val bouncyCastle = "org.bouncycastle:bcprov-jdk15on:1.60"
         const val conscryptUber = "org.conscrypt:conscrypt-openjdk-uber:1.4.1"
         const val tink = "com.google.crypto.tink:tink:1.2.1"
+        const val password4j = "com.password4j:password4j:1.5.0"
     }
 
     object Security {
@@ -364,6 +392,8 @@ object Deps {
         const val asm = "org.ow2.asm:asm:$asmVersion"
         const val asmUtil = "org.ow2.asm:asm-util:$asmVersion"
         const val byteBuddy = "net.bytebuddy:byte-buddy:1.9.7"
+        const val classgraph = "io.github.classgraph:classgraph:4.8.102"
+        const val hotswapAgent = "org.hotswapagent:hotswap-agent-core:1.4.1"
     }
 
     object Faker {
@@ -382,6 +412,9 @@ object Deps {
         const val openapiGen = "org.openapitools:openapi-generator:4.3.1"
         const val swaggerUI = "org.webjars:swagger-ui:3.10.0"
         const val swaggerCli = "io.swagger.codegen.v3:swagger-codegen-cli:3.0.0"
+
+        // OpenApi4j
+        const val parser = "org.openapi4j:openapi-parser:1.0.5"
     }
 
     object ReactiveStreams {
@@ -402,6 +435,11 @@ object Deps {
         const val netty = "io.rsocket:rsocket-transport-netty:$version"
     }
 
+    object Jfr {
+        const val jfr2ctf = "de.marcphilipp.jfr2ctf:jfr2ctf:0.1.0"
+        const val streaming = "com.microsoft.censum:jfr-streaming:1.0.0"
+    }
+
     object Jmh {
         const val version = "1.21"
         const val jmhCore = "org.openjdk.jmh:jmh-core:$version"
@@ -417,7 +455,7 @@ object Deps {
     object K8S {
         const val javaClient = "io.kubernetes:client-java:11.0.0"
         const val fabric8 = "io.fabric8:kubernetes-client:5.0.0"
-        const val operatorSdk = "io.javaoperatorsdk:java-operator-sdk:1.7.0"
+        const val operatorFramework = "io.javaoperatorsdk:operator-framework:1.7.1"
     }
 
     object Search {
@@ -431,11 +469,23 @@ object Deps {
 
     object Grid {
         // Hazelcast, Ignite, Coherence, Infinispan
+        // https://search.maven.org/artifact/net.javacrumbs.shedlock/shedlock-parent/4.20.0/jar
+        // https://search.maven.org/search?q=com.microsoft.playwright
+    }
+
+    object Web {
+
+        object TeamVM {
+            const val version = "0.6.1"
+            const val classlib = "org.teavm:teavm-classlib:$version"
+            const val jsoApis = "org.teavm:teavm-jso-apis:$version"
+        }
     }
 
     const val jsr305 = "com.google.code.findbugs:jsr305:3.0.2"
     const val micronautBom = "io.micronaut:micronaut-bom:2.0.0"
     const val methanol = "com.github.mizosoft.methanol:methanol:1.4.1"
+    const val mapstruct = "org.mapstruct:mapstruct:1.4.2.Final"
 
     const val turbine = "app.cash.turbine:turbine:0.1.1"
     const val typetools = "net.jodah:typetools:0.6.2"
@@ -460,15 +510,25 @@ object Deps {
     const val ff4j = "org.ff4j:ff4j-core:1.3.0"
 
     const val assertjCore = "org.assertj:assertj-core:3.11.1"
-    const val kotlinPowerAssert = "com.bnorm.power:kotlin-power-assert:0.3.0"
     const val googleTruth = "com.google.truth:truth:1.0.1"
     const val awaitility = "org.awaitility:awaitility:3.1.6"
     const val awaitilityKotlin = "org.awaitility:awaitility-kotlin:3.1.6"
 
     const val jol = "org.openjdk.jol:jol-core:0.9"
     const val japicmp = "com.github.siom79.japicmp:japicmp:0.13.0"
-    const val jfr2ctf = "de.marcphilipp.jfr2ctf:jfr2ctf:0.1.0"
 }
+
+/**
+ * Dependency Extensions
+ */
+val DependencyHandler.KotlinBom get() = kotlin("bom")
+val DependencyHandler.KotlinStdlibJdk8 get() = kotlin("stdlib-jdk8")
+val DependencyHandler.KotlinReflect get() = kotlin("reflect")
+val DependencyHandler.KotlinTest get() = kotlin("test")
+val DependencyHandler.KotlinTestJunit get() = kotlin("test-junit")
+val DependencyHandler.KotlinScriptRuntime get() = kotlin("script-runtime")
+val DependencyHandler.KotlinScripUtil get() = kotlin("script-util")
+val DependencyHandler.KotlinScripJsr223 get() = kotlin("scripting-jsr223")
 
 /**
  * PluginId Extensions
@@ -476,26 +536,33 @@ object Deps {
 inline val PluginDependenciesSpec.kotlinJvm get() = kotlin("jvm") version kotlinVersion
 inline val PluginDependenciesSpec.kotlinxSerialization get() = kotlin("plugin.serialization") version kotlinVersion
 inline val PluginDependenciesSpec.kotlinKapt get() = kotlin("kapt") version kotlinVersion
+
 inline val PluginDependenciesSpec.kotlinSpring get() = kotlin("plugin.spring") version kotlinVersion
 inline val PluginDependenciesSpec.kotlinAllOpen get() = kotlin("plugin.allopen") version kotlinVersion
 inline val PluginDependenciesSpec.kotlinNoArg get() = kotlin("plugin.noarg") version kotlinVersion
 inline val PluginDependenciesSpec.kotlinJpa get() = kotlin("plugin.jpa") version kotlinVersion
+
 inline val PluginDependenciesSpec.kotlinScript get() = kotlin("plugin.scripting") version kotlinVersion
 inline val PluginDependenciesSpec.dokka get() = id("org.jetbrains.dokka") version Deps.Dokka.version
+
+inline val PluginDependenciesSpec.exposed get() = id("com.jetbrains.exposed.gradle.plugin") version "0.1.1-SNAPSHOT"
 inline val PluginDependenciesSpec.kotlinxAtomicfu get() = id("kotlinx-atomicfu") version "0.15.1"
 inline val PluginDependenciesSpec.binCompatValidator get() = id("binary-compatibility-validator") version "0.3.0"
 
+// Google Plugins
 inline val PluginDependenciesSpec.ksp get() = id("com.google.devtools.ksp") version Deps.Kotlin.Ksp.version
 inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.jib") version "2.7.1"
 
-inline val PluginDependenciesSpec.changelog get() = id("org.jetbrains.changelog") version "0.4.0"
+// Dependencies
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "6.1.0"
-inline val PluginDependenciesSpec.protobuf get() = id("com.google.protobuf") version "0.8.14"
 inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version "0.36.0"
-inline val PluginDependenciesSpec.detektCompilerPlugin get() = id("io.github.detekt.gradle.compiler-plugin") version "0.3.1"
+inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.4.2"
+
 inline val PluginDependenciesSpec.javafx get() = id("org.openjfx.javafxplugin") version "0.0.7"
 inline val PluginDependenciesSpec.jmh get() = id("me.champeau.gradle.jmh") version "0.4.8"
 inline val PluginDependenciesSpec.mrjar get() = id("com.lingocoder.mrjar") version "0.0.16"
+inline val PluginDependenciesSpec.protobuf get() = id("com.google.protobuf") version "0.8.14"
+inline val PluginDependenciesSpec.changelog get() = id("org.jetbrains.changelog") version "0.4.0"
 
 inline val PluginDependenciesSpec.kotless get() = id("io.kotless") version "0.1.6"
 inline val PluginDependenciesSpec.kordampGradle get() = id("org.kordamp.gradle.project") version "0.40.0"
@@ -513,7 +580,8 @@ inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") v
 inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.0.0"
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version "9.3.0"
-inline val PluginDependenciesSpec.detekt get() = id("io.gitlab.arturbosch.detekt") version "1.11.0-RC1"
+inline val PluginDependenciesSpec.detekt get() = id("io.gitlab.arturbosch.detekt") version "1.15.0"
+inline val PluginDependenciesSpec.detektCompilerPlugin get() = id("io.github.detekt.gradle.compiler-plugin") version "0.3.1"
 
 // Artifact Publish
 inline val PluginDependenciesSpec.githubRelease get() = id("com.github.breadmoirai.github-release") version "2.2.12"
@@ -532,11 +600,15 @@ inline val PluginDependenciesSpec.orchid get() = id("com.eden.orchidPlugin") ver
 // Packaging (JDK 14+) (https://openjdk.java.net/jeps/392)
 inline val PluginDependenciesSpec.badassRuntime get() = id("org.beryx.runtime") version "1.11.4"
 inline val PluginDependenciesSpec.badassjlink get() = id("org.beryx.jlink") version "2.22.3"
-inline val PluginDependenciesSpec.javapackager get() = id("io.github.fvarrui.javapackager.plugin") version "1.4.1"
+inline val PluginDependenciesSpec.javapackager get() = id("io.github.fvarrui.javapackager.plugin") version "1.5.1"
 inline val PluginDependenciesSpec.jpackageplugin get() = id("org.panteleyev.jpackageplugin") version "0.0.2"
 
 // Kotlin compiler plugins
 inline val PluginDependenciesSpec.redacted get() = id("dev.zacsweers.redacted.redacted-gradle-plugin") version "0.6.1"
+inline val PluginDependenciesSpec.kotlinPowerAssert get() = id("com.bnorm.power.kotlin-power-assert") version "0.7.0"
+
+// Parsers
+inline val PluginDependenciesSpec.jflex get() = id("org.xbib.gradle.plugin.jflex") version "1.5.0"
 
 // GraalVM
 inline val PluginDependenciesSpec.nativeImage get() = id("org.graalvm.plugin.native-image") version "0.1.0-alpha2"

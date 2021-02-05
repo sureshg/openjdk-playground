@@ -41,7 +41,7 @@ $ java --show-version \
        -XX:+PrintCommandLineFlags \
        -Djava.security.egd=file:/dev/./urandom \
        -Djdk.tracePinnedThreads=full \
-       -jar build/libs/openjdk-latest-1.0.0-uber.jar
+       -jar build/libs/openjdk-playground-1.0.0-uber.jar
 
 # Other Options
 # -XX:+IgnoreUnrecognizedVMOptions
@@ -50,7 +50,7 @@ $ java --show-version \
 #### Run the application container
 ```bash
 $ ./gradlew jibDockerBuild
-$ docker run -it --rm --name openjdk-latest sureshg/openjdk-latest
+$ docker run -it --rm --name openjdk-playground sureshg/openjdk-playground
 ```
 
 #### Load testing the Loom Web Server
@@ -154,8 +154,8 @@ module dev.suresh.openjdklatest {
 [gha_badge]: https://img.shields.io/github/workflow/status/sureshg/openjdk-playground/CI?color=green&label=Build&logo=Github-Actions&logoColor=green&style=for-the-badge
 [gh_pkgs]: https://github.com/sureshg/openjdk-playground/packages
 
-[docker_img]: https://img.shields.io/docker/v/sureshg/openjdk-latest?color=40c4ff&label=DockerHub&logo=docker&logoColor=40c4ff&style=for-the-badge
-[docker_url]: https://hub.docker.com/r/sureshg/openjdk-latest
+[docker_img]: https://img.shields.io/docker/v/sureshg/openjdk-playground?color=40c4ff&label=DockerHub&logo=docker&logoColor=40c4ff&style=for-the-badge
+[docker_url]: https://hub.docker.com/r/sureshg/openjdk-playground
 
 [sonar_img]: https://img.shields.io/sonar/quality_gate/io.sureshg:kotlin-scratchpad?logo=sonarcloud&server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge
 [sonar_url]: https://sonarcloud.io/dashboard?id=io.sureshg%3Akotlin-scratchpad

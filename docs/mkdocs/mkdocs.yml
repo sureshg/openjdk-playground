@@ -7,7 +7,7 @@ site_description: A sample repo to test the latest OpenJDK releases for both Jav
 site_author: Suresh
 
 site_dir: docs
-docs_dir: openjdk-latest
+docs_dir: openjdk-playground
 
 repo_name: sureshg/openjdk-playground
 repo_url: https://github.com/sureshg/openjdk-playground
@@ -26,7 +26,7 @@ extra:
       link: https://twitter.com/sur3shg
       name: Twitter
     - icon: fontawesome/brands/docker
-      link: https://hub.docker.com/r/sureshg/openjdk-latest
+      link: https://hub.docker.com/r/sureshg/openjdk-playground
 
 # Configuration
 theme:
