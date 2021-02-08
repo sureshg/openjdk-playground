@@ -18,4 +18,9 @@ object App {
      * Kotlin library version.
      */
     const val KOTLIN_VERSION = "$kotlinVersion"
+
+    /**
+     * Git [Metadata](https://github.com/jgitver/jgitver/blob/master/src/main/java/fr/brouillard/oss/jgitver/metadata/Metadatas.java).
+     */
+    const val GIT_SHA1_8 = "$git_sha1_8"
 }

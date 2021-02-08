@@ -87,6 +87,9 @@ $ docker run -it --rm --name openjdk-playground sureshg/openjdk-playground
 #### Troubleshooting
 
 ```bash
+# Check the current version
+$ ./gradlew -q --console plain version
+
 # Stop Gradle and Kotlin daemon
 $ ./gradlew --stop && pkill -f KotlinCompileDaemon
 

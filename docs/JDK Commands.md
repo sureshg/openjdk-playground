@@ -535,6 +535,9 @@ withType<AbstractArchiveTask>().configureEach {
 }
 ```
 
+* [reproducible-builds.org](https://reproducible-builds.org/docs/jvm/) 
+* https://github.com/jvm-repo-rebuild/reproducible-central
+
 
 
 ##### 9. [Multi Release Jar](https://blog.gradle.org/mrjars)
@@ -575,38 +578,48 @@ if (JavaVersion.current().isJava11Compatible) {
 
 
 
-##### 10. Update Wrapper and others
+##### 10. Dependencies 
 
-```bash
-$ ./gradlew wrapper --gradle-version=6.8 --distribution-type=bin
+     ```bash
 
 # Dependencies
-$ ./gradlew dependencies --configuration implementation
+$ ./gradlew -q dependencies --configuration implementation
+$ ./gradlew -q dependencies --configuration runtimeClasspath
+
+$ ./gradlew -q dependencyInsight --dependency kotlin --configuration runtimeClasspat
+
 
 # Task Dependencies
 $ ./gradlew clean build --dry-run
 
-# Set system properties or tool options
-$ JAVA_TOOL_OPTIONS=-Dhttps.protocols=TLSv1.2 ./gradlew build
-
 # Dependency updates
 $ ./gradlew clean dependencyUpdates -Drevision=release
+
+# Refresh dependencies
+$ ./gradlew clean build --refresh-dependencies
+# Or
+$ rm -rf ~/.gradle/caches
+
+     ```
+
+* [Debugging Dependencies](https://docs.gradle.org/current/userguide/viewing_debugging_dependencies.html)
+* [Gradle Conflict Resolution](https://docs.gradle.org/current/userguide/dependency_resolution.html#sec:conflict-resolution)
+
+
+
+##### 11. Update Wrapper and others
+
+```bash
+$ ./gradlew wrapper --gradle-version=6.8 --distribution-type=bin
+
+# Set system properties or tool options
+$ JAVA_TOOL_OPTIONS=-Dhttps.protocols=TLSv1.2 ./gradlew build
 
 # Displays the properties
 $ ./gradlew properties
 
 # Gradle run with arguments
 $ ./gradlew run --args="<JFR_FILE>"
-```
-
- 
-
-Refresh dependencies
-
-```bash
-$ ./gradlew clean build --refresh-dependencies
-# Or
-$ rm -rf ~/.gradle/caches
 ```
 
 

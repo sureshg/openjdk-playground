@@ -1,6 +1,8 @@
-import org.gradle.api.artifacts.dsl.*
-import org.gradle.kotlin.dsl.*
-import org.gradle.plugin.use.*
+import org.gradle.api.artifacts.dsl.DependencyHandler
+import org.gradle.kotlin.dsl.kotlin
+import org.gradle.kotlin.dsl.provideDelegate
+import org.gradle.kotlin.dsl.version
+import org.gradle.plugin.use.PluginDependenciesSpec
 
 /**
  * Platform versions defined as System Properties.
@@ -39,7 +41,7 @@ object Deps {
         }
 
         object Ksp {
-            const val version = "1.4.20-dev-experimental-20210203"
+            const val version = "1.4.30-dev-experimental-20210205"
             const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
             const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
             const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.2.11"
@@ -159,6 +161,8 @@ object Deps {
         object Jib {
             const val core = "com.google.cloud.tools:jib-core:0.1.1"
         }
+
+        const val re2j = "com.google.re2j:re2j:1.5"
     }
 
     object Graal {
@@ -182,7 +186,7 @@ object Deps {
     }
 
     object Junit {
-        const val version = "5.7.0"
+        const val version = "5.7.1"
         const val jupiter = "org.junit.jupiter:junit-jupiter:$version"
         const val jupiterApi = "org.junit.jupiter:junit-jupiter-api:$version"
         const val jupiterEngine = "org.junit.jupiter:junit-jupiter-engine:$version"
@@ -370,6 +374,11 @@ object Deps {
         const val shrinkwrap = "org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-depchain:3.1.4"
     }
 
+    object Git {
+        const val jgit = "org.eclipse.jgit:org.eclipse.jgit:5.10.0.202012080955-r"
+        const val jgitver = "fr.brouillard.oss:jgitver:0.12.0"
+    }
+
     object OS {
         const val oshi = "com.github.oshi:oshi-core:5.2.5"
     }
@@ -505,7 +514,6 @@ object Deps {
     const val jgrapht = "org.jgrapht:jgrapht-core:1.5.0"
     const val jsonPath = "com.jayway.jsonpath:json-path:2.4.0"
 
-    const val jgitver = "fr.brouillard.oss:jgitver:0.12.0"
     const val trov4j = "org.jetbrains.intellij.deps:trove4j:1.0.20181211"
     const val ff4j = "org.ff4j:ff4j-core:1.3.0"
 
@@ -590,8 +598,10 @@ inline val PluginDependenciesSpec.gradleRelease get() = id("net.researchgate.rel
 
 // Project version detection
 inline val PluginDependenciesSpec.jgitPlugin get() = id("fr.brouillard.oss.gradle.jgitver") version "0.10.0-rc03"
+inline val PluginDependenciesSpec.gitSemver get() = id("com.github.jmongard.git-semver-plugin") version "0.1.3"
 inline val PluginDependenciesSpec.reckon get() = id("org.ajoberstar.reckon") version "0.12.0"
 inline val PluginDependenciesSpec.gitProperties get() = id("com.gorylenko.gradle-git-properties") version "2.2.4"
+inline val PluginDependenciesSpec.gitChangelog get() = id("se.bjurr.gitchangelog.git-changelog-gradle-plugin") version "1.65"
 
 // Static website
 inline val PluginDependenciesSpec.mkdocs get() = id("ru.vyarus.mkdocs") version "2.0.1"

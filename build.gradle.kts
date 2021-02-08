@@ -1,14 +1,14 @@
-import org.gradle.api.tasks.testing.logging.*
-import org.jetbrains.dokka.gradle.*
-import org.jetbrains.kotlin.gradle.tasks.*
-import java.net.*
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+import org.jetbrains.dokka.gradle.DokkaTask
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import java.net.URL
 
 plugins {
     idea
     java
     application
     kotlinJvm
-    binCompatValidator
     ksp
     kotlinKapt
     kotlinxSerialization
@@ -21,10 +21,12 @@ plugins {
     kotlinPowerAssert
     spotlessChangelog
     benmanesVersions
+    jgitPlugin
     gitProperties
     `maven-publish`
     mavenRepoAuth
     gradleRelease
+    binCompatValidator
     dependencyAnalyze
     plugins.common
 }
@@ -118,11 +120,6 @@ spotless {
     isEnforceCheck = false
 }
 
-gitProperties {
-    gitPropertiesDir = "${project.buildDir}/resources/main/META-INF/${project.name}"
-    customProperties["kotlin"] = kotlinVersion
-}
-
 jib {
 
     from {
@@ -137,6 +134,16 @@ jib {
         mainClass = application.mainClass.get()
         jvmFlags = application.applicationDefaultJvmArgs.toList()
     }
+}
+
+// val branch_name: String  by extra
+jgitver {
+    useDirty = true
+}
+
+gitProperties {
+    gitPropertiesDir = "${project.buildDir}/resources/main/META-INF/${project.name}"
+    customProperties["kotlin"] = kotlinVersion
 }
 
 release {

@@ -22,14 +22,13 @@ val copyTemplates by tasks.registering(Copy::class) {
         .forUseAtConfigurationTime()
         .get()
 
-    val configMap = mapOf(
-        "projectVersion" to version,
-        "kotlinVersion" to System.getProperty("KotlinVersion")
-    )
+    val props = project.extra.properties
+    props["projectVersion"] = version
+    props["kotlinVersion"] = System.getProperty("kotlinVersion")
 
-    inputs.property("buildversions", configMap.hashCode())
+    filteringCharset = "UTF-8"
+    inputs.property("buildversions", props.hashCode())
     from(layout.projectDirectory.dir("src/main/templates"))
     into(layout.buildDirectory.dir("generated/sources/templates/kotlin/main"))
-    expand(configMap)
-    filteringCharset = "UTF-8"
+    expand(props)
 }
