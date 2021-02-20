@@ -29,4 +29,4 @@ pluginManagement {
 }
 
 // Composite Builds
-// includeBuild("build-config")
+includeBuild("build-logic")

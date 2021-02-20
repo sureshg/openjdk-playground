@@ -13,6 +13,7 @@ plugins {
     kotlinKapt
     kotlinxSerialization
     dokka
+    jte
     protobuf
     googleJib
     shadow
@@ -24,6 +25,7 @@ plugins {
     jgitPlugin
     gitProperties
     `maven-publish`
+    nexusPublish
     mavenRepoAuth
     gradleRelease
     binCompatValidator
@@ -47,7 +49,9 @@ application {
         "-XX:ErrorFile=/tmp/java-error-$name-%p.log",
         "-Djdk.attach.allowAttachSelf=true",
         "-Djdk.tracePinnedThreads=full",
-        "-Djava.security.egd=file:/dev/./urandom"
+        "-Djava.security.egd=file:/dev/./urandom",
+        "-XX:+UnlockDiagnosticVMOptions",
+        "-XX:+ShowHiddenFrames"
         // "-XX:+IgnoreUnrecognizedVMOptions",
         // "-XX:NativeMemoryTracking=summary",
         // "-Djava.net.preferIPv4Stack=true"
@@ -138,7 +142,7 @@ jib {
 
 // val branch_name: String  by extra
 jgitver {
-    useDirty = true
+    useDirty = false
 }
 
 gitProperties {
@@ -370,6 +374,7 @@ dependencies {
     implementation(Deps.TLS.certifikit)
     implementation(Deps.Google.AutoService.annotations)
     implementation(Deps.Jackson.databind)
+    implementation(Deps.Google.ApiService.sdmv1)
     compileOnly(Deps.Kotlinx.atomicfu)
     kapt(Deps.Google.AutoService.processor)
 

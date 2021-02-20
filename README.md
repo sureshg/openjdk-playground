@@ -132,8 +132,6 @@ module dev.suresh.openjdklatest {
  https://github.com/marketplace/actions/download-openjdk
  https://github.com/sormuras/junit5-looming/blob/master/.github/workflows/main.yml
 
- https://github.com/JakeWharton/picnic
- https://github.com/h0tk3y/better-parse
  https://github.com/actions/cache/blob/main/examples.md#java---gradle
 
  https://github.com/android/gradle-recipes

@@ -1,8 +1,6 @@
-import org.gradle.api.artifacts.dsl.DependencyHandler
-import org.gradle.kotlin.dsl.kotlin
-import org.gradle.kotlin.dsl.provideDelegate
-import org.gradle.kotlin.dsl.version
-import org.gradle.plugin.use.PluginDependenciesSpec
+import org.gradle.api.artifacts.dsl.*
+import org.gradle.kotlin.dsl.*
+import org.gradle.plugin.use.*
 
 /**
  * Platform versions defined as System Properties.
@@ -41,10 +39,10 @@ object Deps {
         }
 
         object Ksp {
-            const val version = "1.4.30-dev-experimental-20210205"
+            const val version = "1.4.30-1.0.0-alpha02"
             const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
             const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
-            const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.2.11"
+            const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.3.5"
         }
 
         object Data {
@@ -53,10 +51,12 @@ object Deps {
             const val sparkApi = "org.jetbrains.kotlinx.spark:kotlin-spark-api-3.0:1.0.0-preview2"
         }
 
+        const val kotlinCss = "org.jetbrains:kotlin-css:1.0.0"
         const val metadata = "me.eugeniomarletti.kotlin.metadata:kotlin-metadata:1.4.0"
         const val metadataJvm = "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.1.0"
+        const val compileTesting = "com.github.tschuchortdev:kotlin-compile-testing:1.3.5"
         const val zipSigner = "org.jetbrains.marketplace:zip-signer:0.8"
-        const val markdown = "org.jetbrains:markdown:0.2.0.pre-61"
+        const val markdown = "org.jetbrains:markdown:0.2.0"
     }
 
     object Kotlinx {
@@ -69,7 +69,7 @@ object Deps {
             "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:0.3.3"
 
         object Serialization {
-            const val version = "1.0.1"
+            const val version = "1.1.0"
             const val core = "org.jetbrains.kotlinx:kotlinx-serialization-core:$version"
             const val json = "org.jetbrains.kotlinx:kotlinx-serialization-json:$version"
             const val cbor = "org.jetbrains.kotlinx:kotlinx-serialization-cbor:$version"
@@ -162,6 +162,11 @@ object Deps {
             const val core = "com.google.cloud.tools:jib-core:0.1.1"
         }
 
+        object ApiService {
+            const val sdmv1 =
+                "com.google.apis:google-api-services-smartdevicemanagement:v1-rev20201022-1.31.0"
+        }
+
         const val re2j = "com.google.re2j:re2j:1.5"
     }
 
@@ -195,7 +200,7 @@ object Deps {
     }
 
     object Mock {
-        const val mockk = "io.mockk:mockk:1.10.5"
+        const val mockk = "io.mockk:mockk:1.10.6"
         const val mockito = "org.mockito:mockito-core:2.26.0"
         const val mockserver = "org.mock-server:mockserver-netty:5.10.0"
         const val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
@@ -311,10 +316,12 @@ object Deps {
         const val progressbar = "me.tongfei:progressbar:0.9.0"
         const val progressKt = "com.importre:progress:0.1.0"
 
+        const val lanterna = "com.googlecode.lanterna:lanterna:3.2.0-alpha1"
         const val jexerTui = "com.gitlab.klamonte:jexer:0.3.2"
         const val asciiGraph = "com.mitchtalmadge:ascii-data:1.4.0"
         const val barcodes = "com.github.walleth.console-barcodes:lib:0.2"
         // https://github.com/topics/ascii-art?l=java
+        // https://github.com/willmcgugan/rich (Python Lib for Rich Text)
 
         const val jfiglet = "com.github.lalyos:jfiglet:0.0.8"
         const val bananaFiglet = "io.leego:banana:2.0.1"
@@ -362,7 +369,7 @@ object Deps {
     }
 
     object Decompiler {
-        const val cfr = "org.benf:cfr:0.150"
+        const val cfr = "org.benf:cfr:0.151"
         const val jdCore = "org.jd:jd-core:1.1.3"
         const val procyonCore = "org.bitbucket.mstrobel:procyon-core:0.5.36"
 
@@ -564,12 +571,12 @@ inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.j
 // Dependencies
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "6.1.0"
 inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version "0.36.0"
-inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.4.2"
+inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.4.3"
 
 inline val PluginDependenciesSpec.javafx get() = id("org.openjfx.javafxplugin") version "0.0.7"
 inline val PluginDependenciesSpec.jmh get() = id("me.champeau.gradle.jmh") version "0.4.8"
 inline val PluginDependenciesSpec.mrjar get() = id("com.lingocoder.mrjar") version "0.0.16"
-inline val PluginDependenciesSpec.protobuf get() = id("com.google.protobuf") version "0.8.14"
+inline val PluginDependenciesSpec.protobuf get() = id("com.google.protobuf") version "0.8.15"
 inline val PluginDependenciesSpec.changelog get() = id("org.jetbrains.changelog") version "0.4.0"
 
 inline val PluginDependenciesSpec.kotless get() = id("io.kotless") version "0.1.6"
@@ -584,7 +591,7 @@ inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boo
 inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version "1.0.9.RELEASE"
 
 // Static Analysis and Linting
-inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.9.0"
+inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.10.2"
 inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.0.0"
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version "9.3.0"
@@ -592,9 +599,10 @@ inline val PluginDependenciesSpec.detekt get() = id("io.gitlab.arturbosch.detekt
 inline val PluginDependenciesSpec.detektCompilerPlugin get() = id("io.github.detekt.gradle.compiler-plugin") version "0.3.1"
 
 // Artifact Publish
-inline val PluginDependenciesSpec.githubRelease get() = id("com.github.breadmoirai.github-release") version "2.2.12"
+inline val PluginDependenciesSpec.nexusPublish get() = id("io.github.gradle-nexus.publish-plugin") version "1.0.0"
 inline val PluginDependenciesSpec.mavenRepoAuth get() = id("org.hibernate.build.maven-repo-auth") version "3.0.4"
 inline val PluginDependenciesSpec.gradleRelease get() = id("net.researchgate.release") version "2.8.1"
+inline val PluginDependenciesSpec.githubRelease get() = id("com.github.breadmoirai.github-release") version "2.2.12"
 
 // Project version detection
 inline val PluginDependenciesSpec.jgitPlugin get() = id("fr.brouillard.oss.gradle.jgitver") version "0.10.0-rc03"
@@ -619,6 +627,9 @@ inline val PluginDependenciesSpec.kotlinPowerAssert get() = id("com.bnorm.power.
 
 // Parsers
 inline val PluginDependenciesSpec.jflex get() = id("org.xbib.gradle.plugin.jflex") version "1.5.0"
+
+// Template Engines
+inline val PluginDependenciesSpec.jte get() =  id("gg.jte.gradle") version "1.7.0"
 
 // GraalVM
 inline val PluginDependenciesSpec.nativeImage get() = id("org.graalvm.plugin.native-image") version "0.1.0-alpha2"

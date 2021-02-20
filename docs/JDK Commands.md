@@ -71,6 +71,7 @@ $ java -XX:+UseParallelGC ...
 ##### 6. Show Java VM/Property Settings
 
 ```bash
+$ java --version
 $ java -Xinternalversion
 
 $ java -XshowSettings:all --version
@@ -82,8 +83,8 @@ $ java -XshowSettings:properties --version
 $  java -XX:+UnlockExperimentalVMOptions -XX:+UnlockDiagnosticVMOptions -XX:+PrintFlagsFinal -version
 ```
 
-* [Java Options*](https://docs.oracle.com/en/java/javase/15/docs/specs/man/java.html)
-* [VM Options](https://www.oracle.com/java/technologies/javase/vmoptions-jsp.html)
+* [**Java Options**](https://docs.oracle.com/en/java/javase/15/docs/specs/man/java.html)
+* **[VM Options](https://www.oracle.com/java/technologies/javase/vmoptions-jsp.html)**
 
 
 
@@ -230,6 +231,9 @@ $  java -Xlog:help
 -XX:ErrorFile=$USER_HOME/java_error_in_app_%p.log
 -XX:HeapDumpPath=$USER_HOME/java_error_in_app.hprof
 ```
+
+      * [Flight Recorder TS Guide](https://docs.oracle.com/en/java/javase/15/troubleshoot/diagnostic-tools.html#GUID-D38849B6-61C7-4ED6-A395-EA4BC32A9FD6)
+      * [Flight Recorder API Guide](https://docs.oracle.com/en/java/javase/15/jfapi/flight-recorder-configurations.html)
 
 
 
@@ -535,7 +539,7 @@ withType<AbstractArchiveTask>().configureEach {
 }
 ```
 
-* [reproducible-builds.org](https://reproducible-builds.org/docs/jvm/) 
+* **[reproducible-builds.org](https://reproducible-builds.org/docs/jvm/)** 
 * https://github.com/jvm-repo-rebuild/reproducible-central
 
 
@@ -580,13 +584,13 @@ if (JavaVersion.current().isJava11Compatible) {
 
 ##### 10. Dependencies 
 
-     ```bash
+```bash
 
 # Dependencies
 $ ./gradlew -q dependencies --configuration implementation
 $ ./gradlew -q dependencies --configuration runtimeClasspath
 
-$ ./gradlew -q dependencyInsight --dependency kotlin --configuration runtimeClasspat
+$ ./gradlew -q dependencyInsight --dependency kotlin --configuration runtimeClasspath
 
 
 # Task Dependencies
@@ -600,12 +604,13 @@ $ ./gradlew clean build --refresh-dependencies
 # Or
 $ rm -rf ~/.gradle/caches
 
-     ```
+```
 
 * [Debugging Dependencies](https://docs.gradle.org/current/userguide/viewing_debugging_dependencies.html)
-* [Gradle Conflict Resolution](https://docs.gradle.org/current/userguide/dependency_resolution.html#sec:conflict-resolution)
 
+* **[Gradle Conflict Resolution](https://docs.gradle.org/current/userguide/dependency_resolution.html#sec:conflict-resolution)**
 
+  
 
 ##### 11. Update Wrapper and others
 
@@ -621,6 +626,8 @@ $ ./gradlew properties
 # Gradle run with arguments
 $ ./gradlew run --args="<JFR_FILE>"
 ```
+
+
 
 
 

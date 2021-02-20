@@ -10,12 +10,18 @@
   # Oracle OpenJDK
   $ docker pull container-registry.oracle.com/java/openjdk:latest
   $ docker run -it --rm --name openjdk container-registry.oracle.com/java/openjdk
-
+  
   # Openjdk on DockerHub
   $ docker pull openjdk:15-jdk-slim
   ```
 
+     - https://hub.docker.com/_/openjdk
+     - https://github.com/docker-library/docs/tree/master/openjdk
+     - https://github.com/AdoptOpenJDK/openjdk-docker#official-and-unofficial-images
+     - https://container-registry.oracle.com/java/openjdk
+     - https://www.graalvm.org/docs/getting-started/container-images/
 
+  
 
 - ##### Java Container logs
 
