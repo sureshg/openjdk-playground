@@ -10,10 +10,6 @@ kotlin {
     }
 }
 
-kotlinDslPluginOptions {
-    experimentalWarning.set(false)
-}
-
 repositories {
     mavenCentral()
     gradlePluginPortal()

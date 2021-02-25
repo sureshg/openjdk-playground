@@ -39,7 +39,7 @@ object Deps {
         }
 
         object Ksp {
-            const val version = "1.4.30-1.0.0-alpha02"
+            const val version = "1.4.30-1.0.0-alpha03"
             const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
             const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
             const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.3.5"
@@ -51,12 +51,16 @@ object Deps {
             const val sparkApi = "org.jetbrains.kotlinx.spark:kotlin-spark-api-3.0:1.0.0-preview2"
         }
 
-        const val kotlinCss = "org.jetbrains:kotlin-css:1.0.0"
         const val metadata = "me.eugeniomarletti.kotlin.metadata:kotlin-metadata:1.4.0"
         const val metadataJvm = "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.1.0"
         const val compileTesting = "com.github.tschuchortdev:kotlin-compile-testing:1.3.5"
         const val zipSigner = "org.jetbrains.marketplace:zip-signer:0.8"
         const val markdown = "org.jetbrains:markdown:0.2.0"
+    }
+
+    object KotlinJS {
+        const val kvision = "io.kvision:kvision:4.0.0"
+        const val kotlinCss = "org.jetbrains:kotlin-css:1.0.0"
     }
 
     object Kotlinx {
@@ -104,7 +108,7 @@ object Deps {
     }
 
     object Jetty {
-        const val version = "11.0.0"
+        const val version = "11.0.1"
         const val bom = "org.eclipse.jetty:jetty-bom:$version"
         const val server = "org.eclipse.jetty:jetty-server:$version"
         const val servlet = "org.eclipse.jetty:jetty-servlet:$version"
@@ -164,7 +168,7 @@ object Deps {
 
         object ApiService {
             const val sdmv1 =
-                "com.google.apis:google-api-services-smartdevicemanagement:v1-rev20201022-1.31.0"
+                "com.google.apis:google-api-services-smartdevicemanagement:v1-rev20210213-1.31.0"
         }
 
         const val re2j = "com.google.re2j:re2j:1.5"
@@ -211,7 +215,7 @@ object Deps {
     }
 
     object TemplateEngine {
-        const val jte = "gg.jte:jte:1.1.0"
+        const val jte = "gg.jte:jte:1.7.0"
         const val rocker = "com.fizzed:rocker:1.3.0"
         const val stringTemplate = "org.antlr:ST4:4.3.1"
     }
@@ -347,11 +351,13 @@ object Deps {
         const val bouncyCastle = "org.bouncycastle:bcprov-jdk15on:1.60"
         const val conscryptUber = "org.conscrypt:conscrypt-openjdk-uber:1.4.1"
         const val tink = "com.google.crypto.tink:tink:1.2.1"
-        const val password4j = "com.password4j:password4j:1.5.0"
+        const val acme4j = "org.shredzone.acme4j:acme4j:2.11"
     }
 
     object Security {
-        const val otp = "com.github.bastiaanjansen:otp-java:1.1.1"
+        const val password4j = "com.password4j:password4j:1.5.0"
+        const val otp = "com.github.bastiaanjansen:otp-java:1.1.2"
+        const val twoFactorAuth = "com.j256.two-factor-auth:two-factor-auth:1.3"
         const val jkeychain = "pt.davidafsilva.apple:jkeychain:1.0.0"
         const val sshj = "com.hierynomus:sshj:0.26.0"
         const val smbj = "com.hierynomus:smbj:0.9.1"
@@ -410,6 +416,10 @@ object Deps {
         const val byteBuddy = "net.bytebuddy:byte-buddy:1.9.7"
         const val classgraph = "io.github.classgraph:classgraph:4.8.102"
         const val hotswapAgent = "org.hotswapagent:hotswap-agent-core:1.4.1"
+    }
+
+    object JavaCpp {
+        const val version = "1.7.0"
     }
 
     object Faker {
@@ -503,6 +513,7 @@ object Deps {
     const val methanol = "com.github.mizosoft.methanol:methanol:1.4.1"
     const val mapstruct = "org.mapstruct:mapstruct:1.4.2.Final"
 
+    const val streamex = "one.util:streamex:0.7.3"
     const val turbine = "app.cash.turbine:turbine:0.1.1"
     const val typetools = "net.jodah:typetools:0.6.2"
     const val funcj = "org.typemeta:funcj:0.6.16"
@@ -566,7 +577,7 @@ inline val PluginDependenciesSpec.binCompatValidator get() = id("binary-compatib
 
 // Google Plugins
 inline val PluginDependenciesSpec.ksp get() = id("com.google.devtools.ksp") version Deps.Kotlin.Ksp.version
-inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.jib") version "2.7.1"
+inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.jib") version "2.8.0"
 
 // Dependencies
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "6.1.0"
@@ -629,7 +640,11 @@ inline val PluginDependenciesSpec.kotlinPowerAssert get() = id("com.bnorm.power.
 inline val PluginDependenciesSpec.jflex get() = id("org.xbib.gradle.plugin.jflex") version "1.5.0"
 
 // Template Engines
-inline val PluginDependenciesSpec.jte get() =  id("gg.jte.gradle") version "1.7.0"
+inline val PluginDependenciesSpec.jte get() = id("gg.jte.gradle") version "1.7.0.1"
 
 // GraalVM
 inline val PluginDependenciesSpec.nativeImage get() = id("org.graalvm.plugin.native-image") version "0.1.0-alpha2"
+
+// JavaCpp
+inline val PluginDependenciesSpec.javacppBuild get() = id("org.bytedeco.gradle-javacpp-build") version Deps.JavaCpp.version
+inline val PluginDependenciesSpec.javacppPlatform get() = id("org.bytedeco.gradle-javacpp-platform") version Deps.JavaCpp.version

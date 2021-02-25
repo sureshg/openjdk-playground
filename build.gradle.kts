@@ -1,12 +1,14 @@
-import org.gradle.api.tasks.testing.logging.TestExceptionFormat
-import org.gradle.api.tasks.testing.logging.TestLogEvent
-import org.jetbrains.dokka.gradle.DokkaTask
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import java.net.URL
+import gg.jte.*
+import org.gradle.api.tasks.testing.logging.*
+import org.jetbrains.dokka.gradle.*
+import org.jetbrains.kotlin.gradle.tasks.*
+import java.net.*
+import java.nio.file.Path
 
 plugins {
     idea
     java
+    jgitPlugin
     application
     kotlinJvm
     ksp
@@ -22,7 +24,6 @@ plugins {
     kotlinPowerAssert
     spotlessChangelog
     benmanesVersions
-    jgitPlugin
     gitProperties
     `maven-publish`
     nexusPublish
@@ -51,7 +52,7 @@ application {
         "-Djdk.tracePinnedThreads=full",
         "-Djava.security.egd=file:/dev/./urandom",
         "-XX:+UnlockDiagnosticVMOptions",
-        "-XX:+ShowHiddenFrames"
+        "-XX:+ShowHiddenFrames",
         // "-XX:+IgnoreUnrecognizedVMOptions",
         // "-XX:NativeMemoryTracking=summary",
         // "-Djava.net.preferIPv4Stack=true"
@@ -71,11 +72,20 @@ java {
     withSourcesJar()
     withJavadocJar()
 
-    modularity.inferModulePath.set(false)
-
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(javaVersion))
         vendor.set(JvmVendorSpec.ORACLE)
+    }
+    // modularity.inferModulePath.set(false)
+}
+
+// Add the generated templates to source set.
+sourceSets {
+    main {
+        java.srcDirs(
+            tasks.copyTemplates.get().destinationDir,
+            tasks.generateJte.get().targetDirectory
+        )
     }
 }
 
@@ -186,6 +196,9 @@ tasks {
         }
     }
 
+    // After the project configure
+    afterEvaluate {}
+
     // Configure "compileKotlin" and "compileTestKotlin" tasks.
     withType<KotlinCompile>().configureEach {
         usePreciseJavaTracking = true
@@ -220,8 +233,17 @@ tasks {
             )
         }
 
-        // Generate the templates.
+        // Generate kotlin templates. This has to be before kotlin compile.
         dependsOn(copyTemplates)
+
+        // Generate Jte templates.
+        dependsOn(generateJte)
+    }
+
+    // Jte templates
+    generateJte {
+        sourceDirectory = Path.of("src", "main", "templates", "jte")
+        contentType = ContentType.Plain
     }
 
     // JUnit5
@@ -352,8 +374,8 @@ val dokkaHtmlJar by tasks.registering(Jar::class) {
 }
 
 dependencies {
-    implementation(enforcedPlatform(Deps.Kotlin.bom))
-    implementation(enforcedPlatform(Deps.OkHttp.bom))
+    implementation(platform(Deps.Kotlin.bom))
+    implementation(platform(Deps.OkHttp.bom))
     implementation(Deps.Kotlin.stdlibJdk8)
     implementation(Deps.Kotlinx.Serialization.json)
     implementation(Deps.Kotlinx.Serialization.properties)
@@ -375,6 +397,7 @@ dependencies {
     implementation(Deps.Google.AutoService.annotations)
     implementation(Deps.Jackson.databind)
     implementation(Deps.Google.ApiService.sdmv1)
+    implementation(Deps.TemplateEngine.jte)
     compileOnly(Deps.Kotlinx.atomicfu)
     kapt(Deps.Google.AutoService.processor)
 

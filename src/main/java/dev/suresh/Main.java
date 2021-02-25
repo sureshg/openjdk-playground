@@ -1,5 +1,6 @@
 package dev.suresh;
 
+import dev.suresh.jte.RenderJte;
 import dev.suresh.loom.jetty.JettyServerKt;
 import dev.suresh.mvn.MavenResolver;
 import dev.suresh.server.DevServer;
@@ -61,6 +62,7 @@ public class Main {
 
     new DevServer().run();
     new MavenResolver().run();
+    new RenderJte().run();
     JettyServerKt.run(8080);
 
     record T(String a) {}

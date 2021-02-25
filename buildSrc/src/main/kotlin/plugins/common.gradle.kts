@@ -4,14 +4,7 @@ plugins {
     java
 }
 
-/**
- * Add the generated templates to source set.
- */
-sourceSets {
-    main {
-        java.srcDir(project.file("$buildDir/generated/sources/templates/kotlin/main"))
-    }
-}
+val templateOutDir = "generated-sources/templates/kotlin/main"
 
 /**
  * Generate template classes.
@@ -29,6 +22,7 @@ val copyTemplates by tasks.registering(Copy::class) {
     filteringCharset = "UTF-8"
     inputs.property("buildversions", props.hashCode())
     from(layout.projectDirectory.dir("src/main/templates"))
-    into(layout.buildDirectory.dir("generated/sources/templates/kotlin/main"))
+    into(layout.buildDirectory.dir(templateOutDir))
+    exclude { it.name.startsWith("jte") }
     expand(props)
 }

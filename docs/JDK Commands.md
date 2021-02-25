@@ -489,7 +489,18 @@ val sourcesJar by tasks.registering(Jar::class) {
 
 
 
-##### 6. [Configure/Create Tasks](https://docs.gradle.org/current/userguide/kotlin_dsl.html#kotdsl:containers)
+##### 6. Compile class path
+
+
+
+```kotlin
+sourceSets.main.get().compileClasspath
+// kotlin.sourceSets.main.get().kotlin
+```
+
+
+
+##### 7. [Configure/Create Tasks](https://docs.gradle.org/current/userguide/kotlin_dsl.html#kotdsl:containers)
 
    * ###### Eager
 
@@ -514,7 +525,7 @@ val sourcesJar by tasks.registering(Jar::class) {
 
 
 
-##### 7. [Enabling Java preview feature](https://docs.gradle.org/current/userguide/building_java_projects.html#sec:feature_preview)
+##### 8. [Enabling Java preview feature](https://docs.gradle.org/current/userguide/building_java_projects.html#sec:feature_preview)
 
 ```kotlin
 tasks.withType<JavaCompile> {
@@ -530,7 +541,7 @@ tasks.withType<JavaExec> {
 
 
 
-##### 8. [Reproducible builds](https://docs.gradle.org/current/userguide/working_with_files.html#sec:reproducible_archives)
+##### 9. [Reproducible builds](https://docs.gradle.org/current/userguide/working_with_files.html#sec:reproducible_archives)
 
 ```kotlin
 withType<AbstractArchiveTask>().configureEach {
@@ -544,7 +555,7 @@ withType<AbstractArchiveTask>().configureEach {
 
 
 
-##### 9. [Multi Release Jar](https://blog.gradle.org/mrjars)
+##### 10. [Multi Release Jar](https://blog.gradle.org/mrjars)
 
 ```kotlin
 // See https://github.com/melix/mrjar-gradle for more on multi release jars
@@ -582,7 +593,7 @@ if (JavaVersion.current().isJava11Compatible) {
 
 
 
-##### 10. Dependencies 
+##### 11. Dependencies 
 
 ```bash
 
@@ -612,7 +623,7 @@ $ rm -rf ~/.gradle/caches
 
   
 
-##### 11. Update Wrapper and others
+##### 12. Update Wrapper and others
 
 ```bash
 $ ./gradlew wrapper --gradle-version=6.8 --distribution-type=bin
@@ -992,6 +1003,12 @@ https://github.com/GoogleContainerTools/distroless
 https://github.com/GoogleContainerTools/jib
 
 
+
+#### LDAP Tools
+
+* https://ldap.com/ldap-tools/
+
+  
 
 #### Native-Image
 

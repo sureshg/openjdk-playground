@@ -16,6 +16,7 @@ pluginManagement {
     repositories {
         gradlePluginPortal()
         google()
+        // mavenLocal()
     }
 
     resolutionStrategy {
