@@ -91,6 +91,12 @@ sourceSets {
 
 kotlin {
     // explicitApi()
+    // sourceSets.all {
+    //    languageSettings.apply {
+    //        useExperimentalAnnotation("kotlinx.coroutines.ExperimentalCoroutinesApi")
+    //        useExperimentalAnnotation("io.ktor.util.KtorExperimentalAPI")
+    //    }
+    // }
 }
 
 apiValidation {

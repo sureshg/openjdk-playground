@@ -116,6 +116,9 @@ module dev.suresh.openjdklatest {
 ```
 
  <!--
+ // Template for IR based Kotlin compiler plugin
+ https://github.com/bnorm/kotlin-ir-plugin-template
+
  Idiomatic Gradle  - https://github.com/jjohannes/idiomatic-gradle
 
  Http APIs to test - https://api.github.com/repos/jetbrains/kotlin
