@@ -4,7 +4,7 @@ import App
 import gg.jte.*
 import gg.jte.output.*
 
-data class KtConfig(val language: String, val version: String)
+data class KtConfig(val language: String, val version: String, val appVersion: String)
 
 class RenderJte {
     fun run() {
@@ -12,7 +12,7 @@ class RenderJte {
         val output = StringOutput()
         val params = mapOf(
             "config" to Config(),
-            "ktConfig" to KtConfig("Kotlin", App.KOTLIN_VERSION),
+            "ktConfig" to KtConfig("Kotlin", App.KOTLIN_VERSION, App.VERSION),
         )
         tmplEngine.render("hello.jte", params, output)
         println(output)

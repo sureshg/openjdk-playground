@@ -99,8 +99,7 @@ kotlin {
     // }
 }
 
-apiValidation {
-    validationDisabled = true
+ksp {
 }
 
 kapt {
@@ -108,6 +107,10 @@ kapt {
         option("--enable-preview")
         option("-Xmaxerrs", 200)
     }
+}
+
+apiValidation {
+    validationDisabled = true
 }
 
 // Formatting
@@ -180,8 +183,13 @@ configurations {
     devOnly
 }
 
-tasks {
 
+// After the project configure
+afterEvaluate {
+    println("=== Project Configuration Completed ===")
+}
+
+tasks {
     // Configure "compileJava" and "compileTestJava" tasks.
     withType<JavaCompile>().configureEach {
         options.apply {
@@ -201,9 +209,6 @@ tasks {
             )
         }
     }
-
-    // After the project configure
-    afterEvaluate {}
 
     // Configure "compileKotlin" and "compileTestKotlin" tasks.
     withType<KotlinCompile>().configureEach {
@@ -352,10 +357,10 @@ tasks {
         reportfileName = "report"
     }
 
-    // Disable dependency analysis.
-    analyzeClassesDependencies.get().enabled = false
-    analyzeTestClassesDependencies.get().enabled = false
-    analyzeDependencies.get().enabled = false
+    // Disable dependency analysis
+    // analyzeDependencies.get().enabled = false
+    // analyzeClassesDependencies.get().enabled = false
+    // analyzeTestClassesDependencies.get().enabled = false
 
     // Reproducible builds
     withType<AbstractArchiveTask>().configureEach {
@@ -420,6 +425,7 @@ dependencies {
     // Dokka Plugins (dokkaHtmlPlugin, dokkaGfmPlugin)
     // dokkaPlugin(Deps.Dokka.kotlinAsJavaPlugin)
 }
+
 
 publishing {
     repositories {

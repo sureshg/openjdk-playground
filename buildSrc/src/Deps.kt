@@ -39,7 +39,7 @@ object Deps {
         }
 
         object Ksp {
-            const val version = "1.4.30-1.0.0-alpha03"
+            const val version = "1.4.30-1.0.0-alpha04"
             const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
             const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
             const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.3.5"
@@ -365,6 +365,7 @@ object Deps {
 
     object Network {
         const val dnsJava = "dnsjava:dnsjava:3.3.1"
+        const val urlBuilder = "io.mikael:urlbuilder:2.0.9"
     }
 
     object Retry {
@@ -400,7 +401,7 @@ object Deps {
         const val asn1 = "com.hierynomus:asn-one:0.1.0"
         const val asn1bean = "com.beanit:asn1bean:1.12.0"
         const val gifEncoder = "com.squareup:gifencoder:0.10.1"
-        const val gifDecoder = "net.redwarp.gif:decoder:0.2.2"
+        const val gifDecoder = "app.redwarp.gif:decoder:0.3.0"
     }
 
     object Compression {
@@ -512,6 +513,7 @@ object Deps {
     const val micronautBom = "io.micronaut:micronaut-bom:2.0.0"
     const val methanol = "com.github.mizosoft.methanol:methanol:1.4.1"
     const val mapstruct = "org.mapstruct:mapstruct:1.4.2.Final"
+    const val ljv = "org.atp-fivt:ljv:1.02"
 
     const val streamex = "one.util:streamex:0.7.3"
     const val turbine = "app.cash.turbine:turbine:0.1.1"
@@ -582,7 +584,7 @@ inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.j
 // Dependencies
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "6.1.0"
 inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version "0.36.0"
-inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.4.3"
+inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.5.0" apply false
 
 inline val PluginDependenciesSpec.javafx get() = id("org.openjfx.javafxplugin") version "0.0.7"
 inline val PluginDependenciesSpec.jmh get() = id("me.champeau.gradle.jmh") version "0.4.8"

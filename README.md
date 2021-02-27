@@ -8,6 +8,7 @@
 <a href="https://deploy.cloud.run"><img src="https://deploy.cloud.run/button.svg" alt="CloudRun" title="CloudRun" width="18%"></a>
 
 #### Setup OpenJDK (Loom Build)
+
 ```bash
 $ curl -s "https://get.sdkman.io" | bash
 $ sdk i java 17.ea.2.lm-open
@@ -15,21 +16,13 @@ $ sdk u java 17.ea.2.lm-open
 ```
 
 #### Build
+
 ```bash
 $ ./gradlew --console plain clean build
-
-# Runs all checks
-$ ./gradlew clean check
-
-# Check tasks dependencies and version updates
-$ ./gradlew clean build --dry-run
-$ ./gradlew  dependencyUpdates
-
-# List all available toolchains
-$ ./gradlew -q javaToolchains
 ```
 
 #### Run with `preview features` enabled
+
 ```bash
 $ java --show-version \
        --enable-preview \
@@ -48,6 +41,7 @@ $ java --show-version \
 ```
 
 #### Run the application container
+
 ```bash
 $ ./gradlew jibDockerBuild
 $ docker run -it --rm --name openjdk-playground sureshg/openjdk-playground
@@ -93,6 +87,20 @@ $ ./gradlew -q --console plain version
 # Stop Gradle and Kotlin daemon
 $ ./gradlew --stop && pkill -f KotlinCompileDaemon
 
+# Kotlin DSL Accessors
+$ ./gradlew clean kotlinDslAccessorsReport
+
+# Runs all checks
+$ ./gradlew clean check
+
+# Check tasks dependencies 
+$ ./gradlew clean build --dry-run
+
+# Dep version updates
+$ ./gradlew  dependencyUpdates
+
+# List all available toolchains
+$ ./gradlew -q javaToolchains
 ```
 
 ##### JMPS Config

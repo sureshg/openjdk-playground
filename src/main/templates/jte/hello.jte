@@ -5,6 +5,7 @@
 @param Config config
 @param KtConfig ktConfig
 
-Hello ${config.language()} - ${config.version()}
-Hello ${ktConfig.getLanguage()} - ${ktConfig.getVersion()}
+App Version  = ${ktConfig.getAppVersion()}
+${config.language()} = ${config.version()}
+${ktConfig.getLanguage()} = ${ktConfig.getVersion()}
 Rendered By Jte on ${LocalDateTime.now().toString()}
