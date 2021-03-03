@@ -25,6 +25,8 @@ object Deps {
         val reflect = "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
         val test = "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
         val testJunit = "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
+
+        val compiler = "org.jetbrains.kotlin:kotlin-compiler-embeddable:$kotlinVersion"
         val scriptRuntime = "org.jetbrains.kotlin:kotlin-script-runtime:$kotlinVersion"
         val scriptUtil = "org.jetbrains.kotlin:kotlin-script-util:$kotlinVersion"
         val scriptJsr223 = "org.jetbrains.kotlin:kotlin-scripting-jsr223:$kotlinVersion"
@@ -200,7 +202,7 @@ object Deps {
         const val jupiterApi = "org.junit.jupiter:junit-jupiter-api:$version"
         const val jupiterEngine = "org.junit.jupiter:junit-jupiter-engine:$version"
         const val jupiterParams = "org.junit.jupiter:junit-jupiter-params:$version"
-        const val pioneer = "org.junit-pioneer:junit-pioneer:1.3.0"
+        const val pioneer = "org.junit-pioneer:junit-pioneer:1.3.8"
     }
 
     object Mock {
@@ -215,9 +217,14 @@ object Deps {
     }
 
     object TemplateEngine {
-        const val jte = "gg.jte:jte:1.7.0"
         const val rocker = "com.fizzed:rocker:1.3.0"
         const val stringTemplate = "org.antlr:ST4:4.3.1"
+
+        object Jte {
+            const val version = "1.8.0"
+            const val jte = "gg.jte:jte:$version"
+            const val kotlin = "gg.jte:jte-kotlin:$version"
+        }
     }
 
     object Parser {
@@ -642,7 +649,7 @@ inline val PluginDependenciesSpec.kotlinPowerAssert get() = id("com.bnorm.power.
 inline val PluginDependenciesSpec.jflex get() = id("org.xbib.gradle.plugin.jflex") version "1.5.0"
 
 // Template Engines
-inline val PluginDependenciesSpec.jte get() = id("gg.jte.gradle") version "1.7.0.1"
+inline val PluginDependenciesSpec.jte get() = id("gg.jte.gradle") version Deps.TemplateEngine.Jte.version
 
 // GraalVM
 inline val PluginDependenciesSpec.nativeImage get() = id("org.graalvm.plugin.native-image") version "0.1.0-alpha2"

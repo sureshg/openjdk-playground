@@ -1136,6 +1136,8 @@ $ docker run -d -p 25565:25565 --name mc itzg/minecraft-server:adopt15
 - https://fontawesome.com/v4.7.0/icons/ (not sag)
 - https://simpleicons.org/ (Brand Icons - good one)
 - https://github.com/microsoft/fluentui-system-icons
+- https://tablericons.com/
+- https://tabler-icons.io/
 - https://systemuicons.com/
 - https://www.visiwig.com/icons/
 - https://standart.io/

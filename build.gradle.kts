@@ -257,6 +257,10 @@ tasks {
         contentType = ContentType.Plain
     }
 
+    run.invoke {
+        args(true)
+    }
+
     // JUnit5
     test {
         useJUnitPlatform()
@@ -408,7 +412,8 @@ dependencies {
     implementation(Deps.Google.AutoService.annotations)
     implementation(Deps.Jackson.databind)
     implementation(Deps.Google.ApiService.sdmv1)
-    implementation(Deps.TemplateEngine.jte)
+    implementation(Deps.TemplateEngine.Jte.jte)
+    compileOnly(Deps.TemplateEngine.Jte.kotlin)
     compileOnly(Deps.Kotlinx.atomicfu)
     kapt(Deps.Google.AutoService.processor)
 
