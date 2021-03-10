@@ -32,7 +32,7 @@ object Deps {
         val scriptJsr223 = "org.jetbrains.kotlin:kotlin-scripting-jsr223:$kotlinVersion"
 
         object Coroutines {
-            const val version = "1.4.2"
+            const val version = "1.4.3"
             const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
             const val jdk8 = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$version"
             const val reactor = "org.jetbrains.kotlinx:coroutines-reactor:$version"
@@ -118,6 +118,7 @@ object Deps {
         const val slf4j = "org.eclipse.jetty:jetty-slf4j-impl:$version"
         const val testHelper = "org.eclipse.jetty:jetty-test-helper:$version"
         const val servletApi = "org.eclipse.jetty.toolchain:jetty-servlet-api:4.0.6"
+        const val loadGenerator = "org.mortbay.jetty.loadgenerator:jetty-load-generator:1.0.4"
     }
 
     const val okio = "com.squareup.okio:okio:2.2.0"
@@ -309,7 +310,7 @@ object Deps {
     }
 
     object Jackson {
-        const val version = "2.12.1"
+        const val version = "2.12.2"
         const val databind = "com.fasterxml.jackson.core:jackson-databind:$version"
     }
 
@@ -365,9 +366,10 @@ object Deps {
         const val password4j = "com.password4j:password4j:1.5.0"
         const val otp = "com.github.bastiaanjansen:otp-java:1.1.2"
         const val twoFactorAuth = "com.j256.two-factor-auth:two-factor-auth:1.3"
-        const val jkeychain = "pt.davidafsilva.apple:jkeychain:1.0.0"
         const val sshj = "com.hierynomus:sshj:0.26.0"
         const val smbj = "com.hierynomus:smbj:0.9.1"
+        const val jarSign = "org.simplify4u.plugins:sign-maven-plugin:0.3.0"
+        const val jkeychain = "pt.davidafsilva.apple:jkeychain:1.0.0"
     }
 
     object Network {
@@ -539,6 +541,7 @@ object Deps {
     const val jimfs = "com.google.jimfs:jimfs:1.1"
 
     const val jgrapht = "org.jgrapht:jgrapht-core:1.5.0"
+    const val jsonPathKt = "com.nfeld.jsonpathkt:jsonpathkt:2.0.0"
     const val jsonPath = "com.jayway.jsonpath:json-path:2.4.0"
 
     const val trov4j = "org.jetbrains.intellij.deps:trove4j:1.0.20181211"
@@ -590,7 +593,7 @@ inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.j
 
 // Dependencies
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "6.1.0"
-inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version "0.36.0"
+inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version "0.38.0"
 inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.5.0" apply false
 
 inline val PluginDependenciesSpec.javafx get() = id("org.openjfx.javafxplugin") version "0.0.7"
@@ -611,7 +614,7 @@ inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boo
 inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version "1.0.9.RELEASE"
 
 // Static Analysis and Linting
-inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.10.2"
+inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.11.0"
 inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.0.0"
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version "9.3.0"

@@ -66,7 +66,11 @@ idea {
         isDownloadJavadoc = true
         isDownloadSources = true
     }
+
+    project.vcs = "Git"
 }
+
+//apply(from ="")
 
 java {
     withSourcesJar()
