@@ -232,8 +232,9 @@ $  java -Xlog:help
 -XX:HeapDumpPath=$USER_HOME/java_error_in_app.hprof
 ```
 
-      * [Flight Recorder TS Guide](https://docs.oracle.com/en/java/javase/15/troubleshoot/diagnostic-tools.html#GUID-D38849B6-61C7-4ED6-A395-EA4BC32A9FD6)
-      * [Flight Recorder API Guide](https://docs.oracle.com/en/java/javase/15/jfapi/flight-recorder-configurations.html)
+* [Troubleshoot Perf Issues Using JFR](https://docs.oracle.com/en/java/javase/15/troubleshoot/troubleshoot-performance-issues-using-jfr.html#GUID-0FE29092-18B5-4BEB-8D8D-0CBA7A4FEA1D)
+* [Flight Recorder Tool](https://docs.oracle.com/en/java/javase/15/troubleshoot/diagnostic-tools.html#GUID-D38849B6-61C7-4ED6-A395-EA4BC32A9FD6)
+* [Flight Recorder API Guide](https://docs.oracle.com/en/java/javase/15/jfapi/flight-recorder-configurations.html)
 
 
 
@@ -385,6 +386,15 @@ http.nonProxyHosts
 -Djdk.internal.httpclient.debug=false
 -Djdk.tls.client.protocols="TLSv1.2"
 ```
+
+
+
+##### 5. GPG/OpenPGP
+
+* [GPG Key Prepare](https://github.com/s4u/sign-maven-plugin/blob/master/src/site/markdown/key-prepare.md)
+* [Renew GPG Key](https://gist.github.com/krisleech/760213ed287ea9da85521c7c9aac1df0)
+
+​      Note that the private key can never expire.
 
 
 
@@ -1071,6 +1081,10 @@ Find GraalVm used to generate the native-image
 
 ```bash
 $ strings -a $(which native-image) | grep -i com.oracle.svm.core.VM
+```
+
+```bash
+$ git commit --allow-empty -m "empty commit"
 ```
 
 
