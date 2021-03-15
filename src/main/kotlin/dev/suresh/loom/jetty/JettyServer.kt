@@ -132,10 +132,9 @@ class HelloServlet : HttpServlet() {
     private fun exec(req: HttpServletRequest?, resp: HttpServletResponse?): String {
         // Simulate blocking
         Thread.sleep(3 * 1000)
-        val userId = USER_ID.get()
         return """
           {
-            "UserId" : $userId,
+            "UserId" : ${USER_ID.get()},
             "server" : ${Jetty.VERSION},
             "Java"   : ${JavaVersion.VERSION},
             "target" : ${req?.fullURL},
