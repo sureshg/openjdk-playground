@@ -48,6 +48,7 @@ application {
         "-XX:+HeapDumpOnOutOfMemoryError",
         "-XX:HeapDumpPath=/tmp/$name.hprof",
         "-XX:ErrorFile=/tmp/java-error-$name-%p.log",
+        "-Dfile.encoding=UTF-8",
         "-Djdk.attach.allowAttachSelf=true",
         "-Djdk.tracePinnedThreads=full",
         "-Djava.security.egd=file:/dev/./urandom",
@@ -66,7 +67,6 @@ idea {
         isDownloadJavadoc = true
         isDownloadSources = true
     }
-
     project.vcs = "Git"
 }
 
@@ -400,7 +400,8 @@ dependencies {
     implementation(Deps.Kotlinx.Serialization.properties)
     implementation(Deps.Kotlinx.dateTime)
     implementation(Deps.Jetty.server)
-    implementation(Deps.Jetty.servletApi)
+    implementation(Deps.Jetty.jakartaServletApi)
+    implementation(Deps.Jetty.servlet)
     implementation(Deps.OkHttp.okhttp)
     implementation(Deps.OkHttp.mockWebServer)
     implementation(Deps.OkHttp.tls)
@@ -417,6 +418,8 @@ dependencies {
     implementation(Deps.Jackson.databind)
     implementation(Deps.Google.ApiService.sdmv1)
     implementation(Deps.TemplateEngine.Jte.jte)
+    implementation(Deps.Logging.Slf4j.simple)
+    // implementation(Deps.Jetty.loadGenerator)
     compileOnly(Deps.TemplateEngine.Jte.kotlin)
     compileOnly(Deps.Kotlinx.atomicfu)
     kapt(Deps.Google.AutoService.processor)

@@ -9,4 +9,3 @@ App Version  = ${ktConfig.appVersion ?: "1.0.0"}
 ${config.language()} = ${config.version()}
 ${ktConfig.language} = ${ktConfig.version}
 Rendered By Kotlin Jte on ${LocalDateTime.now().toString()}
-

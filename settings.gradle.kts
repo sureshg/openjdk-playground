@@ -23,7 +23,6 @@ pluginManagement {
         eachPlugin {
             when (requested.id.id) {
                 "kotlinx-atomicfu" -> useModule("org.jetbrains.kotlinx:atomicfu-gradle-plugin:${requested.version}")
-                "binary-compatibility-validator" -> useModule("org.jetbrains.kotlinx:binary-compatibility-validator:${requested.version}")
             }
         }
     }

@@ -9,7 +9,7 @@ class LoomThreadPool : AbstractLifeCycle(), ThreadPool {
     private val execSvc: ExecutorService
 
     init {
-        val factory = Thread.builder().virtual().name("VirtualThreadPool-", 1).factory()
+        val factory = Thread.ofVirtual().name("JettyVirtualThreadPool-", 1).factory()
         execSvc = Executors.newThreadExecutor(factory)
     }
 

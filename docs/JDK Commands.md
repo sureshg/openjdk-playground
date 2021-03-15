@@ -178,8 +178,9 @@ $ jshell --enable-preview --startup DEFAULT --startup ~/calc.repl
 ##### 11. Loom config
 
 ```bash
-# Carrier thread count
-$ java -Djdk.defaultScheduler.parallelism=1
+# Loom Default ForkJoinPool scheduler config.
+$ java -Djdk.defaultScheduler.parallelism=1   // Default to available processors
+       -Djdk.defaultScheduler.maxPoolSize=256 // Max(parallelism,256)
 
 # Trace pinned thread while holding monitors.
 $ java -Djdk.tracePinnedThreads=short|full
@@ -292,8 +293,18 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 
 ##### 16. Generics
 
-    - [GenericsFAQ](http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html)
-    - [How we got Generics we have](https://cr.openjdk.java.net/~briangoetz/valhalla/erasure.html)
+- [GenericsFAQ](http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html)
+- [How we got Generics we have](https://cr.openjdk.java.net/~briangoetz/valhalla/erasure.html)
+
+
+
+##### 17. HeapDump
+
+    *  [Graal Heapdump Builder](https://www.graalvm.org/tools/javadoc/org/graalvm/tools/insight/heap/HeapDump.html)
+    *  [Java Profiler Heap Dump Format](http://hg.openjdk.java.net/jdk6/jdk6/jdk/raw-file/tip/src/share/demo/jvmti/hprof/manual.html)
+    *  [HPROF Parser](https://github.com/openjdk/jdk/blob/master/test/lib/jdk/test/lib/hprof/HprofParser.java)
+
+
 
 
 
@@ -394,7 +405,7 @@ http.nonProxyHosts
 * [GPG Key Prepare](https://github.com/s4u/sign-maven-plugin/blob/master/src/site/markdown/key-prepare.md)
 * [Renew GPG Key](https://gist.github.com/krisleech/760213ed287ea9da85521c7c9aac1df0)
 
-​      Note that the private key can never expire.
+​      `Note that the private key can never expire.`
 
 
 

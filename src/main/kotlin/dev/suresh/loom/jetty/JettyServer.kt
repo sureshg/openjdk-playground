@@ -24,8 +24,9 @@ fun run(port: Int = 8080) {
         // NetworkTrafficServerConnector(server)
         val connector = ServerConnector(this)
         connector.port = port
-        addConnector(connector)
+        connector.acceptQueueSize = 1024
 
+        addConnector(connector)
         handler = HandlerList(
             HelloHandler(),
             DefaultHandler(),
@@ -52,31 +53,30 @@ fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
     println("Sending $count concurrent requests to ${server.uri} and wait for $deadlineInSec seconds...")
 
     val client = HttpClient.newBuilder()
-        .connectTimeout(Duration.ofSeconds(10))
         .version(HttpClient.Version.HTTP_1_1)
+        .connectTimeout(Duration.ofSeconds(10))
         .build()
 
-    val factory = Thread.builder().virtual().name("VirtualThreadPool-", 1).factory()
-    val execSvc = Executors.newThreadExecutor(factory)
-    val results = execSvc.withDeadline(Instant.now().plusSeconds(deadlineInSec))
-        .use { exec ->
-            (1..count).map {
-                exec.submit<Result<String>> {
-                    try {
-                        println("---> $it. Sending Request")
-                        val res = client.send(
-                            HttpRequest.newBuilder().uri(server.uri).build(),
-                            HttpResponse.BodyHandlers.ofString()
-                        )
+    val factory = Thread.ofVirtual().name("VirtualThreadPool-", 1).factory()
+    val execSvc = Executors.newThreadExecutor(factory, Instant.now().plusSeconds(deadlineInSec))
+    val results = execSvc.use { exec ->
+        (1..count).map {
+            exec.submit<Result<String>> {
+                try {
+                    println("---> $it. Sending Request")
+                    val res = client.send(
+                        HttpRequest.newBuilder().uri(server.uri).build(),
+                        HttpResponse.BodyHandlers.ofString()
+                    )
 
-                        println("<--- $it. Response($threadInfo): ${res.body()}")
-                        Result.success(res.body())
-                    } catch (t: Throwable) {
-                        Result.failure(t)
-                    }
+                    println("<--- $it. Response($threadInfo): ${res.body()}")
+                    Result.success(res.body())
+                } catch (t: Throwable) {
+                    Result.failure(t)
                 }
             }
         }
+    }
 
     // Clear the interrupt status
     println("Checking if the current thread has been interrupted: ${Thread.interrupted()}")

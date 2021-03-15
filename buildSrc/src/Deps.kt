@@ -41,7 +41,7 @@ object Deps {
         }
 
         object Ksp {
-            const val version = "1.4.30-1.0.0-alpha04"
+            const val version = "1.4.30-1.0.0-alpha05"
             const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
             const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
             const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.3.5"
@@ -114,11 +114,21 @@ object Deps {
         const val bom = "org.eclipse.jetty:jetty-bom:$version"
         const val server = "org.eclipse.jetty:jetty-server:$version"
         const val servlet = "org.eclipse.jetty:jetty-servlet:$version"
+        const val servlets =
+            "org.eclipse.jetty:jetty-servlets:$version" // Utility Servlets and Filters
         const val util = "org.eclipse.jetty:jetty-util:$version"
         const val slf4j = "org.eclipse.jetty:jetty-slf4j-impl:$version"
         const val testHelper = "org.eclipse.jetty:jetty-test-helper:$version"
-        const val servletApi = "org.eclipse.jetty.toolchain:jetty-servlet-api:4.0.6"
-        const val loadGenerator = "org.mortbay.jetty.loadgenerator:jetty-load-generator:1.0.4"
+        const val jakartaServletApi = "org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api:5.0.2"
+        const val loadGenerator =
+            "org.mortbay.jetty.loadgenerator:jetty-load-generator-client:1.0.4"
+    }
+
+    // Java 11 HTTP addons
+    object Http {
+        const val methanol = "com.github.mizosoft.methanol:methanol:1.4.1"
+        const val urlbuilder = "io.mikael:urlbuilder:2.0.9"
+        const val interceptor = "codes.rafael.interceptablehttpclient:interceptable-http-client:1.0"
     }
 
     const val okio = "com.squareup.okio:okio:2.2.0"
@@ -206,6 +216,13 @@ object Deps {
         const val pioneer = "org.junit-pioneer:junit-pioneer:1.3.8"
     }
 
+    object KoTest {
+        const val version = "4.4.3"
+        const val junit5Runner = "io.kotest:kotest-runner-junit5:$version"
+        const val assertions = "io.kotest:kotest-assertions-core:$version"
+        const val property = "io.kotest:kotest-property:$version"
+    }
+
     object Mock {
         const val mockk = "io.mockk:mockk:1.10.6"
         const val mockito = "org.mockito:mockito-core:2.26.0"
@@ -222,7 +239,7 @@ object Deps {
         const val stringTemplate = "org.antlr:ST4:4.3.1"
 
         object Jte {
-            const val version = "1.8.0"
+            const val version = "1.9.0"
             const val jte = "gg.jte:jte:$version"
             const val kotlin = "gg.jte:jte-kotlin:$version"
         }
@@ -294,10 +311,11 @@ object Deps {
     object Logging {
 
         object Slf4j {
-            const val version = "1.7.30"
+            const val version = "2.0.0-alpha1"
             const val api = "org.slf4j:slf4j-api:$version"
-            const val simple = "org.slf4j:slf4j-simple:$version"
             const val nop = "org.slf4j:slf4j-nop:$version"
+            const val simple = "org.slf4j:slf4j-simple:$version"
+            const val jdk14 = "org.slf4j:slf4j-jdk14:$version"
         }
 
         object Logback {
@@ -406,6 +424,10 @@ object Deps {
         const val oshi = "com.github.oshi:oshi-core:5.2.5"
     }
 
+    object Image {
+        const val thumbnailator = "net.coobird:thumbnailator:0.4.14"
+    }
+
     object Encoding {
         const val asn1 = "com.hierynomus:asn-one:0.1.0"
         const val asn1bean = "com.beanit:asn1bean:1.12.0"
@@ -482,12 +504,6 @@ object Deps {
         const val genAnnprocess = "org.openjdk.jmh:jmh-generator-annprocess:$version"
     }
 
-    object KoTest {
-        const val version = "4.3.2"
-        const val assertions = "io.kotest:kotest-assertions-core:$version"
-        const val junit5Runner = "io.kotest:kotest-runner-junit5:$version"
-    }
-
     object K8S {
         const val javaClient = "io.kubernetes:client-java:11.0.0"
         const val fabric8 = "io.fabric8:kubernetes-client:5.0.0"
@@ -520,7 +536,6 @@ object Deps {
 
     const val jsr305 = "com.google.code.findbugs:jsr305:3.0.2"
     const val micronautBom = "io.micronaut:micronaut-bom:2.0.0"
-    const val methanol = "com.github.mizosoft.methanol:methanol:1.4.1"
     const val mapstruct = "org.mapstruct:mapstruct:1.4.2.Final"
     const val ljv = "org.atp-fivt:ljv:1.02"
 
@@ -585,7 +600,9 @@ inline val PluginDependenciesSpec.dokka get() = id("org.jetbrains.dokka") versio
 
 inline val PluginDependenciesSpec.exposed get() = id("com.jetbrains.exposed.gradle.plugin") version "0.1.1-SNAPSHOT"
 inline val PluginDependenciesSpec.kotlinxAtomicfu get() = id("kotlinx-atomicfu") version "0.15.1"
-inline val PluginDependenciesSpec.binCompatValidator get() = id("binary-compatibility-validator") version "0.3.0"
+inline val PluginDependenciesSpec.binCompatValidator get() = id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.4.0"
+
+// id("binary-compatibility-validator") version "0.3.0"
 
 // Google Plugins
 inline val PluginDependenciesSpec.ksp get() = id("com.google.devtools.ksp") version Deps.Kotlin.Ksp.version
@@ -594,7 +611,7 @@ inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.j
 // Dependencies
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "6.1.0"
 inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version "0.38.0"
-inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.5.0" apply false
+inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.5.2" apply false
 
 inline val PluginDependenciesSpec.javafx get() = id("org.openjfx.javafxplugin") version "0.0.7"
 inline val PluginDependenciesSpec.jmh get() = id("me.champeau.gradle.jmh") version "0.4.8"
@@ -615,7 +632,7 @@ inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency
 
 // Static Analysis and Linting
 inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.11.0"
-inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.0.0"
+inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.0.1"
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version "9.3.0"
 inline val PluginDependenciesSpec.detekt get() = id("io.gitlab.arturbosch.detekt") version "1.15.0"

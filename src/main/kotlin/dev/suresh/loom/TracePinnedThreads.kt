@@ -1,16 +1,17 @@
 package dev.suresh.loom
 
 import java.io.*
-import java.nio.charset.*
 import java.time.*
 import java.util.concurrent.locks.*
 
 /**
  * Run with -Djdk.tracePinnedThreads=short|full
  *
- * https://github.com/openjdk/loom/blob/fibers/test/jdk/java/lang/Thread/virtual/TracePinnedThreads.java
+ * - [TracePinnedThreads.java](https://github.com/openjdk/loom/blob/fibers/test/jdk/java/lang/Thread/virtual/TracePinnedThreads.java)
+ * - [Loom Troubleshooting Guide](https://wiki.openjdk.java.net/display/loom/Troubleshooting)
  */
 fun main() {
+    System.setProperty("jdk.tracePinnedThreads", "short")
     val lock = Any()
     val out = System.out
     val baos = ByteArrayOutputStream()
@@ -28,7 +29,7 @@ fun main() {
         System.setOut(out)
     }
 
-    val output = baos.toString(StandardCharsets.UTF_8)
+    val output = baos.toString() // default charset
     println(output)
     val expected = "<== monitors:1"
     check(expected in output) { """expected:"$expected"""" }

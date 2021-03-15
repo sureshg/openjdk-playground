@@ -5,7 +5,6 @@ import dev.suresh.loom.jetty.JettyServerKt;
 import dev.suresh.mvn.MavenResolver;
 import dev.suresh.server.DevServer;
 import java.io.IOException;
-import java.time.Duration;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
@@ -66,7 +65,6 @@ public class Main {
     new MavenResolver().run();
     new RenderJte().run();
     JettyServerKt.run(8080);
-    Thread.sleep(Duration.ofMinutes(10));
 
     record T(String a) {}
 
