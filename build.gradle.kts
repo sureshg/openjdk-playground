@@ -402,6 +402,7 @@ dependencies {
     implementation(Deps.Jetty.server)
     implementation(Deps.Jetty.jakartaServletApi)
     implementation(Deps.Jetty.servlet)
+    implementation(Deps.Http.urlbuilder)
     implementation(Deps.OkHttp.okhttp)
     implementation(Deps.OkHttp.mockWebServer)
     implementation(Deps.OkHttp.tls)

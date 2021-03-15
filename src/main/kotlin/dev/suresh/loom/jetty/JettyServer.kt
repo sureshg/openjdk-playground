@@ -1,9 +1,11 @@
 package dev.suresh.loom.jetty
 
+import io.mikael.urlbuilder.*
 import jakarta.servlet.http.*
 import org.eclipse.jetty.http.*
 import org.eclipse.jetty.server.*
 import org.eclipse.jetty.server.handler.*
+import org.eclipse.jetty.servlet.*
 import org.eclipse.jetty.util.*
 import org.eclipse.jetty.util.component.*
 import java.net.http.*
@@ -12,6 +14,12 @@ import java.time.Duration
 import java.util.concurrent.*
 import kotlin.time.*
 
+
+/**
+ * Scoped variable holding the user id (Replacement for [ThreadLocal])
+ */
+private val USER_ID = Scoped.inheritableForType(String::class.java)
+
 fun main() {
     run()
 }
@@ -19,19 +27,19 @@ fun main() {
 fun run(port: Int = 8080) {
     println("Starting the Jetty server on $port...")
     val tp = LoomThreadPool()
-    // val tp = QueuedThreadPool(500)
-    val server = Server(tp).apply {
-        // NetworkTrafficServerConnector(server)
-        val connector = ServerConnector(this)
-        connector.port = port
-        connector.acceptQueueSize = 1024
+    // val tp = QueuedThreadPool(200)
+    val server = Server(tp)
 
-        addConnector(connector)
-        handler = HandlerList(
-            HelloHandler(),
-            DefaultHandler(),
-        )
+    // NetworkTrafficServerConnector(server)
+    val connector = ServerConnector(server).apply {
+        this.port = port
+        acceptQueueSize = 1024
     }
+    server.addConnector(connector)
+
+    val servletHandler = ServletHandler()
+    servletHandler.addServletWithMapping(HelloServlet::class.java, "/")
+    server.handler = HandlerList(servletHandler, DefaultHandler())
 
     HttpGenerator.setJettyVersion("Loom-${Jetty.VERSION}")
     server.start()
@@ -64,8 +72,12 @@ fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
             exec.submit<Result<String>> {
                 try {
                     println("---> $it. Sending Request")
+                    val uri = UrlBuilder
+                        .fromUri(server.uri)
+                        .addParameter("userId", it.toString())
+                        .toUri()
                     val res = client.send(
-                        HttpRequest.newBuilder().uri(server.uri).build(),
+                        HttpRequest.newBuilder().uri(uri).build(),
                         HttpResponse.BodyHandlers.ofString()
                     )
 
@@ -85,8 +97,9 @@ fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
         println("${i + 1} -> ${r.getOrNull()}")
     }
 
-    println("=== ERRORS ===")
+
     err.forEachIndexed { i, r ->
+        if (i == 0) println("=== ERRORS ===")
         val msg = when (val ex = r.exceptionOrNull()) {
             is InterruptedException -> "Task interrupted/cancelled due to timeout!"
             else -> ex?.cause?.message
@@ -94,38 +107,48 @@ fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
         println("ERROR ${i + 1} -> $msg")
     }
 
+
     println(
         """
         SUCCESS: ${ok.size} / ${results.size} 
         FAILURE: ${err.size} / ${results.size}
+        
         """.trimIndent()
     )
 }
 
-class HelloHandler : AbstractHandler() {
-    override fun handle(
-        target: String?,
-        baseRequest: Request?,
-        request: HttpServletRequest?,
-        response: HttpServletResponse?,
-    ) {
-        Thread.sleep(2 * 1000)
-        response?.apply {
-            characterEncoding = "utf-8"
-            contentType = "application/json"
-            outputStream.println(
-                """
-                {
-                  "server" : "Loom-${Jetty.VERSION}",
-                  "Java"   : ${JavaVersion.VERSION},
-                  "Thread" : ${Thread.currentThread()}
-                  "target" : $target,
-                 }
-                """.trimIndent()
-            )
-            baseRequest?.isHandled = true
+class HelloServlet : HttpServlet() {
+    override fun doGet(req: HttpServletRequest?, resp: HttpServletResponse?) {
+        val userId = req?.getParameter("userId")
+        USER_ID.runWithBinding(userId) {
+            resp?.apply {
+                contentType = "application/json"
+                status = HttpServletResponse.SC_OK
+                writer?.println(exec(req, resp))
+            }
         }
     }
+
+    private fun exec(req: HttpServletRequest?, resp: HttpServletResponse?): String {
+        // Simulate blocking
+        Thread.sleep(3 * 1000)
+        val userId = USER_ID.get()
+        return """
+          {
+            "UserId" : $userId,
+            "server" : ${Jetty.VERSION},
+            "Java"   : ${JavaVersion.VERSION},
+            "target" : ${req?.fullURL},
+            "Thread" : ${Thread.currentThread()}
+          }
+        """.trimIndent()
+    }
 }
+
+val HttpServletRequest.fullURL: String
+    get() = when (queryString.isNullOrBlank()) {
+        true -> requestURL.toString()
+        else -> requestURL.append('?').append(queryString).toString()
+    }
 
 val threadInfo get() = Thread.currentThread().run { "$name-$id-$isVirtual" }
