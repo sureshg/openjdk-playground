@@ -4,9 +4,8 @@ rootProject.name = "openjdk-playground"
 dependencyResolutionManagement {
     repositories {
         mavenCentral()
-        jcenter()
         google()
-        maven(url = "https://kotlin.bintray.com/kotlinx/")
+        jcenter()
     }
     repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
 }
@@ -16,7 +15,7 @@ pluginManagement {
     repositories {
         gradlePluginPortal()
         google()
-        // mavenLocal()
+        jcenter()
     }
 
     resolutionStrategy {

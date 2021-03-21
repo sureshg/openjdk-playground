@@ -135,7 +135,7 @@ class HelloServlet : HttpServlet() {
         return """
           {
             "UserId" : ${USER_ID.get()},
-            "server" : ${Jetty.VERSION},
+            "server" : Jetty-${Jetty.VERSION},
             "Java"   : ${JavaVersion.VERSION},
             "target" : ${req?.fullURL},
             "Thread" : ${Thread.currentThread()}

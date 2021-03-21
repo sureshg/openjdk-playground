@@ -95,7 +95,7 @@ object Deps {
     }
 
     object Dokka {
-        const val version = "1.4.20"
+        const val version = "1.4.30"
         const val gradlePlugin = "org.jetbrains.dokka:dokka-gradle-plugin:$version"
         const val javadocPlugin = "org.jetbrains.dokka:javadoc-plugin:$version"
         const val kotlinAsJavaPlugin = "org.jetbrains.dokka:kotlin-as-java-plugin:$version"
@@ -224,7 +224,7 @@ object Deps {
     }
 
     object Mock {
-        const val mockk = "io.mockk:mockk:1.10.6"
+        const val mockk = "io.mockk:mockk:1.11.0"
         const val mockito = "org.mockito:mockito-core:2.26.0"
         const val mockserver = "org.mock-server:mockserver-netty:5.10.0"
         const val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
@@ -289,6 +289,7 @@ object Deps {
     object Process {
         const val nuprocess = "com.zaxxer:nuprocess:2.0.1"
         const val ztexec = "org.zeroturnaround:zt-exec:1.12"
+        const val kotlinProcess = "com.github.pgreze:kotlin-process:1.2"
     }
 
     object Ktor {
@@ -392,7 +393,7 @@ object Deps {
 
     object Network {
         const val dnsJava = "dnsjava:dnsjava:3.3.1"
-        const val urlBuilder = "io.mikael:urlbuilder:2.0.9"
+        const val reverseCountryCode = "uk.recurse:reverse-country-code:1.0.0"
     }
 
     object Retry {
@@ -522,7 +523,6 @@ object Deps {
     object Grid {
         // Hazelcast, Ignite, Coherence, Infinispan
         // https://search.maven.org/artifact/net.javacrumbs.shedlock/shedlock-parent/4.20.0/jar
-        // https://search.maven.org/search?q=com.microsoft.playwright
     }
 
     object Web {
@@ -532,6 +532,8 @@ object Deps {
             const val classlib = "org.teavm:teavm-classlib:$version"
             const val jsoApis = "org.teavm:teavm-jso-apis:$version"
         }
+
+        const val playwright = "com.microsoft.playwright:playwright:1.9.1-alpha-0"
     }
 
     const val jsr305 = "com.google.code.findbugs:jsr305:3.0.2"
@@ -611,7 +613,7 @@ inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.j
 // Dependencies
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "6.1.0"
 inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version "0.38.0"
-inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.5.2" apply false
+inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.5.2" apply true
 
 inline val PluginDependenciesSpec.javafx get() = id("org.openjfx.javafxplugin") version "0.0.7"
 inline val PluginDependenciesSpec.jmh get() = id("me.champeau.gradle.jmh") version "0.4.8"

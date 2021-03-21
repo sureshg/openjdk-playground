@@ -13,6 +13,7 @@ fun main() {
     val clazz = "${Foo::class.java.name.replace('.', '/')}.class"
     val clBytes = ClassLoader.getSystemClassLoader().getResourceAsStream(clazz)?.readBytes()
         ?: error("Can't load $clazz!")
+
     val lookup = MethodHandles.lookup().defineHiddenClass(clBytes, true)
     val run = lookup.findStatic(lookup.lookupClass(), "run", MethodType.methodType(Void.TYPE))
     run.invokeExact()

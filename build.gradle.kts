@@ -1,6 +1,7 @@
 import gg.jte.*
 import org.gradle.api.tasks.testing.logging.*
 import org.jetbrains.dokka.gradle.*
+import org.jetbrains.kotlin.config.*
 import org.jetbrains.kotlin.gradle.tasks.*
 import java.net.*
 import java.nio.file.Path
@@ -10,8 +11,8 @@ plugins {
     java
     jgitPlugin
     application
-    kotlinJvm
     ksp
+    kotlinJvm
     kotlinKapt
     kotlinxSerialization
     dokka
@@ -34,8 +35,10 @@ plugins {
     plugins.common
 }
 
+val appMainClass: String by project
+
 application {
-    mainClass.set("dev.suresh.Main")
+    mainClass.set(appMainClass)
     applicationDefaultJvmArgs += listOf(
         "--show-version",
         "--enable-preview",
@@ -59,7 +62,7 @@ application {
         // "-Djava.net.preferIPv4Stack=true"
     )
     // For backward compatibility
-    mainClassName = mainClass.get()
+    mainClassName = appMainClass
 }
 
 idea {
@@ -70,7 +73,7 @@ idea {
     project.vcs = "Git"
 }
 
-//apply(from ="")
+// apply(from ="")
 
 java {
     withSourcesJar()
@@ -95,12 +98,24 @@ sourceSets {
 
 kotlin {
     // explicitApi()
-    // sourceSets.all {
-    //    languageSettings.apply {
-    //        useExperimentalAnnotation("kotlinx.coroutines.ExperimentalCoroutinesApi")
-    //        useExperimentalAnnotation("io.ktor.util.KtorExperimentalAPI")
-    //    }
-    // }
+    sourceSets.all {
+        languageSettings.apply {
+            apiVersion = kotlinLangVersion
+            languageVersion = kotlinLangVersion
+            progressiveMode = true
+            enableLanguageFeature(LanguageFeature.InlineClasses.name)
+            enableLanguageFeature(LanguageFeature.NewInference.name)
+            enableLanguageFeature(LanguageFeature.JvmRecordSupport.name)
+            useExperimentalAnnotation("kotlin.RequiresOptIn")
+            useExperimentalAnnotation("kotlin.ExperimentalStdlibApi")
+            useExperimentalAnnotation("kotlin.ExperimentalUnsignedTypes")
+            useExperimentalAnnotation("kotlin.io.path.ExperimentalPathApi")
+            useExperimentalAnnotation("kotlin.time.ExperimentalTime")
+            useExperimentalAnnotation("kotlinx.serialization.ExperimentalSerializationApi")
+            useExperimentalAnnotation("kotlin.ExperimentalMultiplatform")
+            useExperimentalAnnotation("kotlin.js.ExperimentalJsExport")
+        }
+    }
 }
 
 ksp {
@@ -231,20 +246,12 @@ tasks {
                 "-Xjsr305=strict",
                 "-Xjvm-default=enable",
                 "-Xassertions=jvm",
-                "-Xinline-classes",
                 "-Xstring-concat=indy-with-constants",
-                "-XXLanguage:+NewInference",
                 "-Xallow-result-return-type",
                 "-Xstrict-java-nullability-assertions",
                 "-Xgenerate-strict-metadata-version",
                 "-Xemit-jvm-type-annotations",
-                "-Xopt-in=kotlin.RequiresOptIn",
-                "-Xopt-in=kotlin.ExperimentalStdlibApi",
-                "-Xopt-in=kotlin.ExperimentalUnsignedTypes",
-                "-Xopt-in=kotlin.io.path.ExperimentalPathApi",
-                "-Xopt-in=kotlin.time.ExperimentalTime",
-                "-Xopt-in=kotlinx.serialization.ExperimentalSerializationApi",
-                "-Xjavac-arguments=--enable-preview"
+                // "-Xjvm-enable-preview",
             )
         }
 
@@ -366,9 +373,9 @@ tasks {
     }
 
     // Disable dependency analysis
-    // analyzeDependencies.get().enabled = false
-    // analyzeClassesDependencies.get().enabled = false
-    // analyzeTestClassesDependencies.get().enabled = false
+    analyzeDependencies.get().enabled = false
+    analyzeClassesDependencies.get().enabled = false
+    analyzeTestClassesDependencies.get().enabled = false
 
     // Reproducible builds
     withType<AbstractArchiveTask>().configureEach {
@@ -419,6 +426,7 @@ dependencies {
     implementation(Deps.Jackson.databind)
     implementation(Deps.Google.ApiService.sdmv1)
     implementation(Deps.TemplateEngine.Jte.jte)
+    implementation(Deps.Web.playwright)
     implementation(Deps.Logging.Slf4j.simple)
     // implementation(Deps.Jetty.loadGenerator)
     compileOnly(Deps.TemplateEngine.Jte.kotlin)
