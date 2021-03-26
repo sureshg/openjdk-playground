@@ -52,6 +52,7 @@ application {
         "-XX:HeapDumpPath=/tmp/$name.hprof",
         "-XX:ErrorFile=/tmp/java-error-$name-%p.log",
         "-Dfile.encoding=UTF-8",
+        "-Djava.awt.headless=true",
         "-Djdk.attach.allowAttachSelf=true",
         "-Djdk.tracePinnedThreads=full",
         "-Djava.security.egd=file:/dev/./urandom",
@@ -426,8 +427,8 @@ dependencies {
     implementation(Deps.Jackson.databind)
     implementation(Deps.Google.ApiService.sdmv1)
     implementation(Deps.TemplateEngine.Jte.jte)
-    implementation(Deps.Web.playwright)
     implementation(Deps.Logging.Slf4j.simple)
+    // implementation(Deps.Web.playwright)
     // implementation(Deps.Jetty.loadGenerator)
     compileOnly(Deps.TemplateEngine.Jte.kotlin)
     compileOnly(Deps.Kotlinx.atomicfu)

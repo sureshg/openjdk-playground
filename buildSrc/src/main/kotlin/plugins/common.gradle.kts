@@ -1,7 +1,9 @@
 package plugins
 
 import org.gradle.jvm.tasks.Jar
+import org.gradle.tooling.*
 import java.io.*
+import java.util.concurrent.*
 import java.util.spi.*
 
 plugins {
@@ -59,4 +61,40 @@ tasks {
         exclude { it.name.startsWith("jte") }
         expand(props)
     }
+
+    /**
+     * Dev task that does both the continuous compile and run.
+     */
+    val dev by registering {
+        description = "A task to continuous compile and run"
+        group = LifecycleBasePlugin.BUILD_GROUP
+
+        doLast {
+            val continuousCompile = forkTask("classes", "-t")
+            val run = forkTask("run")
+            CompletableFuture.allOf(continuousCompile, run).join()
+        }
+    }
+}
+
+/**
+ * Fork a new gradle [task] with given [args]
+ */
+fun forkTask(task: String, vararg args: String) = CompletableFuture.supplyAsync {
+    GradleConnector.newConnector()
+        .forProjectDirectory(project.projectDir)
+        .connect()
+        .use {
+            it.newBuild()
+                .addArguments(*args)
+                .addJvmArguments(
+                    "--add-opens",
+                    "jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED"
+                )
+                .forTasks(task)
+                .setStandardError(System.err)
+                .setStandardInput(System.`in`)
+                .setStandardOutput(System.out)
+                .run()
+        }
 }

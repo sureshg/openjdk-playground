@@ -18,7 +18,7 @@ import kotlin.time.*
 /**
  * Scoped variable holding the user id (Replacement for [ThreadLocal])
  */
-private val USER_ID = Scoped.inheritableForType(String::class.java)
+private val USER_ID = ScopeLocal.inheritableForType(String::class.java)
 
 fun main() {
     run()
@@ -134,7 +134,7 @@ class HelloServlet : HttpServlet() {
         Thread.sleep(3 * 1000)
         return """
           {
-            "UserId" : ${USER_ID.get()},
+            "UserId" : ${USER_ID.orElse("n/a")},
             "server" : Jetty-${Jetty.VERSION},
             "Java"   : ${JavaVersion.VERSION},
             "target" : ${req?.fullURL},

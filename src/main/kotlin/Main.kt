@@ -11,7 +11,6 @@ fun main() {
 
     println("Security Manager: ${System.getSecurityManager()}")
 }
-// https://github.com/cortinico/kscript-template
 
 sealed class Result<out T> {
     data class Success<T : Any>(val data: T) : Result<T>()

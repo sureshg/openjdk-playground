@@ -1,5 +1,11 @@
 rootProject.name = "openjdk-playground"
 
+enableFeaturePreview("VERSION_CATALOGS")
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
+// Composite Builds
+includeBuild("build-logic")
+
 // Centralizing repositories declaration
 dependencyResolutionManagement {
     repositories {
@@ -26,6 +32,3 @@ pluginManagement {
         }
     }
 }
-
-// Composite Builds
-includeBuild("build-logic")

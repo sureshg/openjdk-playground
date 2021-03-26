@@ -11,8 +11,8 @@
 
 ```bash
 $ curl -s "https://get.sdkman.io" | bash
-$ sdk i java 17.ea.2.lm-open
-$ sdk u java 17.ea.2.lm-open
+$ sdk i java 17.ea.4.lm-open
+$ sdk u java 17.ea.4.lm-open
 ```
 
 #### Build
@@ -128,6 +128,11 @@ module dev.suresh.openjdklatest {
  https://github.com/bnorm/kotlin-ir-plugin-template
 
  Idiomatic Gradle  - https://github.com/jjohannes/idiomatic-gradle
+
+https://docs.gradle.org/7.0-rc-1/release-notes.html
+https://docs.gradle.org/current/userguide/java_platform_plugin.html
+https://github.com/melix/jdoctor
+
 
  Http APIs to test - https://api.github.com/repos/jetbrains/kotlin
                    - https://httpbin.org/

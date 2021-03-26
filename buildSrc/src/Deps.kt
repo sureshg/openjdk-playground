@@ -41,7 +41,7 @@ object Deps {
         }
 
         object Ksp {
-            const val version = "1.4.30-1.0.0-alpha05"
+            const val version = "1.4.31-1.0.0-alpha06"
             const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
             const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
             const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.3.5"
@@ -533,7 +533,7 @@ object Deps {
             const val jsoApis = "org.teavm:teavm-jso-apis:$version"
         }
 
-        const val playwright = "com.microsoft.playwright:playwright:1.9.1-alpha-0"
+        const val playwright = "com.microsoft.playwright:playwright:1.10.0"
     }
 
     const val jsr305 = "com.google.code.findbugs:jsr305:3.0.2"
@@ -602,7 +602,7 @@ inline val PluginDependenciesSpec.dokka get() = id("org.jetbrains.dokka") versio
 
 inline val PluginDependenciesSpec.exposed get() = id("com.jetbrains.exposed.gradle.plugin") version "0.1.1-SNAPSHOT"
 inline val PluginDependenciesSpec.kotlinxAtomicfu get() = id("kotlinx-atomicfu") version "0.15.1"
-inline val PluginDependenciesSpec.binCompatValidator get() = id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.4.0"
+inline val PluginDependenciesSpec.binCompatValidator get() = id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.5.0"
 
 // id("binary-compatibility-validator") version "0.3.0"
 
