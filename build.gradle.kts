@@ -58,6 +58,9 @@ application {
         "-Djava.security.egd=file:/dev/./urandom",
         "-XX:+UnlockDiagnosticVMOptions",
         "-XX:+ShowHiddenFrames",
+        // "-XX:ConcGCThreads=2",
+        // "-XX:ZUncommitDelay=60",
+        // "-Xlog:gc\*",
         // "-XX:+IgnoreUnrecognizedVMOptions",
         // "-XX:NativeMemoryTracking=summary",
         // "-Djava.net.preferIPv4Stack=true"
@@ -428,8 +431,8 @@ dependencies {
     implementation(Deps.Google.ApiService.sdmv1)
     implementation(Deps.TemplateEngine.Jte.jte)
     implementation(Deps.Logging.Slf4j.simple)
+    implementation(Deps.Jetty.LoadGen.client)
     // implementation(Deps.Web.playwright)
-    // implementation(Deps.Jetty.loadGenerator)
     compileOnly(Deps.TemplateEngine.Jte.kotlin)
     compileOnly(Deps.Kotlinx.atomicfu)
     kapt(Deps.Google.AutoService.processor)

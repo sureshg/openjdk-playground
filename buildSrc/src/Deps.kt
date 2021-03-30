@@ -56,8 +56,8 @@ object Deps {
         const val metadata = "me.eugeniomarletti.kotlin.metadata:kotlin-metadata:1.4.0"
         const val metadataJvm = "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.1.0"
         const val compileTesting = "com.github.tschuchortdev:kotlin-compile-testing:1.3.5"
-        const val zipSigner = "org.jetbrains.marketplace:zip-signer:0.8"
-        const val markdown = "org.jetbrains:markdown:0.2.0"
+        const val marketplaceZipSigner = "org.jetbrains:marketplace-zip-signer:0.1.3"
+        const val markdown = "org.jetbrains:markdown:0.2.1"
     }
 
     object KotlinJS {
@@ -72,7 +72,7 @@ object Deps {
         const val io = "org.jetbrains.kotlinx:kotlinx-io-jvm:0.1.16"
         const val cli = "org.jetbrains.kotlinx:kotlinx-cli:0.3"
         const val collectionsImmutable =
-            "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:0.3.3"
+            "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:0.3.4"
 
         object Serialization {
             const val version = "1.1.0"
@@ -84,6 +84,10 @@ object Deps {
             const val properties = "org.jetbrains.kotlinx:kotlinx-serialization-properties:$version"
             const val yaml = "com.charleskorn.kaml:kaml:0.17.0"
         }
+    }
+
+    object Record {
+        const val builder = "io.soabase.record-builder:record-builder:1.19"
     }
 
     object Exposed {
@@ -110,7 +114,7 @@ object Deps {
     }
 
     object Jetty {
-        const val version = "11.0.1"
+        const val version = "11.0.2"
         const val bom = "org.eclipse.jetty:jetty-bom:$version"
         const val server = "org.eclipse.jetty:jetty-server:$version"
         const val servlet = "org.eclipse.jetty:jetty-servlet:$version"
@@ -120,14 +124,21 @@ object Deps {
         const val slf4j = "org.eclipse.jetty:jetty-slf4j-impl:$version"
         const val testHelper = "org.eclipse.jetty:jetty-test-helper:$version"
         const val jakartaServletApi = "org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api:5.0.2"
-        const val loadGenerator =
-            "org.mortbay.jetty.loadgenerator:jetty-load-generator-client:1.0.4"
+
+        object LoadGen {
+            const val version = "2.0.0"
+            const val client =
+                "org.mortbay.jetty.loadgenerator:jetty-load-generator-client:$version"
+            const val listebers =
+                "org.mortbay.jetty.loadgenerator:jetty-load-generator-listeners:$version"
+        }
     }
 
     // Java 11 HTTP addons
     object Http {
         const val methanol = "com.github.mizosoft.methanol:methanol:1.4.1"
         const val urlbuilder = "io.mikael:urlbuilder:2.0.9"
+        const val urlDetector = "com.linkedin.urls:url-detector:0.1.17"
         const val interceptor = "codes.rafael.interceptablehttpclient:interceptable-http-client:1.0"
     }
 
@@ -340,7 +351,7 @@ object Deps {
     object Cli {
         const val clikt = "com.github.ajalt.clikt:clikt:3.1.0"
         const val textIO = "org.beryx:text-io:3.4.1"
-        const val mordant = "com.github.ajalt.mordant:mordant:2.0.0-alpha2"
+        const val mordant = "com.github.ajalt.mordant:mordant:2.0.0-beta1"
         const val colormath = "com.github.ajalt.colormath:colormath:2.0.0"
         const val picnic = "com.jakewharton.picnic:picnic:0.4.0"
         const val crossword = "com.jakewharton.crossword:crossword:0.1.2"
@@ -383,7 +394,7 @@ object Deps {
 
     object Security {
         const val password4j = "com.password4j:password4j:1.5.0"
-        const val otp = "com.github.bastiaanjansen:otp-java:1.1.2"
+        const val otp = "com.github.bastiaanjansen:otp-java:1.1.3"
         const val twoFactorAuth = "com.j256.two-factor-auth:two-factor-auth:1.3"
         const val sshj = "com.hierynomus:sshj:0.26.0"
         const val smbj = "com.hierynomus:smbj:0.9.1"
@@ -394,6 +405,10 @@ object Deps {
     object Network {
         const val dnsJava = "dnsjava:dnsjava:3.3.1"
         const val reverseCountryCode = "uk.recurse:reverse-country-code:1.0.0"
+    }
+
+    object Tcp {
+        const val simpleNet = "com.github.jhg023:SimpleNet:1.6.6"
     }
 
     object Retry {
@@ -633,7 +648,7 @@ inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boo
 inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version "1.0.9.RELEASE"
 
 // Static Analysis and Linting
-inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.11.0"
+inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.11.1"
 inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.0.1"
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version "9.3.0"

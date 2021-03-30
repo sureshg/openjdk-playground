@@ -11,8 +11,8 @@
 
 ```bash
 $ curl -s "https://get.sdkman.io" | bash
-$ sdk i java 17.ea.4.lm-open
-$ sdk u java 17.ea.4.lm-open
+$ sdk i java 17.ea.5.lm-open
+$ sdk u java 17.ea.5.lm-open
 ```
 
 #### Build
@@ -25,19 +25,24 @@ $ ./gradlew --console plain clean build
 
 ```bash
 $ java --show-version \
-       --enable-preview \
-       -Xmx256M \
-       -XX:+UseZGC \
-       -XX:ConcGCThreads=2 \
-       -XX:ZUncommitDelay=60 \
-       -Xlog:gc\* \
-       -XX:+PrintCommandLineFlags \
-       -Djava.security.egd=file:/dev/./urandom \
-       -Djdk.tracePinnedThreads=full \
-       -jar build/libs/openjdk-playground-1.0.0-uber.jar
-
-# Other Options
-# -XX:+IgnoreUnrecognizedVMOptions
+     --enable-preview \
+     -Xmx128M \
+     -XX:+PrintCommandLineFlags \
+     -XX:+UseZGC \
+     -Xlog:gc\*:/tmp/openjdk-playground-gc.log \
+     -XX:StartFlightRecording:filename=/tmp/openjdk-playground.jfr,settings=default.jfc,name=openjdk-playground,maxsize=100m,dumponexit=true \
+     -XX:FlightRecorderOptions:stackdepth=128 \
+     -XX:+HeapDumpOnOutOfMemoryError \
+     -XX:HeapDumpPath=/tmp/openjdk-playground.hprof \
+     -XX:ErrorFile=/tmp/java-error-openjdk-playground-%p.log \
+     -XX:+UnlockDiagnosticVMOptions \
+     -XX:+ShowHiddenFrames \
+     -Dfile.encoding=UTF-8 \
+     -Djava.awt.headless=true \
+     -Djdk.attach.allowAttachSelf=true \
+     -Djdk.tracePinnedThreads=full \
+     -Djava.security.egd=file:/dev/./urandom \
+     -jar build/libs/openjdk-playground-*-uber.jar
 ```
 
 #### Run the application container
