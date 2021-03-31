@@ -7,12 +7,43 @@
 - Offical Java Images
 
   ```bash
+  # Distroless Java Base (For Jlink apps based on debian:buster)
+  # https://console.cloud.google.com/gcr/images/distroless/GLOBAL/java-debian10
+  $ docker pull gcr.io/distroless/java-debian10:base
+  $ docker pull gcr.io/distroless/java-debian10:base-nonroot
+  
+  # Distroless Java Base
+  $ docker pull gcr.io/distroless/java:11 # OR
+  $ docker pull gcr.io/distroless/java-debian10:latest
+  
+  # Distroless Static & Base
+  $ docker pull gcr.io/distroless/static:latest
+  $ docker pull gcr.io/distroless/base:latest
+   
+  # Openjdk
+  $ docker pull openjdk:17-slim-buster
+  
   # Oracle OpenJDK
   $ docker pull container-registry.oracle.com/java/openjdk:latest
-  $ docker run -it --rm --name openjdk container-registry.oracle.com/java/openjdk
   
-  # Openjdk on DockerHub
-  $ docker pull openjdk:15-jdk-slim
+  
+  # Alpine (Liberica)
+  $ docker pull bellsoft/liberica-openjdk-alpine-musl:latest
+  
+  # Alpine (Zulu)
+  $ docker pull azul/zulu-openjdk-alpine:16
+  
+  # Alpine (OpenJDK)
+  $ docker pull openjdk:17-jdk-alpine
+  
+  # Alpine (AdoptOpenJDK)
+  $ docker pull adoptopenjdk/openjdk16:alpine-jre
+  
+  # GraalVM CE
+  $ docker pull ghcr.io/graalvm/graalvm-ce:latest
+  
+  # Examples
+  $ docker run -it --rm gcr.io/distroless/java-debian10:base-nonroot openssl s_client --connect google.com:443
   ```
 
      - https://hub.docker.com/_/openjdk

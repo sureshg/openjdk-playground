@@ -104,10 +104,10 @@ $ jdeps --ignore-missing-deps --print-module-deps  app.jar
 $ jdeps --generate-module-info ./  app.jar
 
 # List all deprecated APIs for a release
-$ jdeprscan --for-removal --release 16 --list
+$ jdeprscan --for-removal --release 17 --list
 
 # Scan deprecated APIs
-$ jdeprscan --for-removal --release 16 app.jar
+$ jdeprscan --for-removal --release 17 app.jar
 ```
 
 * [Java EE Maven artifacts](https://openjdk.java.net/jeps/320)
