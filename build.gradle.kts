@@ -221,7 +221,7 @@ tasks {
             isIncremental = true
             isFork = true
             // For Gradle worker daemon.
-            forkOptions.jvmArgs?.addAll(javaArgsList)
+            forkOptions.jvmArgs?.addAll(jvmArguments)
             compilerArgs.addAll(
                 listOf(
                     "--enable-preview",

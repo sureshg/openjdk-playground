@@ -2,6 +2,7 @@ import org.gradle.api.*
 import org.gradle.jvm.toolchain.*
 import org.slf4j.*
 import kotlin.properties.*
+import kotlin.reflect.*
 
 /**
  * Build source logger
@@ -104,15 +105,24 @@ val os by lazy {
 /**
  * System property delegate
  */
+@Suppress("IMPLICIT_CAST_TO_ANY")
 inline fun <reified T> sysProp(): ReadOnlyProperty<Any?, T> =
     ReadOnlyProperty { _, property ->
-        val propVal: String = System.getProperty(property.name, "")
-        logger.info("Getting System Property '${property.name}': $propVal")
-        when (T::class) {
-            String::class -> propVal
-            Int::class -> propVal.toInt()
-            Boolean::class -> propVal.toBoolean()
-            Long::class -> propVal.toLong()
-            else -> error("${T::class.simpleName} type system property is not supported!")
+        val propVal = System.getProperty(property.name, "")
+        val propVals = propVal.split(",", " ").filter { it.isNotBlank() }
+
+        val kType = typeOf<T>()
+        when (kType) {
+            typeOf<String>() -> propVal
+            typeOf<Int>() -> propVal.toInt()
+            typeOf<Boolean>() -> propVal.toBoolean()
+            typeOf<Long>() -> propVal.toLong()
+            typeOf<Double>() -> propVal.toDouble()
+            typeOf<List<String>>() -> propVals
+            typeOf<List<Int>>() -> propVals.map { it.toInt() }
+            typeOf<List<Long>>() -> propVals.map { it.toLong() }
+            typeOf<List<Double>>() -> propVals.map { it.toDouble() }
+            typeOf<List<Boolean>>() -> propVals.map { it.toBoolean() }
+            else -> error("'${property.name}' system property type ($kType) is not supported!")
         } as T
     }

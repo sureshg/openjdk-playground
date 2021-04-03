@@ -11,8 +11,7 @@ val kotlinJvmTarget by sysProp<String>()
 val kotlinLangVersion by sysProp<String>()
 val gradleRelease by sysProp<String>()
 val githubProject by sysProp<String>()
-val javaArgs by sysProp<String>()
-val javaArgsList = javaArgs.split(",").map { it.trim() }
+val jvmArguments by sysProp<List<String>>()
 
 /**
  * Dependency versions.
@@ -48,6 +47,7 @@ object Deps {
         }
 
         object Data {
+            const val multik = "org.jetbrains.kotlinx:multik-api:0.0.1"
             const val deeplearning = "org.jetbrains.kotlin-deeplearning:api:0.1.1"
             const val letsPlotKotlin = "org.jetbrains.lets-plot-kotlin:lets-plot-kotlin-api:1.2.0"
             const val sparkApi = "org.jetbrains.kotlinx.spark:kotlin-spark-api-3.0:1.0.0-preview2"
@@ -58,6 +58,7 @@ object Deps {
         const val compileTesting = "com.github.tschuchortdev:kotlin-compile-testing:1.3.5"
         const val marketplaceZipSigner = "org.jetbrains:marketplace-zip-signer:0.1.3"
         const val markdown = "org.jetbrains:markdown:0.2.1"
+        const val lincheck = "org.jetbrains.kotlinx:lincheck:2.12"
     }
 
     object KotlinJS {
@@ -68,7 +69,7 @@ object Deps {
     object Kotlinx {
         const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.1.1"
         const val reflectLite = "org.jetbrains.kotlinx:kotlinx.reflect.lite:1.0.0"
-        const val atomicfu = "org.jetbrains.kotlinx:atomicfu:0.15.1"
+        const val atomicfu = "org.jetbrains.kotlinx:atomicfu:0.15.2"
         const val io = "org.jetbrains.kotlinx:kotlinx-io-jvm:0.1.16"
         const val cli = "org.jetbrains.kotlinx:kotlinx-cli:0.3"
         const val collectionsImmutable =
@@ -382,6 +383,11 @@ object Deps {
         }
     }
 
+    object Viz {
+        const val graphvizJava = "guru.nidi:graphviz-java:0.18.1"
+        const val graphvizKotlin = "guru.nidi:graphviz-kotlin:0.18.1"
+    }
+
     object TLS {
         const val sslContext = "io.github.hakky54:sslcontext-kickstart:5.2.2"
         const val certifikit = "app.cash.certifikit:certifikit:0.2.0"
@@ -616,10 +622,8 @@ inline val PluginDependenciesSpec.kotlinScript get() = kotlin("plugin.scripting"
 inline val PluginDependenciesSpec.dokka get() = id("org.jetbrains.dokka") version Deps.Dokka.version
 
 inline val PluginDependenciesSpec.exposed get() = id("com.jetbrains.exposed.gradle.plugin") version "0.1.1-SNAPSHOT"
-inline val PluginDependenciesSpec.kotlinxAtomicfu get() = id("kotlinx-atomicfu") version "0.15.1"
+inline val PluginDependenciesSpec.kotlinxAtomicfu get() = id("kotlinx-atomicfu") version "0.15.2"
 inline val PluginDependenciesSpec.binCompatValidator get() = id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.5.0"
-
-// id("binary-compatibility-validator") version "0.3.0"
 
 // Google Plugins
 inline val PluginDependenciesSpec.ksp get() = id("com.google.devtools.ksp") version Deps.Kotlin.Ksp.version
@@ -649,7 +653,7 @@ inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency
 
 // Static Analysis and Linting
 inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.11.1"
-inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.0.1"
+inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.1.0"
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version "9.3.0"
 inline val PluginDependenciesSpec.detekt get() = id("io.gitlab.arturbosch.detekt") version "1.15.0"
