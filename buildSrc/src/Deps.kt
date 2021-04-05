@@ -410,6 +410,7 @@ object Deps {
 
     object Network {
         const val dnsJava = "dnsjava:dnsjava:3.3.1"
+        const val jmdns = "org.jmdns:jmdns:3.5.6"
         const val reverseCountryCode = "uk.recurse:reverse-country-code:1.0.0"
     }
 

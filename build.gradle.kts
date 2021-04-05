@@ -432,6 +432,7 @@ dependencies {
     implementation(Deps.TemplateEngine.Jte.jte)
     implementation(Deps.Logging.Slf4j.simple)
     implementation(Deps.Jetty.LoadGen.client)
+    implementation(Deps.Network.jmdns)
     // implementation(Deps.Web.playwright)
     compileOnly(Deps.TemplateEngine.Jte.kotlin)
     compileOnly(Deps.Kotlinx.atomicfu)
