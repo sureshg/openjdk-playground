@@ -1,6 +1,7 @@
 package dev.suresh.network
 
 import java.net.*
+import java.time.*
 import javax.jmdns.*
 
 /**
@@ -21,11 +22,11 @@ fun main() {
 
         it.addServiceTypeListener(object : ServiceTypeListener {
             override fun serviceTypeAdded(event: ServiceEvent?) =
-                println("${event?.type} service added")
+                println("==>${event?.type} service added")
 
             override fun subTypeForServiceTypeAdded(event: ServiceEvent?) =
-                println(">>> ${event?.type} service sub type added")
+                println("==>${event?.type} service sub type added")
         })
-        Thread.sleep(10_000)
+        Thread.sleep(Duration.ofSeconds(5))
     }
 }

@@ -242,8 +242,11 @@ $  java -Xlog:help
 
 
 
+##### 14. Kotlin + Graal Native-Image
+
 ```bash
 $ kotlinc -version -verbose -include-runtime -Xuse-ir -java-parameters -jvm-target 11 -api-version 1.4 -language-version 1.4 -progressive App.kt -d app.jar
+
 $ java -showversion -jar app.jar
 $ native-image --no-fallback --no-server -jar app.jar
 
@@ -256,9 +259,9 @@ $ time ./app
 
 
 
-##### 14. Kotlin Script
+##### 15. Kotlin Script
 
-```bash
+```kotlin
 #!/usr/bin/env -S kotlinc -script --
 // sudo snap install --classic kotlin
 // ./hello.main.kts
@@ -270,7 +273,7 @@ println("Hello Kotlin Script")
 
 
 
-##### 15. JMC
+##### 16. JMC
 
 ```bash
 # https://adoptopenjdk.net/jmc.html
@@ -294,20 +297,36 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 
 
 
-##### 16. Generics
+##### 17. Generics
 
 - [GenericsFAQ](http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html)
 - [How we got Generics we have](https://cr.openjdk.java.net/~briangoetz/valhalla/erasure.html)
 
 
 
-##### 17. HeapDump
+##### 18. HeapDump
 
-    *  [Graal Heapdump Builder](https://www.graalvm.org/tools/javadoc/org/graalvm/tools/insight/heap/HeapDump.html)
-    *  [Java Profiler Heap Dump Format](http://hg.openjdk.java.net/jdk6/jdk6/jdk/raw-file/tip/src/share/demo/jvmti/hprof/manual.html)
-    *  [HPROF Parser](https://github.com/openjdk/jdk/blob/master/test/lib/jdk/test/lib/hprof/HprofParser.java)
+* [Graal Heapdump Builder](https://www.graalvm.org/tools/javadoc/org/graalvm/tools/insight/heap/HeapDump.html)
 
+* [Java Profiler Heap Dump Format](http://hg.openjdk.java.net/jdk6/jdk6/jdk/raw-file/tip/src/share/demo/jvmti/hprof/manual.html)
 
+* [HPROF Parser](https://github.com/openjdk/jdk/blob/master/test/lib/jdk/test/lib/hprof/HprofParser.java)
+
+  
+
+#### IDEs and Tools
+
+------
+
+##### 1. IntelliJ Selection Modes
+
+* All Actions                       - <kbd>CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>A</kbd>
+* Select all occurrences    - <kbd>CMD</kbd> + <kbd>CTRL</kbd> + <kbd>G</kbd>
+* Column selection mode  - <kbd>CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>8</kbd>
+* Multiple Cursors             - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + <kbd>Left Click</kbd>
+* Multi Selection                - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + Select as usual
+* Caret Cloning                  - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + Middle click on end line
+* Move line                        - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + <kbd>Arrow UP/DOWN</kbd>
 
 
 
@@ -315,7 +334,7 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 
 ------
 
-##### 🚨 [Security Developer’s Guide](https://docs.oracle.com/en/java/javase/14/security/index.html)
+##### 🚨 [Security Developer’s Guide](https://docs.oracle.com/en/java/javase/16/security/index.html)
 
 
 
@@ -337,6 +356,8 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 
    * https://github.com/sureshg/InstallCerts/blob/master/src/main/kotlin/io/github/sureshg/extn/Certs.kt
 
+     
+     
      ```bash
      # Turn on all debugging
      $ java -Djavax.net.debug=all
@@ -377,19 +398,14 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 
 ​     http://htmlpreview.github.io/?https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/net/doc-files/net-properties.html
 
-  
-
-| Protocol |                            Config                            |                         Description                          |
-| :------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| **HTTP** | <!-- The host name of the proxy server -->  <br/>**http.proxyHost** <br/><br/><!-- The port number, the default value being 80 --><br/>**http.proxyPort**<br/><br/><!-- A list of hosts that should be reached directly, bypassing the proxy. This is a list of patterns separated by '\|'. The patterns may start or end with a '*' for wildcards. Any host matching one of these patterns will be reached through a direct connection instead of through a proxy --><br/>**http.nonProxyHosts** | `java -Dhttp.proxyHost=webcache.example.com -Dhttp.proxyPort=8080 -Dhttp.nonProxyHosts=”localhost|host.example.com” GetURL` |
+| Config             | Description                                                  |
+| :----------------- | :----------------------------------------------------------- |
+| http.proxyHost     | The host name of the proxy server                            |
+| http.proxyPort     | The port number, the default value being `80`                |
+| http.nonProxyHosts | `|`. The patterns may start or end with a `*` for wildcards. Any host matching one of these patterns will be reached through a direct connection instead of through a proxy |
 
 ```bash
-/* The host name of the proxy server */
-http.proxyHost
-/* The port number, the default value being 80 */
-http.proxyPort
-/*  '|'. The patterns may start or end with a '*' for wildcards. Any host matching one of these patterns will be reached through a direct connection instead of through a proxy */
-http.nonProxyHosts
+$java -Dhttp.proxyHost=webcache.example.com -Dhttp.proxyPort=8080 -Dhttp.nonProxyHosts=”localhost|host.example.com” <URL>
 ```
 
 
