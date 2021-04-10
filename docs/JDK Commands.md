@@ -5,7 +5,7 @@ day to day work.
 
 [TOC]
 
-#### Java Commands
+### Java Commands
 
 ------
 
@@ -162,6 +162,7 @@ $ jshell --enable-preview --startup DEFAULT --startup ~/calc.repl
 # ForkJoinPool and it's setup to spin up additional underlying carrier 
 # threads to help when there are virtual threads blocked in Object.wait. 
 # The default maximum is 256.
+
 $ java -Djdk.defaultScheduler.parallelism=1   // Default to available processors
        -Djdk.defaultScheduler.maxPoolSize=256 // Max(parallelism,256)
 
@@ -276,7 +277,9 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 
 * [HPROF Parser](https://github.com/openjdk/jdk/blob/master/test/lib/jdk/test/lib/hprof/HprofParser.java)
 
-#### IDEs and Tools
+
+
+### IDEs and Tools
 
 ------
 
@@ -290,11 +293,15 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 * Caret Cloning - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + Middle click on end line
 * Move line - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + <kbd>Arrow UP/DOWN</kbd>
 
-#### Networking & Security
+
+
+### Networking & Security
 
 ------
 
 ##### 🚨 [Security Developer’s Guide](https://docs.oracle.com/en/java/javase/16/security/index.html)
+
+
 
 ##### 1. [Allow Unsafe Server Cert Change](https://github.com/openjdk/jdk/blob/6a905b6546e288e86322ae978a1f594266aa368a/src/java.base/share/classes/sun/security/ssl/ClientHandshakeContext.java#L35-L76)
 
@@ -328,7 +335,7 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 
 ##### 2. Java Networking Properties
 
-     - http://htmlpreview.github.io/?https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/net/doc-files/net-properties.html
+- http://htmlpreview.github.io/?https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/net/doc-files/net-properties.html
 
 - https://docs.oracle.com/javase/8/docs/technotes/guides/net/proxies.html
 
@@ -368,7 +375,9 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 
 ​      `Note that the private key can never expire.`
 
-#### Gradle Kotlin DSL
+
+
+### Gradle Kotlin DSL
 
 ------
 
@@ -582,7 +591,7 @@ $ rm -rf ~/.gradle/caches
 ##### 12. Update Wrapper and others
 
 ```bash
-$ ./gradlew wrapper --gradle-version=6.8 --distribution-type=bin
+$ ./gradlew wrapper --gradle-version=7.0 --distribution-type=bin
 
 # Set system properties or tool options
 $ JAVA_TOOL_OPTIONS=-Dhttps.protocols=TLSv1.2 ./gradlew build
@@ -594,13 +603,17 @@ $ ./gradlew properties
 $ ./gradlew run --args="<JFR_FILE>"
 ```
 
-#### Security & Certificates
+
+
+
+
+### Security & Certificates
 
 ------
 
 ##### 1. Truststore
 
-To create a `RootCA` PKCS#12 trust-store of the given URL
+To create a RootCA `PKCS#12` trust-store of the given URL
 
 ```bash
 # Extract the server certificates.
@@ -637,7 +650,9 @@ $ keytool -importcert -trustcacerts -alias rootca -storetype PKCS12 -keystore $c
 $ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
 ```
 
-#### Maven Central Release
+
+
+### Maven Central Release
 
 ------
 
@@ -646,7 +661,11 @@ $ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
 * https://github.com/raphw/byte-buddy/blob/master/.github/scripts/install-jdk.sh
 * https://blog.autsoft.hu/publishing-an-android-library-to-mavencentral-in-2019/
 
-#### [Maven](https://search.maven.org/search?q=org.jetbrains.kotlin)
+
+
+
+
+### [Maven](https://search.maven.org/search?q=org.jetbrains.kotlin)
 
 ------
 
@@ -736,7 +755,9 @@ $ ./mvnw clean versions:display-dependency-updates versions:display-plugin-updat
 https://search.maven.org/search?q=fc:kotlin.text.Regex
 ```
 
-#### Microservices Starters
+
+
+### Microservices Starters
 
 ------
 
@@ -791,7 +812,9 @@ $ gradle init --type <java-library|java-application|...> --dsl kotlin
 $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
 ```
 
-#### Misc
+
+
+### Misc
 
 ------
 
@@ -828,6 +851,8 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
 - [Awesome Actions](https://github.com/sdras/awesome-actions)
 
    ```bash
+   
+   ```
 
 // Set env variable than can access from workflow env context. echo "::set-env name=JAVA_HOME::
 $GRAALVM_HOME"
@@ -851,7 +876,7 @@ Release
       key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
       restore-keys: |
         ${{ runner.os }}-maven-
-  ```
+   ```
 
   ```yaml
   - uses: actions/cache@v2.1.4
@@ -924,11 +949,15 @@ https://github.com/GoogleContainerTools/distroless
 
 https://github.com/GoogleContainerTools/jib
 
-#### LDAP Tools
+
+
+### LDAP Tools
 
 * https://ldap.com/ldap-tools/
 
-#### Native-Image
+
+
+### Native-Image
 
 ---------
 
@@ -1007,11 +1036,15 @@ $ git commit --allow-empty -m "empty commit"
 
 * https://jamesward.com/2020/05/07/graalvm-native-image-tips-tricks/
 
+
+
 ### [Minecraft Server](https://github.com/itzg/docker-minecraft-server)
 
 ```bash
 $ docker run -d -p 25565:25565 --name mc itzg/minecraft-server:adopt15
 ```
+
+
 
 ### Blogs
 
@@ -1033,7 +1066,9 @@ $ docker run -d -p 25565:25565 --name mc itzg/minecraft-server:adopt15
       - https://github.com/hexagonkt/hexagon/blob/master/.github/workflows/main.yml
     *
 
-#### Awesome Svgs
+### Awesome Svgs
+
+------
 
 ##### Illustrations
 
