@@ -1,6 +1,10 @@
 package dev.suresh.misc
 
 import kotlinx.datetime.*
+import kotlinx.datetime.Clock
+import kotlinx.datetime.Instant
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.LocalDateTime
 import java.time.Month
 import java.time.format.*
 
@@ -46,8 +50,10 @@ private fun civilTime() {
         }
     }
 
-    println(local.toInstant(TimeZone.of("Europe/Berlin"))
-        .toLocalDateTime(TimeZone.of("Asia/Calcutta")))
+    println(
+        local.toInstant(TimeZone.of("Europe/Berlin"))
+            .toLocalDateTime(TimeZone.of("Asia/Calcutta"))
+    )
 }
 
 /**

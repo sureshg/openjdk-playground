@@ -1,5 +1,5 @@
-<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/SETTINGS/1.0.0"
   xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
                       http://maven.apache.org/xsd/settings-1.0.0.xsd">
 
@@ -10,58 +10,58 @@
   <profiles>
     <profile>
       <id>github</id>
-      <repositories>
-
-        <!-- Maven central -->
-        <repository>
-          <id>central</id>
-          <url>https://repo1.maven.org/maven2</url>
-          <releases>
-            <enabled>true</enabled>
-          </releases>
-          <snapshots>
-            <enabled>true</enabled>
-          </snapshots>
-        </repository>
-
-        <!-- Github Package Repo -->
-        <repository>
-          <id>github</id>
-          <name>${env.GITHUB_ACTOR}</name>
-          <url>https://maven.pkg.github.com/${env.GITHUB_REPOSITORY}</url>
-          <releases>
-            <enabled>true</enabled>
-          </releases>
-          <snapshots>
-            <enabled>true</enabled>
-          </snapshots>
-        </repository>
-
-        <!-- Sonatype-oss Repo (Don't add by default) -->
-        <repository>
-          <id>ossrh</id>
-          <name>Sonatype OSS Snapshot Repository</name>
-          <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-          <snapshots>
-            <enabled>true</enabled>
-          </snapshots>
-        </repository>
-      </repositories>
-
-      <!-- Maven Plugin Snapshot Repo (Don't add by default) -->
       <pluginRepositories>
         <pluginRepository>
           <id>ossrh</id>
           <name>Sonatype OSS Snapshot Repository</name>
-          <url>https://oss.sonatype.org/content/repositories/snapshots</url>
           <releases>
             <enabled>false</enabled>
           </releases>
           <snapshots>
             <enabled>true</enabled>
           </snapshots>
+          <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </pluginRepository>
       </pluginRepositories>
+
+      <!-- Maven Plugin Snapshot Repo (Don't add by default) -->
+      <repositories>
+
+        <!-- Maven central -->
+        <repository>
+          <id>central</id>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+          <url>https://repo1.maven.org/maven2</url>
+        </repository>
+
+        <!-- Github Package Repo -->
+        <repository>
+          <id>github</id>
+          <name>${env.GITHUB_ACTOR}</name>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+          <url>https://maven.pkg.github.com/${env.GITHUB_REPOSITORY}</url>
+        </repository>
+
+        <!-- Sonatype-oss Repo (Don't add by default) -->
+        <repository>
+          <id>ossrh</id>
+          <name>Sonatype OSS Snapshot Repository</name>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+          <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </repository>
+      </repositories>
 
     </profile>
   </profiles>
@@ -69,8 +69,8 @@
   <servers>
     <server>
       <id>github</id>
-      <username>${env.GITHUB_ACTOR}</username>
       <password>${env.GITHUB_TOKEN}</password>
+      <username>${env.GITHUB_ACTOR}</username>
     </server>
   </servers>
 </settings>

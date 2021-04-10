@@ -40,7 +40,7 @@ object Deps {
         }
 
         object Ksp {
-            const val version = "1.4.31-1.0.0-alpha06"
+            const val version = "1.4.32-1.0.0-alpha07"
             const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
             const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
             const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.3.5"
@@ -182,7 +182,7 @@ object Deps {
 
     object Google {
         object AutoService {
-            const val version = "1.0-rc7"
+            const val version = "1.0"
             const val annotations = "com.google.auto.service:auto-service-annotations:$version"
             const val processor = "com.google.auto.service:auto-service:$version"
         }
@@ -628,7 +628,7 @@ inline val PluginDependenciesSpec.binCompatValidator get() = id("org.jetbrains.k
 
 // Google Plugins
 inline val PluginDependenciesSpec.ksp get() = id("com.google.devtools.ksp") version Deps.Kotlin.Ksp.version
-inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.jib") version "2.8.0"
+inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.jib") version "3.0.0"
 
 // Dependencies
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "6.1.0"
@@ -653,8 +653,8 @@ inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boo
 inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version "1.0.9.RELEASE"
 
 // Static Analysis and Linting
-inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.11.1"
-inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.1.0"
+inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.12.0"
+inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.1.2"
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version "9.3.0"
 inline val PluginDependenciesSpec.detekt get() = id("io.gitlab.arturbosch.detekt") version "1.15.0"

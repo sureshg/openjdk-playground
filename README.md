@@ -11,8 +11,8 @@
 
 ```bash
 $ curl -s "https://get.sdkman.io" | bash
-$ sdk i java 17.ea.5.lm-open
-$ sdk u java 17.ea.5.lm-open
+$ sdk i java 17.ea.6.lm-open
+$ sdk u java 17.ea.6.lm-open
 ```
 
 #### Build
@@ -54,34 +54,34 @@ $ docker run -it --rm --name openjdk-playground sureshg/openjdk-playground
 
 #### Load testing the Loom Web Server
 
-  -  Check if the service is up and running!
-      ```bash
-      $ curl -v -k https://localhost:8443
-      ```
+- Check if the service is up and running!
+   ```bash
+   $ curl -v -k https://localhost:8443
+   ```
 
-  - Set the os `ulimit` for Vegeta
-      ```bash
-      $ ulimit -n 4096 // FD limit
-      $ ulimit -u 1024 // processes limit
-      ```
-  - Run with kernel threads.
-      ```bash
-      $ echo "GET https://127.0.0.1:8443/" | vegeta attack -insecure -duration=10s -name=Threads -rate=250 | tee thread-results.bin | vegeta report
-      $ vegeta report -type=json thread-results.bin > thread-metrics.json
-      $ cat thread-results.bin | vegeta report -type="hist[0,100ms,200ms,300ms]"
-      $ cat thread-results.bin | vegeta plot -title "Normal Threads" > plot.html && open plot.html
-      ```
-  - Run wih Loom Virtual threads.
-      ```bash
-      $ echo "GET https://127.0.0.1:8443/" | vegeta attack -insecure -duration=10s -name=VirtualThreads -rate=250 | tee vthread-results.bin | vegeta report
-      $ vegeta report -type=json vthread-results.bin > vthread-metrics.json
-      $ cat vthread-results.bin | vegeta report -type="hist[0,100ms,200ms,300ms]"
-      $ cat vthread-results.bin | vegeta plot -title "Virtual Threads" > plot.html && open plot.html
-      ```
-  - Combine the results and plot a single graph.
-      ```bash
-      $ vegeta plot -title "Threads vs Loom Virtual Threads"  vthread-results.bin thread-results.bin > plot.html && open plot.html
-      ```
+- Set the os `ulimit` for Vegeta
+    ```bash
+    $ ulimit -n 4096 // FD limit
+    $ ulimit -u 1024 // processes limit
+    ```
+- Run with kernel threads.
+    ```bash
+    $ echo "GET https://127.0.0.1:8443/" | vegeta attack -insecure -duration=10s -name=Threads -rate=250 | tee thread-results.bin | vegeta report
+    $ vegeta report -type=json thread-results.bin > thread-metrics.json
+    $ cat thread-results.bin | vegeta report -type="hist[0,100ms,200ms,300ms]"
+    $ cat thread-results.bin | vegeta plot -title "Normal Threads" > plot.html && open plot.html
+    ```
+- Run wih Loom Virtual threads.
+    ```bash
+    $ echo "GET https://127.0.0.1:8443/" | vegeta attack -insecure -duration=10s -name=VirtualThreads -rate=250 | tee vthread-results.bin | vegeta report
+    $ vegeta report -type=json vthread-results.bin > vthread-metrics.json
+    $ cat vthread-results.bin | vegeta report -type="hist[0,100ms,200ms,300ms]"
+    $ cat vthread-results.bin | vegeta plot -title "Virtual Threads" > plot.html && open plot.html
+    ```
+- Combine the results and plot a single graph.
+    ```bash
+    $ vegeta plot -title "Threads vs Loom Virtual Threads"  vthread-results.bin thread-results.bin > plot.html && open plot.html
+    ```
 
 #### Troubleshooting
 
@@ -109,6 +109,7 @@ $ ./gradlew -q javaToolchains
 ```
 
 ##### JMPS Config
+
 ```java
 // src/main/kotlin/module-info.java
 module dev.suresh.openjdklatest {
@@ -164,7 +165,7 @@ https://github.com/melix/jdoctor
 
 
 [java_url]: https://jdk.java.net/
-[java_img]: https://img.shields.io/badge/OpenJDK-Version--17-orange?logo=java&style=for-the-badge&logoColor=blue  
+[java_img]: https://img.shields.io/badge/OpenJDK-Version--17-orange?logo=java&style=for-the-badge&logoColor=blue
 
 [kt_url]: https://github.com/JetBrains/kotlin/releases/latest
 [kt_img]: https://img.shields.io/github/release/JetBrains/kotlin.svg?label=Kotlin&logo=kotlin&style=for-the-badge

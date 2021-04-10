@@ -3,6 +3,39 @@ package dev.suresh.adt;
 import java.io.Serializable;
 
 /**
+ * A discriminated union that encapsulates a successful outcome with a
+ * value of type T or a failure with an arbitrary Throwable exception.
+ *
+ * @param <T> Result value type.
+ */
+sealed interface Result<T> extends Serializable permits Success, Failure{
+
+  static <T> Result<T> success(T value) {
+    return new Success<>(value) ;
+  }
+
+  static <T> Result<T> failure(Throwable error) {
+    return new Failure<>(error) ;
+  }
+
+  default boolean isSuccess() {
+    return this instanceof Success<T>;
+  }
+
+  default boolean isFailure() {
+    return this instanceof Failure<T>;
+  }
+
+  default T getOrNull() {
+    return this instanceof Success<T> s ? s.value() : null;
+  }
+
+  default Throwable exceptionOrNull() {
+    return this instanceof Failure<T> t ? t.error() : null;
+  }
+}
+
+/**
  * A value that represents either a success or a failure, including an associated value in each case.
  */
 public class ResultType {
@@ -33,39 +66,6 @@ public class ResultType {
        r.exceptionOrNull()
       )
    );
-  }
-}
-
-/**
- * A discriminated union that encapsulates a successful outcome with a
- * value of type T or a failure with an arbitrary Throwable exception.
- *
- * @param <T> Result value type.
- */
-sealed interface Result<T> extends Serializable permits Success, Failure{
-
-  default boolean isSuccess() {
-    return this instanceof Success<T>;
-  }
-
-  default boolean isFailure() {
-    return this instanceof Failure<T>;
-  }
-
-  default T getOrNull() {
-    return this instanceof Success<T> s ? s.value() : null;
-  }
-
-  default Throwable exceptionOrNull() {
-    return this instanceof Failure<T> t ? t.error() : null;
-  }
-
-  static <T> Result<T> success(T value) {
-    return new Success<>(value) ;
-  }
-
-  static <T> Result<T> failure(Throwable error) {
-    return new Failure<>(error) ;
   }
 }
 

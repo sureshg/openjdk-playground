@@ -3,7 +3,6 @@ package dev.suresh.generics;
 import static java.lang.System.out;
 
 import java.util.List;
-import java.util.concurrent.atomic.LongAdder;
 
 public class Test {
 
@@ -26,9 +25,9 @@ public class Test {
     printDetails(mgrList);
     printDetails(dirList);
 
-//    LongAdder
-//    test(dirList);
-//    test(mgrList);
+    //    LongAdder
+    //    test(dirList);
+    //    test(mgrList);
     test(empList);
   }
 

@@ -1,24 +1,19 @@
-
-
 # JDK Commands
 
-This document contains list of [Java/JDK](http://jdk.java.net/) commands which i find useful for my day to day work.
+This document contains list of [Java/JDK](http://jdk.java.net/) commands which i find useful for my
+day to day work.
 
 [TOC]
 
-####  Java Commands
+#### Java Commands
 
 ------
 
-
-
-#####  1. Create Source Code Structure
+##### 1. Create Source Code Structure
 
 ```bash
 $ mkdir -p src/{main,test}/{java,resources}
 ```
-
-
 
 ##### 2. Preview features
 
@@ -33,8 +28,6 @@ $ java  --enable-preview Foo
 
 - [Gradle - Enabling Java preview features](https://docs.gradle.org/current/userguide/building_java_projects.html#sec:feature_preview)
 
-
-
 ##### 3. Java Platform Module Systems (JPMS)
 
 ```bash
@@ -48,8 +41,6 @@ $ java --upgrade-module-path $DIR
 
 * [Java Compiler Upgradeable module]( https://docs.oracle.com/en/java/javase/15/docs/api/java.compiler/module-summary.html)
 
-
-
 ##### 4. Disassembles a class
 
 ```bash
@@ -58,15 +49,11 @@ $ javap -p -v <classfile>
 
 * **[Javap Pastebin](https://javap.yawk.at/)**
 
-
-
 ##### 5. Parallel GC
 
  ```bash
 $ java -XX:+UseParallelGC ...
  ```
-
-
 
 ##### 6. Show Java VM/Property Settings
 
@@ -85,8 +72,6 @@ $  java -XX:+UnlockExperimentalVMOptions -XX:+UnlockDiagnosticVMOptions -XX:+Pri
 
 * [**Java Options**](https://docs.oracle.com/en/java/javase/15/docs/specs/man/java.html)
 * **[VM Options](https://www.oracle.com/java/technologies/javase/vmoptions-jsp.html)**
-
-
 
 ##### 7. Scan deprecated APIs
 
@@ -111,8 +96,6 @@ $ jdeprscan --for-removal --release 17 app.jar
 ```
 
 * [Java EE Maven artifacts](https://openjdk.java.net/jeps/320)
-
-
 
 ##### 8. JPMS
 
@@ -151,8 +134,6 @@ $ java  --enable-preview \
 
 * **[Java Modules Cheat Sheet](https://nipafx.dev/build-modules/)**
 
-  
-
 ##### 9. [JVMCI (Graal) Compiler](https://openjdk.java.net/jeps/317)
 
 ```bash
@@ -164,8 +145,6 @@ $ java -Dgraal.ShowConfiguration=info
 
 - [GraalJS OpenJDK Demo](https://github.com/graalvm/graal-js-jdk11-maven-demo)
 
-  
-
 ##### 10. JShell
 
 ```bash
@@ -176,12 +155,13 @@ $ jshell --enable-preview
 $ jshell --enable-preview --startup DEFAULT --startup ~/calc.repl
 ```
 
-
-
 ##### 11. Loom config
 
 ```bash
-# Loom Default ForkJoinPool scheduler config.
+# Loom Default ForkJoinPool scheduler config. The scheduler is based on 
+# ForkJoinPool and it's setup to spin up additional underlying carrier 
+# threads to help when there are virtual threads blocked in Object.wait. 
+# The default maximum is 256.
 $ java -Djdk.defaultScheduler.parallelism=1   // Default to available processors
        -Djdk.defaultScheduler.maxPoolSize=256 // Max(parallelism,256)
 
@@ -197,11 +177,7 @@ $ sdk rm java jdk-16-loom
 $ sdk i java jdk-16-loom ~/install/openjdk/jdk-16-loom.jdk/Contents/Home
 ```
 
-
-
 ##### 12. [Unified GC Logging](https://openjdk.java.net/jeps/158#Simple-Examples:)
-
-
 
 ```bash
 $  java -Xlog:help
@@ -221,8 +197,6 @@ $  java -Xlog:help
 -XX:GCLogFileSize=10M
 ```
 
-
-
 ##### 13. JFR
 
 ```bash
@@ -240,8 +214,6 @@ $  java -Xlog:help
 * [Flight Recorder Tool](https://docs.oracle.com/en/java/javase/15/troubleshoot/diagnostic-tools.html#GUID-D38849B6-61C7-4ED6-A395-EA4BC32A9FD6)
 * [Flight Recorder API Guide](https://docs.oracle.com/en/java/javase/15/jfapi/flight-recorder-configurations.html)
 
-
-
 ##### 14. Kotlin + Graal Native-Image
 
 ```bash
@@ -257,8 +229,6 @@ $ objdump -section-headers  app
 $ time ./app
 ```
 
-
-
 ##### 15. Kotlin Script
 
 ```kotlin
@@ -270,8 +240,6 @@ $ time ./app
 
 println("Hello Kotlin Script")
 ```
-
-
 
 ##### 16. JMC
 
@@ -295,14 +263,10 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 
 - [VisualVM](https://visualvm.github.io/)
 
-
-
 ##### 17. Generics
 
 - [GenericsFAQ](http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html)
 - [How we got Generics we have](https://cr.openjdk.java.net/~briangoetz/valhalla/erasure.html)
-
-
 
 ##### 18. HeapDump
 
@@ -312,31 +276,25 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 
 * [HPROF Parser](https://github.com/openjdk/jdk/blob/master/test/lib/jdk/test/lib/hprof/HprofParser.java)
 
-  
-
 #### IDEs and Tools
 
 ------
 
 ##### 1. IntelliJ Selection Modes
 
-* All Actions                       - <kbd>CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>A</kbd>
-* Select all occurrences    - <kbd>CMD</kbd> + <kbd>CTRL</kbd> + <kbd>G</kbd>
-* Column selection mode  - <kbd>CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>8</kbd>
-* Multiple Cursors             - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + <kbd>Left Click</kbd>
-* Multi Selection                - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + Select as usual
-* Caret Cloning                  - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + Middle click on end line
-* Move line                        - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + <kbd>Arrow UP/DOWN</kbd>
+* All Actions - <kbd>CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>A</kbd>
+* Select all occurrences - <kbd>CMD</kbd> + <kbd>CTRL</kbd> + <kbd>G</kbd>
+* Column selection mode - <kbd>CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>8</kbd>
+* Multiple Cursors - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + <kbd>Left Click</kbd>
+* Multi Selection - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + Select as usual
+* Caret Cloning - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + Middle click on end line
+* Move line - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + <kbd>Arrow UP/DOWN</kbd>
 
-
-
-####  Networking & Security
+#### Networking & Security
 
 ------
 
 ##### 🚨 [Security Developer’s Guide](https://docs.oracle.com/en/java/javase/16/security/index.html)
-
-
 
 ##### 1. [Allow Unsafe Server Cert Change](https://github.com/openjdk/jdk/blob/6a905b6546e288e86322ae978a1f594266aa368a/src/java.base/share/classes/sun/security/ssl/ClientHandshakeContext.java#L35-L76)
 
@@ -346,18 +304,14 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 -Dsun.security.ssl.allowUnsafeRenegotiation=true
    ```
 
-
-
 ##### 2 . Debugging TLS
 
-   * https://docs.oracle.com/en/java/javase/16/security/java-secure-socket-extension-jsse-reference-guide.html#GUID-4D421910-C36D-40A2-8BA2-7D42CCBED3C6
+* https://docs.oracle.com/en/java/javase/16/security/java-secure-socket-extension-jsse-reference-guide.html#GUID-4D421910-C36D-40A2-8BA2-7D42CCBED3C6
 
-   * https://docs.oracle.com/en/java/javase/16/security/java-secure-socket-extension-jsse-reference-guide.html
+* https://docs.oracle.com/en/java/javase/16/security/java-secure-socket-extension-jsse-reference-guide.html
 
-   * https://github.com/sureshg/InstallCerts/blob/master/src/main/kotlin/io/github/sureshg/extn/Certs.kt
+* https://github.com/sureshg/InstallCerts/blob/master/src/main/kotlin/io/github/sureshg/extn/Certs.kt
 
-     
-     
      ```bash
      # Turn on all debugging
      $ java -Djavax.net.debug=all
@@ -372,16 +326,22 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
      $ java -Djava.security.egd=file:/dev/./urandom
      ```
 
+##### 2. Java Networking Properties
 
+     - http://htmlpreview.github.io/?https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/net/doc-files/net-properties.html
 
-##### 2. [Networking Proxy](https://docs.oracle.com/javase/8/docs/technotes/guides/net/proxies.html)
+- https://docs.oracle.com/javase/8/docs/technotes/guides/net/proxies.html
+
+| Config             | Description                                                  |
+| :----------------- | :----------------------------------------------------------- |
+| http.proxyHost     | The host name of the proxy server                            |
+| http.proxyPort     | The port number, the default value being `80`                |
+| http.nonProxyHosts | `|`. The patterns may start or end with a `*` for wildcards. Any host matching one of these patterns will be reached through a direct connection instead of through a proxy |
 
 - **HTTP**
 
   ```bash
-  http.proxyHost
-  http.proxyPort
-  http.nonProxyHosts
+  $ java -Dhttp.proxyHost=webcache.example.com -Dhttp.proxyPort=8080 -Dhttp.nonProxyHosts=”localhost|host.example.com” <URL>
   ```
 
 - **Env vars**
@@ -392,25 +352,7 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
   export NO_PROXY=master.hostname.example.com
   ```
 
-
-
-##### 3. Java Networking Properties
-
-​     http://htmlpreview.github.io/?https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/net/doc-files/net-properties.html
-
-| Config             | Description                                                  |
-| :----------------- | :----------------------------------------------------------- |
-| http.proxyHost     | The host name of the proxy server                            |
-| http.proxyPort     | The port number, the default value being `80`                |
-| http.nonProxyHosts | `|`. The patterns may start or end with a `*` for wildcards. Any host matching one of these patterns will be reached through a direct connection instead of through a proxy |
-
-```bash
-$java -Dhttp.proxyHost=webcache.example.com -Dhttp.proxyPort=8080 -Dhttp.nonProxyHosts=”localhost|host.example.com” <URL>
-```
-
-
-
-##### 4. [HTTP Client](https://openjdk.java.net/groups/net/httpclient/#incubatingAPI) Properties
+##### 3. [HTTP Client](https://openjdk.java.net/groups/net/httpclient/#incubatingAPI) Properties
 
 ```bash
 -Djdk.internal.httpclient.disableHostnameVerification
@@ -419,16 +361,12 @@ $java -Dhttp.proxyHost=webcache.example.com -Dhttp.proxyPort=8080 -Dhttp.nonProx
 -Djdk.tls.client.protocols="TLSv1.2"
 ```
 
-
-
-##### 5. GPG/OpenPGP
+##### 4. GPG/OpenPGP
 
 * [GPG Key Prepare](https://github.com/s4u/sign-maven-plugin/blob/master/src/site/markdown/key-prepare.md)
 * [Renew GPG Key](https://gist.github.com/krisleech/760213ed287ea9da85521c7c9aac1df0)
 
 ​      `Note that the private key can never expire.`
-
-
 
 #### Gradle Kotlin DSL
 
@@ -444,8 +382,6 @@ $java -Dhttp.proxyHost=webcache.example.com -Dhttp.proxyPort=8080 -Dhttp.nonProx
 
 - ##### [Building Kotlin JVM Libraries](https://guides.gradle.org/building-kotlin-jvm-libraries/)
 
-
-
 ##### 2. [Name Abbrevation](https://docs.gradle.org/6.8/userguide/command_line_interface.html#sec:name_abbreviation)
 
 ```bash
@@ -458,23 +394,19 @@ $ ./gradlew --console=plain \
             cle dU
 ```
 
-
-
 ##### 3. Create new Java `SourceSet`
 
   ```kotlin
 sourceSets {
-   create("java15") {
-       java {
-           srcDirs("src/main/java15")
-       }
-   }
+    create("java15") {
+        java {
+            srcDirs("src/main/java15")
+        }
+    }
 }
   ```
 
--  [SourceSet](https://docs.gradle.org/current/userguide/building_java_projects.html#sec:java_source_sets)
-
-
+- [SourceSet](https://docs.gradle.org/current/userguide/building_java_projects.html#sec:java_source_sets)
 
 ##### 4. Custom SourceSet directories
 
@@ -493,8 +425,6 @@ sourceSets {
 }
 ```
 
-
-
 ##### 5. Kotlin SourceSets
 
 ```kotlin
@@ -510,7 +440,7 @@ kotlin {
             kotlin.srcDirs("src/main/java11")
         }
 
-        val test by creating{}
+        val test by creating {}
     }
 }
 
@@ -529,43 +459,35 @@ val sourcesJar by tasks.registering(Jar::class) {
 }
 ```
 
-
-
 ##### 6. Compile class path
-
-
 
 ```kotlin
 sourceSets.main.get().compileClasspath
 // kotlin.sourceSets.main.get().kotlin
 ```
 
-
-
 ##### 7. [Configure/Create Tasks](https://docs.gradle.org/current/userguide/kotlin_dsl.html#kotdsl:containers)
 
-   * ###### Eager
+* ###### Eager
 
-     ```kotlin
-     val p: Jar = getByName<Jar>("jar")       // Get existing task
-     val q: Jar = create<Jar>("jar") {}       // Create new task
-     val r: Jar by getting(Jar::class)        // Get task using property delegate
-     val s: Copy by creating(Copy::class) {}  // Create task using property delegate
-     ```
+  ```kotlin
+  val p: Jar = getByName<Jar>("jar")       // Get existing task
+  val q: Jar = create<Jar>("jar") {}       // Create new task
+  val r: Jar by getting(Jar::class)        // Get task using property delegate
+  val s: Copy by creating(Copy::class) {}  // Create task using property delegate
+  ```
 
-   * ###### Lazy ([Confiuration Avoidance API](https://docs.gradle.org/current/userguide/task_configuration_avoidance.html))
+* ###### Lazy ([Confiuration Avoidance API](https://docs.gradle.org/current/userguide/task_configuration_avoidance.html))
 
-     ```kotlin
-     val t: TaskProvider<Jar> = named<Jar>("jar"){}        // Get existing task
-     val u: TaskProvider<Jar> = register<Jar>("jar"){}     // Create new task
-     val v: TaskProvider<Jar> by registering(Jar::class){} // Create task using property delegate
-     val jar: TaskProvider<Task> by existing // Get task using property delegate
+  ```kotlin
+  val t: TaskProvider<Jar> = named<Jar>("jar"){}        // Get existing task
+  val u: TaskProvider<Jar> = register<Jar>("jar"){}     // Create new task
+  val v: TaskProvider<Jar> by registering(Jar::class){} // Create task using property delegate
+  val jar: TaskProvider<Task> by existing // Get task using property delegate
 
-     val foo: FooTask by existing            // Take Task type from val (Kotlin 1.4)
-     val bar: BarTask by registering {}      // Take Task type from val (Kotlin 1.4)
-     ```
-
-
+  val foo: FooTask by existing            // Take Task type from val (Kotlin 1.4)
+  val bar: BarTask by registering {}      // Take Task type from val (Kotlin 1.4)
+  ```
 
 ##### 8. [Enabling Java preview feature](https://docs.gradle.org/current/userguide/building_java_projects.html#sec:feature_preview)
 
@@ -581,8 +503,6 @@ tasks.withType<JavaExec> {
 }
 ```
 
-
-
 ##### 9. [Reproducible builds](https://docs.gradle.org/current/userguide/working_with_files.html#sec:reproducible_archives)
 
 ```kotlin
@@ -592,10 +512,8 @@ withType<AbstractArchiveTask>().configureEach {
 }
 ```
 
-* **[reproducible-builds.org](https://reproducible-builds.org/docs/jvm/)** 
+* **[reproducible-builds.org](https://reproducible-builds.org/docs/jvm/)**
 * https://github.com/jvm-repo-rebuild/reproducible-central
-
-
 
 ##### 10. [Multi Release Jar](https://blog.gradle.org/mrjars)
 
@@ -633,9 +551,7 @@ if (JavaVersion.current().isJava11Compatible) {
 }
 ```
 
-
-
-##### 11. Dependencies 
+##### 11. Dependencies
 
 ```bash
 
@@ -663,8 +579,6 @@ $ rm -rf ~/.gradle/caches
 
 * **[Gradle Conflict Resolution](https://docs.gradle.org/current/userguide/dependency_resolution.html#sec:conflict-resolution)**
 
-  
-
 ##### 12. Update Wrapper and others
 
 ```bash
@@ -679,10 +593,6 @@ $ ./gradlew properties
 # Gradle run with arguments
 $ ./gradlew run --args="<JFR_FILE>"
 ```
-
-
-
-
 
 #### Security & Certificates
 
@@ -713,11 +623,7 @@ $ openssl pkcs12 -export -chain -out keystore.p12 -inkey private.key -password p
 
 ```
 
-
-
-#####  2. Add Certs to IntelliJ Truststore
-
-
+##### 2. Add Certs to IntelliJ Truststore
 
 ```bash
 $ cacerts="$HOME/Library/Application Support/JetBrains/GoLand2020.2/ssl/cacerts"
@@ -731,8 +637,6 @@ $ keytool -importcert -trustcacerts -alias rootca -storetype PKCS12 -keystore $c
 $ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
 ```
 
-
-
 #### Maven Central Release
 
 ------
@@ -741,8 +645,6 @@ $ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
 * https://github.com/raphw/byte-buddy/blob/master/.github/workflows/main.yml#L92-L109
 * https://github.com/raphw/byte-buddy/blob/master/.github/scripts/install-jdk.sh
 * https://blog.autsoft.hu/publishing-an-android-library-to-mavencentral-in-2019/
-
-
 
 #### [Maven](https://search.maven.org/search?q=org.jetbrains.kotlin)
 
@@ -759,62 +661,56 @@ $ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
 $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
 ```
 
-
-
 ##### 3. [Enabling Java preview feature](https://blog.codefx.org/java/enable-preview-language-features/#Enabling-Previews-In-Tools)
 
 ```xml
+
 <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.6.2</version>
-        <configuration>
-          <release>15</release>
-          <compilerArg>--enable-preview</compilerArg>
-        </configuration>
-      </plugin>
+  <plugins>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-compiler-plugin</artifactId>
+      <version>3.6.2</version>
+      <configuration>
+        <release>15</release>
+        <compilerArg>--enable-preview</compilerArg>
+      </configuration>
+    </plugin>
 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <configuration>
-          <argLine>--enable-preview</argLine>
-        </configuration>
-      </plugin>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-surefire-plugin</artifactId>
+      <configuration>
+        <argLine>--enable-preview</argLine>
+      </configuration>
+    </plugin>
 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-failsafe-plugin</artifactId>
-        <configuration>
-          <argLine>--enable-preview</argLine>
-        </configuration>
-      </plugin>
-    </plugins>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-failsafe-plugin</artifactId>
+      <configuration>
+        <argLine>--enable-preview</argLine>
+      </configuration>
+    </plugin>
+  </plugins>
 </build>
 ```
-
-
 
 ##### 4. [Reproducible Builds](https://maven.apache.org/guides/mini/guide-reproducible-builds.html)
 
 ```xml
+
 <properties>
-    <project.build.outputTimestamp>2020-04-02T08:04:00Z</project.build.outputTimestamp>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  <project.build.outputTimestamp>2020-04-02T08:04:00Z</project.build.outputTimestamp>
+  <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 </properties>
 ```
-
-
 
 ##### 5. Maven Wrapper
 
 ```bash
 $ mvn -N io.takari:maven:wrapper -Dmaven=3.6.3
 ```
-
-
 
 ##### 6. [Update Version number](http://www.mojohaus.org/versions-maven-plugin/)
 
@@ -823,8 +719,6 @@ $ ./mvnw versions:set -DnewVersion=1.0.1-SNAPSHOT -DprocessAllModules -Dgenerate
 $ ./mvnw versions:revert // Rollback
 $ ./mvnw versions:commit
 ```
-
-
 
 ##### 7. [Dependency Tree](https://search.maven.org/search?q=fc:kotlin.text.Regex)
 
@@ -842,8 +736,6 @@ $ ./mvnw clean versions:display-dependency-updates versions:display-plugin-updat
 https://search.maven.org/search?q=fc:kotlin.text.Regex
 ```
 
-
-
 #### Microservices Starters
 
 ------
@@ -859,8 +751,6 @@ $ curl 'https://launch.micronaut.io/create/DEFAULT/dev.suresh.sample-app?lang=ko
      --compressed \
       -o sample-app.zip
 ```
-
-
 
 ##### 2. [SpringBoot](https://start.spring.io/)
 
@@ -884,11 +774,7 @@ $ curl https://start.spring.io/starter.zip \
 - [SpringBoot](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
 - [Spring and Kotlin Docs](https://docs.spring.io/spring/docs/current/spring-framework-reference/index.html)
 
-
-
 ##### 3. [Quarkus](https://code.quarkus.io/)
-
-
 
 ##### 4. [Gradle Initializr](https://gradle-initializr.cleverapps.io/)
 
@@ -899,15 +785,11 @@ $ curl 'https://gradle-initializr.cleverapps.io/starter?type=kotlin-application&
 $ gradle init --type <java-library|java-application|...> --dsl kotlin
 ```
 
-
-
 ##### 5. [Maven Archetype Quickstart](http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)
 
 ```bash
 $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
 ```
-
-
 
 #### Misc
 
@@ -946,8 +828,10 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
 - [Awesome Actions](https://github.com/sdras/awesome-actions)
 
    ```bash
-// Set env variable than can access from workflow env context.
-echo "::set-env name=JAVA_HOME::$GRAALVM_HOME"
+
+// Set env variable than can access from workflow env context. echo "::set-env name=JAVA_HOME::
+$GRAALVM_HOME"
+
    ```
 
 Release Action
@@ -978,87 +862,77 @@ Release
         ${{ runner.os }}-gradle-
   ```
 
-  * String format
+* String format
 
   ```bash
    ${{ hashFiles(format('{0}{1}', github.workspace, '/test.lock')) }}
   ```
 
-  * Use outout between steps
+* Use outout between steps
 
-    ```yaml
-    - name: Get cache directory
-      id: app-cache
-      run: |
-        echo "::set-output name=dir::$(command --cache-dir)"
-    - uses: actions/cache@v2.1.4
-      with:
-        path: ${{ steps.app-cache.outputs.dir }}
-    ```
+  ```yaml
+  - name: Get cache directory
+    id: app-cache
+    run: |
+      echo "::set-output name=dir::$(command --cache-dir)"
+  - uses: actions/cache@v2.1.4
+    with:
+      path: ${{ steps.app-cache.outputs.dir }}
+  ```
 
-  * Check runner OS
+* Check runner OS
 
-    ```YAML
-    if: startsWith(runner.os, 'Linux')
-    if: startsWith(runner.os, 'macOS')
-    if: startsWith(runner.os, 'Windows')
+  ```YAML
+  if: startsWith(runner.os, 'Linux')
+  if: startsWith(runner.os, 'macOS')
+  if: startsWith(runner.os, 'Windows')
 
-    // check if security bot
-    $ if: github.base_ref == 'master' && github.actor == 'dependabot[bot]'
-    ```
-
-
-
-  * Docker hub push - https://github.com/marketplace/actions/build-and-push-docker-images
-
-  * [Github Registry](https://help.github.com/en/packages/using-github-packages-with-your-projects-ecosystem/configuring-docker-for-use-with-github-packages)
-
-    ```bash
-    $ VERSION=$(date +%s)
-    $ docker build . --file Dockerfile --tag docker.pkg.github.com/sureshg/repo/app:${VERSION}
-    $ docker login docker.pkg.github.com --username sureshg --password ${{ secrets.GITHUB_TOKEN }}
-    $ docker push docker.pkg.github.com/sureshg/repo/app:${VERSION}
-    ```
+  // check if security bot
+  $ if: github.base_ref == 'master' && github.actor == 'dependabot[bot]'
+  ```
 
 
+* Docker hub push - https://github.com/marketplace/actions/build-and-push-docker-images
 
-  * Service container
+* [Github Registry](https://help.github.com/en/packages/using-github-packages-with-your-projects-ecosystem/configuring-docker-for-use-with-github-packages)
 
-    ```yaml
-    services:
-       postgres:
-         image: postgres:10.8
-         env:
-           POSTGRES_USER: postgres
-           POSTGRES_PASSWORD: postgres
-         options:
-         ports:
-           - 5432/tcp
-     ...
-     ${{ jobs.services.postgres.ports[5432] }}
-    ```
+  ```bash
+  $ VERSION=$(date +%s)
+  $ docker build . --file Dockerfile --tag docker.pkg.github.com/sureshg/repo/app:${VERSION}
+  $ docker login docker.pkg.github.com --username sureshg --password ${{ secrets.GITHUB_TOKEN }}
+  $ docker push docker.pkg.github.com/sureshg/repo/app:${VERSION}
+  ```
 
 
+* Service container
+
+  ```yaml
+  services:
+     postgres:
+       image: postgres:10.8
+       env:
+         POSTGRES_USER: postgres
+         POSTGRES_PASSWORD: postgres
+       options:
+       ports:
+         - 5432/tcp
+   ...
+   ${{ jobs.services.postgres.ports[5432] }}
+  ```
 
 https://github.com/GoogleContainerTools/distroless
 
 https://github.com/GoogleContainerTools/jib
 
-
-
 #### LDAP Tools
 
 * https://ldap.com/ldap-tools/
-
-  
 
 #### Native-Image
 
 ---------
 
 ##### 1. [Workshop](https://github.com/krisfoster/Native-Image-Workshop)
-
-
 
 ##### 2. Graal Updater & Truffle
 
@@ -1070,8 +944,6 @@ $ java -truffle [-options] class [args...]
 $ java -truffle [-options] -jar jarfile [args...]
 ```
 
-
-
 ##### 3. SVM Substitutions
 
 ```java
@@ -1080,34 +952,35 @@ package com.newrelic.jfr.subst;
 import com.oracle.svm.core.annotate.Substitute;
 import com.oracle.svm.core.annotate.TargetClass;
 
-@TargetClass(className="jdk.jfr.internal.JVM")
+@TargetClass(className = "jdk.jfr.internal.JVM")
 final class Target_jdk_jfr_internal_JVM {
-    @Substitute
-    public long getTypeId(Class<?> clazz) {
-        return -1;
-    }
+
+  @Substitute
+  public long getTypeId(Class<?> clazz) {
+    return -1;
+  }
 }
 
 // Another example
 @TargetClass(className = "com.google.protobuf.UnsafeUtil")
 final class Target_com_google_protobuf_UnsafeUtil {
-    @Substitute
-    static sun.misc.Unsafe getUnsafe() {
-        return null;
-    }
+
+  @Substitute
+  static sun.misc.Unsafe getUnsafe() {
+    return null;
+  }
 }
 ```
 
 ```xml
-      <dependency>
-            <groupId>org.graalvm.nativeimage</groupId>
-            <artifactId>svm</artifactId>
-            <version>${graalvm.version}</version>
-            <scope>provided</scope>
-        </dependency>
+
+<dependency>
+  <groupId>org.graalvm.nativeimage</groupId>
+  <artifactId>svm</artifactId>
+  <version>${graalvm.version}</version>
+  <scope>provided</scope>
+</dependency>
 ```
-
-
 
 Find GraalVm used to generate the native-image
 
@@ -1119,30 +992,26 @@ $ strings -a $(which native-image) | grep -i com.oracle.svm.core.VM
 $ git commit --allow-empty -m "empty commit"
 ```
 
-
-
-* Maven integration - https://www.graalvm.org/docs/reference-manual/native-image/#integration-with-maven
-* Image configure at build and runtime - https://github.com/graalvm/graalvm-demos/tree/master/native-image-configure-examples
+* Maven integration
+  - https://www.graalvm.org/docs/reference-manual/native-image/#integration-with-maven
+* Image configure at build and runtime
+  - https://github.com/graalvm/graalvm-demos/tree/master/native-image-configure-examples
 * GraalVm demos - https://github.com/graalvm/graalvm-demos
 * https://medium.com/graalvm/simplifying-native-image-generation-with-maven-plugin-and-embeddable-configuration-d5b283b92f57
 * https://github.com/oracle/graal/blob/master/substratevm/CLASS-INITIALIZATION.md
 * https://search.maven.org/artifact/org.graalvm.nativeimage/svm/20.0.0/jar
 * https://github.com/graalvm/graalvm-ce-dev-builds/releases/
 * Examples:
-  * https://github.com/38leinaD/bpmn-diff/tree/master/.github/workflows
-  * https://github.com/micronaut-projects/micronaut-starter/tree/master/.github/workflows
+    * https://github.com/38leinaD/bpmn-diff/tree/master/.github/workflows
+    * https://github.com/micronaut-projects/micronaut-starter/tree/master/.github/workflows
 
 * https://jamesward.com/2020/05/07/graalvm-native-image-tips-tricks/
-
-
 
 ### [Minecraft Server](https://github.com/itzg/docker-minecraft-server)
 
 ```bash
 $ docker run -d -p 25565:25565 --name mc itzg/minecraft-server:adopt15
 ```
-
-
 
 ### Blogs
 
@@ -1156,26 +1025,27 @@ $ docker run -d -p 25565:25565 --name mc itzg/minecraft-server:adopt15
 
 * Tools
 
-  * https://utteranc.es/ - Comments Widgets
-  * https://orchid.run/wiki/learn/tutorials/how-to-document-kotlin
-  * http://casual-effects.com/markdeep/
-  * https://www.mkdocs.org/ (eg: https://github.com/hexagonkt/hexagon/tree/master/hexagon_site)
-  * Github publish example - https://github.com/hexagonkt/hexagon/blob/master/.github/workflows/main.yml
-  *
+    * https://utteranc.es/ - Comments Widgets
+    * https://orchid.run/wiki/learn/tutorials/how-to-document-kotlin
+    * http://casual-effects.com/markdeep/
+    * https://www.mkdocs.org/ (eg: https://github.com/hexagonkt/hexagon/tree/master/hexagon_site)
+    * Github publish example
+      - https://github.com/hexagonkt/hexagon/blob/master/.github/workflows/main.yml
+    *
 
 #### Awesome Svgs
 
-#####    Illustrations
+##### Illustrations
 
 - https://undraw.co/illustrations
 - https://www.manypixels.co/gallery/
 - https://www.pixeltrue.com/free-illustrations
 
-#####    Background
+##### Background
 
--  https://www.svgbackgrounds.com/
+- https://www.svgbackgrounds.com/
 
-#####     Icons
+##### Icons
 
 - https://icons.getbootstrap.com/
 - https://material.io/resources/icons/?style=baseline (not sag)
@@ -1185,6 +1055,7 @@ $ docker run -d -p 25565:25565 --name mc itzg/minecraft-server:adopt15
 - https://tablericons.com/
 - https://tabler-icons.io/
 - https://systemuicons.com/
+- https://github.com/c5inco/intellij-icons-compose
 - https://www.visiwig.com/icons/
 - https://standart.io/
 - https://thenounproject.com/
@@ -1193,20 +1064,18 @@ $ docker run -d -p 25565:25565 --name mc itzg/minecraft-server:adopt15
 - https://ionicons.com/
 - https://icons8.com/
 
-#####     Emojis
+##### Emojis
 
 - https://emojipedia.org/search/
 - https://github.com/twitter/twemoji/tree/master/assets
 
-#####     Tools
+##### Tools
 
 - https://jakearchibald.github.io/svgomg/
 - https://css-tricks.com/tools-for-optimizing-svg/
 - https://imageoptim.com/mac
 - https://xmlgraphics.apache.org/batik/
 - https://github.com/svg/svgo-osx-folder-action
-
-
 
 ```bash
 $ pip3 install mkdocs-macros-plugin

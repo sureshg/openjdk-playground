@@ -5,6 +5,7 @@
 ## [1.0.0]
 
 ### Added
+
 - Project Loom Sample
 - Java15 examples
 - Kotlin examples

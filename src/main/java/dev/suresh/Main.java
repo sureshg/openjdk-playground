@@ -13,6 +13,9 @@ record Person(String name, int age) {}
 
 public class Main {
 
+  private String name = "Java";
+  private int age = 25;
+
   public static int computeScore(Person p) {
     return 1;
   }
@@ -49,10 +52,6 @@ public class Main {
     Records.run();
     JettyServerKt.run(8080);
   }
-
-  private String name = "Java";
-
-  private int age = 25;
 
   @Override
   public boolean equals(Object o) {

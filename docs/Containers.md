@@ -1,5 +1,3 @@
-
-
 #### Containers
 
 ------
@@ -46,20 +44,18 @@
   $ docker run -it --rm gcr.io/distroless/java-debian10:base-nonroot openssl s_client --connect google.com:443
   ```
 
-     - https://hub.docker.com/_/openjdk
-     - https://github.com/docker-library/docs/tree/master/openjdk
-     - https://github.com/AdoptOpenJDK/openjdk-docker#official-and-unofficial-images
-     - https://container-registry.oracle.com/java/openjdk
-     - https://www.graalvm.org/docs/getting-started/container-images/
+    - https://hub.docker.com/_/openjdk
+    - https://github.com/docker-library/docs/tree/master/openjdk
+    - https://github.com/AdoptOpenJDK/openjdk-docker#official-and-unofficial-images
+    - https://container-registry.oracle.com/java/openjdk
+    - https://www.graalvm.org/docs/getting-started/container-images/
 
-  
 
 - ##### Java Container logs
 
   ```bash
   $ docker run -it --rm --memory=256m --cpus=1 -v /:/host --name jdk-15 openjdk:15-jdk-slim java -Xlog:os=trace,os+container=trace -version
   ```
-
 
 
 - ##### Access Docker desktop LinuxKit VM on MacOS
@@ -69,7 +65,6 @@
    /# chroot /host
     # docker version
   ```
-
 
 
 - ##### Netscat Webserver
@@ -82,7 +77,6 @@
   # docker build -t hello-netcat .
   # docker run -p 8080:8080 -e PORT=8080 -it hello-netcat
   ```
-
 
 
 - Forwards Logs
@@ -98,7 +92,6 @@
 
   # https://docs.docker.com/config/containers/logging/configure/
   ```
-
 
 
 - [Shutdown signals and EnytryPoint](https://medium.com/@madflojo/shutdown-signals-with-docker-entry-point-scripts-5e560f4e2d45)
@@ -125,18 +118,13 @@
   ```
 
 
-
 - ##### [Docker stats GraalVM app](https://github.com/vasilmkd/docker-stats-monitor/blob/master/Dockerfile)
-
-
 
 #### Distroless
 
 ------
 
 https://github.com/GoogleContainerTools/distroless/blob/master/base/README.md
-
-
 
 #### Documentation
 
@@ -164,7 +152,7 @@ https://blog.arkey.fr/2020/06/28/using-jdk-flight-recorder-and-jdk-mission-contr
 
 ------
 
-#####  https://github.com/kubernetes-client/java
+##### https://github.com/kubernetes-client/java
 
 https://github.com/fabric8io/kubernetes-client
 

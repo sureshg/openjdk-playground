@@ -1,7 +1,7 @@
 package dev.suresh.service
 
-import kotlin.math.sqrt
-import kotlin.random.Random
+import kotlin.math.*
+import kotlin.random.*
 
 object PrimeGen {
 

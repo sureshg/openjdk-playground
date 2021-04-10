@@ -105,11 +105,11 @@ object LoomServer {
         println("---> Request: ${ex.requestMethod} - ${ex.requestURI}")
         val res = ProcessHandle.allProcesses().map {
             "${it.pid()} ${it.parent().map(ProcessHandle::pid).orElse(0)} ${
-            it.info().startInstant()
-                .map(Instant::toString).orElse("-")
+                it.info().startInstant()
+                    .map(Instant::toString).orElse("-")
             } ${
-            it.info().commandLine()
-                .orElse("-")
+                it.info().commandLine()
+                    .orElse("-")
             } ${it.info().user().orElse("-")}"
         }.collect(joining("<br>")).toByteArray()
 
