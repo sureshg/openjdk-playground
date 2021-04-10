@@ -850,72 +850,6 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
 
 - [Awesome Actions](https://github.com/sdras/awesome-actions)
 
-   ```bash
-   
-   ```
-
-// Set env variable than can access from workflow env context. echo "::set-env name=JAVA_HOME::
-$GRAALVM_HOME"
-
-   ```
-
-Release Action
-
-Release-draft action
-
-
-
-Release
-
-* [Cache](https://github.com/actions/cache/blob/master/examples.md#java---gradle)
-
-  ```yaml
-  - uses: actions/cache@v2.1.4
-    with:
-      path: ~/.m2/repository
-      key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-      restore-keys: |
-        ${{ runner.os }}-maven-
-   ```
-
-  ```yaml
-  - uses: actions/cache@v2.1.4
-    with:
-      path: ~/.gradle/caches
-      key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-      restore-keys: |
-        ${{ runner.os }}-gradle-
-  ```
-
-* String format
-
-  ```bash
-   ${{ hashFiles(format('{0}{1}', github.workspace, '/test.lock')) }}
-  ```
-
-* Use outout between steps
-
-  ```yaml
-  - name: Get cache directory
-    id: app-cache
-    run: |
-      echo "::set-output name=dir::$(command --cache-dir)"
-  - uses: actions/cache@v2.1.4
-    with:
-      path: ${{ steps.app-cache.outputs.dir }}
-  ```
-
-* Check runner OS
-
-  ```YAML
-  if: startsWith(runner.os, 'Linux')
-  if: startsWith(runner.os, 'macOS')
-  if: startsWith(runner.os, 'Windows')
-
-  // check if security bot
-  $ if: github.base_ref == 'master' && github.actor == 'dependabot[bot]'
-  ```
-
 
 * Docker hub push - https://github.com/marketplace/actions/build-and-push-docker-images
 
@@ -942,12 +876,8 @@ Release
        ports:
          - 5432/tcp
    ...
-   ${{ jobs.services.postgres.ports[5432] }}
+   jobs.services.postgres.ports[5432]
   ```
-
-https://github.com/GoogleContainerTools/distroless
-
-https://github.com/GoogleContainerTools/jib
 
 
 
