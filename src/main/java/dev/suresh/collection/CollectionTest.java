@@ -33,9 +33,11 @@ public class CollectionTest {
     System.out.println("Processing took " + (end - start) + " ms.");
     System.out.println("Final list size " + longList.size());
 
+    // new BitSet(64).set(1,true);
     // Stream.generate()
     // Objects
     // Arrays
     // Collections.
+    // Threads.virtualThreads().count()
   }
 }

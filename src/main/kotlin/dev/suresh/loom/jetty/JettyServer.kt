@@ -14,7 +14,6 @@ import java.time.Duration
 import java.util.concurrent.*
 import kotlin.time.*
 
-
 /**
  * Scoped variable holding the user id (Replacement for [ThreadLocal])
  */
@@ -97,7 +96,6 @@ fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
         println("${i + 1} -> ${r.getOrNull()}")
     }
 
-
     err.forEachIndexed { i, r ->
         if (i == 0) println("=== ERRORS ===")
         val msg = when (val ex = r.exceptionOrNull()) {
@@ -106,7 +104,6 @@ fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
         }
         println("ERROR ${i + 1} -> $msg")
     }
-
 
     println(
         """

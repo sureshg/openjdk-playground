@@ -84,6 +84,7 @@ object Deps {
             const val protobuf = "org.jetbrains.kotlinx:kotlinx-serialization-protobuf:$version"
             const val properties = "org.jetbrains.kotlinx:kotlinx-serialization-properties:$version"
             const val yaml = "com.charleskorn.kaml:kaml:0.17.0"
+            const val csv = "de.brudaswen.kotlinx.serialization:kotlinx-serialization-csv:2.0.0"
         }
     }
 
@@ -341,7 +342,7 @@ object Deps {
     }
 
     object Jackson {
-        const val version = "2.12.2"
+        const val version = "2.12.3"
         const val databind = "com.fasterxml.jackson.core:jackson-databind:$version"
     }
 
@@ -634,9 +635,10 @@ inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.j
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "6.1.0"
 inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version "0.38.0"
 inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.5.2" apply true
+inline val PluginDependenciesSpec.taskTree get() = id("com.dorongold.task-tree") version "1.5"
+inline val PluginDependenciesSpec.forbiddenApis get() = id("de.thetaphi.forbiddenapis") version "3.1"
 
 inline val PluginDependenciesSpec.javafx get() = id("org.openjfx.javafxplugin") version "0.0.7"
-inline val PluginDependenciesSpec.jmh get() = id("me.champeau.gradle.jmh") version "0.4.8"
 inline val PluginDependenciesSpec.mrjar get() = id("com.lingocoder.mrjar") version "0.0.16"
 inline val PluginDependenciesSpec.protobuf get() = id("com.google.protobuf") version "0.8.15"
 inline val PluginDependenciesSpec.changelog get() = id("org.jetbrains.changelog") version "0.4.0"
@@ -646,6 +648,10 @@ inline val PluginDependenciesSpec.kordampGradle get() = id("org.kordamp.gradle.p
 inline val PluginDependenciesSpec.gradleEnforcer get() = id("org.kordamp.gradle.project-enforcer") version "0.7.0"
 inline val PluginDependenciesSpec.jandex get() = id("org.kordamp.gradle.jandex") version "0.7.0"
 
+// Benchmark
+inline val PluginDependenciesSpec.jmh get() = id("me.champeau.gradle.jmh") version "0.6.4"
+inline val PluginDependenciesSpec.jmhReport get() = id("io.morethan.jmhreport") version "0.9.0"
+
 // Application frameworks
 inline val PluginDependenciesSpec.micronautApplication get() = id("io.micronaut.application") version "1.0.1"
 inline val PluginDependenciesSpec.micronautLibrary get() = id("io.micronaut.library") version "1.0.1"
@@ -653,7 +659,7 @@ inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boo
 inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version "1.0.9.RELEASE"
 
 // Static Analysis and Linting
-inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.12.0"
+inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.12.1"
 inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.1.2"
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version "9.3.0"
@@ -661,7 +667,7 @@ inline val PluginDependenciesSpec.detekt get() = id("io.gitlab.arturbosch.detekt
 inline val PluginDependenciesSpec.detektCompilerPlugin get() = id("io.github.detekt.gradle.compiler-plugin") version "0.3.1"
 
 // Artifact Publish
-inline val PluginDependenciesSpec.nexusPublish get() = id("io.github.gradle-nexus.publish-plugin") version "1.0.0"
+inline val PluginDependenciesSpec.nexusPublish get() = id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
 inline val PluginDependenciesSpec.mavenRepoAuth get() = id("org.hibernate.build.maven-repo-auth") version "3.0.4"
 inline val PluginDependenciesSpec.gradleRelease get() = id("net.researchgate.release") version "2.8.1"
 inline val PluginDependenciesSpec.githubRelease get() = id("com.github.breadmoirai.github-release") version "2.2.12"
@@ -670,7 +676,7 @@ inline val PluginDependenciesSpec.githubRelease get() = id("com.github.breadmoir
 inline val PluginDependenciesSpec.jgitPlugin get() = id("fr.brouillard.oss.gradle.jgitver") version "0.10.0-rc03"
 inline val PluginDependenciesSpec.gitSemver get() = id("com.github.jmongard.git-semver-plugin") version "0.1.3"
 inline val PluginDependenciesSpec.reckon get() = id("org.ajoberstar.reckon") version "0.12.0"
-inline val PluginDependenciesSpec.gitProperties get() = id("com.gorylenko.gradle-git-properties") version "2.2.4"
+inline val PluginDependenciesSpec.gitProperties get() = id("com.gorylenko.gradle-git-properties") version "2.3.1-rc1"
 inline val PluginDependenciesSpec.gitChangelog get() = id("se.bjurr.gitchangelog.git-changelog-gradle-plugin") version "1.65"
 
 // Static website

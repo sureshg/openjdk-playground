@@ -58,9 +58,11 @@ application {
         "-Djava.security.egd=file:/dev/./urandom",
         "-XX:+UnlockDiagnosticVMOptions",
         "-XX:+ShowHiddenFrames",
+        "-ea",
         // "-XX:ConcGCThreads=2",
         // "-XX:ZUncommitDelay=60",
         // "-Xlog:gc\*",
+        // "-Xlog:cds=debug",
         // "-XX:+IgnoreUnrecognizedVMOptions",
         // "-XX:NativeMemoryTracking=summary",
         // "-Djava.net.preferIPv4Stack=true"
@@ -188,7 +190,7 @@ jgitver {
 }
 
 gitProperties {
-    gitPropertiesDir = "${project.buildDir}/resources/main/META-INF/${project.name}"
+    gitPropertiesDir.set(project.layout.buildDirectory.dir("resources/main/META-INF/${project.name}"))
     customProperties["kotlin"] = kotlinVersion
 }
 
@@ -205,7 +207,6 @@ val devOnly: Configuration by configurations.creating {
 configurations {
     devOnly
 }
-
 
 // After the project configure
 afterEvaluate {
@@ -393,6 +394,11 @@ tasks {
         distributionType = Wrapper.DistributionType.ALL
     }
 
+    // signing {
+    //   setRequired({ signPublications == "true" })
+    //   sign(publishing.publications["maven"])
+    // }
+
     // Default task
     defaultTasks("clean", "tasks", "--all")
 }
@@ -451,7 +457,6 @@ dependencies {
     // Dokka Plugins (dokkaHtmlPlugin, dokkaGfmPlugin)
     // dokkaPlugin(Deps.Dokka.kotlinAsJavaPlugin)
 }
-
 
 publishing {
     repositories {

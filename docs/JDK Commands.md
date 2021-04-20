@@ -728,7 +728,7 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
 ##### 5. Maven Wrapper
 
 ```bash
-$ mvn -N io.takari:maven:wrapper -Dmaven=3.6.3
+$ mvn -N io.takari:maven:wrapper -Dmaven=3.8.1
 ```
 
 ##### 6. [Update Version number](http://www.mojohaus.org/versions-maven-plugin/)
@@ -878,6 +878,14 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
    ...
    jobs.services.postgres.ports[5432]
   ```
+
+
+
+### Mac OS
+
+```bash
+$  sudo xattr -cr /Applications/JDKMon.app
+```
 
 
 
