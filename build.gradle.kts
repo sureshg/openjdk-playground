@@ -445,7 +445,7 @@ dependencies {
     kapt(Deps.Google.AutoService.processor)
 
     // implementation(platform("org.apache.maven.resolver:maven-resolver:1.4.1"))
-    // implementation("org.apache.maven:maven-resolver-provider:3.6.3")
+    // implementation("org.apache.maven:maven-resolver-provider:3.8.1")
 
     testImplementation(Deps.Kotlin.Coroutines.jdk8)
     testImplementation(Deps.Junit.jupiter)
