@@ -574,6 +574,7 @@ object Deps {
     const val jnrUnixSocket = "com.github.jnr:jnr-unixsocket:0.21"
     const val commonsIO = "commons-io:commons-io:2.6"
     const val commonsCodec = "commons-codec:commons-codec:1.11"
+    const val diffUtils = "io.github.java-diff-utils:java-diff-utils:4.9"
 
     const val jfreesvg = "org.jfree:jfreesvg:3.3"
     const val orsonpdf = "com.orsonpdf:orsonpdf:1.8"
