@@ -42,6 +42,8 @@ application {
     applicationDefaultJvmArgs += listOf(
         "--show-version",
         "--enable-preview",
+        "--show-module-resolution",
+        "-XshowSettings:all",
         "-Xmx128M",
         "-XX:+PrintCommandLineFlags",
         "-XX:+UseZGC",
@@ -59,6 +61,10 @@ application {
         "-XX:+UnlockDiagnosticVMOptions",
         "-XX:+ShowHiddenFrames",
         "-ea",
+        "--add-exports=java.management/sun.management=ALL-UNNAMED",
+        "--add-exports=jdk.attach/sun.tools.attach=ALL-UNNAMED",
+        "--add-opens=java.base/java.net=ALL-UNNAMED",
+        "--add-opens=jdk.attach/sun.tools.attach=ALL-UNNAMED",
         // "-XX:ConcGCThreads=2",
         // "-XX:ZUncommitDelay=60",
         // "-Xlog:gc\*",
@@ -67,7 +73,7 @@ application {
         // "-XX:NativeMemoryTracking=summary",
         // "-Djava.net.preferIPv4Stack=true"
     )
-    // For backward compatibility
+    // For ShadowJar to work
     mainClassName = appMainClass
 }
 
@@ -132,6 +138,10 @@ kapt {
         option("--enable-preview")
         option("-Xmaxerrs", 200)
     }
+}
+
+kotlinPowerAssert {
+    functions = listOf("kotlin.assert", "kotlin.test.assertTrue")
 }
 
 apiValidation {
@@ -243,7 +253,6 @@ tasks {
             languageVersion = kotlinLangVersion
             javaParameters = true
             incremental = true
-            useIR = true
             allWarningsAsErrors = false
             jdkHome = javaToolchainPath // System.getProperty("java.home")
             freeCompilerArgs += listOf(
@@ -360,6 +369,8 @@ tasks {
         doLast {
             val fatJar = archiveFile.get().asFile
             println("FatJar: ${fatJar.path} (${fatJar.length().toDouble() / (1_000 * 1_000)} MB)")
+            println("##### To Run the App #####")
+            println(printAppCmd(fatJar.toPath(), application.applicationDefaultJvmArgs.toList()))
         }
     }
 

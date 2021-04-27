@@ -40,7 +40,7 @@ object Deps {
         }
 
         object Ksp {
-            const val version = "1.4.32-1.0.0-alpha07"
+            const val version = "1.4.32-1.0.0-alpha08"
             const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
             const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
             const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.3.5"
@@ -76,7 +76,7 @@ object Deps {
             "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:0.3.4"
 
         object Serialization {
-            const val version = "1.1.0"
+            const val version = "1.2.0"
             const val core = "org.jetbrains.kotlinx:kotlinx-serialization-core:$version"
             const val json = "org.jetbrains.kotlinx:kotlinx-serialization-json:$version"
             const val cbor = "org.jetbrains.kotlinx:kotlinx-serialization-cbor:$version"
@@ -101,7 +101,7 @@ object Deps {
     }
 
     object Dokka {
-        const val version = "1.4.30"
+        const val version = "1.4.32"
         const val gradlePlugin = "org.jetbrains.dokka:dokka-gradle-plugin:$version"
         const val javadocPlugin = "org.jetbrains.dokka:javadoc-plugin:$version"
         const val kotlinAsJavaPlugin = "org.jetbrains.dokka:kotlin-as-java-plugin:$version"
@@ -306,10 +306,11 @@ object Deps {
     }
 
     object Ktor {
-        const val version = "1.4.0"
+        const val version = "1.5.3"
         const val bom = "io.ktor:ktor-bom:$version"
         const val serverCore = "io.ktor:ktor-server-core:$version"
         const val serverCio = "io.ktor:ktor-server-cio:$version"
+        const val retrofit = "com.bnorm.ktor.retrofit:ktor-retrofit:0.1.2"
     }
 
     object Markup {
@@ -635,13 +636,13 @@ inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.j
 // Dependencies
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "6.1.0"
 inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version "0.38.0"
-inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.5.2" apply true
+inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.6.0" apply true
 inline val PluginDependenciesSpec.taskTree get() = id("com.dorongold.task-tree") version "1.5"
 inline val PluginDependenciesSpec.forbiddenApis get() = id("de.thetaphi.forbiddenapis") version "3.1"
 
 inline val PluginDependenciesSpec.javafx get() = id("org.openjfx.javafxplugin") version "0.0.7"
 inline val PluginDependenciesSpec.mrjar get() = id("com.lingocoder.mrjar") version "0.0.16"
-inline val PluginDependenciesSpec.protobuf get() = id("com.google.protobuf") version "0.8.15"
+inline val PluginDependenciesSpec.protobuf get() = id("com.google.protobuf") version "0.8.16"
 inline val PluginDependenciesSpec.changelog get() = id("org.jetbrains.changelog") version "0.4.0"
 
 inline val PluginDependenciesSpec.kotless get() = id("io.kotless") version "0.1.6"
@@ -660,7 +661,7 @@ inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boo
 inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version "1.0.9.RELEASE"
 
 // Static Analysis and Linting
-inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.12.1"
+inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.12.4"
 inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.1.2"
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version "9.3.0"
@@ -677,11 +678,11 @@ inline val PluginDependenciesSpec.githubRelease get() = id("com.github.breadmoir
 inline val PluginDependenciesSpec.jgitPlugin get() = id("fr.brouillard.oss.gradle.jgitver") version "0.10.0-rc03"
 inline val PluginDependenciesSpec.gitSemver get() = id("com.github.jmongard.git-semver-plugin") version "0.1.3"
 inline val PluginDependenciesSpec.reckon get() = id("org.ajoberstar.reckon") version "0.12.0"
-inline val PluginDependenciesSpec.gitProperties get() = id("com.gorylenko.gradle-git-properties") version "2.3.1-rc1"
+inline val PluginDependenciesSpec.gitProperties get() = id("com.gorylenko.gradle-git-properties") version "2.3.1-rc3"
 inline val PluginDependenciesSpec.gitChangelog get() = id("se.bjurr.gitchangelog.git-changelog-gradle-plugin") version "1.65"
 
 // Static website
-inline val PluginDependenciesSpec.mkdocs get() = id("ru.vyarus.mkdocs") version "2.0.1"
+inline val PluginDependenciesSpec.mkdocs get() = id("ru.vyarus.mkdocs") version "2.1.1"
 inline val PluginDependenciesSpec.orchid get() = id("com.eden.orchidPlugin") version "0.21.1"
 
 // Packaging (JDK 14+) (https://openjdk.java.net/jeps/392)
@@ -706,3 +707,6 @@ inline val PluginDependenciesSpec.nativeImage get() = id("org.graalvm.plugin.nat
 // JavaCpp
 inline val PluginDependenciesSpec.javacppBuild get() = id("org.bytedeco.gradle-javacpp-build") version Deps.JavaCpp.version
 inline val PluginDependenciesSpec.javacppPlatform get() = id("org.bytedeco.gradle-javacpp-platform") version Deps.JavaCpp.version
+
+// Plugin development
+inline val PluginDependenciesSpec.intellijPlugin get() = id("org.jetbrains.intellij") version "0.7.3"

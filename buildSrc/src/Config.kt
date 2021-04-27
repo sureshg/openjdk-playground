@@ -1,6 +1,7 @@
 import org.gradle.api.*
 import org.gradle.jvm.toolchain.*
 import org.slf4j.*
+import java.nio.file.*
 import kotlin.properties.*
 import kotlin.reflect.*
 
@@ -88,6 +89,24 @@ val Project.javaToolchainPath
             ?.installationPath?.toString()
             ?: error("Requested JDK version ($javaVersion) is not available.")
     }
+
+/**
+ * Prints the application `run` command.
+ */
+fun Project.printAppCmd(jarPath: Path, args: List<String>): String {
+    val path = projectDir.toPath().relativize(jarPath)
+    val newLine = System.lineSeparator()
+    val lineCont = """\""" // Bash line continuation
+    val indent = "\t"
+    return args.joinToString(
+        prefix = "$ java -jar $lineCont$newLine",
+        postfix = "$newLine$indent$path",
+        separator = newLine,
+    ) {
+        // Escape the globstar
+        "$indent$it $lineCont".replace("*", """\*""")
+    }
+}
 
 /**
  * Returns the current OS name.

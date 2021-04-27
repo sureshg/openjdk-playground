@@ -493,7 +493,7 @@ sourceSets.main.get().compileClasspath
   val u: TaskProvider<Jar> = register<Jar>("jar"){}     // Create new task
   val v: TaskProvider<Jar> by registering(Jar::class){} // Create task using property delegate
   val jar: TaskProvider<Task> by existing // Get task using property delegate
-
+  
   val foo: FooTask by existing            // Take Task type from val (Kotlin 1.4)
   val bar: BarTask by registering {}      // Take Task type from val (Kotlin 1.4)
   ```
@@ -605,7 +605,11 @@ $ ./gradlew run --args="<JFR_FILE>"
 
 
 
+##### 13. Gradle Versions
 
+   * https://services.gradle.org/versions
+
+     
 
 ### Security & Certificates
 
@@ -1002,7 +1006,7 @@ $ docker run -d -p 25565:25565 --name mc itzg/minecraft-server:adopt15
     * https://www.mkdocs.org/ (eg: https://github.com/hexagonkt/hexagon/tree/master/hexagon_site)
     * Github publish example
       - https://github.com/hexagonkt/hexagon/blob/master/.github/workflows/main.yml
-    *
+      *
 
 ### Awesome Svgs
 
