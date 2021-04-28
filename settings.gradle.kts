@@ -11,7 +11,6 @@ dependencyResolutionManagement {
     repositories {
         mavenCentral()
         google()
-        jcenter()
     }
     repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
 }
@@ -21,7 +20,6 @@ pluginManagement {
     repositories {
         gradlePluginPortal()
         google()
-        jcenter()
     }
 
     resolutionStrategy {

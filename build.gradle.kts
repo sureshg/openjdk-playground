@@ -61,10 +61,6 @@ application {
         "-XX:+UnlockDiagnosticVMOptions",
         "-XX:+ShowHiddenFrames",
         "-ea",
-        "--add-exports=java.management/sun.management=ALL-UNNAMED",
-        "--add-exports=jdk.attach/sun.tools.attach=ALL-UNNAMED",
-        "--add-opens=java.base/java.net=ALL-UNNAMED",
-        "--add-opens=jdk.attach/sun.tools.attach=ALL-UNNAMED",
         // "-XX:ConcGCThreads=2",
         // "-XX:ZUncommitDelay=60",
         // "-Xlog:gc\*",
@@ -72,9 +68,11 @@ application {
         // "-XX:+IgnoreUnrecognizedVMOptions",
         // "-XX:NativeMemoryTracking=summary",
         // "-Djava.net.preferIPv4Stack=true"
+        // "--add-exports=java.management/sun.management=ALL-UNNAMED",
+        // "--add-exports=jdk.attach/sun.tools.attach=ALL-UNNAMED",
+        // "--add-opens=java.base/java.net=ALL-UNNAMED",
+        // "--add-opens=jdk.attach/sun.tools.attach=ALL-UNNAMED",
     )
-    // For ShadowJar to work
-    mainClassName = appMainClass
 }
 
 idea {
@@ -370,7 +368,7 @@ tasks {
             val fatJar = archiveFile.get().asFile
             println("FatJar: ${fatJar.path} (${fatJar.length().toDouble() / (1_000 * 1_000)} MB)")
             println("##### To Run the App #####")
-            println(printAppCmd(fatJar.toPath(), application.applicationDefaultJvmArgs.toList()))
+            println(appRunCmd(fatJar.toPath(), application.applicationDefaultJvmArgs.toList()))
         }
     }
 
@@ -462,6 +460,8 @@ dependencies {
     testImplementation(Deps.Junit.jupiter)
     testImplementation(Deps.Junit.pioneer)
     testImplementation(kotlin("test-junit5"))
+    testImplementation(Deps.KoTest.junit5Runner)
+    testImplementation(Deps.KoTest.assertions)
     testImplementation(Deps.Logging.Slf4j.simple)
     testImplementation(Deps.Mock.mockk)
 

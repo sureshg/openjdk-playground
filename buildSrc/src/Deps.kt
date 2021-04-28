@@ -67,7 +67,7 @@ object Deps {
     }
 
     object Kotlinx {
-        const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.1.1"
+        const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.2.0"
         const val reflectLite = "org.jetbrains.kotlinx:kotlinx.reflect.lite:1.0.0"
         const val atomicfu = "org.jetbrains.kotlinx:atomicfu:0.15.2"
         const val io = "org.jetbrains.kotlinx:kotlinx-io-jvm:0.1.16"
@@ -230,10 +230,14 @@ object Deps {
     }
 
     object KoTest {
-        const val version = "4.4.3"
+        const val version = "4.5.0.RC1"
         const val junit5Runner = "io.kotest:kotest-runner-junit5:$version"
         const val assertions = "io.kotest:kotest-assertions-core:$version"
         const val property = "io.kotest:kotest-property:$version"
+        const val datetimeAssertions =
+            "io.kotest.extensions:kotest-assertions-kotlinx-datetime:1.0.0"
+        const val ktorAssertions = "io.kotest.extensions:kotest-assertions-ktor:1.0.1"
+        const val testcontainers = "io.kotest.extensions:kotest-extensions-testcontainers:1.0.0"
     }
 
     object Mock {
@@ -633,9 +637,12 @@ inline val PluginDependenciesSpec.binCompatValidator get() = id("org.jetbrains.k
 inline val PluginDependenciesSpec.ksp get() = id("com.google.devtools.ksp") version Deps.Kotlin.Ksp.version
 inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.jib") version "3.0.0"
 
-// Dependencies
-inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "6.1.0"
+// Dependency Versions
 inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version "0.38.0"
+inline val PluginDependenciesSpec.consistentVersions get() = id("com.palantir.consistent-versions") version "1.28.0"
+
+// Dependencies
+inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "7.0.0"
 inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.6.0" apply true
 inline val PluginDependenciesSpec.taskTree get() = id("com.dorongold.task-tree") version "1.5"
 inline val PluginDependenciesSpec.forbiddenApis get() = id("de.thetaphi.forbiddenapis") version "3.1"

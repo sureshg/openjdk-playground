@@ -44,16 +44,6 @@ sealed class Repo(val name: String, val url: String) {
         url = "https://plugins.gradle.org/m2/"
     )
 
-    object KotlinEAP : Repo(
-        name = "Kotlin EAP",
-        url = "https://dl.bintray.com/kotlin/kotlin-eap"
-    )
-
-    object KotlinDev : Repo(
-        name = "Kotlin Dev",
-        url = "https://dl.bintray.com/kotlin/kotlin-dev"
-    )
-
     object Jetbrains : Repo(
         name = "Jetbrains Dev",
         url = "https://packages.jetbrains.team/maven/p/ui/dev"
@@ -91,9 +81,9 @@ val Project.javaToolchainPath
     }
 
 /**
- * Prints the application `run` command.
+ * Returns the application `run` command.
  */
-fun Project.printAppCmd(jarPath: Path, args: List<String>): String {
+fun Project.appRunCmd(jarPath: Path, args: List<String>): String {
     val path = projectDir.toPath().relativize(jarPath)
     val newLine = System.lineSeparator()
     val lineCont = """\""" // Bash line continuation
