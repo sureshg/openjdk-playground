@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the source code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.3.4
 
       - name: Cache Qodana dependencies
         uses: actions/cache@v2.1.4
