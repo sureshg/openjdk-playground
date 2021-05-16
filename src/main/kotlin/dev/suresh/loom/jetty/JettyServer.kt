@@ -17,7 +17,9 @@ import kotlin.time.*
 /**
  * Scoped variable holding the user id (Replacement for [ThreadLocal])
  */
-private val USER_ID = ScopeLocal.inheritableForType(String::class.java)
+private val ID = ScopeLocal.inheritableForType(String::class.java)
+
+private val USER = ScopeLocal.inheritableForType(String::class.java)
 
 fun main() {
     run()
@@ -66,21 +68,24 @@ fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
 
     val factory = Thread.ofVirtual().name("VirtualThreadPool-", 1).factory()
     val execSvc = Executors.newThreadExecutor(factory, Instant.now().plusSeconds(deadlineInSec))
+    val user = System.getProperty("user.name", "user")
+
     val results = execSvc.use { exec ->
-        (1..count).map {
+        (1..count).map { idx ->
             exec.submit<Result<String>> {
                 try {
-                    println("---> $it. Sending Request")
+                    println("---> $idx. Sending Request")
                     val uri = UrlBuilder
                         .fromUri(server.uri)
-                        .addParameter("userId", it.toString())
+                        .addParameter("id", idx.toString())
+                        .addParameter("user", user)
                         .toUri()
                     val res = client.send(
                         HttpRequest.newBuilder().uri(uri).build(),
                         HttpResponse.BodyHandlers.ofString()
                     )
 
-                    println("<--- $it. Response($threadInfo): ${res.body()}")
+                    println("<--- $idx. Response($threadInfo): ${res.body()}")
                     Result.success(res.body())
                 } catch (t: Throwable) {
                     Result.failure(t)
@@ -116,14 +121,18 @@ fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
 
 class HelloServlet : HttpServlet() {
     override fun doGet(req: HttpServletRequest?, resp: HttpServletResponse?) {
-        val userId = req?.getParameter("userId")
-        USER_ID.runWithBinding(userId) {
-            resp?.apply {
-                contentType = "application/json"
-                status = HttpServletResponse.SC_OK
-                writer?.println(exec(req, resp))
+        val id = req?.getParameter("id")
+        val user = req?.getParameter("user")
+        ScopeLocal
+            .where(ID, id)
+            .where(USER, user)
+            .run {
+                resp?.apply {
+                    contentType = "application/json"
+                    status = HttpServletResponse.SC_OK
+                    writer?.println(exec(req, resp))
+                }
             }
-        }
     }
 
     private fun exec(req: HttpServletRequest?, resp: HttpServletResponse?): String {
@@ -131,7 +140,8 @@ class HelloServlet : HttpServlet() {
         Thread.sleep(3 * 1000)
         return """
           {
-            "UserId" : ${USER_ID.orElse("n/a")},
+            "Id"     : ${ID.orElse("n/a")},
+            "User"   : ${USER.orElse("n/a")},
             "server" : Jetty-${Jetty.VERSION},
             "Java"   : ${JavaVersion.VERSION},
             "target" : ${req?.fullURL},

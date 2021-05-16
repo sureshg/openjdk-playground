@@ -11,8 +11,8 @@
 
 ```bash
 $ curl -s "https://get.sdkman.io" | bash
-$ sdk i java 17.ea.6.lm-open
-$ sdk u java 17.ea.6.lm-open
+$ sdk i java 17.ea.7.lm-open
+$ sdk u java 17.ea.7.lm-open
 ```
 
 #### Build
@@ -128,6 +128,10 @@ module dev.suresh.openjdklatest {
   exports dev.suresh.server;
 }
 ```
+
+##### Resources
+
+  - :electric_plug: [Intellij Platform Explorer](https://plugins.jetbrains.com/intellij-platform-explorer/6954)
 
  <!--
  // Template for IR based Kotlin compiler plugin

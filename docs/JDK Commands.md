@@ -242,27 +242,7 @@ $ time ./app
 println("Hello Kotlin Script")
 ```
 
-##### 16. JMC
 
-```bash
-# https://adoptopenjdk.net/jmc.html
-# http://jdk.java.net/jmc/
-# http://hirt.se/blog/?p=1196
-
-# JDK should be in - /Library/Java/JavaVirtualMachines/jdk-14.0.2.jdk/Contents/Home/
-$ curl https://ci.adoptopenjdk.net/view/JMC/job/jmc-build/job/master/lastSuccessfulBuild/artifact/target/products/org.openjdk.jmc-8.0.0-SNAPSHOT-macosx.cocoa.x86_64.tar.gz | tar xv -
-
-$ rm -rf "/Applications/JDK Mission Control.app"
-$ mv "JDK Mission Control.app" /Applications
-$ open '/Applications/JDK Mission Control.app'
-
-# To run with a JDK
-$ ./jmc -vm %JAVA_HOME%\bin
-# or
-$ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
-```
-
-- [VisualVM](https://visualvm.github.io/)
 
 ##### 17. Generics
 
@@ -833,25 +813,16 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
 ##### 5. Github Actions
 
 - [Github Actions For Java](https://help.github.com/en/actions/language-and-framework-guides/github-actions-for-java)
-
+- [Github Composite Build Using Bashscript🍓](https://github.com/dart-lang/setup-dart)
 - [Github Maven Package](https://help.github.com/en/packages/using-github-packages-with-your-projects-ecosystem)
-
 - [Workflow Syntax](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions)
-
 - [Env Variables](https://help.github.com/en/actions/configuring-and-managing-workflows/using-environment-variables)
-
 - [Expressions Syntax & Contexts](https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions)
-
 - [Workflow Commands](https://help.github.com/en/actions/reference/workflow-commands-for-github-actions)
-
 - [Share Data Between Jobs](https://help.github.com/en/actions/configuring-and-managing-workflows/persisting-workflow-data-using-artifacts)
-
 - [Encrypted Secrets](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets)
-
 - [Docker Action](https://github.com/actions/hello-world-docker-action)
-
 - [GITHUB_TOKEN](https://help.github.com/en/actions/configuring-and-managing-workflows/authenticating-with-the-github_token)
-
 - [Awesome Actions](https://github.com/sdras/awesome-actions)
 
 
@@ -1045,6 +1016,14 @@ $ docker run -d -p 25565:25565 --name mc itzg/minecraft-server:adopt15
 
 - https://emojipedia.org/search/
 - https://github.com/twitter/twemoji/tree/master/assets
+
+##### Awesome List
+
+* https://github.com/vkarampinis/awesome-icons
+* https://github.com/notlmn/awesome-icons
+* https://github.com/ikatyang/emoji-cheat-sheet
+
+
 
 ##### Tools
 

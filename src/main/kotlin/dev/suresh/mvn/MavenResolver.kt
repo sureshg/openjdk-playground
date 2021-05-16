@@ -14,7 +14,7 @@ class MavenResolver {
         // val repo = RemoteRepository.Builder( "central", "default", "https://repo1.maven.org/maven2/" ).build()
         val files = Maven.configureResolver()
             .withMavenCentralRepo(true)
-            .resolve("org.jetbrains.kotlin:commonizer:1.3.71")
+            .resolve("org.jetbrains.kotlin:kotlin-klib-commonizer:1.5.0")
             .withTransitivity()
             .asResolvedArtifact()
 

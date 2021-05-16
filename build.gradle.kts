@@ -33,6 +33,7 @@ plugins {
     binCompatValidator
     dependencyAnalyze
     plugins.common
+    // kotlinxAtomicfu
 }
 
 val appMainClass: String by project
@@ -121,6 +122,8 @@ kotlin {
             useExperimentalAnnotation("kotlin.ExperimentalUnsignedTypes")
             useExperimentalAnnotation("kotlin.io.path.ExperimentalPathApi")
             useExperimentalAnnotation("kotlin.time.ExperimentalTime")
+            useExperimentalAnnotation("kotlinx.coroutines.ExperimentalCoroutinesApi")
+            useExperimentalAnnotation("kotlinx.coroutines.FlowPreview")
             useExperimentalAnnotation("kotlinx.serialization.ExperimentalSerializationApi")
             useExperimentalAnnotation("kotlin.ExperimentalMultiplatform")
             useExperimentalAnnotation("kotlin.js.ExperimentalJsExport")
