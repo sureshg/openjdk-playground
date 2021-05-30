@@ -68,7 +68,8 @@ application {
         // "-Xlog:cds=debug",
         // "-XX:+IgnoreUnrecognizedVMOptions",
         // "-XX:NativeMemoryTracking=summary",
-        // "-Djava.net.preferIPv4Stack=true"
+        // "-Djava.net.preferIPv4Stack=true",
+        // "-Djava.security.manager=allow",
         // "--add-exports=java.management/sun.management=ALL-UNNAMED",
         // "--add-exports=jdk.attach/sun.tools.attach=ALL-UNNAMED",
         // "--add-opens=java.base/java.net=ALL-UNNAMED",

@@ -40,7 +40,7 @@ object Deps {
         }
 
         object Ksp {
-            const val version = "1.5.0-1.0.0-alpha10"
+            const val version = "1.5.10-1.0.0-beta01"
             const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
             const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
             const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.4.0"
@@ -67,9 +67,9 @@ object Deps {
     }
 
     object Kotlinx {
-        const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.2.0"
+        const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.2.1"
         const val reflectLite = "org.jetbrains.kotlinx:kotlinx.reflect.lite:1.0.0"
-        const val atomicfu = "org.jetbrains.kotlinx:atomicfu:0.15.2"
+        const val atomicfu = "org.jetbrains.kotlinx:atomicfu:0.16.1"
         const val io = "org.jetbrains.kotlinx:kotlinx-io-jvm:0.1.16"
         const val cli = "org.jetbrains.kotlinx:kotlinx-cli:0.3"
         const val collectionsImmutable =
@@ -116,7 +116,7 @@ object Deps {
     }
 
     object Jetty {
-        const val version = "11.0.2"
+        const val version = "11.0.3"
         const val bom = "org.eclipse.jetty:jetty-bom:$version"
         const val server = "org.eclipse.jetty:jetty-server:$version"
         const val servlet = "org.eclipse.jetty:jetty-servlet:$version"
@@ -226,11 +226,11 @@ object Deps {
         const val jupiterApi = "org.junit.jupiter:junit-jupiter-api:$version"
         const val jupiterEngine = "org.junit.jupiter:junit-jupiter-engine:$version"
         const val jupiterParams = "org.junit.jupiter:junit-jupiter-params:$version"
-        const val pioneer = "org.junit-pioneer:junit-pioneer:1.4.1"
+        const val pioneer = "org.junit-pioneer:junit-pioneer:1.4.2"
     }
 
     object KoTest {
-        const val version = "4.5.0"
+        const val version = "4.6.0"
         const val junit5Runner = "io.kotest:kotest-runner-junit5:$version"
         const val assertions = "io.kotest:kotest-assertions-core:$version"
         const val property = "io.kotest:kotest-property:$version"
@@ -417,7 +417,7 @@ object Deps {
 
     object Network {
         const val dnsJava = "dnsjava:dnsjava:3.3.1"
-        const val jmdns = "org.jmdns:jmdns:3.5.6"
+        const val jmdns = "org.jmdns:jmdns:3.5.7"
         const val reverseCountryCode = "uk.recurse:reverse-country-code:1.0.0"
     }
 
@@ -639,7 +639,7 @@ inline val PluginDependenciesSpec.ksp get() = id("com.google.devtools.ksp") vers
 inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.jib") version "3.0.0"
 
 // Dependency Versions
-inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version "0.38.0"
+inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version "0.39.0"
 inline val PluginDependenciesSpec.consistentVersions get() = id("com.palantir.consistent-versions") version "1.28.0"
 
 // Dependencies
