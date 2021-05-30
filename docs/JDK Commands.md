@@ -556,17 +556,30 @@ $ ./gradlew clean build --dry-run
 
 # Dependency updates
 $ ./gradlew clean dependencyUpdates -Drevision=release
+```
 
-# Refresh dependencies
-$ ./gradlew clean build --refresh-dependencies
-# Or
-$ rm -rf ~/.gradle/caches
 
+
+* [Refresh dependencies](https://stackoverflow.com/a/42058780/416868)
+
+```kotlin
+// $ ./gradlew clean build --refresh-dependencies
+// $ rm -rf ~/.gradle/caches
+
+# Build Config
+configurations.all {
+    resolutionStrategy {
+        cacheChangingModulesFor(0, SECONDS)
+        cacheDynamicVersionsFor(0, SECONDS)
+    }
+}
 ```
 
 * [Debugging Dependencies](https://docs.gradle.org/current/userguide/viewing_debugging_dependencies.html)
 
 * **[Gradle Conflict Resolution](https://docs.gradle.org/current/userguide/dependency_resolution.html#sec:conflict-resolution)**
+
+  
 
 ##### 12. Update Wrapper and others
 
@@ -812,7 +825,8 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
 
 ##### 5. Github Actions
 
-- [Github Actions For Java](https://help.github.com/en/actions/language-and-framework-guides/github-actions-for-java)
+- [Push a commit](https://github.com/actions/checkout#push-a-commit-using-the-built-in-token)
+- [Env context Limitation](https://git.io/JGYV4)
 - [Github Composite Build Using Bashscript🍓](https://github.com/dart-lang/setup-dart)
 - [Github Maven Package](https://help.github.com/en/packages/using-github-packages-with-your-projects-ecosystem)
 - [Workflow Syntax](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions)
