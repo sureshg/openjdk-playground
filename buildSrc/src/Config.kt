@@ -1,6 +1,7 @@
 import org.gradle.api.*
 import org.gradle.jvm.toolchain.*
 import org.slf4j.*
+import java.io.*
 import java.nio.file.*
 import kotlin.properties.*
 import kotlin.reflect.*
@@ -88,8 +89,12 @@ fun Project.appRunCmd(jarPath: Path, args: List<String>): String {
     val newLine = System.lineSeparator()
     val lineCont = """\""" // Bash line continuation
     val indent = "\t"
+    println()
     return args.joinToString(
-        prefix = "$ java -jar $lineCont$newLine",
+        prefix = """
+         To Run the app, 
+        ${'$'} java -jar $lineCont $newLine
+        """.trimIndent(),
         postfix = "$newLine$indent$path",
         separator = newLine,
     ) {
@@ -135,3 +140,18 @@ inline fun <reified T> sysProp(): ReadOnlyProperty<Any?, T> =
             else -> error("'${property.name}' system property type ($kType) is not supported!")
         } as T
     }
+
+/**
+ * Find the file ends with given [format] under the directory.
+ */
+fun File.findPkg(format: String?) = when (format != null) {
+    true -> walk().firstOrNull { it.isFile && it.name.endsWith(format, ignoreCase = true) }
+    else -> null
+}
+
+/**
+ * Add a Github action output if it's running on an Action runner.
+ */
+fun ghActionOutput(name: String, value: Any) {
+    if (System.getenv("GITHUB_ACTIONS").toBoolean()) println("::set-output name=$name::$value")
+}

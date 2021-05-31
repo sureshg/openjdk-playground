@@ -5,14 +5,13 @@ on:
 
 jobs:
   qodana:
-    name: qodana-inspect
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the source code
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v2
 
       - name: Cache Qodana dependencies
-        uses: actions/cache@v2.1.5
+        uses: actions/cache@v2
         with:
           path: ~/work/_temp/_github_home/qodana-cache
           key: ${{ runner.os }}-qodana-${{ github.ref }}
@@ -22,10 +21,6 @@ jobs:
 
       - name: Qodana - Code Inspection
         uses: JetBrains/qodana-action@v2.0-eap
-        with:
-          project-dir: ${{ github.workspace }}
-          results-dir: ${{ github.workspace }}/qodana
-          cache-dir: /home/runner/work/_temp/_github_home/qodana-cache
 
       - name: Upload Qodana Inspection Results
         uses: actions/upload-artifact@v2

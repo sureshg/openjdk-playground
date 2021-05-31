@@ -371,8 +371,10 @@ tasks {
         doLast {
             val fatJar = archiveFile.get().asFile
             println("FatJar: ${fatJar.path} (${fatJar.length().toDouble() / (1_000 * 1_000)} MB)")
-            println("##### To Run the App #####")
             println(appRunCmd(fatJar.toPath(), application.applicationDefaultJvmArgs.toList()))
+            ghActionOutput("version", project.version)
+            ghActionOutput("uberjar_name", fatJar.name)
+            ghActionOutput("uberjar_path", fatJar.absolutePath)
         }
     }
 
