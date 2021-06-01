@@ -399,6 +399,7 @@ object Deps {
         const val sslContext = "io.github.hakky54:sslcontext-kickstart:5.2.2"
         const val certifikit = "app.cash.certifikit:certifikit:0.2.0"
         const val airliftSecurity = "io.airlift:security:201"
+        const val bruce = "com.github.mcaserta:bruce:1.0.3"
         const val bouncyCastle = "org.bouncycastle:bcprov-jdk15on:1.60"
         const val conscryptUber = "org.conscrypt:conscrypt-openjdk-uber:1.4.1"
         const val tink = "com.google.crypto.tink:tink:1.2.1"
@@ -406,7 +407,7 @@ object Deps {
     }
 
     object Security {
-        const val password4j = "com.password4j:password4j:1.5.0"
+        const val password4j = "com.password4j:password4j:1.5.3"
         const val otp = "com.github.bastiaanjansen:otp-java:1.1.3"
         const val twoFactorAuth = "com.j256.two-factor-auth:two-factor-auth:1.3"
         const val sshj = "com.hierynomus:sshj:0.26.0"
