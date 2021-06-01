@@ -29,7 +29,6 @@ plugins {
     gitProperties
     `maven-publish`
     nexusPublish
-    mavenRepoAuth
     gradleRelease
     binCompatValidator
     dependencyAnalyze
