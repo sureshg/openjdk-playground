@@ -3,14 +3,13 @@ package plugins
 import org.gradle.jvm.tasks.Jar
 import org.gradle.tooling.*
 import java.io.*
+import java.nio.file.*
 import java.util.concurrent.*
 import java.util.spi.*
 
 plugins {
     java
 }
-
-val templateOutDir = "generated-sources/templates/kotlin/main"
 
 tasks {
 
@@ -56,8 +55,12 @@ tasks {
 
         filteringCharset = "UTF-8"
         inputs.property("buildversions", props.hashCode())
-        from(layout.projectDirectory.dir("src/main/templates"))
-        into(layout.buildDirectory.dir(templateOutDir))
+        from(project.projectDir.resolve(Paths.get("src", "main", "templates").toFile()))
+        into(
+            project.buildDir.resolve(
+                Paths.get("generated-sources", "templates", "kotlin", "main").toFile()
+            )
+        )
         exclude { it.name.startsWith("jte") }
         expand(props)
     }
