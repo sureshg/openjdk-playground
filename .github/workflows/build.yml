@@ -95,7 +95,7 @@ jobs:
 
       - name: Gradle Run & Build
         id: gradle-build
-        run: ./gradlew run build
+        run: ./gradlew clean run build
 
       - name: Uploading ${{ matrix.os }} uber jar
         if: steps.gradle-build.outcome == 'success' && runner.os == 'Linux'

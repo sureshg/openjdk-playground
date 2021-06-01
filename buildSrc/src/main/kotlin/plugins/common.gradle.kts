@@ -3,7 +3,6 @@ package plugins
 import org.gradle.jvm.tasks.Jar
 import org.gradle.tooling.*
 import java.io.*
-import java.nio.file.*
 import java.util.concurrent.*
 import java.util.spi.*
 
@@ -55,12 +54,8 @@ tasks {
 
         filteringCharset = "UTF-8"
         inputs.property("buildversions", props.hashCode())
-        from(project.projectDir.resolve(Paths.get("src", "main", "templates").toFile()))
-        into(
-            project.buildDir.resolve(
-                Paths.get("generated-sources", "templates", "kotlin", "main").toFile()
-            )
-        )
+        from(project.projectDir.resolve("src/main/templates"))
+        into(project.buildDir.resolve("generated-sources/templates/kotlin/main"))
         exclude { it.name.startsWith("jte") }
         expand(props)
     }
