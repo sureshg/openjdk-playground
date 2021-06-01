@@ -49,7 +49,7 @@ fun run(port: Int = 8080) {
     val took = measureTime {
         pumpRequests(server, 500)
     }
-    println("Took ${took.inSeconds} seconds")
+    println("Took ${took.toDouble(DurationUnit.SECONDS)} seconds")
 
     // Finally stop the server.
     println("Shutting down the server!")
