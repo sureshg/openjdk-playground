@@ -7,7 +7,7 @@ jobs:
   myEvent:
     runs-on: ubuntu-latest
     steps:
-      # Dispatch from a workflow.
+      # Dispatch an event from a workflow.
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v1
         if: ${{ false }}

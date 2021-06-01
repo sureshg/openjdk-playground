@@ -23,6 +23,7 @@ plugins {
     spotless
     jacoco
     kotlinPowerAssert
+    gitChangelog
     spotlessChangelog
     benmanesVersions
     gitProperties
@@ -70,6 +71,7 @@ application {
         // "-XX:NativeMemoryTracking=summary",
         // "-Djava.net.preferIPv4Stack=true",
         // "-Djava.security.manager=allow",
+        // "-Djgitver.skip=true",
         // "--add-exports=java.management/sun.management=ALL-UNNAMED",
         // "--add-exports=jdk.attach/sun.tools.attach=ALL-UNNAMED",
         // "--add-opens=java.base/java.net=ALL-UNNAMED",
@@ -199,6 +201,7 @@ jib {
 // val branch_name: String  by extra
 jgitver {
     useDirty = false
+    nonQualifierBranches = "main"
 }
 
 gitProperties {
@@ -342,7 +345,7 @@ tasks {
 
                 sourceLink {
                     localDirectory.set(file("src/main/kotlin"))
-                    remoteUrl.set(URL("$githubProject/tree/master/src/main/kotlin"))
+                    remoteUrl.set(URL("$githubProject/tree/main/src/main/kotlin"))
                     remoteLineSuffix.set("#L")
                 }
 
@@ -491,7 +494,7 @@ publishing {
             pom {
                 packaging = "jar"
                 description.set(project.description)
-                inceptionYear.set("2020")
+                inceptionYear.set("2021")
                 url.set(githubProject)
 
                 developers {

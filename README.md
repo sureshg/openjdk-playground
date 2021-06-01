@@ -179,7 +179,7 @@ https://github.com/melix/jdoctor
 [mvn_jar_img]: https://img.shields.io/maven-central/v/io.micronaut/micronaut-runtime?color=orange&label=micronaut&logo=apache-rocketmq&logoColor=orange&style=for-the-badge
 
 [gha_url]: https://github.com/sureshg/openjdk-playground/actions
-[gha_img]: https://github.com/sureshg/openjdk-playground/workflows/CI/badge.svg?branch=master
+[gha_img]: https://github.com/sureshg/openjdk-playground/workflows/CI/badge.svg?branch=main
 [gha_badge]: https://img.shields.io/github/workflow/status/sureshg/openjdk-playground/CI?color=green&label=Build&logo=Github-Actions&logoColor=green&style=for-the-badge
 [gh_pkgs]: https://github.com/sureshg/openjdk-playground/packages
 

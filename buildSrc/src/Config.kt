@@ -92,7 +92,7 @@ fun Project.appRunCmd(jarPath: Path, args: List<String>): String {
     println()
     return args.joinToString(
         prefix = """
-         To Run the app, 
+        To Run the app, 
         ${'$'} java -jar $lineCont $newLine
         """.trimIndent(),
         postfix = "$newLine$indent$path",

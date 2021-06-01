@@ -1,7 +1,7 @@
 name: Build
 
 env:
-  GITHUB_DEPLOY: 'false'
+  GITHUB_PUBLISH: 'false'
 
 on:
   push:
@@ -35,6 +35,10 @@ jobs:
     continue-on-error: false
     # if: github.event_name  == 'pull_request'
 
+    outputs:
+      version: ${{ steps.gradle-build.outputs.version }}
+      artifact_name: ${{ steps.gradle-build.outputs.uberjar_name }}
+
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: true
@@ -52,6 +56,8 @@ jobs:
     steps:
       - name: Check out the source code
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 100
 
       - name: Download ${{ matrix.os }} OpenJDK ${{ matrix.jdk }}
         id: download-jdk
@@ -78,11 +84,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: Deploy to GitHub Packages (Linux)
-        id: gradle-deploy
-        if: env.GITHUB_DEPLOY == 'true' && runner.os == 'Linux'
+      - name: Publish to GitHub Packages (Linux)
+        id: gradle-publish
+        if: env.GITHUB_PUBLISH == 'true' && runner.os == 'Linux'
         run: |
-          ./gradlew deploy
+          ./gradlew publish
         env:
           GITHUB_USER: ${{ github.repository_owner }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -127,7 +133,7 @@ jobs:
         with:
           path: release-artifacts
 
-      - name: Github Release
+      - name: Github Release (version = ${{ needs.build.outputs.version }})
         uses: softprops/action-gh-release@v1
         with:
           body: ${{ steps.github_release.outputs.changelog }}

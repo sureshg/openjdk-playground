@@ -688,7 +688,7 @@ inline val PluginDependenciesSpec.jgitPlugin get() = id("fr.brouillard.oss.gradl
 inline val PluginDependenciesSpec.gitSemver get() = id("com.github.jmongard.git-semver-plugin") version "0.1.3"
 inline val PluginDependenciesSpec.reckon get() = id("org.ajoberstar.reckon") version "0.12.0"
 inline val PluginDependenciesSpec.gitProperties get() = id("com.gorylenko.gradle-git-properties") version "2.3.1"
-inline val PluginDependenciesSpec.gitChangelog get() = id("se.bjurr.gitchangelog.git-changelog-gradle-plugin") version "1.65"
+inline val PluginDependenciesSpec.gitChangelog get() = id("se.bjurr.gitchangelog.git-changelog-gradle-plugin") version "1.68.4"
 
 // Static website
 inline val PluginDependenciesSpec.mkdocs get() = id("ru.vyarus.mkdocs") version "2.1.1"

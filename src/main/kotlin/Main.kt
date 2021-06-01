@@ -9,6 +9,7 @@ fun main() {
         Result.InProgress -> TODO()
     }.exhaustive
 
+    println("Security Manager Allowed: ${System.getProperty("java.security.manager")}")
     println("Security Manager: ${System.getSecurityManager()}")
 }
 
