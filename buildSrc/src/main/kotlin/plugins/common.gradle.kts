@@ -54,8 +54,8 @@ tasks {
 
         filteringCharset = "UTF-8"
         inputs.property("buildversions", props.hashCode())
-        from(project.projectDir.resolve("src/main/templates"))
-        into(project.buildDir.resolve("generated-sources/templates/kotlin/main"))
+        from(project.projectDir.resolve("src\\main\\templates"))
+        into(project.buildDir.resolve("generated-sources\\templates\\kotlin\\main"))
         exclude { it.name.startsWith("jte") }
         expand(props)
     }

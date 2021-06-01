@@ -56,8 +56,6 @@ jobs:
     steps:
       - name: Check out the source code
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 100
 
       - name: Download ${{ matrix.os }} OpenJDK ${{ matrix.jdk }}
         id: download-jdk
@@ -95,7 +93,7 @@ jobs:
 
       - name: Gradle Run & Build
         id: gradle-build
-        run: ./gradlew clean run build
+        run: ./gradlew run build
 
       - name: Uploading ${{ matrix.os }} uber jar
         if: steps.gradle-build.outcome == 'success' && runner.os == 'Linux'
