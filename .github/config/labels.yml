@@ -47,5 +47,5 @@
   description: Container changes
   color: e99695
 - name: github-actions
-  description: Github action changes
+  description: Github action workflow changes
   color: ff7619

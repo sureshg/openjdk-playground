@@ -358,7 +358,7 @@ object Deps {
     object Cli {
         const val clikt = "com.github.ajalt.clikt:clikt:3.2.0"
         const val textIO = "org.beryx:text-io:3.4.1"
-        const val mordant = "com.github.ajalt.mordant:mordant:2.0.0-beta1"
+        const val mordant = "com.github.ajalt.mordant:mordant:2.0.0-beta2"
         const val colormath = "com.github.ajalt.colormath:colormath:2.0.0"
         const val mosaic = "com.jakewharton.mosaic:1.0.0"
         const val picnic = "com.jakewharton.picnic:picnic:0.4.0"
@@ -689,7 +689,7 @@ inline val PluginDependenciesSpec.jgitPlugin get() = id("fr.brouillard.oss.gradl
 inline val PluginDependenciesSpec.gitSemver get() = id("com.github.jmongard.git-semver-plugin") version "0.1.3"
 inline val PluginDependenciesSpec.reckon get() = id("org.ajoberstar.reckon") version "0.12.0"
 inline val PluginDependenciesSpec.gitProperties get() = id("com.gorylenko.gradle-git-properties") version "2.3.1"
-inline val PluginDependenciesSpec.gitChangelog get() = id("se.bjurr.gitchangelog.git-changelog-gradle-plugin") version "1.68.4"
+inline val PluginDependenciesSpec.gitChangelog get() = id("se.bjurr.gitchangelog.git-changelog-gradle-plugin") version "1.69.0"
 
 // Static website
 inline val PluginDependenciesSpec.mkdocs get() = id("ru.vyarus.mkdocs") version "2.1.1"
@@ -703,7 +703,7 @@ inline val PluginDependenciesSpec.jpackageplugin get() = id("org.panteleyev.jpac
 
 // Kotlin compiler plugins
 inline val PluginDependenciesSpec.redacted get() = id("dev.zacsweers.redacted.redacted-gradle-plugin") version "0.6.1"
-inline val PluginDependenciesSpec.kotlinPowerAssert get() = id("com.bnorm.power.kotlin-power-assert") version "0.8.1"
+inline val PluginDependenciesSpec.kotlinPowerAssert get() = id("com.bnorm.power.kotlin-power-assert") version "0.9.0"
 
 // Parsers
 inline val PluginDependenciesSpec.jflex get() = id("org.xbib.gradle.plugin.jflex") version "1.5.0"

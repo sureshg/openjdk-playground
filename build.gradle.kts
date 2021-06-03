@@ -23,7 +23,6 @@ plugins {
     spotless
     jacoco
     kotlinPowerAssert
-    gitChangelog
     spotlessChangelog
     benmanesVersions
     gitProperties
@@ -282,7 +281,7 @@ tasks {
 
     // Jte templates
     generateJte {
-        sourceDirectory = Path.of("src\\main\\templates\\jte")
+        sourceDirectory = Path.of("src", "main", "templates", "jte")
         contentType = ContentType.Plain
     }
 
