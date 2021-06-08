@@ -1,5 +1,6 @@
 import gg.jte.*
 import org.gradle.api.tasks.testing.logging.*
+import org.gradle.internal.os.OperatingSystem
 import org.jetbrains.dokka.gradle.*
 import org.jetbrains.kotlin.config.*
 import org.jetbrains.kotlin.gradle.tasks.*
@@ -39,6 +40,7 @@ val appMainClass: String by project
 
 application {
     mainClass.set(appMainClass)
+    OperatingSystem.current().isWindows
     applicationDefaultJvmArgs += listOf(
         "--show-version",
         "--enable-preview",
@@ -65,6 +67,7 @@ application {
         // "-XX:ZUncommitDelay=60",
         // "-Xlog:gc\*",
         // "-Xlog:cds=debug",
+        // "-Xlog:class+load=info",
         // "-XX:+IgnoreUnrecognizedVMOptions",
         // "-XX:NativeMemoryTracking=summary",
         // "-Djava.net.preferIPv4Stack=true",
@@ -241,7 +244,9 @@ tasks {
                     "--enable-preview",
                     "-Xlint:all",
                     "-parameters"
-                    // "-XX:+IgnoreUnrecognizedVMOptions"
+                    // "-XX:+IgnoreUnrecognizedVMOptions",
+                    // "--add-exports",
+                    // "java.base/sun.nio.ch=ALL-UNNAMED",
                 )
             )
         }
@@ -263,11 +268,12 @@ tasks {
                 "-Xjsr305=strict",
                 "-Xjvm-default=enable",
                 "-Xassertions=jvm",
-                "-Xstring-concat=indy-with-constants",
                 "-Xallow-result-return-type",
                 "-Xstrict-java-nullability-assertions",
                 "-Xgenerate-strict-metadata-version",
                 "-Xemit-jvm-type-annotations",
+                "-Xjavac-arguments=\"--add-exports java.base/sun.nio.ch=ALL-UNNAMED\"",
+                // "-Xexplicit-api={strict|warning|disable}",
                 // "-Xjvm-enable-preview",
             )
         }
