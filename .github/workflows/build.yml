@@ -38,6 +38,7 @@ jobs:
     outputs:
       version: ${{ steps.gradle-build.outputs.version }}
       artifact_name: ${{ steps.gradle-build.outputs.uberjar_name }}
+      artifact_path: ${{ steps.gradle-build.outputs.uberjar_path }}
 
     runs-on: ${{ matrix.os }}
     strategy:
@@ -152,3 +153,37 @@ jobs:
           fail_on_unmatched_files: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  container-build:
+    name: Run Java app on OpenJDK
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: true
+      matrix:
+        jdk: [ "17" ]
+
+    container:
+      # openjdk:17-jdk-alpine
+      image: openjdk:${{ matrix.jdk }}-slim-buster
+
+    steps:
+      - name: Check out the source code
+        uses: actions/checkout@v2
+
+      - name: Run Java App on OpenJDK ${{ matrix.jdk }} container image
+        if: always()
+        run: |
+          java --show-version src/main/java/JavaApp.java
+        env:
+          RUNNER_CONTEXT: ${{ toJson(runner) }}
+
+      - name: Github Action Contexts
+        run: |
+          echo "$JOB_CONTEXT"
+          echo "$STEPS_CONTEXT"
+          echo "$RUNNER_CONTEXT"
+        env:
+          JOB_CONTEXT: ${{ toJson(job) }}
+          STEPS_CONTEXT: ${{ toJson(steps) }}
+          RUNNER_CONTEXT: ${{ toJson(runner) }}
