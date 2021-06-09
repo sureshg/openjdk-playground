@@ -29,6 +29,10 @@ defaults:
     shell: bash
 
 jobs:
+
+  # Gradle Build Action
+  # -------------------
+
   build:
     name: 🏗️ Gradle Build
     timeout-minutes: 15
@@ -58,7 +62,7 @@ jobs:
       - name: 🛎️ Check out the source code
         uses: actions/checkout@v2
         with:
-          fetch-depth: 100
+          fetch-depth: 0
 
       - name: ⬇️ Download ${{ matrix.os }} OpenJDK ${{ matrix.jdk }}
         id: download-jdk
@@ -118,8 +122,9 @@ jobs:
             ${{ steps.gradle-build.outputs.uberjar_path }}
           if-no-files-found: error
 
+      # Deploy the Dokka site for new tag on Linux
       - name: 🚀 Deploy html docs to website
-        if: runner.os == 'Linux'
+        if: startsWith(github.ref, 'refs/tags/') && runner.os == 'Linux'
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -127,6 +132,9 @@ jobs:
           FOLDER: build/dokka
           TARGET_FOLDER: docs/apidoc/
           CLEAN: true
+
+  # Github Release Action on tag push
+  # ---------------------------------
 
   release:
     name: 🚰 Release new version.
@@ -166,6 +174,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+
+  # Run Java Application on OpenJDK docker/oci images
+  # -------------------------------------------------
+
   container-build:
     name: 🚢 Run Java on Container
     runs-on: ubuntu-latest
@@ -180,7 +192,6 @@ jobs:
         shell: sh
 
     container:
-      # openjdk:17-jdk-alpine
       image: ${{ matrix.jdk }}
 
     steps:
