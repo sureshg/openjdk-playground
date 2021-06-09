@@ -111,7 +111,7 @@ $ javac  --enable-preview \
          --module-path ... \               // Optional, where to find application modules
          --module-source-path "src" \      // Source files for multiple modules
          -d classes  \
-         --module MainApp                  // Compile only the specified module(s) 
+         --module MainApp                  // Compile only the specified module(s)
 
 # Package all modules (Create for all modules)
 $ jar --create \
@@ -119,13 +119,13 @@ $ jar --create \
       --main-class dev.suresh.MainKt \
       --module-version 1.0 \    // Optional
       -C app/ classes resources // Or *.class
-         
+
 # Launch app
 $ java  --enable-preview \
         --show-version \
         --show-module-resolution \
         --module-path mods \
-        --module app   // OR <module>/<mainclass>        
+        --module app   // OR <module>/<mainclass>
 ```
 
 * [JPMS Quickstart](https://openjdk.java.net/projects/jigsaw/quick-start)
@@ -158,9 +158,9 @@ $ jshell --enable-preview --startup DEFAULT --startup ~/calc.repl
 ##### 11. Loom config
 
 ```bash
-# Loom Default ForkJoinPool scheduler config. The scheduler is based on 
-# ForkJoinPool and it's setup to spin up additional underlying carrier 
-# threads to help when there are virtual threads blocked in Object.wait. 
+# Loom Default ForkJoinPool scheduler config. The scheduler is based on
+# ForkJoinPool and it's setup to spin up additional underlying carrier
+# threads to help when there are virtual threads blocked in Object.wait.
 # The default maximum is 256.
 
 $ java -Djdk.defaultScheduler.parallelism=1   // Default to available processors
@@ -302,13 +302,13 @@ println("Hello Kotlin Script")
      ```bash
      # Turn on all debugging
      $ java -Djavax.net.debug=all
-     
+
      # Override HostsFileNameService
      $ java -Djdk.net.hosts.file=/etc/host/style/file
-     
+
      # Force IPv4
      $ java -Djava.net.preferIPv4Stack=true
-     
+
      # The entropy gathering device can also be specified with the system property
      $ java -Djava.security.egd=file:/dev/./urandom
      ```
@@ -473,7 +473,7 @@ sourceSets.main.get().compileClasspath
   val u: TaskProvider<Jar> = register<Jar>("jar"){}     // Create new task
   val v: TaskProvider<Jar> by registering(Jar::class){} // Create task using property delegate
   val jar: TaskProvider<Task> by existing // Get task using property delegate
-  
+
   val foo: FooTask by existing            // Take Task type from val (Kotlin 1.4)
   val bar: BarTask by registering {}      // Take Task type from val (Kotlin 1.4)
   ```
@@ -579,7 +579,7 @@ configurations.all {
 
 * **[Gradle Conflict Resolution](https://docs.gradle.org/current/userguide/dependency_resolution.html#sec:conflict-resolution)**
 
-  
+
 
 ##### 12. Update Wrapper and others
 
@@ -602,7 +602,7 @@ $ ./gradlew run --args="<JFR_FILE>"
 
    * https://services.gradle.org/versions
 
-     
+
 
 ### Security & Certificates
 

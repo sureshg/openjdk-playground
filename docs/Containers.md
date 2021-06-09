@@ -9,48 +9,48 @@
   # https://console.cloud.google.com/gcr/images/distroless/GLOBAL/java-debian10
   $ docker pull gcr.io/distroless/java-debian10:base
   $ docker pull gcr.io/distroless/java-debian10:base-nonroot
-  
+
   # Distroless Java Base
   $ docker pull gcr.io/distroless/java:11 # OR
   $ docker pull gcr.io/distroless/java-debian10:latest
-  
+
   # Distroless Static & Base
   $ docker pull gcr.io/distroless/static:latest
   $ docker pull gcr.io/distroless/base:latest
-   
+
   # Openjdk
   $ docker pull openjdk:17-slim-buster
-  
+
   # Oracle OpenJDK
   $ docker pull container-registry.oracle.com/java/openjdk:latest
-  
+
   # Microsoft OpenJDK
   # https://docs.microsoft.com/en-us/java/openjdk/containers
   $ docker pull mcr.microsoft.com/openjdk/jdk:16-ubuntu
-  
+
   # Alpine (Liberica)
   $ docker pull bellsoft/liberica-openjdk-alpine-musl:latest
   $ docker pull bellsoft/liberica-openjdk-alpine:latest (libc)
-  
+
   # Alpine (Zulu)
   $ docker pull azul/zulu-openjdk-alpine:16
-  
+
   # Alpine (OpenJDK)
   $ docker pull openjdk:17-jdk-alpine
-  
+
   # Alpine (AdoptOpenJDK)
   $ docker pull adoptopenjdk/openjdk16:alpine-jre (musl)
-  
+
   # Alpine (Amazon Corretto)
   $ docker pull amazoncorretto:16-alpine
-  
+
   # GraalVM CE
   $ docker pull ghcr.io/graalvm/graalvm-ce:latest
-  
+
   # Examples
   $ docker run -it --rm gcr.io/distroless/java-debian10:base-nonroot openssl s_client --connect google.com:443
   ```
-  
+
     - https://hub.docker.com/_/openjdk
     - https://github.com/docker-library/docs/tree/master/openjdk
     - https://github.com/AdoptOpenJDK/openjdk-docker#official-and-unofficial-images
@@ -78,7 +78,7 @@
 
   ```bash
   FROM alpine
-  
+
   ENTRYPOINT while :; do nc -k -l -p $PORT -e sh -c 'echo -e "HTTP/1.1 200 OK\n\n hello, world"'; done
   # https://github.com/jamesward/hello-netcat
   # docker build -t hello-netcat .
@@ -92,11 +92,11 @@
   # forward request and error logs to docker log collector
   RUN ln -sf /dev/stdout /var/log/nginx/access.log \
    && ln -sf /dev/stderr /var/log/nginx/error.log
-  
+
   # OR output directly to
   /proc/self/fd/1 (STDOUT)
   /proc/self/fd/2 (STDERR)
-  
+
   # https://docs.docker.com/config/containers/logging/configure/
   ```
 
@@ -107,7 +107,7 @@
   #!/bin/bash
   ## Entrypoint script for my-app. This script is to show how to write
   ## an entrypoint script that actually passes down signals from Docker.
-  
+
   ## Load our DB Password into a runtime only Environment Variable
   if [ -f /run/secrets/password ]
   then
@@ -115,7 +115,7 @@
     DB_PASS=$(cat /run/secrets/password)
     export DB_PASS
   fi
-  
+
   ## Run the Application
   exec my-app
   ```
