@@ -98,7 +98,7 @@ $ ./gradlew clean kotlinDslAccessorsReport
 # Runs all checks
 $ ./gradlew clean check
 
-# Check tasks dependencies 
+# Check tasks dependencies
 $ ./gradlew clean build --dry-run
 
 # Dep version updates
