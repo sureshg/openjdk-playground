@@ -35,6 +35,11 @@ sealed interface Result<T> extends Serializable permits Success, Failure{
   }
 }
 
+
+record Success<T>(T value) implements Result<T> { }
+
+record Failure<T>(Throwable error) implements Result<T> { }
+
 /**
  * A value that represents either a success or a failure, including an associated value in each case.
  */
@@ -68,7 +73,3 @@ public class ResultType {
    );
   }
 }
-
-record Success<T>(T value) implements Result<T> { }
-
-record Failure<T>(Throwable error) implements Result<T> { }

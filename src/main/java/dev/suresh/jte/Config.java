@@ -13,4 +13,3 @@ public record Config(String language, String version) {
     version = Objects.requireNonNullElse(version, System.getProperty("java.version"));
   }
 }
-

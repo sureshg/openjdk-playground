@@ -16,24 +16,27 @@ public class JavaApp {
 
   public static void main(String[] args) throws Exception {
 
-    final var lineSep =  System.lineSeparator();
+    final var lineSep = System.lineSeparator();
 
     out.printf("%n✧✧✧✧✧ Processes ✧✧✧✧✧%n");
-    var ps = ProcessHandle.allProcesses()
-        .sorted(ProcessHandle::compareTo)
-        .toList();
-    ps.forEach(p -> {
-      var pInfo = p.pid() + " : " + p.info();
-      out.println(pInfo);
-    });
+    var ps = ProcessHandle.allProcesses().sorted(ProcessHandle::compareTo).toList();
+    ps.forEach(
+        p -> {
+          var pInfo = p.pid() + " : " + p.info();
+          out.println(pInfo);
+        });
 
     out.printf("%n✧✧✧✧✧ Trust stores ✧✧✧✧✧%n");
     var tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
     tmf.init((KeyStore) null);
-    var issuers = Arrays.stream(tmf.getTrustManagers()).flatMap(tm -> {
-      var x509Tm = (X509TrustManager) tm;
-      return Arrays.stream(x509Tm.getAcceptedIssuers());
-    }).toList();
+    var issuers =
+        Arrays.stream(tmf.getTrustManagers())
+            .flatMap(
+                tm -> {
+                  var x509Tm = (X509TrustManager) tm;
+                  return Arrays.stream(x509Tm.getAcceptedIssuers());
+                })
+            .toList();
     issuers.forEach(cert -> out.println(cert.getIssuerX500Principal()));
 
     out.printf("%n✧✧✧✧✧ Dns Resolution ✧✧✧✧✧%n");
@@ -55,7 +58,7 @@ public class JavaApp {
     }
 
     out.printf("%n✧✧✧✧✧ Env Variables ✧✧✧✧✧%n");
-    var env =  System.getenv();
+    var env = System.getenv();
     env.forEach((k, v) -> out.println(k + " : " + v));
 
     out.printf("%n✧✧✧✧✧ System Properties ✧✧✧✧✧%n");
@@ -63,21 +66,31 @@ public class JavaApp {
     props.forEach((k, v) -> out.println(k + " : " + v));
 
     var lineSepHex = HexFormat.of().formatHex(lineSep.getBytes(StandardCharsets.UTF_8));
-    out.printf("%n✧✧✧✧✧ LineSeparator = %s%n", lineSepHex);
+    out.printf("%n✧✧✧✧✧ LineSeparator = 0x%s%n", lineSepHex);
     out.printf("%n✧✧✧✧✧ File PathSeparator = %s%n", File.pathSeparator);
 
-    var stats = """
+    var stats =
+        """
         +------------------------+
-        | Processes      : %5d |
-        | Dns Addresses  : %5d |
-        | Trust Stores   : %5d |
-        | TimeZones      : %5d |
-        | CharSets       : %5d |
-        | Locales        : %5d |
-        | Env Vars       : %5d |
-        | Sys Props      : %5d |
+        | Processes      : %-5d |
+        | Dns Addresses  : %-5d |
+        | Trust Stores   : %-5d |
+        | TimeZones      : %-5d |
+        | CharSets       : %-5d |
+        | Locales        : %-5d |
+        | Env Vars       : %-5d |
+        | Sys Props      : %-5d |
         +------------------------+
-        """.formatted(ps.size(), dns.size(), issuers.size(), tz.size(), cs.size(),locales.length, env.size(),props.size());
+        """
+            .formatted(
+                ps.size(),
+                dns.size(),
+                issuers.size(),
+                tz.size(),
+                cs.size(),
+                locales.length,
+                env.size(),
+                props.size());
 
     out.println(stats);
   }

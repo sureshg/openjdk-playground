@@ -34,7 +34,8 @@ public class Main {
 
   public static void main(String[] args) throws Exception {
 
-    var textBlock = """
+    var textBlock =
+        """
         This is a textBlock
         example \t introduced \\n in
         \s Java 15. \\n It \\

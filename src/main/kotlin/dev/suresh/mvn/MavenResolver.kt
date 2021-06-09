@@ -10,17 +10,17 @@ import org.jboss.shrinkwrap.resolver.api.maven.*
  * - Dep - implementation("org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-depchain:3.1.3")
  */
 class MavenResolver {
-    fun run() {
-        // val repo = RemoteRepository.Builder( "central", "default", "https://repo1.maven.org/maven2/" ).build()
-        val files = Maven.configureResolver()
-            .withMavenCentralRepo(true)
-            .resolve("org.jetbrains.kotlin:kotlin-klib-commonizer:1.5.0")
-            .withTransitivity()
-            .asResolvedArtifact()
+  fun run() {
+    // val repo = RemoteRepository.Builder( "central", "default", "https://repo1.maven.org/maven2/" ).build()
+    val files = Maven.configureResolver()
+      .withMavenCentralRepo(true)
+      .resolve("org.jetbrains.kotlin:kotlin-klib-commonizer:1.5.0")
+      .withTransitivity()
+      .asResolvedArtifact()
 
-        println("\nResolved Artifacts are,")
-        files.forEach {
-            println(it.coordinate)
-        }
+    println("\nResolved Artifacts are,")
+    files.forEach {
+      println(it.coordinate)
     }
+  }
 }
