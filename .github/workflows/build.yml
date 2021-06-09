@@ -30,7 +30,7 @@ defaults:
 
 jobs:
   build:
-    name: Gradle Build
+    name: 🏗️ Gradle Build
     timeout-minutes: 15
     continue-on-error: false
     # if: github.event_name  == 'pull_request'
@@ -60,13 +60,13 @@ jobs:
         with:
           fetch-depth: 100
 
-      - name: Download ${{ matrix.os }} OpenJDK ${{ matrix.jdk }}
+      - name: ⬇️ Download ${{ matrix.os }} OpenJDK ${{ matrix.jdk }}
         id: download-jdk
         uses: sormuras/download-jdk@v1
         with:
           feature: ${{ matrix.jdk }}
 
-      - name: Set up OpenJDK ${{ matrix.jdk }}
+      - name: ☕ Set up OpenJDK ${{ matrix.jdk }}
         id: setup-java
         uses: actions/setup-java@v2
         if: always() && steps.download-jdk.outcome == 'success'
@@ -75,7 +75,7 @@ jobs:
           java-version: ${{ env.JDK_VERSION }}
           jdkFile: ${{ env.JDK_FILE }}
 
-      - name: Cache Gradle dependencies
+      - name: 🗃️ Cache Gradle dependencies
         uses: actions/cache@v2
         with:
           path: |
@@ -85,7 +85,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: Export Gradle Properties
+      - name: 🧰 Export Gradle Properties
         id: gradle-properties
         run: |
           PROPERTIES="$(./gradlew properties --console=plain -q)"
@@ -105,11 +105,11 @@ jobs:
           GITHUB_USER: ${{ github.repository_owner }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 🔧 Gradle Run & Build
+      - name: 🏗️ Gradle Run & Build
         id: gradle-build
         run: ./gradlew run build dokkaHtml
 
-      - name: Uploading ${{ matrix.os }} uber jar
+      - name: 📤 Uploading ${{ matrix.os }} uber jar
         if: steps.gradle-build.outcome == 'success' && runner.os == 'Linux'
         uses: actions/upload-artifact@v2
         with:
@@ -129,7 +129,7 @@ jobs:
           CLEAN: true
 
   release:
-    name: Release new version.
+    name: 🚰 Release new version.
     needs: [ build ]
     if: startsWith(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
