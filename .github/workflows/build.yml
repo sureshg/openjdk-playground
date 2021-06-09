@@ -155,17 +155,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   container-build:
-    name: Run Java app on OpenJDK
+    name: Run Java on Containers
     runs-on: ubuntu-latest
 
     strategy:
       fail-fast: true
       matrix:
-        jdk: [ "17" ]
+        jdk: [ "17-slim-buster", "17-alpine" ]
 
     container:
       # openjdk:17-jdk-alpine
-      image: openjdk:${{ matrix.jdk }}-slim-buster
+      image: openjdk:${{ matrix.jdk }}
 
     steps:
       - name: Check out the source code
