@@ -55,8 +55,10 @@ jobs:
             cmd: ./gradlew.bat
 
     steps:
-      - name: Check out the source code
+      - name: 🛎️ Check out the source code
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 100
 
       - name: Download ${{ matrix.os }} OpenJDK ${{ matrix.jdk }}
         id: download-jdk
@@ -94,7 +96,7 @@ jobs:
           echo "::set-output name=name::$NAME"
           echo "::set-output name=artifact::$ARTIFACT"
 
-      - name: Publish to GitHub Packages (Linux)
+      - name: 📦 Publish to GitHub Packages (Linux)
         id: gradle-publish
         if: env.GITHUB_PUBLISH == 'true' && runner.os == 'Linux'
         run: |
@@ -103,9 +105,9 @@ jobs:
           GITHUB_USER: ${{ github.repository_owner }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Gradle Run & Build
+      - name: 🔧 Gradle Run & Build
         id: gradle-build
-        run: ./gradlew run build
+        run: ./gradlew run build dokkaHtml
 
       - name: Uploading ${{ matrix.os }} uber jar
         if: steps.gradle-build.outcome == 'success' && runner.os == 'Linux'
@@ -115,6 +117,16 @@ jobs:
           path: |
             ${{ steps.gradle-build.outputs.uberjar_path }}
           if-no-files-found: error
+
+      - name: 🚀 Deploy html docs to website
+        if: runner.os == 'Linux'
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: main
+          FOLDER: build/dokka
+          TARGET_FOLDER: docs/apidoc/
+          CLEAN: true
 
   release:
     name: Release new version.
@@ -155,18 +167,21 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   container-build:
-    name: Run Java on Container
+    name: 🚢 Run Java on Container
     runs-on: ubuntu-latest
 
     strategy:
       fail-fast: true
       matrix:
-        jdk: [ "17-slim-buster", "17-alpine" ]
+        jdk: [ "openjdk:17-slim-buster", "openjdk:17-alpine" ]
 
+    defaults:
+      run:
+        shell: sh
 
     container:
       # openjdk:17-jdk-alpine
-      image: openjdk:${{ matrix.jdk }}
+      image: ${{ matrix.jdk }}
 
     steps:
       - name: Check out the source code
@@ -178,7 +193,6 @@ jobs:
           java --show-version src/main/java/JavaApp.java
         env:
           RUNNER_CONTEXT: ${{ toJson(runner) }}
-        shell: sh
 
       - name: Github Action Contexts
         run: |
@@ -189,4 +203,3 @@ jobs:
           JOB_CONTEXT: ${{ toJson(job) }}
           STEPS_CONTEXT: ${{ toJson(steps) }}
           RUNNER_CONTEXT: ${{ toJson(runner) }}
-        shell: sh

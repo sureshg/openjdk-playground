@@ -1,11 +1,11 @@
 import gg.jte.*
+import java.net.*
+import java.nio.file.Path
 import org.gradle.api.tasks.testing.logging.*
 import org.gradle.internal.os.OperatingSystem
 import org.jetbrains.dokka.gradle.*
 import org.jetbrains.kotlin.config.*
 import org.jetbrains.kotlin.gradle.tasks.*
-import java.net.*
-import java.nio.file.Path
 
 plugins {
   idea
@@ -178,7 +178,7 @@ spotless {
     endWithNewline()
     indentWithSpaces()
     trimTrailingWhitespace()
-    // licenseHeader(License.Apache)
+    //licenseHeader(rootProject.file("gradle/license-header.txt"))
   }
 
   kotlinGradle {

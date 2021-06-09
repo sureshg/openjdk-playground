@@ -129,10 +129,9 @@ $ java  --enable-preview \
 ```
 
 * [JPMS Quickstart](https://openjdk.java.net/projects/jigsaw/quick-start)
-
 * [Docs and Resources](https://openjdk.java.net/projects/jigsaw/)
-
 * **[Java Modules Cheat Sheet](https://nipafx.dev/build-modules/)**
+* [JPackage Scripts](https://github.com/dlemmermann/JPackageScriptFX)
 
 ##### 9. [JVMCI (Graal) Compiler](https://openjdk.java.net/jeps/317)
 
@@ -302,13 +301,13 @@ println("Hello Kotlin Script")
      ```bash
      # Turn on all debugging
      $ java -Djavax.net.debug=all
-
+     
      # Override HostsFileNameService
      $ java -Djdk.net.hosts.file=/etc/host/style/file
-
+     
      # Force IPv4
      $ java -Djava.net.preferIPv4Stack=true
-
+     
      # The entropy gathering device can also be specified with the system property
      $ java -Djava.security.egd=file:/dev/./urandom
      ```
@@ -473,7 +472,7 @@ sourceSets.main.get().compileClasspath
   val u: TaskProvider<Jar> = register<Jar>("jar"){}     // Create new task
   val v: TaskProvider<Jar> by registering(Jar::class){} // Create task using property delegate
   val jar: TaskProvider<Task> by existing // Get task using property delegate
-
+  
   val foo: FooTask by existing            // Take Task type from val (Kotlin 1.4)
   val bar: BarTask by registering {}      // Take Task type from val (Kotlin 1.4)
   ```
