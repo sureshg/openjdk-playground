@@ -155,13 +155,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   container-build:
-    name: Run Java on Containers
+    name: Run Java on Container
     runs-on: ubuntu-latest
 
     strategy:
       fail-fast: true
       matrix:
         jdk: [ "17-slim-buster", "17-alpine" ]
+
 
     container:
       # openjdk:17-jdk-alpine
@@ -177,6 +178,7 @@ jobs:
           java --show-version src/main/java/JavaApp.java
         env:
           RUNNER_CONTEXT: ${{ toJson(runner) }}
+        shell: sh
 
       - name: Github Action Contexts
         run: |
