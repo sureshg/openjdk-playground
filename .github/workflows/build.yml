@@ -189,3 +189,4 @@ jobs:
           JOB_CONTEXT: ${{ toJson(job) }}
           STEPS_CONTEXT: ${{ toJson(steps) }}
           RUNNER_CONTEXT: ${{ toJson(runner) }}
+        shell: sh
