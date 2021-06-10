@@ -1,5 +1,6 @@
 name: "CodeQL"
 
+
 on:
   push:
   pull_request:
@@ -25,9 +26,34 @@ jobs:
         with:
           languages: java
 
-      #- run: |
-      #   make bootstrap
-      #   make release
+      - name: ⬇️ Download OpenJDK
+        id: download-jdk
+        uses: sormuras/download-jdk@v1
+        with:
+          feature: Loom
+
+      - name: ☕ Set up OpenJDK
+        id: setup-java
+        uses: actions/setup-java@v2
+        if: always() && steps.download-jdk.outcome == 'success'
+        with:
+          distribution: jdkfile
+          java-version: ${{ env.JDK_VERSION }}
+          jdkFile: ${{ env.JDK_FILE }}
+
+      - name: 🗃️ Cache Gradle dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: 🏗️ Gradle Build
+        id: gradle-build
+        run: ./gradlew build
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v1
