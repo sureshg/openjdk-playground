@@ -270,7 +270,6 @@ tasks {
     kotlinOptions {
       verbose = true
       jvmTarget = kotlinJvmTarget
-      languageVersion = kotlinLangVersion
       javaParameters = true
       incremental = true
       allWarningsAsErrors = false
@@ -324,13 +323,13 @@ tasks {
       showStackTraces = true
       showStandardStreams = true
     }
-    reports.html.isEnabled = true
+    reports.html.required.set(true)
   }
 
   // Code Coverage
   jacocoTestReport {
     reports {
-      html.isEnabled = true
+      html.required.set(true)
     }
     dependsOn(test)
   }
