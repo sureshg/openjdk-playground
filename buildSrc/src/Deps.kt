@@ -40,7 +40,7 @@ object Deps {
     }
 
     object Ksp {
-      const val version = "1.5.10-1.0.0-beta01"
+      const val version = "1.5.10-1.0.0-beta02"
       const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
       const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
       const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.4.0"
@@ -116,7 +116,7 @@ object Deps {
   }
 
   object Jetty {
-    const val version = "11.0.3"
+    const val version = "11.0.4"
     const val bom = "org.eclipse.jetty:jetty-bom:$version"
     const val server = "org.eclipse.jetty:jetty-server:$version"
     const val servlet = "org.eclipse.jetty:jetty-servlet:$version"
@@ -128,7 +128,7 @@ object Deps {
     const val jakartaServletApi = "org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api:5.0.2"
 
     object LoadGen {
-      const val version = "2.0.0"
+      const val version = "2.0.1"
       const val client =
         "org.mortbay.jetty.loadgenerator:jetty-load-generator-client:$version"
       const val listebers =
@@ -638,7 +638,7 @@ inline val PluginDependenciesSpec.binCompatValidator get() = id("org.jetbrains.k
 
 // Google Plugins
 inline val PluginDependenciesSpec.ksp get() = id("com.google.devtools.ksp") version Deps.Kotlin.Ksp.version
-inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.jib") version "3.0.0"
+inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.jib") version "3.1.0"
 
 // Dependency Versions
 inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version "0.39.0"
