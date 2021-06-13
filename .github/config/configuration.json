@@ -33,6 +33,7 @@
     {
       "title": "## 📦 Dependencies",
       "labels": [
+        "deps",
         "dependencies"
       ]
     }

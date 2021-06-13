@@ -90,6 +90,7 @@ jobs:
             ${{ runner.os }}-gradle-
 
       - name: 🧰 Export Gradle Properties
+        if: ${{ false }}
         id: gradle-properties
         run: |
           PROPERTIES="$(./gradlew properties --console=plain -q)"
