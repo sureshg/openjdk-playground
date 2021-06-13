@@ -5,7 +5,7 @@ import org.jetbrains.dokka.gradle.*
 import org.jetbrains.kotlin.config.*
 import org.jetbrains.kotlin.gradle.tasks.*
 import java.net.*
-import java.nio.file.Path
+import java.nio.file.*
 
 plugins {
   idea
@@ -33,6 +33,7 @@ plugins {
   gradleRelease
   binCompatValidator
   dependencyAnalyze
+  extraJavaModuleInfo
   plugins.common
   // kotlinxAtomicfu
 }
@@ -61,6 +62,7 @@ application {
     "-Djdk.attach.allowAttachSelf=true",
     "-Djdk.tracePinnedThreads=full",
     "-Djava.security.egd=file:/dev/./urandom",
+    "-Djdk.includeInExceptions=hostInfo,jar",
     "-XX:+UnlockDiagnosticVMOptions",
     "-XX:+ShowHiddenFrames",
     "-ea",
@@ -99,7 +101,8 @@ java {
     languageVersion.set(JavaLanguageVersion.of(javaVersion))
     vendor.set(JvmVendorSpec.ORACLE)
   }
-  // modularity.inferModulePath.set(false)
+
+  // modularity.inferModulePath.set(true)
 }
 
 // Add the generated templates to source set.
@@ -226,14 +229,24 @@ release {
   revertOnFail = true
 }
 
-// For dependencies that are needed for development only.
-val devOnly: Configuration by configurations.creating {
-  // extendsFrom(configurations["testImplementation"])
-  // or val testImplementation by configurations
+// Create ShadowJar specific runtimeClasspath.
+val shadowRuntime: Configuration by configurations.creating {
+  val runtimeClasspath by configurations.getting
+  extendsFrom(runtimeClasspath)
+  attributes { attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME)) }
 }
 
+// For dependencies that are needed for development only.
+val devOnly: Configuration by configurations.creating
+
+// Deactivate java-module-info plugin for all configs
 configurations {
-  devOnly
+  // runtimeClasspath...etc
+  all {
+    attributes {
+      attribute(Attribute.of("javaModule", Boolean::class.javaObjectType), false)
+    }
+  }
 }
 
 // After the project configure
@@ -298,7 +311,7 @@ tasks {
 
   // Jte templates
   generateJte {
-    sourceDirectory = Path.of("src", "main", "templates", "jte")
+    sourceDirectory = Paths.get(project.projectDir.absolutePath, "src", "main", "templates", "jte")
     contentType = ContentType.Plain
   }
 
@@ -311,6 +324,7 @@ tasks {
     useJUnitPlatform()
     jvmArgs("--enable-preview")
     classpath += devOnly
+
     testLogging {
       events = setOf(
         TestLogEvent.PASSED,
@@ -386,6 +400,7 @@ tasks {
     // Don't create modular shadow jar
     exclude("module-info.class")
     // relocate("okio", "shaded.okio")
+    configurations = listOf(shadowRuntime)
     doLast {
       val fatJar = archiveFile.get().asFile
       println("FatJar: ${fatJar.path} (${fatJar.length().toDouble() / (1_000 * 1_000)} MB)")
