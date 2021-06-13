@@ -2,9 +2,12 @@ import static java.lang.System.out;
 
 import java.io.File;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyStore;
+import java.security.Security;
 import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.HexFormat;
@@ -93,5 +96,15 @@ public class JavaApp {
                 props.size());
 
     out.println(stats);
+
+    out.printf("%n✧✧✧✧✧ Additional info in exception ✧✧✧✧✧%n");
+    Security.setProperty("jdk.includeInExceptions", "hostInfo,jar");
+    try (var s = new Socket()) {
+      s.setSoTimeout(1_00);
+      s.connect(new InetSocketAddress("localhost", 12345), 1_00);
+    } catch (Exception e) {
+      out.println(e.getMessage());
+      assert e.getMessage().contains("localhost:12345");
+    }
   }
 }
