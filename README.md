@@ -201,3 +201,5 @@ https://github.com/melix/jdoctor
 
 [ktlint_url]: https://ktlint.github.io/
 [ktlint_img]: https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg?logo=kotlin&style=for-the-badge&logoColor=FF4081
+
+[native_images_actions]: https://github.com/micronaut-projects/micronaut-starter/tree/2.5.x/.github
