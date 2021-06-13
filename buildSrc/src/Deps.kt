@@ -116,7 +116,7 @@ object Deps {
   }
 
   object Jetty {
-    const val version = "11.0.4"
+    const val version = "11.0.5"
     const val bom = "org.eclipse.jetty:jetty-bom:$version"
     const val server = "org.eclipse.jetty:jetty-server:$version"
     const val servlet = "org.eclipse.jetty:jetty-servlet:$version"
@@ -638,7 +638,7 @@ inline val PluginDependenciesSpec.binCompatValidator get() = id("org.jetbrains.k
 
 // Google Plugins
 inline val PluginDependenciesSpec.ksp get() = id("com.google.devtools.ksp") version Deps.Kotlin.Ksp.version
-inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.jib") version "3.1.0"
+inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.jib") version "3.1.1"
 
 // Dependency Versions
 inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version "0.39.0"
@@ -647,9 +647,10 @@ inline val PluginDependenciesSpec.consistentVersions get() = id("com.palantir.co
 // Dependencies
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "7.0.0"
 inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.6.0" apply true
-inline val PluginDependenciesSpec.taskinfo get() = id("org.barfuin.gradle.taskinfo") version "1.1.1"
+inline val PluginDependenciesSpec.taskinfo get() = id("org.barfuin.gradle.taskinfo") version "1.2.0"
 inline val PluginDependenciesSpec.taskTree get() = id("com.dorongold.task-tree") version "1.5"
 inline val PluginDependenciesSpec.forbiddenApis get() = id("de.thetaphi.forbiddenapis") version "3.1"
+inline val PluginDependenciesSpec.extraJavaModuleInfo get() = id("de.jjohannes.extra-java-module-info") version "0.8"
 
 inline val PluginDependenciesSpec.javafx get() = id("org.openjfx.javafxplugin") version "0.0.7"
 inline val PluginDependenciesSpec.mrjar get() = id("com.lingocoder.mrjar") version "0.0.16"
@@ -672,7 +673,7 @@ inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boo
 inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version "1.0.9.RELEASE"
 
 // Static Analysis and Linting
-inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.12.5"
+inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.13.0"
 inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.2.0"
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version "9.3.0"
