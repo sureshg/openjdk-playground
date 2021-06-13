@@ -41,7 +41,8 @@ val appMainClass: String by project
 
 application {
   mainClass.set(appMainClass)
-  val tmp = System.getProperty("java.io.tmpdir")
+
+  val tmp = "/tmp/" // "${System.getProperty("java.io.tmpdir")}${File.pathSeparator}"
   applicationDefaultJvmArgs += listOf(
     "--show-version",
     "--enable-preview",
