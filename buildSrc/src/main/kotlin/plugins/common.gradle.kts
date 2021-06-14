@@ -1,10 +1,10 @@
 package plugins
 
+import org.gradle.jvm.tasks.Jar
+import org.gradle.tooling.*
 import java.io.*
 import java.util.concurrent.*
 import java.util.spi.*
-import org.gradle.jvm.tasks.Jar
-import org.gradle.tooling.*
 
 plugins {
   java
