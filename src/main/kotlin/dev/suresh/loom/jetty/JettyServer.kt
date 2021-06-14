@@ -34,7 +34,7 @@ fun run(port: Int = 8080) {
   // NetworkTrafficServerConnector(server)
   val connector = ServerConnector(server).apply {
     this.port = port
-    acceptQueueSize = 1024
+    acceptQueueSize = 128
   }
   server.addConnector(connector)
 
@@ -47,7 +47,7 @@ fun run(port: Int = 8080) {
   println("Server started at ${server.uri}")
 
   val took = measureTime {
-    pumpRequests(server, 500)
+    pumpRequests(server, 100)
   }
   println("Took ${took.toDouble(DurationUnit.SECONDS)} seconds")
 
@@ -119,6 +119,8 @@ fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
   )
 }
 
+val OS: String = System.getProperty("os.name")
+
 class HelloServlet : HttpServlet() {
   override fun doGet(req: HttpServletRequest?, resp: HttpServletResponse?) {
     val id = req?.getParameter("id")
@@ -137,13 +139,14 @@ class HelloServlet : HttpServlet() {
 
   private fun exec(req: HttpServletRequest?, resp: HttpServletResponse?): String {
     // Simulate blocking
-    Thread.sleep(3 * 1000)
+    Thread.sleep(2 * 1000)
     return """
           {
             "Id"     : ${ID.orElse("n/a")},
             "User"   : ${USER.orElse("n/a")},
             "server" : Jetty-${Jetty.VERSION},
             "Java"   : ${JavaVersion.VERSION},
+            "OS"     : $OS,
             "target" : ${req?.fullURL},
             "Thread" : ${Thread.currentThread()}
           }
