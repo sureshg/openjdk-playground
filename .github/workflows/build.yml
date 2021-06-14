@@ -180,7 +180,7 @@ jobs:
   # -------------------------------------------------
 
   container-build:
-    name: 🚢 Run Java on Container
+    name: 🚢 Java on Container
     runs-on: ubuntu-latest
 
     strategy:
