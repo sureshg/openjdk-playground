@@ -1,5 +1,6 @@
 import gg.jte.*
 import org.gradle.api.tasks.testing.logging.*
+import org.gradle.internal.os.OperatingSystem
 import org.jetbrains.dokka.gradle.*
 import org.jetbrains.kotlin.config.*
 import org.jetbrains.kotlin.gradle.tasks.*
@@ -42,7 +43,7 @@ val appMainClass: String by project
 application {
   mainClass.set(appMainClass)
 
-  val tmp = "/tmp/" // "${System.getProperty("java.io.tmpdir")}${File.pathSeparator}"
+  val tmp = if (OperatingSystem.current().isWindows) "c:/TEMP" else "/tmp"
   applicationDefaultJvmArgs += listOf(
     "--show-version",
     "--enable-preview",
@@ -51,12 +52,12 @@ application {
     "-Xmx128M",
     "-XX:+PrintCommandLineFlags",
     "-XX:+UseZGC",
-    "-Xlog:gc*:${tmp}$name-gc.log",
-    "-XX:StartFlightRecording:filename=${tmp}$name.jfr,settings=default.jfc,name=$name,maxsize=100m,dumponexit=true",
+    "-Xlog:gc*:\"$tmp/$name-gc-%p-%t.log\":time,uptime,level,tid,tags:filecount=5,filesize=10m",
+    "-XX:StartFlightRecording:filename=$tmp/$name.jfr,settings=default.jfc,name=$name,maxsize=100m,dumponexit=true",
     "-XX:FlightRecorderOptions:stackdepth=128",
     "-XX:+HeapDumpOnOutOfMemoryError",
-    "-XX:HeapDumpPath=${tmp}$name.hprof",
-    "-XX:ErrorFile=${tmp}java-error-$name-%p.log",
+    "-XX:HeapDumpPath=$tmp/$name-%p.hprof",
+    "-XX:ErrorFile=$tmp/$name-hs-err-%p.log",
     "-Dfile.encoding=UTF-8",
     "-Djava.awt.headless=true",
     "-Djdk.attach.allowAttachSelf=true",
