@@ -1,6 +1,5 @@
 import gg.jte.*
 import org.gradle.api.tasks.testing.logging.*
-import org.gradle.internal.os.OperatingSystem
 import org.jetbrains.dokka.gradle.*
 import org.jetbrains.kotlin.config.*
 import org.jetbrains.kotlin.gradle.tasks.*
@@ -42,8 +41,6 @@ val appMainClass: String by project
 
 application {
   mainClass.set(appMainClass)
-
-  val tmp = if (OperatingSystem.current().isWindows) "c:/TEMP" else "/tmp"
   applicationDefaultJvmArgs += listOf(
     "--show-version",
     "--enable-preview",
@@ -52,7 +49,7 @@ application {
     "-Xmx128M",
     "-XX:+PrintCommandLineFlags",
     "-XX:+UseZGC",
-    "-Xlog:gc*:\"$tmp/$name-gc-%p-%t.log\":time,uptime,level,tid,tags:filecount=5,filesize=10m",
+    "-Xlog:gc*:$xQuote$tmp/$name-gc-%p-%t.log$xQuote:time,uptime,level,tid,tags:filecount=5,filesize=10m",
     "-XX:StartFlightRecording:filename=$tmp/$name.jfr,settings=default.jfc,name=$name,maxsize=100m,dumponexit=true",
     "-XX:FlightRecorderOptions:stackdepth=128",
     "-XX:+HeapDumpOnOutOfMemoryError",

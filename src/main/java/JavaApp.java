@@ -12,6 +12,7 @@ import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.HexFormat;
 import java.util.Locale;
+import java.util.stream.Stream;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
@@ -96,6 +97,16 @@ public class JavaApp {
                 props.size());
 
     out.println(stats);
+
+    out.printf("%n✧✧✧✧✧ Streams ✧✧✧✧✧%n");
+    Stream.of("java", "kotlin", "scala")
+        .map(String::toUpperCase)
+        .mapMulti(
+            (s, consumer) -> {
+              consumer.accept(s);
+              consumer.accept(s.toLowerCase());
+            })
+        .forEach(out::println);
 
     out.printf("%n✧✧✧✧✧ Additional info in exception ✧✧✧✧✧%n");
     Security.setProperty("jdk.includeInExceptions", "hostInfo,jar");

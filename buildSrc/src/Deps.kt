@@ -194,7 +194,7 @@ object Deps {
 
     object ApiService {
       const val sdmv1 =
-        "com.google.apis:google-api-services-smartdevicemanagement:v1-rev20210213-1.31.0"
+        "com.google.apis:google-api-services-smartdevicemanagement:v1-rev20210604-1.31.0"
     }
 
     const val re2j = "com.google.re2j:re2j:1.5"
@@ -256,7 +256,7 @@ object Deps {
     const val stringTemplate = "org.antlr:ST4:4.3.1"
 
     object Jte {
-      const val version = "1.9.0"
+      const val version = "1.11.0"
       const val jte = "gg.jte:jte:$version"
       const val kotlin = "gg.jte:jte-kotlin:$version"
     }
@@ -634,7 +634,7 @@ inline val PluginDependenciesSpec.dokka get() = id("org.jetbrains.dokka") versio
 
 inline val PluginDependenciesSpec.exposed get() = id("com.jetbrains.exposed.gradle.plugin") version "0.1.1-SNAPSHOT"
 inline val PluginDependenciesSpec.kotlinxAtomicfu get() = id("kotlinx-atomicfu") version "0.16.1"
-inline val PluginDependenciesSpec.binCompatValidator get() = id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.5.0"
+inline val PluginDependenciesSpec.binCompatValidator get() = id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.6.0"
 
 // Google Plugins
 inline val PluginDependenciesSpec.ksp get() = id("com.google.devtools.ksp") version Deps.Kotlin.Ksp.version

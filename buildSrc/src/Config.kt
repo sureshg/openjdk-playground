@@ -1,4 +1,5 @@
 import org.gradle.api.*
+import org.gradle.internal.os.*
 import org.gradle.jvm.toolchain.*
 import org.slf4j.*
 import java.io.*
@@ -51,6 +52,12 @@ sealed class Repo(val name: String, val url: String) {
   )
 }
 
+// OS temp location
+val tmp = if (OperatingSystem.current().isWindows) "c:/TEMP" else "/tmp"
+
+// Quote for -Xlog file
+val xQuote = if (OperatingSystem.current().isWindows) """\"""" else """""""
+
 /**
  * Check if it's a non stable (RC) version.
  */
@@ -101,7 +108,7 @@ fun Project.appRunCmd(jarPath: Path, args: List<String>): String {
     // Escape the globstar
     "$indent$it $lineCont"
       .replace("*", """\*""")
-      .replace("\"", "\\\"")
+      .replace(""""""", """\"""")
   }
 }
 
