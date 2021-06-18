@@ -24,9 +24,13 @@ class DevServer {
     useHttps(selfSignedCert.sslSocketFactory(), false)
   }
 
+  /**
+   * For accessing server and google.com
+   */
   val clientCerts = HandshakeCertificates.Builder()
-    .addPlatformTrustedCertificates()
+    .addTrustedCertificate(selfSignedCert.trustManager.acceptedIssuers[0])
     .addInsecureHost(server.hostName)
+    .addPlatformTrustedCertificates()
     .build()
 
   val client = OkHttpClient.Builder()
@@ -45,9 +49,12 @@ class DevServer {
           .setHeader("Location", "https://www.google.com/robots.txt")
       )
 
+      val url = server.url("/")
+      println("\nConnecting to $url")
+
       val req = Request.Builder()
         .header("User-Agent", OkHttp.VERSION)
-        .url(server.url("/"))
+        .url(url)
         .build()
 
       client.newCall(req)
@@ -55,7 +62,7 @@ class DevServer {
         .use { res ->
           when (res.isSuccessful) {
             true -> {
-              println("\nGot response from server: ${res.request.url}")
+              println("Got response from server: ${res.request.url}")
               val resHeaders = res.headers
 
               println("Response headers are,")

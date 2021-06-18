@@ -72,6 +72,7 @@ application {
     // "-XX:+IgnoreUnrecognizedVMOptions",
     // "-XX:NativeMemoryTracking=summary",
     // "-Djava.net.preferIPv4Stack=true",
+    // "-Djavax.net.debug=all",
     // "-Djava.security.manager=allow",
     // "-Djgitver.skip=true",
     // "--add-exports=java.management/sun.management=ALL-UNNAMED",

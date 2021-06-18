@@ -1,5 +1,6 @@
 package dev.suresh.mvn
 
+import App
 import org.jboss.shrinkwrap.resolver.api.maven.*
 
 /**
@@ -14,7 +15,7 @@ class MavenResolver {
     // val repo = RemoteRepository.Builder( "central", "default", "https://repo1.maven.org/maven2/" ).build()
     val files = Maven.configureResolver()
       .withMavenCentralRepo(true)
-      .resolve("org.jetbrains.kotlin:kotlin-klib-commonizer:1.5.0")
+      .resolve("org.jetbrains.kotlin:kotlin-klib-commonizer:${App.KOTLIN_VERSION}")
       .withTransitivity()
       .asResolvedArtifact()
 
