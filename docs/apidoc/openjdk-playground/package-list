@@ -10,6 +10,8 @@ $dokka.location:/App/GIT_COMMITER_EMAIL/#/PointingToDeclaration/openjdk-playgro
 $dokka.location:/App/GIT_COMMITER_NAME/#/PointingToDeclaration/openjdk-playground/[root]/-app/-g-i-t_-c-o-m-m-i-t-e-r_-n-a-m-e.html
 $dokka.location:/App/GIT_COMMIT_TIMESTAMP/#/PointingToDeclaration/openjdk-playground/[root]/-app/-g-i-t_-c-o-m-m-i-t_-t-i-m-e-s-t-a-m-p.html
 $dokka.location:/App/GIT_SHA1_8/#/PointingToDeclaration/openjdk-playground/[root]/-app/-g-i-t_-s-h-a1_8.html
+$dokka.location:/App/GIT_SHA1_FULL/#/PointingToDeclaration/openjdk-playground/[root]/-app/-g-i-t_-s-h-a1_-f-u-l-l.html
+$dokka.location:/App/GIT_TAG/#/PointingToDeclaration/openjdk-playground/[root]/-app/-g-i-t_-t-a-g.html
 $dokka.location:/App/GRADLE_VERSION/#/PointingToDeclaration/openjdk-playground/[root]/-app/-g-r-a-d-l-e_-v-e-r-s-i-o-n.html
 $dokka.location:/App/JAVA_VERSION/#/PointingToDeclaration/openjdk-playground/[root]/-app/-j-a-v-a_-v-e-r-s-i-o-n.html
 $dokka.location:/App/KOTLIN_VERSION/#/PointingToDeclaration/openjdk-playground/[root]/-app/-k-o-t-l-i-n_-v-e-r-s-i-o-n.html
@@ -94,6 +96,7 @@ $dokka.location:dev.suresh.jte/RenderJte///PointingToDeclaration/openjdk-playgr
 $dokka.location:dev.suresh.jte/RenderJte/RenderJte/#/PointingToDeclaration/openjdk-playground/dev.suresh.jte/-render-jte/-render-jte.html
 $dokka.location:dev.suresh.jte/RenderJte/run/#/PointingToDeclaration/openjdk-playground/dev.suresh.jte/-render-jte/run.html
 $dokka.location:dev.suresh.loom.jetty////PointingToDeclaration/openjdk-playground/dev.suresh.loom.jetty/index.html
+$dokka.location:dev.suresh.loom.jetty//OS/#/PointingToDeclaration/openjdk-playground/dev.suresh.loom.jetty/-o-s.html
 $dokka.location:dev.suresh.loom.jetty//fullURL/jakarta.servlet.http.HttpServletRequest#/PointingToDeclaration/openjdk-playground/dev.suresh.loom.jetty/full-u-r-l.html
 $dokka.location:dev.suresh.loom.jetty//main/#/PointingToDeclaration/openjdk-playground/dev.suresh.loom.jetty/main.html
 $dokka.location:dev.suresh.loom.jetty//pumpRequests/#org.eclipse.jetty.server.Server#kotlin.Int#kotlin.Long/PointingToDeclaration/openjdk-playground/dev.suresh.loom.jetty/pump-requests.html
@@ -181,7 +184,7 @@ $dokka.location:gg.jte.generated.precompiled/JtehelloktGenerated.Companion///Poi
 $dokka.location:gg.jte.generated.precompiled/JtehelloktGenerated.Companion/JTE_LINE_INFO/#/PointingToDeclaration/openjdk-playground/gg.jte.generated.precompiled/-jtehellokt-generated/-companion/-j-t-e_-l-i-n-e_-i-n-f-o.html
 $dokka.location:gg.jte.generated.precompiled/JtehelloktGenerated.Companion/JTE_NAME/#/PointingToDeclaration/openjdk-playground/gg.jte.generated.precompiled/-jtehellokt-generated/-companion/-j-t-e_-n-a-m-e.html
 $dokka.location:gg.jte.generated.precompiled/JtehelloktGenerated.Companion/render/#gg.jte.TemplateOutput#gg.jte.html.HtmlInterceptor?#Config#dev.suresh.jte.KtConfig/PointingToDeclaration/openjdk-playground/gg.jte.generated.precompiled/-jtehellokt-generated/-companion/render.html
-$dokka.location:gg.jte.generated.precompiled/JtehelloktGenerated.Companion/renderMap/#gg.jte.TemplateOutput#gg.jte.html.HtmlInterceptor?#kotlin.collections.Map[kotlin.String,kotlin.Any]/PointingToDeclaration/openjdk-playground/gg.jte.generated.precompiled/-jtehellokt-generated/-companion/render-map.html
+$dokka.location:gg.jte.generated.precompiled/JtehelloktGenerated.Companion/renderMap/#gg.jte.TemplateOutput#gg.jte.html.HtmlInterceptor?#kotlin.collections.Map[kotlin.String,kotlin.Any?]/PointingToDeclaration/openjdk-playground/gg.jte.generated.precompiled/-jtehellokt-generated/-companion/render-map.html
 $dokka.location:gg.jte.generated.precompiled/JtehelloktGenerated///PointingToDeclaration/openjdk-playground/gg.jte.generated.precompiled/-jtehellokt-generated/index.html
 $dokka.location:gg.jte.generated.precompiled/JtehelloktGenerated/JtehelloktGenerated/#/PointingToDeclaration/openjdk-playground/gg.jte.generated.precompiled/-jtehellokt-generated/-jtehellokt-generated.html
 dev.suresh
