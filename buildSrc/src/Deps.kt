@@ -194,7 +194,7 @@ object Deps {
 
     object ApiService {
       const val sdmv1 =
-        "com.google.apis:google-api-services-smartdevicemanagement:v1-rev20210604-1.31.0"
+        "com.google.apis:google-api-services-smartdevicemanagement:v1-rev20210604-1.31.5"
     }
 
     const val re2j = "com.google.re2j:re2j:1.5"
@@ -673,7 +673,7 @@ inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boo
 inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version "1.0.9.RELEASE"
 
 // Static Analysis and Linting
-inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.13.0"
+inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.14.0"
 inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.2.0"
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version "9.3.0"

@@ -99,8 +99,9 @@ public class JavaApp {
     out.println(stats);
 
     out.printf("%n✧✧✧✧✧ Streams ✧✧✧✧✧%n");
-    Stream.of("java", "kotlin", "scala")
+    Stream.of("java", "kotlin", "scala", " ")
         .map(String::toUpperCase)
+        .filter(s -> !s.isBlank())
         .mapMulti(
             (s, consumer) -> {
               consumer.accept(s);

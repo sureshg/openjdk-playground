@@ -8,4 +8,18 @@
 App Version  = ${ktConfig.appVersion ?: "1.0.0"}
 ${config.language()} = ${config.version()}
 ${ktConfig.language} = ${ktConfig.version}
+----------Application Properties-----------
+VERSION              : ${App.VERSION}
+BASE_VERSION         : ${App.BASE_VERSION}
+JAVA_VERSION         : ${App.JAVA_VERSION}
+KOTLIN_VERSION       : ${App.KOTLIN_VERSION}
+GRADLE_VERSION       : ${App.GRADLE_VERSION}
+GIT_BRANCH           : ${App.GIT_BRANCH}
+GIT_TAG              : ${App.GIT_TAG}
+GIT_COMMITER_EMAIL   : ${App.GIT_COMMITER_EMAIL}
+GIT_COMMITER_NAME    : ${App.GIT_COMMITER_NAME}
+GIT_COMMIT_TIMESTAMP : ${App.GIT_COMMIT_TIMESTAMP}
+GIT_SHA1_8           : ${App.GIT_SHA1_8}
+GIT_SHA1_FULL        : ${App.GIT_SHA1_FULL}
+-------------------------------------------
 Rendered By Kotlin Jte on ${LocalDateTime.now().toString()}

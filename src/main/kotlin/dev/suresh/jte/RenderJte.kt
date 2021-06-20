@@ -18,7 +18,7 @@ class RenderJte {
       "ktConfig" to KtConfig(
         version = App.KOTLIN_VERSION,
         appVersion = App.VERSION
-      ),
+      )
     )
 
     listOf("hello.jte", "hello-kt.kte").forEach {

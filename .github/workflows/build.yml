@@ -186,7 +186,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        jdk: [ "openjdk:17-slim-buster", "openjdk:17-alpine" ]
+        jdk: [ "openjdk:18-slim-buster", "openjdk:17-alpine" ]
 
     defaults:
       run:

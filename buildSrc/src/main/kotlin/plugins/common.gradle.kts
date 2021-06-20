@@ -27,7 +27,8 @@ tasks {
       val uberJar = named("shadowJar", Jar::class)
       val jarFile = uberJar.get().archiveFile.get().asFile
 
-      val jdeps = ToolProvider.findFirst("jdeps").orElseGet { error("") }
+      val jdeps =
+        ToolProvider.findFirst("jdeps").orElseGet { error("jdeps tool is missing in the JDK!") }
       val out = StringWriter()
       val pw = PrintWriter(out)
       jdeps.run(pw, pw, "--print-module-deps", "--ignore-missing-deps", jarFile.absolutePath)
@@ -38,21 +39,17 @@ tasks {
     dependsOn("shadowJar")
   }
 
+
   val copyTemplates by registering(Copy::class) {
-    description = "Generate template classes."
+    description = "Generate template classes"
     group = LifecycleBasePlugin.BUILD_TASK_NAME
 
-    val configuredVersion = providers
-      .gradleProperty("version")
-      .forUseAtConfigurationTime()
-      .get()
+    // Github actions workaround
+    val props = project.properties.toMutableMap()
+    props["git_branch"] = project.findProperty("branch_name")
+    props["git_tag"] = project.findProperty("base_tag")
 
-    val props = project.extra.properties
-    props["projectVersion"] = project.version
-    props["configuredVersion"] = configuredVersion
-    props["kotlinVersion"] = System.getProperty("kotlinVersion")
-
-    val debug: String by project
+    val debug: String? by project
     if (debug.toBoolean()) {
       props.forEach { (t, u) ->
         println("%1\$-42s --> %2\$s".format(t, u))
@@ -60,11 +57,14 @@ tasks {
     }
 
     filteringCharset = "UTF-8"
-    inputs.property("buildversions", props.hashCode())
     from(project.projectDir.resolve("src/main/templates"))
     into(project.buildDir.resolve("generated-sources/templates/kotlin/main"))
     exclude { it.name.startsWith("jte") }
     expand(props)
+
+    // val configuredVersion = providers.gradleProperty("version").forUseAtConfigurationTime().get()
+    // expand("configuredVersion" to configuredVersion)
+    // inputs.property("buildversions", props.hashCode())
   }
 
   /**
