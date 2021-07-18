@@ -33,6 +33,7 @@ plugins {
   binCompatValidator
   dependencyAnalyze
   extraJavaModuleInfo
+  licensee
   plugins.common
   // kotlinxAtomicfu
 }
@@ -64,6 +65,7 @@ application {
     "-XX:+UnlockDiagnosticVMOptions",
     "-XX:+ShowHiddenFrames",
     "-ea",
+    // "-verbose:module",
     // "-XX:ConcGCThreads=2",
     // "-XX:ZUncommitDelay=60",
     // "-Xlog:gc\*",
@@ -463,7 +465,9 @@ dependencies {
   implementation(Deps.Kotlinx.Serialization.json)
   implementation(Deps.Kotlinx.Serialization.properties)
   implementation(Deps.Kotlinx.dateTime)
-  implementation(Deps.Jetty.server)
+  implementation(Deps.Jetty.server) {
+    version { strictly(Deps.Jetty.version) }
+  }
   implementation(Deps.Jetty.jakartaServletApi)
   implementation(Deps.Jetty.servlet)
   implementation(Deps.Http.urlbuilder)
@@ -488,6 +492,7 @@ dependencies {
   implementation(Deps.Network.jmdns)
   implementation(Deps.Security.password4j)
   implementation(Deps.Security.otp)
+  implementation(Deps.Security.jwtJava)
   implementation(Deps.Cli.textTree)
   // implementation(Deps.Web.playwright)
   compileOnly(Deps.TemplateEngine.Jte.kotlin)
