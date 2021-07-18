@@ -301,13 +301,13 @@ println("Hello Kotlin Script")
      ```bash
      # Turn on all debugging
      $ java -Djavax.net.debug=all
-
+     
      # Override HostsFileNameService
      $ java -Djdk.net.hosts.file=/etc/host/style/file
-
+     
      # Force IPv4
      $ java -Djava.net.preferIPv4Stack=true
-
+     
      # The entropy gathering device can also be specified with the system property
      $ java -Djava.security.egd=file:/dev/./urandom
      ```
@@ -472,7 +472,7 @@ sourceSets.main.get().compileClasspath
   val u: TaskProvider<Jar> = register<Jar>("jar"){}     // Create new task
   val v: TaskProvider<Jar> by registering(Jar::class){} // Create task using property delegate
   val jar: TaskProvider<Task> by existing // Get task using property delegate
-
+  
   val foo: FooTask by existing            // Take Task type from val (Kotlin 1.4)
   val bar: BarTask by registering {}      // Take Task type from val (Kotlin 1.4)
   ```
@@ -561,9 +561,10 @@ $ ./gradlew clean dependencyUpdates -Drevision=release
 
 * [Refresh dependencies](https://stackoverflow.com/a/42058780/416868)
 
-```kotlin
-// $ ./gradlew clean build --refresh-dependencies
-// $ rm -rf ~/.gradle/caches
+```bash
+# Gradle command
+$ ./gradlew clean build --refresh-dependencies
+$ rm -rf ~/.gradle/caches
 
 # Build Config
 configurations.all {
@@ -602,49 +603,6 @@ $ ./gradlew run --args="<JFR_FILE>"
    * https://services.gradle.org/versions
 
 
-
-### Security & Certificates
-
-------
-
-##### 1. Truststore
-
-To create a RootCA `PKCS#12` trust-store of the given URL
-
-```bash
-# Extract the server certificates.
-$ echo -n | openssl s_client -showcerts -connect google.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > globalsign.crt
-
-# Create/Add trust store
-$ keytool -importcert -trustcacerts -alias globalsign-rootca -storetype PKCS12 -keystore globalsign-rootca.p12 -storepass changeit -file globalsign.crt
-
-# Add intermediate certs (Optional)
-$ keytool -importcert -keystore globalsign-rootca.p12 -alias CA-intermediate -storepass changeit -file CA-intermediate.cer
-
-# Show PKCS#12 info.
-$ openssl pkcs12 -info -password pass:changeit -in globalsign-rootca.p12
-$ keytool -list -keystore globalsign-rootca.p12 --storetype pkcs12 -storepass changeit
-
-# Create a new PKCS#12 store from certs
-$ openssl pkcs12 -export -chain -out keystore.p12 -inkey private.key -password pass:test123 \
-                  -in client.crt -certfile client.crt -CAfile cacert.crt -name client-key \
-                  -caname root-ca
-
-```
-
-##### 2. Add Certs to IntelliJ Truststore
-
-```bash
-$ cacerts="$HOME/Library/Application Support/JetBrains/GoLand2020.2/ssl/cacerts"
-$ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
-$ keytool -importcert -trustcacerts -alias rootca -storetype PKCS12 -keystore $cacerts -storepass changeit -file "$HOME/Desktop/RootCA-SHA256.crt"
-$ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
-
-$ cacerts="$HOME/Library/Application Support/JetBrains/IntelliJIdea2020.2/ssl/cacerts"
-$ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
-$ keytool -importcert -trustcacerts -alias rootca -storetype PKCS12 -keystore $cacerts -storepass changeit -file "$HOME/Desktop/RootCA-SHA256.crt"
-$ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
-```
 
 
 
@@ -1057,3 +1015,12 @@ $ Fix the img reference on Overview.md
 $ cd build/dokka
 $ mkdocs build
 ```
+
+
+
+##### JBang
+
+```bash
+///usr/bin/env jbang "$0" "$@" ; exit $?
+```
+
