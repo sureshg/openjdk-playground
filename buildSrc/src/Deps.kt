@@ -734,3 +734,4 @@ inline val PluginDependenciesSpec.javacppPlatform get() = id("org.bytedeco.gradl
 
 // Plugin development
 inline val PluginDependenciesSpec.intellijPlugin get() = id("org.jetbrains.intellij") version "0.7.3"
+inline val PluginDependenciesSpec.mavenPluginDev get() = id("de.benediktritter.maven-plugin-development") version "0.3.1"
