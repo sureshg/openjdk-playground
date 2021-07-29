@@ -140,7 +140,7 @@ jobs:
   release:
     name: 🚰 Release new version.
     needs: [ build ]
-    if: startsWith(github.ref, 'refs/tags/')
+    if: startsWith(github.ref, 'refs/tags/') && needs.build.result == 'success'
     runs-on: ubuntu-latest
 
     steps:
@@ -148,6 +148,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+          submodules: recursive
 
       - name: Build Changelog
         id: github_release

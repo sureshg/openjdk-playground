@@ -12,7 +12,6 @@
 ```bash
 $ curl -s "https://get.sdkman.io" | bash
 $ sdk i java 17.ea.7.lm-open
-$ sdk u java 17.ea.7.lm-open
 ```
 
 #### Build
@@ -110,24 +109,29 @@ $ ./gradlew -q javaToolchains
 
 ##### JMPS Config
 
-```java
-// src/main/kotlin/module-info.java
-module dev.suresh.openjdklatest {
-  requires kotlin.stdlib.jdk8;
-  requires java.net.http;
-  requires org.eclipse.jetty.server;
-  requires jdk.jfr;
-  requires jdk.httpserver;
-  requires shrinkwrap.resolver.api.maven;
-  requires okhttp3;
-  requires okhttp3.tls;
-  requires okhttp3.mockwebserver;
+<details>
+  <summary>module-info.java</summary>
 
-  exports dev.suresh.loom.jetty;
-  exports dev.suresh.mvn;
-  exports dev.suresh.server;
-}
-```
+  ```java
+  // src/main/kotlin/module-info.java
+  module dev.suresh.openjdklatest {
+    requires kotlin.stdlib.jdk8;
+    requires java.net.http;
+    requires org.eclipse.jetty.server;
+    requires jdk.jfr;
+    requires jdk.httpserver;
+    requires shrinkwrap.resolver.api.maven;
+    requires okhttp3;
+    requires okhttp3.tls;
+    requires okhttp3.mockwebserver;
+
+    exports dev.suresh.loom.jetty;
+    exports dev.suresh.mvn;
+    exports dev.suresh.server;
+  }
+  ```
+</details>
+
 
 ##### Resources
 
@@ -139,10 +143,8 @@ module dev.suresh.openjdklatest {
 
  Idiomatic Gradle  - https://github.com/jjohannes/idiomatic-gradle
 
-https://docs.gradle.org/7.0-rc-1/release-notes.html
-https://docs.gradle.org/current/userguide/java_platform_plugin.html
-https://github.com/melix/jdoctor
-
+ https://docs.gradle.org/current/userguide/java_platform_plugin.html
+ https://github.com/melix/jdoctor
 
  Http APIs to test - https://api.github.com/repos/jetbrains/kotlin
                    - https://httpbin.org/
@@ -160,19 +162,15 @@ https://github.com/melix/jdoctor
 
  https://github.com/actions/cache/blob/main/examples.md#java---gradle
 
- https://github.com/android/gradle-recipes
-
  CSS in Github README  - https://github.com/sindresorhus/css-in-readme-like-wat
-
- https://kordamp.org/kordamp-gradle-plugins/
  -->
 
 
 [java_url]: https://jdk.java.net/
-[java_img]: https://img.shields.io/badge/OpenJDK-Version--17-orange?logo=java&style=for-the-badge&logoColor=blue
+[java_img]: https://img.shields.io/badge/OpenJDK-17--loom-ea791d?logo=java&style=for-the-badge&logoColor=ea791d
 
 [kt_url]: https://github.com/JetBrains/kotlin/releases/latest
-[kt_img]: https://img.shields.io/github/release/JetBrains/kotlin.svg?label=Kotlin&logo=kotlin&style=for-the-badge
+[kt_img]: https://img.shields.io/github/v/release/Jetbrains/kotlin?color=7f53ff&label=Kotlin&logo=kotlin&logoColor=7f53ff&style=for-the-badge
 
 [mvn_search]: https://search.maven.org/search?q=g:io.micronaut
 [mvn_jar]: https://search.maven.org/remote_content?g=io.micronaut&a=micronaut-http-server-netty&v=LATEST
@@ -196,7 +194,7 @@ https://github.com/melix/jdoctor
 [javadoc_url]: https://javadoc.io/doc/org.jetbrains.kotlin/kotlin-stdlib
 [javadoc_img]: https://javadoc.io/badge2/org.jetbrains.kotlin/kotlin-stdlib/javadoc.svg?logo=kotlin&style=for-the-badge
 
-[sty_url]: https://kotlinlang.org/docs/reference/coding-conventions.html
+[sty_url]: https://kotlinlang.org/docs/coding-conventions.html
 [sty_img]: https://img.shields.io/badge/style-Kotlin--Official-40c4ff.svg?style=for-the-badge&logo=kotlin&logoColor=40c4ff
 
 [ktlint_url]: https://ktlint.github.io/

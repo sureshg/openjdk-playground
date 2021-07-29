@@ -9,3 +9,6 @@ insert_final_newline = true
 
 [*.{kt,kts}]
 # kotlin_imports_layout = ascii
+# indent_style = space
+# indent_size = 2
+# continuation_indent_size = 2

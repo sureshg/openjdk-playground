@@ -43,7 +43,7 @@ object Deps {
     }
 
     object Ksp {
-      const val version = "1.5.21-1.0.0-beta05"
+      const val version = "1.5.21-1.0.0-beta06"
       const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
       const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
       const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.4.0"
@@ -179,6 +179,7 @@ object Deps {
       "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
     const val koltinxSerializationAdapter =
       "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
+    const val eithernet = "com.slack.eithernet:eithernet:1.0.0-rc01"
     const val scarlet = "com.tinder.scarlet:scarlet:0.2.5"
   }
 
@@ -435,11 +436,12 @@ object Deps {
 
   object Tcp {
     const val simpleNet = "com.github.jhg023:SimpleNet:1.6.6"
+    const val oneNio = "ru.odnoklassniki:one-nio:1.4.0"
   }
 
   object Retry {
     const val failsafe = "net.jodah:failsafe:2.4.0"
-    const val kotlinRetry = "com.michael-bull.kotlin-retry:kotlin-retry:1.0.6"
+    const val kotlinRetry = "com.michael-bull.kotlin-retry:kotlin-retry:1.0.8"
     const val bucket4j = "com.github.vladimir-bukhtoyarov:bucket4j-core:6.0.1"
     const val resilience4jRetry = "io.github.resilience4j:resilience4j-retry:1.6.1"
   }
@@ -661,7 +663,7 @@ inline val PluginDependenciesSpec.taskinfo get() = id("org.barfuin.gradle.taskin
 inline val PluginDependenciesSpec.taskTree get() = id("com.dorongold.task-tree") version "1.5"
 inline val PluginDependenciesSpec.forbiddenApis get() = id("de.thetaphi.forbiddenapis") version "3.1"
 inline val PluginDependenciesSpec.extraJavaModuleInfo get() = id("de.jjohannes.extra-java-module-info") version "0.9"
-inline val PluginDependenciesSpec.licensee get() = id("app.cash.licensee") version "1.1.0" apply false
+inline val PluginDependenciesSpec.licensee get() = id("app.cash.licensee") version "1.2.0" apply false
 
 inline val PluginDependenciesSpec.javafx get() = id("org.openjfx.javafxplugin") version "0.0.7"
 inline val PluginDependenciesSpec.mrjar get() = id("com.lingocoder.mrjar") version "0.0.16"
@@ -684,7 +686,7 @@ inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boo
 inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version "1.0.9.RELEASE"
 
 // Static Analysis and Linting
-inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.14.1"
+inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.14.2"
 inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.2.0"
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version "9.3.0"
@@ -698,11 +700,15 @@ inline val PluginDependenciesSpec.mavenRepoAuth get() = id("org.hibernate.build.
 inline val PluginDependenciesSpec.gradleRelease get() = id("net.researchgate.release") version "2.8.1"
 inline val PluginDependenciesSpec.githubRelease get() = id("com.github.breadmoirai.github-release") version "2.2.12"
 
+// Build config
+inline val PluginDependenciesSpec.gitProperties get() = id("com.gorylenko.gradle-git-properties") version "2.3.1"
+inline val PluginDependenciesSpec.buildconfig get() = id("com.github.gmazzo.buildconfig") version "3.0.2" apply false
+inline val PluginDependenciesSpec.buildkonfig get() = id("com.codingfeline.buildkonfig") version "0.8.0" apply false
+
 // Project version detection
 inline val PluginDependenciesSpec.jgitPlugin get() = id("fr.brouillard.oss.gradle.jgitver") version "0.10.0-rc03"
 inline val PluginDependenciesSpec.gitSemver get() = id("com.github.jmongard.git-semver-plugin") version "0.1.3"
 inline val PluginDependenciesSpec.reckon get() = id("org.ajoberstar.reckon") version "0.12.0"
-inline val PluginDependenciesSpec.gitProperties get() = id("com.gorylenko.gradle-git-properties") version "2.3.1"
 inline val PluginDependenciesSpec.gitChangelog get() = id("se.bjurr.gitchangelog.git-changelog-gradle-plugin") version "1.69.0"
 
 // Static website

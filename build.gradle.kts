@@ -34,6 +34,7 @@ plugins {
   dependencyAnalyze
   extraJavaModuleInfo
   licensee
+  buildkonfig
   plugins.common
   // kotlinxAtomicfu
 }
@@ -297,7 +298,7 @@ tasks {
         "-Xstrict-java-nullability-assertions",
         "-Xgenerate-strict-metadata-version",
         "-Xemit-jvm-type-annotations",
-        "-Xjavac-arguments=\"--add-exports java.base/sun.nio.ch=ALL-UNNAMED\"",
+        // "-Xjavac-arguments=\"--add-exports java.base/sun.nio.ch=ALL-UNNAMED\"",
         // "-Xexplicit-api={strict|warning|disable}",
         // "-Xjvm-enable-preview",
       )
@@ -462,6 +463,7 @@ dependencies {
   implementation(platform(Deps.Kotlin.bom))
   implementation(platform(Deps.OkHttp.bom))
   implementation(Deps.Kotlin.stdlibJdk8)
+  implementation(Deps.Kotlin.Coroutines.jdk8)
   implementation(Deps.Kotlinx.Serialization.json)
   implementation(Deps.Kotlinx.Serialization.properties)
   implementation(Deps.Kotlinx.dateTime)
@@ -477,6 +479,7 @@ dependencies {
   implementation(Deps.OkHttp.loggingInterceptor)
   implementation(Deps.Retrofit.retrofit)
   implementation(Deps.Retrofit.koltinxSerializationAdapter)
+  implementation(Deps.Retry.kotlinRetry)
   implementation(Deps.Cli.clikt)
   implementation(Deps.Cli.mordant)
   implementation(Deps.Cli.crossword)
