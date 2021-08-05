@@ -84,6 +84,9 @@ $ docker run -it --rm --name openjdk-playground sureshg/openjdk-playground
 
 #### Troubleshooting
 
+<details>
+  <summary>Commands</summary>
+
 ```bash
 # Check the current version
 $ ./gradlew -q --console plain version
@@ -106,6 +109,9 @@ $ ./gradlew  dependencyUpdates
 # List all available toolchains
 $ ./gradlew -q javaToolchains
 ```
+
+</details>
+
 
 ##### JMPS Config
 
@@ -176,12 +182,12 @@ $ ./gradlew -q javaToolchains
 [mvn_jar]: https://search.maven.org/remote_content?g=io.micronaut&a=micronaut-http-server-netty&v=LATEST
 [mvn_jar_img]: https://img.shields.io/maven-central/v/io.micronaut/micronaut-runtime?color=orange&label=micronaut&logo=apache-rocketmq&logoColor=orange&style=for-the-badge
 
-[gha_url]: https://github.com/sureshg/openjdk-playground/actions
-[gha_img]: https://github.com/sureshg/openjdk-playground/workflows/CI/badge.svg?branch=main
-[gha_badge]: https://img.shields.io/github/workflow/status/sureshg/openjdk-playground/CI?color=green&label=Build&logo=Github-Actions&logoColor=green&style=for-the-badge
+[gha_url]: https://github.com/sureshg/openjdk-playground/actions/workflows/build.yml
+[gha_img]: https://github.com/sureshg/openjdk-playground/actions/workflows/build.yml/badge.svg
+[gha_badge]: https://img.shields.io/github/workflow/status/sureshg/openjdk-playground/Build?color=green&label=Build&logo=Github-Actions&logoColor=green&style=for-the-badge
 [gh_pkgs]: https://github.com/sureshg/openjdk-playground/packages
 
-[docker_img]: https://img.shields.io/docker/v/sureshg/openjdk-playground?color=40c4ff&label=DockerHub&logo=docker&logoColor=40c4ff&style=for-the-badge
+[docker_img]: https://img.shields.io/docker/v/sureshg/openjdk-latest?color=dodgerblue&label=DockerHub&logo=docker&logoColor=dodgerblue&style=for-the-badge
 [docker_url]: https://hub.docker.com/r/sureshg/openjdk-playground
 
 [sonar_img]: https://img.shields.io/sonar/quality_gate/io.sureshg:kotlin-scratchpad?logo=sonarcloud&server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge

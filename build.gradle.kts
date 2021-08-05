@@ -201,7 +201,6 @@ spotless {
 }
 
 jib {
-
   from {
     image = "openjdk:$javaVersion-jdk-slim"
   }
@@ -497,13 +496,14 @@ dependencies {
   implementation(Deps.Security.otp)
   implementation(Deps.Security.jwtJava)
   implementation(Deps.Cli.textTree)
-  // implementation(Deps.Web.playwright)
+
   compileOnly(Deps.TemplateEngine.Jte.kotlin)
   compileOnly(Deps.Kotlinx.atomicfu)
   kapt(Deps.Google.AutoService.processor)
 
   // implementation(platform("org.apache.maven.resolver:maven-resolver:1.4.1"))
   // implementation("org.apache.maven:maven-resolver-provider:3.8.1")
+  // implementation(fileTree("lib") { include("*.jar") })
 
   testImplementation(Deps.Kotlin.Coroutines.jdk8)
   testImplementation(Deps.Junit.jupiter)

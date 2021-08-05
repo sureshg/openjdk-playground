@@ -419,7 +419,7 @@ object Deps {
 
   object Security {
     const val password4j = "com.password4j:password4j:1.5.3"
-    const val otp = "com.github.bastiaanjansen:otp-java:1.2.0"
+    const val otp = "com.github.bastiaanjansen:otp-java:1.2.2"
     const val jwtJava = "com.github.bastiaanjansen:jwt-java:1.0"
     const val twoFactorAuth = "com.j256.two-factor-auth:two-factor-auth:1.3"
     const val sshj = "com.hierynomus:sshj:0.26.0"
@@ -580,6 +580,7 @@ object Deps {
   }
 
   const val jsr305 = "com.google.code.findbugs:jsr305:3.0.2"
+  const val threetenExtra = "org.threeten:threeten-extra:1.7.0"
   const val micronautBom = "io.micronaut:micronaut-bom:2.0.0"
   const val mapstruct = "org.mapstruct:mapstruct:1.4.2.Final"
   const val ljv = "org.atp-fivt:ljv:1.02"
