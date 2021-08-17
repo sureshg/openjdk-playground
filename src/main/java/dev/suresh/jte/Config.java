@@ -1,5 +1,6 @@
 package dev.suresh.jte;
 
+
 import java.util.Objects;
 
 public record Config(String language, String version) {

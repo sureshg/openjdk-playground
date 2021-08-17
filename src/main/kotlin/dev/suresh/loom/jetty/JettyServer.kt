@@ -9,17 +9,9 @@ import org.eclipse.jetty.servlet.*
 import org.eclipse.jetty.util.*
 import org.eclipse.jetty.util.component.*
 import java.net.http.*
-import java.time.*
 import java.time.Duration
 import java.util.concurrent.*
 import kotlin.time.*
-
-/**
- * Scoped variable holding the user id (Replacement for [ThreadLocal])
- */
-private val ID = ScopeLocal.inheritableForType(String::class.java)
-
-private val USER = ScopeLocal.inheritableForType(String::class.java)
 
 fun main() {
   run()
@@ -67,10 +59,11 @@ fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
     .build()
 
   val factory = Thread.ofVirtual().name("VirtualThreadPool-", 1).factory()
-  val execSvc = Executors.newThreadExecutor(factory, Instant.now().plusSeconds(deadlineInSec))
-  val user = System.getProperty("user.name", "user")
+  val execSvc = Executors.newThreadPerTaskExecutor(factory)
 
   val results = execSvc.use { exec ->
+    val user = System.getProperty("user.name", "user")
+
     (1..count).map { idx ->
       exec.submit<Result<String>> {
         try {
@@ -119,12 +112,24 @@ fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
   )
 }
 
-val OS: String = System.getProperty("os.name")
-
 class HelloServlet : HttpServlet() {
+  /**
+   * Scoped local variable holding the user info.
+   */
+  private val ID = ScopeLocal.newInstance<String>()
+
+  private val USER = ScopeLocal.newInstance<String>()
+
+  val OS: String = System.getProperty("os.name")
+
+  init {
+    println("Initializing the Servlet >>>>> ")
+  }
+
   override fun doGet(req: HttpServletRequest?, resp: HttpServletResponse?) {
     val id = req?.getParameter("id")
     val user = req?.getParameter("user")
+
     ScopeLocal
       .where(ID, id)
       .where(USER, user)
@@ -132,12 +137,12 @@ class HelloServlet : HttpServlet() {
         resp?.apply {
           contentType = "application/json"
           status = HttpServletResponse.SC_OK
-          writer?.println(exec(req, resp))
+          writer?.println(exec(req))
         }
       }
   }
 
-  private fun exec(req: HttpServletRequest?, resp: HttpServletResponse?): String {
+  private fun exec(req: HttpServletRequest?): String {
     // Simulate blocking
     Thread.sleep(2 * 1000)
     return """

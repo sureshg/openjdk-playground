@@ -1,10 +1,12 @@
 package dev.suresh;
 
+
 import dev.suresh.adt.Records;
 import dev.suresh.jte.RenderJte;
 import dev.suresh.loom.jetty.JettyServerKt;
 import dev.suresh.mvn.MavenResolver;
 import dev.suresh.server.DevServer;
+import dev.suresh.tools.JdkToolsKt;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
@@ -52,6 +54,7 @@ public class Main {
     new RenderJte().run();
     Records.run();
     JettyServerKt.run(8080);
+    JdkToolsKt.run();
   }
 
   @Override

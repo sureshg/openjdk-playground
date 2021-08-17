@@ -7,7 +7,7 @@ fun main() {
     is Result.Error.RecException -> TODO()
     is Result.Error.NonRecException -> TODO()
     Result.InProgress -> TODO()
-  }.exhaustive
+  }
 
   println("Security Manager Allowed: ${System.getProperty("java.security.manager")}")
   println("Security Manager: ${System.getSecurityManager()}")
@@ -22,5 +22,3 @@ sealed class Result<out T> {
 
   object InProgress : Result<Nothing>()
 }
-
-val <T> T.exhaustive get() = this

@@ -1,5 +1,5 @@
-# FROM openjdk:17-slim-buster AS jreBuilder
-# FROM openjdk:17-buster AS jreBuilder
+# FROM openjdk:18-slim-buster AS jreBuilder
+# FROM openjdk:18-buster AS jreBuilder
 
 
 FROM gcr.io/distroless/java-debian10:base AS jreLoomBuilder
@@ -7,7 +7,7 @@ ARG JDK_VERSION=loom
 COPY ./docs/scripts/openjdk-ea.sh /scripts/openjdk-ea.sh
 RUN ./scripts/openjdk-ea.sh ${JDK_VERSION}
 
-ENV JAVA_HOME /usr/local/openjdk-17
+ENV JAVA_HOME /usr/local/openjdk-18
 ENV JAVA_VERSION $
 ENV PATH $JAVA_HOME/bin:$PATH
 ENV LANG C.UTF-8
@@ -25,7 +25,7 @@ RUN jlink \
         --output /jre
 
 FROM gcr.io/distroless/java-debian10:base
-ARG JAR_FILE=openjdk-playground-1.0.0-79-uber.jar
+ARG JAR_FILE=openjdk-playground-1.2.0-12-main-uber.jar
 
 COPY --from=jreBuilder /jre /usr/lib/jre
 ENTRYPOINT ["/usr/lib/jre/bin/java", "-jar", "./app.jar"]

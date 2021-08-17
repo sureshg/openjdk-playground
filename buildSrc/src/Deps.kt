@@ -10,6 +10,8 @@ val kotlinVersion by sysProp<String>()
 val kotlinJvmTarget by sysProp<String>()
 val kotlinLangVersion by sysProp<String>()
 val gradleRelease by sysProp<String>()
+val ktlintVersion by sysProp<String>()
+val gjfVersion by sysProp<String>()
 val githubProject by sysProp<String>()
 val jvmArguments by sysProp<List<String>>()
 
@@ -17,6 +19,13 @@ val jvmArguments by sysProp<List<String>>()
  * Dependency versions.
  */
 object Deps {
+
+  object Jdk {
+
+    object Jmc
+
+    object Gc
+  }
 
   object Kotlin {
     val bom = "org.jetbrains.kotlin:kotlin-bom:$kotlinVersion"
@@ -43,7 +52,7 @@ object Deps {
     }
 
     object Ksp {
-      const val version = "1.5.21-1.0.0-beta06"
+      const val version = "1.5.21-1.0.0-beta07"
       const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
       const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
       const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.4.0"
@@ -266,7 +275,7 @@ object Deps {
     const val stringTemplate = "org.antlr:ST4:4.3.1"
 
     object Jte {
-      const val version = "1.11.1"
+      const val version = "1.11.2"
       const val jte = "gg.jte:jte:$version"
       const val kotlin = "gg.jte:jte-kotlin:$version"
     }
@@ -340,7 +349,7 @@ object Deps {
   object Logging {
 
     object Slf4j {
-      const val version = "2.0.0-alpha2"
+      const val version = "2.0.0-alpha4"
       const val api = "org.slf4j:slf4j-api:$version"
       const val nop = "org.slf4j:slf4j-nop:$version"
       const val simple = "org.slf4j:slf4j-simple:$version"
@@ -441,7 +450,7 @@ object Deps {
 
   object Retry {
     const val failsafe = "net.jodah:failsafe:2.4.0"
-    const val kotlinRetry = "com.michael-bull.kotlin-retry:kotlin-retry:1.0.8"
+    const val kotlinRetry = "com.michael-bull.kotlin-retry:kotlin-retry:1.0.9"
     const val bucket4j = "com.github.vladimir-bukhtoyarov:bucket4j-core:6.0.1"
     const val resilience4jRetry = "io.github.resilience4j:resilience4j-retry:1.6.1"
   }
@@ -651,7 +660,7 @@ inline val PluginDependenciesSpec.binCompatValidator get() = id("org.jetbrains.k
 
 // Google Plugins
 inline val PluginDependenciesSpec.ksp get() = id("com.google.devtools.ksp") version Deps.Kotlin.Ksp.version
-inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.jib") version "3.1.2"
+inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.jib") version "3.1.4"
 
 // Dependency Versions
 inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version "0.39.0"
@@ -700,11 +709,12 @@ inline val PluginDependenciesSpec.jreleaser get() = id("org.jreleaser") version 
 inline val PluginDependenciesSpec.mavenRepoAuth get() = id("org.hibernate.build.maven-repo-auth") version "3.0.4"
 inline val PluginDependenciesSpec.gradleRelease get() = id("net.researchgate.release") version "2.8.1"
 inline val PluginDependenciesSpec.githubRelease get() = id("com.github.breadmoirai.github-release") version "2.2.12"
+inline val PluginDependenciesSpec.checksum get() = id("org.gradle.crypto.checksum") version "1.2.0"
 
 // Build config
 inline val PluginDependenciesSpec.gitProperties get() = id("com.gorylenko.gradle-git-properties") version "2.3.1"
 inline val PluginDependenciesSpec.buildconfig get() = id("com.github.gmazzo.buildconfig") version "3.0.2" apply false
-inline val PluginDependenciesSpec.buildkonfig get() = id("com.codingfeline.buildkonfig") version "0.8.0" apply false
+inline val PluginDependenciesSpec.buildkonfig get() = id("com.codingfeline.buildkonfig") version "0.9.0" apply false
 
 // Project version detection
 inline val PluginDependenciesSpec.jgitPlugin get() = id("fr.brouillard.oss.gradle.jgitver") version "0.10.0-rc03"

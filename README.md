@@ -11,7 +11,7 @@
 
 ```bash
 $ curl -s "https://get.sdkman.io" | bash
-$ sdk i java 17.ea.7.lm-open
+$ sdk i java 18.ea.2.lm-open
 ```
 
 #### Build
@@ -173,7 +173,7 @@ $ ./gradlew -q javaToolchains
 
 
 [java_url]: https://jdk.java.net/
-[java_img]: https://img.shields.io/badge/OpenJDK-17--loom-ea791d?logo=java&style=for-the-badge&logoColor=ea791d
+[java_img]: https://img.shields.io/badge/OpenJDK-18--loom-ea791d?logo=java&style=for-the-badge&logoColor=ea791d
 
 [kt_url]: https://github.com/JetBrains/kotlin/releases/latest
 [kt_img]: https://img.shields.io/github/v/release/Jetbrains/kotlin?color=7f53ff&label=Kotlin&logo=kotlin&logoColor=7f53ff&style=for-the-badge

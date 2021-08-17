@@ -1,5 +1,6 @@
 package dev.suresh.json;
 
+
 import java.util.List;
 
 public abstract class Animal {

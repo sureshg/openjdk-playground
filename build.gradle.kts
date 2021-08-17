@@ -27,6 +27,7 @@ plugins {
   benmanesVersions
   gitProperties
   taskinfo
+  checksum
   `maven-publish`
   nexusPublish
   gradleRelease
@@ -118,27 +119,34 @@ sourceSets {
 }
 
 kotlin {
-  // explicitApi()
   sourceSets.all {
     languageSettings.apply {
       apiVersion = kotlinLangVersion
       languageVersion = kotlinLangVersion
       progressiveMode = true
-      enableLanguageFeature(LanguageFeature.InlineClasses.name)
-      enableLanguageFeature(LanguageFeature.NewInference.name)
       enableLanguageFeature(LanguageFeature.JvmRecordSupport.name)
-      useExperimentalAnnotation("kotlin.RequiresOptIn")
-      useExperimentalAnnotation("kotlin.ExperimentalStdlibApi")
-      useExperimentalAnnotation("kotlin.ExperimentalUnsignedTypes")
-      useExperimentalAnnotation("kotlin.io.path.ExperimentalPathApi")
-      useExperimentalAnnotation("kotlin.time.ExperimentalTime")
-      useExperimentalAnnotation("kotlinx.coroutines.ExperimentalCoroutinesApi")
-      useExperimentalAnnotation("kotlinx.coroutines.FlowPreview")
-      useExperimentalAnnotation("kotlinx.serialization.ExperimentalSerializationApi")
-      useExperimentalAnnotation("kotlin.ExperimentalMultiplatform")
-      useExperimentalAnnotation("kotlin.js.ExperimentalJsExport")
+      optIn("kotlin.RequiresOptIn")
+      optIn("kotlin.ExperimentalStdlibApi")
+      optIn("kotlin.ExperimentalUnsignedTypes")
+      optIn("kotlin.io.path.ExperimentalPathApi")
+      optIn("kotlin.time.ExperimentalTime")
+      optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
+      optIn("kotlinx.coroutines.FlowPreview")
+      optIn("kotlinx.serialization.ExperimentalSerializationApi")
+      optIn("kotlin.ExperimentalMultiplatform")
+      optIn("kotlin.js.ExperimentalJsExport")
     }
   }
+
+  jvmToolchain {
+    (this as JavaToolchainSpec).apply {
+      languageVersion.set(java.toolchain.languageVersion.get())
+      vendor.set(java.toolchain.vendor.get())
+    }
+  }
+
+  // kotlinDaemonJvmArgs = listOf("--show-version", "--enable-preview")
+  // explicitApi()
 }
 
 ksp {
@@ -162,14 +170,15 @@ apiValidation {
 // Formatting
 spotless {
   java {
-    googleJavaFormat()
+    googleJavaFormat(gjfVersion)
     // Exclude sealed types until it supports.
     targetExclude("**/ResultType.java", "build/generated-sources/**/*.java")
+    importOrder()
+    removeUnusedImports()
     toggleOffOn()
     trimTrailingWhitespace()
   }
 
-  val ktlintVersion = "0.41.0"
   val ktlintConfig = mapOf(
     "disabled_rules" to "no-wildcard-imports",
     "insert_final_newline" to "true",
@@ -287,7 +296,6 @@ tasks {
       javaParameters = true
       incremental = true
       allWarningsAsErrors = false
-      jdkHome = javaToolchainPath // System.getProperty("java.home")
       freeCompilerArgs += listOf(
         "-progressive",
         "-Xjsr305=strict",
@@ -499,7 +507,7 @@ dependencies {
 
   compileOnly(Deps.TemplateEngine.Jte.kotlin)
   compileOnly(Deps.Kotlinx.atomicfu)
-  kapt(Deps.Google.AutoService.processor)
+  // kapt(Deps.Google.AutoService.processor)
 
   // implementation(platform("org.apache.maven.resolver:maven-resolver:1.4.1"))
   // implementation("org.apache.maven:maven-resolver-provider:3.8.1")

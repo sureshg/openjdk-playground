@@ -35,6 +35,16 @@ object App {
   const val GRADLE_VERSION = "${getProperty('systemProp.gradleRelease')}"
 
   /**
+   * Google Java Format version
+   */
+  const val GJF_VERSION = "${getProperty('systemProp.gjfVersion')}"
+
+  /**
+   * Ktlint version
+   */
+  const val KTLINT_VERSION = "${getProperty('systemProp.ktlintVersion')}"
+
+  /**
    * Git [Metadata](https://github.com/jgitver/jgitver/blob/master/src/main/java/fr/brouillard/oss/jgitver/metadata/Metadatas.java).
    */
   const val GIT_SHA1_8 = "$git_sha1_8"

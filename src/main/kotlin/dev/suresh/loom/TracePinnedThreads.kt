@@ -11,7 +11,7 @@ import java.util.concurrent.locks.*
  * - [Loom Troubleshooting Guide](https://wiki.openjdk.java.net/display/loom/Troubleshooting)
  */
 fun main() {
-  System.setProperty("jdk.tracePinnedThreads", "short")
+  System.setProperty("jdk.tracePinnedThreads", "full")
   val lock = Any()
   val out = System.out
   val baos = ByteArrayOutputStream()

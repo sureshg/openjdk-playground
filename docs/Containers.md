@@ -19,7 +19,7 @@
   $ docker pull gcr.io/distroless/base:latest
 
   # Openjdk
-  $ docker pull openjdk:17-slim-buster
+  $ docker pull openjdk:18-slim-buster
 
   # Oracle OpenJDK
   $ docker pull container-registry.oracle.com/java/openjdk:latest
