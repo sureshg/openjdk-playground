@@ -39,7 +39,6 @@ tasks {
     dependsOn("shadowJar")
   }
 
-
   val copyTemplates by registering(Copy::class) {
     description = "Generate template classes"
     group = LifecycleBasePlugin.BUILD_TASK_NAME
