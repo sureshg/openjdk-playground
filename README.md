@@ -176,7 +176,7 @@ $ ./gradlew -q javaToolchains
 [java_img]: https://img.shields.io/badge/OpenJDK-18--loom-ea791d?logo=java&style=for-the-badge&logoColor=ea791d
 
 [kt_url]: https://github.com/JetBrains/kotlin/releases/latest
-[kt_img]: https://img.shields.io/github/v/release/Jetbrains/kotlin?color=7f53ff&label=Kotlin&logo=kotlin&logoColor=7f53ff&style=for-the-badge
+[kt_img]: https://img.shields.io/github/v/release/Jetbrains/kotlin?include_prereleases&color=7f53ff&label=Kotlin&logo=kotlin&logoColor=7f53ff&style=for-the-badge
 
 [mvn_search]: https://search.maven.org/search?q=g:io.micronaut
 [mvn_jar]: https://search.maven.org/remote_content?g=io.micronaut&a=micronaut-http-server-netty&v=LATEST

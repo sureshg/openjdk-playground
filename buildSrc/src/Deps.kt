@@ -275,7 +275,7 @@ object Deps {
     const val stringTemplate = "org.antlr:ST4:4.3.1"
 
     object Jte {
-      const val version = "1.11.2"
+      const val version = "1.11.3"
       const val jte = "gg.jte:jte:$version"
       const val kotlin = "gg.jte:jte-kotlin:$version"
     }
@@ -656,7 +656,7 @@ inline val PluginDependenciesSpec.dokka get() = id("org.jetbrains.dokka") versio
 
 inline val PluginDependenciesSpec.exposed get() = id("com.jetbrains.exposed.gradle.plugin") version "0.1.1-SNAPSHOT"
 inline val PluginDependenciesSpec.kotlinxAtomicfu get() = id("kotlinx-atomicfu") version "0.16.2"
-inline val PluginDependenciesSpec.binCompatValidator get() = id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.6.0"
+inline val PluginDependenciesSpec.binCompatValidator get() = id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.7.0"
 
 // Google Plugins
 inline val PluginDependenciesSpec.ksp get() = id("com.google.devtools.ksp") version Deps.Kotlin.Ksp.version
@@ -696,7 +696,7 @@ inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boo
 inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version "1.0.9.RELEASE"
 
 // Static Analysis and Linting
-inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.14.2"
+inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.14.3"
 inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.2.0"
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version "9.3.0"

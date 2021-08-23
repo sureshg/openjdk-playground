@@ -79,6 +79,7 @@ application {
     // "-Djavax.net.debug=all",
     // "-Djava.security.manager=allow",
     // "-Djgitver.skip=true",
+    // "-Djdk.lang.Process.launchMechanism=vfork",
     // "--add-exports=java.management/sun.management=ALL-UNNAMED",
     // "--add-exports=jdk.attach/sun.tools.attach=ALL-UNNAMED",
     // "--add-opens=java.base/java.net=ALL-UNNAMED",
