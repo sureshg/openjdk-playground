@@ -21,6 +21,9 @@
   # Openjdk
   $ docker pull openjdk:18-slim-buster
 
+  # Eclipse Temurin
+  $ docker pull eclipse-temurin:16
+
   # Oracle OpenJDK
   $ docker pull container-registry.oracle.com/java/openjdk:latest
 

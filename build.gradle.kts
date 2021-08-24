@@ -508,7 +508,7 @@ dependencies {
 
   compileOnly(Deps.TemplateEngine.Jte.kotlin)
   compileOnly(Deps.Kotlinx.atomicfu)
-  // kapt(Deps.Google.AutoService.processor)
+  kapt(Deps.Google.AutoService.processor)
 
   // implementation(platform("org.apache.maven.resolver:maven-resolver:1.4.1"))
   // implementation("org.apache.maven:maven-resolver-provider:3.8.1")
