@@ -24,7 +24,9 @@ object Deps {
 
     object Jmc
 
-    object Gc
+    object Gc {
+      const val toolkit = "com.microsoft.gctoolkit:api:2.0.1"
+    }
   }
 
   object Kotlin {
@@ -52,7 +54,7 @@ object Deps {
     }
 
     object Ksp {
-      const val version = "1.5.21-1.0.0-beta07"
+      const val version = "1.5.30-1.0.0-beta08"
       const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
       const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
       const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.4.0"
@@ -249,7 +251,7 @@ object Deps {
   }
 
   object KoTest {
-    const val version = "4.6.1"
+    const val version = "4.6.2"
     const val junit5Runner = "io.kotest:kotest-runner-junit5:$version"
     const val assertions = "io.kotest:kotest-assertions-core:$version"
     const val property = "io.kotest:kotest-property:$version"
