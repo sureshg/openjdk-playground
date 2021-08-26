@@ -8,6 +8,7 @@ import org.gradle.plugin.use.*
 val javaVersion by sysProp<Int>()
 val kotlinVersion by sysProp<String>()
 val kotlinJvmTarget by sysProp<String>()
+val kotlinApiVersion by sysProp<String>()
 val kotlinLangVersion by sysProp<String>()
 val gradleRelease by sysProp<String>()
 val ktlintVersion by sysProp<String>()
@@ -83,7 +84,7 @@ object Deps {
   object Kotlinx {
     const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.2.1"
     const val reflectLite = "org.jetbrains.kotlinx:kotlinx.reflect.lite:1.0.0"
-    const val atomicfu = "org.jetbrains.kotlinx:atomicfu:0.16.2"
+    const val atomicfu = "org.jetbrains.kotlinx:atomicfu:0.16.3"
     const val io = "org.jetbrains.kotlinx:kotlinx-io-jvm:0.1.16"
     const val cli = "org.jetbrains.kotlinx:kotlinx-cli:0.3"
     const val collectionsImmutable =
@@ -657,8 +658,8 @@ inline val PluginDependenciesSpec.kotlinScript get() = kotlin("plugin.scripting"
 inline val PluginDependenciesSpec.dokka get() = id("org.jetbrains.dokka") version Deps.Dokka.version
 
 inline val PluginDependenciesSpec.exposed get() = id("com.jetbrains.exposed.gradle.plugin") version "0.1.1-SNAPSHOT"
-inline val PluginDependenciesSpec.kotlinxAtomicfu get() = id("kotlinx-atomicfu") version "0.16.2"
-inline val PluginDependenciesSpec.binCompatValidator get() = id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.7.0"
+inline val PluginDependenciesSpec.kotlinxAtomicfu get() = id("kotlinx-atomicfu") version "0.16.3"
+inline val PluginDependenciesSpec.binCompatValidator get() = id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.7.1"
 
 // Google Plugins
 inline val PluginDependenciesSpec.ksp get() = id("com.google.devtools.ksp") version Deps.Kotlin.Ksp.version

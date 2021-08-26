@@ -5,7 +5,7 @@
 - Offical Java Images
 
   ```bash
-  # Distroless Java Base (For Jlink apps based on debian:buster)
+  	# Distroless Java Base (For Jlink apps based on debian:buster)
   # https://console.cloud.google.com/gcr/images/distroless/GLOBAL/java-debian10
   $ docker pull gcr.io/distroless/java-debian10:base
   $ docker pull gcr.io/distroless/java-debian10:base-nonroot
@@ -64,7 +64,7 @@
 - ##### Java Container logs
 
   ```bash
-  $ docker run -it --rm --memory=256m --cpus=1 -v /:/host --name jdk-15 openjdk:15-jdk-slim java -Xlog:os=trace,os+container=trace -version
+  $ docker run -it --rm --memory=256m --cpus=1 -v /:/host --name jdk-18 openjdk:18-jdk-slim java -Xlog:os=trace,os+container=trace -version
   ```
 
 

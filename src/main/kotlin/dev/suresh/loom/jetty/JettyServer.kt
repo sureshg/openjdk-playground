@@ -144,7 +144,7 @@ class HelloServlet : HttpServlet() {
 
   private fun exec(req: HttpServletRequest?): String {
     // Simulate blocking
-    Thread.sleep(2 * 1000)
+    Thread.sleep(Duration.ofSeconds(2))
     return """
           {
             "Id"     : ${ID.orElse("n/a")},

@@ -1,10 +1,10 @@
 #!/usr/bin/env -S kotlin -Xplugin=/usr/local/Cellar/kotlin/1.5.30/libexec/lib/kotlinx-serialization-compiler-plugin.jar
 
 // @file:Repository("https://maven.google.com")
-@file:DependsOn("io.ktor:ktor-client-core:1.6.2")
-@file:DependsOn("io.ktor:ktor-client-cio:1.6.2")
-@file:DependsOn("io.ktor:ktor-client-java:1.6.2")
-@file:DependsOn("io.ktor:ktor-client-auth:1.6.2")
+@file:DependsOn("io.ktor:ktor-client-core:1.6.3")
+@file:DependsOn("io.ktor:ktor-client-cio:1.6.3")
+@file:DependsOn("io.ktor:ktor-client-java:1.6.3")
+@file:DependsOn("io.ktor:ktor-client-auth:1.6.3")
 @file:DependsOn("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1")
 @file:DependsOn("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
 @file:DependsOn("org.jetbrains.kotlinx:kotlinx-datetime:0.2.1")
@@ -21,15 +21,15 @@ import kotlinx.serialization.*
 import kotlinx.serialization.json.*
 
 @Serializable
-data class Lang(val name: String)
+data class Lang(val name: String, val version: String)
 
-val arg = args.firstOrNull() ?: "Kotlin ${KotlinVersion.CURRENT}"
+val arg = args.firstOrNull() ?: "Kotlin"
 println("Hello $arg!")
 
-val serialized = Json.encodeToString(Lang("Kotlin"))
+val serialized = Json.encodeToString(Lang("Kotlin", KotlinVersion.CURRENT.toString()))
 println(serialized)
 
-val deserialized = Json.decodeFromString<Lang>("""{"name" : "Java"}""")
+val deserialized = Json.decodeFromString<Lang>("""{"name" : "Java", "version": "18"}""")
 println(deserialized)
 
 runBlocking {

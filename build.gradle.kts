@@ -122,7 +122,7 @@ sourceSets {
 kotlin {
   sourceSets.all {
     languageSettings.apply {
-      apiVersion = kotlinLangVersion
+      apiVersion = kotlinApiVersion
       languageVersion = kotlinLangVersion
       progressiveMode = true
       enableLanguageFeature(LanguageFeature.JvmRecordSupport.name)
@@ -321,7 +321,8 @@ tasks {
 
   // Jte templates
   generateJte {
-    sourceDirectory = Paths.get(project.projectDir.absolutePath, "src", "main", "templates", "jte")
+    sourceDirectory =
+      Paths.get(project.projectDir.absolutePath, "src", "main", "templates", "jte")
     contentType = ContentType.Plain
   }
 
