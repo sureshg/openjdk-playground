@@ -152,7 +152,7 @@ jobs:
 
       - name: Build Changelog
         id: github_release
-        uses: mikepenz/release-changelog-builder-action@v2.3.0
+        uses: mikepenz/release-changelog-builder-action@v2.4.0
         with:
           configuration: ".github/config/configuration.json"
           commitMode: true
