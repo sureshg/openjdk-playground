@@ -352,7 +352,7 @@ object Deps {
   object Logging {
 
     object Slf4j {
-      const val version = "2.0.0-alpha4"
+      const val version = "2.0.0-alpha5"
       const val api = "org.slf4j:slf4j-api:$version"
       const val nop = "org.slf4j:slf4j-nop:$version"
       const val simple = "org.slf4j:slf4j-simple:$version"
@@ -369,7 +369,7 @@ object Deps {
   }
 
   object Jackson {
-    const val version = "2.12.4"
+    const val version = "2.12.5"
     const val databind = "com.fasterxml.jackson.core:jackson-databind:$version"
   }
 
