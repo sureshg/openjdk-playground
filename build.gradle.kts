@@ -80,6 +80,7 @@ application {
     // "-Djava.security.manager=allow",
     // "-Djgitver.skip=true",
     // "-Djdk.lang.Process.launchMechanism=vfork",
+    // "-Djdk.tls.maxCertificateChainLength=15",
     // "--add-exports=java.management/sun.management=ALL-UNNAMED",
     // "--add-exports=jdk.attach/sun.tools.attach=ALL-UNNAMED",
     // "--add-opens=java.base/java.net=ALL-UNNAMED",

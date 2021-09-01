@@ -130,6 +130,25 @@
 
 - ##### [Docker stats GraalVM app](https://github.com/vasilmkd/docker-stats-monitor/blob/master/Dockerfile)
 
+
+
+- **HTTP Proxy**
+
+  ```bash
+  FROM ubuntu:20.04
+
+  ENV HTTP_PROXY="http://proxy.test.com:8080"
+  ENV HTTPS_PROXY="http://proxy.test.com:8080"
+  ENV NO_PROXY="*.test1.com,*.test2.com,127.0.0.1,localhost"
+
+  RUN apt-get update && apt-get upgrade -y && \
+      DEBIAN_FRONTEND=noninteractive apt-get install -y \
+      opoenjdk \
+      rm -rf /var/lib/apt/lists/*
+  ```
+
+
+
 #### Distroless
 
 ------
