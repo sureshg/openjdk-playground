@@ -31,8 +31,6 @@ defaults:
 jobs:
 
   # Gradle Build Action
-  # -------------------
-
   build:
     name: 🏗️ Gradle Build
     timeout-minutes: 15
@@ -78,16 +76,7 @@ jobs:
           distribution: jdkfile
           java-version: ${{ env.JDK_VERSION }}
           jdkFile: ${{ env.JDK_FILE }}
-
-      - name: 🗃️ Cache Gradle dependencies
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
+          cache: 'gradle'
 
       - name: 🧰 Export Gradle Properties
         if: ${{ false }}
@@ -135,8 +124,6 @@ jobs:
           CLEAN: true
 
   # Github Release Action on tag push
-  # ---------------------------------
-
   release:
     name: 🚰 Release new version.
     needs: [ build ]
@@ -177,9 +164,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
-  # Run Java Application on OpenJDK docker/oci images
-  # -------------------------------------------------
-
+  # Run Java Application on OpenJDK docker images
   container-build:
     name: 🚢 Java on Container
     runs-on: ubuntu-latest
@@ -203,7 +188,7 @@ jobs:
       - name: Run Java App on OpenJDK ${{ matrix.jdk }} container image
         if: always()
         run: |
-          java -ea --show-version src/main/java/JavaApp.java
+          java -ea --show-version --enable-preview src/main/java/JavaApp.java
         env:
           RUNNER_CONTEXT: ${{ toJson(runner) }}
 
