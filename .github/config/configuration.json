@@ -34,7 +34,8 @@
       "title": "## 📦 Dependencies",
       "labels": [
         "deps",
-        "dependencies"
+        "dependencies",
+        "chore(deps)"
       ]
     }
   ],

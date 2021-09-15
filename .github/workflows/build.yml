@@ -122,6 +122,7 @@ jobs:
           FOLDER: build/dokka
           TARGET_FOLDER: docs/apidoc/
           CLEAN: true
+          commit-message: 'doc: Deployed dokka website'
 
   # Github Release Action on tag push
   release:
