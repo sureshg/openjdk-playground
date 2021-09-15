@@ -49,6 +49,7 @@ $dokka.location:dev.suresh.cli//main/#/PointingToDeclaration/openjdk-playground
 $dokka.location:dev.suresh.collection////PointingToDeclaration/openjdk-playground/dev.suresh.collection/index.html
 $dokka.location:dev.suresh.collection/CollectionTest///PointingToDeclaration/openjdk-playground/dev.suresh.collection/-collection-test/index.html
 $dokka.location:dev.suresh.collection/CollectionTest/main/#java.lang.String[]/PointingToDeclaration/openjdk-playground/dev.suresh.collection/-collection-test/main.html
+$dokka.location:dev.suresh.collection/CollectionTest/teeing/#/PointingToDeclaration/openjdk-playground/dev.suresh.collection/-collection-test/teeing.html
 $dokka.location:dev.suresh.generics////PointingToDeclaration/openjdk-playground/dev.suresh.generics/index.html
 $dokka.location:dev.suresh.generics/Director///PointingToDeclaration/openjdk-playground/dev.suresh.generics/-director/index.html
 $dokka.location:dev.suresh.generics/Director/Director/#java.lang.String/PointingToDeclaration/openjdk-playground/dev.suresh.generics/-director/-director.html
@@ -116,9 +117,12 @@ $dokka.location:dev.suresh.loom.jetty/LoomThreadPool/getThreads/#/PointingToDecl
 $dokka.location:dev.suresh.loom.jetty/LoomThreadPool/isLowOnThreads/#/PointingToDeclaration/openjdk-playground/dev.suresh.loom.jetty/-loom-thread-pool/is-low-on-threads.html
 $dokka.location:dev.suresh.loom.jetty/LoomThreadPool/join/#/PointingToDeclaration/openjdk-playground/dev.suresh.loom.jetty/-loom-thread-pool/join.html
 $dokka.location:dev.suresh.loom////PointingToDeclaration/openjdk-playground/dev.suresh.loom/index.html
-$dokka.location:dev.suresh.loom//main/#/PointingToDeclaration/openjdk-playground/dev.suresh.loom/main.html
+$dokka.location:dev.suresh.loom//main/#/PointingToDeclaration/openjdk-playground/dev.suresh.loom/[-j-v-m]main.html
 $dokka.location:dev.suresh.loom/LoomServer///PointingToDeclaration/openjdk-playground/dev.suresh.loom/-loom-server/index.html
 $dokka.location:dev.suresh.loom/LoomServer/run/#/PointingToDeclaration/openjdk-playground/dev.suresh.loom/-loom-server/run.html
+$dokka.location:dev.suresh.loom/LoomTest///PointingToDeclaration/openjdk-playground/dev.suresh.loom/-loom-test/index.html
+$dokka.location:dev.suresh.loom/LoomTest/fetch/#java.lang.String/PointingToDeclaration/openjdk-playground/dev.suresh.loom/-loom-test/fetch.html
+$dokka.location:dev.suresh.loom/LoomTest/main/#java.lang.String[]/PointingToDeclaration/openjdk-playground/dev.suresh.loom/-loom-test/main.html
 $dokka.location:dev.suresh.misc////PointingToDeclaration/openjdk-playground/dev.suresh.misc/index.html
 $dokka.location:dev.suresh.misc//depth/dev.suresh.misc.Node1[TypeParam(bounds=[kotlin.Any?])]?#/PointingToDeclaration/openjdk-playground/dev.suresh.misc/depth.html
 $dokka.location:dev.suresh.misc//depth/dev.suresh.misc.Tree[TypeParam(bounds=[kotlin.Any?])]#/PointingToDeclaration/openjdk-playground/dev.suresh.misc/depth.html
