@@ -1,4 +1,4 @@
-name: Run Kotlin Script
+name: Kotlin Script
 
 on:
   push:
@@ -6,8 +6,6 @@ on:
       - main
     tags:
       - '*'
-    paths:
-      - 'script.main.kts'
 
   pull_request:
     branches:
