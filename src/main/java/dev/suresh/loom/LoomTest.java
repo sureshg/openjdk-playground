@@ -37,6 +37,7 @@ public class LoomTest {
       out.println(">>> " + (end - start) / 1_000_000);
 
       out.println("Start the streaming....");
+      // Stream form of ExecutorCompletionService<>();
       start = System.nanoTime();
       execSvc.submit(tasks).map(Future::join).map(String::length).forEach(out::println);
 

@@ -42,6 +42,10 @@ $ openssl pkcs12 -in keystore.p12 -out keystore.pem -nodes
 
 # Export to PKCS#12 with new password
 $ openssl pkcs12 -export -in keystore.pem -nodes -out keystore.p12
+
+# Verify if a Private Key Matches a Certificate
+$ openssl x509 -noout -modulus -in cert.pem | openssl md5
+$ openssl rsa  -noout -modulus -in cert.key | openssl md5
 ```
 
 

@@ -53,7 +53,7 @@ application {
     "-XX:+PrintCommandLineFlags",
     "-XX:+UseZGC",
     "-Xlog:gc*:$xQuote$tmp/$name-gc-%p-%t.log$xQuote:time,uptime,level,tid,tags:filecount=5,filesize=10m",
-    "-XX:StartFlightRecording:filename=$tmp/$name.jfr,settings=default.jfc,name=$name,maxsize=100m,dumponexit=true",
+    "-XX:StartFlightRecording:gc=detailed,filename=$tmp/$name.jfr,settings=profile.jfc,name=$name,maxsize=100m,dumponexit=true",
     "-XX:FlightRecorderOptions:stackdepth=128",
     "-XX:+HeapDumpOnOutOfMemoryError",
     "-XX:HeapDumpPath=$tmp/$name-%p.hprof",

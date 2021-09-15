@@ -199,6 +199,12 @@ $  java -Xlog:help
 
 ##### 13. JFR
 
+- Wizard to create configuration files (.jfc)
+
+```bash
+$ jfr configure --interactive
+```
+
 ```bash
 -XX:StartFlightRecording:filename=recording.jfr
 -XX:FlightRecorderOptions:stackdepth=256
@@ -830,7 +836,10 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
 ### Mac OS
 
 ```bash
-$  sudo xattr -cr /Applications/JDKMon.app
+$  sudo xattr -cr /Applications/compose-desktop-sample.app
+
+# If you are using macOS Catalina and later you may need to remove the quarantine attribute from the bits before you can use them
+$ sudo xattr -r -d com.apple.quarantine path/to/app/folder/
 ```
 
 
@@ -855,6 +864,33 @@ $ build/*/images/jdk/bin/java --version
 
 
 
+### [Oracle A1 Flex](https://cloud.oracle.com/?region=us-sanjose-1)
+
+```bash
+# Reset the password
+# https://docs.oracle.com/en-us/iaas/Content/Compute/References/serialconsole.htm#four__opcpasswordreset
+$ /usr/sbin/load_policy -i
+$ sudo /bin/mount -o remount, rw /
+$ sudo passwd opc
+$ sudo reboot -f
+
+# Install softwares
+$ sudo yum upgrade -y
+$ sudo yum install curl wget tree docker git zsh -y
+$ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+$ curl -s "https://get.sdkman.io" | bash
+$ sdk i java 18.ea.14-open
+$ sdk i java 21.2.0.r16-grl
+
+# For Github self hosted runners on Aarch64
+export LD_LIBRARY_PATH=/opt/oracle/oracle-armtoolset-8/root/usr/lib64:/usr/local/lib:/usr/lib:/usr/local/lib64:/usr/lib64
+export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
+export JAVA_HOME_11_X64=/home/opc/.sdkman/candidates/java/11.0.11.hs-adpt
+
+```
+
+
+
 ### Native-Image
 
 ---------
@@ -871,33 +907,7 @@ $ java -truffle [-options] class [args...]
 $ java -truffle [-options] -jar jarfile [args...]
 ```
 
-##### 3. SVM Substitutions
 
-```java
-package com.newrelic.jfr.subst;
-
-import com.oracle.svm.core.annotate.Substitute;
-import com.oracle.svm.core.annotate.TargetClass;
-
-@TargetClass(className = "jdk.jfr.internal.JVM")
-final class Target_jdk_jfr_internal_JVM {
-
-  @Substitute
-  public long getTypeId(Class<?> clazz) {
-    return -1;
-  }
-}
-
-// Another example
-@TargetClass(className = "com.google.protobuf.UnsafeUtil")
-final class Target_com_google_protobuf_UnsafeUtil {
-
-  @Substitute
-  static sun.misc.Unsafe getUnsafe() {
-    return null;
-  }
-}
-```
 
 ```xml
 

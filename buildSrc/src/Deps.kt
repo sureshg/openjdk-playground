@@ -55,7 +55,7 @@ object Deps {
     }
 
     object Ksp {
-      const val version = "1.5.30-1.0.0-beta09"
+      const val version = "1.5.30-1.0.0"
       const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
       const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
       const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.4.0"
@@ -243,7 +243,7 @@ object Deps {
   }
 
   object Junit {
-    const val version = "5.7.2"
+    const val version = "5.8.0"
     const val jupiter = "org.junit.jupiter:junit-jupiter:$version"
     const val jupiterApi = "org.junit.jupiter:junit-jupiter-api:$version"
     const val jupiterEngine = "org.junit.jupiter:junit-jupiter-engine:$version"
@@ -278,7 +278,7 @@ object Deps {
     const val stringTemplate = "org.antlr:ST4:4.3.1"
 
     object Jte {
-      const val version = "1.11.3"
+      const val version = "1.11.4"
       const val jte = "gg.jte:jte:$version"
       const val kotlin = "gg.jte:jte-kotlin:$version"
     }
@@ -671,7 +671,7 @@ inline val PluginDependenciesSpec.consistentVersions get() = id("com.palantir.co
 
 // Dependencies
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "7.0.0"
-inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.8.0" apply true
+inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.8.1" apply true
 inline val PluginDependenciesSpec.taskinfo get() = id("org.barfuin.gradle.taskinfo") version "1.3.0"
 inline val PluginDependenciesSpec.taskTree get() = id("com.dorongold.task-tree") version "1.5"
 inline val PluginDependenciesSpec.forbiddenApis get() = id("de.thetaphi.forbiddenapis") version "3.1"
@@ -699,7 +699,7 @@ inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boo
 inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version "1.0.9.RELEASE"
 
 // Static Analysis and Linting
-inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.14.3"
+inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.15.0"
 inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.2.0"
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version "9.3.0"
@@ -713,6 +713,7 @@ inline val PluginDependenciesSpec.mavenRepoAuth get() = id("org.hibernate.build.
 inline val PluginDependenciesSpec.gradleRelease get() = id("net.researchgate.release") version "2.8.1"
 inline val PluginDependenciesSpec.githubRelease get() = id("com.github.breadmoirai.github-release") version "2.2.12"
 inline val PluginDependenciesSpec.checksum get() = id("org.gradle.crypto.checksum") version "1.2.0"
+inline val PluginDependenciesSpec.mavenPublish get() = id("com.vanniktech.maven.publish") version "0.13.0"
 
 // Build config
 inline val PluginDependenciesSpec.gitProperties get() = id("com.gorylenko.gradle-git-properties") version "2.3.1"

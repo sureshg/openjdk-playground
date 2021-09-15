@@ -22,6 +22,7 @@
   $ docker pull openjdk:18-slim-buster
 
   # Eclipse Temurin
+  # https://github.com/adoptium/containers#supported-images
   $ docker pull eclipse-temurin:16
 
   # Oracle OpenJDK
@@ -48,6 +49,7 @@
   $ docker pull amazoncorretto:16-alpine
 
   # GraalVM CE
+  # https://github.com/graalvm/container/pkgs/container/graalvm-ce
   $ docker pull ghcr.io/graalvm/graalvm-ce:latest
 
   # Examples

@@ -1,3 +1,4 @@
+# https://github.com/GoogleContainerTools/distroless/blob/main/examples/java/Dockerfile
 # FROM openjdk:18-slim-buster AS jreBuilder
 # FROM openjdk:18-buster AS jreBuilder
 
@@ -31,6 +32,3 @@ COPY --from=jreBuilder /jre /usr/lib/jre
 ENTRYPOINT ["/usr/lib/jre/bin/java", "-jar", "./app.jar"]
 COPY ./build/libs/${JAR_FILE} ./app.jar
 
-
-# https://github.com/GoogleContainerTools/distroless/blob/master/examples/java/Dockerfile
-# https://github.com/sormuras/bach/blob/master/install-jdk.sh

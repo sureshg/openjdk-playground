@@ -1,11 +1,14 @@
 package dev.suresh.collection;
 
+import static java.lang.System.out;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.function.BiFunction;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
+import java.util.stream.Stream;
 
 public class CollectionTest {
 
@@ -25,14 +28,14 @@ public class CollectionTest {
 
     var end = System.currentTimeMillis();
 
-    System.out.println("Processing took " + (end - start) + " ms.");
-    System.out.println("Final list size " + list.size());
+    out.println("Processing took " + (end - start) + " ms.");
+    out.println("Final list size " + list.size());
 
     start = System.currentTimeMillis();
     var longList = LongStream.rangeClosed(1, 100_000).parallel().map(a -> a * 5).boxed().toList();
     end = System.currentTimeMillis();
-    System.out.println("Processing took " + (end - start) + " ms.");
-    System.out.println("Final list size " + longList.size());
+    out.println("Processing took " + (end - start) + " ms.");
+    out.println("Final list size " + longList.size());
 
     // new BitSet(64).set(1,true);
     // Stream.generate()
@@ -40,5 +43,24 @@ public class CollectionTest {
     // Arrays
     // Collections.
     // Threads.virtualThreads().count()
+  }
+
+  public static void teeing() {
+    record Employee(String name, int age) {}
+
+    BiFunction<String, Integer, Employee> empRef = Employee::new;
+    var emp = empRef.apply("name", 10);
+    out.println(emp);
+
+    var employees =
+        Stream.of(
+            new Employee("Employee-1", 30),
+            new Employee("Employee-2", 40),
+            new Employee("Employee-3", 34),
+            new Employee("Employee-4", 45),
+            new Employee("Employee-5", 50));
+
+    // employees.collect(Collectors.teeing()
+
   }
 }
