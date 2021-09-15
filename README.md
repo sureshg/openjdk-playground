@@ -1,7 +1,6 @@
 # Module OpenJDK PlayGround
-
 <a href="https://foojay.io/today/works-with-openjdk">
- <img style="float: right" src="https://github.com/foojayio/badges/raw/main/works_with_openjdk/WorksWithOpenJDK.svg" width="5%" alt="WorksWithOpenJDK">
+ <img align="right" src="https://github.com/foojayio/badges/raw/main/works_with_openjdk/WorksWithOpenJDK.svg" width="7%" alt="WorksWithOpenJDK">
 </a>
 
 [![GitHub Workflow Status][gha_badge]][gha_url]
