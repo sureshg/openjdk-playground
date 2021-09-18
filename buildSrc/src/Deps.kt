@@ -61,6 +61,11 @@ object Deps {
       const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.4.0"
     }
 
+    object Reflekt {
+      const val version = "1.5.30"
+      const val xx = "io.reflekt:reflekt-dsl:$version"
+    }
+
     object Data {
       const val multik = "org.jetbrains.kotlinx:multik-api:0.0.1"
       const val deeplearning = "org.jetbrains.kotlin-deeplearning:api:0.1.1"
@@ -122,7 +127,7 @@ object Deps {
   }
 
   object Dokka {
-    const val version = "1.5.0"
+    const val version = "1.5.30"
     const val gradlePlugin = "org.jetbrains.dokka:dokka-gradle-plugin:$version"
     const val javadocPlugin = "org.jetbrains.dokka:javadoc-plugin:$version"
     const val kotlinAsJavaPlugin = "org.jetbrains.dokka:kotlin-as-java-plugin:$version"
@@ -252,7 +257,7 @@ object Deps {
   }
 
   object KoTest {
-    const val version = "4.6.2"
+    const val version = "4.6.3"
     const val junit5Runner = "io.kotest:kotest-runner-junit5:$version"
     const val assertions = "io.kotest:kotest-assertions-core:$version"
     const val property = "io.kotest:kotest-property:$version"
@@ -660,6 +665,7 @@ inline val PluginDependenciesSpec.dokka get() = id("org.jetbrains.dokka") versio
 inline val PluginDependenciesSpec.exposed get() = id("com.jetbrains.exposed.gradle.plugin") version "0.1.1-SNAPSHOT"
 inline val PluginDependenciesSpec.kotlinxAtomicfu get() = id("kotlinx-atomicfu") version "0.16.3"
 inline val PluginDependenciesSpec.binCompatValidator get() = id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.7.1"
+inline val PluginDependenciesSpec.reflektPlugin get() = id("io.reflekt") version Deps.Kotlin.Reflekt.version
 
 // Google Plugins
 inline val PluginDependenciesSpec.ksp get() = id("com.google.devtools.ksp") version Deps.Kotlin.Ksp.version

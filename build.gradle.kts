@@ -1,4 +1,5 @@
 import gg.jte.*
+import io.reflekt.plugin.*
 import org.gradle.api.tasks.testing.logging.*
 import org.jetbrains.dokka.gradle.*
 import org.jetbrains.kotlin.config.*
@@ -15,6 +16,7 @@ plugins {
   kotlinJvm
   kotlinKapt
   kotlinxSerialization
+  reflektPlugin
   dokka
   jte
   protobuf
@@ -149,6 +151,10 @@ kotlin {
 
   // kotlinDaemonJvmArgs = listOf("--show-version", "--enable-preview")
   // explicitApi()
+}
+
+reflekt {
+  enabled = false
 }
 
 ksp {
@@ -391,7 +397,7 @@ tasks {
         }
 
         externalDocumentationLink {
-          url.set(URL("https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/"))
+          url.set(URL("https://kotlin.github.io/kotlinx.coroutines/package-list"))
         }
 
         perPackageOption {

@@ -1006,6 +1006,7 @@ $ docker run -d -p 25565:25565 --name mc itzg/minecraft-server:adopt15
 - https://www.iconfinder.com/
 - https://ionicons.com/
 - https://icons8.com/
+- https://github.com/game-icons/icons
 
 ##### Emojis
 
