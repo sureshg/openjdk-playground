@@ -141,6 +141,10 @@ object Deps {
     const val nashorn = "org.openjdk.nashorn:nashorn-core:15.0"
   }
 
+  object Foojay {
+    const val discoclient = "io.foojay.api:discoclient:1.0.1"
+  }
+
   object Jetty {
     const val version = "11.0.6"
     const val bom = "org.eclipse.jetty:jetty-bom:$version"
@@ -711,6 +715,7 @@ inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") ver
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version "9.3.0"
 inline val PluginDependenciesSpec.detekt get() = id("io.gitlab.arturbosch.detekt") version "1.15.0"
 inline val PluginDependenciesSpec.detektCompilerPlugin get() = id("io.github.detekt.gradle.compiler-plugin") version "0.3.1"
+inline val PluginDependenciesSpec.qodanaPlugin get() = id("org.jetbrains.qodana") version "0.1.13"
 
 // Artifact Publish
 inline val PluginDependenciesSpec.nexusPublish get() = id("io.github.gradle-nexus.publish-plugin") version "1.1.0"

@@ -11,7 +11,6 @@ dependencyResolutionManagement {
   repositories {
     mavenCentral()
     google()
-    maven(url = uri("https://packages.jetbrains.team/maven/p/reflekt/reflekt"))
   }
   // repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
 }
@@ -21,8 +20,8 @@ pluginManagement {
   repositories {
     gradlePluginPortal()
     google()
-    maven(url = uri("https://packages.jetbrains.team/maven/p/reflekt/reflekt"))
-    // "https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev"
+    // maven(url = uri("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev"))
+    // maven(url = uri("https://packages.jetbrains.team/maven/p/reflekt/reflekt"))
   }
 
   resolutionStrategy {

@@ -1,5 +1,4 @@
 import gg.jte.*
-import io.reflekt.plugin.*
 import org.gradle.api.tasks.testing.logging.*
 import org.jetbrains.dokka.gradle.*
 import org.jetbrains.kotlin.config.*
@@ -16,13 +15,13 @@ plugins {
   kotlinJvm
   kotlinKapt
   kotlinxSerialization
-  reflektPlugin
   dokka
   jte
   protobuf
   googleJib
   shadow
   spotless
+  qodanaPlugin
   jacoco
   kotlinPowerAssert
   spotlessChangelog
@@ -153,10 +152,6 @@ kotlin {
   // explicitApi()
 }
 
-reflekt {
-  enabled = false
-}
-
 ksp {
 }
 
@@ -217,6 +212,10 @@ spotless {
   // isEnforceCheck = false
 }
 
+qodana {
+  autoUpdate.set(true)
+}
+
 jib {
   from {
     image = "openjdk:$javaVersion-jdk-slim"
@@ -234,7 +233,7 @@ jib {
 
 // val branch_name: String  by extra
 jgitver {
-  useDirty = false
+  useSnapshot = true
   nonQualifierBranches = "main"
 }
 
@@ -513,6 +512,7 @@ dependencies {
   implementation(Deps.Security.otp)
   implementation(Deps.Security.jwtJava)
   implementation(Deps.Cli.textTree)
+  implementation(Deps.Foojay.discoclient)
 
   compileOnly(Deps.TemplateEngine.Jte.kotlin)
   compileOnly(Deps.Kotlinx.atomicfu)
@@ -539,6 +539,15 @@ publishing {
   repositories {
     maven {
       url = uri("$buildDir/repo")
+    }
+
+    maven {
+      name = "GitHubPackages"
+      url = uri("https://maven.pkg.github.com/sureshg/${project.name}")
+      credentials {
+        username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
+        password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
+      }
     }
   }
 
