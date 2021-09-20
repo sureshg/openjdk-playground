@@ -4,7 +4,6 @@ import org.jetbrains.dokka.gradle.*
 import org.jetbrains.kotlin.config.*
 import org.jetbrains.kotlin.gradle.tasks.*
 import java.net.*
-import java.nio.file.*
 
 plugins {
   idea
@@ -107,17 +106,13 @@ java {
     languageVersion.set(JavaLanguageVersion.of(javaVersion))
     vendor.set(JvmVendorSpec.ORACLE)
   }
-
   // modularity.inferModulePath.set(true)
 }
 
 // Add the generated templates to source set.
 sourceSets {
   main {
-    java.srcDirs(
-      tasks.copyTemplates.get().destinationDir,
-      tasks.generateJte.get().targetDirectory
-    )
+    java.srcDirs(tasks.copyTemplates.get().destinationDir)
   }
 }
 
@@ -139,6 +134,7 @@ kotlin {
       optIn("kotlin.ExperimentalMultiplatform")
       optIn("kotlin.js.ExperimentalJsExport")
     }
+    // kotlin.srcDirs()
   }
 
   jvmToolchain {
@@ -150,6 +146,11 @@ kotlin {
 
   // kotlinDaemonJvmArgs = listOf("--show-version", "--enable-preview")
   // explicitApi()
+}
+
+jte {
+  contentType.set(ContentType.Plain)
+  generate()
 }
 
 ksp {
@@ -320,16 +321,6 @@ tasks {
 
     // Generate kotlin templates. This has to be before kotlin compile.
     dependsOn(copyTemplates)
-
-    // Generate Jte templates.
-    dependsOn(generateJte)
-  }
-
-  // Jte templates
-  generateJte {
-    sourceDirectory =
-      Paths.get(project.projectDir.absolutePath, "src", "main", "templates", "jte")
-    contentType = ContentType.Plain
   }
 
   run.invoke {
