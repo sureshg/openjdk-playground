@@ -36,7 +36,7 @@ jobs:
 
       - name: 🚀 Run Kotlin Script on ${{ matrix.os }}
         id: kotlin-script-exec
-        uses: sureshg/kts-exec@v2.1
+        uses: sureshg/kts-exec@v2.2
         with:
           script: "script.main.kts"
           compiler-plugin: kotlinx-serialization
