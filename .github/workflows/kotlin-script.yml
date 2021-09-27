@@ -20,7 +20,6 @@ defaults:
   run:
     shell: bash
 
-
 jobs:
   kotlin-script:
     name: Run Kotlin Script
@@ -36,12 +35,13 @@ jobs:
 
       - name: 🚀 Run Kotlin Script on ${{ matrix.os }}
         id: kotlin-script-exec
-        uses: sureshg/kts-exec@v2.1
+        uses: sureshg/kts-exec@v2.2
         with:
           script: "script.main.kts"
           compiler-plugin: kotlinx-serialization
 
-      - name: Print compiler plugin path
+      - name: Print Kotlin install and compiler plugin path
         run: |
           java -version
-          echo ${{ steps.kotlin-script-exec.outputs.plugin-path }}
+          echo "Plugin Path : ${{ steps.kotlin-script-exec.outputs.plugin-path }}"
+          echo "Kotlin Root : ${{ steps.kotlin-script-exec.outputs.kotlin-root }}"

@@ -81,6 +81,7 @@ jobs:
           java-version: ${{ env.JDK_VERSION }}
           jdkFile: ${{ env.JDK_FILE }}
           cache: 'gradle'
+          # settings-path: ${{ github.workspace }} # OR $GITHUB_WORKSPACE
 
       - name: 🧰 Export Gradle Properties
         if: ${{ false }}
@@ -93,6 +94,7 @@ jobs:
           echo "::set-output name=version::$VERSION"
           echo "::set-output name=name::$NAME"
           echo "::set-output name=artifact::$ARTIFACT"
+          echo "Runner Tool Cache: ${RUNNER_TOOL_CACHE}"
 
       - name: 📦 Publish to GitHub Packages (Linux)
         id: gradle-publish
@@ -144,7 +146,7 @@ jobs:
 
       - name: Build Changelog
         id: github_release
-        uses: mikepenz/release-changelog-builder-action@v2.4.1
+        uses: mikepenz/release-changelog-builder-action@v2.4.2
         with:
           configuration: ".github/config/configuration.json"
           commitMode: true
@@ -177,7 +179,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        jdk: [ "openjdk:18-slim", "openjdk:18-alpine" ]
+        jdk: [ "eclipse-temurin:17-alpine", "openjdk:18-slim", "openjdk:18-alpine" ]
 
     defaults:
       run:
