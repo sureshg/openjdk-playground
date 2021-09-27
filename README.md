@@ -1,4 +1,5 @@
 # Module OpenJDK PlayGround
+
 <a href="https://foojay.io/today/works-with-openjdk">
  <img align="right" src="https://github.com/foojayio/badges/raw/main/works_with_openjdk/WorksWithOpenJDK.svg" width="7%" alt="WorksWithOpenJDK">
 </a>
@@ -115,32 +116,6 @@ $ ./gradlew -q javaToolchains
 
 </details>
 
-##### JMPS Config
-
-<details>
-  <summary>module-info.java</summary>
-
-  ```java
-  // src/main/kotlin/module-info.java
-module dev.suresh.openjdklatest {
-  requires kotlin.stdlib.jdk8;
-  requires java.net.http;
-  requires org.eclipse.jetty.server;
-  requires jdk.jfr;
-  requires jdk.httpserver;
-  requires shrinkwrap.resolver.api.maven;
-  requires okhttp3;
-  requires okhttp3.tls;
-  requires okhttp3.mockwebserver;
-
-  exports dev.suresh.loom.jetty;
-  exports dev.suresh.mvn;
-  exports dev.suresh.server;
-}
-  ```
-
-</details>
-
 ##### Resources
 
 - :
@@ -165,9 +140,6 @@ module dev.suresh.openjdklatest {
 
  https://www.eclipse.org/jetty/documentation/current/high-load.html
  https://webtide.com/lies-damned-lies-and-benchmarks-2/
-
- https://github.com/marketplace/actions/download-openjdk
- https://github.com/sormuras/junit5-looming/blob/master/.github/workflows/main.yml
 
  https://github.com/actions/cache/blob/main/examples.md#java---gradle
 

@@ -1,4 +1,4 @@
-// Not used now. Should be moved to src/kotlin
+// Not used now. Should be moved to src/main/kotlin/module-info.java
 import dev.suresh.service.MyProcessor;
 import javax.annotation.processing.Processor;
 
