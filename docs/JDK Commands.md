@@ -610,21 +610,6 @@ $ ./gradlew run --args="<JFR_FILE>"
 
 
 
-
-
-### Maven Central Release
-
-------
-
-* https://github.com/sormuras/bach/blob/master/install-jdk.sh
-* https://github.com/raphw/byte-buddy/blob/master/.github/workflows/main.yml#L92-L109
-* https://github.com/raphw/byte-buddy/blob/master/.github/scripts/install-jdk.sh
-* https://blog.autsoft.hu/publishing-an-android-library-to-mavencentral-in-2019/
-
-
-
-
-
 ### [Maven](https://search.maven.org/search?q=org.jetbrains.kotlin)
 
 ------
@@ -792,10 +777,6 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
 - [Env context Limitation](https://git.io/JGYV4)
 - [Github Composite Build Using Bashscript🍓](https://github.com/dart-lang/setup-dart)
 - [Github Maven Package](https://help.github.com/en/packages/using-github-packages-with-your-projects-ecosystem)
-- [Workflow Syntax](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions)
-- [Env Variables](https://help.github.com/en/actions/configuring-and-managing-workflows/using-environment-variables)
-- [Expressions Syntax & Contexts](https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions)
-- [Workflow Commands](https://help.github.com/en/actions/reference/workflow-commands-for-github-actions)
 - [Share Data Between Jobs](https://help.github.com/en/actions/configuring-and-managing-workflows/persisting-workflow-data-using-artifacts)
 - [Encrypted Secrets](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets)
 - [Docker Action](https://github.com/actions/hello-world-docker-action)
@@ -929,19 +910,14 @@ $ strings -a $(which native-image) | grep -i com.oracle.svm.core.VM
 $ git commit --allow-empty -m "empty commit"
 ```
 
-* Maven integration
-  - https://www.graalvm.org/docs/reference-manual/native-image/#integration-with-maven
-* Image configure at build and runtime
-  - https://github.com/graalvm/graalvm-demos/tree/master/native-image-configure-examples
-* GraalVm demos - https://github.com/graalvm/graalvm-demos
-* https://medium.com/graalvm/simplifying-native-image-generation-with-maven-plugin-and-embeddable-configuration-d5b283b92f57
-* https://github.com/oracle/graal/blob/master/substratevm/CLASS-INITIALIZATION.md
-* https://search.maven.org/artifact/org.graalvm.nativeimage/svm/20.0.0/jar
-* https://github.com/graalvm/graalvm-ce-dev-builds/releases/
-* Examples:
-    * https://github.com/38leinaD/bpmn-diff/tree/master/.github/workflows
-    * https://github.com/micronaut-projects/micronaut-starter/tree/master/.github/workflows
 
+* Github Action: https://github.com/helpermethod/graalvm-native-image-toolchain
+* https://github.com/helpermethod/connor/blob/main/.github/workflows/ci.yml
+* https://github.com/graalvm/graalvm-ce-dev-builds/releases/
+* https://search.maven.org/artifact/org.graalvm.nativeimage/svm/20.0.0/jar
+* Examples:
+    *
+    * https://github.com/micronaut-projects/micronaut-starter/tree/master/.github/workflows
 * https://jamesward.com/2020/05/07/graalvm-native-image-tips-tricks/
 
 

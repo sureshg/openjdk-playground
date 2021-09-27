@@ -1,66 +1,68 @@
-#### Containers
+## Containers
 
 ------
 
-- Offical Java Images
+### Offical Java Images
 
-  ```bash
-  	# Distroless Java Base (For Jlink apps based on debian:buster)
-  # https://console.cloud.google.com/gcr/images/distroless/GLOBAL/java-debian10
-  $ docker pull gcr.io/distroless/java-debian10:base
-  $ docker pull gcr.io/distroless/java-debian10:base-nonroot
+```bash
+	# Distroless Java Base (For Jlink apps based on debian:buster)
+# https://console.cloud.google.com/gcr/images/distroless/GLOBAL/java-debian10
+$ docker pull gcr.io/distroless/java-debian10:base
+$ docker pull gcr.io/distroless/java-debian10:base-nonroot
 
-  # Distroless Java Base
-  $ docker pull gcr.io/distroless/java:11 # OR
-  $ docker pull gcr.io/distroless/java-debian10:latest
+# Distroless Java Base
+$ docker pull gcr.io/distroless/java:11 # OR
+$ docker pull gcr.io/distroless/java-debian10:latest
 
-  # Distroless Static & Base
-  $ docker pull gcr.io/distroless/static:latest
-  $ docker pull gcr.io/distroless/base:latest
+# Distroless Static & Base
+$ docker pull gcr.io/distroless/static:latest
+$ docker pull gcr.io/distroless/base:latest
 
-  # Openjdk
-  $ docker pull openjdk:18-slim-buster
+# Openjdk
+$ docker pull openjdk:18-slim
+$ docker pull openjdk:18-alpine
 
-  # Eclipse Temurin
-  # https://github.com/adoptium/containers#supported-images
-  $ docker pull eclipse-temurin:16
+# Eclipse Temurin
+# https://github.com/adoptium/containers#supported-images
+$ docker pull eclipse-temurin:17-focal
+$ docker pull eclipse-temurin:17-alpine
 
-  # Oracle OpenJDK
-  $ docker pull container-registry.oracle.com/java/openjdk:latest
+# Oracle OpenJDK
+$ docker pull container-registry.oracle.com/java/openjdk:latest
 
-  # Microsoft OpenJDK
-  # https://docs.microsoft.com/en-us/java/openjdk/containers
-  $ docker pull mcr.microsoft.com/openjdk/jdk:16-ubuntu
+# Microsoft OpenJDK
+# https://docs.microsoft.com/en-us/java/openjdk/containers
+$ docker pull mcr.microsoft.com/openjdk/jdk:16-ubuntu
 
-  # Alpine (Liberica)
-  $ docker pull bellsoft/liberica-openjdk-alpine-musl:latest
-  $ docker pull bellsoft/liberica-openjdk-alpine:latest (libc)
+# Alpine (Liberica)
+$ docker pull bellsoft/liberica-openjdk-alpine-musl:latest
+$ docker pull bellsoft/liberica-openjdk-alpine:latest (libc)
 
-  # Alpine (Zulu)
-  $ docker pull azul/zulu-openjdk-alpine:16
+# Alpine (Zulu)
+$ docker pull azul/zulu-openjdk-alpine:16
 
-  # Alpine (OpenJDK)
-  $ docker pull openjdk:17-jdk-alpine
+# Alpine (OpenJDK)
+$ docker pull openjdk:17-jdk-alpine
 
-  # Alpine (AdoptOpenJDK)
-  $ docker pull adoptopenjdk/openjdk16:alpine-jre (musl)
+# Alpine (AdoptOpenJDK)
+$ docker pull adoptopenjdk/openjdk16:alpine-jre (musl)
 
-  # Alpine (Amazon Corretto)
-  $ docker pull amazoncorretto:16-alpine
+# Alpine (Amazon Corretto)
+$ docker pull amazoncorretto:16-alpine
 
-  # GraalVM CE
-  # https://github.com/graalvm/container/pkgs/container/graalvm-ce
-  $ docker pull ghcr.io/graalvm/graalvm-ce:latest
+# GraalVM CE
+# https://github.com/graalvm/container/pkgs/container/graalvm-ce
+$ docker pull ghcr.io/graalvm/graalvm-ce:latest
 
-  # Examples
-  $ docker run -it --rm gcr.io/distroless/java-debian10:base-nonroot openssl s_client --connect google.com:443
-  ```
+# Examples
+$ docker run -it --rm gcr.io/distroless/java-debian10:base-nonroot openssl s_client --connect google.com:443
+```
 
-    - https://hub.docker.com/_/openjdk
-    - https://github.com/docker-library/docs/tree/master/openjdk
-    - https://github.com/AdoptOpenJDK/openjdk-docker#official-and-unofficial-images
-    - https://container-registry.oracle.com/java/openjdk
-    - https://www.graalvm.org/docs/getting-started/container-images/
+  - https://hub.docker.com/_/openjdk
+  - https://github.com/docker-library/docs/tree/master/openjdk
+  - https://github.com/AdoptOpenJDK/openjdk-docker#official-and-unofficial-images
+  - https://container-registry.oracle.com/java/openjdk
+  - https://www.graalvm.org/docs/getting-started/container-images/
 
 
 - ##### Java Container logs
@@ -148,6 +150,18 @@
       opoenjdk \
       rm -rf /var/lib/apt/lists/*
   ```
+
+
+
+#### Jlink
+
+------
+
+* https://www.morling.dev/blog/smaller-faster-starting-container-images-with-jlink-and-appcds/
+
+* https://blog.adoptium.net/2021/08/using-jlink-in-dockerfiles/
+
+* https://docs.microsoft.com/en-us/java/openjdk/java-jlink-runtimes
 
 
 

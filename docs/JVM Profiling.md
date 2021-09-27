@@ -4,6 +4,8 @@
 
 #### 1. Flight Recorder
 
+* [Java Flight Recorder Events](https://bestsolution-at.github.io/jfr-doc/index.html)
+
 
 
 #### 2. Java Mission Control
