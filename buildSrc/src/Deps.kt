@@ -28,6 +28,10 @@ object Deps {
     object Gc {
       const val toolkit = "com.microsoft.gctoolkit:api:2.0.1"
     }
+
+    object Javadoc {
+      const val link = "io.javaalmanac:javadoclink:1.0.0"
+    }
   }
 
   object Kotlin {
@@ -55,7 +59,7 @@ object Deps {
     }
 
     object Ksp {
-      const val version = "1.5.30-1.0.0"
+      const val version = "1.5.31-1.0.0"
       const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
       const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
       const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.4.0"
@@ -96,7 +100,7 @@ object Deps {
       "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:0.3.4"
 
     object Serialization {
-      const val version = "1.2.2"
+      const val version = "1.3.0"
       const val core = "org.jetbrains.kotlinx:kotlinx-serialization-core:$version"
       const val json = "org.jetbrains.kotlinx:kotlinx-serialization-json:$version"
       const val cbor = "org.jetbrains.kotlinx:kotlinx-serialization-cbor:$version"
@@ -252,7 +256,7 @@ object Deps {
   }
 
   object Junit {
-    const val version = "5.8.0"
+    const val version = "5.8.1"
     const val jupiter = "org.junit.jupiter:junit-jupiter:$version"
     const val jupiterApi = "org.junit.jupiter:junit-jupiter-api:$version"
     const val jupiterEngine = "org.junit.jupiter:junit-jupiter-engine:$version"
@@ -287,7 +291,7 @@ object Deps {
     const val stringTemplate = "org.antlr:ST4:4.3.1"
 
     object Jte {
-      const val version = "1.11.4"
+      const val version = "1.12.0"
       const val jte = "gg.jte:jte:$version"
       const val kotlin = "gg.jte:jte-kotlin:$version"
     }
@@ -453,6 +457,7 @@ object Deps {
     const val dnsJava = "dnsjava:dnsjava:3.3.1"
     const val jmdns = "org.jmdns:jmdns:3.5.7"
     const val reverseCountryCode = "uk.recurse:reverse-country-code:1.0.0"
+    const val microRaft = "com.github.MicroRaft:MicroRaft:v0.1"
   }
 
   object Tcp {
@@ -682,7 +687,7 @@ inline val PluginDependenciesSpec.consistentVersions get() = id("com.palantir.co
 // Dependencies
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "7.0.0"
 inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.8.1" apply true
-inline val PluginDependenciesSpec.taskinfo get() = id("org.barfuin.gradle.taskinfo") version "1.3.0"
+inline val PluginDependenciesSpec.taskinfo get() = id("org.barfuin.gradle.taskinfo") version "1.3.1" apply false
 inline val PluginDependenciesSpec.taskTree get() = id("com.dorongold.task-tree") version "1.5"
 inline val PluginDependenciesSpec.forbiddenApis get() = id("de.thetaphi.forbiddenapis") version "3.1"
 inline val PluginDependenciesSpec.extraJavaModuleInfo get() = id("de.jjohannes.extra-java-module-info") version "0.9"
@@ -709,7 +714,7 @@ inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boo
 inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version "1.0.9.RELEASE"
 
 // Static Analysis and Linting
-inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.15.0"
+inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.15.1"
 inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.2.0"
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version "9.3.0"
@@ -729,7 +734,7 @@ inline val PluginDependenciesSpec.mavenPublish get() = id("com.vanniktech.maven.
 // Build config
 inline val PluginDependenciesSpec.gitProperties get() = id("com.gorylenko.gradle-git-properties") version "2.3.1"
 inline val PluginDependenciesSpec.buildconfig get() = id("com.github.gmazzo.buildconfig") version "3.0.2" apply false
-inline val PluginDependenciesSpec.buildkonfig get() = id("com.codingfeline.buildkonfig") version "0.9.0" apply false
+inline val PluginDependenciesSpec.buildkonfig get() = id("com.codingfeline.buildkonfig") version "0.10.1" apply false
 
 // Project version detection
 inline val PluginDependenciesSpec.jgitPlugin get() = id("fr.brouillard.oss.gradle.jgitver") version "0.10.0-rc03"
@@ -744,6 +749,7 @@ inline val PluginDependenciesSpec.orchid get() = id("com.eden.orchidPlugin") ver
 // Packaging (JDK 14+) (https://openjdk.java.net/jeps/392)
 inline val PluginDependenciesSpec.badassRuntime get() = id("org.beryx.runtime") version "1.11.4"
 inline val PluginDependenciesSpec.badassjlink get() = id("org.beryx.jlink") version "2.22.3"
+inline val PluginDependenciesSpec.badassJarPlugin get() = id("org.beryx.jar") version "1.2.0"
 inline val PluginDependenciesSpec.javapackager get() = id("io.github.fvarrui.javapackager.plugin") version "1.5.1"
 inline val PluginDependenciesSpec.jpackageplugin get() = id("org.panteleyev.jpackageplugin") version "0.0.2"
 

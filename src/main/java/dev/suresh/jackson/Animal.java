@@ -1,4 +1,4 @@
-package dev.suresh.json;
+package dev.suresh.jackson;
 
 
 import java.util.List;

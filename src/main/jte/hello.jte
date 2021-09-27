@@ -1,8 +1,8 @@
-@import dev.suresh.jte.Config
+@import dev.suresh.config.JConfig
 @import dev.suresh.jte.KtConfig
 @import java.time.LocalDateTime
 
-@param Config config
+@param JConfig config
 @param KtConfig ktConfig
 
 App Version  = ${ktConfig.getAppVersion()}

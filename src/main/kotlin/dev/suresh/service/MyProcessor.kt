@@ -14,7 +14,5 @@ class MyProcessor : AbstractProcessor() {
   override fun process(
     annotations: MutableSet<out TypeElement>?,
     roundEnv: RoundEnvironment?,
-  ): Boolean {
-    return true
-  }
+  ) = true
 }

@@ -1,6 +1,7 @@
 package dev.suresh.jte
 
 import App
+import dev.suresh.config.*
 import gg.jte.*
 import gg.jte.output.*
 
@@ -14,7 +15,7 @@ class RenderJte {
   fun run() {
     val tmplEngine = TemplateEngine.createPrecompiled(ContentType.Plain)
     val params = mapOf(
-      "config" to Config(),
+      "config" to JConfig(),
       "ktConfig" to KtConfig(
         version = App.KOTLIN_VERSION,
         appVersion = App.VERSION

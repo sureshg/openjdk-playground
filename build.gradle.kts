@@ -28,6 +28,7 @@ plugins {
   gitProperties
   taskinfo
   checksum
+  signing
   `maven-publish`
   nexusPublish
   gradleRelease
@@ -40,10 +41,12 @@ plugins {
   // kotlinxAtomicfu
 }
 
+val appMainModule: String by project
 val appMainClass: String by project
 
 application {
   mainClass.set(appMainClass)
+  // mainModule.set(appMainModule)
   applicationDefaultJvmArgs += listOf(
     "--show-version",
     "--enable-preview",
@@ -86,6 +89,7 @@ application {
     // "--add-opens=java.base/java.net=ALL-UNNAMED",
     // "--add-opens=jdk.attach/sun.tools.attach=ALL-UNNAMED",
   )
+  // https://chriswhocodes.com/hotspot_options_openjdk18.html
 }
 
 idea {
@@ -209,7 +213,6 @@ spotless {
     trimTrailingWhitespace()
     endWithNewline()
   }
-
   // isEnforceCheck = false
 }
 
@@ -286,7 +289,7 @@ tasks {
         listOf(
           "--enable-preview",
           "-Xlint:all",
-          "-parameters"
+          "-parameters",
           // "-XX:+IgnoreUnrecognizedVMOptions",
           // "--add-exports",
           // "java.base/sun.nio.ch=ALL-UNNAMED",
@@ -405,10 +408,13 @@ tasks {
     archiveClassifier.set("uber")
     description = "Create a fat JAR of $archiveFileName and runtime dependencies."
     mergeServiceFiles()
+
     // Don't create modular shadow jar
-    exclude("module-info.class")
+    // exclude("module-info.class")
+
     // relocate("okio", "shaded.okio")
-    configurations = listOf(shadowRuntime)
+    // configurations = listOf(shadowRuntime)
+
     doLast {
       val fatJar = archiveFile.get().asFile
       println("FatJar: ${fatJar.path} (${fatJar.length().toDouble() / (1_000 * 1_000)} MB)")
@@ -465,6 +471,15 @@ val dokkaHtmlJar by tasks.registering(Jar::class) {
   archiveClassifier.set("htmldoc")
 }
 
+// For publishing pure kotlin project
+val emptyJar by tasks.registering(Jar::class) {
+  archiveClassifier.set("javadoc")
+  // duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+  // manifest {
+  //   attributes("Automatic-Module-Name" to appMainModule)
+  // }
+}
+
 dependencies {
   implementation(platform(Deps.Kotlin.bom))
   implementation(platform(Deps.OkHttp.bom))
@@ -490,16 +505,19 @@ dependencies {
   implementation(Deps.Cli.mordant)
   implementation(Deps.Cli.crossword)
   implementation(Deps.Logging.Slf4j.api)
+  implementation(Deps.Logging.Slf4j.simple)
   implementation(Deps.Maven.shrinkwrap)
   implementation(Deps.TLS.certifikit)
   implementation(Deps.Google.AutoService.annotations)
   implementation(Deps.Jackson.databind)
   implementation(Deps.Google.ApiService.sdmv1)
   implementation(Deps.TemplateEngine.Jte.jte)
-  implementation(Deps.Logging.Slf4j.simple)
+
   implementation(Deps.Jetty.LoadGen.client)
   implementation(Deps.Network.jmdns)
-  implementation(Deps.Security.password4j)
+  implementation(Deps.Security.password4j) {
+    exclude(group = "org.slf4j", module = "slf4j-nop")
+  }
   implementation(Deps.Security.otp)
   implementation(Deps.Security.jwtJava)
   implementation(Deps.Cli.textTree)
@@ -536,14 +554,15 @@ publishing {
       name = "GitHubPackages"
       url = uri("https://maven.pkg.github.com/sureshg/${project.name}")
       credentials {
-        username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
-        password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
+        username = project.findProperty("gpr.user") as? String ?: System.getenv("USERNAME")
+        password = project.findProperty("gpr.key") as? String ?: System.getenv("TOKEN")
       }
     }
   }
 
   publications {
-    register<MavenPublication>("mavenJava") {
+    // Maven Central
+    register<MavenPublication>("maven") {
       from(components["java"])
       artifact(dokkaHtmlJar.get())
       // artifact(tasks.shadowJar.get())
@@ -584,6 +603,11 @@ publishing {
           url.set("$githubProject/issues")
         }
       }
+    }
+
+    // Github Package Registry
+    register<MavenPublication>("gpr") {
+      from(components["java"])
     }
   }
 }

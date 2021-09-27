@@ -1,8 +1,9 @@
-package dev.suresh.json;
+package dev.suresh.jackson;
 
 
 import java.util.List;
 
+// https://www.mkammerer.de/blog/jacksons-polymorphic-deserialization/
 public class PolymorphicSerialization {
 
   public static void main(String[] args) {

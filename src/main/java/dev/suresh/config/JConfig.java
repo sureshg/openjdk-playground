@@ -1,15 +1,15 @@
-package dev.suresh.jte;
+package dev.suresh.config;
 
 
 import java.util.Objects;
 
-public record Config(String language, String version) {
+public record JConfig(String language, String version) {
 
-  public Config() {
+  public JConfig() {
     this(null, null);
   }
 
-  public Config {
+  public JConfig {
     language = Objects.requireNonNullElse(language, "Java");
     version = Objects.requireNonNullElse(version, System.getProperty("java.version"));
   }

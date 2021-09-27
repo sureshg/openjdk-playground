@@ -43,7 +43,7 @@ private fun civilTime() {
   println("ZonedDateTime  $zonedDateTime")
 
   val local = wallCalender.atTime(14, 51, 10, 234)
-  TimeZone.availableZoneIds.map { it.split("/") }.groupBy { it.first() }.forEach { t, u ->
+  TimeZone.availableZoneIds.map { it.split("/") }.groupBy { it.first() }.forEach { (t, u) ->
     println(t)
     println("--------")
     u.forEachIndexed { index, list ->

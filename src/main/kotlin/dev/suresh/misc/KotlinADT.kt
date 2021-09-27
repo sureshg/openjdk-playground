@@ -35,12 +35,3 @@ fun <T> Tree<T>.depth(): Int = when (this) {
 //        }
 //    }
 // }
-
-fun main1() {
-
-  val tree = Node(
-    10,
-    Node(5, left = Node(5, right = Node(4, right = Node(7))), right = Node(23, left = Node(6)))
-  )
-  println(tree.depth())
-}
