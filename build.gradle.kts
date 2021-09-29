@@ -6,10 +6,8 @@ import org.jetbrains.kotlin.gradle.tasks.*
 import java.net.*
 
 plugins {
-  idea
-  java
+  id("plugins.common")
   jgitPlugin
-  application
   ksp
   kotlinJvm
   kotlinKapt
@@ -37,8 +35,8 @@ plugins {
   extraJavaModuleInfo
   licensee
   buildkonfig
-  plugins.common
   // kotlinxAtomicfu
+  // plugins.common
 }
 
 val appMainModule: String by project
@@ -80,7 +78,7 @@ application {
     // "-XX:NativeMemoryTracking=summary",
     // "-Djava.net.preferIPv4Stack=true",
     // "-Djavax.net.debug=all",
-    // "-Djava.security.manager=allow",
+    // "-Djava.security.manager=disallow",
     // "-Djgitver.skip=true",
     // "-Djdk.lang.Process.launchMechanism=vfork",
     // "-Djdk.tls.maxCertificateChainLength=15",
@@ -91,16 +89,6 @@ application {
   )
   // https://chriswhocodes.com/hotspot_options_openjdk18.html
 }
-
-idea {
-  module {
-    isDownloadJavadoc = true
-    isDownloadSources = true
-  }
-  project.vcs = "Git"
-}
-
-// apply(from ="")
 
 java {
   withSourcesJar()
@@ -152,11 +140,6 @@ kotlin {
   // explicitApi()
 }
 
-jte {
-  contentType.set(ContentType.Plain)
-  generate()
-}
-
 ksp {
 }
 
@@ -165,6 +148,11 @@ kapt {
     option("--enable-preview")
     option("-Xmaxerrs", 200)
   }
+}
+
+jte {
+  contentType.set(ContentType.Plain)
+  generate()
 }
 
 kotlinPowerAssert {

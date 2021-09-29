@@ -5,7 +5,7 @@
 ### Offical Java Images
 
 ```bash
-	# Distroless Java Base (For Jlink apps based on debian:buster)
+# Distroless Java Base (For Jlink apps based on debian:buster)
 # https://console.cloud.google.com/gcr/images/distroless/GLOBAL/java-debian10
 $ docker pull gcr.io/distroless/java-debian10:base
 $ docker pull gcr.io/distroless/java-debian10:base-nonroot
@@ -85,7 +85,7 @@ $ docker run -it --rm gcr.io/distroless/java-debian10:base-nonroot openssl s_cli
 
   ```bash
   FROM alpine
-
+  
   ENTRYPOINT while :; do nc -k -l -p $PORT -e sh -c 'echo -e "HTTP/1.1 200 OK\n\n hello, world"'; done
   # https://github.com/jamesward/hello-netcat
   # docker build -t hello-netcat .
@@ -99,11 +99,11 @@ $ docker run -it --rm gcr.io/distroless/java-debian10:base-nonroot openssl s_cli
   # forward request and error logs to docker log collector
   RUN ln -sf /dev/stdout /var/log/nginx/access.log \
    && ln -sf /dev/stderr /var/log/nginx/error.log
-
+  
   # OR output directly to
   /proc/self/fd/1 (STDOUT)
   /proc/self/fd/2 (STDERR)
-
+  
   # https://docs.docker.com/config/containers/logging/configure/
   ```
 
@@ -114,7 +114,7 @@ $ docker run -it --rm gcr.io/distroless/java-debian10:base-nonroot openssl s_cli
   #!/bin/bash
   ## Entrypoint script for my-app. This script is to show how to write
   ## an entrypoint script that actually passes down signals from Docker.
-
+  
   ## Load our DB Password into a runtime only Environment Variable
   if [ -f /run/secrets/password ]
   then
@@ -122,7 +122,7 @@ $ docker run -it --rm gcr.io/distroless/java-debian10:base-nonroot openssl s_cli
     DB_PASS=$(cat /run/secrets/password)
     export DB_PASS
   fi
-
+  
   ## Run the Application
   exec my-app
   ```
@@ -140,11 +140,11 @@ $ docker run -it --rm gcr.io/distroless/java-debian10:base-nonroot openssl s_cli
 
   ```bash
   FROM ubuntu:20.04
-
+  
   ENV HTTP_PROXY="http://proxy.test.com:8080"
   ENV HTTPS_PROXY="http://proxy.test.com:8080"
   ENV NO_PROXY="*.test1.com,*.test2.com,127.0.0.1,localhost"
-
+  
   RUN apt-get update && apt-get upgrade -y && \
       DEBIAN_FRONTEND=noninteractive apt-get install -y \
       opoenjdk \

@@ -3,9 +3,6 @@ rootProject.name = "openjdk-playground"
 enableFeaturePreview("VERSION_CATALOGS")
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-// Composite Builds
-includeBuild("build-logic")
-
 // Centralizing repositories declaration
 dependencyResolutionManagement {
   repositories {
@@ -17,6 +14,7 @@ dependencyResolutionManagement {
 
 // For plugin EAP versions
 pluginManagement {
+  includeBuild("build-logic")
   repositories {
     gradlePluginPortal()
     google()
@@ -34,3 +32,10 @@ pluginManagement {
     }
   }
 }
+
+// Composite Builds
+// includeBuild("ksp-app")
+
+// Add a project
+// include("lib")
+// project(":lib").projectDir = file("ksp/lib")

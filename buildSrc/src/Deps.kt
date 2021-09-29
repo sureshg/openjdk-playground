@@ -91,7 +91,7 @@ object Deps {
   }
 
   object Kotlinx {
-    const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.2.1"
+    const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.3.0"
     const val reflectLite = "org.jetbrains.kotlinx:kotlinx.reflect.lite:1.0.0"
     const val atomicfu = "org.jetbrains.kotlinx:atomicfu:0.16.3"
     const val io = "org.jetbrains.kotlinx:kotlinx-io-jvm:0.1.16"
@@ -714,7 +714,7 @@ inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boo
 inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version "1.0.9.RELEASE"
 
 // Static Analysis and Linting
-inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.15.1"
+inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.15.2"
 inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.2.0"
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version "9.3.0"

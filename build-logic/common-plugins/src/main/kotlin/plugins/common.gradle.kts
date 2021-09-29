@@ -1,14 +1,25 @@
 package plugins
 
-import org.gradle.jvm.tasks.Jar
 import org.gradle.tooling.*
 import java.io.*
 import java.util.concurrent.*
 import java.util.spi.*
 
 plugins {
+  idea
   java
+  application
 }
+
+idea {
+  module {
+    isDownloadJavadoc = true
+    isDownloadSources = true
+  }
+  project.vcs = "Git"
+}
+
+// apply(from ="")
 
 // Print all the tasks
 gradle.taskGraph.whenReady {
@@ -36,6 +47,7 @@ tasks {
       val modules = out.toString()
       println(modules)
     }
+
     dependsOn("shadowJar")
   }
 

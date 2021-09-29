@@ -118,14 +118,18 @@ $ ./gradlew -q javaToolchains
 
 ##### Resources
 
-- :
-  electric_plug: [Intellij Platform Explorer](https://plugins.jetbrains.com/intellij-platform-explorer/6954)
+ * dev.java      ➱  https://dev.java
+ * inside.java   ➱  https://inside.java
+ * Oracle Java   ➱  https://www.oracle.com/java/
+ * OpenJDK       ➱  https://openjdk.java.net/
+ * :electric_plug: [Intellij Platform Explorer](https://plugins.jetbrains.com/intellij-platform-explorer/6954)
 
  <!--
  // Template for IR based Kotlin compiler plugin
  https://github.com/bnorm/kotlin-ir-plugin-template
 
  Idiomatic Gradle  - https://github.com/jjohannes/idiomatic-gradle
+                     https://github.com/jjohannes/gradle-demos/blob/main/java-17/ (Build Logic)
 
  https://docs.gradle.org/current/userguide/java_platform_plugin.html
  https://github.com/melix/jdoctor

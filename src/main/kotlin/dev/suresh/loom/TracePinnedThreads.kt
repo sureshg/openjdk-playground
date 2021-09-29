@@ -8,6 +8,7 @@ import java.util.concurrent.locks.*
  * Run with -Djdk.tracePinnedThreads=short|full
  *
  * - [TracePinnedThreads.java](https://github.com/openjdk/loom/blob/fibers/test/jdk/java/lang/Thread/virtual/TracePinnedThreads.java)
+ * - [Virtual Thread Tests](https://github.com/openjdk/loom/tree/fibers/test/jdk/java/lang/Thread/virtual)
  * - [Loom Troubleshooting Guide](https://wiki.openjdk.java.net/display/loom/Troubleshooting)
  */
 fun main() {
