@@ -472,6 +472,7 @@ dependencies {
   implementation(platform(Deps.Kotlin.bom))
   implementation(platform(Deps.OkHttp.bom))
   implementation(Deps.Kotlin.stdlibJdk8)
+  implementation(Deps.Kotlin.reflect)
   implementation(Deps.Kotlin.Coroutines.jdk8)
   implementation(Deps.Kotlinx.Serialization.json)
   implementation(Deps.Kotlinx.Serialization.properties)
@@ -520,9 +521,11 @@ dependencies {
   // implementation(fileTree("lib") { include("*.jar") })
 
   testImplementation(Deps.Kotlin.Coroutines.jdk8)
+  testImplementation(platform(Deps.Junit.bom))
   testImplementation(Deps.Junit.jupiter)
   testImplementation(Deps.Junit.pioneer)
   testImplementation(kotlin("test-junit5"))
+
   testImplementation(Deps.KoTest.junit5Runner)
   testImplementation(Deps.KoTest.assertions)
   testImplementation(Deps.Logging.Slf4j.simple)

@@ -49,3 +49,12 @@
 - name: github-actions
   description: Github action workflow changes
   color: ff7619
+- name: graalvm
+  description: GraalVM changes
+  color: 387E65
+- name: native-image
+  description: GraalVM native-image changes
+  color: A720DE
+- name: kotlin
+  description: Kotlin changes
+  color: 5319E7

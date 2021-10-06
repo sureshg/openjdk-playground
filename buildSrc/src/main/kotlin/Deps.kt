@@ -96,8 +96,7 @@ object Deps {
     const val atomicfu = "org.jetbrains.kotlinx:atomicfu:0.16.3"
     const val io = "org.jetbrains.kotlinx:kotlinx-io-jvm:0.1.16"
     const val cli = "org.jetbrains.kotlinx:kotlinx-cli:0.3"
-    const val collectionsImmutable =
-      "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:0.3.4"
+    const val collectionsImmutable = "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:0.3.4"
 
     object Serialization {
       const val version = "1.3.0"
@@ -154,8 +153,7 @@ object Deps {
     const val bom = "org.eclipse.jetty:jetty-bom:$version"
     const val server = "org.eclipse.jetty:jetty-server:$version"
     const val servlet = "org.eclipse.jetty:jetty-servlet:$version"
-    const val servlets =
-      "org.eclipse.jetty:jetty-servlets:$version" // Utility Servlets and Filters
+    const val servlets = "org.eclipse.jetty:jetty-servlets:$version" // Utility Servlets and Filters
     const val util = "org.eclipse.jetty:jetty-util:$version"
     const val slf4j = "org.eclipse.jetty:jetty-slf4j-impl:$version"
     const val testHelper = "org.eclipse.jetty:jetty-test-helper:$version"
@@ -163,8 +161,7 @@ object Deps {
 
     object LoadGen {
       const val version = "3.1.0"
-      const val client =
-        "org.mortbay.jetty.loadgenerator:jetty-load-generator-client:$version"
+      const val client = "org.mortbay.jetty.loadgenerator:jetty-load-generator-client:$version"
       const val listebers =
         "org.mortbay.jetty.loadgenerator:jetty-load-generator-listeners:$version"
     }
@@ -181,7 +178,7 @@ object Deps {
   const val okio = "com.squareup.okio:okio:2.2.0"
 
   object OkHttp {
-    const val version = "4.9.1"
+    const val version = "4.9.2"
     const val bom = "com.squareup.okhttp3:okhttp-bom:$version"
     const val okhttp = "com.squareup.okhttp3:okhttp:$version"
     const val mockWebServer = "com.squareup.okhttp3:mockwebserver:$version"
@@ -257,10 +254,11 @@ object Deps {
 
   object Junit {
     const val version = "5.8.1"
-    const val jupiter = "org.junit.jupiter:junit-jupiter:$version"
-    const val jupiterApi = "org.junit.jupiter:junit-jupiter-api:$version"
-    const val jupiterEngine = "org.junit.jupiter:junit-jupiter-engine:$version"
-    const val jupiterParams = "org.junit.jupiter:junit-jupiter-params:$version"
+    const val bom = "org.junit:junit-bom:$version"
+    const val jupiter = "org.junit.jupiter:junit-jupiter"
+    const val jupiterApi = "org.junit.jupiter:junit-jupiter-api"
+    const val jupiterEngine = "org.junit.jupiter:junit-jupiter-engine"
+    const val jupiterParams = "org.junit.jupiter:junit-jupiter-params"
     const val pioneer = "org.junit-pioneer:junit-pioneer:1.4.2"
   }
 
@@ -269,8 +267,7 @@ object Deps {
     const val junit5Runner = "io.kotest:kotest-runner-junit5:$version"
     const val assertions = "io.kotest:kotest-assertions-core:$version"
     const val property = "io.kotest:kotest-property:$version"
-    const val datetimeAssertions =
-      "io.kotest.extensions:kotest-assertions-kotlinx-datetime:1.0.0"
+    const val datetimeAssertions = "io.kotest.extensions:kotest-assertions-kotlinx-datetime:1.0.0"
     const val ktorAssertions = "io.kotest.extensions:kotest-assertions-ktor:1.0.1"
     const val testcontainers = "io.kotest.extensions:kotest-extensions-testcontainers:1.0.0"
   }
@@ -382,7 +379,7 @@ object Deps {
   }
 
   object Jackson {
-    const val version = "2.12.5"
+    const val version = "2.13.0"
     const val databind = "com.fasterxml.jackson.core:jackson-databind:$version"
   }
 
@@ -435,6 +432,7 @@ object Deps {
     const val sslContext = "io.github.hakky54:sslcontext-kickstart:5.2.2"
     const val certifikit = "app.cash.certifikit:certifikit:0.2.0"
     const val airliftSecurity = "io.airlift:security:201"
+    const val churchkey = "org.tomitribe:churchkey:0.15"
     const val bruce = "com.github.mcaserta:bruce:1.0.3"
     const val bouncyCastle = "org.bouncycastle:bcprov-jdk15on:1.60"
     const val conscryptUber = "org.conscrypt:conscrypt-openjdk-uber:1.4.1"
@@ -734,7 +732,7 @@ inline val PluginDependenciesSpec.mavenPublish get() = id("com.vanniktech.maven.
 // Build config
 inline val PluginDependenciesSpec.gitProperties get() = id("com.gorylenko.gradle-git-properties") version "2.3.1"
 inline val PluginDependenciesSpec.buildconfig get() = id("com.github.gmazzo.buildconfig") version "3.0.2" apply false
-inline val PluginDependenciesSpec.buildkonfig get() = id("com.codingfeline.buildkonfig") version "0.10.1" apply false
+inline val PluginDependenciesSpec.buildkonfig get() = id("com.codingfeline.buildkonfig") version "0.10.2" apply false
 
 // Project version detection
 inline val PluginDependenciesSpec.jgitPlugin get() = id("fr.brouillard.oss.gradle.jgitver") version "0.10.0-rc03"

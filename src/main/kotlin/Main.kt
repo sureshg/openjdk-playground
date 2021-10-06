@@ -1,3 +1,9 @@
+import java.nio.charset.StandardCharsets.UTF_8
+import java.util.*
+import javax.crypto.*
+import javax.crypto.spec.*
+
+
 fun main() {
   println("Hello Kotlin! ${App.KOTLIN_VERSION}")
   val s: Result<Int> = Result.Success(10)
@@ -11,6 +17,17 @@ fun main() {
 
   println("Security Manager Allowed: ${System.getProperty("java.security.manager")}")
   println("Security Manager: ${System.getSecurityManager()}")
+  // echo -n "test" | openssl dgst -sha256 -hmac 1234 -binary | base64
+  println("test".hmacSha256("1234"))
+
+}
+
+fun String.hmacSha256(secret: String): String {
+  val key = SecretKeySpec(secret.toByteArray(UTF_8), "HmacSHA256")
+  val mac: Mac = Mac.getInstance("HmacSHA256")
+  mac.init(key)
+  val out = mac.doFinal(this.toByteArray(UTF_8))
+  return Base64.getEncoder().encodeToString(out)
 }
 
 sealed class Result<out T> {

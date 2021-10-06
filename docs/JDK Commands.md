@@ -438,6 +438,19 @@ kotlin {
     }
 }
 
+// Change kotlin src dir
+kotlin {
+  sourceSets {
+    main {
+      kotlin.srcDirs("src")
+      languageSettings.apply {
+        useExperimentalAnnotation("kotlin.RequiresOptIn")
+        useExperimentalAnnotation("kotlin.ExperimentalStdlibApi")
+      }
+    }
+  }
+}
+
 // or
 sourceSets.main {
     withConvention(KotlinSourceSet::class) {

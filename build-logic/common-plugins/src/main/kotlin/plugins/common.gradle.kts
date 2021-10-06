@@ -9,7 +9,10 @@ plugins {
   idea
   java
   application
+//  id("kotlinx-kover") //version "0.2.2"
 }
+
+// apply(from ="")
 
 idea {
   module {
@@ -19,8 +22,6 @@ idea {
   project.vcs = "Git"
 }
 
-// apply(from ="")
-
 // Print all the tasks
 gradle.taskGraph.whenReady {
   allTasks.forEachIndexed { index, task ->
@@ -29,6 +30,16 @@ gradle.taskGraph.whenReady {
 }
 
 tasks {
+
+  // Clean all composite builds
+  register("cleanAll") {
+    description = "Clean all composite builds"
+    group = LifecycleBasePlugin.CLEAN_TASK_NAME
+
+    gradle.includedBuilds.forEach {
+      dependsOn(it.task(":clean"))
+    }
+  }
 
   val printModuleDeps by registering {
     description = "Print Java Platform Module dependencies of the application."
