@@ -3,6 +3,7 @@
 
 # docker build --file Dockerfile --build-arg JDK_VERSION=18 --tag suresh/openjdk-playground --tag suresh/openjdk-playground:latest .
 FROM openjdk:18-slim AS builder
+# FROM debian:stable-slim
 MAINTAINER Suresh
 
 RUN set -eux; \
@@ -27,6 +28,12 @@ ENV PATH "${JAVA_HOME}/bin:${PATH}"
 # JAVA_VERSION=$(sed -n '/^JAVA_VERSION="/{s///;s/"//;p;}' "${JAVA_HOME}/release");
 # COPY ./docs/scripts/*.sh /scripts
 # RUN ./scripts/openjdk-ea.sh ${JDK_VERSION}
+
+COPY src/main/java/JavaApp.java /app
+WORKDIR /app
+
+RUN javac *.java \
+    && jar cfe app.jar JavaApp *.class
 
 RUN $JAVA_HOME/bin/jlink \
          --add-modules java.compiler,java.desktop,java.base \

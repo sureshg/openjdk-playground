@@ -10,7 +10,7 @@
 $ docker pull gcr.io/distroless/java:base
 $ docker pull gcr.io/distroless/java:base-nonroot
 # OS specific
-$ docker pull gcr.io/distroless/java-debian11:base 
+$ docker pull gcr.io/distroless/java-debian11:base
 $ docker pull gcr.io/distroless/java-debian11:base-nonroot
 
 # Distroless OpenJDK
@@ -84,17 +84,17 @@ $ docker run -it --rm gcr.io/distroless/java-debian10:base-nonroot openssl s_cli
 
   - https://www.graalvm.org/docs/getting-started/container-images/
 
-    
+
 
 ##### Oracle JDK (NFTC)
 
 * [Oracle Java SE Downloads](https://www.oracle.com/javadownload)
 
-* [Oracle Java Archive](https://www.oracle.com/java/technologies/java-archive.html) 
+* [Oracle Java Archive](https://www.oracle.com/java/technologies/java-archive.html)
 
 * [JDK Script Friendly URLs](https://www.oracle.com/java/technologies/jdk-script-friendly-urls/)
 
-  
+
 
 ##### Docker Commands
 
@@ -212,7 +212,7 @@ RUN apt-get update && apt-get upgrade -y && \
 
    * https://github.com/dsyer/sample-docker-microservice/
 
-     
+
 
 #### Distroless
 

@@ -3,7 +3,6 @@ import java.util.*
 import javax.crypto.*
 import javax.crypto.spec.*
 
-
 fun main() {
   println("Hello Kotlin! ${App.KOTLIN_VERSION}")
   val s: Result<Int> = Result.Success(10)
@@ -19,7 +18,6 @@ fun main() {
   println("Security Manager: ${System.getSecurityManager()}")
   // echo -n "test" | openssl dgst -sha256 -hmac 1234 -binary | base64
   println("test".hmacSha256("1234"))
-
 }
 
 fun String.hmacSha256(secret: String): String {
