@@ -418,13 +418,13 @@ tasks {
     dependsOn(publish)
   }
 
-  // Disallow release candidates as upgradable versions from stable versions
   dependencyUpdates {
-    rejectVersionIf { candidate.version.isNonStable && !currentVersion.isNonStable }
     checkForGradleUpdate = true
     outputFormatter = "json"
     outputDir = "build/dependencyUpdates"
     reportfileName = "report"
+    // Disallow release candidates as upgradable versions from stable versions
+    // rejectVersionIf { candidate.version.isNonStable && !currentVersion.isNonStable }
   }
 
   // Disable dependency analysis

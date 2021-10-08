@@ -18,6 +18,6 @@ internal class KotlinTest {
 
   @Test
   fun version() {
-    assertTrue(KotlinVersion.CURRENT.toString() == App.KOTLIN_VERSION)
+    assertTrue(KotlinVersion.CURRENT.toString() == App.KOTLIN_VERSION.substringBefore("-"))
   }
 }

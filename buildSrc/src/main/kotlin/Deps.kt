@@ -59,7 +59,7 @@ object Deps {
     }
 
     object Ksp {
-      const val version = "1.5.31-1.0.0"
+      const val version = "1.6.0-M1-1.0.0"
       const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
       const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
       const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.4.0"
@@ -130,7 +130,7 @@ object Deps {
   }
 
   object Dokka {
-    const val version = "1.5.30"
+    const val version = "1.5.31"
     const val gradlePlugin = "org.jetbrains.dokka:dokka-gradle-plugin:$version"
     const val javadocPlugin = "org.jetbrains.dokka:javadoc-plugin:$version"
     const val kotlinAsJavaPlugin = "org.jetbrains.dokka:kotlin-as-java-plugin:$version"
@@ -178,7 +178,7 @@ object Deps {
   const val okio = "com.squareup.okio:okio:2.2.0"
 
   object OkHttp {
-    const val version = "4.9.2"
+    const val version = "5.0.0-alpha.2"
     const val bom = "com.squareup.okhttp3:okhttp-bom:$version"
     const val okhttp = "com.squareup.okhttp3:okhttp:$version"
     const val mockWebServer = "com.squareup.okhttp3:mockwebserver:$version"
@@ -263,7 +263,7 @@ object Deps {
   }
 
   object KoTest {
-    const val version = "4.6.3"
+    const val version = "5.0.0.M2"
     const val junit5Runner = "io.kotest:kotest-runner-junit5:$version"
     const val assertions = "io.kotest:kotest-assertions-core:$version"
     const val property = "io.kotest:kotest-property:$version"
@@ -388,7 +388,7 @@ object Deps {
   }
 
   object Cli {
-    const val clikt = "com.github.ajalt.clikt:clikt:3.2.0"
+    const val clikt = "com.github.ajalt.clikt:clikt:3.3.0"
     const val textIO = "org.beryx:text-io:3.4.1"
     const val mordant = "com.github.ajalt.mordant:mordant:2.0.0-beta2"
     const val colormath = "com.github.ajalt.colormath:colormath:2.0.0"
@@ -671,7 +671,7 @@ inline val PluginDependenciesSpec.dokka get() = id("org.jetbrains.dokka") versio
 
 inline val PluginDependenciesSpec.exposed get() = id("com.jetbrains.exposed.gradle.plugin") version "0.1.1-SNAPSHOT"
 inline val PluginDependenciesSpec.kotlinxAtomicfu get() = id("kotlinx-atomicfu") version "0.16.3"
-inline val PluginDependenciesSpec.binCompatValidator get() = id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.7.1"
+inline val PluginDependenciesSpec.binCompatValidator get() = id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.8.0-RC"
 inline val PluginDependenciesSpec.reflektPlugin get() = id("io.reflekt") version Deps.Kotlin.Reflekt.version
 
 // Google Plugins
@@ -683,7 +683,7 @@ inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-ma
 inline val PluginDependenciesSpec.consistentVersions get() = id("com.palantir.consistent-versions") version "1.28.0"
 
 // Dependencies
-inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "7.0.0"
+inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "7.1.0"
 inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.8.1" apply true
 inline val PluginDependenciesSpec.taskinfo get() = id("org.barfuin.gradle.taskinfo") version "1.3.1" apply false
 inline val PluginDependenciesSpec.taskTree get() = id("com.dorongold.task-tree") version "1.5"
@@ -712,7 +712,7 @@ inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boo
 inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version "1.0.9.RELEASE"
 
 // Static Analysis and Linting
-inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.15.2"
+inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.16.0"
 inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.2.0"
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version "9.3.0"
