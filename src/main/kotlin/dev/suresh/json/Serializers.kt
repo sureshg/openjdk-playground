@@ -4,7 +4,6 @@ import kotlinx.serialization.*
 import kotlinx.serialization.builtins.*
 import java.time.*
 import java.time.Duration
-import java.util.concurrent.*
 import kotlin.RequiresOptIn.Level.ERROR
 import kotlin.reflect.*
 import kotlin.time.*
@@ -39,7 +38,7 @@ fun main() {
     println(list)
     mark.elapsedNow()
   }
-  println(d.value.toDouble(TimeUnit.SECONDS))
+  println(d.value.toDouble(DurationUnit.SECONDS))
   deprecatedMethod()
 
   // LocalDate     --> Period

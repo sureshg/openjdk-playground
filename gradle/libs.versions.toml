@@ -51,7 +51,7 @@ trov4j               = "1.0.20181211"
 truthish             = "0.6.0"
 turbine              = "0.1.1"
 typetools            = "0.6.2"
-
+# jnr-fuse
 [libraries]
 # Local projects
 

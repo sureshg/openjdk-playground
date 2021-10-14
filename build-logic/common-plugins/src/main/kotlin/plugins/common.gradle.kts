@@ -9,6 +9,7 @@ plugins {
   idea
   java
   application
+  `test-suite-base`
 //  id("kotlinx-kover") //version "0.2.2"
 }
 

@@ -200,6 +200,16 @@ RUN apt-get update && apt-get upgrade -y && \
 
 
 
+#### Container Tools
+
+------
+
+* https://rancherdesktop.io/
+
+   * https://podman.io/blogs/2021/09/06/podman-on-macs.html
+
+
+
 #### Jlink
 
 ------
@@ -211,6 +221,8 @@ RUN apt-get update && apt-get upgrade -y && \
 * https://docs.microsoft.com/en-us/java/openjdk/java-jlink-runtimes
 
    * https://github.com/dsyer/sample-docker-microservice/
+
+     * https://mbien.dev/blog/entry/custom-java-runtimes-with-jlink
 
 
 

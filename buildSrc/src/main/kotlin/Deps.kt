@@ -149,7 +149,7 @@ object Deps {
   }
 
   object Jetty {
-    const val version = "11.0.6"
+    const val version = "11.0.7"
     const val bom = "org.eclipse.jetty:jetty-bom:$version"
     const val server = "org.eclipse.jetty:jetty-server:$version"
     const val servlet = "org.eclipse.jetty:jetty-servlet:$version"
@@ -229,7 +229,7 @@ object Deps {
         "com.google.apis:google-api-services-smartdevicemanagement:v1-rev20210604-1.32.1"
     }
 
-    const val re2j = "com.google.re2j:re2j:1.5"
+    const val re2j = "com.google.re2j:re2j:1.6"
   }
 
   object Graal {
@@ -712,7 +712,7 @@ inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boo
 inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version "1.0.9.RELEASE"
 
 // Static Analysis and Linting
-inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.16.0"
+inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.17.0"
 inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.2.0"
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version "9.3.0"

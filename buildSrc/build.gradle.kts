@@ -7,8 +7,8 @@ kotlin {
   sourceSets {
     main {
       languageSettings.apply {
-        useExperimentalAnnotation("kotlin.RequiresOptIn")
-        useExperimentalAnnotation("kotlin.ExperimentalStdlibApi")
+        optIn("kotlin.RequiresOptIn")
+        optIn("kotlin.ExperimentalStdlibApi")
       }
     }
   }
