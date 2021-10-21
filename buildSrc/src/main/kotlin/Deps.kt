@@ -59,7 +59,7 @@ object Deps {
     }
 
     object Ksp {
-      const val version = "1.6.0-M1-1.0.0"
+      const val version = "1.6.0-RC-1.0.0"
       const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
       const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
       const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.4.0"
@@ -263,7 +263,7 @@ object Deps {
   }
 
   object KoTest {
-    const val version = "5.0.0.M2"
+    const val version = "5.0.0.M3"
     const val junit5Runner = "io.kotest:kotest-runner-junit5:$version"
     const val assertions = "io.kotest:kotest-assertions-core:$version"
     const val property = "io.kotest:kotest-property:$version"
@@ -692,7 +692,9 @@ inline val PluginDependenciesSpec.extraJavaModuleInfo get() = id("de.jjohannes.e
 inline val PluginDependenciesSpec.licensee get() = id("app.cash.licensee") version "1.2.0" apply false
 
 inline val PluginDependenciesSpec.javafx get() = id("org.openjfx.javafxplugin") version "0.0.7"
-inline val PluginDependenciesSpec.mrjar get() = id("com.lingocoder.mrjar") version "0.0.16"
+inline val PluginDependenciesSpec.mrjar get() = id("me.champeau.mrjar") version "0.1"
+
+// inline val PluginDependenciesSpec.mrjar get() = id("com.lingocoder.mrjar") version "0.0.16"
 inline val PluginDependenciesSpec.protobuf get() = id("com.google.protobuf") version "0.8.17"
 inline val PluginDependenciesSpec.changelog get() = id("org.jetbrains.changelog") version "0.4.0"
 
@@ -732,7 +734,7 @@ inline val PluginDependenciesSpec.mavenPublish get() = id("com.vanniktech.maven.
 // Build config
 inline val PluginDependenciesSpec.gitProperties get() = id("com.gorylenko.gradle-git-properties") version "2.3.1"
 inline val PluginDependenciesSpec.buildconfig get() = id("com.github.gmazzo.buildconfig") version "3.0.2" apply false
-inline val PluginDependenciesSpec.buildkonfig get() = id("com.codingfeline.buildkonfig") version "0.10.2" apply false
+inline val PluginDependenciesSpec.buildkonfig get() = id("com.codingfeline.buildkonfig") version "0.11.0" apply false
 
 // Project version detection
 inline val PluginDependenciesSpec.jgitPlugin get() = id("fr.brouillard.oss.gradle.jgitver") version "0.10.0-rc03"
@@ -752,7 +754,7 @@ inline val PluginDependenciesSpec.javapackager get() = id("io.github.fvarrui.jav
 inline val PluginDependenciesSpec.jpackageplugin get() = id("org.panteleyev.jpackageplugin") version "0.0.2"
 
 // Kotlin compiler plugins
-inline val PluginDependenciesSpec.redacted get() = id("dev.zacsweers.redacted.redacted-gradle-plugin") version "0.6.1"
+inline val PluginDependenciesSpec.redacted get() = id("dev.zacsweers.redacted") version "0.8.3"
 inline val PluginDependenciesSpec.kotlinPowerAssert get() = id("com.bnorm.power.kotlin-power-assert") version "0.10.0"
 
 // Parsers

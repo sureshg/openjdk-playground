@@ -205,8 +205,11 @@ RUN apt-get update && apt-get upgrade -y && \
 ------
 
 * https://rancherdesktop.io/
-
-   * https://podman.io/blogs/2021/09/06/podman-on-macs.html
+* https://podman.io/blogs/2021/09/06/podman-on-macs.html
+* [Lima - Linux-on-Mac](https://github.com/lima-vm/lima)
+* [Dive - Explore Docker Image Layer](https://github.com/wagoodman/dive)
+* [Kaniko - Build Images In Kubernetes](https://github.com/GoogleContainerTools/kaniko)
+* [Colima - Container runtimes on MacOS ](https://github.com/abiosoft/colima)
 
 
 
@@ -215,14 +218,12 @@ RUN apt-get update && apt-get upgrade -y && \
 ------
 
 * https://www.morling.dev/blog/smaller-faster-starting-container-images-with-jlink-and-appcds/
-
 * https://blog.adoptium.net/2021/08/using-jlink-in-dockerfiles/
-
 * https://docs.microsoft.com/en-us/java/openjdk/java-jlink-runtimes
 
    * https://github.com/dsyer/sample-docker-microservice/
 
-     * https://mbien.dev/blog/entry/custom-java-runtimes-with-jlink
+* https://mbien.dev/blog/entry/custom-java-runtimes-with-jlink
 
 
 
@@ -231,6 +232,8 @@ RUN apt-get update && apt-get upgrade -y && \
 ------
 
 https://github.com/GoogleContainerTools/distroless/blob/master/base/README.md
+
+
 
 #### Documentation
 

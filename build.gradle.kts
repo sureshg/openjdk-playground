@@ -20,6 +20,7 @@ plugins {
   spotless
   qodanaPlugin
   jacoco
+  redacted
   kotlinPowerAssert
   spotlessChangelog
   benmanesVersions
@@ -59,7 +60,6 @@ application {
     "-XX:+HeapDumpOnOutOfMemoryError",
     "-XX:HeapDumpPath=$tmp/$name-%p.hprof",
     "-XX:ErrorFile=$tmp/$name-hs-err-%p.log",
-    "-Dfile.encoding=UTF-8",
     "-Djava.awt.headless=true",
     "-Djdk.attach.allowAttachSelf=true",
     "-Djdk.tracePinnedThreads=full",
@@ -76,6 +76,7 @@ application {
     // "-Xlog:class+load=info",
     // "-XX:+IgnoreUnrecognizedVMOptions",
     // "-XX:NativeMemoryTracking=summary",
+    // "-Dfile.encoding=COMPAT", // uses '-Dnative.encoding'
     // "-Djava.net.preferIPv4Stack=true",
     // "-Djavax.net.debug=all",
     // "-Djava.security.manager=disallow",
@@ -86,6 +87,7 @@ application {
     // "--add-exports=jdk.attach/sun.tools.attach=ALL-UNNAMED",
     // "--add-opens=java.base/java.net=ALL-UNNAMED",
     // "--add-opens=jdk.attach/sun.tools.attach=ALL-UNNAMED",
+    // "--add-modules", "jdk.incubator.foreign", "--enable-native-access=ALL-UNNAMED"
   )
   // https://chriswhocodes.com/hotspot_options_openjdk18.html
 }
@@ -157,6 +159,11 @@ jte {
 
 kotlinPowerAssert {
   functions = listOf("kotlin.assert", "kotlin.test.assertTrue")
+}
+
+redacted {
+  redactedAnnotation.set("Redacted")
+  enabled.set(false)
 }
 
 apiValidation {
@@ -271,6 +278,7 @@ tasks {
       release.set(javaVersion)
       isIncremental = true
       isFork = true
+      debugOptions.debugLevel = "source,lines,vars"
       // For Gradle worker daemon.
       forkOptions.jvmArgs?.addAll(jvmArguments)
       compilerArgs.addAll(
