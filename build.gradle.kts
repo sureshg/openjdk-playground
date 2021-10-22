@@ -60,7 +60,6 @@ application {
     "-XX:+HeapDumpOnOutOfMemoryError",
     "-XX:HeapDumpPath=$tmp/$name-%p.hprof",
     "-XX:ErrorFile=$tmp/$name-hs-err-%p.log",
-    "-Dfile.encoding=UTF-8",
     "-Djava.awt.headless=true",
     "-Djdk.attach.allowAttachSelf=true",
     "-Djdk.tracePinnedThreads=full",

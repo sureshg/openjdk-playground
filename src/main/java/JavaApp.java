@@ -5,6 +5,7 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.security.KeyStore;
 import java.security.Security;
 import java.time.ZoneId;
@@ -69,7 +70,7 @@ public class JavaApp {
     props.forEach((k, v) -> out.println(k + " : " + v));
 
     var fmt = HexFormat.ofDelimiter(", ").withUpperCase().withPrefix("0x");
-    out.printf("%n✧✧✧✧✧ I ❤️ Java          = %s%n", fmt.formatHex("I ❤️ Java".getBytes()));
+    out.printf("%n✧✧✧✧✧ I ❤️ Java          = %s%n", fmt.formatHex("I ❤️ Java".getBytes(StandardCharsets.UTF_8)));
     out.printf("✧✧✧✧✧ LineSeparator      = %s%n", fmt.formatHex(lineSep.getBytes()));
     out.printf("✧✧✧✧✧ File PathSeparator = %s%n%n", fmt.formatHex(File.pathSeparator.getBytes()));
 
