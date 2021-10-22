@@ -361,6 +361,7 @@ tasks {
     isFailOnError = true
     // modularity.inferModulePath.set(true)
     (options as CoreJavadocOptions).apply {
+      encoding = "UTF-8"
       addBooleanOption("-enable-preview", true)
       addStringOption("-release", javaVersion.toString())
     }
