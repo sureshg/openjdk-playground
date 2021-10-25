@@ -103,8 +103,30 @@ $ docker run -it --rm gcr.io/distroless/java-debian10:base-nonroot openssl s_cli
 $ docker image prune -fa
 
 # Docker build
-$ docker build --file Dockerfile --build-arg JDK_VERSION=17 --tag suresh/jdk:17  --tag suresh/openjdk:17-slim .
+$ docker build --file Dockerfile --build-arg JDK_VERSION=18 --tag suresh/openjdk-playground --tag suresh/openjdk-playground:latest .
 
+# Docker Run
+$ docker run -it --rm \
+      --volume /var/run/docker.sock:/var/run/docker.sock \
+      --volume "$HOME/app.yaml":"$HOME/app.yaml" \
+      --volume  "$(pwd)":"$(pwd)":rw \
+      --workdir "$(pwd)" \
+      --entrypoint="run" \
+      suresh/openjdk-playground:latest
+
+# CMD (windows)
+$ docker run -it --rm ^
+    --volume //var/run/docker.sock:/var/run/docker.sock ^
+    --volume "%cd%"/app:/app:rw ^
+    --entrypoint="run" ^
+    suresh/openjdk-playground:latest
+
+# POWERSHELL
+$ docker run -it --rm ,
+    --volume /var/run/docker.sock:/var/run/docker.sock ,
+    --volume ${pwd}/app:/app:rw ,
+    --entrypoint="run" ,
+    suresh/openjdk-playground:latest
 ```
 
 
