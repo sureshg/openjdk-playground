@@ -59,7 +59,7 @@ object Deps {
     }
 
     object Ksp {
-      const val version = "1.6.0-RC-1.0.0"
+      const val version = "1.6.0-RC-1.0.1-RC"
       const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
       const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
       const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.4.0"
@@ -91,7 +91,7 @@ object Deps {
   }
 
   object Kotlinx {
-    const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.3.0"
+    const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.3.1"
     const val reflectLite = "org.jetbrains.kotlinx:kotlinx.reflect.lite:1.0.0"
     const val atomicfu = "org.jetbrains.kotlinx:atomicfu:0.16.3"
     const val io = "org.jetbrains.kotlinx:kotlinx-io-jvm:0.1.16"
@@ -145,7 +145,7 @@ object Deps {
   }
 
   object Foojay {
-    const val discoclient = "io.foojay.api:discoclient:1.0.1"
+    const val discoclient = "io.foojay.api:discoclient:2.0.4"
   }
 
   object Jetty {
@@ -175,7 +175,12 @@ object Deps {
     const val interceptor = "codes.rafael.interceptablehttpclient:interceptable-http-client:1.0"
   }
 
-  const val okio = "com.squareup.okio:okio:2.2.0"
+  object Okio {
+    const val version = "3.0.0"
+    const val bom = "com.squareup.okio:okio-bom:$version"
+    const val io = "com.squareup.okio:okio"
+    const val fakefilesystem = "com.squareup.okio:okio-fakefilesystem"
+  }
 
   object OkHttp {
     const val version = "5.0.0-alpha.2"
@@ -390,7 +395,7 @@ object Deps {
   object Cli {
     const val clikt = "com.github.ajalt.clikt:clikt:3.3.0"
     const val textIO = "org.beryx:text-io:3.4.1"
-    const val mordant = "com.github.ajalt.mordant:mordant:2.0.0-beta2"
+    const val mordant = "com.github.ajalt.mordant:mordant:2.0.0-beta3"
     const val colormath = "com.github.ajalt.colormath:colormath:2.0.0"
     const val mosaic = "com.jakewharton.mosaic:1.0.0"
     const val picnic = "com.jakewharton.picnic:picnic:0.4.0"
@@ -626,6 +631,7 @@ object Deps {
   const val openpdf = "com.github.librepdf:openpdf:1.2.9"
   const val jimfs = "com.google.jimfs:jimfs:1.1"
 
+  const val elasticmagic = "dev.evo.elasticmagic:elasticmagic:0.0.7"
   const val jgrapht = "org.jgrapht:jgrapht-core:1.5.0"
   const val jsonPathKt = "com.nfeld.jsonpathkt:jsonpathkt:2.0.0"
   const val jsonPath = "com.jayway.jsonpath:json-path:2.4.0"
@@ -689,7 +695,7 @@ inline val PluginDependenciesSpec.taskinfo get() = id("org.barfuin.gradle.taskin
 inline val PluginDependenciesSpec.taskTree get() = id("com.dorongold.task-tree") version "1.5"
 inline val PluginDependenciesSpec.forbiddenApis get() = id("de.thetaphi.forbiddenapis") version "3.1"
 inline val PluginDependenciesSpec.extraJavaModuleInfo get() = id("de.jjohannes.extra-java-module-info") version "0.9"
-inline val PluginDependenciesSpec.licensee get() = id("app.cash.licensee") version "1.2.0" apply false
+inline val PluginDependenciesSpec.licensee get() = id("app.cash.licensee") version "1.3.0" apply false
 
 inline val PluginDependenciesSpec.javafx get() = id("org.openjfx.javafxplugin") version "0.0.7"
 inline val PluginDependenciesSpec.mrjar get() = id("me.champeau.mrjar") version "0.1"
@@ -714,12 +720,12 @@ inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boo
 inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version "1.0.9.RELEASE"
 
 // Static Analysis and Linting
-inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.17.0"
+inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.17.1"
 inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.2.0"
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version "9.3.0"
-inline val PluginDependenciesSpec.detekt get() = id("io.gitlab.arturbosch.detekt") version "1.15.0"
-inline val PluginDependenciesSpec.detektCompilerPlugin get() = id("io.github.detekt.gradle.compiler-plugin") version "0.3.1"
+inline val PluginDependenciesSpec.detektPlugin get() = id("io.gitlab.arturbosch.detekt") version "1.15.0"
+inline val PluginDependenciesSpec.detekt get() = id("io.github.detekt.gradle.compiler-plugin") version "0.3.3"
 inline val PluginDependenciesSpec.qodanaPlugin get() = id("org.jetbrains.qodana") version "0.1.13"
 
 // Artifact Publish

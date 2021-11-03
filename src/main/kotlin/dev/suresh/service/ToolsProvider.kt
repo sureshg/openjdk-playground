@@ -1,6 +1,6 @@
 package dev.suresh.service
 
-import dev.suresh.hidden.*
+import dev.suresh.lang.*
 import java.util.spi.*
 
 fun main() {

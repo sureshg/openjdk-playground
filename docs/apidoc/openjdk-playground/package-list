@@ -63,13 +63,13 @@ $dokka.location:dev.suresh.generics/Manager/Manager/#java.lang.String/PointingTo
 $dokka.location:dev.suresh.generics/Manager/toString/#/PointingToDeclaration/openjdk-playground/dev.suresh.generics/-manager/to-string.html
 $dokka.location:dev.suresh.generics/Test///PointingToDeclaration/openjdk-playground/dev.suresh.generics/-test/index.html
 $dokka.location:dev.suresh.generics/Test/main/#java.lang.String[]/PointingToDeclaration/openjdk-playground/dev.suresh.generics/-test/main.html
-$dokka.location:dev.suresh.hidden////PointingToDeclaration/openjdk-playground/dev.suresh.hidden/index.html
-$dokka.location:dev.suresh.hidden//main/#/PointingToDeclaration/openjdk-playground/dev.suresh.hidden/main.html
-$dokka.location:dev.suresh.hidden//methodName/#/PointingToDeclaration/openjdk-playground/dev.suresh.hidden/method-name.html
-$dokka.location:dev.suresh.hidden//orNull/java.util.Optional[TypeParam(bounds=[kotlin.Any?])]#/PointingToDeclaration/openjdk-playground/dev.suresh.hidden/or-null.html
-$dokka.location:dev.suresh.hidden/Foo.Companion///PointingToDeclaration/openjdk-playground/dev.suresh.hidden/-foo/-companion/index.html
-$dokka.location:dev.suresh.hidden/Foo.Companion/run/#/PointingToDeclaration/openjdk-playground/dev.suresh.hidden/-foo/-companion/run.html
-$dokka.location:dev.suresh.hidden/Foo///PointingToDeclaration/openjdk-playground/dev.suresh.hidden/-foo/index.html
+$dokka.location:dev.suresh.lang////PointingToDeclaration/openjdk-playground/dev.suresh.lang/index.html
+$dokka.location:dev.suresh.lang//main/#/PointingToDeclaration/openjdk-playground/dev.suresh.lang/main.html
+$dokka.location:dev.suresh.lang//methodName/#/PointingToDeclaration/openjdk-playground/dev.suresh.lang/method-name.html
+$dokka.location:dev.suresh.lang//orNull/java.util.Optional[TypeParam(bounds=[kotlin.Any?])]#/PointingToDeclaration/openjdk-playground/dev.suresh.lang/or-null.html
+$dokka.location:dev.suresh.lang/Foo.Companion///PointingToDeclaration/openjdk-playground/dev.suresh.lang/-foo/-companion/index.html
+$dokka.location:dev.suresh.lang/Foo.Companion/run/#/PointingToDeclaration/openjdk-playground/dev.suresh.lang/-foo/-companion/run.html
+$dokka.location:dev.suresh.lang/Foo///PointingToDeclaration/openjdk-playground/dev.suresh.lang/-foo/index.html
 $dokka.location:dev.suresh.json////PointingToDeclaration/openjdk-playground/dev.suresh.json/index.html
 $dokka.location:dev.suresh.json//deprecatedMethod/#/PointingToDeclaration/openjdk-playground/dev.suresh.json/deprecated-method.html
 $dokka.location:dev.suresh.json//main/#/PointingToDeclaration/openjdk-playground/dev.suresh.json/main.html
@@ -213,7 +213,7 @@ dev.suresh.atomic
 dev.suresh.cli
 dev.suresh.collection
 dev.suresh.generics
-dev.suresh.hidden
+dev.suresh.lang
 dev.suresh.json
 dev.suresh.jte
 dev.suresh.loom

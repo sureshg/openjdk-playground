@@ -3,33 +3,42 @@ package dev.suresh.foojay
 import App
 import io.foojay.api.discoclient.*
 import io.foojay.api.discoclient.pkg.*
-import io.foojay.api.discoclient.pkg.Distribution.ORACLE_OPEN_JDK
 
 object Disco {
 
   fun run() {
-    val disco = DiscoClient()
+    val discoClient = DiscoClient()
     println("Getting OpenJDK ${App.JAVA_VERSION} packages...")
 
-    val pkgs = disco.getPkgs(
-      ORACLE_OPEN_JDK,
+    // Get pkgs works only after the `distributions` call.
+    discoClient.distributions
+
+    val packagesFound = discoClient.getPkgs(
+      listOf(DiscoClient.getDistributionFromText("oracle_open_jdk")),
       VersionNumber.fromText(App.JAVA_VERSION),
       Latest.NONE,
-      OperatingSystem.MACOS,
-      LibCType.LIBC,
+      OperatingSystem.LINUX,
+      LibCType.NONE,
       Architecture.X64,
       Bitness.BIT_64,
       ArchiveType.TAR_GZ,
       PackageType.NONE,
       false,
       true,
-      ReleaseStatus.EA,
+      listOf(ReleaseStatus.EA),
       TermOfSupport.NONE,
-      Scope.NONE
+      listOf(Scope.NONE),
+      Match.ANY
     )
 
-    pkgs.forEach {
-      println(disco.getPkgDirectDownloadUri(it.ephemeralId, it.javaVersion))
+    packagesFound.forEach {
+      println(it)
     }
+
+    println("Done")
   }
+}
+
+fun main() {
+  Disco.run()
 }

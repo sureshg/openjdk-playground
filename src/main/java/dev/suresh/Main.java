@@ -6,7 +6,7 @@ import dev.suresh.jte.RenderJte;
 import dev.suresh.loom.jetty.JettyServerKt;
 import dev.suresh.mvn.MavenResolver;
 import dev.suresh.npe.HelpfulNPE;
-import dev.suresh.server.DevServer;
+import dev.suresh.server.MockServer;
 import dev.suresh.tools.JdkToolsKt;
 import java.util.Comparator;
 import java.util.List;
@@ -36,7 +36,6 @@ public class Main {
   }
 
   public static void main(String[] args) throws Exception {
-
     var textBlock =
         """
         This is a textBlock
@@ -50,7 +49,7 @@ public class Main {
     System.out.println(textBlock.translateEscapes());
     System.out.println("Record Test: " + new Person("Hello Kotlin", 8));
 
-    new DevServer().run();
+    new MockServer().run();
     new MavenResolver().run();
     new RenderJte().run();
     Records.run();

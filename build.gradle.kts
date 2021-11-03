@@ -73,8 +73,7 @@ application {
     // "-XX:ConcGCThreads=2",
     // "-XX:ZUncommitDelay=60",
     // "-Xlog:gc\*",
-    // "-Xlog:cds=debug",
-    // "-Xlog:class+load=info",
+    // "-Xlog:class+load=info,cds=debug,cds+dynamic=info",
     // "-XX:+IgnoreUnrecognizedVMOptions",
     // "-XX:NativeMemoryTracking=summary",
     // "-Dfile.encoding=COMPAT", // uses '-Dnative.encoding'

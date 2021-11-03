@@ -38,7 +38,7 @@ jobs:
     # if: github.event_name  == 'pull_request'
 
     permissions:
-      contents: read
+      contents: write
       packages: write
 
     outputs:
@@ -126,14 +126,14 @@ jobs:
       # Deploy the Dokka site for new tag on Linux
       - name: 🚀 Deploy html docs to website
         if: startsWith(github.ref, 'refs/tags/') && runner.os == 'Linux'
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+        uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: main
           FOLDER: build/dokka
           TARGET_FOLDER: docs/apidoc/
           CLEAN: true
-          commit-message: 'doc: Deployed dokka website'
+          COMMIT_MESSAGE: 'doc: Deployed dokka website'
 
   # Github Release Action on tag push
   release:
@@ -151,7 +151,7 @@ jobs:
 
       - name: Build Changelog
         id: github_release
-        uses: mikepenz/release-changelog-builder-action@v2.5.0
+        uses: mikepenz/release-changelog-builder-action@v2.5.1
         with:
           configuration: ".github/config/configuration.json"
           commitMode: true

@@ -60,9 +60,13 @@ $ docker pull bellsoft/liberica-openjdk-alpine:latest (libc)
 $ docker pull amazoncorretto:17
 $ docker pull amazoncorretto:17-alpine
 
-# GraalVM CE
+# GraalVM CE & EE
 # https://github.com/graalvm/container/pkgs/container/graalvm-ce
 $ docker pull ghcr.io/graalvm/graalvm-ce:latest
+$ docker pull container-registry.oracle.com/graalvm/enterprise:latest
+
+# Redhat Univeral Base Images (UBI)
+$ docker pull registry.access.redhat.com/ubi8/openjdk-11:1.10-1.1634738701
 
 # GraalVM CE Dev Builds (No docker images available)
 https://github.com/graalvm/graalvm-ce-dev-builds/releases/
@@ -230,6 +234,7 @@ RUN apt-get update && apt-get upgrade -y && \
 * https://podman.io/blogs/2021/09/06/podman-on-macs.html
 * [Lima - Linux-on-Mac](https://github.com/lima-vm/lima)
 * [Dive - Explore Docker Image Layer](https://github.com/wagoodman/dive)
+* [Trivy - Container Scanning](https://github.com/aquasecurity/trivy)
 * [Kaniko - Build Images In Kubernetes](https://github.com/GoogleContainerTools/kaniko)
 * [Colima - Container runtimes on MacOS ](https://github.com/abiosoft/colima)
 

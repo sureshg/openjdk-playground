@@ -12,13 +12,19 @@ dependencyResolutionManagement {
   // repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
 }
 
-// For plugin EAP versions
 pluginManagement {
   includeBuild("build-logic")
+
+  //  val pluginVersion: String by settings
+  //  plugins {
+  //    id("com.example.hello") version pluginVersion
+  //  }
+
   repositories {
     gradlePluginPortal()
     google()
     maven(url = uri("https://maven.pkg.jetbrains.space/public/p/jb-coverage/maven"))
+    mavenCentral()
     // maven(url = uri("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev"))
     // maven(url = uri("https://packages.jetbrains.team/maven/p/reflekt/reflekt"))
   }
@@ -36,6 +42,7 @@ pluginManagement {
 
 // Composite Builds
 // includeBuild("ksp-app")
+// includeBuild("path-to-repo-clone")
 
 // Add a project
 // include("lib")

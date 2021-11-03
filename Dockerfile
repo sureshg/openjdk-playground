@@ -42,7 +42,7 @@ RUN $JAVA_HOME/bin/jlink \
          --no-man-pages \
          --no-header-files \
          --compress=2 \
-         --output /jre
+         --output /jvm
 
 CMD ["java", "--list-modules"]
 # CMD ["jshell"]

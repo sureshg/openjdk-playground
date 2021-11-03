@@ -11,7 +11,7 @@ import java.time.*
 /**
  * More OKHttp samples can found in this [repo](https://github.com/square/okhttp/tree/master/samples/guide/src/main/java/okhttp3/recipes/kt)
  */
-class DevServer {
+class MockServer {
   /**
    * Generate a self-signed cert for the server to serve and the client to trust.
    */
