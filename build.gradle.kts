@@ -76,6 +76,7 @@ application {
     // "-Xlog:class+load=info,cds=debug,cds+dynamic=info",
     // "-XX:+IgnoreUnrecognizedVMOptions",
     // "-XX:NativeMemoryTracking=summary",
+    // "-Duser.timezone=\"PST8PDT\"",
     // "-Dfile.encoding=COMPAT", // uses '-Dnative.encoding'
     // "-Djava.net.preferIPv4Stack=true",
     // "-Djavax.net.debug=all",

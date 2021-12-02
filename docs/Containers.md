@@ -74,21 +74,26 @@ https://github.com/graalvm/graalvm-ce-dev-builds/releases/
 # Jetbrains Runtime (No docker images available)
 https://github.com/JetBrains/JetBrainsRuntime/releases
 
+# JetBrains Projector (https://lp.jetbrains.com/projector/)
+$
+
+
 # Examples
 $ docker run -it --rm gcr.io/distroless/java-debian10:base-nonroot openssl s_client --connect google.com:443
+
+# Homebrew Zulu
+https://github.com/mdogan/homebrew-zulu
 ```
 
-  - https://hub.docker.com/_/openjdk
+- https://hub.docker.com/_/openjdk
 
-  - https://github.com/docker-library/docs/tree/master/openjdk
+- https://github.com/docker-library/docs/tree/master/openjdk
 
-  - https://github.com/AdoptOpenJDK/openjdk-docker#official-and-unofficial-images
+- https://github.com/AdoptOpenJDK/openjdk-docker#official-and-unofficial-images
 
-  - https://container-registry.oracle.com/java/openjdk
+- https://container-registry.oracle.com/java/openjdk
 
-  - https://www.graalvm.org/docs/getting-started/container-images/
-
-
+- https://www.graalvm.org/docs/getting-started/container-images/
 
 ##### Oracle JDK (NFTC)
 
@@ -97,8 +102,6 @@ $ docker run -it --rm gcr.io/distroless/java-debian10:base-nonroot openssl s_cli
 * [Oracle Java Archive](https://www.oracle.com/java/technologies/java-archive.html)
 
 * [JDK Script Friendly URLs](https://www.oracle.com/java/technologies/jdk-script-friendly-urls/)
-
-
 
 ##### Docker Commands
 
@@ -120,7 +123,7 @@ $ docker run -it --rm \
 
 # CMD (windows)
 $ docker run -it --rm ^
-    --volume //var/run/docker.sock:/var/run/docker.sock ^
+    --volume /var/run/docker.sock:/var/run/docker.sock ^
     --volume "%cd%"/app:/app:rw ^
     --entrypoint="run" ^
     suresh/openjdk-playground:latest
@@ -133,15 +136,11 @@ $ docker run -it --rm ,
     suresh/openjdk-playground:latest
 ```
 
-
-
 ##### Java Container logs
 
 ```bash
 $ docker run -it --rm --memory=256m --cpus=1 -v /:/host --name jdk-18 openjdk:18-jdk-slim java -Xlog:os=trace,os+container=trace -version
 ```
-
-
 
 ##### Access Docker desktop LinuxKit VM on MacOS
 
@@ -150,8 +149,6 @@ $ docker run -it --rm --memory=256m --cpus=1 -v /:/host --name alpine alpine
  /# chroot /host
   # docker version
 ```
-
-
 
 ##### Netscat Webserver
 
@@ -163,7 +160,6 @@ ENTRYPOINT while :; do nc -k -l -p $PORT -e sh -c 'echo -e "HTTP/1.1 200 OK\n\n 
 # docker build -t hello-netcat .
 # docker run -p 8080:8080 -e PORT=8080 -it hello-netcat
 ```
-
 
 Forwards Logs
 
@@ -178,8 +174,6 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 
 # https://docs.docker.com/config/containers/logging/configure/
 ```
-
-
 
 [Shutdown signals and EnytryPoint](https://medium.com/@madflojo/shutdown-signals-with-docker-entry-point-scripts-5e560f4e2d45)
 
@@ -204,10 +198,7 @@ exec my-app
 ENTRYPOINT ["../../myapp-entrypoint.sh"]
 ```
 
-
 - ##### [Docker stats GraalVM app](https://github.com/vasilmkd/docker-stats-monitor/blob/master/Dockerfile)
-
-
 
 **HTTP Proxy**
 
@@ -224,43 +215,65 @@ RUN apt-get update && apt-get upgrade -y && \
     rm -rf /var/lib/apt/lists/*
 ```
 
-
-
 #### Container Tools
 
 ------
 
-* https://rancherdesktop.io/
+* https://github.com/rancher-sandbox/rancher-desktop
+
+* https://github.com/containerd/containerd
+
+* https://github.com/lima-vm/lima (Linux on Mac)
+
+* https://github.com/containerd/nerdctl
+
+* https://github.com/k3s-io/k3s
+
+* https://github.com/rancher/k3d/
+
+* https://github.com/k0sproject/k0s
+
+* https://kind.sigs.k8s.io/
+
+* https://github.com/canonical/multipass (Running Ubuntu VM)
+
 * https://podman.io/blogs/2021/09/06/podman-on-macs.html
-* [Lima - Linux-on-Mac](https://github.com/lima-vm/lima)
-* [Dive - Explore Docker Image Layer](https://github.com/wagoodman/dive)
+
+* https://github.com/wagoodman/dive
+
+* https://github.com/google/cadvisor
+
+* https://github.com/google/go-containerregistry/tree/main/cmd/crane
+
 * [Trivy - Container Scanning](https://github.com/aquasecurity/trivy)
+
+* [CoSign - Container Signing](https://github.com/sigstore/cosign)
+
 * [Kaniko - Build Images In Kubernetes](https://github.com/GoogleContainerTools/kaniko)
+
 * [Colima - Container runtimes on MacOS ](https://github.com/abiosoft/colima)
-
-
 
 #### Jlink
 
 ------
 
 * https://www.morling.dev/blog/smaller-faster-starting-container-images-with-jlink-and-appcds/
-* https://blog.adoptium.net/2021/08/using-jlink-in-dockerfiles/
-* https://docs.microsoft.com/en-us/java/openjdk/java-jlink-runtimes
 
-   * https://github.com/dsyer/sample-docker-microservice/
+* https://blog.adoptium.net/2021/08/using-jlink-in-dockerfiles/
+
+* https://docs.microsoft.com/en-us/java/openjdk/java-jlink-runtimes
+  
+  * https://github.com/dsyer/sample-docker-microservice/
 
 * https://mbien.dev/blog/entry/custom-java-runtimes-with-jlink
 
-
+* https://jpetazzo.github.io/2020/03/01/quest-minimal-docker-images-part-2/
 
 #### Distroless
 
 ------
 
 https://github.com/GoogleContainerTools/distroless/blob/master/base/README.md
-
-
 
 #### Documentation
 

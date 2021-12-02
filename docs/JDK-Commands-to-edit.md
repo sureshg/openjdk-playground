@@ -28,6 +28,7 @@ $JAVA_HOME/bin or $ open JDK\ Mission\ Control.app --args -vm ~/.jenv/versions/1
 
 GraalVM Options (Native Image)
 ------------------------------
+
 // Install native-image $ gu install native-image ruby R python
 
 // Compiler Graphs $ java -Dgraal.Dump=:3 -Dgraal.PrintGraph=Network -jar app.jar
@@ -159,6 +160,7 @@ closeComment: >
 This issue has been automatically closed because there has been no response after requesting
 feedback. Please feel free to re-open this issue if the scenario still exists and provide a comment
 with more information.
+
 ---------
 
 mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app

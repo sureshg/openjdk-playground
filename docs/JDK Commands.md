@@ -51,9 +51,9 @@ $ javap -p -v <classfile>
 
 ##### 5. Parallel GC
 
- ```bash
+```bash
 $ java -XX:+UseParallelGC ...
- ```
+```
 
 ##### 6. Show Java VM/Property Settings
 
@@ -247,8 +247,6 @@ $ time ./app
 println("Hello Kotlin Script")
 ```
 
-
-
 ##### 17. Generics
 
 - [GenericsFAQ](http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html)
@@ -261,8 +259,6 @@ println("Hello Kotlin Script")
 * [Java Profiler Heap Dump Format](http://hg.openjdk.java.net/jdk6/jdk6/jdk/raw-file/tip/src/share/demo/jvmti/hprof/manual.html)
 
 * [HPROF Parser](https://github.com/openjdk/jdk/blob/master/test/lib/jdk/test/lib/hprof/HprofParser.java)
-
-
 
 ### IDEs and Tools
 
@@ -278,23 +274,19 @@ println("Hello Kotlin Script")
 * Caret Cloning - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + Middle click on end line
 * Move line - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + <kbd>Arrow UP/DOWN</kbd>
 
-
-
 ### Networking & Security
 
 ------
 
 ##### 🚨 [Security Developer’s Guide](https://docs.oracle.com/en/java/javase/16/security/index.html)
 
-
-
 ##### 1. [Allow Unsafe Server Cert Change](https://github.com/openjdk/jdk/blob/6a905b6546e288e86322ae978a1f594266aa368a/src/java.base/share/classes/sun/security/ssl/ClientHandshakeContext.java#L35-L76)
 
-   ```bash
+```bash
 # This is Unsafe. Don't use in prod.
 -Djdk.tls.allowUnsafeServerCertChange=true
 -Dsun.security.ssl.allowUnsafeRenegotiation=true
-   ```
+```
 
 ##### 2 . Debugging TLS
 
@@ -303,20 +295,20 @@ println("Hello Kotlin Script")
 * https://docs.oracle.com/en/java/javase/16/security/java-secure-socket-extension-jsse-reference-guide.html
 
 * https://github.com/sureshg/InstallCerts/blob/master/src/main/kotlin/io/github/sureshg/extn/Certs.kt
-
-     ```bash
-     # Turn on all debugging
-     $ java -Djavax.net.debug=all
-
-     # Override HostsFileNameService
-     $ java -Djdk.net.hosts.file=/etc/host/style/file
-
-     # Force IPv4
-     $ java -Djava.net.preferIPv4Stack=true
-
-     # The entropy gathering device can also be specified with the system property
-     $ java -Djava.security.egd=file:/dev/./urandom
-     ```
+  
+  ```bash
+  # Turn on all debugging
+  $ java -Djavax.net.debug=all
+  
+  # Override HostsFileNameService
+  $ java -Djdk.net.hosts.file=/etc/host/style/file
+  
+  # Force IPv4
+  $ java -Djava.net.preferIPv4Stack=true
+  
+  # The entropy gathering device can also be specified with the system property
+  $ java -Djava.security.egd=file:/dev/./urandom
+  ```
 
 ##### 2. Java Networking Properties
 
@@ -324,20 +316,20 @@ println("Hello Kotlin Script")
 
 - https://docs.oracle.com/javase/8/docs/technotes/guides/net/proxies.html
 
-| Config             | Description                                                  |
-| :----------------- | :----------------------------------------------------------- |
-| http.proxyHost     | The host name of the proxy server                            |
-| http.proxyPort     | The port number, the default value being `80`                |
-| http.nonProxyHosts | `|`. The patterns may start or end with a `*` for wildcards. Any host matching one of these patterns will be reached through a direct connection instead of through a proxy |
+| Config             | Description                                   |
+|:------------------ |:--------------------------------------------- |
+| http.proxyHost     | The host name of the proxy server             |
+| http.proxyPort     | The port number, the default value being `80` |
+| http.nonProxyHosts | `                                             |
 
 - **HTTP**
-
+  
   ```bash
   $ java -Dhttp.proxyHost=webcache.example.com -Dhttp.proxyPort=8080 -Dhttp.nonProxyHosts=”localhost|host.example.com” <URL>
   ```
 
 - **Env vars**
-
+  
   ```bash
   export HTTP_PROXY=http://USERNAME:PASSWORD@10.0.1.1:8080/
   export HTTPS_PROXY=https://USERNAME:PASSWORD@10.0.0.1:8080/
@@ -359,8 +351,6 @@ println("Hello Kotlin Script")
 * [Renew GPG Key](https://gist.github.com/krisleech/760213ed287ea9da85521c7c9aac1df0)
 
 ​      `Note that the private key can never expire.`
-
-
 
 ### Gradle Kotlin DSL
 
@@ -390,15 +380,15 @@ $ ./gradlew --console=plain \
 
 ##### 3. Create new Java `SourceSet`
 
-  ```kotlin
+```kotlin
 sourceSets {
-    create("java15") {
-        java {
-            srcDirs("src/main/java15")
-        }
-    }
+  create("java15") {
+      java {
+          srcDirs("src/main/java15")
+      }
+  }
 }
-  ```
+```
 
 - [SourceSet](https://docs.gradle.org/current/userguide/building_java_projects.html#sec:java_source_sets)
 
@@ -476,7 +466,7 @@ sourceSets.main.get().compileClasspath
 ##### 7. [Configure/Create Tasks](https://docs.gradle.org/current/userguide/kotlin_dsl.html#kotdsl:containers)
 
 * ###### Eager
-
+  
   ```kotlin
   val p: Jar = getByName<Jar>("jar")       // Get existing task
   val q: Jar = create<Jar>("jar") {}       // Create new task
@@ -485,13 +475,13 @@ sourceSets.main.get().compileClasspath
   ```
 
 * ###### Lazy ([Confiuration Avoidance API](https://docs.gradle.org/current/userguide/task_configuration_avoidance.html))
-
+  
   ```kotlin
   val t: TaskProvider<Jar> = named<Jar>("jar"){}        // Get existing task
   val u: TaskProvider<Jar> = register<Jar>("jar"){}     // Create new task
   val v: TaskProvider<Jar> by registering(Jar::class){} // Create task using property delegate
   val jar: TaskProvider<Task> by existing // Get task using property delegate
-
+  
   val foo: FooTask by existing            // Take Task type from val (Kotlin 1.4)
   val bar: BarTask by registering {}      // Take Task type from val (Kotlin 1.4)
   ```
@@ -561,7 +551,6 @@ if (JavaVersion.current().isJava11Compatible) {
 ##### 11. Dependencies
 
 ```bash
-
 # Dependencies
 $ ./gradlew -q dependencies --configuration implementation
 $ ./gradlew -q dependencies --configuration runtimeClasspath
@@ -575,8 +564,6 @@ $ ./gradlew clean build --dry-run
 # Dependency updates
 $ ./gradlew clean dependencyUpdates -Drevision=release
 ```
-
-
 
 * [Refresh dependencies](https://stackoverflow.com/a/42058780/416868)
 
@@ -598,8 +585,6 @@ configurations.all {
 
 * **[Gradle Conflict Resolution](https://docs.gradle.org/current/userguide/dependency_resolution.html#sec:conflict-resolution)**
 
-
-
 ##### 12. Update Wrapper and others
 
 ```bash
@@ -615,13 +600,9 @@ $ ./gradlew properties
 $ ./gradlew run --args="<JFR_FILE>"
 ```
 
-
-
 ##### 13. Gradle Versions
 
-   * https://services.gradle.org/versions
-
-
+* https://services.gradle.org/versions
 
 ### [Maven](https://search.maven.org/search?q=org.jetbrains.kotlin)
 
@@ -641,7 +622,6 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
 ##### 3. [Enabling Java preview feature](https://blog.codefx.org/java/enable-preview-language-features/#Enabling-Previews-In-Tools)
 
 ```xml
-
 <build>
   <plugins>
     <plugin>
@@ -676,7 +656,6 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
 ##### 4. [Reproducible Builds](https://maven.apache.org/guides/mini/guide-reproducible-builds.html)
 
 ```xml
-
 <properties>
   <project.build.outputTimestamp>2020-04-02T08:04:00Z</project.build.outputTimestamp>
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -712,8 +691,6 @@ $ ./mvnw clean versions:display-dependency-updates versions:display-plugin-updat
 # Search Artifacts by class
 https://search.maven.org/search?q=fc:kotlin.text.Regex
 ```
-
-
 
 ### Microservices Starters
 
@@ -770,8 +747,6 @@ $ gradle init --type <java-library|java-application|...> --dsl kotlin
 $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
 ```
 
-
-
 ### Misc
 
 ------
@@ -787,20 +762,26 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
 ##### 5. Github Actions
 
 - [Push a commit](https://github.com/actions/checkout#push-a-commit-using-the-built-in-token)
+
 - [Env context Limitation](https://git.io/JGYV4)
+
 - [Github Composite Build Using Bashscript🍓](https://github.com/dart-lang/setup-dart)
+
 - [Github Maven Package](https://help.github.com/en/packages/using-github-packages-with-your-projects-ecosystem)
+
 - [Share Data Between Jobs](https://help.github.com/en/actions/configuring-and-managing-workflows/persisting-workflow-data-using-artifacts)
+
 - [Encrypted Secrets](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets)
+
 - [Docker Action](https://github.com/actions/hello-world-docker-action)
+
 - [GITHUB_TOKEN](https://help.github.com/en/actions/configuring-and-managing-workflows/authenticating-with-the-github_token)
+
 - [Awesome Actions](https://github.com/sdras/awesome-actions)
-
-
 * Docker hub push - https://github.com/marketplace/actions/build-and-push-docker-images
 
 * [Github Registry](https://help.github.com/en/packages/using-github-packages-with-your-projects-ecosystem/configuring-docker-for-use-with-github-packages)
-
+  
   ```bash
   $ VERSION=$(date +%s)
   $ docker build . --file Dockerfile --tag docker.pkg.github.com/sureshg/repo/app:${VERSION}
@@ -808,9 +789,8 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
   $ docker push docker.pkg.github.com/sureshg/repo/app:${VERSION}
   ```
 
-
 * Service container
-
+  
   ```yaml
   services:
      postgres:
@@ -825,8 +805,6 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
    jobs.services.postgres.ports[5432]
   ```
 
-
-
 ### Mac OS
 
 ```bash
@@ -836,13 +814,9 @@ $  sudo xattr -cr /Applications/compose-desktop-sample.app
 $ sudo xattr -r -d com.apple.quarantine path/to/app/folder/
 ```
 
-
-
 ### LDAP Tools
 
 * https://ldap.com/ldap-tools/
-
-
 
 ### [OpenJDK Build](https://openjdk.java.net/groups/build/doc/building.html)
 
@@ -855,8 +829,6 @@ $ bash configure
 $ make images
 $ build/*/images/jdk/bin/java --version
 ```
-
-
 
 ### [Oracle A1 Flex](https://cloud.oracle.com/?region=us-sanjose-1)
 
@@ -881,9 +853,10 @@ export LD_LIBRARY_PATH=/opt/oracle/oracle-armtoolset-8/root/usr/lib64:/usr/local
 export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
 export JAVA_HOME_11_X64=/home/opc/.sdkman/candidates/java/11.0.11.hs-adpt
 
+# Install EPEL 
+$ sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
 ```
-
-
 
 ### Native-Image
 
@@ -901,10 +874,7 @@ $ java -truffle [-options] class [args...]
 $ java -truffle [-options] -jar jarfile [args...]
 ```
 
-
-
 ```xml
-
 <dependency>
   <groupId>org.graalvm.nativeimage</groupId>
   <artifactId>svm</artifactId>
@@ -923,25 +893,20 @@ $ strings -a $(which native-image) | grep -i com.oracle.svm.core.VM
 $ git commit --allow-empty -m "empty commit"
 ```
 
-
 * Github Action: https://github.com/helpermethod/graalvm-native-image-toolchain
 * https://github.com/helpermethod/connor/blob/main/.github/workflows/ci.yml
 * https://github.com/graalvm/graalvm-ce-dev-builds/releases/
 * https://search.maven.org/artifact/org.graalvm.nativeimage/svm/20.0.0/jar
 * Examples:
     *
-    * https://github.com/micronaut-projects/micronaut-starter/tree/master/.github/workflows
+  * https://github.com/micronaut-projects/micronaut-starter/tree/master/.github/workflows
 * https://jamesward.com/2020/05/07/graalvm-native-image-tips-tricks/
-
-
 
 ### [Minecraft Server](https://github.com/itzg/docker-minecraft-server)
 
 ```bash
 $ docker run -d -p 25565:25565 --name mc itzg/minecraft-server:adopt15
 ```
-
-
 
 ### Blogs
 
@@ -954,14 +919,14 @@ $ docker run -d -p 25565:25565 --name mc itzg/minecraft-server:adopt15
 * https://vladmihalcea.com/jdbc-driver-connection-url-strings/
 
 * Tools
-
-    * https://utteranc.es/ - Comments Widgets
-    * https://orchid.run/wiki/learn/tutorials/how-to-document-kotlin
-    * http://casual-effects.com/markdeep/
-    * https://www.mkdocs.org/ (eg: https://github.com/hexagonkt/hexagon/tree/master/hexagon_site)
-    * Github publish example
-      - https://github.com/hexagonkt/hexagon/blob/master/.github/workflows/main.yml
-      *
+  
+  * https://utteranc.es/ - Comments Widgets
+  * https://orchid.run/wiki/learn/tutorials/how-to-document-kotlin
+  * http://casual-effects.com/markdeep/
+  * https://www.mkdocs.org/ (eg: https://github.com/hexagonkt/hexagon/tree/master/hexagon_site)
+  * Github publish example
+    - https://github.com/hexagonkt/hexagon/blob/master/.github/workflows/main.yml
+    * 
 
 ### Awesome Svgs
 
@@ -1008,8 +973,6 @@ $ docker run -d -p 25565:25565 --name mc itzg/minecraft-server:adopt15
 * https://github.com/notlmn/awesome-icons
 * https://github.com/ikatyang/emoji-cheat-sheet
 
-
-
 ##### Tools
 
 - https://jakearchibald.github.io/svgomg/
@@ -1029,8 +992,6 @@ $ Fix the img reference on Overview.md
 $ cd build/dokka
 $ mkdocs build
 ```
-
-
 
 ##### JBang
 

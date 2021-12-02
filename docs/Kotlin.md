@@ -53,9 +53,9 @@ https://github.com/JoseAlcerreca/kotlin-std-fun
   Kubernetes)
 
 * Whats new in java security - https://www.youtube.com/watch?v=dNoxScux2j0
-
+  
   https://www.packtpub.com/application-development/hands-cryptography-java-video
-
+  
   LJC Talk - https://www.youtube.com/watch?v=Ll_NK0SZy6Q&t=2148s (Continuous Deployment of JVM
   applications)
 
@@ -71,6 +71,8 @@ https://www.youtube.com/results?search_query=completablefuture+and+completionsta
 
 https://www.youtube.com/watch?v=I4HICQ-KoV4 (Dependency Management with Gradle)
 
+
+
 ### Courses
 
 * https://www.udacity.com/course/applied-cryptography--cs387
@@ -82,5 +84,5 @@ https://www.youtube.com/watch?v=I4HICQ-KoV4 (Dependency Management with Gradle)
 
 ```bash
 [url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
+    insteadOf = https://github.com/
 ```

@@ -50,7 +50,7 @@ object Deps {
     }
 
     object Coroutines {
-      const val version = "1.5.2"
+      const val version = "1.6.0-RC"
       const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
       const val jdk8 = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$version"
       const val reactor = "org.jetbrains.kotlinx:coroutines-reactor:$version"
@@ -59,7 +59,7 @@ object Deps {
     }
 
     object Ksp {
-      const val version = "1.6.0-RC-1.0.1-RC"
+      const val version = "1.6.0-1.0.1"
       const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
       const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
       const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.4.0"
@@ -91,15 +91,16 @@ object Deps {
   }
 
   object Kotlinx {
+    const val atomicfuVersion = "0.17.0"
     const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.3.1"
     const val reflectLite = "org.jetbrains.kotlinx:kotlinx.reflect.lite:1.0.0"
-    const val atomicfu = "org.jetbrains.kotlinx:atomicfu:0.16.3"
+    const val atomicfu = "org.jetbrains.kotlinx:atomicfu:$atomicfuVersion"
     const val io = "org.jetbrains.kotlinx:kotlinx-io-jvm:0.1.16"
     const val cli = "org.jetbrains.kotlinx:kotlinx-cli:0.3"
     const val collectionsImmutable = "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:0.3.4"
 
     object Serialization {
-      const val version = "1.3.0"
+      const val version = "1.3.1"
       const val core = "org.jetbrains.kotlinx:kotlinx-serialization-core:$version"
       const val json = "org.jetbrains.kotlinx:kotlinx-serialization-json:$version"
       const val cbor = "org.jetbrains.kotlinx:kotlinx-serialization-cbor:$version"
@@ -130,7 +131,7 @@ object Deps {
   }
 
   object Dokka {
-    const val version = "1.5.31"
+    const val version = "1.6.0"
     const val gradlePlugin = "org.jetbrains.dokka:dokka-gradle-plugin:$version"
     const val javadocPlugin = "org.jetbrains.dokka:javadoc-plugin:$version"
     const val kotlinAsJavaPlugin = "org.jetbrains.dokka:kotlin-as-java-plugin:$version"
@@ -145,7 +146,7 @@ object Deps {
   }
 
   object Foojay {
-    const val discoclient = "io.foojay.api:discoclient:2.0.4"
+    const val discoclient = "io.foojay.api:discoclient:2.0.11"
   }
 
   object Jetty {
@@ -183,7 +184,7 @@ object Deps {
   }
 
   object OkHttp {
-    const val version = "5.0.0-alpha.2"
+    const val version = "5.0.0-alpha.3"
     const val bom = "com.squareup.okhttp3:okhttp-bom:$version"
     const val okhttp = "com.squareup.okhttp3:okhttp:$version"
     const val mockWebServer = "com.squareup.okhttp3:mockwebserver:$version"
@@ -220,7 +221,7 @@ object Deps {
 
   object Google {
     object AutoService {
-      const val version = "1.0"
+      const val version = "1.0.1"
       const val annotations = "com.google.auto.service:auto-service-annotations:$version"
       const val processor = "com.google.auto.service:auto-service:$version"
     }
@@ -258,17 +259,17 @@ object Deps {
   }
 
   object Junit {
-    const val version = "5.8.1"
+    const val version = "5.8.2"
     const val bom = "org.junit:junit-bom:$version"
     const val jupiter = "org.junit.jupiter:junit-jupiter"
     const val jupiterApi = "org.junit.jupiter:junit-jupiter-api"
     const val jupiterEngine = "org.junit.jupiter:junit-jupiter-engine"
     const val jupiterParams = "org.junit.jupiter:junit-jupiter-params"
-    const val pioneer = "org.junit-pioneer:junit-pioneer:1.4.2"
+    const val pioneer = "org.junit-pioneer:junit-pioneer:1.5.0"
   }
 
   object KoTest {
-    const val version = "5.0.0.M3"
+    const val version = "5.0.1"
     const val junit5Runner = "io.kotest:kotest-runner-junit5:$version"
     const val assertions = "io.kotest:kotest-assertions-core:$version"
     const val property = "io.kotest:kotest-property:$version"
@@ -278,7 +279,7 @@ object Deps {
   }
 
   object Mock {
-    const val mockk = "io.mockk:mockk:1.12.0"
+    const val mockk = "io.mockk:mockk:1.12.1"
     const val mockito = "org.mockito:mockito-core:2.26.0"
     const val mockserver = "org.mock-server:mockserver-netty:5.10.0"
     const val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
@@ -293,7 +294,7 @@ object Deps {
     const val stringTemplate = "org.antlr:ST4:4.3.1"
 
     object Jte {
-      const val version = "1.12.0"
+      const val version = "1.12.1"
       const val jte = "gg.jte:jte:$version"
       const val kotlin = "gg.jte:jte-kotlin:$version"
     }
@@ -446,10 +447,12 @@ object Deps {
   }
 
   object Security {
-    const val password4j = "com.password4j:password4j:1.5.3"
+    const val password4j = "com.password4j:password4j:1.5.4"
     const val otp = "com.github.bastiaanjansen:otp-java:1.2.2"
+    const val totp = "dev.samstevens.totp:totp:1.7.1"
     const val jwtJava = "com.github.bastiaanjansen:jwt-java:1.0"
     const val twoFactorAuth = "com.j256.two-factor-auth:two-factor-auth:1.3"
+    const val zxingCore = "com.google.zxing:core:3.4.1"
     const val sshj = "com.hierynomus:sshj:0.26.0"
     const val smbj = "com.hierynomus:smbj:0.9.1"
     const val jarSign = "org.simplify4u.plugins:sign-maven-plugin:0.3.0"
@@ -471,7 +474,7 @@ object Deps {
   object Retry {
     const val failsafe = "net.jodah:failsafe:2.4.0"
     const val kotlinRetry = "com.michael-bull.kotlin-retry:kotlin-retry:1.0.9"
-    const val bucket4j = "com.github.vladimir-bukhtoyarov:bucket4j-core:6.0.1"
+    const val bucket4j = "com.github.vladimir-bukhtoyarov:bucket4j-core:6.4.1"
     const val resilience4jRetry = "io.github.resilience4j:resilience4j-retry:1.6.1"
   }
 
@@ -676,8 +679,8 @@ inline val PluginDependenciesSpec.kotlinScript get() = kotlin("plugin.scripting"
 inline val PluginDependenciesSpec.dokka get() = id("org.jetbrains.dokka") version Deps.Dokka.version
 
 inline val PluginDependenciesSpec.exposed get() = id("com.jetbrains.exposed.gradle.plugin") version "0.1.1-SNAPSHOT"
-inline val PluginDependenciesSpec.kotlinxAtomicfu get() = id("kotlinx-atomicfu") version "0.16.3"
-inline val PluginDependenciesSpec.binCompatValidator get() = id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.8.0-RC"
+inline val PluginDependenciesSpec.kotlinxAtomicfu get() = id("kotlinx-atomicfu") version Deps.Kotlinx.atomicfuVersion
+inline val PluginDependenciesSpec.binCompatValidator get() = id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.8.0"
 inline val PluginDependenciesSpec.reflektPlugin get() = id("io.reflekt") version Deps.Kotlin.Reflekt.version
 
 // Google Plugins
@@ -690,18 +693,18 @@ inline val PluginDependenciesSpec.consistentVersions get() = id("com.palantir.co
 
 // Dependencies
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "7.1.0"
-inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.8.1" apply true
+inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.8.2" apply true
 inline val PluginDependenciesSpec.taskinfo get() = id("org.barfuin.gradle.taskinfo") version "1.3.1" apply false
 inline val PluginDependenciesSpec.taskTree get() = id("com.dorongold.task-tree") version "1.5"
 inline val PluginDependenciesSpec.forbiddenApis get() = id("de.thetaphi.forbiddenapis") version "3.1"
 inline val PluginDependenciesSpec.extraJavaModuleInfo get() = id("de.jjohannes.extra-java-module-info") version "0.9"
-inline val PluginDependenciesSpec.licensee get() = id("app.cash.licensee") version "1.3.0" apply false
+inline val PluginDependenciesSpec.licensee get() = id("app.cash.licensee") version "1.3.1" apply false
 
 inline val PluginDependenciesSpec.javafx get() = id("org.openjfx.javafxplugin") version "0.0.7"
 inline val PluginDependenciesSpec.mrjar get() = id("me.champeau.mrjar") version "0.1"
 
 // inline val PluginDependenciesSpec.mrjar get() = id("com.lingocoder.mrjar") version "0.0.16"
-inline val PluginDependenciesSpec.protobuf get() = id("com.google.protobuf") version "0.8.17"
+inline val PluginDependenciesSpec.protobuf get() = id("com.google.protobuf") version "0.8.18"
 inline val PluginDependenciesSpec.changelog get() = id("org.jetbrains.changelog") version "0.4.0"
 
 inline val PluginDependenciesSpec.kotless get() = id("io.kotless") version "0.1.6"
@@ -720,8 +723,8 @@ inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boo
 inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version "1.0.9.RELEASE"
 
 // Static Analysis and Linting
-inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "5.17.1"
-inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.2.0"
+inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "6.0.1"
+inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.3.2"
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version "9.3.0"
 inline val PluginDependenciesSpec.detektPlugin get() = id("io.gitlab.arturbosch.detekt") version "1.15.0"
@@ -738,7 +741,7 @@ inline val PluginDependenciesSpec.checksum get() = id("org.gradle.crypto.checksu
 inline val PluginDependenciesSpec.mavenPublish get() = id("com.vanniktech.maven.publish") version "0.13.0"
 
 // Build config
-inline val PluginDependenciesSpec.gitProperties get() = id("com.gorylenko.gradle-git-properties") version "2.3.1"
+inline val PluginDependenciesSpec.gitProperties get() = id("com.gorylenko.gradle-git-properties") version "2.4.0-rc1"
 inline val PluginDependenciesSpec.buildconfig get() = id("com.github.gmazzo.buildconfig") version "3.0.2" apply false
 inline val PluginDependenciesSpec.buildkonfig get() = id("com.codingfeline.buildkonfig") version "0.11.0" apply false
 
@@ -760,8 +763,8 @@ inline val PluginDependenciesSpec.javapackager get() = id("io.github.fvarrui.jav
 inline val PluginDependenciesSpec.jpackageplugin get() = id("org.panteleyev.jpackageplugin") version "0.0.2"
 
 // Kotlin compiler plugins
-inline val PluginDependenciesSpec.redacted get() = id("dev.zacsweers.redacted") version "0.8.3"
-inline val PluginDependenciesSpec.kotlinPowerAssert get() = id("com.bnorm.power.kotlin-power-assert") version "0.10.0"
+inline val PluginDependenciesSpec.redacted get() = id("dev.zacsweers.redacted") version "0.10.0-RC1"
+inline val PluginDependenciesSpec.kotlinPowerAssert get() = id("com.bnorm.power.kotlin-power-assert") version "0.11.0"
 
 // Parsers
 inline val PluginDependenciesSpec.jflex get() = id("org.xbib.gradle.plugin.jflex") version "1.5.0"

@@ -19,7 +19,7 @@ fun main() {
   System.setOut(PrintStream(baos))
 
   try {
-    Thread.startVirtualThread {
+    Thread.ofVirtual().start {
       synchronized(lock) {
         val nanos: Long = Duration.ofSeconds(1).toNanos()
         LockSupport.parkNanos(nanos)

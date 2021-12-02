@@ -6,7 +6,7 @@ import java.util.concurrent.*
 
 class LoomThreadPool : AbstractLifeCycle(), ThreadPool {
 
-  private val execSvc = Executors.newVirtualThreadExecutor()
+  private val execSvc = Executors.newVirtualThreadPerTaskExecutor()
 
   override fun execute(cmd: Runnable) {
     execSvc.submit(cmd)

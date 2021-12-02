@@ -13,7 +13,7 @@ import kotlin.system.*
 
 object LoomServer {
 
-  private val execSvc = Executors.newVirtualThreadExecutor()
+  private val execSvc = Executors.newVirtualThreadPerTaskExecutor()
 
   @JvmStatic
   fun run() {
