@@ -6,11 +6,7 @@
 
 * [Java Flight Recorder Events](https://bestsolution-at.github.io/jfr-doc/index.html)
 
-
-
 #### 2. Java Mission Control
-
-
 
 ```bash
 # https://adoptopenjdk.net/jmc.html
@@ -30,8 +26,6 @@ $ ./jmc -vm %JAVA_HOME%\bin
 $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 ```
 
-
-
 #### 3. Visualization
 
 * [Jfr2Flame Converter](https://github.com/jvm-profiling-tools/async-profiler/releases/latest/download/converter.jar)
@@ -40,8 +34,6 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 
 * [D3 Flame Graph ](https://github.com/spiermar/d3-flame-graph)
 
-
-
 #### 4. Profilers & Tools
 
 * [Async Profiler](https://github.com/jvm-profiling-tools/async-profiler)
@@ -49,8 +41,6 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 * [VisualVM](https://visualvm.github.io/)
 
 * [FlameGraph](http://www.brendangregg.com/flamegraphs.html)
-
-
 
 #### 5. Resources
 

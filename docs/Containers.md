@@ -44,10 +44,13 @@ $ docker pull container-registry.oracle.com/java/jdk:latest
 # https://docs.microsoft.com/en-us/java/openjdk/containers
 $ docker pull mcr.microsoft.com/openjdk/jdk:17-ubuntu
 
-# Zulu
+# Azul Zulu
 # https://github.com/zulu-openjdk/zulu-openjdk
 $ docker pull azul/zulu-openjdk-debian:17-jre
 $ docker pull azul/zulu-openjdk-alpine:17-jre
+
+# Azul Prime()
+$ docker pull azul/prime:latest
 
 # Liberica
 # https://github.com/bell-sw/Liberica/tree/master/docker/repos/liberica-openjre-debian

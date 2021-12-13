@@ -76,6 +76,7 @@ application {
     // "-Xlog:class+load=info,cds=debug,cds+dynamic=info",
     // "-XX:+IgnoreUnrecognizedVMOptions",
     // "-XX:NativeMemoryTracking=summary",
+    // "-XX:+DisableAttachMechanism",
     // "-Duser.timezone=\"PST8PDT\"",
     // "-Dfile.encoding=COMPAT", // uses '-Dnative.encoding'
     // "-Djava.net.preferIPv4Stack=true",
@@ -529,6 +530,16 @@ dependencies {
   // implementation(platform("org.apache.maven.resolver:maven-resolver:1.4.1"))
   // implementation("org.apache.maven:maven-resolver-provider:3.8.1")
   // implementation(fileTree("lib") { include("*.jar") })
+
+  constraints {
+    implementation("org.apache.logging.log4j:log4j-core") {
+      version {
+        prefer("[2.15,3[")
+        strictly(Deps.Logging.Log4j2.version)
+      }
+      because("CVE-2021-44228 - Log4shell")
+    }
+  }
 
   testImplementation(Deps.Kotlin.Coroutines.jdk8)
   testImplementation(platform(Deps.Junit.bom))

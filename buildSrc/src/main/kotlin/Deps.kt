@@ -50,7 +50,7 @@ object Deps {
     }
 
     object Coroutines {
-      const val version = "1.6.0-RC"
+      const val version = "1.6.0-RC2"
       const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
       const val jdk8 = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$version"
       const val reactor = "org.jetbrains.kotlinx:coroutines-reactor:$version"
@@ -59,7 +59,7 @@ object Deps {
     }
 
     object Ksp {
-      const val version = "1.6.0-1.0.1"
+      const val version = "1.6.10-RC-1.0.1"
       const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
       const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
       const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.4.0"
@@ -146,7 +146,7 @@ object Deps {
   }
 
   object Foojay {
-    const val discoclient = "io.foojay.api:discoclient:2.0.11"
+    const val discoclient = "io.foojay.api:discoclient:2.0.14"
   }
 
   object Jetty {
@@ -269,7 +269,7 @@ object Deps {
   }
 
   object KoTest {
-    const val version = "5.0.1"
+    const val version = "5.0.2"
     const val junit5Runner = "io.kotest:kotest-runner-junit5:$version"
     const val assertions = "io.kotest:kotest-assertions-core:$version"
     const val property = "io.kotest:kotest-property:$version"
@@ -379,6 +379,11 @@ object Deps {
       const val classic = "ch.qos.logback:logback-classic:1.2.3"
     }
 
+    object Log4j2 {
+      const val version = "2.16.0"
+      const val core = "org.apache.logging.log4j:log4j-core:$version"
+    }
+
     object Zerolog {
       const val core = "com.obsidiandynamics.zerolog:zerolog-core:0.30.0"
     }
@@ -396,7 +401,7 @@ object Deps {
   object Cli {
     const val clikt = "com.github.ajalt.clikt:clikt:3.3.0"
     const val textIO = "org.beryx:text-io:3.4.1"
-    const val mordant = "com.github.ajalt.mordant:mordant:2.0.0-beta3"
+    const val mordant = "com.github.ajalt.mordant:mordant:2.0.0-beta4"
     const val colormath = "com.github.ajalt.colormath:colormath:2.0.0"
     const val mosaic = "com.jakewharton.mosaic:1.0.0"
     const val picnic = "com.jakewharton.picnic:picnic:0.4.0"
@@ -611,7 +616,9 @@ object Deps {
     const val playwright = "com.microsoft.playwright:playwright:1.10.0"
   }
 
+  const val jspecify = "org.jspecify:jspecify:0.2.0"
   const val jsr305 = "com.google.code.findbugs:jsr305:3.0.2"
+
   const val threetenExtra = "org.threeten:threeten-extra:1.7.0"
   const val micronautBom = "io.micronaut:micronaut-bom:2.0.0"
   const val mapstruct = "org.mapstruct:mapstruct:1.4.2.Final"
@@ -693,7 +700,7 @@ inline val PluginDependenciesSpec.consistentVersions get() = id("com.palantir.co
 
 // Dependencies
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "7.1.0"
-inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.8.2" apply true
+inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.8.3" apply true
 inline val PluginDependenciesSpec.taskinfo get() = id("org.barfuin.gradle.taskinfo") version "1.3.1" apply false
 inline val PluginDependenciesSpec.taskTree get() = id("com.dorongold.task-tree") version "1.5"
 inline val PluginDependenciesSpec.forbiddenApis get() = id("de.thetaphi.forbiddenapis") version "3.1"
@@ -723,7 +730,7 @@ inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boo
 inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version "1.0.9.RELEASE"
 
 // Static Analysis and Linting
-inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "6.0.1"
+inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "6.0.4"
 inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.3.2"
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version "9.3.0"
@@ -741,7 +748,7 @@ inline val PluginDependenciesSpec.checksum get() = id("org.gradle.crypto.checksu
 inline val PluginDependenciesSpec.mavenPublish get() = id("com.vanniktech.maven.publish") version "0.13.0"
 
 // Build config
-inline val PluginDependenciesSpec.gitProperties get() = id("com.gorylenko.gradle-git-properties") version "2.4.0-rc1"
+inline val PluginDependenciesSpec.gitProperties get() = id("com.gorylenko.gradle-git-properties") version "2.4.0-rc2"
 inline val PluginDependenciesSpec.buildconfig get() = id("com.github.gmazzo.buildconfig") version "3.0.2" apply false
 inline val PluginDependenciesSpec.buildkonfig get() = id("com.codingfeline.buildkonfig") version "0.11.0" apply false
 
