@@ -59,7 +59,7 @@ object Deps {
     }
 
     object Ksp {
-      const val version = "1.6.10-RC-1.0.1"
+      const val version = "1.6.10-1.0.2"
       const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
       const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
       const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.4.0"
@@ -376,7 +376,7 @@ object Deps {
     }
 
     object Logback {
-      const val classic = "ch.qos.logback:logback-classic:1.2.3"
+      const val classic = "ch.qos.logback:logback-classic:1.2.8"
     }
 
     object Log4j2 {
