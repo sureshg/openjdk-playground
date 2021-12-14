@@ -2,7 +2,7 @@
 # https://github.com/GoogleContainerTools/distroless/blob/main/examples/java/Dockerfile
 
 # docker build --file Dockerfile --build-arg JDK_VERSION=18 --tag suresh/openjdk-playground --tag suresh/openjdk-playground:latest .
-FROM openjdk:18-slim AS builder
+FROM openjdk:19-slim AS builder
 # FROM debian:stable-slim
 MAINTAINER Suresh
 
