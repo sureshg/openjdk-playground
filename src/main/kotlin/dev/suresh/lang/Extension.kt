@@ -1,5 +1,6 @@
 package dev.suresh.lang
 
+import java.net.*
 import java.util.*
 
 /**
@@ -18,7 +19,13 @@ inline val methodName get() = StackWalker.getInstance().walk { it.findFirst().or
 fun <T : Class<*>> T.toBytes(): ByteArray? {
   val classAsPath = "${name.replace('.', '/')}.class"
   return classLoader.getResourceAsStream(classAsPath)?.readBytes()
-  // Or using SimpleName
-  // val url = getResource("${this.simpleName}.class")
-  // return url?.readBytes()
 }
+
+/**
+ * Returns the actual class [URL]
+ *
+ * ```
+ * val url = LogManager::class.java.resourcePath
+ * ```
+ */
+val <T : Class<*>> T.resourcePath: URL? get() = getResource("${simpleName}.class")

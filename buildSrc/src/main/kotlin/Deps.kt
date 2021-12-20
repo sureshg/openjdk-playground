@@ -50,7 +50,7 @@ object Deps {
     }
 
     object Coroutines {
-      const val version = "1.6.0-RC2"
+      const val version = "1.6.0-RC3"
       const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
       const val jdk8 = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$version"
       const val reactor = "org.jetbrains.kotlinx:coroutines-reactor:$version"
@@ -146,7 +146,7 @@ object Deps {
   }
 
   object Foojay {
-    const val discoclient = "io.foojay.api:discoclient:2.0.14"
+    const val discoclient = "io.foojay.api:discoclient:2.0.15"
   }
 
   object Jetty {
@@ -269,7 +269,7 @@ object Deps {
   }
 
   object KoTest {
-    const val version = "5.0.2"
+    const val version = "5.0.3"
     const val junit5Runner = "io.kotest:kotest-runner-junit5:$version"
     const val assertions = "io.kotest:kotest-assertions-core:$version"
     const val property = "io.kotest:kotest-property:$version"
@@ -381,6 +381,7 @@ object Deps {
 
     object Log4j2 {
       const val version = "2.16.0"
+      const val bom = "org.apache.logging.log4j:log4j-bom:$version"
       const val core = "org.apache.logging.log4j:log4j-core:$version"
     }
 
@@ -390,7 +391,7 @@ object Deps {
   }
 
   object Jackson {
-    const val version = "2.13.0"
+    const val version = "2.13.1"
     const val databind = "com.fasterxml.jackson.core:jackson-databind:$version"
   }
 
@@ -453,9 +454,9 @@ object Deps {
 
   object Security {
     const val password4j = "com.password4j:password4j:1.5.4"
-    const val otp = "com.github.bastiaanjansen:otp-java:1.2.2"
+    const val otp = "com.github.bastiaanjansen:otp-java:1.2.3"
     const val totp = "dev.samstevens.totp:totp:1.7.1"
-    const val jwtJava = "com.github.bastiaanjansen:jwt-java:1.0"
+    const val jwtJava = "com.github.bastiaanjansen:jwt-java:1.1.0"
     const val twoFactorAuth = "com.j256.two-factor-auth:two-factor-auth:1.3"
     const val zxingCore = "com.google.zxing:core:3.4.1"
     const val sshj = "com.hierynomus:sshj:0.26.0"
@@ -685,7 +686,7 @@ inline val PluginDependenciesSpec.kotlinJpa get() = kotlin("plugin.jpa") version
 inline val PluginDependenciesSpec.kotlinScript get() = kotlin("plugin.scripting") version kotlinVersion
 inline val PluginDependenciesSpec.dokka get() = id("org.jetbrains.dokka") version Deps.Dokka.version
 
-inline val PluginDependenciesSpec.exposed get() = id("com.jetbrains.exposed.gradle.plugin") version "0.1.1-SNAPSHOT"
+inline val PluginDependenciesSpec.exposed get() = id("com.jetbrains.exposed.gradle.plugin") version "0.2.1"
 inline val PluginDependenciesSpec.kotlinxAtomicfu get() = id("kotlinx-atomicfu") version Deps.Kotlinx.atomicfuVersion
 inline val PluginDependenciesSpec.binCompatValidator get() = id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.8.0"
 inline val PluginDependenciesSpec.reflektPlugin get() = id("io.reflekt") version Deps.Kotlin.Reflekt.version
@@ -699,12 +700,12 @@ inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-ma
 inline val PluginDependenciesSpec.consistentVersions get() = id("com.palantir.consistent-versions") version "1.28.0"
 
 // Dependencies
-inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "7.1.0"
+inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "7.1.1"
 inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.8.3" apply true
 inline val PluginDependenciesSpec.taskinfo get() = id("org.barfuin.gradle.taskinfo") version "1.3.1" apply false
 inline val PluginDependenciesSpec.taskTree get() = id("com.dorongold.task-tree") version "1.5"
 inline val PluginDependenciesSpec.forbiddenApis get() = id("de.thetaphi.forbiddenapis") version "3.1"
-inline val PluginDependenciesSpec.extraJavaModuleInfo get() = id("de.jjohannes.extra-java-module-info") version "0.9"
+inline val PluginDependenciesSpec.extraJavaModuleInfo get() = id("de.jjohannes.extra-java-module-info") version "0.10"
 inline val PluginDependenciesSpec.licensee get() = id("app.cash.licensee") version "1.3.1" apply false
 
 inline val PluginDependenciesSpec.javafx get() = id("org.openjfx.javafxplugin") version "0.0.7"
@@ -730,7 +731,7 @@ inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boo
 inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version "1.0.9.RELEASE"
 
 // Static Analysis and Linting
-inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "6.0.4"
+inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "6.0.5"
 inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.3.2"
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version "9.3.0"

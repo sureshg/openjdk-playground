@@ -1,12 +1,8 @@
-
-
 # Security & Certificates
 
 ------
 
 [TOC]
-
-
 
 ### OpenSSL & Keytool
 
@@ -48,13 +44,9 @@ $ openssl x509 -noout -modulus -in cert.pem | openssl md5
 $ openssl rsa  -noout -modulus -in cert.key | openssl md5
 ```
 
-
-
 ### Add Certs to IntelliJ Truststore
 
 ------
-
-
 
 ```bash
 $ cacerts="$HOME/Library/Application Support/JetBrains/GoLand2020.2/ssl/cacerts"

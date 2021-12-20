@@ -555,8 +555,8 @@ if (JavaVersion.current().isJava11Compatible) {
 $ ./gradlew -q dependencies --configuration implementation
 $ ./gradlew -q dependencies --configuration runtimeClasspath
 
+$ ./gradlew -q dependencyInsight --dependency log4j-core
 $ ./gradlew -q dependencyInsight --dependency kotlin --configuration runtimeClasspath
-
 
 # Task Dependencies
 $ ./gradlew clean build --dry-run
@@ -565,11 +565,18 @@ $ ./gradlew clean build --dry-run
 $ ./gradlew clean dependencyUpdates -Drevision=release
 ```
 
-* [Refresh dependencies](https://stackoverflow.com/a/42058780/416868)
+* [Refresh dependencies & Caching](https://stackoverflow.com/a/42058780/416868)
 
 ```bash
-# Gradle command
+# Force Gradle to execute all tasks ignoring up-to-date checks
+$ ./gradlew clean build --rerun-tasks
+
+# Don't reuse outputs from previous builds (org.gradle.caching=false)
+$ ./gradlew clean build --no-build-cache
+
+# To refresh all dependencies in the dependency cache
 $ ./gradlew clean build --refresh-dependencies
+
 $ rm -rf ~/.gradle/caches
 
 # Build Config
@@ -853,7 +860,7 @@ export LD_LIBRARY_PATH=/opt/oracle/oracle-armtoolset-8/root/usr/lib64:/usr/local
 export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
 export JAVA_HOME_11_X64=/home/opc/.sdkman/candidates/java/11.0.11.hs-adpt
 
-# Install EPEL 
+# Install EPEL
 $ sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 ```
 

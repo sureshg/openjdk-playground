@@ -9,9 +9,11 @@
 #### 2. Java Mission Control
 
 ```bash
-# https://adoptopenjdk.net/jmc.html
 # http://jdk.java.net/jmc/
-#
+# https://adoptopenjdk.net/jmc.html
+# https://github.com/corretto/corretto-jmc/releases
+# https://www.oracle.com/java/technologies/jdk-mission-control.html
+# https://www.azul.com/products/components/zulu-mission-control/
 
 # JDK should be in - /Library/Java/JavaVirtualMachines/jdk-14.0.2.jdk/Contents/Home/
 $ curl https://ci.adoptopenjdk.net/view/JMC/job/jmc-build/job/master/lastSuccessfulBuild/artifact/target/products/org.openjdk.jmc-8.0.0-SNAPSHOT-macosx.cocoa.x86_64.tar.gz | tar xv -
