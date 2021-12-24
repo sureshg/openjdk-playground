@@ -113,7 +113,7 @@ https://github.com/mdogan/homebrew-zulu
 $ docker image prune -fa
 
 # Docker build
-$ docker build --file Dockerfile --build-arg JDK_VERSION=18 --tag suresh/openjdk-playground --tag suresh/openjdk-playground:latest .
+$ docker build --file Dockerfile --build-arg JDK_VERSION=19 --tag suresh/openjdk-playground --tag suresh/openjdk-playground:latest .
 
 # Docker Run
 $ docker run -it --rm \

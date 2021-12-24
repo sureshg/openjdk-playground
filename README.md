@@ -15,7 +15,7 @@
 
 ```bash
 $ curl -s "https://get.sdkman.io" | bash
-$ sdk i java 18.ea.2.lm-open
+$ sdk i java 19.ea.1.lm-open
 ```
 
 #### Build
@@ -153,7 +153,7 @@ $ ./gradlew -q javaToolchains
 
 [java_url]: https://jdk.java.net/
 
-[java_img]: https://img.shields.io/badge/OpenJDK-18--loom-ea791d?logo=java&style=for-the-badge&logoColor=ea791d
+[java_img]: https://img.shields.io/badge/OpenJDK-19--loom-ea791d?logo=java&style=for-the-badge&logoColor=ea791d
 
 [kt_url]: https://github.com/JetBrains/kotlin/releases/latest
 
