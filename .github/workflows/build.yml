@@ -124,6 +124,7 @@ jobs:
           if-no-files-found: error
 
       # Deploy the Dokka site for new tag on Linux
+      # Can also use "peaceiris/actions-gh-pages@v3.8.0
       - name: 🚀 Deploy html docs to website
         if: startsWith(github.ref, 'refs/tags/') && runner.os == 'Linux'
         uses: JamesIves/github-pages-deploy-action@4.1.8
