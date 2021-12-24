@@ -184,7 +184,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        jdk: [ "openjdk:19-slim", "openjdk:18-alpine", "eclipse-temurin:17-alpine" ]
+        jdk: [ "openjdk:19-slim", "openjdk:18-alpine", "eclipse-temurin:17-jre-alpine" ]
 
     defaults:
       run:
