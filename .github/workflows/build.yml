@@ -128,12 +128,11 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/') && runner.os == 'Linux'
         uses: JamesIves/github-pages-deploy-action@4.1.8
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: main
-          FOLDER: build/dokka
-          TARGET_FOLDER: docs/apidoc/
-          CLEAN: true
-          COMMIT_MESSAGE: 'doc: Deployed dokka website'
+          branch: main
+          folder: build/dokka
+          target-folder: docs/apidoc/
+          clean: true
+          commit-message: 'doc: Deployed dokka website'
 
   # Github Release Action on tag push
   release:
