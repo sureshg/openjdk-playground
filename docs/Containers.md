@@ -32,7 +32,7 @@ $ docker pull openjdk:18-jdk-oracle
 # https://github.com/adoptium/containers#supported-images
 $ docker pull eclipse-temurin:17-focal
 $ docker pull eclipse-temurin:17-alpine
-$ 
+$ docker pull eclipse-temurin:17-jre-alpine
 
 # Oracle OpenJDK
 $ docker pull container-registry.oracle.com/java/openjdk:latest
@@ -266,7 +266,7 @@ RUN apt-get update && apt-get upgrade -y && \
 * https://blog.adoptium.net/2021/08/using-jlink-in-dockerfiles/
 
 * https://docs.microsoft.com/en-us/java/openjdk/java-jlink-runtimes
-  
+
   * https://github.com/dsyer/sample-docker-microservice/
 
 * https://mbien.dev/blog/entry/custom-java-runtimes-with-jlink
