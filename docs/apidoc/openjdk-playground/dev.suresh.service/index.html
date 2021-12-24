@@ -2,26 +2,30 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>dev.suresh.service</title>
-<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../";</script><script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async="async"></script><link href="../../styles/style.css" rel="Stylesheet"><link href="../../styles/logo-styles.css" rel="Stylesheet"><link href="../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../styles/main.css" rel="Stylesheet"><script type="text/javascript" src="../../scripts/clipboard.js" async="async"></script><script type="text/javascript" src="../../scripts/navigation-loader.js" async="async"></script><script type="text/javascript" src="../../scripts/platform-content-handler.js" async="async"></script><script type="text/javascript" src="../../scripts/main.js" async="async"></script>  </head>
+<link href="../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+const savedDarkMode = storage ? JSON.parse(storage) : false
+if(savedDarkMode === true){
+    document.getElementsByTagName("html")[0].classList.add("theme-dark")
+}</script>
+<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async="async"></script><link href="../../styles/style.css" rel="Stylesheet"><link href="../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../styles/main.css" rel="Stylesheet"><link href="../../styles/prism.css" rel="Stylesheet"><link href="../../styles/logo-styles.css" rel="Stylesheet"><script type="text/javascript" src="../../scripts/clipboard.js" async="async"></script><script type="text/javascript" src="../../scripts/navigation-loader.js" async="async"></script><script type="text/javascript" src="../../scripts/platform-content-handler.js" async="async"></script><script type="text/javascript" src="../../scripts/main.js" async="async"></script><script type="text/javascript" src="../../scripts/prism.js" async="async"></script>  </head>
   <body>
+    <div class="navigation-wrapper" id="navigation-wrapper">
+      <div id="leftToggler"><span class="icon-toggler"></span></div>
+      <div class="library-name"><a href="../../index.html">openjdk-playground</a></div>
+      <div>1.6.1-0</div>
+      <div class="pull-right d-flex"><button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+      </div>
+    </div>
     <div id="container">
-      <div id="leftColumn"><a href="../../index.html">
-          <div id="logo"></div>
-        </a>
-        <div id="paneSearch"></div>
+      <div id="leftColumn">
         <div id="sideMenu"></div>
       </div>
-      <div id="main">
-        <div id="leftToggler"><span class="icon-toggler"></span></div>
-<script type="text/javascript" src="../../scripts/main.js"></script>        <div class="main-content" id="content" pageIds="openjdk-playground::dev.suresh.service////PointingToDeclaration//1411724783">
-          <div class="navigation-wrapper" id="navigation-wrapper">
-            <div class="breadcrumbs"><a href="../../index.html">openjdk-playground</a>/<a href="index.html">dev.suresh.service</a></div>
-            <div class="pull-right d-flex">
-              <div id="searchBar"></div>
-            </div>
-          </div>
+      <div id="main"><script type="text/javascript" src="../../scripts/main.js"></script>
+        <div class="main-content" id="content" pageIds="openjdk-playground::dev.suresh.service////PointingToDeclaration//1411724783">
+          <div class="breadcrumbs"><a href="../../index.html">openjdk-playground</a>/<a href="index.html">dev.suresh.service</a></div>
           <div class="cover ">
-            <h1 class="cover"><span>Package dev.</span><wbr></wbr><span>suresh.</span><wbr></wbr><span>service</span></h1>
+            <h1 class="cover"><span><span>Package</span></span> <span>dev.</span><wbr></wbr><span>suresh.</span><wbr></wbr><span>service</span></h1>
           </div>
           <div class="tabbedcontent">
             <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Types">Types</button><button class="section-tab" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button></div>
@@ -30,51 +34,39 @@
               <div class="table" data-togglable="Types"><a data-name="1668794064%2FClasslikes%2F1411724783" anchor-label="MyProcessor" id="1668794064%2FClasslikes%2F1411724783" data-filterable-set=":dokkaHtml/main"></a>
                 <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
                   <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="-my-processor/index.html">MyProcessor</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1668794064%2FClasslikes%2F1411724783"></span>
+                    <div class=""><span class="inline-flex"><a href="-my-processor/index.html"><span>My</span><wbr></wbr><span><span>Processor</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1668794064%2FClasslikes%2F1411724783"></span>
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block">@<span data-unresolved-link="com.google.auto.service/AutoService///PointingToDeclaration/">AutoService</span>(<span>value = [<span><a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/annotation/processing/Processor.html">Processor::class</a></span><wbr></wbr>]</span><wbr></wbr>)</div></div>class <a href="-my-processor/index.html">MyProcessor</a> : <a href="https://docs.oracle.com/en/java/javase/16/docs/api/java.compiler/javax/annotation/processing/AbstractProcessor.html">AbstractProcessor</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation">@</span><span data-unresolved-link="com.google.auto.service/AutoService///PointingToDeclaration/"><span class="token annotation">AutoService</span></span><span class="token punctuation">(</span><span>value<span class="token operator"> = </span><span class="token punctuation">[</span><span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.compiler/javax/annotation/processing/Processor.html">Processor::class</a></span><wbr></wbr><span class="token punctuation">]</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">class </span><a href="-my-processor/index.html">MyProcessor</a> : <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.compiler/javax/annotation/processing/AbstractProcessor.html">AbstractProcessor</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
                     </div>
                   </div>
                 </div>
 <a data-name="1685735163%2FClasslikes%2F1411724783" anchor-label="PrimeGen" id="1685735163%2FClasslikes%2F1411724783" data-filterable-set=":dokkaHtml/main"></a>
                 <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
                   <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="-prime-gen/index.html">PrimeGen</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1685735163%2FClasslikes%2F1411724783"></span>
+                    <div class=""><span class="inline-flex"><a href="-prime-gen/index.html"><span>Prime</span><wbr></wbr><span><span>Gen</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1685735163%2FClasslikes%2F1411724783"></span>
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace">object <a href="-prime-gen/index.html">PrimeGen</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-prime-gen/index.html">PrimeGen</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
                     </div>
                   </div>
                 </div>
 <a data-name="-189542548%2FClasslikes%2F1411724783" anchor-label="Redacted" id="-189542548%2FClasslikes%2F1411724783" data-filterable-set=":dokkaHtml/main"></a>
                 <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
                   <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="-redacted/index.html">Redacted</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-189542548%2FClasslikes%2F1411724783"></span>
+                    <div class=""><span class="inline-flex"><a href="-redacted/index.html"><span><span>Redacted</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-189542548%2FClasslikes%2F1411724783"></span>
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-target/index.html">Target</a>(<span>allowedTargets = [<span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-annotation-target/-p-r-o-p-e-r-t-y/index.html">AnnotationTarget.PROPERTY</a>, </span><wbr></wbr><span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-annotation-target/-c-l-a-s-s/index.html">AnnotationTarget.CLASS</a></span><wbr></wbr>]</span><wbr></wbr>)</div></div>annotation class <a href="-redacted/index.html">Redacted</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation">@</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-target/index.html"><span class="token annotation">Target</span></a><span class="token punctuation">(</span><span>allowedTargets<span class="token operator"> = </span><span class="token punctuation">[</span><span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-annotation-target/-p-r-o-p-e-r-t-y/index.html">AnnotationTarget.PROPERTY</a><span class="token punctuation">, </span></span><wbr></wbr><span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-annotation-target/-c-l-a-s-s/index.html">AnnotationTarget.CLASS</a></span><wbr></wbr><span class="token punctuation">]</span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">annotation class </span><a href="-redacted/index.html">Redacted</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -83,17 +75,13 @@
               <div class="table" data-togglable="Functions"><a data-name="-300172262%2FFunctions%2F1411724783" anchor-label="main" id="-300172262%2FFunctions%2F1411724783" data-filterable-set=":dokkaHtml/main"></a>
                 <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
                   <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="main.html">main</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-300172262%2FFunctions%2F1411724783"></span>
+                    <div class=""><span class="inline-flex"><a href="main.html"><span><span>main</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-300172262%2FFunctions%2F1411724783"></span>
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace">fun <a href="main.html">main</a>()<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="main.html"><span class="token function">main</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -107,7 +95,7 @@
                         </span></span></div>
                     <div>
                       <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="952045779%2FProperties%2F1411724783" anchor-label="isPrime" id="952045779%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace">val <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a>.<a href="is-prime.html">isPrime</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="952045779%2FProperties%2F1411724783" anchor-label="isPrime" id="952045779%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="token punctuation">.</span><a href="is-prime.html">isPrime</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
                       </div>
                     </div>
                   </div>
@@ -116,7 +104,7 @@
             </div>
           </div>
         </div>
-        <div class="footer"><span class="go-to-top-icon"><a href="#content"></a></span><span>© 2021 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span></div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2021 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span></div>
       </div>
     </div>
   </body>
