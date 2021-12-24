@@ -541,7 +541,7 @@ dependencies {
     }
   }
 
-  testImplementation(Deps.Kotlin.Coroutines.jdk8)
+  testImplementation(Deps.Kotlin.Coroutines.test)
   testImplementation(platform(Deps.Junit.bom))
   testImplementation(Deps.Junit.jupiter)
   testImplementation(Deps.Junit.pioneer)

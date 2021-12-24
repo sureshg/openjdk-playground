@@ -120,7 +120,7 @@ class HelloServlet : HttpServlet() {
 
   private val USER = ScopeLocal.newInstance<String>()
 
-  val OS: String = System.getProperty("os.name")
+  private val OS: String = System.getProperty("os.name")
 
   init {
     println("Initializing the Servlet >>>>> ")

@@ -50,7 +50,7 @@ object Deps {
     }
 
     object Coroutines {
-      const val version = "1.6.0-RC3"
+      const val version = "1.6.0"
       const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
       const val jdk8 = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$version"
       const val reactor = "org.jetbrains.kotlinx:coroutines-reactor:$version"
@@ -100,7 +100,7 @@ object Deps {
     const val collectionsImmutable = "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:0.3.4"
 
     object Serialization {
-      const val version = "1.3.1"
+      const val version = "1.3.2"
       const val core = "org.jetbrains.kotlinx:kotlinx-serialization-core:$version"
       const val json = "org.jetbrains.kotlinx:kotlinx-serialization-json:$version"
       const val cbor = "org.jetbrains.kotlinx:kotlinx-serialization-cbor:$version"
@@ -731,7 +731,7 @@ inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boo
 inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version "1.0.9.RELEASE"
 
 // Static Analysis and Linting
-inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "6.0.5"
+inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "6.1.0"
 inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.3.2"
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version "9.3.0"
@@ -771,7 +771,7 @@ inline val PluginDependenciesSpec.javapackager get() = id("io.github.fvarrui.jav
 inline val PluginDependenciesSpec.jpackageplugin get() = id("org.panteleyev.jpackageplugin") version "0.0.2"
 
 // Kotlin compiler plugins
-inline val PluginDependenciesSpec.redacted get() = id("dev.zacsweers.redacted") version "0.10.0-RC1"
+inline val PluginDependenciesSpec.redacted get() = id("dev.zacsweers.redacted") version "0.10.0"
 inline val PluginDependenciesSpec.kotlinPowerAssert get() = id("com.bnorm.power.kotlin-power-assert") version "0.11.0"
 
 // Parsers

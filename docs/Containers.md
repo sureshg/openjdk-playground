@@ -265,7 +265,7 @@ RUN apt-get update && apt-get upgrade -y && \
 * https://blog.adoptium.net/2021/08/using-jlink-in-dockerfiles/
 
 * https://docs.microsoft.com/en-us/java/openjdk/java-jlink-runtimes
-  
+
   * https://github.com/dsyer/sample-docker-microservice/
 
 * https://mbien.dev/blog/entry/custom-java-runtimes-with-jlink

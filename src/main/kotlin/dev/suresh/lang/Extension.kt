@@ -28,4 +28,4 @@ fun <T : Class<*>> T.toBytes(): ByteArray? {
  * val url = LogManager::class.java.resourcePath
  * ```
  */
-val <T : Class<*>> T.resourcePath: URL? get() = getResource("${simpleName}.class")
+val <T : Class<*>> T.resourcePath: URL? get() = getResource("$simpleName.class")
