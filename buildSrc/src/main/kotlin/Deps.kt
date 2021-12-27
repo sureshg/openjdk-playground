@@ -131,7 +131,7 @@ object Deps {
   }
 
   object Dokka {
-    const val version = "1.6.0"
+    const val version = "1.6.10"
     const val gradlePlugin = "org.jetbrains.dokka:dokka-gradle-plugin:$version"
     const val javadocPlugin = "org.jetbrains.dokka:javadoc-plugin:$version"
     const val kotlinAsJavaPlugin = "org.jetbrains.dokka:kotlin-as-java-plugin:$version"
@@ -771,7 +771,7 @@ inline val PluginDependenciesSpec.javapackager get() = id("io.github.fvarrui.jav
 inline val PluginDependenciesSpec.jpackageplugin get() = id("org.panteleyev.jpackageplugin") version "0.0.2"
 
 // Kotlin compiler plugins
-inline val PluginDependenciesSpec.redacted get() = id("dev.zacsweers.redacted") version "0.10.0"
+inline val PluginDependenciesSpec.redacted get() = id("dev.zacsweers.redacted") version "1.0.0"
 inline val PluginDependenciesSpec.kotlinPowerAssert get() = id("com.bnorm.power.kotlin-power-assert") version "0.11.0"
 
 // Parsers
