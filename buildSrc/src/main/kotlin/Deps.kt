@@ -755,6 +755,7 @@ inline val PluginDependenciesSpec.buildkonfig get() = id("com.codingfeline.build
 
 // Project version detection
 inline val PluginDependenciesSpec.jgitPlugin get() = id("fr.brouillard.oss.gradle.jgitver") version "0.10.0-rc03"
+inline val PluginDependenciesSpec.gitVersioner get() = id("io.toolebox.git-versioner") version "1.6.5"
 inline val PluginDependenciesSpec.gitSemver get() = id("com.github.jmongard.git-semver-plugin") version "0.1.3"
 inline val PluginDependenciesSpec.reckon get() = id("org.ajoberstar.reckon") version "0.12.0"
 inline val PluginDependenciesSpec.gitChangelog get() = id("se.bjurr.gitchangelog.git-changelog-gradle-plugin") version "1.69.0"
