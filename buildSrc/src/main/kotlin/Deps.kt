@@ -515,6 +515,7 @@ object Deps {
     const val asn1bean = "com.beanit:asn1bean:1.12.0"
     const val gifEncoder = "com.squareup:gifencoder:0.10.1"
     const val gifDecoder = "app.redwarp.gif:decoder:0.3.0"
+    const val simplemagic = "com.j256.simplemagic:simplemagic:1.17"
   }
 
   object Compression {
@@ -700,7 +701,7 @@ inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-ma
 inline val PluginDependenciesSpec.consistentVersions get() = id("com.palantir.consistent-versions") version "1.28.0"
 
 // Dependencies
-inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "7.1.1"
+inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "7.1.2"
 inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.8.3" apply true
 inline val PluginDependenciesSpec.taskinfo get() = id("org.barfuin.gradle.taskinfo") version "1.3.1" apply false
 inline val PluginDependenciesSpec.taskTree get() = id("com.dorongold.task-tree") version "1.5"
