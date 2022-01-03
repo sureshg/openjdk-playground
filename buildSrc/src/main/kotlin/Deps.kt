@@ -146,7 +146,7 @@ object Deps {
   }
 
   object Foojay {
-    const val discoclient = "io.foojay.api:discoclient:2.0.15"
+    const val discoclient = "io.foojay.api:discoclient:2.0.16"
   }
 
   object Jetty {
@@ -279,7 +279,7 @@ object Deps {
   }
 
   object Mock {
-    const val mockk = "io.mockk:mockk:1.12.1"
+    const val mockk = "io.mockk:mockk:1.12.2"
     const val mockito = "org.mockito:mockito-core:2.26.0"
     const val mockserver = "org.mock-server:mockserver-netty:5.10.0"
     const val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
@@ -454,7 +454,7 @@ object Deps {
 
   object Security {
     const val password4j = "com.password4j:password4j:1.5.4"
-    const val otp = "com.github.bastiaanjansen:otp-java:1.2.3"
+    const val otp = "com.github.bastiaanjansen:otp-java:1.3.0"
     const val totp = "dev.samstevens.totp:totp:1.7.1"
     const val jwtJava = "com.github.bastiaanjansen:jwt-java:1.1.0"
     const val twoFactorAuth = "com.j256.two-factor-auth:two-factor-auth:1.3"
@@ -697,7 +697,7 @@ inline val PluginDependenciesSpec.ksp get() = id("com.google.devtools.ksp") vers
 inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.jib") version "3.1.4"
 
 // Dependency Versions
-inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version "0.39.0"
+inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version "0.40.0"
 inline val PluginDependenciesSpec.consistentVersions get() = id("com.palantir.consistent-versions") version "1.28.0"
 
 // Dependencies
