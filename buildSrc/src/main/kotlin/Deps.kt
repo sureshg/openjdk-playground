@@ -697,7 +697,7 @@ inline val PluginDependenciesSpec.ksp get() = id("com.google.devtools.ksp") vers
 inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.jib") version "3.1.4"
 
 // Dependency Versions
-inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version "0.40.0"
+inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version "0.41.0"
 inline val PluginDependenciesSpec.consistentVersions get() = id("com.palantir.consistent-versions") version "1.28.0"
 
 // Dependencies

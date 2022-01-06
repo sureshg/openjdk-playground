@@ -291,6 +291,8 @@ tasks {
           // "-XX:+IgnoreUnrecognizedVMOptions",
           // "--add-exports",
           // "java.base/sun.nio.ch=ALL-UNNAMED",
+          // "--patch-module",
+          // "$moduleName=${sourceSets.main.get().output.asPath}"
         )
       )
     }
