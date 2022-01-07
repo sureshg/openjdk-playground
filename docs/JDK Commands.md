@@ -388,6 +388,12 @@ sourceSets {
       }
   }
 }
+
+// OR can also do
+val graal by sourceSets.creating
+// "graalCompileOnly"("org.graalvm.nativeimage:svm:21.2.0")
+// "graalCompileOnly"("org.graalvm.sdk:graal-sdk:21.2.0")
+// nativeImageCompileOnly(graal.output.classesDirs)
 ```
 
 - [SourceSet](https://docs.gradle.org/current/userguide/building_java_projects.html#sec:java_source_sets)
