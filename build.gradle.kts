@@ -78,10 +78,11 @@ application {
     // "-XX:NativeMemoryTracking=summary",
     // "-XX:+DisableAttachMechanism",
     // "-Duser.timezone=\"PST8PDT\"",
-    // "-Dfile.encoding=COMPAT", // uses '-Dnative.encoding'
     // "-Djava.net.preferIPv4Stack=true",
     // "-Djavax.net.debug=all",
     // "-Djava.security.manager=disallow",
+    // "-Dfile.encoding=COMPAT", // uses '-Dnative.encoding'
+    // "-Djava.locale.providers=COMPAT,CLDR",
     // "-Djgitver.skip=true",
     // "-Djdk.lang.Process.launchMechanism=vfork",
     // "-Djdk.tls.maxCertificateChainLength=15",
