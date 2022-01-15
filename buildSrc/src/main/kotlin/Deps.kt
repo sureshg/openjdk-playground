@@ -92,7 +92,7 @@ object Deps {
 
   object Kotlinx {
     const val atomicfuVersion = "0.17.0"
-    const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.3.1"
+    const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.3.2"
     const val reflectLite = "org.jetbrains.kotlinx:kotlinx.reflect.lite:1.0.0"
     const val atomicfu = "org.jetbrains.kotlinx:atomicfu:$atomicfuVersion"
     const val io = "org.jetbrains.kotlinx:kotlinx-io-jvm:0.1.16"
@@ -368,7 +368,7 @@ object Deps {
   object Logging {
 
     object Slf4j {
-      const val version = "2.0.0-alpha5"
+      const val version = "2.0.0-alpha6"
       const val api = "org.slf4j:slf4j-api:$version"
       const val nop = "org.slf4j:slf4j-nop:$version"
       const val simple = "org.slf4j:slf4j-simple:$version"
@@ -732,7 +732,7 @@ inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boo
 inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version "1.0.9.RELEASE"
 
 // Static Analysis and Linting
-inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "6.1.2"
+inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "6.2.0"
 inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.4.0"
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version "9.3.0"
@@ -773,7 +773,7 @@ inline val PluginDependenciesSpec.javapackager get() = id("io.github.fvarrui.jav
 inline val PluginDependenciesSpec.jpackageplugin get() = id("org.panteleyev.jpackageplugin") version "0.0.2"
 
 // Kotlin compiler plugins
-inline val PluginDependenciesSpec.redacted get() = id("dev.zacsweers.redacted") version "1.0.0"
+inline val PluginDependenciesSpec.redacted get() = id("dev.zacsweers.redacted") version "1.0.1"
 inline val PluginDependenciesSpec.kotlinPowerAssert get() = id("com.bnorm.power.kotlin-power-assert") version "0.11.0"
 
 // Parsers
