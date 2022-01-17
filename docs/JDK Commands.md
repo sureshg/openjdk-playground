@@ -85,6 +85,9 @@ $ jdeps --jdk-internals --classpath libs.jar app.jar
 # List of module dependences to be used in JLink
 $ jdeps --ignore-missing-deps --print-module-deps  app.jar
 
+# List all service providers
+$ jlink --suggest-providers java.security.Provider
+
 # Generate module-info
 $ jdeps --generate-module-info ./  app.jar
 
@@ -295,17 +298,17 @@ println("Hello Kotlin Script")
 * https://docs.oracle.com/en/java/javase/16/security/java-secure-socket-extension-jsse-reference-guide.html
 
 * https://github.com/sureshg/InstallCerts/blob/master/src/main/kotlin/io/github/sureshg/extn/Certs.kt
-
+  
   ```bash
   # Turn on all debugging
   $ java -Djavax.net.debug=all
-
+  
   # Override HostsFileNameService
   $ java -Djdk.net.hosts.file=/etc/host/style/file
-
+  
   # Force IPv4
   $ java -Djava.net.preferIPv4Stack=true
-
+  
   # The entropy gathering device can also be specified with the system property
   $ java -Djava.security.egd=file:/dev/./urandom
   ```
@@ -323,13 +326,13 @@ println("Hello Kotlin Script")
 | http.nonProxyHosts | `                                             |
 
 - **HTTP**
-
+  
   ```bash
   $ java -Dhttp.proxyHost=webcache.example.com -Dhttp.proxyPort=8080 -Dhttp.nonProxyHosts=”localhost|host.example.com” <URL>
   ```
 
 - **Env vars**
-
+  
   ```bash
   export HTTP_PROXY=http://USERNAME:PASSWORD@10.0.1.1:8080/
   export HTTPS_PROXY=https://USERNAME:PASSWORD@10.0.0.1:8080/
@@ -472,7 +475,7 @@ sourceSets.main.get().compileClasspath
 ##### 7. [Configure/Create Tasks](https://docs.gradle.org/current/userguide/kotlin_dsl.html#kotdsl:containers)
 
 * ###### Eager
-
+  
   ```kotlin
   val p: Jar = getByName<Jar>("jar")       // Get existing task
   val q: Jar = create<Jar>("jar") {}       // Create new task
@@ -481,13 +484,13 @@ sourceSets.main.get().compileClasspath
   ```
 
 * ###### Lazy ([Confiuration Avoidance API](https://docs.gradle.org/current/userguide/task_configuration_avoidance.html))
-
+  
   ```kotlin
   val t: TaskProvider<Jar> = named<Jar>("jar"){}        // Get existing task
   val u: TaskProvider<Jar> = register<Jar>("jar"){}     // Create new task
   val v: TaskProvider<Jar> by registering(Jar::class){} // Create task using property delegate
   val jar: TaskProvider<Task> by existing // Get task using property delegate
-
+  
   val foo: FooTask by existing            // Take Task type from val (Kotlin 1.4)
   val bar: BarTask by registering {}      // Take Task type from val (Kotlin 1.4)
   ```
@@ -794,7 +797,7 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
 * Docker hub push - https://github.com/marketplace/actions/build-and-push-docker-images
 
 * [Github Registry](https://help.github.com/en/packages/using-github-packages-with-your-projects-ecosystem/configuring-docker-for-use-with-github-packages)
-
+  
   ```bash
   $ VERSION=$(date +%s)
   $ docker build . --file Dockerfile --tag docker.pkg.github.com/sureshg/repo/app:${VERSION}
@@ -803,7 +806,7 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
   ```
 
 * Service container
-
+  
   ```yaml
   services:
      postgres:
@@ -931,14 +934,19 @@ $ docker run -d -p 25565:25565 --name mc itzg/minecraft-server:adopt15
 * https://vladmihalcea.com/jdbc-driver-connection-url-strings/
 
 * Tools
-
+  
   * https://utteranc.es/ - Comments Widgets
+  
   * https://orchid.run/wiki/learn/tutorials/how-to-document-kotlin
+  
   * http://casual-effects.com/markdeep/
+  
   * https://www.mkdocs.org/ (eg: https://github.com/hexagonkt/hexagon/tree/master/hexagon_site)
+  
   * Github publish example
     - https://github.com/hexagonkt/hexagon/blob/master/.github/workflows/main.yml
-    *
+    
+      
 
 ### Awesome Svgs
 
