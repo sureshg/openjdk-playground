@@ -269,7 +269,7 @@ object Deps {
   }
 
   object KoTest {
-    const val version = "5.0.3"
+    const val version = "5.1.0"
     const val junit5Runner = "io.kotest:kotest-runner-junit5:$version"
     const val assertions = "io.kotest:kotest-assertions-core:$version"
     const val property = "io.kotest:kotest-property:$version"
@@ -400,7 +400,7 @@ object Deps {
   }
 
   object Cli {
-    const val clikt = "com.github.ajalt.clikt:clikt:3.3.0"
+    const val clikt = "com.github.ajalt.clikt:clikt:3.4.0"
     const val textIO = "org.beryx:text-io:3.4.1"
     const val mordant = "com.github.ajalt.mordant:mordant:2.0.0-beta4"
     const val colormath = "com.github.ajalt.colormath:colormath:2.0.0"
