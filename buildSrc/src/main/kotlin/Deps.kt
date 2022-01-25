@@ -146,7 +146,7 @@ object Deps {
   }
 
   object Foojay {
-    const val discoclient = "io.foojay.api:discoclient:2.0.16"
+    const val discoclient = "io.foojay.api:discoclient:2.0.18"
   }
 
   object Jetty {
@@ -694,7 +694,7 @@ inline val PluginDependenciesSpec.reflektPlugin get() = id("io.reflekt") version
 
 // Google Plugins
 inline val PluginDependenciesSpec.ksp get() = id("com.google.devtools.ksp") version Deps.Kotlin.Ksp.version
-inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.jib") version "3.1.4"
+inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.jib") version "3.2.0"
 
 // Dependency Versions
 inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version "0.41.0"

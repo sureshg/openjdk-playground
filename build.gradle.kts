@@ -90,7 +90,8 @@ application {
     // "--add-exports=jdk.attach/sun.tools.attach=ALL-UNNAMED",
     // "--add-opens=java.base/java.net=ALL-UNNAMED",
     // "--add-opens=jdk.attach/sun.tools.attach=ALL-UNNAMED",
-    // "--add-modules", "jdk.incubator.foreign", "--enable-native-access=ALL-UNNAMED"
+    // "--add-modules", "jdk.incubator.foreign", "--enable-native-access=ALL-UNNAMED",
+    // "-javaagent:path/to/glowroot.jar"
   )
   // https://chriswhocodes.com/hotspot_options_openjdk18.html
 }
@@ -266,11 +267,6 @@ configurations {
       attribute(Attribute.of("javaModule", Boolean::class.javaObjectType), false)
     }
   }
-}
-
-// After the project configure
-afterEvaluate {
-  println("=== Project Configuration Completed ===")
 }
 
 tasks {

@@ -10,6 +10,7 @@ plugins {
   java
   application
   `test-suite-base`
+// `java-library`
 //  id("kotlinx-kover") //version "0.2.2"
 }
 
@@ -30,6 +31,11 @@ gradle.taskGraph.whenReady {
   }
 }
 
+// After the project configure
+afterEvaluate {
+  println("=== Project Configuration Completed ===")
+}
+
 tasks {
 
   // Clean all composite builds
@@ -40,6 +46,10 @@ tasks {
     gradle.includedBuilds.forEach {
       dependsOn(it.task(":clean"))
     }
+  }
+
+  jar {
+    exclude("META-INF/*.RSA", "META-INF/*.SF", "META-INF/*.DSA")
   }
 
   val printModuleDeps by registering {
