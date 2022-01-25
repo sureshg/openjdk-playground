@@ -1,6 +1,8 @@
 package dev.suresh.foojay
 
 import App
+import eu.hansolo.jdktools.*
+import eu.hansolo.jdktools.versioning.*
 import io.foojay.api.discoclient.*
 import io.foojay.api.discoclient.pkg.*
 
