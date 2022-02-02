@@ -258,10 +258,30 @@ println("Hello Kotlin Script")
 ##### 18. HeapDump
 
 * [Graal Heapdump Builder](https://www.graalvm.org/tools/javadoc/org/graalvm/tools/insight/heap/HeapDump.html)
-
 * [Java Profiler Heap Dump Format](http://hg.openjdk.java.net/jdk6/jdk6/jdk/raw-file/tip/src/share/demo/jvmti/hprof/manual.html)
-
 * [HPROF Parser](https://github.com/openjdk/jdk/blob/master/test/lib/jdk/test/lib/hprof/HprofParser.java)
+
+19. ##### ThreadDump
+
+    ```bash
+    # Get all java processes
+    $ jcmd -l
+    $ jps -mlvV
+
+    # See the available commands for all java processes
+    $ jcmd 0 help
+    # Use PID or main class
+    $ jcmd dev.suresh.Main VM.version
+    $ jcmd <dev.suresh.Main | pid> Thread.print
+    # OR
+    $ kill -3 <pid>
+    $ kill -3 "$(jcmd -l | grep "dev.suresh.Main" | cut -d " " -f1)"
+    # OR
+    # Prints additional info about thread (-e  extended listing) and locks (-l  long listing)
+    $ jstack -l -e  <pid>
+    ```
+
+
 
 ### IDEs and Tools
 
@@ -317,13 +337,15 @@ println("Hello Kotlin Script")
 
 - http://htmlpreview.github.io/?https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/net/doc-files/net-properties.html
 
+- https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/net/doc-files/net-properties.html
+
 - https://docs.oracle.com/javase/8/docs/technotes/guides/net/proxies.html
 
 | Config             | Description                                   |
-|:------------------ |:--------------------------------------------- |
+|:-------------------|:----------------------------------------------|
 | http.proxyHost     | The host name of the proxy server             |
 | http.proxyPort     | The port number, the default value being `80` |
-| http.nonProxyHosts | `                                             |
+| http.nonProxyHosts |                                               |
 
 - **HTTP**
 

@@ -67,6 +67,8 @@ application {
     "-Djava.security.egd=file:/dev/./urandom",
     "-Djdk.includeInExceptions=hostInfo,jar",
     "-XX:+UnlockDiagnosticVMOptions",
+    "-XX:+LogVMOutput",
+    "-XX:LogFile=$tmp/$name-jvm.log",
     "-XX:+ShowHiddenFrames",
     "-ea",
     // "-verbose:module",
@@ -85,7 +87,8 @@ application {
     // "-Djava.locale.providers=COMPAT,CLDR",
     // "-Djgitver.skip=true",
     // "-Djdk.lang.Process.launchMechanism=vfork",
-    // "-Djdk.tls.maxCertificateChainLength=15",
+    // "-Djdk.tls.maxCertificateChainLength=10",
+    // "-Djdk.tls.maxHandshakeMessageSize=32768",
     // "--add-exports=java.management/sun.management=ALL-UNNAMED",
     // "--add-exports=jdk.attach/sun.tools.attach=ALL-UNNAMED",
     // "--add-opens=java.base/java.net=ALL-UNNAMED",
@@ -176,6 +179,7 @@ apiValidation {
 
 // Formatting
 spotless {
+  // if(plugins.hasPlugin(JavaPlugin::class.java)){}
   java {
     googleJavaFormat(gjfVersion)
     // Exclude sealed types until it supports.

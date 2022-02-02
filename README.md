@@ -74,7 +74,7 @@ $ docker run -it --rm --name openjdk-playground sureshg/openjdk-playground
     $ cat thread-results.bin | vegeta report -type="hist[0,100ms,200ms,300ms]"
     $ cat thread-results.bin | vegeta plot -title "Normal Threads" > plot.html && open plot.html
     ```
-- Run wih Loom Virtual threads.
+- Run with Loom Virtual threads.
     ```bash
     $ echo "GET https://127.0.0.1:8443/" | vegeta attack -insecure -duration=10s -name=VirtualThreads -rate=250 | tee vthread-results.bin | vegeta report
     $ vegeta report -type=json vthread-results.bin > vthread-metrics.json

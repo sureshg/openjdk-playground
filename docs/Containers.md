@@ -66,8 +66,9 @@ $ docker pull amazoncorretto:17-alpine
 
 # GraalVM CE & EE
 # https://github.com/graalvm/container/pkgs/container/graalvm-ce
-$ docker pull ghcr.io/graalvm/graalvm-ce:latest
-$ docker pull container-registry.oracle.com/graalvm/enterprise:latest
+$ nerdctl pull ghcr.io/graalvm/graalvm-ce:latest
+$ nerdctl pull ghcr.io/graalvm/native-image:java17-22
+$ nerdctl pull container-registry.oracle.com/graalvm/enterprise:latest
 
 # Redhat Univeral Base Images (UBI)
 $ docker pull registry.access.redhat.com/ubi8/openjdk-11:1.10-1.1634738701
