@@ -55,7 +55,7 @@ application {
     "-Xmx128M",
     "-XX:+PrintCommandLineFlags",
     "-XX:+UseZGC",
-    "-Xlog:gc*:$xQuote$tmp/$name-gc-%p-%t.log$xQuote:time,uptime,level,tid,tags:filecount=5,filesize=10m",
+    "-Xlog:safepoint,gc*:file=$xQuote$tmp/$name-gc-%p-%t.log$xQuote:level,tags,time,uptime,pid,tid:filecount=5,filesize=10m", // os+thread,gc+heap=trace,
     "-XX:StartFlightRecording:gc=detailed,filename=$tmp/$name.jfr,settings=profile.jfc,name=$name,maxsize=100m,dumponexit=true",
     "-XX:FlightRecorderOptions:stackdepth=128",
     "-XX:+HeapDumpOnOutOfMemoryError",
