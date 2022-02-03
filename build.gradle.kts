@@ -24,6 +24,7 @@ plugins {
   kotlinPowerAssert
   spotlessChangelog
   benmanesVersions
+  versionCatalogUpdate
   gitProperties
   taskinfo
   checksum

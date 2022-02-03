@@ -698,6 +698,7 @@ inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.j
 
 // Dependency Versions
 inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version "0.41.0"
+inline val PluginDependenciesSpec.versionCatalogUpdate get() = id("nl.littlerobots.version-catalog-update") version "0.3.0"
 inline val PluginDependenciesSpec.consistentVersions get() = id("com.palantir.consistent-versions") version "1.28.0"
 
 // Dependencies
