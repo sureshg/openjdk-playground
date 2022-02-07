@@ -91,7 +91,7 @@ object Deps {
   }
 
   object Kotlinx {
-    const val atomicfuVersion = "0.17.0"
+    const val atomicfuVersion = "0.17.1"
     const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.3.2"
     const val reflectLite = "org.jetbrains.kotlinx:kotlinx.reflect.lite:1.0.0"
     const val atomicfu = "org.jetbrains.kotlinx:atomicfu:$atomicfuVersion"
@@ -150,7 +150,7 @@ object Deps {
   }
 
   object Jetty {
-    const val version = "11.0.7"
+    const val version = "11.0.8"
     const val bom = "org.eclipse.jetty:jetty-bom:$version"
     const val server = "org.eclipse.jetty:jetty-server:$version"
     const val servlet = "org.eclipse.jetty:jetty-servlet:$version"
@@ -697,7 +697,7 @@ inline val PluginDependenciesSpec.ksp get() = id("com.google.devtools.ksp") vers
 inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.jib") version "3.2.0"
 
 // Dependency Versions
-inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version "0.41.0"
+inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version "0.42.0"
 inline val PluginDependenciesSpec.versionCatalogUpdate get() = id("nl.littlerobots.version-catalog-update") version "0.3.0"
 inline val PluginDependenciesSpec.consistentVersions get() = id("com.palantir.consistent-versions") version "1.28.0"
 
@@ -707,7 +707,7 @@ inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.a
 inline val PluginDependenciesSpec.taskinfo get() = id("org.barfuin.gradle.taskinfo") version "1.3.1" apply false
 inline val PluginDependenciesSpec.taskTree get() = id("com.dorongold.task-tree") version "1.5"
 inline val PluginDependenciesSpec.forbiddenApis get() = id("de.thetaphi.forbiddenapis") version "3.1"
-inline val PluginDependenciesSpec.extraJavaModuleInfo get() = id("de.jjohannes.extra-java-module-info") version "0.10"
+inline val PluginDependenciesSpec.extraJavaModuleInfo get() = id("de.jjohannes.extra-java-module-info") version "0.11"
 inline val PluginDependenciesSpec.licensee get() = id("app.cash.licensee") version "1.3.1" apply false
 
 inline val PluginDependenciesSpec.javafx get() = id("org.openjfx.javafxplugin") version "0.0.7"
@@ -751,7 +751,7 @@ inline val PluginDependenciesSpec.checksum get() = id("org.gradle.crypto.checksu
 inline val PluginDependenciesSpec.mavenPublish get() = id("com.vanniktech.maven.publish") version "0.13.0"
 
 // Build config
-inline val PluginDependenciesSpec.gitProperties get() = id("com.gorylenko.gradle-git-properties") version "2.4.0-rc2"
+inline val PluginDependenciesSpec.gitProperties get() = id("com.gorylenko.gradle-git-properties") version "2.4.0"
 inline val PluginDependenciesSpec.buildconfig get() = id("com.github.gmazzo.buildconfig") version "3.0.2" apply false
 inline val PluginDependenciesSpec.buildkonfig get() = id("com.codingfeline.buildkonfig") version "0.11.0" apply false
 

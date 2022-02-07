@@ -350,6 +350,17 @@ println("Hello Kotlin Script")
 - **HTTP**
 
   ```bash
+  # Use JAVA_TOOL_OPTIONS
+  $ export JAVA_TOOL_OPTIONS="
+  -Dhttp.useProxy=true
+  -Dhttps.useProxy=true
+  -Dhttp.proxyHost=172.10.10.1
+  -Dhttp.proxyPort=8100
+  -Dhttps.proxyHost=172.10.10.1
+  -Dhttps.proxyPort=8100
+  -Dhttp.nonProxyHosts='localhost|127.0.0.1|cdn.test.org|*-prod.app.com|slack.com'"
+
+  # OR use system properties
   $ java -Dhttp.proxyHost=webcache.example.com -Dhttp.proxyPort=8080 -Dhttp.nonProxyHosts=”localhost|host.example.com” <URL>
   ```
 
@@ -846,7 +857,7 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
 ### Mac OS
 
 ```bash
-$  sudo xattr -cr /Applications/compose-desktop-sample.app
+$ sudo xattr -cr /Applications/compose-desktop-sample.app
 
 # If you are using macOS Catalina and later you may need to remove the quarantine attribute from the bits before you can use them
 $ sudo xattr -r -d com.apple.quarantine path/to/app/folder/
