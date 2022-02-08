@@ -352,6 +352,7 @@ println("Hello Kotlin Script")
   ```bash
   # Use JAVA_TOOL_OPTIONS
   $ export JAVA_TOOL_OPTIONS="
+  ${JAVA_TOOL_OPTIONS}
   -Dhttp.useProxy=true
   -Dhttps.useProxy=true
   -Dhttp.proxyHost=172.10.10.1
