@@ -293,7 +293,7 @@
             <!-- Enable strict mode for JSR-305 annotations -->
             <arg>-progressive</arg>
             <arg>-Xjsr305=strict</arg>
-            <arg>-Xjvm-default=enable</arg>
+            <arg>-Xjvm-default=all</arg>
             <arg>-Xassertions=jvm</arg>
             <arg>-Xuse-experimental=kotlin.ExperimentalStdlibApi</arg>
             <arg>-Xopt-in=kotlin.RequiresOptIn</arg>
