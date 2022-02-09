@@ -165,15 +165,11 @@ $ jshell --enable-preview --startup DEFAULT --startup ~/calc.repl
 # threads to help when there are virtual threads blocked in Object.wait.
 # The default maximum is 256.
 
-$ java -Djdk.defaultScheduler.parallelism=1   // Default to available processors
-       -Djdk.defaultScheduler.maxPoolSize=256 // Max(parallelism,256)
+$ java -Djdk.defaultScheduler.parallelism=4   // Default to Runtime.getRuntime().availableProcessors()
+       -Djdk.defaultScheduler.maxPoolSize=256 // max(parallelism, 256)
 
 # Trace pinned thread while holding monitors.
 $ java -Djdk.tracePinnedThreads=short|full
-
-# Default scheduler algo
-$ java -Djdk.defaultScheduler.lifo=false (FIFO by default)
-
 
 # Loom Install
 $ sdk rm java jdk-16-loom
