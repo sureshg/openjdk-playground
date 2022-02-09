@@ -99,9 +99,11 @@ application {
     // "--add-opens=java.base/java.net=ALL-UNNAMED",
     // "--add-opens=jdk.attach/sun.tools.attach=ALL-UNNAMED",
     // "--add-modules", "jdk.incubator.foreign", "--enable-native-access=ALL-UNNAMED",
-    // "-javaagent:path/to/glowroot.jar"
+    // "-javaagent:path/to/glowroot.jar",
+    // "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005",
+    // "-agentlib:jdwp=transport=dt_socket,server=n,address=host:5005,suspend=y,onthrow=<FQ exception class name>,onuncaught=<y/n>"
   )
-  // https://chriswhocodes.com/hotspot_options_openjdk18.html
+  // https://chriswhocodes.com/hotspot_options_openjdk19.html
 }
 
 java {
