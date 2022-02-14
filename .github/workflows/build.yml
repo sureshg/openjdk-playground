@@ -73,7 +73,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: ⬇️ Download ${{ matrix.os }} OpenJDK ${{ matrix.jdk }} from jdk.java.net
+      - name: ⬇️ Download EA build of ${{ matrix.jdk }} from jdk.java.net
         id: download-jdk
         uses: oracle-actions/setup-java@v1
         with:
