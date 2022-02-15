@@ -15,6 +15,7 @@ val ktlintVersion by sysProp<String>()
 val gjfVersion by sysProp<String>()
 val githubProject by sysProp<String>()
 val jvmArguments by sysProp<List<String>>()
+val addModules by sysProp<String>()
 
 /**
  * Dependency versions.
@@ -747,7 +748,7 @@ inline val PluginDependenciesSpec.jreleaser get() = id("org.jreleaser") version 
 inline val PluginDependenciesSpec.mavenRepoAuth get() = id("org.hibernate.build.maven-repo-auth") version "3.0.4"
 inline val PluginDependenciesSpec.gradleRelease get() = id("net.researchgate.release") version "2.8.1"
 inline val PluginDependenciesSpec.githubRelease get() = id("com.github.breadmoirai.github-release") version "2.2.12"
-inline val PluginDependenciesSpec.checksum get() = id("org.gradle.crypto.checksum") version "1.3.0"
+inline val PluginDependenciesSpec.checksum get() = id("org.gradle.crypto.checksum") version "1.4.0"
 inline val PluginDependenciesSpec.mavenPublish get() = id("com.vanniktech.maven.publish") version "0.13.0"
 
 // Build config

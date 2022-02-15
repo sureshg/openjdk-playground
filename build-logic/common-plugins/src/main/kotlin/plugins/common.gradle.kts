@@ -113,6 +113,16 @@ tasks {
       CompletableFuture.allOf(continuousCompile, run).join()
     }
   }
+
+//  withType<JavaExec>().configureEach {
+//    jvmArgs(
+//      "--enable-native-access=ALL-UNNAMED",
+//      "--add-modules=jdk.incubator.foreign",
+//      "--module-path", files(configurations.compileClasspath).asPath,
+//      "--add-modules", "ALL-MODULE-PATH"
+//    )
+//    javaLauncher.set(project.javaToolchains.launcherFor(java.toolchain))
+//  }
 }
 
 /**

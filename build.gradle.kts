@@ -51,6 +51,8 @@ application {
     "--show-version",
     "--enable-preview",
     "--show-module-resolution",
+    "--add-modules=$addModules",
+    "--enable-native-access=ALL-UNNAMED",
     "-XshowSettings:all",
     "-Xmx128M",
     "-XX:+PrintCommandLineFlags",
@@ -98,7 +100,6 @@ application {
     // "--add-exports=jdk.attach/sun.tools.attach=ALL-UNNAMED",
     // "--add-opens=java.base/java.net=ALL-UNNAMED",
     // "--add-opens=jdk.attach/sun.tools.attach=ALL-UNNAMED",
-    // "--add-modules", "jdk.incubator.foreign", "--enable-native-access=ALL-UNNAMED",
     // "-javaagent:path/to/glowroot.jar",
     // "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005",
     // "-agentlib:jdwp=transport=dt_socket,server=n,address=host:5005,suspend=y,onthrow=<FQ exception class name>,onuncaught=<y/n>"
@@ -296,6 +297,7 @@ tasks {
           "--enable-preview",
           "-Xlint:all",
           "-parameters",
+          "--add-modules=$addModules"
           // "-XX:+IgnoreUnrecognizedVMOptions",
           // "--add-exports",
           // "java.base/sun.nio.ch=ALL-UNNAMED",
@@ -323,6 +325,10 @@ tasks {
         "-Xallow-result-return-type",
         "-Xgenerate-strict-metadata-version",
         "-Xemit-jvm-type-annotations",
+        "-Xadd-modules=$addModules",
+        // "-Xadd-modules=ALL-MODULE-PATH",
+        // "-Xmodule-path=",
+        // "-Xjdk-release=$kotlinJvmTarget",
         // "-Xjavac-arguments=\"--add-exports java.base/sun.nio.ch=ALL-UNNAMED\"",
         // "-Xexplicit-api={strict|warning|disable}",
         // "-Xjvm-enable-preview",
@@ -469,7 +475,7 @@ tasks {
   //   sign(publishing.publications["maven"])
   // }
 
-  // Default task
+  // Default task (--rerun-tasks --no-build-cache)
   defaultTasks("clean", "tasks", "--all")
 }
 

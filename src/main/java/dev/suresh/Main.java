@@ -75,7 +75,9 @@ public class Main {
     HelpfulNPE.run();
   }
 
-  /** @see <a href="https://www.baeldung.com/java-variable-handles">VarHandles</a> */
+  /**
+   * @see <a href="https://www.baeldung.com/java-variable-handles">VarHandles</a>
+   */
   private static void showAllSecurityProperties() throws Exception {
     // Should add this VM args "--add-opens=java.base/java.security=ALL-UNNAMED"
     var lookup = MethodHandles.lookup();
