@@ -15,7 +15,7 @@
 
 ```bash
 $ curl -s "https://get.sdkman.io" | bash
-$ sdk i java 19.ea.2.lm-open
+$ sdk i java 19.ea.4.lm-open
 ```
 
 #### Build
@@ -27,25 +27,11 @@ $ ./gradlew --console plain clean build
 #### Run with `preview features` enabled
 
 ```bash
-$ java --show-version \
+$ java -jar \
      --enable-preview \
-     -Xmx128M \
-     -XX:+PrintCommandLineFlags \
+     --add-modules=jdk.incubator.concurrent \
      -XX:+UseZGC \
-     -Xlog:gc\*:/tmp/openjdk-playground-gc.log \
-     -XX:StartFlightRecording:filename=/tmp/openjdk-playground.jfr,settings=default.jfc,name=openjdk-playground,maxsize=100m,dumponexit=true \
-     -XX:FlightRecorderOptions:stackdepth=128 \
-     -XX:+HeapDumpOnOutOfMemoryError \
-     -XX:HeapDumpPath=/tmp/openjdk-playground.hprof \
-     -XX:ErrorFile=/tmp/java-error-openjdk-playground-%p.log \
-     -XX:+UnlockDiagnosticVMOptions \
-     -XX:+ShowHiddenFrames \
-     -Dfile.encoding=UTF-8 \
-     -Djava.awt.headless=true \
-     -Djdk.attach.allowAttachSelf=true \
-     -Djdk.tracePinnedThreads=full \
-     -Djava.security.egd=file:/dev/./urandom \
-     -jar build/libs/openjdk-playground-*-uber.jar
+     build/libs/openjdk-playground-*-uber.jar
 ```
 
 #### Run the application container
@@ -118,10 +104,6 @@ $ ./gradlew -q javaToolchains
 
 ##### Resources
 
- * dev.java      ➱  https://dev.java
- * inside.java   ➱  https://inside.java
- * Oracle Java   ➱  https://www.oracle.com/java/
- * OpenJDK       ➱  https://openjdk.java.net/
  * :electric_plug: [Intellij Platform Explorer](https://plugins.jetbrains.com/intellij-platform-explorer/6954)
 
  <!--
