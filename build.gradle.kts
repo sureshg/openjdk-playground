@@ -309,6 +309,7 @@ tasks {
   }
 
   // Configure "compileKotlin" and "compileTestKotlin" tasks.
+  // https://github.com/JetBrains/kotlin/blob/master/compiler/cli/cli-common/src/org/jetbrains/kotlin/cli/common/arguments/K2JVMCompilerArguments.kt
   withType<KotlinCompile>().configureEach {
     usePreciseJavaTracking = true
     kotlinOptions {
@@ -325,13 +326,14 @@ tasks {
         "-Xallow-result-return-type",
         "-Xgenerate-strict-metadata-version",
         "-Xemit-jvm-type-annotations",
+        "-Xjspecify-annotations=strict",
         "-Xadd-modules=$addModules",
+        // "-Xjvm-enable-preview",
         // "-Xadd-modules=ALL-MODULE-PATH",
         // "-Xmodule-path=",
         // "-Xjdk-release=$kotlinJvmTarget",
         // "-Xjavac-arguments=\"--add-exports java.base/sun.nio.ch=ALL-UNNAMED\"",
         // "-Xexplicit-api={strict|warning|disable}",
-        // "-Xjvm-enable-preview",
       )
     }
 
