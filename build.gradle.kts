@@ -308,8 +308,11 @@ tasks {
     }
   }
 
-  // Configure "compileKotlin" and "compileTestKotlin" tasks.
-  // https://github.com/JetBrains/kotlin/blob/master/compiler/cli/cli-common/src/org/jetbrains/kotlin/cli/common/arguments/K2JVMCompilerArguments.kt
+  /* Configure "compileKotlin" and "compileTestKotlin" tasks.
+   * JVM backend compiler options can be found in,
+   * https://github.com/JetBrains/kotlin/blob/master/compiler/cli/cli-common/src/org/jetbrains/kotlin/cli/common/arguments/K2JVMCompilerArguments.kt
+   * https://github.com/JetBrains/kotlin/blob/master/compiler/config.jvm/src/org/jetbrains/kotlin/config/JvmTarget.kt
+   */
   withType<KotlinCompile>().configureEach {
     usePreciseJavaTracking = true
     kotlinOptions {
