@@ -326,6 +326,7 @@ tasks {
         "-Xjsr305=strict",
         "-Xjvm-default=all",
         "-Xassertions=jvm",
+        "-Xcontext-receivers",
         "-Xallow-result-return-type",
         "-Xgenerate-strict-metadata-version",
         "-Xemit-jvm-type-annotations",

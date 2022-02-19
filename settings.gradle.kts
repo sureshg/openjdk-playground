@@ -11,13 +11,20 @@ dependencyResolutionManagement {
   // repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
 }
 
+// extra.properties.forEach { (k, v) ->
+//   println("$k -> $v")
+// }
+// val ktVersion = extra["kotlin.version"] as String
+
 pluginManagement {
   includeBuild("build-logic")
 
-  //  val pluginVersion: String by settings
-  //  plugins {
-  //    id("com.example.hello") version pluginVersion
-  //  }
+//  val kotlinVersion: String by settings
+//  val composeVersion: String by settings
+//  plugins {
+//    kotlin("multiplatform") version kotlinVersion
+//    id("org.jetbrains.compose") version composeVersion
+//  }
 
   repositories {
     gradlePluginPortal()
