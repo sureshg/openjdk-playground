@@ -169,6 +169,7 @@ kapt {
 
 jte {
   contentType.set(ContentType.Plain)
+  generateNativeImageResources.set(true)
   generate()
 }
 
@@ -199,10 +200,11 @@ spotless {
   }
 
   val ktlintConfig = mapOf(
+    "indent_size" to "2",
+    "continuation_indent_size" to "2",
+    "end_of_line" to "lf",
     "disabled_rules" to "no-wildcard-imports",
     "insert_final_newline" to "true",
-    "end_of_line" to "lf",
-    "indent_size" to "2",
   )
 
   kotlin {
@@ -259,6 +261,19 @@ gitProperties {
 
 release {
   revertOnFail = true
+}
+
+buildScan {
+  termsOfServiceUrl = "https://gradle.com/terms-of-service"
+  termsOfServiceAgree = "yes"
+  if (isGithubAction) {
+    publishAlways()
+    isUploadInBackground = false
+    tag("GITHUB_ACTION")
+    buildScanPublished {
+      ghActionOutput("build_scan_uri", buildScanUri)
+    }
+  }
 }
 
 // Create ShadowJar specific runtimeClasspath.
@@ -532,7 +547,7 @@ dependencies {
   implementation(Deps.Google.AutoService.annotations)
   implementation(Deps.Jackson.databind)
   implementation(Deps.Google.ApiService.sdmv1)
-  implementation(Deps.TemplateEngine.Jte.jte)
+  implementation(Deps.TemplateEngine.Jte.runtime)
 
   implementation(Deps.Jetty.LoadGen.client)
   implementation(Deps.Network.jmdns)

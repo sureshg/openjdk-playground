@@ -147,7 +147,7 @@ object Deps {
   }
 
   object Foojay {
-    const val discoclient = "io.foojay.api:discoclient:2.0.19"
+    const val discoclient = "io.foojay.api:discoclient:2.0.20"
   }
 
   object Jetty {
@@ -185,7 +185,7 @@ object Deps {
   }
 
   object OkHttp {
-    const val version = "5.0.0-alpha.4"
+    const val version = "5.0.0-alpha.5"
     const val bom = "com.squareup.okhttp3:okhttp-bom:$version"
     const val okhttp = "com.squareup.okhttp3:okhttp:$version"
     const val mockWebServer = "com.squareup.okhttp3:mockwebserver:$version"
@@ -266,7 +266,7 @@ object Deps {
     const val jupiterApi = "org.junit.jupiter:junit-jupiter-api"
     const val jupiterEngine = "org.junit.jupiter:junit-jupiter-engine"
     const val jupiterParams = "org.junit.jupiter:junit-jupiter-params"
-    const val pioneer = "org.junit-pioneer:junit-pioneer:1.5.0"
+    const val pioneer = "org.junit-pioneer:junit-pioneer:1.6.1"
   }
 
   object KoTest {
@@ -280,7 +280,7 @@ object Deps {
   }
 
   object Mock {
-    const val mockk = "io.mockk:mockk:1.12.2"
+    const val mockk = "io.mockk:mockk:1.12.3"
     const val mockito = "org.mockito:mockito-core:2.26.0"
     const val mockserver = "org.mock-server:mockserver-netty:5.10.0"
     const val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
@@ -295,8 +295,9 @@ object Deps {
     const val stringTemplate = "org.antlr:ST4:4.3.1"
 
     object Jte {
-      const val version = "1.12.1"
+      const val version = "2.0.0"
       const val jte = "gg.jte:jte:$version"
+      const val runtime = "gg.jte:jte-runtime:$version"
       const val kotlin = "gg.jte:jte-kotlin:$version"
     }
   }
@@ -403,11 +404,11 @@ object Deps {
   object Cli {
     const val clikt = "com.github.ajalt.clikt:clikt:3.4.0"
     const val textIO = "org.beryx:text-io:3.4.1"
-    const val mordant = "com.github.ajalt.mordant:mordant:2.0.0-beta4"
+    const val mordant = "com.github.ajalt.mordant:mordant:2.0.0-beta5"
     const val colormath = "com.github.ajalt.colormath:colormath:2.0.0"
     const val mosaic = "com.jakewharton.mosaic:1.0.0"
-    const val picnic = "com.jakewharton.picnic:picnic:0.4.0"
-    const val crossword = "com.jakewharton.crossword:crossword:0.1.2"
+    const val picnic = "com.jakewharton.picnic:picnic:0.6.0"
+    const val crossword = "com.jakewharton.crossword:crossword:0.2.0"
     const val progressbar = "me.tongfei:progressbar:0.9.0"
     const val progressKt = "com.importre:progress:0.1.0"
     const val textTree = "org.barfuin.texttree:text-tree:2.1.1"
@@ -457,7 +458,7 @@ object Deps {
     const val password4j = "com.password4j:password4j:1.5.4"
     const val otp = "com.github.bastiaanjansen:otp-java:1.3.0"
     const val totp = "dev.samstevens.totp:totp:1.7.1"
-    const val jwtJava = "com.github.bastiaanjansen:jwt-java:1.1.0"
+    const val jwtJava = "com.github.bastiaanjansen:jwt-java:1.2.0"
     const val twoFactorAuth = "com.j256.two-factor-auth:two-factor-auth:1.3"
     const val zxingCore = "com.google.zxing:core:3.4.1"
     const val sshj = "com.hierynomus:sshj:0.26.0"
@@ -699,7 +700,7 @@ inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.j
 
 // Dependency Versions
 inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version "0.42.0"
-inline val PluginDependenciesSpec.versionCatalogUpdate get() = id("nl.littlerobots.version-catalog-update") version "0.3.0"
+inline val PluginDependenciesSpec.versionCatalogUpdate get() = id("nl.littlerobots.version-catalog-update") version "0.3.1"
 inline val PluginDependenciesSpec.consistentVersions get() = id("com.palantir.consistent-versions") version "1.28.0"
 
 // Dependencies

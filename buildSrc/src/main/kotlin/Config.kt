@@ -158,9 +158,11 @@ fun File.findPkg(format: String?) = when (format != null) {
   else -> null
 }
 
+val isGithubAction get() = System.getenv("GITHUB_ACTIONS").toBoolean()
+
 /**
  * Add a Github action output if it's running on an Action runner.
  */
 fun ghActionOutput(name: String, value: Any) {
-  if (System.getenv("GITHUB_ACTIONS").toBoolean()) println("::set-output name=$name::$value")
+  if (isGithubAction) println("::set-output name=$name::$value")
 }

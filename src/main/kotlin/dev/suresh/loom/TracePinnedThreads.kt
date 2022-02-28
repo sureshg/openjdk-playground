@@ -13,7 +13,12 @@ import java.util.concurrent.locks.*
  */
 fun main() {
   System.setProperty("jdk.tracePinnedThreads", "full")
-  val lock = Any()
+  tracePinnedThread()
+  // testMaxPinnedThreads()
+}
+
+fun tracePinnedThread() {
+  val lock = Object()
   val out = System.out
   val baos = ByteArrayOutputStream()
   System.setOut(PrintStream(baos))
@@ -23,6 +28,7 @@ fun main() {
       synchronized(lock) {
         val nanos: Long = Duration.ofSeconds(1).toNanos()
         LockSupport.parkNanos(nanos)
+        // OR lock.wait()
       }
     }.join()
     System.out.flush()
@@ -34,4 +40,8 @@ fun main() {
   println(output)
   val expected = "<== monitors:1"
   check(expected in output) { """expected:"$expected"""" }
+}
+
+fun testMaxPinnedThreads() {
+  println("Hello")
 }

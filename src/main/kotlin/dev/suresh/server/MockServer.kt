@@ -36,6 +36,7 @@ class MockServer {
   val client = OkHttpClient.Builder()
     .sslSocketFactory(clientCerts.sslSocketFactory(), clientCerts.trustManager)
     .callTimeout(Duration.ofSeconds(5))
+    .fastFallback(true)
     .build()
 
   /**

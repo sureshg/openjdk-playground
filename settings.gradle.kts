@@ -2,6 +2,8 @@ rootProject.name = "openjdk-playground"
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
+includeBuild("build-logic")
+
 // Centralizing repositories declaration
 dependencyResolutionManagement {
   repositories {
@@ -22,6 +24,7 @@ pluginManagement {
 //  val kotlinVersion: String by settings
 //  val composeVersion: String by settings
 //  plugins {
+//    id("plugins.common") // From build-logic
 //    kotlin("multiplatform") version kotlinVersion
 //    id("org.jetbrains.compose") version composeVersion
 //  }
@@ -43,6 +46,10 @@ pluginManagement {
       }
     }
   }
+}
+
+plugins {
+  id("com.gradle.enterprise") version System.getProperty("gradleEnterprise")
 }
 
 // Composite Builds
