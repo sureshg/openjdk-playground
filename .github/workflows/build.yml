@@ -54,7 +54,7 @@ jobs:
             cmd: ./gradlew.bat
 
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 15
+    timeout-minutes: 20
     continue-on-error: false
 
     outputs:
