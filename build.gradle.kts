@@ -561,7 +561,7 @@ dependencies {
   implementation(Deps.Security.otp)
   implementation(Deps.Security.jwtJava)
   implementation(Deps.Cli.textTree)
-  implementation(Deps.Foojay.discoclient)
+  // implementation(Deps.Foojay.discoclient)
 
   compileOnly(Deps.TemplateEngine.Jte.kotlin)
   compileOnly(Deps.Kotlinx.atomicfu)
