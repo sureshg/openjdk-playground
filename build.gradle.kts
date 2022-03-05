@@ -266,12 +266,16 @@ release {
 buildScan {
   termsOfServiceUrl = "https://gradle.com/terms-of-service"
   termsOfServiceAgree = "yes"
-  if (isGithubAction) {
+  if (GithubAction.isEnabled) {
     publishAlways()
     isUploadInBackground = false
     tag("GITHUB_ACTION")
     buildScanPublished {
-      ghActionOutput("build_scan_uri", buildScanUri)
+      GithubAction.setOutput("build_scan_uri", buildScanUri)
+      GithubAction.notice(
+        buildScanUri.toASCIIString(),
+        "${GithubAction.Env.RUNNER_OS} BuildScan URL"
+      )
     }
   }
 }
@@ -454,9 +458,9 @@ tasks {
       val fatJar = archiveFile.get().asFile
       println("FatJar: ${fatJar.path} (${fatJar.length().toDouble() / (1_000 * 1_000)} MB)")
       println(appRunCmd(fatJar.toPath(), application.applicationDefaultJvmArgs.toList()))
-      ghActionOutput("version", project.version)
-      ghActionOutput("uberjar_name", fatJar.name)
-      ghActionOutput("uberjar_path", fatJar.absolutePath)
+      GithubAction.setOutput("version", project.version)
+      GithubAction.setOutput("uberjar_name", fatJar.name)
+      GithubAction.setOutput("uberjar_path", fatJar.absolutePath)
     }
   }
 

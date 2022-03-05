@@ -22,6 +22,14 @@ public class JavaApp {
 
     final var lineSep = System.lineSeparator();
 
+    var rt = Runtime.getRuntime();
+    double sizeUnit = 1024f * 1024 * 1014;
+    out.printf("%n✧✧✧✧✧ Available Processors: %d ✧✧✧✧✧%n", rt.availableProcessors());
+    out.printf("%n✧✧✧✧✧ JVM Memory -> Total Allocated : %.2fGB, Free: %.2fGB, Max Configured: %.2fGB,  ✧✧✧✧✧%n",
+      rt.totalMemory()/sizeUnit,
+      rt.freeMemory()/sizeUnit,
+      rt.maxMemory()/sizeUnit);
+
     out.printf("%n✧✧✧✧✧ Processes ✧✧✧✧✧%n");
     var ps = ProcessHandle.allProcesses().sorted(ProcessHandle::compareTo).toList();
     ps.forEach(

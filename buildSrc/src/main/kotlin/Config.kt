@@ -7,14 +7,10 @@ import java.nio.file.*
 import kotlin.properties.*
 import kotlin.reflect.*
 
-/**
- * Build source logger
- */
+/** Build source logger */
 val logger = LoggerFactory.getLogger("buildSrc")
 
-/**
- * Maven and gradle repositories.
- */
+/** Maven and gradle repositories. */
 sealed class Repo(val name: String, val url: String) {
   object Central : Repo(
     name = "Maven Central",
@@ -58,9 +54,7 @@ val tmp = if (OperatingSystem.current().isWindows) "c:/TEMP" else "/tmp"
 // Quote for -Xlog file
 val xQuote = if (OperatingSystem.current().isWindows) """\"""" else """""""
 
-/**
- * Check if it's a non stable (RC) version.
- */
+/** Check if it's a non stable (RC) version. */
 val String.isNonStable: Boolean
   get() {
     val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { toUpperCase().contains(it) }
@@ -69,9 +63,7 @@ val String.isNonStable: Boolean
     return isStable.not()
   }
 
-/**
- * Checks if the project has snapshot version.
- */
+/** Checks if the project has snapshot version. */
 fun Project.hasSnapshotVersion() = version.toString().endsWith("SNAPSHOT", true)
 
 /**
@@ -88,9 +80,7 @@ val Project.javaToolchainPath
       ?: error("Requested JDK version ($javaVersion) is not available.")
   }
 
-/**
- * Returns the application `run` command.
- */
+/** Returns the application `run` command. */
 fun Project.appRunCmd(jarPath: Path, args: List<String>): String {
   val path = projectDir.toPath().relativize(jarPath)
   val newLine = System.lineSeparator()
@@ -112,9 +102,7 @@ fun Project.appRunCmd(jarPath: Path, args: List<String>): String {
   }
 }
 
-/**
- * Returns the current OS name.
- */
+/** Returns the current OS name. */
 val os by lazy {
   val os = System.getProperty("os.name")
   when {
@@ -125,9 +113,7 @@ val os by lazy {
   }
 }
 
-/**
- * System property delegate
- */
+/** System property delegate */
 @Suppress("IMPLICIT_CAST_TO_ANY")
 inline fun <reified T> sysProp(): ReadOnlyProperty<Any?, T> =
   ReadOnlyProperty { _, property ->
@@ -150,19 +136,8 @@ inline fun <reified T> sysProp(): ReadOnlyProperty<Any?, T> =
     } as T
   }
 
-/**
- * Find the file ends with given [format] under the directory.
- */
+/** Find the file ends with given [format] under the directory. */
 fun File.findPkg(format: String?) = when (format != null) {
   true -> walk().firstOrNull { it.isFile && it.name.endsWith(format, ignoreCase = true) }
   else -> null
-}
-
-val isGithubAction get() = System.getenv("GITHUB_ACTIONS").toBoolean()
-
-/**
- * Add a Github action output if it's running on an Action runner.
- */
-fun ghActionOutput(name: String, value: Any) {
-  if (isGithubAction) println("::set-output name=$name::$value")
 }

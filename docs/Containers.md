@@ -147,7 +147,21 @@ $ docker run -it --rm ,
 ##### Java Container logs
 
 ```bash
-$ docker run -it --rm --memory=256m --cpus=1 -v /:/host --name jdk-18 openjdk:18-jdk-slim java -Xlog:os=trace,os+container=trace -version
+$ docker run \
+        -it \
+        --rm \
+        --memory=256m \
+        --cpus=2 \
+        -v "$HOME":/app \
+        -v /:/host \
+        --name jdk-19 \
+        openjdk:19-slim \
+        java -XX:+UnlockExperimentalVMOptions \
+        -XX:+UnlockDiagnosticVMOptions \
+        -XX:+PrintFlagsFinal \
+        -Xlog:os=trace,os+container=trace -version 
+        # | grep -e "Use.*GC" -e "Active"
+
 ```
 
 ##### Access Docker desktop LinuxKit VM on MacOS

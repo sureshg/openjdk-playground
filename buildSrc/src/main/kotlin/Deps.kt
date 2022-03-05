@@ -147,7 +147,7 @@ object Deps {
   }
 
   object Foojay {
-    const val discoclient = "io.foojay.api:discoclient:2.0.20"
+    const val discoclient = "io.foojay.api:discoclient:2.0.21"
   }
 
   object Jetty {
