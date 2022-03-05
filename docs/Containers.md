@@ -159,7 +159,7 @@ $ docker run \
         java -XX:+UnlockExperimentalVMOptions \
         -XX:+UnlockDiagnosticVMOptions \
         -XX:+PrintFlagsFinal \
-        -Xlog:os=trace,os+container=trace -version 
+        -Xlog:os=trace,os+container=trace -version
         # | grep -e "Use.*GC" -e "Active"
 
 ```
