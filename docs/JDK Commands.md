@@ -234,48 +234,36 @@ $ objdump -section-headers  app
 $ time ./app
 ```
 
-##### 15. Kotlin Script
-
-```kotlin
-#!/usr/bin/env -S kotlinc -script --
-// sudo snap install --classic kotlin
-// ./hello.main.kts
-
-@file:DependsOn("com.github.ajalt:clikt:2.8.0")
-
-println("Hello Kotlin Script")
-```
-
-##### 17. Generics
+##### 15. Generics
 
 - [GenericsFAQ](http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html)
 - [How we got Generics we have](https://cr.openjdk.java.net/~briangoetz/valhalla/erasure.html)
 
-##### 18. HeapDump
+##### 16. HeapDump
 
 * [Graal Heapdump Builder](https://www.graalvm.org/tools/javadoc/org/graalvm/tools/insight/heap/HeapDump.html)
 * [Java Profiler Heap Dump Format](http://hg.openjdk.java.net/jdk6/jdk6/jdk/raw-file/tip/src/share/demo/jvmti/hprof/manual.html)
 * [HPROF Parser](https://github.com/openjdk/jdk/blob/master/test/lib/jdk/test/lib/hprof/HprofParser.java)
 
-19. ##### ThreadDump
+##### 17. ThreadDump
 
-    ```bash
-    # Get all java processes
-    $ jcmd -l
-    $ jps -mlvV
+```bash
+# Get all java processes
+$ jcmd -l
+$ jps -mlvV
 
-    # See the available commands for all java processes
-    $ jcmd 0 help
-    # Use PID or main class
-    $ jcmd dev.suresh.Main VM.version
-    $ jcmd <dev.suresh.Main | pid> Thread.print
-    # OR
-    $ kill -3 <pid>
-    $ kill -3 "$(jcmd -l | grep "dev.suresh.Main" | cut -d " " -f1)"
-    # OR
-    # Prints additional info about thread (-e  extended listing) and locks (-l  long listing)
-    $ jstack -l -e  <pid>
-    ```
+# See the available commands for all java processes
+$ jcmd 0 help
+# Use PID or main class
+$ jcmd dev.suresh.Main VM.version
+$ jcmd <dev.suresh.Main | pid> Thread.print
+# OR
+$ kill -3 <pid>
+$ kill -3 "$(jcmd -l | grep "dev.suresh.Main" | cut -d " " -f1)"
+# OR
+# Prints additional info about thread (-e  extended listing) and locks (-l  long listing)
+$ jstack -l -e  <pid>
+```
 
 
 

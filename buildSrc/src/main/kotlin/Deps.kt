@@ -2,9 +2,7 @@ import org.gradle.api.artifacts.dsl.*
 import org.gradle.kotlin.dsl.*
 import org.gradle.plugin.use.*
 
-/**
- * Platform versions defined as System Properties.
- */
+/** Platform versions defined as System Properties. */
 val javaVersion by sysProp<Int>()
 val kotlinVersion by sysProp<String>()
 val kotlinJvmTarget by sysProp<String>()
@@ -17,9 +15,7 @@ val githubProject by sysProp<String>()
 val jvmArguments by sysProp<List<String>>()
 val addModules by sysProp<String>()
 
-/**
- * Dependency versions.
- */
+/** Dependency versions. */
 object Deps {
 
   object Jdk {
@@ -139,6 +135,7 @@ object Deps {
     const val gfmPlugin = "org.jetbrains.dokka:gfm-plugin:$version"
     const val jekyllPlugin = "org.jetbrains.dokka:jekyll-plugin:$version"
     const val mathjaxPlugin = "org.jetbrains.dokka:mathjax-plugin:$version"
+    const val mermaidPlugin = "com.glureau:html-mermaid-dokka-plugin:0.1.1"
   }
 
   object OpenJDK {
@@ -185,7 +182,7 @@ object Deps {
   }
 
   object OkHttp {
-    const val version = "5.0.0-alpha.5"
+    const val version = "5.0.0-alpha.6"
     const val bom = "com.squareup.okhttp3:okhttp-bom:$version"
     const val okhttp = "com.squareup.okhttp3:okhttp:$version"
     const val mockWebServer = "com.squareup.okhttp3:mockwebserver:$version"
@@ -266,11 +263,11 @@ object Deps {
     const val jupiterApi = "org.junit.jupiter:junit-jupiter-api"
     const val jupiterEngine = "org.junit.jupiter:junit-jupiter-engine"
     const val jupiterParams = "org.junit.jupiter:junit-jupiter-params"
-    const val pioneer = "org.junit-pioneer:junit-pioneer:1.6.1"
+    const val pioneer = "org.junit-pioneer:junit-pioneer:1.6.2"
   }
 
   object KoTest {
-    const val version = "5.1.0"
+    const val version = "5.2.1"
     const val junit5Runner = "io.kotest:kotest-runner-junit5:$version"
     const val assertions = "io.kotest:kotest-assertions-core:$version"
     const val property = "io.kotest:kotest-property:$version"
@@ -393,7 +390,7 @@ object Deps {
   }
 
   object Jackson {
-    const val version = "2.13.1"
+    const val version = "2.13.2"
     const val databind = "com.fasterxml.jackson.core:jackson-databind:$version"
   }
 
@@ -662,9 +659,7 @@ object Deps {
   const val japicmp = "com.github.siom79.japicmp:japicmp:0.13.0"
 }
 
-/**
- * Dependency Extensions
- */
+/** Dependency Extensions */
 val DependencyHandler.KotlinBom get() = kotlin("bom")
 val DependencyHandler.KotlinStdlibJdk8 get() = kotlin("stdlib-jdk8")
 val DependencyHandler.KotlinReflect get() = kotlin("reflect")
@@ -674,9 +669,7 @@ val DependencyHandler.KotlinScriptRuntime get() = kotlin("script-runtime")
 val DependencyHandler.KotlinScripUtil get() = kotlin("script-util")
 val DependencyHandler.KotlinScripJsr223 get() = kotlin("scripting-jsr223")
 
-/**
- * PluginId Extensions
- */
+/** PluginId Extensions */
 inline val PluginDependenciesSpec.kotlinJvm get() = kotlin("jvm") version kotlinVersion
 inline val PluginDependenciesSpec.kotlinxSerialization get() = kotlin("plugin.serialization") version kotlinVersion
 inline val PluginDependenciesSpec.kotlinKapt get() = kotlin("kapt") version kotlinVersion

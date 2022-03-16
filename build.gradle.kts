@@ -31,12 +31,12 @@ plugins {
   signing
   `maven-publish`
   nexusPublish
-  gradleRelease
   binCompatValidator
   dependencyAnalyze
   extraJavaModuleInfo
   licensee
   buildkonfig
+  // gradleRelease
   // kotlinxAtomicfu
   // plugins.common
 }
@@ -121,7 +121,7 @@ java {
 // Add the generated templates to source set.
 sourceSets {
   main {
-    java.srcDirs(tasks.copyTemplates.get().destinationDir)
+    java.srcDirs(tasks.copyTemplates)
   }
 }
 
@@ -259,10 +259,6 @@ gitProperties {
   customProperties["kotlin"] = kotlinVersion
 }
 
-release {
-  revertOnFail = true
-}
-
 buildScan {
   termsOfServiceUrl = "https://gradle.com/terms-of-service"
   termsOfServiceAgree = "yes"
@@ -279,6 +275,10 @@ buildScan {
     }
   }
 }
+
+// release {
+//  revertOnFail = true
+// }
 
 // Create ShadowJar specific runtimeClasspath.
 val shadowRuntime: Configuration by configurations.creating {
@@ -359,9 +359,6 @@ tasks {
         // "-Xexplicit-api={strict|warning|disable}",
       )
     }
-
-    // Generate kotlin templates. This has to be before kotlin compile.
-    dependsOn(copyTemplates)
   }
 
   run.invoke {
@@ -394,7 +391,6 @@ tasks {
     reports {
       html.required.set(true)
     }
-    dependsOn(test)
   }
 
   // Javadoc
@@ -464,11 +460,6 @@ tasks {
     }
   }
 
-  // Release depends on publish.
-  afterReleaseBuild {
-    dependsOn(publish)
-  }
-
   dependencyUpdates {
     checkForGradleUpdate = true
     outputFormatter = "json"
@@ -479,9 +470,9 @@ tasks {
   }
 
   // Disable dependency analysis
-  analyzeDependencies.get().enabled = false
-  analyzeClassesDependencies.get().enabled = false
-  analyzeTestClassesDependencies.get().enabled = false
+  analyzeDependencies { enabled = false }
+  analyzeClassesDependencies { enabled = false }
+  analyzeTestClassesDependencies { enabled = false }
 
   // Reproducible builds
   withType<AbstractArchiveTask>().configureEach {
@@ -594,6 +585,7 @@ dependencies {
 
   // Dokka Plugins (dokkaHtmlPlugin, dokkaGfmPlugin)
   // dokkaPlugin(Deps.Dokka.kotlinAsJavaPlugin)
+  dokkaPlugin(Deps.Dokka.mermaidPlugin)
 }
 
 publishing {
@@ -616,8 +608,8 @@ publishing {
     // Maven Central
     register<MavenPublication>("maven") {
       from(components["java"])
-      artifact(dokkaHtmlJar.get())
-      // artifact(tasks.shadowJar.get())
+      artifact(dokkaHtmlJar)
+      // artifact(tasks.shadowJar)
 
       pom {
         packaging = "jar"
