@@ -9,9 +9,15 @@
 # https://console.cloud.google.com/gcr/images/distroless/GLOBAL
 $ docker pull gcr.io/distroless/java:base
 $ docker pull gcr.io/distroless/java:base-nonroot
+$ docker pull gcr.io/distroless/java-base:nonroot
+
 # OS specific
 $ docker pull gcr.io/distroless/java-debian11:base
 $ docker pull gcr.io/distroless/java-debian11:base-nonroot
+
+# AMD64/ARM64 Distroless Java Base
+$ docker run --pull always -it --rm --platform=linux/arm64 gcr.io/distroless/java-base-debian11:nonroot
+$ docker run --pull always -it --rm --platform=linux/amd64 gcr.io/distroless/java-base-debian11:nonroot
 
 # Distroless OpenJDK
 # https://github.com/GoogleContainerTools/distroless/tree/main/java
@@ -24,13 +30,14 @@ $ docker pull gcr.io/distroless/base:latest
 
 # Openjdk
 # https://github.com/docker-library/openjdk
-$ docker pull openjdk:18-slim
-$ docker pull openjdk:18-alpine
-$ docker pull openjdk:18-jdk-oracle
+$ docker pull openjdk:19-slim
+$ docker pull openjdk:19-alpine
+$ docker pull openjdk:19-jdk-oracle
 
 # Eclipse Temurin
 # https://github.com/adoptium/containers#supported-images
 $ docker pull eclipse-temurin:17-focal
+$ docker pull eclipse-temurin:17-jre-focal
 $ docker pull eclipse-temurin:17-alpine
 $ docker pull eclipse-temurin:17-jre-alpine
 
@@ -49,6 +56,10 @@ $ docker pull mcr.microsoft.com/openjdk/jdk:17-ubuntu
 # https://github.com/zulu-openjdk/zulu-openjdk
 $ docker pull azul/zulu-openjdk-debian:17-jre
 $ docker pull azul/zulu-openjdk-alpine:17-jre
+
+# Azul Zulu OpenJDK & Mission Control (Homebrew on MacOS)
+$ brew tap mdogan/zulu
+$ brew install <name>
 
 # Azul Prime()
 $ docker pull azul/prime:latest
@@ -159,7 +170,7 @@ $ docker run \
         java -XX:+UnlockExperimentalVMOptions \
         -XX:+UnlockDiagnosticVMOptions \
         -XX:+PrintFlagsFinal \
-        -Xlog:os=trace,os+container=trace -version
+        -Xlog:os=trace,os+container=trace --version
         # | grep -e "Use.*GC" -e "Active"
 
 ```
@@ -172,7 +183,7 @@ $ docker run -it --rm --memory=256m --cpus=1 -v /:/host --name alpine alpine
   # docker version
 ```
 
-##### Netscat Webserver
+##### Netcat Webserver
 
 ```bash
 FROM alpine

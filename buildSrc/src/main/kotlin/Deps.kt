@@ -56,7 +56,7 @@ object Deps {
     }
 
     object Ksp {
-      const val version = "1.6.20-RC-1.0.4"
+      const val version = "1.6.20-RC2-1.0.4"
       const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
       const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
       const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.4.0"
@@ -135,7 +135,7 @@ object Deps {
     const val gfmPlugin = "org.jetbrains.dokka:gfm-plugin:$version"
     const val jekyllPlugin = "org.jetbrains.dokka:jekyll-plugin:$version"
     const val mathjaxPlugin = "org.jetbrains.dokka:mathjax-plugin:$version"
-    const val mermaidPlugin = "com.glureau:html-mermaid-dokka-plugin:0.1.1"
+    const val mermaidPlugin = "com.glureau:html-mermaid-dokka-plugin:0.2.1"
   }
 
   object OpenJDK {
@@ -267,7 +267,7 @@ object Deps {
   }
 
   object KoTest {
-    const val version = "5.2.1"
+    const val version = "5.2.2"
     const val junit5Runner = "io.kotest:kotest-runner-junit5:$version"
     const val assertions = "io.kotest:kotest-assertions-core:$version"
     const val property = "io.kotest:kotest-property:$version"
@@ -294,8 +294,8 @@ object Deps {
     object Jte {
       const val version = "2.0.0"
       const val jte = "gg.jte:jte:$version"
-      const val runtime = "gg.jte:jte-runtime:$version"
-      const val kotlin = "gg.jte:jte-kotlin:$version"
+      const val runtime = "gg.jte:jte-runtime:2.0.1"
+      const val kotlin = "gg.jte:jte-kotlin:2.0.1"
     }
   }
 
@@ -367,7 +367,7 @@ object Deps {
   object Logging {
 
     object Slf4j {
-      const val version = "2.0.0-alpha6"
+      const val version = "2.0.0-alpha7"
       const val api = "org.slf4j:slf4j-api:$version"
       const val nop = "org.slf4j:slf4j-nop:$version"
       const val simple = "org.slf4j:slf4j-simple:$version"
@@ -698,7 +698,7 @@ inline val PluginDependenciesSpec.consistentVersions get() = id("com.palantir.co
 
 // Dependencies
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "7.1.2"
-inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.8.3" apply true
+inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.9.0" apply true
 inline val PluginDependenciesSpec.taskinfo get() = id("org.barfuin.gradle.taskinfo") version "1.3.1" apply false
 inline val PluginDependenciesSpec.taskTree get() = id("com.dorongold.task-tree") version "1.5"
 inline val PluginDependenciesSpec.forbiddenApis get() = id("de.thetaphi.forbiddenapis") version "3.1"

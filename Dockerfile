@@ -47,10 +47,10 @@ RUN $JAVA_HOME/bin/jlink \
 CMD ["java", "--list-modules"]
 # CMD ["jshell"]
 
-#FROM gcr.io/distroless/java-debian10:base
-#ARG JAR_FILE=openjdk-playground-1.2.0-12-main-uber.jar
+# FROM gcr.io/distroless/java-debian10:base
+# ARG JAR_FILE=openjdk-playground-1.2.0-12-main-uber.jar
 #
-#COPY --from=jreBuilder /jre /usr/lib/jre
-#ENTRYPOINT ["/usr/lib/jre/bin/java", "-jar", "./app.jar"]
-#COPY ./build/libs/${JAR_FILE} ./app.jar
+# COPY --from=jreBuilder /jre /usr/lib/jre
+# ENTRYPOINT ["/usr/lib/jre/bin/java", "-jar", "./app.jar"]
+# COPY ./build/libs/${JAR_FILE} ./app.jar
 

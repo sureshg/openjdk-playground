@@ -67,7 +67,7 @@ $ java -XshowSettings:all --version
 $ java -XshowSettings:properties --version
 
 # VM extra options
-$  java -XX:+UnlockExperimentalVMOptions -XX:+UnlockDiagnosticVMOptions -XX:+PrintFlagsFinal -version
+$  java -XX:+UnlockExperimentalVMOptions -XX:+UnlockDiagnosticVMOptions -XX:+PrintFlagsFinal --version
 ```
 
 * [**Java Options**](https://docs.oracle.com/en/java/javase/15/docs/specs/man/java.html)
@@ -200,23 +200,40 @@ $  java -Xlog:help
 
 - Wizard to create configuration files (.jfc)
 
-```bash
-$ jfr configure --interactive
-```
+  ```bash
+  $ jfr configure --interactive
+  $ jfr summary openjdk-playground.jfr
+  $ jfr assemble <repository> <file> // cat jfr_file_version_* >> combined.jfr
+  $ jfr print --events 'jdk.*' --stack-depth 64 openjdk-playground.jfr
+  $ jfr print --events CPULoad,GarbageCollection openjdk-playground.jfr
+  ```
 
-```bash
--XX:StartFlightRecording:filename=recording.jfr
--XX:FlightRecorderOptions:stackdepth=256
-```
+  Some config options are,
 
-```bash
--XX:+HeapDumpOnOutOfMemoryError
--XX:ErrorFile=$USER_HOME/java_error_in_app_%p.log
--XX:HeapDumpPath=$USER_HOME/java_error_in_app.hprof
-```
+  ```bash
+  -XX:StartFlightRecording:filename=recording.jfr
+  -XX:FlightRecorderOptions:stackdepth=256
+
+  -XX:+HeapDumpOnOutOfMemoryError
+  -XX:ErrorFile=$USER_HOME/java_error_in_app_%p.log
+  -XX:HeapDumpPath=$USER_HOME/java_error_in_app.hprof
+  ```
+
+
+
+* Find finalizable objects in your application
+
+  ```bash
+  $ java -XX:StartFlightRecording:filename=dump.jfr ...
+  $ jfr print --events FinalizerStatistics dump.jfr
+  ```
+
+
 
 * [Troubleshoot Perf Issues Using JFR](https://docs.oracle.com/en/java/javase/15/troubleshoot/troubleshoot-performance-issues-using-jfr.html#GUID-0FE29092-18B5-4BEB-8D8D-0CBA7A4FEA1D)
+
 * [Flight Recorder Tool](https://docs.oracle.com/en/java/javase/15/troubleshoot/diagnostic-tools.html#GUID-D38849B6-61C7-4ED6-A395-EA4BC32A9FD6)
+
 * [Flight Recorder API Guide](https://docs.oracle.com/en/java/javase/15/jfapi/flight-recorder-configurations.html)
 
 ##### 14. Kotlin + Graal Native-Image
