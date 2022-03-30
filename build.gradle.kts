@@ -88,7 +88,7 @@ application {
     // "-Dhttps.agent=$name",
     // "-Dhttp.keepAlive=true",
     // "-Dhttp.maxConnections=5",
-    // "-Djava.security.manager=disallow",
+    // "-Djava.security.manager=allow",
     // "-Dfile.encoding=COMPAT", // uses '-Dnative.encoding'
     // "-Djava.io.tmpdir=/var/data/tmp",
     // "-Djava.locale.providers=COMPAT,CLDR",

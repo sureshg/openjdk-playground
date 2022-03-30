@@ -292,10 +292,10 @@ object Deps {
     const val stringTemplate = "org.antlr:ST4:4.3.1"
 
     object Jte {
-      const val version = "2.0.0"
+      const val version = "2.0.1"
       const val jte = "gg.jte:jte:$version"
-      const val runtime = "gg.jte:jte-runtime:2.0.1"
-      const val kotlin = "gg.jte:jte-kotlin:2.0.1"
+      const val runtime = "gg.jte:jte-runtime:$version"
+      const val kotlin = "gg.jte:jte-kotlin:$version"
     }
   }
 
@@ -390,7 +390,7 @@ object Deps {
   }
 
   object Jackson {
-    const val version = "2.13.2"
+    const val version = "2.13.2.2"
     const val databind = "com.fasterxml.jackson.core:jackson-databind:$version"
   }
 
@@ -689,7 +689,7 @@ inline val PluginDependenciesSpec.reflektPlugin get() = id("io.reflekt") version
 
 // Google Plugins
 inline val PluginDependenciesSpec.ksp get() = id("com.google.devtools.ksp") version Deps.Kotlin.Ksp.version
-inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.jib") version "3.2.0"
+inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.jib") version "3.2.1"
 
 // Dependency Versions
 inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version "0.42.0"
@@ -699,7 +699,7 @@ inline val PluginDependenciesSpec.consistentVersions get() = id("com.palantir.co
 // Dependencies
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "7.1.2"
 inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.9.0" apply true
-inline val PluginDependenciesSpec.taskinfo get() = id("org.barfuin.gradle.taskinfo") version "1.3.1" apply false
+inline val PluginDependenciesSpec.taskinfo get() = id("org.barfuin.gradle.taskinfo") version "1.4.0" apply false
 inline val PluginDependenciesSpec.taskTree get() = id("com.dorongold.task-tree") version "1.5"
 inline val PluginDependenciesSpec.forbiddenApis get() = id("de.thetaphi.forbiddenapis") version "3.1"
 inline val PluginDependenciesSpec.extraJavaModuleInfo get() = id("de.jjohannes.extra-java-module-info") version "0.11"
@@ -728,7 +728,7 @@ inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boo
 inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version "1.0.9.RELEASE"
 
 // Static Analysis and Linting
-inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "6.3.0"
+inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "6.4.1"
 inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.4.0"
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version "9.3.0"

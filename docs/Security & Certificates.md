@@ -44,18 +44,42 @@ $ openssl x509 -noout -modulus -in cert.pem | openssl md5
 $ openssl rsa  -noout -modulus -in cert.key | openssl md5
 ```
 
+
+
+### OpenJDK
+
+*  List all [JDK cacerts](https://seanjmullan.org/blog/2022/03/23/jdk18#pki)
+
+  ```bash
+  # Since JDK 18, cacert migrated to Password-Less PKCS12(https://jdk.java.net/18/release-notes#JDK-8275252)
+  $ openssl pkcs12 -cacerts -chain -nokeys -nomacver -in "$JAVA_HOME/lib/security/cacerts" -passin pass: | grep -i "subject="
+  ```
+
+
+
+### Self Signed Certs
+
+* [Add self-generated RootCA to OSes](https://www.bounca.org/tutorials/install_root_certificate.html)
+
+* [Setup CA on CentsOs](https://www.digitalocean.com/community/tutorials/how-to-set-up-and-configure-a-certificate-authority-ca-on-centos-8)
+
+
+
 ### Add Certs to IntelliJ Truststore
 
 ------
 
 ```bash
-$ cacerts="$HOME/Library/Application Support/JetBrains/GoLand2020.2/ssl/cacerts"
-$ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
-$ keytool -importcert -trustcacerts -alias rootca -storetype PKCS12 -keystore $cacerts -storepass changeit -file "$HOME/Desktop/RootCA-SHA256.crt"
-$ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
-
-$ cacerts="$HOME/Library/Application Support/JetBrains/IntelliJIdea2020.2/ssl/cacerts"
+$ cacerts="$HOME/Library/Application Support/JetBrains/IntelliJIdea2022.1/ssl/cacerts"
 $ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
 $ keytool -importcert -trustcacerts -alias rootca -storetype PKCS12 -keystore $cacerts -storepass changeit -file "$HOME/Desktop/RootCA-SHA256.crt"
 $ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
 ```
+
+
+
+### Misc
+
+* https://www.sslshopper.com/article-most-common-java-keytool-keystore-commands.html
+* [Export Certificates and Private Key from a PKCS#12](https://www.ssl.com/how-to/export-certificates-private-key-from-pkcs12-file-with-openssl/)
+* https://www.rapidsslonline.com/blog/simple-guide-java-keytool-keystore-commands/

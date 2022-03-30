@@ -196,47 +196,9 @@ $  java -Xlog:help
 -XX:GCLogFileSize=10M
 ```
 
-##### 13. JFR
+#####
 
-- Wizard to create configuration files (.jfc)
-
-  ```bash
-  $ jfr configure --interactive
-  $ jfr summary openjdk-playground.jfr
-  $ jfr assemble <repository> <file> // cat jfr_file_version_* >> combined.jfr
-  $ jfr print --events 'jdk.*' --stack-depth 64 openjdk-playground.jfr
-  $ jfr print --events CPULoad,GarbageCollection openjdk-playground.jfr
-  ```
-
-  Some config options are,
-
-  ```bash
-  -XX:StartFlightRecording:filename=recording.jfr
-  -XX:FlightRecorderOptions:stackdepth=256
-
-  -XX:+HeapDumpOnOutOfMemoryError
-  -XX:ErrorFile=$USER_HOME/java_error_in_app_%p.log
-  -XX:HeapDumpPath=$USER_HOME/java_error_in_app.hprof
-  ```
-
-
-
-* Find finalizable objects in your application
-
-  ```bash
-  $ java -XX:StartFlightRecording:filename=dump.jfr ...
-  $ jfr print --events FinalizerStatistics dump.jfr
-  ```
-
-
-
-* [Troubleshoot Perf Issues Using JFR](https://docs.oracle.com/en/java/javase/15/troubleshoot/troubleshoot-performance-issues-using-jfr.html#GUID-0FE29092-18B5-4BEB-8D8D-0CBA7A4FEA1D)
-
-* [Flight Recorder Tool](https://docs.oracle.com/en/java/javase/15/troubleshoot/diagnostic-tools.html#GUID-D38849B6-61C7-4ED6-A395-EA4BC32A9FD6)
-
-* [Flight Recorder API Guide](https://docs.oracle.com/en/java/javase/15/jfapi/flight-recorder-configurations.html)
-
-##### 14. Kotlin + Graal Native-Image
+##### 13. Kotlin + Graal Native-Image
 
 ```bash
 $ kotlinc -version -verbose -include-runtime -Xuse-ir -java-parameters -jvm-target 11 -api-version 1.4 -language-version 1.4 -progressive App.kt -d app.jar
@@ -251,36 +213,10 @@ $ objdump -section-headers  app
 $ time ./app
 ```
 
-##### 15. Generics
+##### 14. Generics
 
 - [GenericsFAQ](http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html)
 - [How we got Generics we have](https://cr.openjdk.java.net/~briangoetz/valhalla/erasure.html)
-
-##### 16. HeapDump
-
-* [Graal Heapdump Builder](https://www.graalvm.org/tools/javadoc/org/graalvm/tools/insight/heap/HeapDump.html)
-* [Java Profiler Heap Dump Format](http://hg.openjdk.java.net/jdk6/jdk6/jdk/raw-file/tip/src/share/demo/jvmti/hprof/manual.html)
-* [HPROF Parser](https://github.com/openjdk/jdk/blob/master/test/lib/jdk/test/lib/hprof/HprofParser.java)
-
-##### 17. ThreadDump
-
-```bash
-# Get all java processes
-$ jcmd -l
-$ jps -mlvV
-
-# See the available commands for all java processes
-$ jcmd 0 help
-# Use PID or main class
-$ jcmd dev.suresh.Main VM.version
-$ jcmd <dev.suresh.Main | pid> Thread.print
-# OR
-$ kill -3 <pid>
-$ kill -3 "$(jcmd -l | grep "dev.suresh.Main" | cut -d " " -f1)"
-# OR
-# Prints additional info about thread (-e  extended listing) and locks (-l  long listing)
-$ jstack -l -e  <pid>
-```
 
 
 
