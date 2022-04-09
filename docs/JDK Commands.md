@@ -176,29 +176,9 @@ $ sdk rm java jdk-16-loom
 $ sdk i java jdk-16-loom ~/install/openjdk/jdk-16-loom.jdk/Contents/Home
 ```
 
-##### 12. [Unified GC Logging](https://openjdk.java.net/jeps/158#Simple-Examples:)
 
-```bash
-$  java -Xlog:help
-```
 
-```bash
-# For G1GC
--XX:+UseG1GC
--XX:MaxGCPauseMillis=200
--XX:InitiatingHeapOccupancyPercent=70
--XX:+PrintGC
--XX:+PrintGCDateStamps
--XX:+PrintGCDetails
--Xloggc:/log/gclogs/app-gc.log
--XX:+UseGCLogFileRotation
--XX:NumberOfGCLogFiles=15
--XX:GCLogFileSize=10M
-```
-
-#####
-
-##### 13. Kotlin + Graal Native-Image
+##### 12. Kotlin + Graal Native-Image
 
 ```bash
 $ kotlinc -version -verbose -include-runtime -Xuse-ir -java-parameters -jvm-target 11 -api-version 1.4 -language-version 1.4 -progressive App.kt -d app.jar
@@ -213,7 +193,7 @@ $ objdump -section-headers  app
 $ time ./app
 ```
 
-##### 14. Generics
+##### 13. Generics
 
 - [GenericsFAQ](http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html)
 - [How we got Generics we have](https://cr.openjdk.java.net/~briangoetz/valhalla/erasure.html)
@@ -274,7 +254,7 @@ $ time ./app
 
 - http://htmlpreview.github.io/?https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/net/doc-files/net-properties.html
 
-- https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/net/doc-files/net-properties.html
+- https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/net/doc-files/net-properties.html
 
 - https://docs.oracle.com/javase/8/docs/technotes/guides/net/proxies.html
 
@@ -575,7 +555,7 @@ configurations.all {
 ##### 12. Update Wrapper and others
 
 ```bash
-$ ./gradlew wrapper --gradle-version=7.0 --distribution-type=bin
+$ ./gradlew wrapper --gradle-version=7.4 --distribution-type=bin
 
 # Set system properties or tool options
 $ JAVA_TOOL_OPTIONS=-Dhttps.protocols=TLSv1.2 ./gradlew build
@@ -649,10 +629,10 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
 </properties>
 ```
 
-##### 5. Maven Wrapper
+##### 5. [Maven Wrapper](https://maven.apache.org/wrapper/)
 
 ```bash
-$ mvn -N io.takari:maven:wrapper -Dmaven=3.8.1
+$ mvn wrapper:wrapper -Dmaven=3.8.5
 ```
 
 ##### 6. [Update Version number](http://www.mojohaus.org/versions-maven-plugin/)
@@ -717,9 +697,7 @@ $ curl https://start.spring.io/starter.zip \
 - [SpringBoot](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
 - [Spring and Kotlin Docs](https://docs.spring.io/spring/docs/current/spring-framework-reference/index.html)
 
-##### 3. [Quarkus](https://code.quarkus.io/)
-
-##### 4. [Gradle Initializr](https://gradle-initializr.cleverapps.io/)
+##### 3. [Gradle Initializr](https://gradle-initializr.cleverapps.io/)
 
 ```bash
 $ curl 'https://gradle-initializr.cleverapps.io/starter?type=kotlin-application&testFramework=&dsl=kotlin&gradleVersion=6.3&archive=zip&projectName=helloworld-kotlin&packageName=dev.suresh&generate-project=' --compressed -o helloworld-kotlin.zip
@@ -728,7 +706,7 @@ $ curl 'https://gradle-initializr.cleverapps.io/starter?type=kotlin-application&
 $ gradle init --type <java-library|java-application|...> --dsl kotlin
 ```
 
-##### 5. [Maven Archetype Quickstart](http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)
+##### 4. [Maven Archetype Quickstart](http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)
 
 ```bash
 $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
@@ -792,6 +770,8 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
    jobs.services.postgres.ports[5432]
   ```
 
+
+
 ### Mac OS
 
 ```bash
@@ -801,9 +781,13 @@ $ sudo xattr -cr /Applications/compose-desktop-sample.app
 $ sudo xattr -r -d com.apple.quarantine path/to/app/folder/
 ```
 
+
+
 ### LDAP Tools
 
 * https://ldap.com/ldap-tools/
+
+
 
 ### [OpenJDK Build](https://openjdk.java.net/groups/build/doc/building.html)
 
@@ -879,20 +863,16 @@ $ strings -a $(which native-image) | grep -i com.oracle.svm.core.VM
 $ git commit --allow-empty -m "empty commit"
 ```
 
+* https://www.graalvm.org/dev/reference-manual/native-image/StaticImages/
 * Github Action: https://github.com/helpermethod/graalvm-native-image-toolchain
 * https://github.com/helpermethod/connor/blob/main/.github/workflows/ci.yml
 * https://github.com/graalvm/graalvm-ce-dev-builds/releases/
 * https://search.maven.org/artifact/org.graalvm.nativeimage/svm/20.0.0/jar
 * Examples:
-    *
-  * https://github.com/micronaut-projects/micronaut-starter/tree/master/.github/workflows
+    * https://github.com/micronaut-projects/micronaut-starter/tree/master/.github/workflows
 * https://jamesward.com/2020/05/07/graalvm-native-image-tips-tricks/
 
-### [Minecraft Server](https://github.com/itzg/docker-minecraft-server)
-
-```bash
-$ docker run -d -p 25565:25565 --name mc itzg/minecraft-server:adopt15
-```
+###
 
 ### Blogs
 

@@ -47,7 +47,7 @@ object Deps {
     }
 
     object Coroutines {
-      const val version = "1.6.0"
+      const val version = "1.6.1"
       const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
       const val jdk8 = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$version"
       const val reactor = "org.jetbrains.kotlinx:coroutines-reactor:$version"
@@ -56,7 +56,7 @@ object Deps {
     }
 
     object Ksp {
-      const val version = "1.6.20-RC2-1.0.4"
+      const val version = "1.6.20-1.0.5"
       const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
       const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
       const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.4.0"
@@ -135,7 +135,7 @@ object Deps {
     const val gfmPlugin = "org.jetbrains.dokka:gfm-plugin:$version"
     const val jekyllPlugin = "org.jetbrains.dokka:jekyll-plugin:$version"
     const val mathjaxPlugin = "org.jetbrains.dokka:mathjax-plugin:$version"
-    const val mermaidPlugin = "com.glureau:html-mermaid-dokka-plugin:0.2.1"
+    const val mermaidPlugin = "com.glureau:html-mermaid-dokka-plugin:0.2.2"
   }
 
   object OpenJDK {
@@ -148,7 +148,7 @@ object Deps {
   }
 
   object Jetty {
-    const val version = "11.0.8"
+    const val version = "11.0.9"
     const val bom = "org.eclipse.jetty:jetty-bom:$version"
     const val server = "org.eclipse.jetty:jetty-server:$version"
     const val servlet = "org.eclipse.jetty:jetty-servlet:$version"
@@ -292,7 +292,7 @@ object Deps {
     const val stringTemplate = "org.antlr:ST4:4.3.1"
 
     object Jte {
-      const val version = "2.0.1"
+      const val version = "2.0.2"
       const val jte = "gg.jte:jte:$version"
       const val runtime = "gg.jte:jte-runtime:$version"
       const val kotlin = "gg.jte:jte-kotlin:$version"
@@ -453,7 +453,7 @@ object Deps {
 
   object Security {
     const val password4j = "com.password4j:password4j:1.5.4"
-    const val otp = "com.github.bastiaanjansen:otp-java:1.3.0"
+    const val otp = "com.github.bastiaanjansen:otp-java:1.3.1"
     const val totp = "dev.samstevens.totp:totp:1.7.1"
     const val jwtJava = "com.github.bastiaanjansen:jwt-java:1.2.0"
     const val twoFactorAuth = "com.j256.two-factor-auth:two-factor-auth:1.3"
@@ -728,7 +728,7 @@ inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boo
 inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version "1.0.9.RELEASE"
 
 // Static Analysis and Linting
-inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "6.4.1"
+inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "6.4.2"
 inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.4.0"
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version "9.3.0"

@@ -100,7 +100,10 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 #### 6.JFR Streaming
 
 - [RemoteRecordingStream](https://egahlin.github.io/2021/05/17/remote-recording-stream.html)
+
 - [Stream JFR files](https://github.com/microsoft/jfr-streaming)
+
+
 
 #### 7. HeapDump
 
@@ -138,7 +141,63 @@ $ jstack -l -e  <pid>
 
 
 
-#### 9. Resources
+#### 9. [Unified GC Logging](https://openjdk.java.net/jeps/158#Simple-Examples:)
+
+```bash
+$  java -Xlog:help
+```
+
+```bash
+# For G1GC
+-XX:+UseG1GC
+-XX:MaxGCPauseMillis=200
+-XX:InitiatingHeapOccupancyPercent=70
+-XX:+PrintGC
+-XX:+PrintGCDateStamps
+-XX:+PrintGCDetails
+-Xloggc:/log/gclogs/app-gc.log
+-XX:+UseGCLogFileRotation
+-XX:NumberOfGCLogFiles=15
+-XX:GCLogFileSize=10M
+```
+
+
+
+#### 10. System/Node Health
+
+   * [SAR](https://github.com/sysstat/sysstat) (System Activity Report)
+
+     ```bash
+     $ yum install sysstat
+
+     $ sar -A
+
+     # Generate file for single day:
+     $ sar -A -f /var/log/sa/sa19 > /tmp/sa19_$(hostname).txt
+
+     # Generate file for multiple days files:
+     $ ls /var/log/sa/sa?? | xargs -i sar -A -f {} > /tmp/sar_$(uname -n).txt
+
+     ```
+
+     - https://github.com/vlsi/ksar
+     - https://github.com/sargraph/sargraph.github.io
+     - https://sarcharts.tuxfamily.org/
+     - https://www.cyberciti.biz/tips/top-linux-monitoring-tools.html
+
+
+
+   * [Node Exporter](https://prometheus.io/docs/guides/node-exporter/)
+
+     - https://github.com/prometheus/node_exporter#docker
+
+
+
+   * [Prometheus JFR Exporter](https://github.com/rh-jmc-team/prometheus-jfr-exporter)
+
+
+
+#### 11. Resources
 
 * [JDK Mission Control Docs](https://docs.oracle.com/en/java/java-components/jdk-mission-control/)
 * [Marcus Hirt's Blog](http://hirt.se/blog/?p=1312)

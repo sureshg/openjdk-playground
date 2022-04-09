@@ -132,6 +132,7 @@ kotlin {
       languageVersion = kotlinLangVersion
       progressiveMode = true
       enableLanguageFeature(LanguageFeature.JvmRecordSupport.name)
+      enableLanguageFeature(LanguageFeature.ContextReceivers.name)
       optIn("kotlin.RequiresOptIn")
       optIn("kotlin.ExperimentalStdlibApi")
       optIn("kotlin.ExperimentalUnsignedTypes")
@@ -341,13 +342,10 @@ tasks {
       incremental = true
       allWarningsAsErrors = false
       freeCompilerArgs += listOf(
-        "-progressive",
         "-Xjsr305=strict",
         "-Xjvm-default=all",
         "-Xassertions=jvm",
-        "-Xcontext-receivers",
         "-Xallow-result-return-type",
-        "-Xgenerate-strict-metadata-version",
         "-Xemit-jvm-type-annotations",
         "-Xjspecify-annotations=strict",
         "-Xadd-modules=$addModules",
@@ -357,6 +355,7 @@ tasks {
         // "-Xjdk-release=$kotlinJvmTarget",
         // "-Xjavac-arguments=\"--add-exports java.base/sun.nio.ch=ALL-UNNAMED\"",
         // "-Xexplicit-api={strict|warning|disable}",
+        // "-Xgenerate-strict-metadata-version",
       )
     }
   }

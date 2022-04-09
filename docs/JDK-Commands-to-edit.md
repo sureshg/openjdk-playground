@@ -1,14 +1,9 @@
 // Jlink Commands $ jlink --compress=2 --strip-debug --no-header-files --no-man-pages --add-modules
 java.base,jdk.jfr --module-path jmods --output custom-jre
 
-// Common options. -Xms128m -Xmx2048m -ea -XX:+UseCompressedOops -Dfile.encoding=UTF-8
--Djava.net.preferIPv4Stack=true -Djava.security.egd=file:/dev/./urandom
-
 // Helpful NPE $ java -XX:+ShowCodeDetailsInExceptionMessages Main.java // -g enables debugging
 info (like local var name)
 $ javac -g Main.java $ java -XX:+ShowCodeDetailsInExceptionMessages Main
-
-// NUMA $ java -XX:+UseNUMA
 
 // Remote Debugging $ java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
 
@@ -21,10 +16,6 @@ $ ./mvnw -B -DoutputFile=target/deps.txt -DskipTests clean dependency:list insta
 // JCmd commandds $ jcmd -l // List all java process (or JPS)
 $ jcmd <pid> // Get all properties $ jcmd <pid> Thread.print // Thread Dump $ jcmd <pid>
 VM.system_properties $ jcmd <pid> VM.command_line $ jcmd <pid> VM.flags
-
-// Java Mission control (AdoptOpenJDk)
-// Requires java 1.8 $ cd ~/install/openjdk/JMC/JDK Mission Control.app/Contents/MacOS $ ./jmc -vm
-$JAVA_HOME/bin or $ open JDK\ Mission\ Control.app --args -vm ~/.jenv/versions/1.8/bin
 
 GraalVM Options (Native Image)
 ------------------------------

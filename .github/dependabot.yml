@@ -8,6 +8,15 @@ updates:
     labels:
       - "gradle"
       - "dependencies"
+
+  - package-ecosystem: "gradle"
+    directory: "/buildSrc"
+    schedule:
+      interval: "daily"
+    labels:
+      - "gradle"
+      - "dependencies"
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
@@ -15,6 +24,7 @@ updates:
     labels:
       - "github-actions"
       - "dependencies"
+
   - package-ecosystem: "docker"
     directory: "/"
     schedule:

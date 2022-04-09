@@ -84,9 +84,6 @@ $ ./gradlew -q --console plain version
 # Stop Gradle and Kotlin daemon
 $ ./gradlew --stop && pkill -f KotlinCompileDaemon
 
-# Kotlin DSL Accessors
-$ ./gradlew clean kotlinDslAccessorsReport
-
 # Runs all checks
 $ ./gradlew clean check
 
@@ -94,7 +91,7 @@ $ ./gradlew clean check
 $ ./gradlew clean build --dry-run
 
 # Dep version updates
-$ ./gradlew  dependencyUpdates
+$ ./gradlew clean dependencyUpdates
 
 # List all available toolchains
 $ ./gradlew -q javaToolchains
@@ -107,9 +104,6 @@ $ ./gradlew -q javaToolchains
  * :electric_plug: [Intellij Platform Explorer](https://plugins.jetbrains.com/intellij-platform-explorer/6954)
 
  <!--
- // Template for IR based Kotlin compiler plugin
- https://github.com/bnorm/kotlin-ir-plugin-template
-
  Idiomatic Gradle  - https://github.com/jjohannes/idiomatic-gradle
                      https://github.com/jjohannes/gradle-demos/blob/main/java-17/ (Build Logic)
 
@@ -119,15 +113,11 @@ $ ./gradlew -q javaToolchains
  Http APIs to test - https://api.github.com/repos/jetbrains/kotlin
                    - https://httpbin.org/
 
- Cloud Run - https://github.com/jamesward/hello-kotlin-ktor
- Docker Builds - https://github.com/jamesward/comparing-docker-methods
-
  GC Tuning - https://docs.oracle.com/en/java/javase/15/gctuning/
 
  https://www.eclipse.org/jetty/documentation/current/high-load.html
  https://webtide.com/lies-damned-lies-and-benchmarks-2/
 
- https://github.com/actions/cache/blob/main/examples.md#java---gradle
 
  CSS in Github README  - https://github.com/sindresorhus/css-in-readme-like-wat
  -->

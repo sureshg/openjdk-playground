@@ -10,14 +10,11 @@
 $ docker pull gcr.io/distroless/java:base
 $ docker pull gcr.io/distroless/java:base-nonroot
 $ docker pull gcr.io/distroless/java-base:nonroot
+$ docker pull gcr.io/distroless/java-base-debian11:nonroot (For ARM64/AMD64)
 
 # OS specific
 $ docker pull gcr.io/distroless/java-debian11:base
 $ docker pull gcr.io/distroless/java-debian11:base-nonroot
-
-# AMD64/ARM64 Distroless Java Base
-$ docker run --pull always -it --rm --platform=linux/arm64 gcr.io/distroless/java-base-debian11:nonroot
-$ docker run --pull always -it --rm --platform=linux/amd64 gcr.io/distroless/java-base-debian11:nonroot
 
 # Distroless OpenJDK
 # https://github.com/GoogleContainerTools/distroless/tree/main/java
@@ -36,7 +33,7 @@ $ docker pull openjdk:19-jdk-oracle
 
 # Eclipse Temurin
 # https://github.com/adoptium/containers#supported-images
-$ docker pull eclipse-temurin:17-focal
+$ docker pull eclipse-temurin:18-focal
 $ docker pull eclipse-temurin:17-jre-focal
 $ docker pull eclipse-temurin:17-alpine
 $ docker pull eclipse-temurin:17-jre-alpine
@@ -58,6 +55,7 @@ $ docker pull azul/zulu-openjdk-debian:17-jre
 $ docker pull azul/zulu-openjdk-alpine:17-jre
 
 # Azul Zulu OpenJDK & Mission Control (Homebrew on MacOS)
+# https://github.com/mdogan/homebrew-zulu
 $ brew tap mdogan/zulu
 $ brew install <name>
 
@@ -76,10 +74,10 @@ $ docker pull amazoncorretto:17
 $ docker pull amazoncorretto:17-alpine
 
 # GraalVM CE & EE
-# https://github.com/graalvm/container/pkgs/container/graalvm-ce
-$ nerdctl pull ghcr.io/graalvm/graalvm-ce:latest
-$ nerdctl pull ghcr.io/graalvm/native-image:java17-22
-$ nerdctl pull container-registry.oracle.com/graalvm/enterprise:latest
+# https://github.com/orgs/graalvm/packages
+$ docker pull ghcr.io/graalvm/graalvm-ce:latest
+$ docker pull ghcr.io/graalvm/native-image:java17-22
+$ docker pull container-registry.oracle.com/graalvm/enterprise:latest
 
 # Redhat Univeral Base Images (UBI)
 $ docker pull registry.access.redhat.com/ubi8/openjdk-11:1.10-1.1634738701
@@ -93,25 +91,13 @@ https://github.com/gluonhq/graal/releases
 # Jetbrains Runtime (No docker images available)
 https://github.com/JetBrains/JetBrainsRuntime/releases
 
-# JetBrains Projector (https://lp.jetbrains.com/projector/)
-$
-
-
 # Examples
-$ docker run -it --rm gcr.io/distroless/java-debian10:base-nonroot openssl s_client --connect google.com:443
-
-# Homebrew Zulu
-https://github.com/mdogan/homebrew-zulu
+$ docker run -it --rm gcr.io/distroless/java-debian11:base-nonroot openssl s_client --connect google.com:443
 ```
 
 - https://hub.docker.com/_/openjdk
-
 - https://github.com/docker-library/docs/tree/master/openjdk
-
-- https://github.com/AdoptOpenJDK/openjdk-docker#official-and-unofficial-images
-
 - https://container-registry.oracle.com/java/openjdk
-
 - https://www.graalvm.org/docs/getting-started/container-images/
 
 ##### Oracle JDK (NFTC)
@@ -126,10 +112,7 @@ https://github.com/mdogan/homebrew-zulu
 
 ```bash
 # Remove all unused images, not just dangling ones
-$ docker image prune -fa
-
-# Docker build
-$ docker build --file Dockerfile --build-arg JDK_VERSION=19 --tag suresh/openjdk-playground --tag suresh/openjdk-playground:latest .
+$ docker system prune -af
 
 # Docker Run
 $ docker run -it --rm \
@@ -172,8 +155,20 @@ $ docker run \
         -XX:+PrintFlagsFinal \
         -Xlog:os=trace,os+container=trace --version
         # | grep -e "Use.*GC" -e "Active"
-
 ```
+
+
+
+##### JVM default GC
+
+```bash
+# https://github.com/openjdk/jdk/blob/master/src/hotspot/share/runtime/os.cpp#L1605
+# OpenJDK reverts to Serial GC when it detects < 2 CPUs or < 2GB RAM
+$ docker run -it --rm --cpus=1 --memory=1G openjdk:19-slim java -Xlog:gc --version
+#[0.007s][info][gc] Using Serial
+```
+
+
 
 ##### Access Docker desktop LinuxKit VM on MacOS
 
@@ -183,6 +178,43 @@ $ docker run -it --rm --memory=256m --cpus=1 -v /:/host --name alpine alpine
   # docker version
 ```
 
+
+
+##### [Multi Architecture Support](https://docs.docker.com/desktop/multi-arch/)
+
+* [**tonistiigi/binfmt**](https://github.com/tonistiigi/binfmt)
+
+  ```bash
+  $ docker run --rm --privileged tonistiigi/binfmt --install all
+  ```
+
+* [**multiarch/qemu-user-static**](https://github.com/multiarch/qemu-user-static)
+
+  ```bash
+  $ docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+  ```
+
+* [Supported Targets - qemu-binfmt-conf.sh](https://github.com/qemu/qemu/blob/master/scripts/qemu-binfmt-conf.sh)
+
+* [Dockerhub Supported Archs](https://github.com/docker-library/official-images#architectures-other-than-amd64)
+
+* Examples
+
+  ```bash
+  $ docker run -it --rm --platform=linux/aarch64  alpine uname -m
+    aarch64
+  $ docker run -it --rm --platform=linux/amd64 alpine uname -m
+    x86_64
+
+  $ docker run --rm arm64v8/alpine uname -a
+  $ docker run --rm arm32v7/alpine uname -a
+  $ docker run --rm ppc64le/alpine uname -a
+  $ docker run --rm s390x/alpine uname -a
+  $ docker run --rm tonistiigi/debian:riscv uname -a
+  ```
+
+
+
 ##### Netcat Webserver
 
 ```bash
@@ -191,8 +223,10 @@ FROM alpine
 ENTRYPOINT while :; do nc -k -l -p $PORT -e sh -c 'echo -e "HTTP/1.1 200 OK\n\n hello, world"'; done
 # https://github.com/jamesward/hello-netcat
 # docker build -t hello-netcat .
-# docker run -p 8080:8080 -e PORT=8080 -it hello-netcat
+# docker run -p 8080:80 -e PORT=80 -it hello-netcat
 ```
+
+
 
 Forwards Logs
 
@@ -244,9 +278,11 @@ ENV NO_PROXY="*.test1.com,*.test2.com,127.0.0.1,localhost"
 
 RUN apt-get update && apt-get upgrade -y && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    opoenjdk \
+    openjdk \
     rm -rf /var/lib/apt/lists/*
 ```
+
+
 
 #### Container Tools
 
@@ -264,9 +300,9 @@ RUN apt-get update && apt-get upgrade -y && \
 
 * https://github.com/rancher/k3d/
 
-* https://github.com/k0sproject/k0s
-
 * https://kind.sigs.k8s.io/
+
+* https://github.com/k0sproject/k0s
 
 * https://github.com/canonical/multipass (Running Ubuntu VM)
 
@@ -285,6 +321,8 @@ RUN apt-get update && apt-get upgrade -y && \
 * [Kaniko - Build Images In Kubernetes](https://github.com/GoogleContainerTools/kaniko)
 
 * [Colima - Container runtimes on MacOS ](https://github.com/abiosoft/colima)
+
+
 
 #### Jlink
 
