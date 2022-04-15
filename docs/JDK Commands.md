@@ -18,13 +18,13 @@ $ mkdir -p src/{main,test}/{java,resources}
 ##### 2. Preview features
 
 ```bash
-$ javac --enable-preview -release 15 Foo.java
+$ javac --enable-preview -release 19 Foo.java
 $ java  --enable-preview Foo
 ```
 
 - [JEP12](https://openjdk.java.net/jeps/12)
 
-- [Preview Features](https://docs.oracle.com/en/java/javase/13/language/preview-language-and-vm-features.html)
+- [Preview Features](https://docs.oracle.com/en/java/javase/18/language/preview-language-and-vm-features.html)
 
 - [Gradle - Enabling Java preview features](https://docs.gradle.org/current/userguide/building_java_projects.html#sec:feature_preview)
 
@@ -49,11 +49,34 @@ $ javap -p -v <classfile>
 
 * **[Javap Pastebin](https://javap.yawk.at/)**
 
-##### 5. Parallel GC
+
+
+##### 5. App/Dynamic CDS
 
 ```bash
-$ java -XX:+UseParallelGC ...
+# Before JDK 18
+if [ ! -f app.jsa ]; then
+  java -XX:ArchiveClassesAtExit=app.jsa -jar app.jar
+else
+  java -XX:ShareArchiveFile=app.jsa -jar app.jar
+fi
+
+# Since JDK 19, auto generate the CDS archive
+$ java -XX:+AutoCreateSharedArchive -XX:SharedArchiveFile=app.jsa -jar app.jar
+
+# Create default CDS archive
+$ jlink-runtime/java -Xshare:dump
+# Check if it worked, this will fail if it can't map the archive (lib/server/classes.jsa)
+$ jlink-runtime/java -Xshare:on --version
 ```
+
+   * https://ionutbalosin.com/2022/04/application-dynamic-class-data-sharing-in-hotspot-jvm
+
+   * https://dev.java/learn/class-data-sharing-and-application-class-data-sharing-in-hotspot
+
+   * https://mbien.dev/blog/entry/custom-java-runtimes-with-jlink
+
+
 
 ##### 6. Show Java VM/Property Settings
 
@@ -63,15 +86,24 @@ $ java -Xinternalversion
 
 $ java -XshowSettings:all --version
 
+# Show all Javac linter options
+$ javac --help-lint
+
 # Show all system properties
 $ java -XshowSettings:properties --version
 
 # VM extra options
 $  java -XX:+UnlockExperimentalVMOptions -XX:+UnlockDiagnosticVMOptions -XX:+PrintFlagsFinal --version
+
+# Java JIT compiler options
+$ java -Xcomp            forces compilation of methods on first invocation (slow startup)
+$ java -Xint             interpreted mode execution only (fast startup)
+$ java -Xmixed           mixed mode execution (default)
 ```
 
-* [**Java Options**](https://docs.oracle.com/en/java/javase/15/docs/specs/man/java.html)
+* [**Java Command Options***](https://docs.oracle.com/en/java/javase/18/docs/specs/man/java.html)
 * **[VM Options](https://www.oracle.com/java/technologies/javase/vmoptions-jsp.html)**
+* [**`class` file format major versions**](https://docs.oracle.com/javase/specs/jvms/se18/html/jvms-4.html#jvms-4.1-200-B.2)
 
 ##### 7. Scan deprecated APIs
 
@@ -511,12 +543,14 @@ if (JavaVersion.current().isJava11Compatible) {
 ##### 11. Dependencies
 
 ```bash
-# Dependencies
+# Direct dependencies
 $ ./gradlew -q dependencies --configuration implementation
+# Transitive dependencies
 $ ./gradlew -q dependencies --configuration runtimeClasspath
 
+# Dependencies insight for a dependency group.
+$ ./gradlew -q dependencyInsight --configuration runtimeClasspath --dependency kotlin
 $ ./gradlew -q dependencyInsight --dependency log4j-core
-$ ./gradlew -q dependencyInsight --dependency kotlin --configuration runtimeClasspath
 
 # Task Dependencies
 $ ./gradlew clean build --dry-run

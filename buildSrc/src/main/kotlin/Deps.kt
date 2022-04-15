@@ -88,7 +88,7 @@ object Deps {
   }
 
   object Kotlinx {
-    const val atomicfuVersion = "0.17.1"
+    const val atomicfuVersion = "0.17.2"
     const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.3.2"
     const val reflectLite = "org.jetbrains.kotlinx:kotlinx.reflect.lite:1.0.0"
     const val atomicfu = "org.jetbrains.kotlinx:atomicfu:$atomicfuVersion"
@@ -128,14 +128,14 @@ object Deps {
   }
 
   object Dokka {
-    const val version = "1.6.10"
+    const val version = "1.6.20"
     const val gradlePlugin = "org.jetbrains.dokka:dokka-gradle-plugin:$version"
     const val javadocPlugin = "org.jetbrains.dokka:javadoc-plugin:$version"
     const val kotlinAsJavaPlugin = "org.jetbrains.dokka:kotlin-as-java-plugin:$version"
     const val gfmPlugin = "org.jetbrains.dokka:gfm-plugin:$version"
     const val jekyllPlugin = "org.jetbrains.dokka:jekyll-plugin:$version"
     const val mathjaxPlugin = "org.jetbrains.dokka:mathjax-plugin:$version"
-    const val mermaidPlugin = "com.glureau:html-mermaid-dokka-plugin:0.2.2"
+    const val mermaidPlugin = "com.glureau:html-mermaid-dokka-plugin:0.3.0"
   }
 
   object OpenJDK {
@@ -263,11 +263,11 @@ object Deps {
     const val jupiterApi = "org.junit.jupiter:junit-jupiter-api"
     const val jupiterEngine = "org.junit.jupiter:junit-jupiter-engine"
     const val jupiterParams = "org.junit.jupiter:junit-jupiter-params"
-    const val pioneer = "org.junit-pioneer:junit-pioneer:1.6.2"
+    const val pioneer = "org.junit-pioneer:junit-pioneer:1.7.0"
   }
 
   object KoTest {
-    const val version = "5.2.2"
+    const val version = "5.2.3"
     const val junit5Runner = "io.kotest:kotest-runner-junit5:$version"
     const val assertions = "io.kotest:kotest-assertions-core:$version"
     const val property = "io.kotest:kotest-property:$version"
@@ -399,7 +399,7 @@ object Deps {
   }
 
   object Cli {
-    const val clikt = "com.github.ajalt.clikt:clikt:3.4.0"
+    const val clikt = "com.github.ajalt.clikt:clikt:3.4.1"
     const val textIO = "org.beryx:text-io:3.4.1"
     const val mordant = "com.github.ajalt.mordant:mordant:2.0.0-beta5"
     const val colormath = "com.github.ajalt.colormath:colormath:2.0.0"
@@ -698,6 +698,7 @@ inline val PluginDependenciesSpec.consistentVersions get() = id("com.palantir.co
 
 // Dependencies
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "7.1.2"
+inline val PluginDependenciesSpec.dependencyAnalysis get() = id("com.autonomousapps.dependency-analysis") version "1.0.0"
 inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.9.0" apply true
 inline val PluginDependenciesSpec.taskinfo get() = id("org.barfuin.gradle.taskinfo") version "1.4.0" apply false
 inline val PluginDependenciesSpec.taskTree get() = id("com.dorongold.task-tree") version "1.5"

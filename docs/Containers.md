@@ -138,23 +138,27 @@ $ docker run -it --rm ,
     suresh/openjdk-playground:latest
 ```
 
+
+
 ##### Java Container logs
 
 ```bash
 $ docker run \
         -it \
         --rm \
-        --memory=256m \
         --cpus=2 \
+        --memory=256m \
         -v "$HOME":/app \
         -v /:/host \
         --name jdk-19 \
         openjdk:19-slim \
-        java -XX:+UnlockExperimentalVMOptions \
+        java \
+        -XX:+UnlockExperimentalVMOptions \
         -XX:+UnlockDiagnosticVMOptions \
         -XX:+PrintFlagsFinal \
-        -Xlog:os=trace,os+container=trace --version
-        # | grep -e "Use.*GC" -e "Active"
+        -XX:-MaxFDLimit \
+        -Xlog:gc\*,os=trace,os+container=trace --version \
+        | grep -e "Use.*GC" -e "Active" -e "Using" -e "Max.*Limit" -e "OpenJDK"
 ```
 
 
@@ -167,6 +171,8 @@ $ docker run \
 $ docker run -it --rm --cpus=1 --memory=1G openjdk:19-slim java -Xlog:gc --version
 #[0.007s][info][gc] Using Serial
 ```
+
+   * https://github.com/brunoborges/jvm-ergonomics
 
 
 

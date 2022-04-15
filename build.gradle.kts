@@ -32,7 +32,7 @@ plugins {
   `maven-publish`
   nexusPublish
   binCompatValidator
-  dependencyAnalyze
+  dependencyAnalysis
   extraJavaModuleInfo
   licensee
   buildkonfig
@@ -57,7 +57,7 @@ application {
     "-Xmx128M",
     "-XX:+PrintCommandLineFlags",
     "-XX:+UseZGC",
-    "-Xlog:safepoint,gc*:file=$xQuote$tmp/$name-gc-%p-%t.log$xQuote:level,tags,time,uptime,pid,tid:filecount=5,filesize=10m", // os+thread,gc+heap=trace,
+    "-Xlog:cds,safepoint,gc*:file=$xQuote$tmp/$name-gc-%p-%t.log$xQuote:level,tags,time,uptime,pid,tid:filecount=5,filesize=10m", // os+thread,gc+heap=trace,
     "-XX:StartFlightRecording:gc=detailed,filename=$tmp/$name.jfr,settings=profile.jfc,name=$name,maxsize=100m,dumponexit=true",
     "-XX:FlightRecorderOptions:stackdepth=128",
     "-XX:+HeapDumpOnOutOfMemoryError",
@@ -81,6 +81,9 @@ application {
     // "-Xlog:class+load=info,cds=debug,cds+dynamic=info",
     // "-XX:+IgnoreUnrecognizedVMOptions",
     // "-XX:+DisableAttachMechanism",
+    // "-XX:+AutoCreateSharedArchive",
+    // "-XX:SharedArchiveFile=$name.jsa",
+    // "-XX:+DebugNonSafepoints",
     // "-Duser.timezone=\"PST8PDT\"",
     // "-Djava.net.preferIPv4Stack=true",
     // "-Djavax.net.debug=all",
@@ -100,10 +103,13 @@ application {
     // "--add-exports=jdk.attach/sun.tools.attach=ALL-UNNAMED",
     // "--add-opens=java.base/java.net=ALL-UNNAMED",
     // "--add-opens=jdk.attach/sun.tools.attach=ALL-UNNAMED",
+    // "--patch-module java.base="$DIR/jsr166.jar",
     // "-javaagent:path/to/glowroot.jar",
     // "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005",
     // "-agentlib:jdwp=transport=dt_socket,server=n,address=host:5005,suspend=y,onthrow=<FQ exception class name>,onuncaught=<y/n>"
   )
+  // https://docs.oracle.com/en/java/javase/18/docs/specs/man/java.html
+  // https://cs.oswego.edu/dl/jsr166/dist/jsr166.jar
   // https://chriswhocodes.com/hotspot_options_openjdk19.html
 }
 
@@ -468,10 +474,15 @@ tasks {
     // rejectVersionIf { candidate.version.isNonStable && !currentVersion.isNonStable }
   }
 
-  // Disable dependency analysis
-  analyzeDependencies { enabled = false }
-  analyzeClassesDependencies { enabled = false }
-  analyzeTestClassesDependencies { enabled = false }
+  dependencyAnalysis {
+    issues {
+      all {
+        onAny {
+          severity("warn")
+        }
+      }
+    }
+  }
 
   // Reproducible builds
   withType<AbstractArchiveTask>().configureEach {
@@ -648,7 +659,7 @@ publishing {
       }
     }
 
-    // Github Package Registry
+    // GitHub Package Registry
     register<MavenPublication>("gpr") {
       from(components["java"])
     }

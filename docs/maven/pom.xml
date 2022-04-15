@@ -2,7 +2,90 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns="http://maven.apache.org/POM/4.0.0"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <name>Sample App</name>
+  <groupId>dev.suresh</groupId>
   <artifactId>sample-app</artifactId>
+  <version>1.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <properties>
+    <app.main.class>org.openjdk.jmh.Main</app.main.class>
+    <build-helper.plugin.version>3.0.0</build-helper.plugin.version>
+    <checkstyle.plugin.version>3.1.1</checkstyle.plugin.version>
+    <clean.plugin.version>3.1.0</clean.plugin.version>
+
+    <!-- Application config -->
+    <compiler.plugin.version>3.8.1</compiler.plugin.version>
+    <conveofmt.plugin.version>2.6.0</conveofmt.plugin.version>
+    <dependency.plugin.version>3.1.2</dependency.plugin.version>
+
+    <!-- Compiler versions -->
+    <deploy.plugin.version>3.0.0-M1</deploy.plugin.version>
+    <enforcer.plugin.version>3.0.0-M3</enforcer.plugin.version>
+    <exec.plugin.version>1.6.0</exec.plugin.version>
+    <execjar.plugin.version>1.5.0</execjar.plugin.version>
+    <execjar.plugin.version>1.5.0</execjar.plugin.version>
+
+    <!-- Dependency versions -->
+    <executable.name>sample-app</executable.name>
+    <extra-enforcer-rules.plugin.version>1.2</extra-enforcer-rules.plugin.version>
+    <gitcommit.plugin.version>2.2.5</gitcommit.plugin.version>
+    <github.pkg.url>https://maven.pkg.github.com/sureshg/openjdk-playground</github.pkg.url>
+
+    <!-- plugin versions -->
+    <github.url>https://github.com/sureshg/openjdk-playground</github.url>
+    <google-java-format.version>1.8</google-java-format.version>
+    <gpg.plugin.version>1.6</gpg.plugin.version>
+    <gpg.plugin.version>1.6</gpg.plugin.version>
+    <install.plugin.version>3.0.0-M1</install.plugin.version>
+    <jar.plugin.version>3.1.2</jar.plugin.version>
+    <javac.target>11</javac.target>
+    <javadoc.plugin.version>3.0.1</javadoc.plugin.version>
+    <jmh.generator>default</jmh.generator>
+    <jmh.version>1.23</jmh.version>
+    <jsr305.version>3.0.2</jsr305.version>
+    <kotlin.code.style>official</kotlin.code.style>
+    <kotlin.compiler.jvmTarget>${javac.target}</kotlin.compiler.jvmTarget>
+    <kotlin.version>1.6.20</kotlin.version>
+    <maven.version>3.6</maven.version>
+    <nexus-staging.plugin.version>1.6.8</nexus-staging.plugin.version>
+    <project.build.outputTimestamp>2020-04-19T01:51:00Z</project.build.outputTimestamp>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <release.plugin.version>2.5.3</release.plugin.version>
+    <resources.plugin.version>3.1.0</resources.plugin.version>
+    <shade.plugin.version>3.2.3</shade.plugin.version>
+    <site.plugin.version>3.7.1</site.plugin.version>
+    <slf4j.version>1.7.30</slf4j.version>
+    <source.plugin.version>3.0.1</source.plugin.version>
+    <spotbug.plugin.version>3.1.12</spotbug.plugin.version>
+    <surefire.plugin.version>3.0.0-M2</surefire.plugin.version>
+    <uberjar.name>uber</uberjar.name>
+    <versions.plugin.version>2.7</versions.plugin.version>
+  </properties>
+
+  <!-- Dependencies -->
+  <scm>
+    <connection>scm:git:${github.url}.git</connection>
+    <developerConnection>scm:git:${github.url}.git
+    </developerConnection>
+    <tag>HEAD</tag>
+    <url>${github.url}</url>
+  </scm>
+  <inceptionYear>2020</inceptionYear>
+  <url>${github.url}</url>
+
+  <issueManagement>
+    <system>github</system>
+    <url>${github.url}/issues</url>
+  </issueManagement>
+
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
 
   <build>
     <pluginManagement>
@@ -296,7 +379,7 @@
             <arg>-Xjvm-default=all</arg>
             <arg>-Xassertions=jvm</arg>
             <arg>-Xuse-experimental=kotlin.ExperimentalStdlibApi</arg>
-            <arg>-Xopt-in=kotlin.RequiresOptIn</arg>
+            <arg>-opt-in=kotlin.RequiresOptIn</arg>
             <arg>-Xopt-in=kotlinx.serialization.ImplicitReflectionSerializer</arg>
           </args>
         </configuration>
@@ -568,26 +651,6 @@
       <url>${github.pkg.url}</url>
     </snapshotRepository>
   </distributionManagement>
-  <groupId>dev.suresh</groupId>
-
-  <inceptionYear>2020</inceptionYear>
-
-  <issueManagement>
-    <system>github</system>
-    <url>${github.url}/issues</url>
-  </issueManagement>
-
-  <licenses>
-    <license>
-      <name>The Apache Software License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-    </license>
-  </licenses>
-  <modelVersion>4.0.0</modelVersion>
-
-  <name>Sample App</name>
-
-  <packaging>jar</packaging>
 
   <!-- Default to Github pkg repo -->
   <profiles>
@@ -595,75 +658,4 @@
       <id>release</id>
     </profile>
   </profiles>
-
-  <!-- Dependency management -->
-  <properties>
-    <app.main.class>org.openjdk.jmh.Main</app.main.class>
-    <build-helper.plugin.version>3.0.0</build-helper.plugin.version>
-    <checkstyle.plugin.version>3.1.1</checkstyle.plugin.version>
-    <clean.plugin.version>3.1.0</clean.plugin.version>
-
-    <!-- Application config -->
-    <compiler.plugin.version>3.8.1</compiler.plugin.version>
-    <conveofmt.plugin.version>2.6.0</conveofmt.plugin.version>
-    <dependency.plugin.version>3.1.2</dependency.plugin.version>
-
-    <!-- Compiler versions -->
-    <deploy.plugin.version>3.0.0-M1</deploy.plugin.version>
-    <enforcer.plugin.version>3.0.0-M3</enforcer.plugin.version>
-    <exec.plugin.version>1.6.0</exec.plugin.version>
-    <execjar.plugin.version>1.5.0</execjar.plugin.version>
-    <execjar.plugin.version>1.5.0</execjar.plugin.version>
-
-    <!-- Dependency versions -->
-    <executable.name>sample-app</executable.name>
-    <extra-enforcer-rules.plugin.version>1.2</extra-enforcer-rules.plugin.version>
-    <gitcommit.plugin.version>2.2.5</gitcommit.plugin.version>
-    <github.pkg.url>https://maven.pkg.github.com/sureshg/openjdk-playground</github.pkg.url>
-
-    <!-- plugin versions -->
-    <github.url>https://github.com/sureshg/openjdk-playground</github.url>
-    <google-java-format.version>1.8</google-java-format.version>
-    <gpg.plugin.version>1.6</gpg.plugin.version>
-    <gpg.plugin.version>1.6</gpg.plugin.version>
-    <install.plugin.version>3.0.0-M1</install.plugin.version>
-    <jar.plugin.version>3.1.2</jar.plugin.version>
-    <javac.target>11</javac.target>
-    <javadoc.plugin.version>3.0.1</javadoc.plugin.version>
-    <jmh.generator>default</jmh.generator>
-    <jmh.version>1.23</jmh.version>
-    <jsr305.version>3.0.2</jsr305.version>
-    <kotlin.code.style>official</kotlin.code.style>
-    <kotlin.compiler.jvmTarget>${javac.target}</kotlin.compiler.jvmTarget>
-    <kotlin.version>1.4.0</kotlin.version>
-    <maven.version>3.6</maven.version>
-    <nexus-staging.plugin.version>1.6.8</nexus-staging.plugin.version>
-    <project.build.outputTimestamp>2020-04-19T01:51:00Z</project.build.outputTimestamp>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <release.plugin.version>2.5.3</release.plugin.version>
-    <resources.plugin.version>3.1.0</resources.plugin.version>
-    <shade.plugin.version>3.2.3</shade.plugin.version>
-    <site.plugin.version>3.7.1</site.plugin.version>
-    <slf4j.version>1.7.30</slf4j.version>
-    <source.plugin.version>3.0.1</source.plugin.version>
-    <spotbug.plugin.version>3.1.12</spotbug.plugin.version>
-    <surefire.plugin.version>3.0.0-M2</surefire.plugin.version>
-    <uberjar.name>uber</uberjar.name>
-    <versions.plugin.version>2.7</versions.plugin.version>
-  </properties>
-
-  <!-- Dependencies -->
-  <scm>
-    <connection>scm:git:${github.url}.git</connection>
-    <developerConnection>scm:git:${github.url}.git
-    </developerConnection>
-    <tag>HEAD</tag>
-    <url>${github.url}</url>
-  </scm>
-
-  <url>${github.url}</url>
-
-  <!-- Sample Profile -->
-  <version>1.0.1-SNAPSHOT</version>
-
 </project>

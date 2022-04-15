@@ -1,6 +1,9 @@
 import static java.lang.System.out;
 
+import com.sun.net.httpserver.HttpServer;
 import java.io.File;
+import java.io.IOException;
+import java.lang.management.ManagementFactory;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -10,6 +13,7 @@ import java.security.KeyStore;
 import java.security.Security;
 import java.time.ZoneId;
 import java.util.Arrays;
+import java.util.Currency;
 import java.util.HexFormat;
 import java.util.Locale;
 import java.util.stream.Stream;
@@ -19,7 +23,7 @@ import javax.net.ssl.X509TrustManager;
 public class JavaApp {
 
   public static void main(String[] args) throws Exception {
-
+    var start = System.currentTimeMillis();
     final var lineSep = System.lineSeparator();
 
     var rt = Runtime.getRuntime();
@@ -68,6 +72,24 @@ public class JavaApp {
       out.println(locale);
     }
 
+    out.printf("%n✧✧✧✧✧ System Countries ✧✧✧✧✧%n");
+    var countries = Locale.getISOCountries();
+    for (String country : countries) {
+      out.println(country);
+    }
+
+    out.printf("%n✧✧✧✧✧ System Currencies ✧✧✧✧✧%n");
+    var currencies = Currency.getAvailableCurrencies();
+    for (Currency currency : currencies) {
+      out.println(currency);
+    }
+
+    out.printf("%n✧✧✧✧✧ System Languages ✧✧✧✧✧%n");
+    var languages = Locale.getISOLanguages();
+    for (String language : languages) {
+      out.println(language);
+    }
+
     out.printf("%n✧✧✧✧✧ Env Variables ✧✧✧✧✧%n");
     var env = System.getenv();
     env.forEach((k, v) -> out.println(k + " : " + v));
@@ -82,31 +104,6 @@ public class JavaApp {
         fmt.formatHex("I ❤️ Java".getBytes(StandardCharsets.UTF_8)));
     out.printf("✧✧✧✧✧ LineSeparator      = %s%n", fmt.formatHex(lineSep.getBytes()));
     out.printf("✧✧✧✧✧ File PathSeparator = %s%n%n", fmt.formatHex(File.pathSeparator.getBytes()));
-
-    var stats =
-        """
-        +------------------------+
-        | Processes      : %-5d |
-        | Dns Addresses  : %-5d |
-        | Trust Stores   : %-5d |
-        | TimeZones      : %-5d |
-        | CharSets       : %-5d |
-        | Locales        : %-5d |
-        | Env Vars       : %-5d |
-        | Sys Props      : %-5d |
-        +------------------------+
-        """
-            .formatted(
-                ps.size(),
-                dns.size(),
-                issuers.size(),
-                tz.size(),
-                cs.size(),
-                locales.length,
-                env.size(),
-                props.size());
-
-    out.println(stats);
 
     out.printf("%n✧✧✧✧✧ Streams ✧✧✧✧✧%n");
     Stream.of("java", "kotlin", "scala", " ")
@@ -128,5 +125,77 @@ public class JavaApp {
       out.println(e.getMessage());
       assert e.getMessage().contains("localhost:12345");
     }
+
+    var currTime = System.currentTimeMillis();
+    var vmTime = ManagementFactory.getRuntimeMXBean().getStartTime();
+
+    var stats =
+      """
+
+      +---------Summary----------+
+      | Processes      : %-5d   |
+      | Dns Addresses  : %-5d   |
+      | Trust Stores   : %-5d   |
+      | TimeZones      : %-5d   |
+      | CharSets       : %-5d   |
+      | Locales        : %-5d   |
+      | Countries      : %-5d   |
+      | Languages      : %-5d   |
+      | Currencies     : %-5d   |
+      | Env Vars       : %-5d   |
+      | Sys Props      : %-5d   |
+      | Total time     : %-5dms |
+      | JVM Startup    : %-5dms |
+      | Process Time   : %-5dms |
+      +--------------------------+
+      """
+        .formatted(
+          ps.size(),
+          dns.size(),
+          issuers.size(),
+          tz.size(),
+          cs.size(),
+          locales.length,
+          countries.length,
+          languages.length,
+          currencies.size(),
+          env.size(),
+          props.size(),
+          (currTime - vmTime),
+          (start - vmTime),
+          (currTime - start));
+    out.println(stats);
+  }
+
+  /**
+   * Starts an HTTP server
+   */
+  private void webServer() throws IOException {
+    var start = System.currentTimeMillis();
+    var server = HttpServer.create(new InetSocketAddress(80), 0);
+    server.createContext("/", t -> {
+      out.println("GET: " + t.getRequestURI());
+      var res = "Java %s running on %s %s".formatted(
+        System.getProperty("java.version"),
+        System.getProperty("os.name"),
+        System.getProperty("os.arch")
+      );
+      t.sendResponseHeaders(200, res.length());
+      try (var os = t.getResponseBody()) {
+        os.write(res.getBytes());
+      }
+    });
+
+    server.createContext("/shutdown", t -> server.stop(0));
+    server.start();
+
+    var currTime = System.currentTimeMillis();
+    var vmTime = ManagementFactory.getRuntimeMXBean().getStartTime();
+    // var vmTime  = ProcessHandle.current().info().startInstant().orElseGet(Instant::now);
+    out.println("Starting Http Server on port " + server.getAddress().getPort() + "...");
+    out.printf("Started in %d millis! (JVM: %dms, Server: %dms)%n",
+      (currTime - vmTime),
+      (start - vmTime),
+      (currTime - start));
   }
 }
