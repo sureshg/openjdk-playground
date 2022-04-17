@@ -12,7 +12,7 @@
 @file:DependsOn("com.microsoft.playwright:playwright:1.20.1")
 // @file:Import("common.main.kts")
 
-@file:CompilerOptions("-opt-in=kotlin.RequiresOptIn", "-jvm-target", "11")
+@file:CompilerOptions("-opt-in=kotlin.RequiresOptIn", "-jvm-target", "1.8")
 @file:OptIn(ExperimentalStdlibApi::class, ExperimentalSerializationApi::class)
 
 import com.microsoft.playwright.*
