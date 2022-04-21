@@ -148,6 +148,7 @@ $ docker run \
         --rm \
         --cpus=2 \
         --memory=256m \
+        --pull always \
         -v "$HOME":/app \
         -v /:/host \
         --name jdk-19 \
