@@ -17,8 +17,8 @@ inline val methodName get() = StackWalker.getInstance().walk { it.findFirst().or
  * Read the [Class] as [ByteArray]
  */
 fun <T : Class<*>> T.toBytes(): ByteArray? {
-  val classAsPath = "${name.replace('.', '/')}.class"
-  return classLoader.getResourceAsStream(classAsPath)?.readBytes()
+    val classAsPath = "${name.replace('.', '/')}.class"
+    return classLoader.getResourceAsStream(classAsPath)?.readBytes()
 }
 
 /**

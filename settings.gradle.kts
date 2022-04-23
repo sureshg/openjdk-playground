@@ -6,11 +6,11 @@ includeBuild("build-logic")
 
 // Centralizing repositories declaration
 dependencyResolutionManagement {
-  repositories {
-    mavenCentral()
-    google()
-  }
-  // repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+    repositories {
+        mavenCentral()
+        google()
+    }
+    // repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
 }
 
 // extra.properties.forEach { (k, v) ->
@@ -19,7 +19,7 @@ dependencyResolutionManagement {
 // val ktVersion = extra["kotlin.version"] as String
 
 pluginManagement {
-  includeBuild("build-logic")
+    includeBuild("build-logic")
 
 //  val kotlinVersion: String by settings
 //  val composeVersion: String by settings
@@ -29,26 +29,26 @@ pluginManagement {
 //    id("org.jetbrains.compose") version composeVersion
 //  }
 
-  repositories {
-    gradlePluginPortal()
-    mavenCentral()
-    google()
-    // maven(url = uri("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev"))
-  }
-
-  resolutionStrategy {
-    eachPlugin {
-      when (requested.id.id) {
-        "kotlinx-atomicfu" -> useModule("org.jetbrains.kotlinx:atomicfu-gradle-plugin:${requested.version}")
-        "app.cash.licensee" -> useModule("app.cash.licensee:licensee-gradle-plugin:${requested.version}")
-        "io.reflekt" -> useModule("io.reflekt:gradle-plugin:${this.requested.version}")
-      }
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+        google()
+        // maven(url = uri("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev"))
     }
-  }
+
+    resolutionStrategy {
+        eachPlugin {
+            when (requested.id.id) {
+                "kotlinx-atomicfu" -> useModule("org.jetbrains.kotlinx:atomicfu-gradle-plugin:${requested.version}")
+                "app.cash.licensee" -> useModule("app.cash.licensee:licensee-gradle-plugin:${requested.version}")
+                "io.reflekt" -> useModule("io.reflekt:gradle-plugin:${this.requested.version}")
+            }
+        }
+    }
 }
 
 plugins {
-  id("com.gradle.enterprise") version System.getProperty("gradleEnterprise")
+    id("com.gradle.enterprise") version System.getProperty("gradleEnterprise")
 }
 
 // Composite Builds

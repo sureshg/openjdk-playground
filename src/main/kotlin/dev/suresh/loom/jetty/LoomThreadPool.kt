@@ -6,24 +6,24 @@ import java.util.concurrent.*
 
 class LoomThreadPool : AbstractLifeCycle(), ThreadPool {
 
-  private val execSvc = Executors.newVirtualThreadPerTaskExecutor()
+    private val execSvc = Executors.newVirtualThreadPerTaskExecutor()
 
-  override fun execute(cmd: Runnable) {
-    execSvc.submit(cmd)
-  }
-
-  override fun join() {
-    while (!execSvc.isTerminated) {
-      Thread.onSpinWait()
+    override fun execute(cmd: Runnable) {
+        execSvc.submit(cmd)
     }
-  }
 
-  override fun doStop() {
-    super.doStop()
-    execSvc.shutdown()
-  }
+    override fun join() {
+        while (!execSvc.isTerminated) {
+            Thread.onSpinWait()
+        }
+    }
 
-  override fun getThreads() = Int.MAX_VALUE
-  override fun getIdleThreads() = Int.MAX_VALUE
-  override fun isLowOnThreads() = false
+    override fun doStop() {
+        super.doStop()
+        execSvc.shutdown()
+    }
+
+    override fun getThreads() = Int.MAX_VALUE
+    override fun getIdleThreads() = Int.MAX_VALUE
+    override fun isLowOnThreads() = false
 }

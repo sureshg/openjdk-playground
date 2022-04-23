@@ -79,6 +79,9 @@ $ docker pull ghcr.io/graalvm/graalvm-ce:latest
 $ docker pull ghcr.io/graalvm/native-image:java17-22
 $ docker pull container-registry.oracle.com/graalvm/enterprise:latest
 
+# Eclipse OpenJ9
+$ docker pull ibm-semeru-runtimes:open-17-jre
+
 # Redhat Univeral Base Images (UBI)
 $ docker pull registry.access.redhat.com/ubi8/openjdk-11:1.10-1.1634738701
 
@@ -159,7 +162,10 @@ $ docker run \
         -XX:+PrintFlagsFinal \
         -XX:-MaxFDLimit \
         -Xlog:gc\*,os=trace,os+container=trace --version \
-        | grep -e "Use.*GC" -e "Active" -e "Using" -e "Max.*Limit" -e "OpenJDK"
+        | grep -e "Use.*GC" -e "Active" -e "Using" -e "Max.*Limit" -e "OpenJDK" -e "Container"
+
+# Override the default container CPU quota detection mechanism
+# -XX:ActiveProcessorCount=<n>
 ```
 
 
@@ -174,6 +180,7 @@ $ docker run -it --rm --cpus=1 --memory=1G openjdk:19-slim java -Xlog:gc --versi
 ```
 
    * https://github.com/brunoborges/jvm-ergonomics
+   * https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 
 
