@@ -34,8 +34,8 @@ $ docker pull openjdk:19-jdk-oracle
 # Eclipse Temurin
 # https://github.com/adoptium/containers#supported-images
 $ docker pull eclipse-temurin:18-focal
+$ docker pull eclipse-temurin:18-alpine
 $ docker pull eclipse-temurin:17-jre-focal
-$ docker pull eclipse-temurin:17-alpine
 $ docker pull eclipse-temurin:17-jre-alpine
 
 # Oracle OpenJDK
@@ -59,8 +59,8 @@ $ docker pull azul/zulu-openjdk-alpine:17-jre
 $ brew tap mdogan/zulu
 $ brew install <name>
 
-# Azul Prime()
-$ docker pull azul/prime:latest
+# Azul Prime
+$ docker pull azul/prime-debian:latest
 
 # Liberica
 # https://github.com/bell-sw/Liberica/tree/master/docker/repos/liberica-openjre-debian
@@ -70,8 +70,8 @@ $ docker pull bellsoft/liberica-openjdk-alpine:latest (libc)
 
 # Amazon Corretto
 # https://github.com/corretto/corretto-docker
-$ docker pull amazoncorretto:17
-$ docker pull amazoncorretto:17-alpine
+$ docker pull amazoncorretto:18
+$ docker pull amazoncorretto:18-alpine
 
 # GraalVM CE & EE
 # https://github.com/orgs/graalvm/packages
@@ -160,6 +160,7 @@ $ docker run \
         -XX:+UnlockExperimentalVMOptions \
         -XX:+UnlockDiagnosticVMOptions \
         -XX:+PrintFlagsFinal \
+        -XX:MaxRAMPercentage=0.8 \
         -XX:-MaxFDLimit \
         -Xlog:gc\*,os=trace,os+container=trace --version \
         | grep -e "Use.*GC" -e "Active" -e "Using" -e "Max.*Limit" -e "OpenJDK" -e "Container"

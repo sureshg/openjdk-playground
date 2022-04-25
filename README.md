@@ -9,6 +9,7 @@
 [![Kotlin release][kt_img]][kt_url]
 [![Docker Image][docker_img]][docker_url]
 [![Style guide][ktlint_img]][ktlint_url]
+[![SonarCloud][sonar_img]][sonar_url]
 <a href="https://deploy.cloud.run"><img src="https://deploy.cloud.run/button.svg" alt="CloudRun" title="CloudRun" width="18%"></a>
 
 #### Setup OpenJDK (Loom Build)
@@ -141,8 +142,8 @@ $ ./gradlew -q javaToolchains
 [docker_img]: https://img.shields.io/docker/v/sureshg/openjdk-latest?color=dodgerblue&label=DockerHub&logo=docker&logoColor=dodgerblue&style=for-the-badge
 [docker_url]: https://hub.docker.com/r/sureshg/openjdk-playground
 
-[sonar_img]: https://img.shields.io/sonar/quality_gate/io.sureshg:kotlin-scratchpad?logo=sonarcloud&server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge
-[sonar_url]: https://sonarcloud.io/dashboard?id=io.sureshg%3Akotlin-scratchpad
+[sonar_img]: https://img.shields.io/badge/Sonar%20Cloud-Status-e46a2a.svg?logo=sonarcloud&style=for-the-badge&logoColor=e46a2a
+[sonar_url]: https://sonarcloud.io/summary/new_code?id=sureshg_openjdk-playground
 
 [jmh_url]: https://openjdk.java.net/projects/code-tools/jmh/
 [jmh_img]: https://img.shields.io/maven-central/v/org.openjdk.jmh/jmh-core?color=magenta&label=Jmh-Core&logo=apache%20maven&logoColor=magenta&style=for-the-badge
