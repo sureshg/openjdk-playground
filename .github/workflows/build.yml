@@ -119,8 +119,8 @@ jobs:
       - name: 🏗️ Gradle Build, Run & Analyze
         id: gradle-build
         run: |
-         ./gradlew run build dokkaHtml
-         #./gradlew build sonarqube --info
+          ./gradlew run build dokkaHtml
+          #./gradlew build sonarqube --info
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -145,6 +145,16 @@ jobs:
           target-folder: docs/apidoc/
           clean: true
           commit-message: 'doc: Deployed dokka website'
+
+      - name: 🏖️ Deploy coverage report to website
+        if: startsWith(github.ref, 'refs/tags/') && runner.os == 'Linux'
+        uses: JamesIves/github-pages-deploy-action@v4.3.2
+        with:
+          branch: main
+          folder: build/reports
+          target-folder: docs/reports/
+          clean: true
+          commit-message: 'doc: Deployed coverage report'
 
   # Github Release Action on tag push
   release:
