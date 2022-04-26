@@ -1,4 +1,5 @@
 import gg.jte.*
+import kotlinx.kover.api.*
 import org.gradle.api.tasks.testing.logging.*
 import org.jetbrains.dokka.gradle.*
 import org.jetbrains.kotlin.config.*
@@ -12,6 +13,7 @@ plugins {
     kotlinJvm
     kotlinKapt
     kotlinxSerialization
+    kover
     dokka
     jte
     protobuf
@@ -19,7 +21,6 @@ plugins {
     shadow
     spotless
     qodanaPlugin
-    jacoco
     redacted
     kotlinPowerAssert
     spotlessChangelog
@@ -237,6 +238,12 @@ qodana {
     autoUpdate.set(true)
 }
 
+kover {
+    coverageEngine.set(CoverageEngine.INTELLIJ)
+    // intellijEngineVersion.set("1.0.656")
+    // jacocoEngineVersion.set("0.8.7")
+}
+
 jib {
     from {
         image = "openjdk:$javaVersion-jdk-slim"
@@ -386,12 +393,25 @@ tasks {
             showStandardStreams = true
         }
         reports.html.required.set(true)
+
+        // Configure coverage for test task.
+        extensions.configure<KoverTaskExtension> {
+            isDisabled = false
+        }
     }
 
     // Code Coverage
-    jacocoTestReport {
-        reports {
-            html.required.set(true)
+    koverMergedHtmlReport {
+        isEnabled = true
+    }
+
+    koverMergedVerify {
+        rule {
+            name = "Minimum number of lines covered"
+            bound {
+                minValue = 0
+                valueType = VerificationValueType.COVERED_LINES_COUNT
+            }
         }
     }
 
