@@ -2934,40 +2934,10 @@
 <counter type="METHOD" missed="3" covered="0"/>
 <counter type="CLASS" missed="1" covered="0"/>
 </package>
-<package name="NewFeat">
-<class name="NewFeat" sourcefilename="NewFeat.java">
-<method name="main" desc="([Ljava/lang/String;)V">
-<counter type="INSTRUCTION" missed="3" covered="0"/>
-<counter type="BRANCH" missed="0" covered="0"/>
-<counter type="LINE" missed="1" covered="0"/>
-</method>
-<method name="&lt;init&gt;" desc="()V">
-<counter type="INSTRUCTION" missed="2" covered="0"/>
-<counter type="BRANCH" missed="0" covered="0"/>
-<counter type="LINE" missed="1" covered="0"/>
-</method>
-<counter type="INSTRUCTION" missed="5" covered="0"/>
-<counter type="BRANCH" missed="0" covered="0"/>
-<counter type="LINE" missed="2" covered="0"/>
-<counter type="METHOD" missed="2" covered="0"/>
-</class>
-<sourcefile name="NewFeat.java">
-<line nr="3" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="6" mi="3" ci="0" mb="0" cb="0"/>
-<counter type="INSTRUCTION" missed="5" covered="0"/>
-<counter type="BRANCH" missed="0" covered="0"/>
-<counter type="LINE" missed="2" covered="0"/>
-</sourcefile>
-<counter type="INSTRUCTION" missed="5" covered="0"/>
-<counter type="BRANCH" missed="0" covered="0"/>
-<counter type="LINE" missed="2" covered="0"/>
-<counter type="METHOD" missed="2" covered="0"/>
-<counter type="CLASS" missed="1" covered="0"/>
-</package>
-<counter type="INSTRUCTION" missed="5530" covered="8"/>
+<counter type="INSTRUCTION" missed="5525" covered="8"/>
 <counter type="BRANCH" missed="202" covered="2"/>
-<counter type="LINE" missed="928" covered="0"/>
-<counter type="METHOD" missed="205" covered="0"/>
-<counter type="CLASS" missed="88" covered="0"/>
+<counter type="LINE" missed="926" covered="0"/>
+<counter type="METHOD" missed="203" covered="0"/>
+<counter type="CLASS" missed="87" covered="0"/>
 </report>
 
