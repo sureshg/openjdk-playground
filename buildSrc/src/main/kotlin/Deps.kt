@@ -185,7 +185,7 @@ object Deps {
     }
 
     object OkHttp {
-        const val version = "5.0.0-alpha.6"
+        const val version = "5.0.0-alpha.7"
         const val bom = "com.squareup.okhttp3:okhttp-bom:$version"
         const val okhttp = "com.squareup.okhttp3:okhttp:$version"
         const val mockWebServer = "com.squareup.okhttp3:mockwebserver:$version"

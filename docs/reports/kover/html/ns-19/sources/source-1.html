@@ -1,0 +1,150 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > JtehelloGenerated</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">gg.jte.generated.precompiled</a>
+</div>
+
+<h1>Coverage Summary for Class: JtehelloGenerated (gg.jte.generated.precompiled)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">JtehelloGenerated</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/18)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/149)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package gg.jte.generated.precompiled;
+<i class="no-highlight">2</i>&nbsp;import dev.suresh.config.JConfig;
+<i class="no-highlight">3</i>&nbsp;import dev.suresh.jte.KtConfig;
+<i class="no-highlight">4</i>&nbsp;import java.time.LocalDateTime;
+<b class="nc"><i class="no-highlight">5</i>&nbsp;public final class JtehelloGenerated {</b>
+<i class="no-highlight">6</i>&nbsp;	public static final String JTE_NAME = &quot;hello.jte&quot;;
+<b class="nc"><i class="no-highlight">7</i>&nbsp;	public static final int[] JTE_LINE_INFO = {0,0,1,2,4,4,4,7,7,7,8,8,8,8,9,9,9,9,10,10,11};</b>
+<i class="no-highlight">8</i>&nbsp;	public static void render(gg.jte.TemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, JConfig config, KtConfig ktConfig) {
+<b class="nc"><i class="no-highlight">9</i>&nbsp;		jteOutput.writeContent(&quot;\nApp Version  = &quot;);</b>
+<b class="nc"><i class="no-highlight">10</i>&nbsp;		jteOutput.writeUserContent(ktConfig.getAppVersion());</b>
+<b class="nc"><i class="no-highlight">11</i>&nbsp;		jteOutput.writeContent(&quot;\n&quot;);</b>
+<b class="nc"><i class="no-highlight">12</i>&nbsp;		jteOutput.writeUserContent(config.language());</b>
+<b class="nc"><i class="no-highlight">13</i>&nbsp;		jteOutput.writeContent(&quot; = &quot;);</b>
+<b class="nc"><i class="no-highlight">14</i>&nbsp;		jteOutput.writeUserContent(config.version());</b>
+<b class="nc"><i class="no-highlight">15</i>&nbsp;		jteOutput.writeContent(&quot;\n&quot;);</b>
+<b class="nc"><i class="no-highlight">16</i>&nbsp;		jteOutput.writeUserContent(ktConfig.getLanguage());</b>
+<b class="nc"><i class="no-highlight">17</i>&nbsp;		jteOutput.writeContent(&quot; = &quot;);</b>
+<b class="nc"><i class="no-highlight">18</i>&nbsp;		jteOutput.writeUserContent(ktConfig.getVersion());</b>
+<b class="nc"><i class="no-highlight">19</i>&nbsp;		jteOutput.writeContent(&quot;\nRendered By Java Jte on &quot;);</b>
+<b class="nc"><i class="no-highlight">20</i>&nbsp;		jteOutput.writeUserContent(LocalDateTime.now().toString());</b>
+<b class="nc"><i class="no-highlight">21</i>&nbsp;		jteOutput.writeContent(&quot;\n&quot;);</b>
+<i class="no-highlight">22</i>&nbsp;	}
+<i class="no-highlight">23</i>&nbsp;	public static void renderMap(gg.jte.TemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, java.util.Map&lt;String, Object&gt; params) {
+<b class="nc"><i class="no-highlight">24</i>&nbsp;		JConfig config = (JConfig)params.get(&quot;config&quot;);</b>
+<b class="nc"><i class="no-highlight">25</i>&nbsp;		KtConfig ktConfig = (KtConfig)params.get(&quot;ktConfig&quot;);</b>
+<b class="nc"><i class="no-highlight">26</i>&nbsp;		render(jteOutput, jteHtmlInterceptor, config, ktConfig);</b>
+<i class="no-highlight">27</i>&nbsp;	}
+<i class="no-highlight">28</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-04-27 17:07</div>
+</div>
+</body>
+</html>

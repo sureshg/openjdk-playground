@@ -197,7 +197,45 @@ $  java -Xlog:help
 
 
 
-#### 11. Resources
+#### 11. Commands
+
+   * Grabbing a file from a remote system with ssh
+
+     ```bash
+     # grabbing a file from a remote system with ssh but no scp binary
+
+     $ ssh user@remote-system "cat <file.txt" > file.txt
+     $ ssh user@remote-system  'tar -S cz somedirectory' | tar -S xvz
+
+     # Using Rsync: Upload
+     $ rsync -Pavze ssh path/to/src remote-system:path/to/dst
+     # Download
+     $ rsync -Pavze ssh remote-system:path/to/src path/to/dst
+     ```
+
+
+
+   * Strace
+
+     ```bash
+     # Syscall trace
+     $ strace -tttTf -p <pid>
+     ```
+
+
+
+   * Netstat
+
+     ```bash
+     $ netstat -tunalp
+
+     # Socket stats
+     $ ss -s
+     ```
+
+
+
+#### 12. Resources
 
 * [JDK Mission Control Docs](https://docs.oracle.com/en/java/java-components/jdk-mission-control/)
 * [Marcus Hirt's Blog](http://hirt.se/blog/?p=1312)
