@@ -125,13 +125,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      - name: 📤 Uploading ${{ matrix.os }} uber jar
+      - name: 📤 Uploading ${{ matrix.os }} executable jar
         if: steps.gradle-build.outcome == 'success' && runner.os == 'Linux'
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ steps.gradle-build.outputs.uberjar_name }}
+          name: ${{ steps.gradle-build.outputs.execjar_name }}
           path: |
-            ${{ steps.gradle-build.outputs.uberjar_path }}
+            ${{ steps.gradle-build.outputs.execjar_path }}
           if-no-files-found: error
 
       # Deploy the Dokka site for new tag on Linux

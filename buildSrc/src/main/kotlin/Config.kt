@@ -80,28 +80,6 @@ val Project.javaToolchainPath
       ?: error("Requested JDK version ($javaVersion) is not available.")
   }
 
-/** Returns the application `run` command. */
-fun Project.appRunCmd(jarPath: Path, args: List<String>): String {
-  val path = projectDir.toPath().relativize(jarPath)
-  val newLine = System.lineSeparator()
-  val lineCont = """\""" // Bash line continuation
-  val indent = "\t"
-  println()
-  return args.joinToString(
-    prefix = """
-        To Run the app,
-        ${'$'} java -jar $lineCont $newLine
-    """.trimIndent(),
-    postfix = "$newLine$indent$path",
-    separator = newLine,
-  ) {
-    // Escape the globstar
-    "$indent$it $lineCont"
-      .replace("*", """\*""")
-      .replace(""""""", """\"""")
-  }
-}
-
 /** Returns the current OS name. */
 val os by lazy {
   val os = System.getProperty("os.name")

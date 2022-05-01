@@ -328,6 +328,7 @@ tasks {
                     "-Xlint:all",
                     "-parameters",
                     "--add-modules=$addModules"
+                    // "-Xlint:-deprecation", // suppress deprecations
                     // "-XX:+IgnoreUnrecognizedVMOptions",
                     // "--add-exports",
                     // "java.base/sun.nio.ch=ALL-UNNAMED",
@@ -468,18 +469,8 @@ tasks {
 
         // Don't create modular shadow jar
         // exclude("module-info.class")
-
         // relocate("okio", "shaded.okio")
         // configurations = listOf(shadowRuntime)
-
-        doLast {
-            val fatJar = archiveFile.get().asFile
-            println("FatJar: ${fatJar.path} (${fatJar.length().toDouble() / (1_000 * 1_000)} MB)")
-            println(appRunCmd(fatJar.toPath(), application.applicationDefaultJvmArgs.toList()))
-            GithubAction.setOutput("version", project.version)
-            GithubAction.setOutput("uberjar_name", fatJar.name)
-            GithubAction.setOutput("uberjar_path", fatJar.absolutePath)
-        }
     }
 
     dependencyUpdates {
