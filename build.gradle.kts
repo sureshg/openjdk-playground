@@ -129,7 +129,7 @@ java {
     // modularity.inferModulePath.set(true)
 }
 
-// Add the generated templates to source set.
+// Add the generated templates to the sourceset.
 sourceSets {
     main {
         java.srcDirs(tasks.copyTemplates)
@@ -526,6 +526,13 @@ val emptyJar by tasks.registering(Jar::class) {
     // manifest {
     //   attributes("Automatic-Module-Name" to appMainModule)
     // }
+}
+
+// Fix "Execution optimizations have been disabled" warning for JTE
+listOf("sourcesJar", "processResources").forEach {
+    tasks.named(it) {
+        dependsOn(tasks.generateJte)
+    }
 }
 
 dependencies {
