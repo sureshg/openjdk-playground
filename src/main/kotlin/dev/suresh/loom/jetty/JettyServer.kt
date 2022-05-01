@@ -114,12 +114,10 @@ fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
 }
 
 class HelloServlet : HttpServlet() {
-    /**
-     * Scoped local variable holding the user info.
-     */
-    private val ID = ScopeLocal.newInstance<String>()
+    /** Scoped local variable holding the user info. */
+    private val ID = ExtentLocal.newInstance<String>()
 
-    private val USER = ScopeLocal.newInstance<String>()
+    private val USER = ExtentLocal.newInstance<String>()
 
     private val OS: String = System.getProperty("os.name")
 
@@ -131,7 +129,7 @@ class HelloServlet : HttpServlet() {
         val id = req?.getParameter("id")
         val user = req?.getParameter("user")
 
-        ScopeLocal
+        ExtentLocal
             .where(ID, id)
             .where(USER, user)
             .run {
