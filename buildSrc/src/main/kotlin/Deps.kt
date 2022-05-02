@@ -754,7 +754,7 @@ inline val PluginDependenciesSpec.checksum get() = id("org.gradle.crypto.checksu
 inline val PluginDependenciesSpec.mavenPublish get() = id("com.vanniktech.maven.publish") version "0.13.0"
 
 // Build config
-inline val PluginDependenciesSpec.gitProperties get() = id("com.gorylenko.gradle-git-properties") version "2.4.0"
+inline val PluginDependenciesSpec.gitProperties get() = id("com.gorylenko.gradle-git-properties") version "2.4.1"
 inline val PluginDependenciesSpec.buildconfig get() = id("com.github.gmazzo.buildconfig") version "3.0.2" apply false
 inline val PluginDependenciesSpec.buildkonfig get() = id("com.codingfeline.buildkonfig") version "0.11.0" apply false
 

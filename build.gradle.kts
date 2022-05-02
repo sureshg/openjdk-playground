@@ -529,7 +529,7 @@ val emptyJar by tasks.registering(Jar::class) {
 }
 
 // Fix "Execution optimizations have been disabled" warning for JTE
-listOf("sourcesJar", "processResources").forEach {
+listOf("sourcesJar", "processResources", "dokkaHtml").forEach {
     tasks.named(it) {
         dependsOn(tasks.generateJte)
     }

@@ -1,5 +1,6 @@
 package plugins
 
+import debugEnabled
 import mebiSize
 import org.gradle.internal.os.OperatingSystem
 import org.gradle.tooling.*
@@ -15,7 +16,6 @@ plugins {
     application
     `test-suite-base`
 // `java-library`
-//  id("kotlinx-kover") //version "0.2.2"
 }
 
 // apply(from ="")
@@ -28,10 +28,12 @@ idea {
     project.vcs = "Git"
 }
 
-// Print all the tasks
-gradle.taskGraph.whenReady {
-    allTasks.forEachIndexed { index, task ->
-        println("${index + 1}. ${task.name}")
+if (debugEnabled) {
+    // Print all the tasks
+    gradle.taskGraph.whenReady {
+        allTasks.forEachIndexed { index, task ->
+            println("${index + 1}. ${task.name}")
+        }
     }
 }
 
@@ -100,9 +102,9 @@ tasks {
                     application.applicationDefaultJvmArgs.joinToString(" ")
                 )
 
-            FileOutputStream(binFile).buffered().use {
-                it.write(shell.encodeToByteArray())
-                Files.copy(jarFile.toPath(), it)
+            FileOutputStream(binFile).buffered().use { bos ->
+                bos.write(shell.encodeToByteArray())
+                Files.copy(jarFile.toPath(), bos)
             }
             binFile.setExecutable(true)
             println("Executable : ${binFile.path} ${binFile.mebiSize}")
@@ -148,8 +150,7 @@ tasks {
         props["git_branch"] = project.findProperty("branch_name")
         props["git_tag"] = project.findProperty("base_tag")
 
-        val debug: String? by project
-        if (debug.toBoolean()) {
+        if (debugEnabled) {
             props.forEach { (t, u) ->
                 println("%1\$-42s --> %2\$s".format(t, u))
             }
@@ -178,7 +179,7 @@ tasks {
         }
     }
 
-//  withType<JavaExec>().configureEach {
+//  withType<JavaExec>().matching {  }.configureEach {
 //    jvmArgs(
 //      "--enable-native-access=ALL-UNNAMED",
 //      "--add-modules=jdk.incubator.foreign",
@@ -200,7 +201,7 @@ fun Path.appRunCmd(args: List<String>): String {
         prefix = """
         To Run the app,
         ${'$'} java -jar $lineCont $newLine
-    """.trimIndent(),
+        """.trimIndent(),
         postfix = "$newLine$indent$path",
         separator = newLine,
     ) {
