@@ -4,6 +4,7 @@ import debugEnabled
 import mebiSize
 import org.gradle.internal.os.OperatingSystem
 import org.gradle.tooling.*
+import tasks.*
 import java.io.*
 import java.nio.file.*
 import java.nio.file.Path
@@ -177,6 +178,10 @@ tasks {
             val run = forkTask("run")
             CompletableFuture.allOf(continuousCompile, run).join()
         }
+    }
+
+    register<SampleTask>("greetings") {
+        greeting.set("Hello Gradle Kotlin DSL!")
     }
 
 //  withType<JavaExec>().matching {  }.configureEach {
