@@ -1,13 +1,14 @@
 package plugins
 
+import GithubAction
+import appRunCmd
 import debugEnabled
+import forkTask
 import mebiSize
 import org.gradle.internal.os.OperatingSystem
-import org.gradle.tooling.*
 import tasks.*
-import java.io.*
-import java.nio.file.*
-import java.nio.file.Path
+import java.io.PrintWriter
+import java.io.StringWriter
 import java.util.concurrent.*
 import java.util.spi.*
 
@@ -16,7 +17,7 @@ plugins {
     java
     application
     `test-suite-base`
-// `java-library`
+    //`java-library`
 }
 
 // apply(from ="")
@@ -41,6 +42,16 @@ if (debugEnabled) {
 // After the project configure
 afterEvaluate {
     println("=== Project Configuration Completed ===")
+}
+
+if (gradle.startParameter.taskNames.any { it == "clean" }) {
+    logger.warn(
+        """
+        CLEANING ALMOST NEVER FIXES YOUR BUILD!
+        Cleaning is often a last-ditch effort to fix perceived build problems that aren't going to actually be fixed by cleaning.
+        What cleaning will do though is make your next few builds significantly slower because all the incremental compilation data has to be regenerated, so you're really just making your day worse.
+        """.trimIndent()
+    )
 }
 
 tasks {
@@ -87,34 +98,6 @@ tasks {
         dependsOn("shadowJar")
     }
 
-    val buildExecutable by registering {
-        description = "Build executable binary"
-        group = LifecycleBasePlugin.BUILD_TASK_NAME
-
-        doLast {
-            val uberJar = named("shadowJar", Jar::class) //project.tasks.shadowJar
-            val jarFile = uberJar.get().archiveFile.get().asFile
-            val binFile = File(project.buildDir, project.name)
-
-            val shell = project.projectDir.resolve("gradle/exec-jar-stub.sh")
-                .readText()
-                .replace(
-                    "${'$'}JAVA_OPTS",
-                    application.applicationDefaultJvmArgs.joinToString(" ")
-                )
-
-            FileOutputStream(binFile).buffered().use { bos ->
-                bos.write(shell.encodeToByteArray())
-                Files.copy(jarFile.toPath(), bos)
-            }
-            binFile.setExecutable(true)
-            println("Executable : ${binFile.path} ${binFile.mebiSize}")
-        }
-
-        onlyIf { OperatingSystem.current().isUnix }
-        dependsOn("shadowJar")
-    }
-
     val githubActionOutput by registering {
         description = "Set Github workflow action output for this build"
         group = LifecycleBasePlugin.BUILD_TASK_NAME
@@ -122,7 +105,7 @@ tasks {
         doLast {
             val uberJar = named("shadowJar", Jar::class).get().archiveFile.get().asFile
             println("Uber Jar : ${uberJar.path} ${uberJar.mebiSize}")
-            println(uberJar.toPath().appRunCmd(application.applicationDefaultJvmArgs.toList()))
+            println(appRunCmd(uberJar, application.applicationDefaultJvmArgs.toList()))
 
             GithubAction.setOutput("version", project.version)
             GithubAction.setOutput("uberjar_name", uberJar.name)
@@ -137,11 +120,18 @@ tasks {
         dependsOn("shadowJar")
     }
 
+    val buildExecutable by registering(ReallyExecJar::class) {
+        val shadowJar = named("shadowJar", Jar::class) //project.tasks.shadowJar
+        jarFile.set(shadowJar.flatMap { it.archiveFile })
+        javaOpts.set(application.applicationDefaultJvmArgs)
+        onlyIf { OperatingSystem.current().isUnix }
+    }
+
     named("build") {
         finalizedBy(printModuleDeps, buildExecutable, githubActionOutput)
     }
 
-    // register<Copy>("copyTemplates")
+    // register<Copy>("copyTemplates"){}
     val copyTemplates by registering(Copy::class) {
         description = "Generate template classes"
         group = LifecycleBasePlugin.BUILD_TASK_NAME
@@ -193,46 +183,4 @@ tasks {
 //    )
 //    javaLauncher.set(project.javaToolchains.launcherFor(java.toolchain))
 //  }
-}
-
-/** Returns the application `run` command. */
-fun Path.appRunCmd(args: List<String>): String {
-    val path = projectDir.toPath().relativize(this)
-    val newLine = System.lineSeparator()
-    val lineCont = """\""" // Bash line continuation
-    val indent = "\t"
-    println()
-    return args.joinToString(
-        prefix = """
-        To Run the app,
-        ${'$'} java -jar $lineCont $newLine
-        """.trimIndent(),
-        postfix = "$newLine$indent$path",
-        separator = newLine,
-    ) {
-        // Escape the globstar
-        "$indent$it $lineCont"
-            .replace("*", """\*""")
-            .replace(""""""", """\"""")
-    }
-}
-
-/** Fork a new gradle [task] with given [args] */
-fun forkTask(task: String, vararg args: String) = CompletableFuture.supplyAsync {
-    GradleConnector.newConnector()
-        .forProjectDirectory(project.projectDir)
-        .connect()
-        .use {
-            it.newBuild()
-                .addArguments(*args)
-                .addJvmArguments(
-                    "--add-opens",
-                    "jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED"
-                )
-                .forTasks(task)
-                .setStandardError(System.err)
-                .setStandardInput(System.`in`)
-                .setStandardOutput(System.out)
-                .run()
-        }
 }

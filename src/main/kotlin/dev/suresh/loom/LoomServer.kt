@@ -60,7 +60,7 @@ object LoomServer {
                         BodyHandlers.ofString()
                     )
                     val thread = Thread.currentThread()
-                    println("<--- Response(${thread.name}-${thread.id}-${thread.isVirtual}): ${res.body()}")
+                    println("<--- Response(${thread.name}-${thread.threadId()}-${thread.isVirtual}): ${res.body()}")
                     res.body()
                 },
                 execSvc
@@ -81,16 +81,16 @@ object LoomServer {
 
     private fun root(ex: HttpExchange) {
         val thread = Thread.currentThread()
-        println("---> Request(${thread.name}-${thread.id}-${thread.isVirtual}): ${ex.requestMethod} - ${ex.requestURI}")
+        println("---> Request(${thread.name}-${thread.threadId()}-${thread.isVirtual}): ${ex.requestMethod} - ${ex.requestURI}")
         // Simulate blocking call.
         sleep(Duration.ofMillis(100))
         ex.responseHeaders.add("Content-Type", "application/json")
         val res =
             """
             {
-               "id" : ${thread.id},
-               "version" : ${System.getProperty("java.vm.version")},
-               "virtual" : ${thread.isVirtual}
+               "threadId" : ${thread.threadId()},
+               "version"  : ${System.getProperty("java.vm.version")},
+               "virtual"  : ${thread.isVirtual}
             }
             """.trimIndent().toByteArray()
 

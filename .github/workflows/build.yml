@@ -1,8 +1,5 @@
 name: Build
 
-env:
-  GITHUB_PUBLISH: 'false'
-
 on:
   push:
     branches:
@@ -15,19 +12,24 @@ on:
       - '*.md'
       - 'docs/**'
       - '.github/config/labels.yml'
-
   pull_request:
     branches:
       - main
-
   schedule:
     - cron: "0 0 * * *"
-
   workflow_dispatch:
 
 defaults:
   run:
     shell: bash
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  GITHUB_PUBLISH: 'false'
+  releaseBuild: ${{ github.event_name == 'push' && contains(github.ref, 'refs/tags/') }}
 
 jobs:
 

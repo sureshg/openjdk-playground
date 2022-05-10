@@ -270,7 +270,7 @@ object Deps {
     }
 
     object KoTest {
-        const val version = "5.2.3"
+        const val version = "5.3.0"
         const val junit5Runner = "io.kotest:kotest-runner-junit5:$version"
         const val assertions = "io.kotest:kotest-assertions-core:$version"
         const val property = "io.kotest:kotest-property:$version"
@@ -405,7 +405,7 @@ object Deps {
     object Cli {
         const val clikt = "com.github.ajalt.clikt:clikt:3.4.2"
         const val textIO = "org.beryx:text-io:3.4.1"
-        const val mordant = "com.github.ajalt.mordant:mordant:2.0.0-beta5"
+        const val mordant = "com.github.ajalt.mordant:mordant:2.0.0-beta6"
         const val colormath = "com.github.ajalt.colormath:colormath:2.0.0"
         const val mosaic = "com.jakewharton.mosaic:1.0.0"
         const val picnic = "com.jakewharton.picnic:picnic:0.6.0"
@@ -710,7 +710,7 @@ inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.a
 inline val PluginDependenciesSpec.taskinfo get() = id("org.barfuin.gradle.taskinfo") version "1.4.0" apply false
 inline val PluginDependenciesSpec.taskTree get() = id("com.dorongold.task-tree") version "1.5"
 inline val PluginDependenciesSpec.forbiddenApis get() = id("de.thetaphi.forbiddenapis") version "3.1"
-inline val PluginDependenciesSpec.extraJavaModuleInfo get() = id("de.jjohannes.extra-java-module-info") version "0.11"
+inline val PluginDependenciesSpec.extraJavaModuleInfo get() = id("de.jjohannes.extra-java-module-info") version "0.12"
 inline val PluginDependenciesSpec.licensee get() = id("app.cash.licensee") version "1.3.1" apply false
 
 inline val PluginDependenciesSpec.javafx get() = id("org.openjfx.javafxplugin") version "0.0.7"
@@ -736,7 +736,7 @@ inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boo
 inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version "1.0.9.RELEASE"
 
 // Static Analysis and Linting
-inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "6.5.1"
+inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "6.5.2"
 inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.4.0"
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version "9.3.0"

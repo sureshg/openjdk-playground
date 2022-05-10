@@ -64,12 +64,13 @@ application {
         "-XX:+HeapDumpOnOutOfMemoryError",
         "-XX:HeapDumpPath=$tmp/$name-%p.hprof",
         "-XX:ErrorFile=$tmp/$name-hs-err-%p.log",
+        "-XX:OnOutOfMemoryError='kill -9 %p'",
+        "-XX:+ExitOnOutOfMemoryError",
         "-Djava.awt.headless=true",
         "-Djdk.attach.allowAttachSelf=true",
         "-Djdk.tracePinnedThreads=full",
         "-Djava.security.egd=file:/dev/./urandom",
         "-Djdk.includeInExceptions=hostInfo,jar",
-        "-Djava.security.egd=file:/dev/./urandom",
         "-XX:+UnlockDiagnosticVMOptions",
         "-XX:+LogVMOutput",
         "-XX:LogFile=$tmp/$name-jvm.log",
@@ -89,6 +90,7 @@ application {
         // "-XX:+StartAttachListener", // For jcmd Dynamic Attach Mechanism
         // "-XX:+DisableAttachMechanism",
         // "-XX:+DebugNonSafepoints",
+        // "-XX:OnOutOfMemoryError="./restart.sh"",
         // "-Duser.timezone=\"PST8PDT\"",
         // "-Djava.net.preferIPv4Stack=true",
         // "-Djavax.net.debug=all",
@@ -616,7 +618,8 @@ dependencies {
 publishing {
     repositories {
         maven {
-            url = uri("$buildDir/repo")
+            name = "local"
+            url = uri(layout.buildDirectory.dir("repo"))
         }
 
         maven {
@@ -634,6 +637,7 @@ publishing {
         register<MavenPublication>("maven") {
             from(components["java"])
             artifact(dokkaHtmlJar)
+            artifact(tasks.buildExecutable)
             // artifact(tasks.shadowJar)
 
             pom {

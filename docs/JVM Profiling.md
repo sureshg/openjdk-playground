@@ -57,6 +57,8 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 
 * [jmxviewer](https://github.com/ivanyu/jmxviewer)
 
+* [Cryostat](https://github.com/cryostatio/cryostat)
+
 
 
 #### 5. Commands
