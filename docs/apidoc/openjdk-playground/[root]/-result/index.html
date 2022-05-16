@@ -32,7 +32,7 @@ if(savedDarkMode === true){
             </a>
     </div>
     <div>
-1.6.5-0    </div>
+1.7.0-0    </div>
     <div class="pull-right d-flex">
         <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
         <div id="searchBar"></div>
@@ -47,7 +47,7 @@ if(savedDarkMode === true){
   <div class="breadcrumbs"><a href="../../../index.html">openjdk-playground</a><span class="delimiter">/</span><a href="../index.html">[root]</a><span class="delimiter">/</span><a href="index.html">Result</a></div>
   <div class="cover ">
     <h1 class="cover"><span><span>Result</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">sealed </span><span class="token keyword">class </span><a href="index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="index.html">T</a><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">See the graph for more details,</p><div class="sample-container"><div id="mermaid-container-733ejfd5mv0ce"></div></div><script>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">sealed </span><span class="token keyword">class </span><a href="index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="index.html">T</a><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">See the graph for more details,</p><div class="sample-container"><div id="mermaid-container-1ko8b9vcd2ttj"></div></div><script>
 window.addEventListener('load', function() {
   var graphDef =  `graph LR
   A[Christmas] -->|Get money| B(Go shopping)
@@ -55,14 +55,14 @@ window.addEventListener('load', function() {
   C -->|One| D[Laptop]
   C -->|Two| E[iPhone]
   C -->|Three| F[fa:fa-car Car]`;
-  var container = document.getElementById('mermaid-container-733ejfd5mv0ce');
-  container.innerHTML = '<div id="mermaid-target-733ejfd5mv0ce"></div>';
-  var cb733ejfd5mv0ce = function(svgGraph) {
+  var container = document.getElementById('mermaid-container-1ko8b9vcd2ttj');
+  container.innerHTML = '<div id="mermaid-target-1ko8b9vcd2ttj"></div>';
+  var cb1ko8b9vcd2ttj = function(svgGraph) {
     container.innerHTML = svgGraph;
     // Trick to make the graph takes only the required height.
-    document.getElementById('mermaid-target-733ejfd5mv0ce').removeAttribute('height')
+    document.getElementById('mermaid-target-1ko8b9vcd2ttj').removeAttribute('height')
   };
-  var updateGraph733ejfd5mv0ce = function() {
+  var updateGraph1ko8b9vcd2ttj = function() {
     // setTimeout required or else the 1st render could be done before mermaid.initialize() has applied the theme.
     // Also required because we can't listen to localStorage events reliably, and it's changed on the same click event...
     setTimeout(() => {
@@ -73,15 +73,15 @@ window.addEventListener('load', function() {
         theme = 'dark';
       }
       mermaid.initialize({'theme': theme});
-      mermaid.mermaidAPI.render('mermaid-target-733ejfd5mv0ce', graphDef, cb733ejfd5mv0ce);
+      mermaid.mermaidAPI.render('mermaid-target-1ko8b9vcd2ttj', graphDef, cb1ko8b9vcd2ttj);
     }, 0);
   }
-  updateGraph733ejfd5mv0ce();
+  updateGraph1ko8b9vcd2ttj();
   
   var themeToggleButton = document.getElementById('theme-toggle-button');
   themeToggleButton.addEventListener('click', () => {
     // This detection mechanism is shitty, please tell me if you know better.
-    updateGraph733ejfd5mv0ce();
+    updateGraph1ko8b9vcd2ttj();
   });
 });</script></div></div>
   </div>
