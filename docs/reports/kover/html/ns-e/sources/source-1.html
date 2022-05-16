@@ -196,7 +196,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc"><i class="no-highlight">60</i>&nbsp;                        BodyHandlers.ofString()</b>
 <i class="no-highlight">61</i>&nbsp;                    )
 <b class="nc"><i class="no-highlight">62</i>&nbsp;                    val thread = Thread.currentThread()</b>
-<b class="nc"><i class="no-highlight">63</i>&nbsp;                    println(&quot;&lt;--- Response(${thread.name}-${thread.id}-${thread.isVirtual}): ${res.body()}&quot;)</b>
+<b class="nc"><i class="no-highlight">63</i>&nbsp;                    println(&quot;&lt;--- Response(${thread.name}-${thread.threadId()}-${thread.isVirtual}): ${res.body()}&quot;)</b>
 <b class="nc"><i class="no-highlight">64</i>&nbsp;                    res.body()</b>
 <i class="no-highlight">65</i>&nbsp;                },
 <b class="nc"><i class="no-highlight">66</i>&nbsp;                execSvc</b>
@@ -217,16 +217,16 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">81</i>&nbsp;
 <i class="no-highlight">82</i>&nbsp;    private fun root(ex: HttpExchange) {
 <b class="nc"><i class="no-highlight">83</i>&nbsp;        val thread = Thread.currentThread()</b>
-<b class="nc"><i class="no-highlight">84</i>&nbsp;        println(&quot;---&gt; Request(${thread.name}-${thread.id}-${thread.isVirtual}): ${ex.requestMethod} - ${ex.requestURI}&quot;)</b>
+<b class="nc"><i class="no-highlight">84</i>&nbsp;        println(&quot;---&gt; Request(${thread.name}-${thread.threadId()}-${thread.isVirtual}): ${ex.requestMethod} - ${ex.requestURI}&quot;)</b>
 <i class="no-highlight">85</i>&nbsp;        // Simulate blocking call.
 <b class="nc"><i class="no-highlight">86</i>&nbsp;        sleep(Duration.ofMillis(100))</b>
 <b class="nc"><i class="no-highlight">87</i>&nbsp;        ex.responseHeaders.add(&quot;Content-Type&quot;, &quot;application/json&quot;)</b>
 <b class="nc"><i class="no-highlight">88</i>&nbsp;        val res =</b>
 <i class="no-highlight">89</i>&nbsp;            &quot;&quot;&quot;
 <i class="no-highlight">90</i>&nbsp;            {
-<b class="nc"><i class="no-highlight">91</i>&nbsp;               &quot;id&quot; : ${thread.id},</b>
-<b class="nc"><i class="no-highlight">92</i>&nbsp;               &quot;version&quot; : ${System.getProperty(&quot;java.vm.version&quot;)},</b>
-<b class="nc"><i class="no-highlight">93</i>&nbsp;               &quot;virtual&quot; : ${thread.isVirtual}</b>
+<b class="nc"><i class="no-highlight">91</i>&nbsp;               &quot;threadId&quot; : ${thread.threadId()},</b>
+<b class="nc"><i class="no-highlight">92</i>&nbsp;               &quot;version&quot;  : ${System.getProperty(&quot;java.vm.version&quot;)},</b>
+<b class="nc"><i class="no-highlight">93</i>&nbsp;               &quot;virtual&quot;  : ${thread.isVirtual}</b>
 <i class="no-highlight">94</i>&nbsp;            }
 <b class="nc"><i class="no-highlight">95</i>&nbsp;            &quot;&quot;&quot;.trimIndent().toByteArray()</b>
 <i class="no-highlight">96</i>&nbsp;
@@ -290,7 +290,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-04-28 00:34</div>
+    <div style="float:right;">generated on 2022-05-16 15:35</div>
 </div>
 </body>
 </html>

@@ -94,51 +94,50 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">2</i>&nbsp;
 <i class="no-highlight">3</i>&nbsp;import java.lang.invoke.*
 <i class="no-highlight">4</i>&nbsp;import java.util.*
-<i class="no-highlight">5</i>&nbsp;import java.util.List
-<i class="no-highlight">6</i>&nbsp;
-<i class="no-highlight">7</i>&nbsp;/**
-<i class="no-highlight">8</i>&nbsp; * Run with &quot;-XX:+UnlockDiagnosticVMOptions -XX:+ShowHiddenFrames&quot;
-<i class="no-highlight">9</i>&nbsp; * to see the hidden classes.
-<i class="no-highlight">10</i>&nbsp; *
-<i class="no-highlight">11</i>&nbsp; *  --add-opens java.base/java.util=ALL-UNNAMED
-<i class="no-highlight">12</i>&nbsp; * @since JDK15
-<i class="no-highlight">13</i>&nbsp; */
-<i class="no-highlight">14</i>&nbsp;fun main() {
-<i class="no-highlight">15</i>&nbsp;    println(&quot;Reading Foo bytes...&quot;)
-<i class="no-highlight">16</i>&nbsp;    val clBytes = Foo::class.java.toBytes() ?: error(&quot;Can&#39;t load Foo!&quot;)
-<i class="no-highlight">17</i>&nbsp;
-<i class="no-highlight">18</i>&nbsp;    println(HiddenData::class.java.toBytes()?.decodeToString())
-<i class="no-highlight">19</i>&nbsp;    println(&quot;-------------------------&quot;)
-<i class="no-highlight">20</i>&nbsp;    val t = HiddenData(&quot;kotlin&quot;)
-<i class="no-highlight">21</i>&nbsp;    println(t.javaClass.toBytes()?.decodeToString())
-<i class="no-highlight">22</i>&nbsp;
-<i class="no-highlight">23</i>&nbsp;    val lookup = MethodHandles.lookup().defineHiddenClass(clBytes, true)
-<i class="no-highlight">24</i>&nbsp;    val run = lookup.findStatic(lookup.lookupClass(), &quot;run&quot;, MethodType.methodType(Void.TYPE))
-<i class="no-highlight">25</i>&nbsp;    // run.invokeExact()
-<i class="no-highlight">26</i>&nbsp;
-<i class="no-highlight">27</i>&nbsp;    val mh = MethodHandles.privateLookupIn(Formatter::class.java, MethodHandles.lookup())
-<i class="no-highlight">28</i>&nbsp;    println(MethodHandles.lookup())
-<i class="no-highlight">29</i>&nbsp;    println(mh.lookupClass())
-<i class="no-highlight">30</i>&nbsp;
-<i class="no-highlight">31</i>&nbsp;    println(mh.lookupModes())
-<i class="no-highlight">32</i>&nbsp;    val m = mh.findVirtual(mh.lookupClass(), &quot;parse&quot;, MethodType.methodType(java.util.List::class.java, java.lang.String::class.java))
-<i class="no-highlight">33</i>&nbsp;
-<i class="no-highlight">34</i>&nbsp;    println(m.invoke(Formatter(), &quot;%s&quot;))
-<i class="no-highlight">35</i>&nbsp;    // Concurrent
-<i class="no-highlight">36</i>&nbsp;}
-<i class="no-highlight">37</i>&nbsp;
-<i class="no-highlight">38</i>&nbsp;interface Foo {
-<i class="no-highlight">39</i>&nbsp;    companion object {
-<i class="no-highlight">40</i>&nbsp;
-<i class="no-highlight">41</i>&nbsp;        @JvmStatic
-<i class="no-highlight">42</i>&nbsp;        fun run() {
-<i class="no-highlight">43</i>&nbsp;            println(&quot;Inside Foo&quot;)
-<i class="no-highlight">44</i>&nbsp;            error(&quot;Error from $methodName&quot;)
-<i class="no-highlight">45</i>&nbsp;        }
-<i class="no-highlight">46</i>&nbsp;    }
-<i class="no-highlight">47</i>&nbsp;}
-<i class="no-highlight">48</i>&nbsp;
-<b class="nc"><i class="no-highlight">49</i>&nbsp;data class HiddenData(val name: String)</b>
+<i class="no-highlight">5</i>&nbsp;
+<i class="no-highlight">6</i>&nbsp;/**
+<i class="no-highlight">7</i>&nbsp; * Run with &quot;-XX:+UnlockDiagnosticVMOptions -XX:+ShowHiddenFrames&quot;
+<i class="no-highlight">8</i>&nbsp; * to see the hidden classes.
+<i class="no-highlight">9</i>&nbsp; *
+<i class="no-highlight">10</i>&nbsp; *  --add-opens java.base/java.util=ALL-UNNAMED
+<i class="no-highlight">11</i>&nbsp; * @since JDK15
+<i class="no-highlight">12</i>&nbsp; */
+<i class="no-highlight">13</i>&nbsp;fun main() {
+<i class="no-highlight">14</i>&nbsp;    println(&quot;Reading Foo bytes...&quot;)
+<i class="no-highlight">15</i>&nbsp;    val clBytes = Foo::class.java.toBytes() ?: error(&quot;Can&#39;t load Foo!&quot;)
+<i class="no-highlight">16</i>&nbsp;
+<i class="no-highlight">17</i>&nbsp;    println(HiddenData::class.java.toBytes()?.decodeToString())
+<i class="no-highlight">18</i>&nbsp;    println(&quot;-------------------------&quot;)
+<i class="no-highlight">19</i>&nbsp;    val t = HiddenData(&quot;kotlin&quot;)
+<i class="no-highlight">20</i>&nbsp;    println(t.javaClass.toBytes()?.decodeToString())
+<i class="no-highlight">21</i>&nbsp;
+<i class="no-highlight">22</i>&nbsp;    val lookup = MethodHandles.lookup().defineHiddenClass(clBytes, true)
+<i class="no-highlight">23</i>&nbsp;    val run = lookup.findStatic(lookup.lookupClass(), &quot;run&quot;, MethodType.methodType(Void.TYPE))
+<i class="no-highlight">24</i>&nbsp;    // run.invokeExact()
+<i class="no-highlight">25</i>&nbsp;
+<i class="no-highlight">26</i>&nbsp;    val mh = MethodHandles.privateLookupIn(Formatter::class.java, MethodHandles.lookup())
+<i class="no-highlight">27</i>&nbsp;    println(MethodHandles.lookup())
+<i class="no-highlight">28</i>&nbsp;    println(mh.lookupClass())
+<i class="no-highlight">29</i>&nbsp;
+<i class="no-highlight">30</i>&nbsp;    println(mh.lookupModes())
+<i class="no-highlight">31</i>&nbsp;    val m = mh.findVirtual(mh.lookupClass(), &quot;parse&quot;, MethodType.methodType(java.util.List::class.java, java.lang.String::class.java))
+<i class="no-highlight">32</i>&nbsp;
+<i class="no-highlight">33</i>&nbsp;    println(m.invoke(Formatter(), &quot;%s&quot;))
+<i class="no-highlight">34</i>&nbsp;    // Concurrent
+<i class="no-highlight">35</i>&nbsp;}
+<i class="no-highlight">36</i>&nbsp;
+<i class="no-highlight">37</i>&nbsp;interface Foo {
+<i class="no-highlight">38</i>&nbsp;    companion object {
+<i class="no-highlight">39</i>&nbsp;
+<i class="no-highlight">40</i>&nbsp;        @JvmStatic
+<i class="no-highlight">41</i>&nbsp;        fun run() {
+<i class="no-highlight">42</i>&nbsp;            println(&quot;Inside Foo&quot;)
+<i class="no-highlight">43</i>&nbsp;            error(&quot;Error from $methodName&quot;)
+<i class="no-highlight">44</i>&nbsp;        }
+<i class="no-highlight">45</i>&nbsp;    }
+<i class="no-highlight">46</i>&nbsp;}
+<i class="no-highlight">47</i>&nbsp;
+<b class="nc"><i class="no-highlight">48</i>&nbsp;data class HiddenData(val name: String)</b>
 </div>
 </pre>
 </div>
@@ -165,7 +164,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-04-28 00:34</div>
+    <div style="float:right;">generated on 2022-05-16 15:35</div>
 </div>
 </body>
 </html>
