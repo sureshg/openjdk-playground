@@ -5,7 +5,9 @@ import appRunCmd
 import debugEnabled
 import forkTask
 import mebiSize
+import org.gradle.accessors.dm.*
 import org.gradle.internal.os.OperatingSystem
+import printVersionCatalog
 import tasks.*
 import java.io.PrintWriter
 import java.io.StringWriter
@@ -20,8 +22,11 @@ plugins {
     //`java-library`
 }
 
-// apply(from ="")
+// Access version catalogs
+val libs = the<LibrariesForLibs>()
+printVersionCatalog()
 
+// apply(from ="")
 idea {
     module {
         isDownloadJavadoc = true
@@ -52,6 +57,17 @@ if (gradle.startParameter.taskNames.any { it == "clean" }) {
         What cleaning will do though is make your next few builds significantly slower because all the incremental compilation data has to be regenerated, so you're really just making your day worse.
         """.trimIndent()
     )
+}
+
+java {
+    withSourcesJar()
+    withJavadocJar()
+
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(libs.versions.java.asProvider().get()))
+        vendor.set(JvmVendorSpec.ORACLE)
+    }
+    // modularity.inferModulePath.set(true)
 }
 
 tasks {
@@ -127,10 +143,6 @@ tasks {
         onlyIf { OperatingSystem.current().isUnix }
     }
 
-    named("build") {
-        finalizedBy(printModuleDeps, buildExecutable, githubActionOutput)
-    }
-
     // register<Copy>("copyTemplates"){}
     val copyTemplates by registering(Copy::class) {
         description = "Generate template classes"
@@ -170,11 +182,19 @@ tasks {
         }
     }
 
-    register<SampleTask>("greetings") {
-        greeting.set("Hello Gradle Kotlin DSL!")
+    named("build") {
+        finalizedBy(printModuleDeps, buildExecutable, githubActionOutput)
     }
 
-//  withType<JavaExec>().matching {  }.configureEach {
+    // Add the generated templates to the source set.
+    sourceSets {
+        main {
+            java.srcDirs(copyTemplates)
+        }
+    }
+}
+
+//  tasks.withType<JavaExec>().matching {  }.configureEach {
 //    jvmArgs(
 //      "--enable-native-access=ALL-UNNAMED",
 //      "--add-modules=jdk.incubator.foreign",
@@ -183,4 +203,4 @@ tasks {
 //    )
 //    javaLauncher.set(project.javaToolchains.launcherFor(java.toolchain))
 //  }
-}
+

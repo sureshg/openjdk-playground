@@ -2,7 +2,6 @@ package dev.suresh.lang
 
 import java.lang.invoke.*
 import java.util.*
-import java.util.List
 
 /**
  * Run with "-XX:+UnlockDiagnosticVMOptions -XX:+ShowHiddenFrames"

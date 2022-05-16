@@ -47,6 +47,7 @@ $ openssl pkcs12 -export -chain -out keystore.p12 \
                   -CAfile cacert.crt -caname root-ca \
                   -name client-key
 
+# Change the keystore password
 # Convert PKCS#12 to PEM (don't encrypt private keys)
 $ openssl pkcs12 -in keystore.p12 -out keystore.pem -nodes
 

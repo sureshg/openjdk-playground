@@ -44,7 +44,7 @@ fun run(port: Int = 8080) {
     }
     println("Took ${took.toDouble(DurationUnit.SECONDS)} seconds")
 
-    // Finally stop the server.
+    // Finally, stop the server.
     println("Shutting down the server!")
     LifeCycle.stop(server)
     // server.join()
@@ -164,4 +164,4 @@ val HttpServletRequest.fullURL: String
         else -> requestURL.append('?').append(queryString).toString()
     }
 
-val threadInfo get() = Thread.currentThread().run { "$name-$id-$isVirtual" }
+val threadInfo get() = Thread.currentThread().run { "$name-${threadId()}-$isVirtual" }

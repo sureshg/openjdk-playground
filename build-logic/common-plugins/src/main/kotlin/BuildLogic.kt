@@ -1,4 +1,5 @@
 import org.gradle.api.*
+import org.gradle.api.artifacts.*
 import org.gradle.api.attributes.*
 import org.gradle.api.component.*
 import org.gradle.kotlin.dsl.*
@@ -15,13 +16,27 @@ val Project.isKotlinJsProject get() = plugins.hasPlugin("org.jetbrains.kotlin.js
 // val debug: String? by project
 val Project.debugEnabled get() = properties["debug"]?.toString()?.toBoolean() ?: false
 
+
+/** Print all the catalog version strings and it's values. */
+fun Project.printVersionCatalog() {
+    if (debugEnabled) {
+        val catalogs = the<VersionCatalogsExtension>()
+        catalogs.catalogNames.map { cat ->
+            println("=== Catalog $cat ===")
+            val catalog = catalogs.named(cat)
+            catalog.versionAliases.forEach { alias ->
+                println("${alias.padEnd(30, '-')}-> ${catalog.findVersion(alias).get()}")
+            }
+        }
+    }
+}
+
 /** Returns the application `run` command. */
 fun Project.appRunCmd(jar: File, args: List<String>): String {
-    val path = layout.projectDirectory.asFile.relativeTo(jar)
+    val path = layout.projectDirectory.asFile.toPath().relativize(jar.toPath())
     val newLine = System.lineSeparator()
     val lineCont = """\""" // Bash line continuation
     val indent = "\t"
-    println()
     return args.joinToString(
         prefix = """
         To Run the app,

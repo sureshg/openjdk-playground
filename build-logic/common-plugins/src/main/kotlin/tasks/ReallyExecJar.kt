@@ -2,14 +2,9 @@ package tasks
 
 import mebiSize
 import org.gradle.api.*
-import org.gradle.api.artifacts.Configuration
-import org.gradle.api.artifacts.PublishArtifact
-import org.gradle.api.attributes.*
-import org.gradle.api.component.*
 import org.gradle.api.file.*
 import org.gradle.api.provider.*
 import org.gradle.api.tasks.*
-import org.gradle.kotlin.dsl.*
 import org.gradle.language.base.plugins.*
 import java.io.*
 import java.nio.file.*
@@ -40,8 +35,8 @@ abstract class ReallyExecJar : DefaultTask() {
             ?.readBytes()
             ?.decodeToString()
             ?.replace(
-                "${'$'}JAVA_OPTS",
-                javaOpts.get().joinToString(" ")
+                oldValue = """"${'$'}JAVA_OPTS"""",
+                newValue = javaOpts.get().joinToString(" ")
             ) ?: throw GradleException("Can't find executable shell stub!")
         logger.debug("Exec jar shell stub: $shellStub")
 

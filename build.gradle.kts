@@ -21,6 +21,7 @@ plugins {
     shadow
     spotless
     qodanaPlugin
+    sonarqube
     redacted
     kotlinPowerAssert
     spotlessChangelog
@@ -120,24 +121,6 @@ application {
     // https://chriswhocodes.com/hotspot_options_openjdk19.html
 }
 
-java {
-    withSourcesJar()
-    withJavadocJar()
-
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(javaVersion))
-        vendor.set(JvmVendorSpec.ORACLE)
-    }
-    // modularity.inferModulePath.set(true)
-}
-
-// Add the generated templates to the sourceset.
-sourceSets {
-    main {
-        java.srcDirs(tasks.copyTemplates)
-    }
-}
-
 kotlin {
     sourceSets.all {
         languageSettings.apply {
@@ -185,10 +168,6 @@ jte {
     contentType.set(ContentType.Plain)
     generateNativeImageResources.set(true)
     generate()
-}
-
-kotlinPowerAssert {
-    functions = listOf("kotlin.assert", "kotlin.test.assertTrue")
 }
 
 redacted {
@@ -246,6 +225,14 @@ kover {
     // jacocoEngineVersion.set("0.8.7")
 }
 
+sonarqube {
+    properties {
+        properties["sonar.projectKey"] = "sureshg_openjdk-playground"
+        properties["sonar.organization"] = "sureshg"
+        properties["sonar.host.url"] = "https://sonarcloud.io"
+    }
+}
+
 jib {
     from {
         image = "openjdk:$javaVersion-jdk-slim"
@@ -289,6 +276,10 @@ buildScan {
     }
 }
 
+// kotlinPowerAssert {
+//    functions = listOf("kotlin.assert", "kotlin.test.assertTrue")
+// }
+//
 // release {
 //  revertOnFail = true
 // }
@@ -531,10 +522,8 @@ val emptyJar by tasks.registering(Jar::class) {
 }
 
 // Fix "Execution optimizations have been disabled" warning for JTE
-listOf("sourcesJar", "processResources", "dokkaHtml").forEach {
-    tasks.named(it) {
-        dependsOn(tasks.generateJte)
-    }
+tasks.named("dokkaHtml") {
+    dependsOn(tasks.generateJte)
 }
 
 dependencies {
