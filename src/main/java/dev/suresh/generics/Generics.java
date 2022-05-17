@@ -4,7 +4,7 @@ import static java.lang.System.out;
 
 import java.util.List;
 
-public class Test {
+public class Generics {
 
   public static void main(String[] args) {
 
@@ -28,7 +28,13 @@ public class Test {
     //    LongAdder
     //    test(dirList);
     //    test(mgrList);
-    test(empList);
+
+    // Generics reification trick
+    m(List.of());
+    m(List.of(1));
+    m(List.of("1"));
+    m(List.<Boolean>of());
+    m(List.of(List.of("")));
   }
 
   private static void printDetails(Object o) {
@@ -40,5 +46,11 @@ public class Test {
 
   private static void test(List<Employee> list) {
     list.add(new Director("hhh"));
+  }
+
+  /** Generics reification trick. This won't work for multi-level generics though */
+  @SafeVarargs
+  public static <T> void m(Iterable<T> itr, T... reify) {
+    out.println(reify.getClass().componentType());
   }
 }

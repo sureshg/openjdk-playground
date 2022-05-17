@@ -1,9 +1,21 @@
-import org.slf4j.*
+import java.io.*
+import java.nio.file.*
 import kotlin.properties.*
 import kotlin.reflect.*
 
-/** Build source logger */
-val logger = LoggerFactory.getLogger("buildSrc")
+val File.mebiSize get() = "%.2f MiB".format(length() / (1024 * 1024f))
+
+/** Find the file ends with given [format] under the directory. */
+fun File.findPkg(format: String?) = when (format != null) {
+    true -> walk().firstOrNull { it.isFile && it.name.endsWith(format, ignoreCase = true) }
+    else -> null
+}
+
+/** List files based on the glob [pattern] */
+fun Path.glob(pattern: String): List<Path> {
+    val matcher = FileSystems.getDefault().getPathMatcher("glob:$pattern")
+    return Files.walk(this).filter(matcher::matches).toList()
+}
 
 /** System property delegate */
 @Suppress("IMPLICIT_CAST_TO_ANY")

@@ -1,13 +1,20 @@
+import org.gradle.accessors.dm.*
 import org.gradle.api.*
 import org.gradle.api.artifacts.*
 import org.gradle.api.attributes.*
 import org.gradle.api.component.*
+import org.gradle.internal.os.*
+import org.gradle.jvm.toolchain.*
 import org.gradle.kotlin.dsl.*
 import org.gradle.tooling.*
 import java.io.*
 import java.util.concurrent.*
 
-val File.mebiSize get() = "%.2f MiB".format(length() / (1024 * 1024f))
+/** OS temp location */
+val tmp = if (OperatingSystem.current().isWindows) "c:/TEMP" else "/tmp"
+
+/** Quote for -Xlog file */
+val xQuote = if (OperatingSystem.current().isWindows) """\"""" else """""""
 
 val Project.isKotlinMPP get() = plugins.hasPlugin("org.jetbrains.kotlin.multiplatform")
 
@@ -16,6 +23,32 @@ val Project.isKotlinJsProject get() = plugins.hasPlugin("org.jetbrains.kotlin.js
 // val debug: String? by project
 val Project.debugEnabled get() = properties["debug"]?.toString()?.toBoolean() ?: false
 
+/** Checks if the project has a snapshot version. */
+val Project.isSnapshot get() = version.toString().endsWith("SNAPSHOT", true)
+
+/** Check if it's a non-stable(RC) version. */
+val String.isNonStable: Boolean
+    get() {
+        val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { toUpperCase().contains(it) }
+        val regex = "^[0-9,.v-]+(-r)?$".toRegex()
+        val isStable = stableKeyword || regex.matches(this)
+        return isStable.not()
+    }
+
+/**
+ * Returns the JDK install path provided by the [JavaToolchainService]
+ */
+val Project.javaToolchainPath
+    get(): String {
+        val javaVersion = the<LibrariesForLibs>().versions.java.asProvider().get()
+        val javaToolchains = extensions.getByName("javaToolchains") as JavaToolchainService
+        return javaToolchains.launcherFor {
+            languageVersion.set(JavaLanguageVersion.of(javaVersion))
+        }.orNull
+            ?.metadata
+            ?.installationPath?.toString()
+            ?: error("Requested JDK version ($javaVersion) is not available.")
+    }
 
 /** Print all the catalog version strings and it's values. */
 fun Project.printVersionCatalog() {
