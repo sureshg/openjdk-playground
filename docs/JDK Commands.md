@@ -213,7 +213,7 @@ $ sdk i java jdk-16-loom ~/install/openjdk/jdk-16-loom.jdk/Contents/Home
 ##### 12. Kotlin + Graal Native-Image
 
 ```bash
-$ kotlinc -version -verbose -include-runtime -Xuse-ir -java-parameters -jvm-target 11 -api-version 1.4 -language-version 1.4 -progressive App.kt -d app.jar
+$ kotlinc -version -verbose -include-runtime -java-parameters -jvm-target 17 -api-version 1.7 -language-version 1.7 -Werror -progressive App.kt -d app.jar
 
 $ java -showversion -jar app.jar
 $ native-image --no-fallback --no-server -jar app.jar

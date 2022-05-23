@@ -144,10 +144,8 @@ kotlin {
     }
 
     jvmToolchain {
-        (this as JavaToolchainSpec).apply {
-            languageVersion.set(java.toolchain.languageVersion.get())
-            vendor.set(java.toolchain.vendor.get())
-        }
+        languageVersion.set(java.toolchain.languageVersion.get())
+        vendor.set(java.toolchain.vendor.get())
     }
 
     // kotlinDaemonJvmArgs = listOf("--show-version", "--enable-preview")
@@ -353,6 +351,7 @@ tasks {
                 "-Xemit-jvm-type-annotations",
                 "-Xjspecify-annotations=strict",
                 "-Xadd-modules=$addModules"
+                // "-Xuse-fir",
                 // "-Xjvm-enable-preview",
                 // "-Xadd-modules=ALL-MODULE-PATH",
                 // "-Xmodule-path=",
@@ -417,6 +416,7 @@ tasks {
             encoding = "UTF-8"
             addBooleanOption("-enable-preview", true)
             addStringOption("-release", javaVersion.toString())
+            addStringOption("Xdoclint:none", "-quiet")
         }
     }
 

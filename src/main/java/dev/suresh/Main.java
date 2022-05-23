@@ -5,16 +5,14 @@ import static java.lang.System.out;
 import dev.suresh.adt.Records;
 import dev.suresh.jte.RenderJte;
 import dev.suresh.loom.jetty.JettyServerKt;
+import dev.suresh.mod.JPMSKt;
 import dev.suresh.mvn.MavenResolver;
 import dev.suresh.npe.HelpfulNPE;
 import dev.suresh.server.MockServer;
-import dev.suresh.tools.JdkToolsKt;
-import java.lang.invoke.MethodHandles;
 import java.security.Security;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
-import java.util.Properties;
 
 record Person(String name, int age) {}
 
@@ -70,22 +68,9 @@ public class Main {
     new MavenResolver().run();
     new RenderJte().run();
     Records.run();
-    JettyServerKt.run(8080);
-    JdkToolsKt.run();
+    JettyServerKt.run(args);
+    JPMSKt.run();
     HelpfulNPE.run();
-  }
-
-  /**
-   * @see <a href="https://www.baeldung.com/java-variable-handles">VarHandles</a>
-   */
-  private static void showAllSecurityProperties() throws Exception {
-    // Should add this VM args "--add-opens=java.base/java.security=ALL-UNNAMED"
-    var lookup = MethodHandles.lookup();
-    var varHandle =
-        MethodHandles.privateLookupIn(Security.class, lookup)
-            .findStaticVarHandle(Security.class, "props", Properties.class);
-    Properties sec = (Properties) varHandle.get();
-    sec.forEach((k, v) -> out.println(k + " --> " + v));
   }
 
   @Override

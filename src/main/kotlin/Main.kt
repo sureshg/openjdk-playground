@@ -1,4 +1,4 @@
-import java.nio.charset.StandardCharsets.UTF_8
+
 import java.util.*
 import javax.crypto.*
 import javax.crypto.spec.*
@@ -8,10 +8,7 @@ fun main() {
     val s: Result<Int> = Result.Success(10)
     when (s) {
         is Result.Success -> 1
-        is Error -> 2
-        is Result.Error.RecException -> TODO()
-        is Result.Error.NonRecException -> TODO()
-        Result.InProgress -> TODO()
+        else -> 2
     }
 
     println("Security Manager Allowed: ${System.getProperty("java.security.manager")}")
@@ -21,10 +18,10 @@ fun main() {
 }
 
 fun String.hmacSha256(secret: String): String {
-    val key = SecretKeySpec(secret.toByteArray(UTF_8), "HmacSHA256")
+    val key = SecretKeySpec(secret.encodeToByteArray(), "HmacSHA256")
     val mac: Mac = Mac.getInstance("HmacSHA256")
     mac.init(key)
-    val out = mac.doFinal(this.toByteArray(UTF_8))
+    val out = mac.doFinal(encodeToByteArray())
     return Base64.getEncoder().encodeToString(out)
 }
 

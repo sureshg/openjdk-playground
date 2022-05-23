@@ -71,6 +71,9 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
   $ jfr assemble <repository> <file> // cat jfr_file_version_* >> combined.jfr
   $ jfr print --events 'jdk.*' --stack-depth 64 openjdk-playground.jfr
   $ jfr print --events CPULoad,GarbageCollection openjdk-playground.jfr
+
+  # Pinned virtual threads
+  $  jfr print --events jdk.VirtualThreadPinned openjdk-playground.jfr
   ```
 
   Some config options are,
@@ -133,6 +136,10 @@ $ jcmd 0 help
 # Use PID or main class
 $ jcmd dev.suresh.Main VM.version
 $ jcmd <dev.suresh.Main | pid> Thread.print
+
+# Virtual thread dump
+$ jcmd dev.suresh.Main Thread.dump_to_file -format=json openjdk-playground-threads.json
+
 # OR
 $ kill -3 <pid>
 $ kill -3 "$(jcmd -l | grep "dev.suresh.Main" | cut -d " " -f1)"

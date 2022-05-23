@@ -30,7 +30,7 @@ val Project.isSnapshot get() = version.toString().endsWith("SNAPSHOT", true)
 val String.isNonStable: Boolean
     get() {
         val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { toUpperCase().contains(it) }
-        val regex = "^[0-9,.v-]+(-r)?$".toRegex()
+        val regex = "^[\\d,.v-]+(-r)?$".toRegex()
         val isStable = stableKeyword || regex.matches(this)
         return isStable.not()
     }

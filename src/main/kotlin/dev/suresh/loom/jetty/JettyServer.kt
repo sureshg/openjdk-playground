@@ -18,7 +18,8 @@ fun main() {
     run()
 }
 
-fun run(port: Int = 8080) {
+fun run(args: Array<String>? = emptyArray()) {
+    val port = 8080
     println("Starting the Jetty server on $port...")
     val tp = LoomThreadPool()
     // val tp = QueuedThreadPool(200)
@@ -44,10 +45,12 @@ fun run(port: Int = 8080) {
     }
     println("Took ${took.toDouble(DurationUnit.SECONDS)} seconds")
 
-    // Finally, stop the server.
-    println("Shutting down the server!")
-    LifeCycle.stop(server)
-    // server.join()
+    if (args.orEmpty().any { it.equals("--no-shutdown", true) }) {
+        server.join()
+    } else {
+        println("Shutting down the server!")
+        LifeCycle.stop(server)
+    }
 }
 
 fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
