@@ -257,6 +257,10 @@ gitProperties {
     customProperties["kotlin"] = kotlinVersion
 }
 
+jdeprscan {
+    forRemoval.set(true)
+}
+
 buildScan {
     termsOfServiceUrl = "https://gradle.com/terms-of-service"
     termsOfServiceAgree = "yes"

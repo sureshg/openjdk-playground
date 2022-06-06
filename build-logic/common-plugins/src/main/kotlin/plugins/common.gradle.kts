@@ -4,6 +4,7 @@ import GithubAction
 import appRunCmd
 import debugEnabled
 import forkTask
+import hasCleanTask
 import mebiSize
 import org.gradle.accessors.dm.*
 import org.gradle.internal.os.OperatingSystem
@@ -44,19 +45,21 @@ if (debugEnabled) {
     }
 }
 
-// After the project configure
-afterEvaluate {
-    println("=== Project Configuration Completed ===")
-}
-
-if (gradle.startParameter.taskNames.any { it == "clean" }) {
+if (hasCleanTask) {
     logger.warn(
         """
         CLEANING ALMOST NEVER FIXES YOUR BUILD!
-        Cleaning is often a last-ditch effort to fix perceived build problems that aren't going to actually be fixed by cleaning.
-        What cleaning will do though is make your next few builds significantly slower because all the incremental compilation data has to be regenerated, so you're really just making your day worse.
+        Cleaning is often a last-ditch effort to fix perceived build problems that aren't going to
+        actually be fixed by cleaning. What cleaning will do though is make your next few builds
+        significantly slower because all the incremental compilation data has to be regenerated,
+        so you're really just making your day worse.
         """.trimIndent()
     )
+}
+
+// After the project configure
+afterEvaluate {
+    println("=== Project Configuration Completed ===")
 }
 
 java {
@@ -143,7 +146,6 @@ tasks {
         onlyIf { OperatingSystem.current().isUnix }
     }
 
-    // register<Copy>("copyTemplates"){}
     val copyTemplates by registering(Copy::class) {
         description = "Generate template classes"
         group = LifecycleBasePlugin.BUILD_TASK_NAME
@@ -170,8 +172,20 @@ tasks {
         // inputs.property("buildversions", props.hashCode())
     }
 
-    /** Dev task that does both the continuous compile and run. */
-    val dev by registering {
+    named("build") {
+        finalizedBy(printModuleDeps, buildExecutable, githubActionOutput)
+    }
+
+    // jdeprscan task configuration
+    val jdepExtn = extensions.create<JdeprscanExtension>("jdeprscan")
+    val jdeprscan = register<Jdeprscan>("jdeprscan", jdepExtn)
+    jdeprscan {
+        val shadowJar by existing(Jar::class)
+        jarFile.set(shadowJar.flatMap { it.archiveFile })
+    }
+
+    /** Dev task that does both the continuous compiling and run. */
+    register("dev") {
         description = "A task to continuous compile and run"
         group = LifecycleBasePlugin.BUILD_GROUP
 
@@ -182,10 +196,6 @@ tasks {
         }
     }
 
-    named("build") {
-        finalizedBy(printModuleDeps, buildExecutable, githubActionOutput)
-    }
-
     // Add the generated templates to the source set.
     sourceSets {
         main {
@@ -193,6 +203,7 @@ tasks {
         }
     }
 }
+
 
 //  tasks.withType<JavaExec>().matching {  }.configureEach {
 //    jvmArgs(

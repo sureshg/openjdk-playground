@@ -4,8 +4,8 @@ import static java.lang.System.out;
 
 import dev.suresh.adt.Records;
 import dev.suresh.jte.RenderJte;
+import dev.suresh.lang.JPMSKt;
 import dev.suresh.loom.jetty.JettyServerKt;
-import dev.suresh.mod.JPMSKt;
 import dev.suresh.mvn.MavenResolver;
 import dev.suresh.npe.HelpfulNPE;
 import dev.suresh.server.MockServer;

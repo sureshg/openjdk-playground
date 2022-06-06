@@ -3,11 +3,13 @@ import org.gradle.api.*
 import org.gradle.api.artifacts.*
 import org.gradle.api.attributes.*
 import org.gradle.api.component.*
+import org.gradle.api.plugins.*
 import org.gradle.internal.os.*
 import org.gradle.jvm.toolchain.*
 import org.gradle.kotlin.dsl.*
 import org.gradle.tooling.*
 import java.io.*
+import java.nio.file.*
 import java.util.concurrent.*
 
 /** OS temp location */
@@ -22,6 +24,8 @@ val Project.isKotlinJsProject get() = plugins.hasPlugin("org.jetbrains.kotlin.js
 
 // val debug: String? by project
 val Project.debugEnabled get() = properties["debug"]?.toString()?.toBoolean() ?: false
+
+val Project.hasCleanTask get() = gradle.startParameter.taskNames.any { it == "clean" }
 
 /** Checks if the project has a snapshot version. */
 val Project.isSnapshot get() = version.toString().endsWith("SNAPSHOT", true)
@@ -39,14 +43,23 @@ val String.isNonStable: Boolean
  * Returns the JDK install path provided by the [JavaToolchainService]
  */
 val Project.javaToolchainPath
-    get(): String {
+    get(): Path {
+        val defToolchain = extensions.findByType(JavaPluginExtension::class)?.toolchain
+        val javaToolchainSvc = extensions.findByType(JavaToolchainService::class)
         val javaVersion = the<LibrariesForLibs>().versions.java.asProvider().get()
-        val javaToolchains = extensions.getByName("javaToolchains") as JavaToolchainService
-        return javaToolchains.launcherFor {
-            languageVersion.set(JavaLanguageVersion.of(javaVersion))
-        }.orNull
+
+        val jLauncher = when (defToolchain != null) {
+            true -> javaToolchainSvc?.launcherFor(defToolchain)
+            else -> javaToolchainSvc?.launcherFor {
+                languageVersion.set(JavaLanguageVersion.of(javaVersion))
+            }
+        }?.orNull
+
+        return jLauncher
             ?.metadata
-            ?.installationPath?.toString()
+            ?.installationPath
+            ?.asFile
+            ?.toPath()
             ?: error("Requested JDK version ($javaVersion) is not available.")
     }
 

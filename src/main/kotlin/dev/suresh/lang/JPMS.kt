@@ -1,7 +1,8 @@
-package dev.suresh.mod
+package dev.suresh.lang
 
 import java.io.*
 import java.lang.invoke.*
+import java.lang.reflect.Modifier
 import java.security.*
 import java.util.*
 import java.util.spi.*
@@ -39,6 +40,10 @@ fun run() {
     // showAllSecurityProperties()
 }
 
+fun reflections() {
+    println("String isFinal = ${Modifier.isFinal(String::class.java.modifiers)}")
+}
+
 /**
  * @see [VarHandles](https://www.baeldung.com/java-variable-handles)
  */
@@ -52,15 +57,5 @@ private fun showAllSecurityProperties() {
         println(
             "$k --> $v"
         )
-    }
-}
-
-fun ClassLoader.using(run: () -> Unit) {
-    val cl = Thread.currentThread().contextClassLoader
-    try {
-        Thread.currentThread().contextClassLoader = this
-        run()
-    } finally {
-        Thread.currentThread().contextClassLoader = cl
     }
 }

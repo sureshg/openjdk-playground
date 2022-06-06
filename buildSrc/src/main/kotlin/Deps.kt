@@ -47,7 +47,7 @@ object Deps {
         }
 
         object Coroutines {
-            const val version = "1.6.1"
+            const val version = "1.6.2"
             const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
             const val jdk8 = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$version"
             const val reactor = "org.jetbrains.kotlinx:coroutines-reactor:$version"
@@ -56,7 +56,7 @@ object Deps {
         }
 
         object Ksp {
-            const val version = "1.7.0-RC-1.0.5"
+            const val version = "1.7.0-RC2-1.0.5"
             const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
             const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
             const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.4.0"
@@ -88,7 +88,7 @@ object Deps {
     }
 
     object Kotlinx {
-        const val atomicfuVersion = "0.17.2"
+        const val atomicfuVersion = "0.17.3"
         const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.3.3"
         const val reflectLite = "org.jetbrains.kotlinx:kotlinx.reflect.lite:1.0.0"
         const val atomicfu = "org.jetbrains.kotlinx:atomicfu:$atomicfuVersion"
@@ -266,7 +266,7 @@ object Deps {
         const val jupiterApi = "org.junit.jupiter:junit-jupiter-api"
         const val jupiterEngine = "org.junit.jupiter:junit-jupiter-engine"
         const val jupiterParams = "org.junit.jupiter:junit-jupiter-params"
-        const val pioneer = "org.junit-pioneer:junit-pioneer:1.7.0"
+        const val pioneer = "org.junit-pioneer:junit-pioneer:1.7.1"
     }
 
     object KoTest {
@@ -457,7 +457,7 @@ object Deps {
 
     object Security {
         const val password4j = "com.password4j:password4j:1.5.4"
-        const val otp = "com.github.bastiaanjansen:otp-java:1.3.1"
+        const val otp = "com.github.bastiaanjansen:otp-java:1.3.2"
         const val totp = "dev.samstevens.totp:totp:1.7.1"
         const val jwtJava = "com.github.bastiaanjansen:jwt-java:1.2.0"
         const val twoFactorAuth = "com.j256.two-factor-auth:two-factor-auth:1.3"
@@ -705,13 +705,13 @@ inline val PluginDependenciesSpec.consistentVersions get() = id("com.palantir.co
 
 // Dependencies
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "7.1.2"
-inline val PluginDependenciesSpec.dependencyAnalysis get() = id("com.autonomousapps.dependency-analysis") version "1.2.1"
+inline val PluginDependenciesSpec.dependencyAnalysis get() = id("com.autonomousapps.dependency-analysis") version "1.4.0"
 inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.9.0" apply true
 inline val PluginDependenciesSpec.taskinfo get() = id("org.barfuin.gradle.taskinfo") version "1.4.0" apply false
 inline val PluginDependenciesSpec.taskTree get() = id("com.dorongold.task-tree") version "1.5"
 inline val PluginDependenciesSpec.forbiddenApis get() = id("de.thetaphi.forbiddenapis") version "3.1"
-inline val PluginDependenciesSpec.extraJavaModuleInfo get() = id("de.jjohannes.extra-java-module-info") version "0.12"
-inline val PluginDependenciesSpec.licensee get() = id("app.cash.licensee") version "1.3.1" apply false
+inline val PluginDependenciesSpec.extraJavaModuleInfo get() = id("de.jjohannes.extra-java-module-info") version "0.14"
+inline val PluginDependenciesSpec.licensee get() = id("app.cash.licensee") version "1.4.1" apply false
 
 inline val PluginDependenciesSpec.javafx get() = id("org.openjfx.javafxplugin") version "0.0.7"
 inline val PluginDependenciesSpec.mrjar get() = id("me.champeau.mrjar") version "0.1"
@@ -722,6 +722,7 @@ inline val PluginDependenciesSpec.changelog get() = id("org.jetbrains.changelog"
 
 inline val PluginDependenciesSpec.kotless get() = id("io.kotless") version "0.1.6"
 inline val PluginDependenciesSpec.kordampGradle get() = id("org.kordamp.gradle.project") version "0.40.0"
+inline val PluginDependenciesSpec.jdeprscan get() = id("org.kordamp.gradle.jdeprscan") version "0.10.0"
 inline val PluginDependenciesSpec.gradleEnforcer get() = id("org.kordamp.gradle.project-enforcer") version "0.7.0"
 inline val PluginDependenciesSpec.jandex get() = id("org.kordamp.gradle.jandex") version "0.7.0"
 
@@ -736,7 +737,7 @@ inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boo
 inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version "1.0.9.RELEASE"
 
 // Static Analysis and Linting
-inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "6.6.1"
+inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "6.7.0"
 inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.4.0"
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version "9.3.0"
@@ -777,7 +778,7 @@ inline val PluginDependenciesSpec.javapackager get() = id("io.github.fvarrui.jav
 inline val PluginDependenciesSpec.jpackageplugin get() = id("org.panteleyev.jpackageplugin") version "0.0.2"
 
 // Kotlin compiler plugins
-inline val PluginDependenciesSpec.redacted get() = id("dev.zacsweers.redacted") version "1.0.1"
+inline val PluginDependenciesSpec.redacted get() = id("dev.zacsweers.redacted") version "1.0.1-1.7.0-RC2"
 inline val PluginDependenciesSpec.kotlinPowerAssert get() = id("com.bnorm.power.kotlin-power-assert") version "0.11.0" apply false
 
 // Parsers

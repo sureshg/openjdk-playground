@@ -3,7 +3,17 @@
 
 [TOC]
 
+### CA Certs and Certificate Transparency Logs
+
+​
+
+     * https://crt.sh/test-websites?trustedBy=Java
+     * [Certificate Search - crt.sh](https://crt.sh/)
+
+* [CT Logs](https://certificate.transparency.dev/logs/)
+
 ### OpenSSL & Keytool
+
 ----------------------
 
 * Extract Certificate from Server

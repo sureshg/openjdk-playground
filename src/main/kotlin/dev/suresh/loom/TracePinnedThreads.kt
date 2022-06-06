@@ -6,15 +6,18 @@ import java.util.concurrent.locks.*
 
 /**
  * Run with -Djdk.tracePinnedThreads=short|full
- *
- * - [TracePinnedThreads.java](https://github.com/openjdk/loom/blob/fibers/test/jdk/java/lang/Thread/virtual/TracePinnedThreads.java)
- * - [Virtual Thread Tests](https://github.com/openjdk/loom/tree/fibers/test/jdk/java/lang/Thread/virtual)
- * - [Loom Troubleshooting Guide](https://wiki.openjdk.java.net/display/loom/Troubleshooting)
+ * -
+ * [TracePinnedThreads.java](https://github.com/openjdk/loom/blob/fibers/test/jdk/java/lang/Thread/virtual/TracePinnedThreads.java)
+ * -
+ * [Virtual Thread
+ * Tests](https://github.com/openjdk/loom/tree/fibers/test/jdk/java/lang/Thread/virtual)
+ * -
+ * [Loom Troubleshooting
+ * Guide](https://wiki.openjdk.java.net/display/loom/Troubleshooting)
  */
 fun main() {
     System.setProperty("jdk.tracePinnedThreads", "full")
     tracePinnedThread()
-    // testMaxPinnedThreads()
 }
 
 fun tracePinnedThread() {
@@ -40,8 +43,4 @@ fun tracePinnedThread() {
     println(output)
     val expected = "<== monitors:1"
     check(expected in output) { """expected:"$expected"""" }
-}
-
-fun testMaxPinnedThreads() {
-    println("Hello")
 }
