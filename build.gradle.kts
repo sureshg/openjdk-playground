@@ -67,8 +67,6 @@ application {
         "-XX:ErrorFile=$tmp/$name-hs-err-%p.log",
         "-XX:OnOutOfMemoryError='kill -9 %p'",
         "-XX:+ExitOnOutOfMemoryError",
-        "-XX:+AutoCreateSharedArchive",
-        "-XX:SharedArchiveFile=$tmp/$name.jsa",
         "-Djava.awt.headless=true",
         "-Djdk.attach.allowAttachSelf=true",
         "-Djdk.tracePinnedThreads=full",
@@ -80,6 +78,8 @@ application {
         "-XX:NativeMemoryTracking=summary",
         "-XX:+ShowHiddenFrames",
         "-ea"
+        // "-XX:+AutoCreateSharedArchive",
+        // "-XX:SharedArchiveFile=$tmp/$name.jsa",
         // "-verbose:module",
         // "-XX:ConcGCThreads=2",
         // "-XX:ZUncommitDelay=60",

@@ -13,7 +13,7 @@ fun main() {
 
 fun run() {
     val modules = ModuleLayer.boot().modules()
-    println("\n Found ${modules.size} jdk modules!")
+    println("\nFound ${modules.size} jdk modules!")
 
     val jsModule = ModuleLayer
         .boot()
