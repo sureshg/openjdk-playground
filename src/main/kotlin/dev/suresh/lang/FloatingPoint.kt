@@ -45,5 +45,5 @@ fun main() {
 
     // To reduce the accumulated error, is to use set precision.
     println("\nReducing the accumulated error")
-    println(round(dz * 1e8) / 1e8) // prints 0.30000000000000004
+    println(round(dz * 1e8) / 1e8) // prints 0.3
 }
