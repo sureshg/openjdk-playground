@@ -67,6 +67,8 @@ application {
         "-XX:ErrorFile=$tmp/$name-hs-err-%p.log",
         "-XX:OnOutOfMemoryError='kill -9 %p'",
         "-XX:+ExitOnOutOfMemoryError",
+        "-XX:+AutoCreateSharedArchive",
+        "-XX:SharedArchiveFile=$tmp/$name.jsa",
         "-Djava.awt.headless=true",
         "-Djdk.attach.allowAttachSelf=true",
         "-Djdk.tracePinnedThreads=full",
@@ -86,8 +88,6 @@ application {
         // "-Xlog:class+load=info,cds=debug,cds+dynamic=info",
         // "-XX:+IgnoreUnrecognizedVMOptions",
         // "-XX:MaxRAMPercentage=0.8",
-        // "-XX:+AutoCreateSharedArchive",
-        // "-XX:SharedArchiveFile=$name.jsa",
         // "-XX:+StartAttachListener", // For jcmd Dynamic Attach Mechanism
         // "-XX:+DisableAttachMechanism",
         // "-XX:+DebugNonSafepoints",

@@ -30,11 +30,3 @@
 
   LJC Talk - https://www.youtube.com/watch?v=Ll_NK0SZy6Q&t=2148s (Continuous Deployment of JVM
   applications)
-
-
-
-
-### Courses
-
-* https://www.udacity.com/course/applied-cryptography--cs387
-* https://www.coursera.org/learn/crypto#syllabus

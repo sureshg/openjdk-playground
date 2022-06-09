@@ -5,12 +5,13 @@
 
 ### CA Certs and Certificate Transparency Logs
 
-​
+ * [Certificate Search - crt.sh](https://crt.sh/)
 
-     * https://crt.sh/test-websites?trustedBy=Java
-     * [Certificate Search - crt.sh](https://crt.sh/)
+ * https://crt.sh/test-websites?trustedBy=Java
 
 * [CT Logs](https://certificate.transparency.dev/logs/)
+
+
 
 ### OpenSSL & Keytool
 
@@ -136,3 +137,10 @@ $ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
 * https://www.sslshopper.com/article-most-common-java-keytool-keystore-commands.html
 * [Export Certificates and Private Key from a PKCS#12](https://www.ssl.com/how-to/export-certificates-private-key-from-pkcs12-file-with-openssl/)
 * https://www.rapidsslonline.com/blog/simple-guide-java-keytool-keystore-commands/
+
+
+
+### Cryptography
+
+* https://www.udacity.com/course/applied-cryptography--cs387
+* https://www.coursera.org/learn/crypto#syllabus

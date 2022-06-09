@@ -355,11 +355,15 @@ RUN apt-get update && apt-get upgrade -y && \
 
 * https://jpetazzo.github.io/2020/03/01/quest-minimal-docker-images-part-2/
 
+
+
 #### Distroless
 
 ------
 
 https://github.com/GoogleContainerTools/distroless/blob/master/base/README.md
+
+
 
 #### Documentation
 

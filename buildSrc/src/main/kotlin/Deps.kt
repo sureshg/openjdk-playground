@@ -185,7 +185,7 @@ object Deps {
     }
 
     object OkHttp {
-        const val version = "5.0.0-alpha.7"
+        const val version = "5.0.0-alpha.8"
         const val bom = "com.squareup.okhttp3:okhttp-bom:$version"
         const val okhttp = "com.squareup.okhttp3:okhttp:$version"
         const val mockWebServer = "com.squareup.okhttp3:mockwebserver:$version"
@@ -692,7 +692,7 @@ inline val PluginDependenciesSpec.binCompatValidator get() = id("org.jetbrains.k
 inline val PluginDependenciesSpec.reflektPlugin get() = id("io.reflekt") version Deps.Kotlin.Reflekt.version
 
 inline val PluginDependenciesSpec.kover get() = id("org.jetbrains.kotlinx.kover") version "0.5.1"
-inline val PluginDependenciesSpec.sonarqube get() = id("org.sonarqube") version "3.3" apply true
+inline val PluginDependenciesSpec.sonarqube get() = id("org.sonarqube") version "3.4.0.2513" apply true
 
 // Google Plugins
 inline val PluginDependenciesSpec.ksp get() = id("com.google.devtools.ksp") version Deps.Kotlin.Ksp.version
@@ -705,7 +705,7 @@ inline val PluginDependenciesSpec.consistentVersions get() = id("com.palantir.co
 
 // Dependencies
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "7.1.2"
-inline val PluginDependenciesSpec.dependencyAnalysis get() = id("com.autonomousapps.dependency-analysis") version "1.4.0"
+inline val PluginDependenciesSpec.dependencyAnalysis get() = id("com.autonomousapps.dependency-analysis") version "1.5.0"
 inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.9.0" apply true
 inline val PluginDependenciesSpec.taskinfo get() = id("org.barfuin.gradle.taskinfo") version "1.4.0" apply false
 inline val PluginDependenciesSpec.taskTree get() = id("com.dorongold.task-tree") version "1.5"

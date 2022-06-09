@@ -13,7 +13,7 @@ import java.nio.file.*
 import java.util.concurrent.*
 
 /** OS temp location */
-val tmp = if (OperatingSystem.current().isWindows) "c:/TEMP" else "/tmp"
+val tmp: String = System.getProperty("java.io.tmpdir")
 
 /** Quote for -Xlog file */
 val xQuote = if (OperatingSystem.current().isWindows) """\"""" else """""""
