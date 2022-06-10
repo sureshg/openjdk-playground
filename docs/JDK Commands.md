@@ -331,12 +331,7 @@ $ time ./app
 -Djdk.tls.client.protocols="TLSv1.2"
 ```
 
-##### 4. GPG/OpenPGP
 
-* [GPG Key Prepare](https://github.com/s4u/sign-maven-plugin/blob/master/src/site/markdown/key-prepare.md)
-* [Renew GPG Key](https://gist.github.com/krisleech/760213ed287ea9da85521c7c9aac1df0)
-
-​      `Note that the private key can never expire.`
 
 ### Gradle Kotlin DSL
 

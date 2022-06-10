@@ -56,7 +56,7 @@ object Deps {
         }
 
         object Ksp {
-            const val version = "1.7.0-RC2-1.0.5"
+            const val version = "1.7.0-1.0.6"
             const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
             const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
             const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.4.0"
@@ -296,7 +296,7 @@ object Deps {
         const val stringTemplate = "org.antlr:ST4:4.3.1"
 
         object Jte {
-            const val version = "2.0.3"
+            const val version = "2.0.4"
             const val jte = "gg.jte:jte:$version"
             const val runtime = "gg.jte:jte-runtime:$version"
             const val kotlin = "gg.jte:jte-kotlin:$version"
@@ -778,7 +778,7 @@ inline val PluginDependenciesSpec.javapackager get() = id("io.github.fvarrui.jav
 inline val PluginDependenciesSpec.jpackageplugin get() = id("org.panteleyev.jpackageplugin") version "0.0.2"
 
 // Kotlin compiler plugins
-inline val PluginDependenciesSpec.redacted get() = id("dev.zacsweers.redacted") version "1.0.1-1.7.0-RC2"
+inline val PluginDependenciesSpec.redacted get() = id("dev.zacsweers.redacted") version "1.1.0"
 inline val PluginDependenciesSpec.kotlinPowerAssert get() = id("com.bnorm.power.kotlin-power-assert") version "0.11.0" apply false
 
 // Parsers

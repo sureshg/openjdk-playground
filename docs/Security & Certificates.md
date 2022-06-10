@@ -17,7 +17,7 @@
 
 ----------------------
 
-* Extract Certificate from Server
+* **Extract Certificate from Server**
 
 ```bash
 # Extract the server certificates.
@@ -37,7 +37,7 @@ $ curl -vvI https://google.com 2>&1 | grep -i date
 
 
 
-* Create `PKCS#12` trust-store from pem
+* **Create `PKCS#12` trust-store from pem**
 
 ```bash
 # Create/Add trust store
@@ -72,6 +72,21 @@ $ openssl rsa  -noout -modulus -in cert.key | openssl md5
 
 
 
+* **Show all certs from System truststore**
+
+```bash
+# Using Openssl (CentOS)
+$ while openssl x509 -noout -subject -issuer -dates; do echo ........... ; done <  /etc/ssl/certs/ca-bundle.crt
+
+# Using java keytool
+$ keytool -printcert -file /etc/ssl/certs/ca-bundle.crt | grep -i issuer
+
+# Using some awk trick
+$ awk -v cmd='openssl x509 -noout -subject -dates ' '/BEGIN/{close(cmd)};{print | cmd}' < /etc/ssl/certs/ca-bundle.crt
+```
+
+
+
 ### Self Signed Certs
 
 * [Add self-generated RootCA to OSes](https://www.bounca.org/tutorials/install_root_certificate.html)
@@ -85,8 +100,10 @@ $ openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes \
           -subj "/C=US/ST=CA/L=SanJose/O=Company Name/OU=Org/CN=www.example.com" \
           -addext "subjectAltName=DNS:example.com,DNS:www.example.net,IP:10.0.0.1"
 
-# See certificate details
+# See certificate details (in text format, no cert output)
 $ openssl x509 -in example.pem -text -noout
+# Instead of text form, just print subject/issuer/dates
+$ openssl x509 -in example.pem -noout -subject -issuer -dates
 
 # Show public key of a cert
 $ openssl x509 -in example.pem -pubkey -noout
@@ -129,6 +146,64 @@ $ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
 $ keytool -importcert -trustcacerts -alias rootca -storetype PKCS12 -keystore $cacerts -storepass changeit -file "$HOME/Desktop/RootCA-SHA256.crt"
 $ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
 ```
+
+
+
+### GPG/OpenPGP
+
+* [GPG Key Prepare](https://github.com/s4u/sign-maven-plugin/blob/master/src/site/markdown/key-prepare.md)
+
+* GPG commands
+
+  ```bash
+  # GPU key files
+  $ ~/.gnupg
+
+  # Show all keys
+  $ gpg --list-keys --keyid-format=[long|short]
+
+  # List secrets keys
+  $ gpg --list-secret-keys --keyid-format=short
+
+  # Update all keys from a keyserver
+  $ gpg --refresh-keys [--keyserver pgp.mit.edu]
+
+  $ gpg --recv-key XXXXXX
+  $ gpg --delete-key  "xxx@gmail.com"
+  ```
+
+
+
+* [Renew GPG Key](https://gist.github.com/krisleech/760213ed287ea9da85521c7c9aac1df0)
+
+  ```bash
+  # Note: The private key can never expire
+
+  # Get the key id
+  $ gpg --list-keys --keyid-format SHORT
+
+  # Comment out 'no-tty' in ~/.gnupg/gpg.conf
+  $ gpg --edit-key C8B53CA1
+  $ gpg> list
+         expire // type 1y
+         key 1  // renew encryption subkey
+         expire // type 1y
+         trust
+         save
+         quit
+
+  # Export for backup
+  $ gpg -a --export C8B53CA1 > sureshg.gpg.public
+  $ gpg -a --export-secret-keys C8B53CA1 > sureshg.gpg.private
+
+  # Send it to key servers
+  $ gpg --keyserver keyserver.ubuntu.com --send-keys C8B53CA1
+  $ gpg --keyserver pgp.mit.edu --send-keys C8B53CA1
+
+  # Update GPG key in Github
+  $ cat sureshg.gpg.public| pbcopy
+  $ https://github.com/settings/gpg/new
+  ```
 
 
 

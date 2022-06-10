@@ -9,6 +9,11 @@ import org.gradle.language.base.plugins.*
 import java.io.*
 import java.nio.file.*
 
+/**
+ * The stub script is copied from
+ * [Java Stack Trace Grouper](https://github.com/keith-turner/JSG/blob/master/src/main/scripts/stub.sh)
+ * project.
+ */
 abstract class ReallyExecJar : DefaultTask() {
 
     @get:InputFile

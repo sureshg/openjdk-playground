@@ -348,18 +348,19 @@ tasks {
             incremental = true
             allWarningsAsErrors = false
             freeCompilerArgs += listOf(
+                "-Xadd-modules=$addModules",
                 "-Xjsr305=strict",
                 "-Xjvm-default=all",
                 "-Xassertions=jvm",
                 "-Xallow-result-return-type",
                 "-Xemit-jvm-type-annotations",
-                "-Xjspecify-annotations=strict",
-                "-Xadd-modules=$addModules"
-                // "-Xuse-fir",
-                // "-Xjvm-enable-preview",
+                "-Xjspecify-annotations=strict"
+                // "-Xuse-k2",
+                // "-Xbackend-threads=4",
+                // "-Xjdk-release=${javaVersion}",
                 // "-Xadd-modules=ALL-MODULE-PATH",
                 // "-Xmodule-path=",
-                // "-Xjdk-release=$kotlinJvmTarget",
+                // "-Xjvm-enable-preview",
                 // "-Xjavac-arguments=\"--add-exports java.base/sun.nio.ch=ALL-UNNAMED\"",
                 // "-Xexplicit-api={strict|warning|disable}",
                 // "-Xgenerate-strict-metadata-version",
