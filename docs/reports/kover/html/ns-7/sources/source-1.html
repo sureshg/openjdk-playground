@@ -93,18 +93,34 @@ Current scope:     <a href="../../index.html">all classes</a>
 <div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package dev.suresh.concurrent
 <i class="no-highlight">2</i>&nbsp;
 <i class="no-highlight">3</i>&nbsp;import kotlinx.coroutines.*
-<i class="no-highlight">4</i>&nbsp;import kotlin.coroutines.*
+<i class="no-highlight">4</i>&nbsp;import kotlin.time.Duration.Companion.milliseconds
 <i class="no-highlight">5</i>&nbsp;
 <b class="nc"><i class="no-highlight">6</i>&nbsp;object CoError : Throwable(&quot;error&quot;)</b>
 <i class="no-highlight">7</i>&nbsp;
 <i class="no-highlight">8</i>&nbsp;suspend fun main() {
-<i class="no-highlight">9</i>&nbsp;    val num = suspendCancellableCoroutine&lt;Int&gt; { cont -&gt;
+<i class="no-highlight">9</i>&nbsp;    val num = suspendCancellableCoroutine { cont -&gt;
 <i class="no-highlight">10</i>&nbsp;        cont.resume(100) {
 <i class="no-highlight">11</i>&nbsp;        }
-<i class="no-highlight">12</i>&nbsp;        cont.resumeWithException(CoError)
+<i class="no-highlight">12</i>&nbsp;        // cont.resumeWithException(CoError)
 <i class="no-highlight">13</i>&nbsp;        cont.invokeOnCancellation { }
 <i class="no-highlight">14</i>&nbsp;    }
-<i class="no-highlight">15</i>&nbsp;}
+<i class="no-highlight">15</i>&nbsp;
+<i class="no-highlight">16</i>&nbsp;    // For suspending lambda, make it inline.
+<i class="no-highlight">17</i>&nbsp;    printFiveTimes {
+<i class="no-highlight">18</i>&nbsp;        getString()
+<i class="no-highlight">19</i>&nbsp;    }
+<i class="no-highlight">20</i>&nbsp;}
+<i class="no-highlight">21</i>&nbsp;
+<i class="no-highlight">22</i>&nbsp;suspend fun getString(): String {
+<i class="no-highlight">23</i>&nbsp;    delay(100.milliseconds)
+<i class="no-highlight">24</i>&nbsp;    return &quot;Hello&quot;
+<i class="no-highlight">25</i>&nbsp;}
+<i class="no-highlight">26</i>&nbsp;
+<i class="no-highlight">27</i>&nbsp;inline fun printFiveTimes(gen: () -&gt; String) {
+<i class="no-highlight">28</i>&nbsp;    repeat(5) {
+<i class="no-highlight">29</i>&nbsp;        println(gen())
+<i class="no-highlight">30</i>&nbsp;    }
+<i class="no-highlight">31</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -131,7 +147,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-05-16 15:35</div>
+    <div style="float:right;">generated on 2022-06-10 18:47</div>
 </div>
 </body>
 </html>

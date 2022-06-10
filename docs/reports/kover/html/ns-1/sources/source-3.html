@@ -78,7 +78,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/78)
+    (0/58)
   </span>
 </td>
 </tr>
@@ -90,7 +90,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;import java.nio.charset.StandardCharsets.UTF_8
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;
 <i class="no-highlight">2</i>&nbsp;import java.util.*
 <i class="no-highlight">3</i>&nbsp;import javax.crypto.*
 <i class="no-highlight">4</i>&nbsp;import javax.crypto.spec.*
@@ -100,47 +100,44 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc"><i class="no-highlight">8</i>&nbsp;    val s: Result&lt;Int&gt; = Result.Success(10)</b>
 <b class="nc"><i class="no-highlight">9</i>&nbsp;    when (s) {</b>
 <b class="nc"><i class="no-highlight">10</i>&nbsp;        is Result.Success -&gt; 1</b>
-<i class="no-highlight">11</i>&nbsp;        is Error -&gt; 2
-<i class="no-highlight">12</i>&nbsp;        is Result.Error.RecException -&gt; TODO()
-<i class="no-highlight">13</i>&nbsp;        is Result.Error.NonRecException -&gt; TODO()
-<i class="no-highlight">14</i>&nbsp;        Result.InProgress -&gt; TODO()
-<i class="no-highlight">15</i>&nbsp;    }
-<i class="no-highlight">16</i>&nbsp;
-<b class="nc"><i class="no-highlight">17</i>&nbsp;    println(&quot;Security Manager Allowed: ${System.getProperty(&quot;java.security.manager&quot;)}&quot;)</b>
-<b class="nc"><i class="no-highlight">18</i>&nbsp;    println(&quot;Security Manager: ${System.getSecurityManager()}&quot;)</b>
-<i class="no-highlight">19</i>&nbsp;    // echo -n &quot;test&quot; | openssl dgst -sha256 -hmac 1234 -binary | base64
-<b class="nc"><i class="no-highlight">20</i>&nbsp;    println(&quot;test&quot;.hmacSha256(&quot;1234&quot;))</b>
-<i class="no-highlight">21</i>&nbsp;}
-<i class="no-highlight">22</i>&nbsp;
-<i class="no-highlight">23</i>&nbsp;fun String.hmacSha256(secret: String): String {
-<b class="nc"><i class="no-highlight">24</i>&nbsp;    val key = SecretKeySpec(secret.toByteArray(UTF_8), &quot;HmacSHA256&quot;)</b>
-<b class="nc"><i class="no-highlight">25</i>&nbsp;    val mac: Mac = Mac.getInstance(&quot;HmacSHA256&quot;)</b>
-<b class="nc"><i class="no-highlight">26</i>&nbsp;    mac.init(key)</b>
-<b class="nc"><i class="no-highlight">27</i>&nbsp;    val out = mac.doFinal(this.toByteArray(UTF_8))</b>
-<b class="nc"><i class="no-highlight">28</i>&nbsp;    return Base64.getEncoder().encodeToString(out)</b>
-<i class="no-highlight">29</i>&nbsp;}
-<i class="no-highlight">30</i>&nbsp;
-<i class="no-highlight">31</i>&nbsp;/**
-<i class="no-highlight">32</i>&nbsp; * See the graph for more details,
-<i class="no-highlight">33</i>&nbsp; *
-<i class="no-highlight">34</i>&nbsp; * ```mermaid
-<i class="no-highlight">35</i>&nbsp; * graph LR
-<i class="no-highlight">36</i>&nbsp; *   A[Christmas] --&gt;|Get money| B(Go shopping)
-<i class="no-highlight">37</i>&nbsp; *   B --&gt; C{Let me think}
-<i class="no-highlight">38</i>&nbsp; *   C --&gt;|One| D[Laptop]
-<i class="no-highlight">39</i>&nbsp; *   C --&gt;|Two| E[iPhone]
-<i class="no-highlight">40</i>&nbsp; *   C --&gt;|Three| F[fa:fa-car Car]
-<i class="no-highlight">41</i>&nbsp; * ```
-<i class="no-highlight">42</i>&nbsp; */
-<i class="no-highlight">43</i>&nbsp;sealed class Result&lt;out T&gt; {
-<i class="no-highlight">44</i>&nbsp;    data class Success&lt;T : Any&gt;(val data: T) : Result&lt;T&gt;()
-<i class="no-highlight">45</i>&nbsp;    sealed class Error(val exec: Exception) : Result&lt;Nothing&gt;() {
-<i class="no-highlight">46</i>&nbsp;        class RecException(val e: Exception) : Error(e)
-<i class="no-highlight">47</i>&nbsp;        class NonRecException(val e: Exception) : Error(e)
-<i class="no-highlight">48</i>&nbsp;    }
-<i class="no-highlight">49</i>&nbsp;
-<i class="no-highlight">50</i>&nbsp;    object InProgress : Result&lt;Nothing&gt;()
-<i class="no-highlight">51</i>&nbsp;}
+<i class="no-highlight">11</i>&nbsp;        else -&gt; 2
+<i class="no-highlight">12</i>&nbsp;    }
+<i class="no-highlight">13</i>&nbsp;
+<b class="nc"><i class="no-highlight">14</i>&nbsp;    println(&quot;Security Manager Allowed: ${System.getProperty(&quot;java.security.manager&quot;)}&quot;)</b>
+<b class="nc"><i class="no-highlight">15</i>&nbsp;    println(&quot;Security Manager: ${System.getSecurityManager()}&quot;)</b>
+<i class="no-highlight">16</i>&nbsp;    // echo -n &quot;test&quot; | openssl dgst -sha256 -hmac 1234 -binary | base64
+<b class="nc"><i class="no-highlight">17</i>&nbsp;    println(&quot;test&quot;.hmacSha256(&quot;1234&quot;))</b>
+<i class="no-highlight">18</i>&nbsp;}
+<i class="no-highlight">19</i>&nbsp;
+<i class="no-highlight">20</i>&nbsp;fun String.hmacSha256(secret: String): String {
+<b class="nc"><i class="no-highlight">21</i>&nbsp;    val key = SecretKeySpec(secret.encodeToByteArray(), &quot;HmacSHA256&quot;)</b>
+<b class="nc"><i class="no-highlight">22</i>&nbsp;    val mac: Mac = Mac.getInstance(&quot;HmacSHA256&quot;)</b>
+<b class="nc"><i class="no-highlight">23</i>&nbsp;    mac.init(key)</b>
+<b class="nc"><i class="no-highlight">24</i>&nbsp;    val out = mac.doFinal(encodeToByteArray())</b>
+<b class="nc"><i class="no-highlight">25</i>&nbsp;    return Base64.getEncoder().encodeToString(out)</b>
+<i class="no-highlight">26</i>&nbsp;}
+<i class="no-highlight">27</i>&nbsp;
+<i class="no-highlight">28</i>&nbsp;/**
+<i class="no-highlight">29</i>&nbsp; * See the graph for more details,
+<i class="no-highlight">30</i>&nbsp; *
+<i class="no-highlight">31</i>&nbsp; * ```mermaid
+<i class="no-highlight">32</i>&nbsp; * graph LR
+<i class="no-highlight">33</i>&nbsp; *   A[Christmas] --&gt;|Get money| B(Go shopping)
+<i class="no-highlight">34</i>&nbsp; *   B --&gt; C{Let me think}
+<i class="no-highlight">35</i>&nbsp; *   C --&gt;|One| D[Laptop]
+<i class="no-highlight">36</i>&nbsp; *   C --&gt;|Two| E[iPhone]
+<i class="no-highlight">37</i>&nbsp; *   C --&gt;|Three| F[fa:fa-car Car]
+<i class="no-highlight">38</i>&nbsp; * ```
+<i class="no-highlight">39</i>&nbsp; */
+<i class="no-highlight">40</i>&nbsp;sealed class Result&lt;out T&gt; {
+<i class="no-highlight">41</i>&nbsp;    data class Success&lt;T : Any&gt;(val data: T) : Result&lt;T&gt;()
+<i class="no-highlight">42</i>&nbsp;    sealed class Error(val exec: Exception) : Result&lt;Nothing&gt;() {
+<i class="no-highlight">43</i>&nbsp;        class RecException(val e: Exception) : Error(e)
+<i class="no-highlight">44</i>&nbsp;        class NonRecException(val e: Exception) : Error(e)
+<i class="no-highlight">45</i>&nbsp;    }
+<i class="no-highlight">46</i>&nbsp;
+<i class="no-highlight">47</i>&nbsp;    object InProgress : Result&lt;Nothing&gt;()
+<i class="no-highlight">48</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -167,7 +164,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-05-16 15:35</div>
+    <div style="float:right;">generated on 2022-06-10 18:47</div>
 </div>
 </body>
 </html>

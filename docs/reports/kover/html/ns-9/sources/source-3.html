@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > Manager</title>
+  <title>Coverage Report > Generics</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/highlight-idea.css";
@@ -20,7 +20,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     <a href="../index.html">dev.suresh.generics</a>
 </div>
 
-<h1>Coverage Summary for Class: Manager (dev.suresh.generics)</h1>
+<h1>Coverage Summary for Class: Generics (dev.suresh.generics)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -47,7 +47,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">Manager</td>
+  <td class="name">Generics</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -61,7 +61,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/2)
+    (0/5)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -70,7 +70,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/3)
+    (0/24)
   </span>
 </td>
 <td class="coverageStat">
@@ -78,7 +78,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/12)
+    (0/93)
   </span>
 </td>
 </tr>
@@ -92,21 +92,60 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package dev.suresh.generics;
 <i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;public class Manager extends Employee {
+<i class="no-highlight">3</i>&nbsp;import static java.lang.System.out;
 <i class="no-highlight">4</i>&nbsp;
-<i class="no-highlight">5</i>&nbsp;  public Manager(String name) {
-<b class="nc"><i class="no-highlight">6</i>&nbsp;    super(name);</b>
-<i class="no-highlight">7</i>&nbsp;  }
+<i class="no-highlight">5</i>&nbsp;import java.util.List;
+<i class="no-highlight">6</i>&nbsp;
+<b class="nc"><i class="no-highlight">7</i>&nbsp;public class Generics {</b>
 <i class="no-highlight">8</i>&nbsp;
-<i class="no-highlight">9</i>&nbsp;  @Override
-<i class="no-highlight">10</i>&nbsp;  public String toString() {
-<b class="nc"><i class="no-highlight">11</i>&nbsp;    return &quot;&quot;&quot;</b>
-<i class="no-highlight">12</i>&nbsp;        Manager {
-<i class="no-highlight">13</i>&nbsp;          name=&#39;%s&#39;
-<i class="no-highlight">14</i>&nbsp;        }
-<b class="nc"><i class="no-highlight">15</i>&nbsp;        &quot;&quot;&quot;.formatted(getName());</b>
-<i class="no-highlight">16</i>&nbsp;  }
-<i class="no-highlight">17</i>&nbsp;}
+<i class="no-highlight">9</i>&nbsp;  public static void main(String[] args) {
+<i class="no-highlight">10</i>&nbsp;
+<b class="nc"><i class="no-highlight">11</i>&nbsp;    var emp = new Employee(&quot;Employee-1&quot;);</b>
+<b class="nc"><i class="no-highlight">12</i>&nbsp;    out.println(emp);</b>
+<i class="no-highlight">13</i>&nbsp;
+<b class="nc"><i class="no-highlight">14</i>&nbsp;    var mgr = new Manager(&quot;Manager-1&quot;);</b>
+<b class="nc"><i class="no-highlight">15</i>&nbsp;    out.println(mgr);</b>
+<i class="no-highlight">16</i>&nbsp;
+<b class="nc"><i class="no-highlight">17</i>&nbsp;    var dir = new Director(&quot;Director-1&quot;);</b>
+<b class="nc"><i class="no-highlight">18</i>&nbsp;    out.println(dir);</b>
+<i class="no-highlight">19</i>&nbsp;
+<b class="nc"><i class="no-highlight">20</i>&nbsp;    var empList = List.of(emp);</b>
+<b class="nc"><i class="no-highlight">21</i>&nbsp;    var mgrList = List.of(mgr);</b>
+<b class="nc"><i class="no-highlight">22</i>&nbsp;    var dirList = List.of(dir);</b>
+<i class="no-highlight">23</i>&nbsp;
+<b class="nc"><i class="no-highlight">24</i>&nbsp;    printDetails(empList);</b>
+<b class="nc"><i class="no-highlight">25</i>&nbsp;    printDetails(mgrList);</b>
+<b class="nc"><i class="no-highlight">26</i>&nbsp;    printDetails(dirList);</b>
+<i class="no-highlight">27</i>&nbsp;
+<i class="no-highlight">28</i>&nbsp;    //    LongAdder
+<i class="no-highlight">29</i>&nbsp;    //    test(dirList);
+<i class="no-highlight">30</i>&nbsp;    //    test(mgrList);
+<i class="no-highlight">31</i>&nbsp;
+<i class="no-highlight">32</i>&nbsp;    // Generics reification trick
+<b class="nc"><i class="no-highlight">33</i>&nbsp;    m(List.of());</b>
+<b class="nc"><i class="no-highlight">34</i>&nbsp;    m(List.of(1));</b>
+<b class="nc"><i class="no-highlight">35</i>&nbsp;    m(List.of(&quot;1&quot;));</b>
+<b class="nc"><i class="no-highlight">36</i>&nbsp;    m(List.&lt;Boolean&gt;of());</b>
+<b class="nc"><i class="no-highlight">37</i>&nbsp;    m(List.of(List.of(&quot;&quot;)));</b>
+<i class="no-highlight">38</i>&nbsp;  }
+<i class="no-highlight">39</i>&nbsp;
+<i class="no-highlight">40</i>&nbsp;  private static void printDetails(Object o) {
+<b class="nc"><i class="no-highlight">41</i>&nbsp;    out.println(o.hashCode());</b>
+<b class="nc"><i class="no-highlight">42</i>&nbsp;    out.println(System.identityHashCode(o));</b>
+<b class="nc"><i class="no-highlight">43</i>&nbsp;    out.println(o.getClass());</b>
+<b class="nc"><i class="no-highlight">44</i>&nbsp;    out.println(&quot;-----------&quot;);</b>
+<i class="no-highlight">45</i>&nbsp;  }
+<i class="no-highlight">46</i>&nbsp;
+<i class="no-highlight">47</i>&nbsp;  private static void test(List&lt;Employee&gt; list) {
+<b class="nc"><i class="no-highlight">48</i>&nbsp;    list.add(new Director(&quot;hhh&quot;));</b>
+<i class="no-highlight">49</i>&nbsp;  }
+<i class="no-highlight">50</i>&nbsp;
+<i class="no-highlight">51</i>&nbsp;  /** Generics reification trick. This won&#39;t work for multi-level generics though */
+<i class="no-highlight">52</i>&nbsp;  @SafeVarargs
+<i class="no-highlight">53</i>&nbsp;  public static &lt;T&gt; void m(Iterable&lt;T&gt; itr, T... reify) {
+<b class="nc"><i class="no-highlight">54</i>&nbsp;    out.println(reify.getClass().componentType());</b>
+<i class="no-highlight">55</i>&nbsp;  }
+<i class="no-highlight">56</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -133,7 +172,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-05-16 15:35</div>
+    <div style="float:right;">generated on 2022-06-10 18:47</div>
 </div>
 </body>
 </html>

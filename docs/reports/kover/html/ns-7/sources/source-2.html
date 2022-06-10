@@ -50,16 +50,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/1)
-  </span>
-</td>
-    <td class="coverageStat"/>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/5)
+    (0/3)
   </span>
 </td>
 <td class="coverageStat">
@@ -67,16 +58,36 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/25)
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/75)
   </span>
 </td>
 </tr>
+  <tr>
+    <td class="name">CoroutineTestKt$getString$1</td>
+    <td class="coverageStat"/>
+  </tr>
   <tr>
     <td class="name">CoroutineTestKt$main$1</td>
     <td class="coverageStat"/>
   </tr>
   <tr>
-    <td class="name">CoroutineTestKt$main$2</td>
+    <td class="name">CoroutineTestKt$main$3</td>
     <td class="coverageStat"/>
   </tr>
   <tr>
@@ -126,16 +137,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/3)
-  </span>
-</td>
-    <td class="coverageStat"/>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/7)
+    (0/5)
   </span>
 </td>
 <td class="coverageStat">
@@ -143,7 +145,23 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/25)
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/75)
   </span>
 </td>
 </tr>
@@ -157,18 +175,34 @@ Current scope:     <a href="../../index.html">all classes</a>
 <div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package dev.suresh.concurrent
 <i class="no-highlight">2</i>&nbsp;
 <i class="no-highlight">3</i>&nbsp;import kotlinx.coroutines.*
-<i class="no-highlight">4</i>&nbsp;import kotlin.coroutines.*
+<i class="no-highlight">4</i>&nbsp;import kotlin.time.Duration.Companion.milliseconds
 <i class="no-highlight">5</i>&nbsp;
 <i class="no-highlight">6</i>&nbsp;object CoError : Throwable(&quot;error&quot;)
 <i class="no-highlight">7</i>&nbsp;
 <i class="no-highlight">8</i>&nbsp;suspend fun main() {
-<b class="nc"><i class="no-highlight">9</i>&nbsp;    val num = suspendCancellableCoroutine&lt;Int&gt; { cont -&gt;</b>
+<b class="nc"><i class="no-highlight">9</i>&nbsp;    val num = suspendCancellableCoroutine { cont -&gt;</b>
 <b class="nc"><i class="no-highlight">10</i>&nbsp;        cont.resume(100) {</b>
 <b class="nc"><i class="no-highlight">11</i>&nbsp;        }</b>
-<b class="nc"><i class="no-highlight">12</i>&nbsp;        cont.resumeWithException(CoError)</b>
+<i class="no-highlight">12</i>&nbsp;        // cont.resumeWithException(CoError)
 <b class="nc"><i class="no-highlight">13</i>&nbsp;        cont.invokeOnCancellation { }</b>
 <b class="nc"><i class="no-highlight">14</i>&nbsp;    }</b>
-<i class="no-highlight">15</i>&nbsp;}
+<i class="no-highlight">15</i>&nbsp;
+<i class="no-highlight">16</i>&nbsp;    // For suspending lambda, make it inline.
+<b class="nc"><i class="no-highlight">17</i>&nbsp;    printFiveTimes {</b>
+<b class="nc"><i class="no-highlight">18</i>&nbsp;        getString()</b>
+<i class="no-highlight">19</i>&nbsp;    }
+<i class="no-highlight">20</i>&nbsp;}
+<i class="no-highlight">21</i>&nbsp;
+<i class="no-highlight">22</i>&nbsp;suspend fun getString(): String {
+<b class="nc"><i class="no-highlight">23</i>&nbsp;    delay(100.milliseconds)</b>
+<b class="nc"><i class="no-highlight">24</i>&nbsp;    return &quot;Hello&quot;</b>
+<i class="no-highlight">25</i>&nbsp;}
+<i class="no-highlight">26</i>&nbsp;
+<i class="no-highlight">27</i>&nbsp;inline fun printFiveTimes(gen: () -&gt; String) {
+<b class="nc"><i class="no-highlight">28</i>&nbsp;    repeat(5) {</b>
+<b class="nc"><i class="no-highlight">29</i>&nbsp;        println(gen())</b>
+<b class="nc"><i class="no-highlight">30</i>&nbsp;    }</b>
+<b class="nc"><i class="no-highlight">31</i>&nbsp;}</b>
 </div>
 </pre>
 </div>
@@ -195,7 +229,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-05-16 15:35</div>
+    <div style="float:right;">generated on 2022-06-10 18:47</div>
 </div>
 </body>
 </html>
