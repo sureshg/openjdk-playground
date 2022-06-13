@@ -1,10 +1,10 @@
-package dev.suresh.loom.jetty
+package dev.suresh.vthread.jetty
 
 import org.eclipse.jetty.util.component.*
 import org.eclipse.jetty.util.thread.*
 import java.util.concurrent.*
 
-class LoomThreadPool : AbstractLifeCycle(), ThreadPool {
+class VThreadThreadPool : AbstractLifeCycle(), ThreadPool {
 
     private val execSvc = Executors.newVirtualThreadPerTaskExecutor()
 

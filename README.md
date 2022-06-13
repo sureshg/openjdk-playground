@@ -12,17 +12,17 @@
 [![SonarCloud][sonar_img]][sonar_url]
 <a href="https://deploy.cloud.run"><img src="https://deploy.cloud.run/button.svg" alt="CloudRun" title="CloudRun" width="18%"></a>
 
-#### Setup OpenJDK (Loom Build)
+#### Install OpenJDK
 
 ```bash
 $ curl -s "https://get.sdkman.io" | bash
-$ sdk i java 19.ea.4.lm-open
+$ sdk i java 20.ea.1-open
 ```
 
 #### Build
 
 ```bash
-$ ./gradlew --console plain build
+$ ./gradlew build
 ```
 
 #### Run with `preview features` enabled
@@ -37,6 +37,10 @@ $ java -jar \
 # Virtual thread debugging.
 $ jfr print --events jdk.VirtualThreadPinned openjdk-playground.jfr
 $ jcmd dev.suresh.Main Thread.dump_to_file -format=json openjdk-playground-threads.json
+
+
+# Check the incubator modules
+$ java --list-modules | grep -i incubator
 ```
 
 #### Run the application container
@@ -46,7 +50,7 @@ $ ./gradlew jibDockerBuild
 $ docker run -it --rm --name openjdk-playground sureshg/openjdk-playground
 ```
 
-#### Load testing the Loom Web Server
+#### Load testing the Web Server
 
 - Check if the service is up and running!
    ```bash
@@ -65,7 +69,7 @@ $ docker run -it --rm --name openjdk-playground sureshg/openjdk-playground
     $ cat thread-results.bin | vegeta report -type="hist[0,100ms,200ms,300ms]"
     $ cat thread-results.bin | vegeta plot -title "Normal Threads" > plot.html && open plot.html
     ```
-- Run with Loom Virtual threads.
+- Run with Virtual threads.
     ```bash
     $ echo "GET https://127.0.0.1:8443/" | vegeta attack -insecure -duration=10s -name=VirtualThreads -rate=250 | tee vthread-results.bin | vegeta report
     $ vegeta report -type=json vthread-results.bin > vthread-metrics.json
@@ -74,7 +78,7 @@ $ docker run -it --rm --name openjdk-playground sureshg/openjdk-playground
     ```
 - Combine the results and plot a single graph.
     ```bash
-    $ vegeta plot -title "Threads vs Loom Virtual Threads"  vthread-results.bin thread-results.bin > plot.html && open plot.html
+    $ vegeta plot -title "Threads vs Virtual Threads"  vthread-results.bin thread-results.bin > plot.html && open plot.html
     ```
 
 #### Troubleshooting
@@ -132,7 +136,7 @@ $ ./gradlew -q javaToolchains
 
 [java_url]: https://jdk.java.net/
 
-[java_img]: https://img.shields.io/badge/OpenJDK-19--loom-ea791d?logo=java&style=for-the-badge&logoColor=ea791d
+[java_img]: https://img.shields.io/badge/OpenJDK-20--ea-ea791d?logo=java&style=for-the-badge&logoColor=ea791d
 
 [kt_url]: https://github.com/JetBrains/kotlin/releases/latest
 

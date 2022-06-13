@@ -18,7 +18,7 @@ $ mkdir -p src/{main,test}/{java,resources}
 ##### 2. Preview features
 
 ```bash
-$ javac --enable-preview -release 19 Foo.java
+$ javac --enable-preview -release 20 Foo.java
 $ java  --enable-preview Foo
 ```
 
@@ -189,23 +189,18 @@ $ jshell --enable-preview
 $ jshell --enable-preview --startup DEFAULT --startup ~/calc.repl
 ```
 
-##### 11. Loom config
+##### 11. Virtual Thread config
 
 ```bash
-# Loom Default ForkJoinPool scheduler config. The scheduler is based on
-# ForkJoinPool and it's setup to spin up additional underlying carrier
-# threads to help when there are virtual threads blocked in Object.wait.
-# The default maximum is 256.
+# Virtual Thread's Default ForkJoinPool scheduler config. The scheduler is based on ForkJoinPool
+# and it's setup to spin up additional underlying carrier threads to help when there are virtual
+# threads blocked in Object.wait. The default maximum is 256.
 
 $ java -Djdk.defaultScheduler.parallelism=4   // Default to Runtime.getRuntime().availableProcessors()
        -Djdk.defaultScheduler.maxPoolSize=256 // max(parallelism, 256)
 
 # Trace pinned thread while holding monitors.
 $ java -Djdk.tracePinnedThreads=short|full
-
-# Loom Install
-$ sdk rm java jdk-16-loom
-$ sdk i java jdk-16-loom ~/install/openjdk/jdk-16-loom.jdk/Contents/Home
 ```
 
 

@@ -1,4 +1,4 @@
-package dev.suresh.loom
+package dev.suresh.vthread
 
 import com.sun.net.httpserver.*
 import okhttp3.tls.internal.*
@@ -11,7 +11,7 @@ import java.util.concurrent.*
 import java.util.stream.Collectors.joining
 import kotlin.system.*
 
-object LoomServer {
+object VThreadServer {
 
     private val execSvc = Executors.newVirtualThreadPerTaskExecutor()
 

@@ -68,15 +68,4 @@ class Dog extends Animal {
   }
 }
 
-class Animals {
-
-  private final List<Animal> animals;
-
-  public Animals(List<Animal> animals) {
-    this.animals = animals;
-  }
-
-  public List<Animal> getAnimals() {
-    return animals;
-  }
-}
+record Animals(List<Animal> animals) {}

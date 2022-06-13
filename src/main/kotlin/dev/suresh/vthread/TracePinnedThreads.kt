@@ -1,4 +1,4 @@
-package dev.suresh.loom
+package dev.suresh.vthread
 
 import java.io.*
 import java.time.*
@@ -6,14 +6,12 @@ import java.util.concurrent.locks.*
 
 /**
  * Run with -Djdk.tracePinnedThreads=short|full
- * -
- * [TracePinnedThreads.java](https://github.com/openjdk/loom/blob/fibers/test/jdk/java/lang/Thread/virtual/TracePinnedThreads.java)
- * -
- * [Virtual Thread
- * Tests](https://github.com/openjdk/loom/tree/fibers/test/jdk/java/lang/Thread/virtual)
- * -
- * [Loom Troubleshooting
- * Guide](https://wiki.openjdk.java.net/display/loom/Troubleshooting)
+ *
+ * [TracePinnedThreads.java](https://github.com/openjdk/jdk/blob/master/test/jdk/java/lang/Thread/virtual/TracePinnedThreads.java)
+ *
+ * [VirtualThreadTests](https://github.com/openjdk/jdk/tree/master/test/jdk/java/lang/Thread/virtual)
+ *
+ * [LoomTroubleshootingGuide](https://wiki.openjdk.java.net/display/loom/Troubleshooting)
  */
 fun main() {
     System.setProperty("jdk.tracePinnedThreads", "full")

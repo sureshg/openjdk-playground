@@ -1,4 +1,4 @@
-#!java --source 19
+#!java --source 20
 public class Main {
   public static void main(String[] args){
     System.out.println("Hello Java " + System.getProperty("java.version"));

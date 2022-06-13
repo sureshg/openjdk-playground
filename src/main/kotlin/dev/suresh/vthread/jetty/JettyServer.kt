@@ -1,4 +1,4 @@
-package dev.suresh.loom.jetty
+package dev.suresh.vthread.jetty
 
 import io.mikael.urlbuilder.*
 import jakarta.servlet.http.*
@@ -21,7 +21,7 @@ fun main() {
 fun run(args: Array<String>? = emptyArray()) {
     val port = 8080
     println("Starting the Jetty server on $port...")
-    val tp = LoomThreadPool()
+    val tp = VThreadThreadPool()
     // val tp = QueuedThreadPool(200)
     val server = Server(tp)
 
@@ -118,9 +118,9 @@ fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
 
 class HelloServlet : HttpServlet() {
     /** Scoped local variable holding the user info. */
-    private val ID = ExtentLocal.newInstance<String>()
-
-    private val USER = ExtentLocal.newInstance<String>()
+//    private val ID = ExtentLocal.newInstance<String>()
+//
+//    private val USER = ExtentLocal.newInstance<String>()
 
     private val OS: String = System.getProperty("os.name")
 
@@ -132,16 +132,16 @@ class HelloServlet : HttpServlet() {
         val id = req?.getParameter("id")
         val user = req?.getParameter("user")
 
-        ExtentLocal
-            .where(ID, id)
-            .where(USER, user)
-            .run {
-                resp?.apply {
-                    contentType = "application/json"
-                    status = HttpServletResponse.SC_OK
-                    writer?.println(exec(req))
-                }
-            }
+//        ExtentLocal
+//            .where(ID, id)
+//            .where(USER, user)
+//            .run {
+//                resp?.apply {
+//                    contentType = "application/json"
+//                    status = HttpServletResponse.SC_OK
+//                    writer?.println(exec(req))
+//                }
+//            }
     }
 
     private fun exec(req: HttpServletRequest?): String {
@@ -149,8 +149,7 @@ class HelloServlet : HttpServlet() {
         Thread.sleep(Duration.ofSeconds(2))
         return """
           {
-            "Id"     : ${ID.orElse("n/a")},
-            "User"   : ${USER.orElse("n/a")},
+
             "server" : Jetty-${Jetty.VERSION},
             "Java"   : ${JavaVersion.VERSION},
             "OS"     : $OS,
@@ -158,6 +157,8 @@ class HelloServlet : HttpServlet() {
             "Thread" : ${Thread.currentThread()}
           }
         """.trimIndent()
+//        "Id"     : ${ID.orElse("n/a")},
+//        "User"   : ${USER.orElse("n/a")},
     }
 }
 

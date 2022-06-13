@@ -403,9 +403,9 @@ object Deps {
     }
 
     object Cli {
-        const val clikt = "com.github.ajalt.clikt:clikt:3.4.2"
+        const val clikt = "com.github.ajalt.clikt:clikt:3.5.0"
         const val textIO = "org.beryx:text-io:3.4.1"
-        const val mordant = "com.github.ajalt.mordant:mordant:2.0.0-beta6"
+        const val mordant = "com.github.ajalt.mordant:mordant:2.0.0-beta7"
         const val colormath = "com.github.ajalt.colormath:colormath:2.0.0"
         const val mosaic = "com.jakewharton.mosaic:1.0.0"
         const val picnic = "com.jakewharton.picnic:picnic:0.6.0"
@@ -737,7 +737,7 @@ inline val PluginDependenciesSpec.springboot get() = id("org.springframework.boo
 inline val PluginDependenciesSpec.springDepMgmt get() = id("io.spring.dependency-management") version "1.0.9.RELEASE"
 
 // Static Analysis and Linting
-inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "6.7.0"
+inline val PluginDependenciesSpec.spotless get() = id("com.diffplug.spotless") version "6.7.2"
 inline val PluginDependenciesSpec.spotlessChangelog get() = id("com.diffplug.spotless-changelog") version "2.4.0"
 inline val PluginDependenciesSpec.spotbugs get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint get() = id("com.eden.orchidPlugin") version "9.3.0"
@@ -747,6 +747,7 @@ inline val PluginDependenciesSpec.qodanaPlugin get() = id("org.jetbrains.qodana"
 
 // Artifact Publish
 inline val PluginDependenciesSpec.nexusPublish get() = id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
+inline val PluginDependenciesSpec.simpleMavenPublish get() = id("net.mbonnin.sjmp") version "0.2"
 inline val PluginDependenciesSpec.jreleaser get() = id("org.jreleaser") version "0.2.0"
 inline val PluginDependenciesSpec.mavenRepoAuth get() = id("org.hibernate.build.maven-repo-auth") version "3.0.4"
 inline val PluginDependenciesSpec.gradleRelease get() = id("net.researchgate.release") version "2.8.1"

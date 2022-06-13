@@ -1,10 +1,10 @@
 [versions]
-java                           = "19"
-kotlin                         = "1.6.21"
+java                           = "20"
+kotlin                         = "1.7.0"
 kotlin-jvm-target              = "18"
 kotlin-api-version             = "1.7"
 kotlin-lang-version            = "1.7"
-gradle                         = "7.5-rc-1"
+gradle                         = "7.5-rc-2"
 
 # Additional metadata
 githubProject                  = "https://github.com/sureshg/openjdk-playground"

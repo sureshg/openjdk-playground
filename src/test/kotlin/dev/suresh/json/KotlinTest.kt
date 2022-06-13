@@ -40,7 +40,7 @@ internal class KotlinTest {
 
     @Test
     fun dispatcherTest() = runTest {
-        // Virtual Thread(Loom) Dispatcher
+        // Virtual Thread Dispatcher
         val vtDispatcher = Executors.newVirtualThreadPerTaskExecutor().asCoroutineDispatcher()
         withContext(vtDispatcher) {
             delay(100.milliseconds)

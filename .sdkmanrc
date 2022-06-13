@@ -1,3 +1,3 @@
 # Enable auto-env through the sdkman_auto_env config
 # Add key=value pairs of SDKs to use below
-java=loom-local
+java=openjdk-20-ea.1
