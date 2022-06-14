@@ -270,7 +270,7 @@ object Deps {
     }
 
     object KoTest {
-        const val version = "5.3.0"
+        const val version = "5.3.1"
         const val junit5Runner = "io.kotest:kotest-runner-junit5:$version"
         const val assertions = "io.kotest:kotest-assertions-core:$version"
         const val property = "io.kotest:kotest-property:$version"

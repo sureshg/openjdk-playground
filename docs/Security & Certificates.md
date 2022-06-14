@@ -207,6 +207,46 @@ $ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
 
 
 
+### TLS Debugging
+
+* [Debugging TLS Connection in Java](https://docs.oracle.com/en/java/javase/18/security/java-secure-socket-extension-jsse-reference-guide.html#GUID-31B7E142-B874-46E9-8DD0-4E18EC0EB2CF)
+
+* [Java Security Guide](https://docs.oracle.com/en/java/javase/18/security/java-security-overview1.html)
+
+```bash
+$ java -Djavax.net.debug=help MyApp
+# java -Djavax.net.debug=all MyApp
+# java -Djavax.net.debug=ssl,handshake,data,trustmanager MyApp
+
+help           print the help messages
+expand         expand debugging information
+
+all            turn on all debugging
+ssl            turn on ssl debugging
+
+The following can be used with ssl:
+	record       enable per-record tracing
+	handshake    print each handshake message
+	keygen       print key generation data
+	session      print session activity
+	defaultctx   print default SSL initialization
+	sslctx       print SSLContext tracing
+	sessioncache print session cache tracing
+	keymanager   print key manager tracing
+	trustmanager print trust manager tracing
+	pluggability print pluggability tracing
+
+	handshake debugging can be widened with:
+	data         hex dump of each handshake message
+	verbose      verbose handshake message printing
+
+	record debugging can be widened with:
+	plaintext    hex dump of record plaintext
+	packet       print raw SSL/TLS packets
+```
+
+
+
 ### Misc
 
 * https://www.sslshopper.com/article-most-common-java-keytool-keystore-commands.html
