@@ -47,7 +47,7 @@ jobs:
       max-parallel: 3
       matrix:
         os: [ ubuntu-latest, macos-latest, windows-latest ]
-        jdk: [ loom ]
+        jdk: [ 20 ]
         include:
           - os: ubuntu-latest
             cmd: ./gradlew
@@ -76,12 +76,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: ⬇️ Download EA build of ${{ matrix.jdk }} from jdk.java.net
+      - name: ⬇️ Download OpenJDK ${{ matrix.jdk }} EA build from jdk.java.net
         id: download-jdk
         uses: oracle-actions/setup-java@v1
         with:
           website: jdk.java.net
-          release: loom
+          release: ${{ matrix.jdk }}
           install: false
 
       - name: ☕ Set up OpenJDK ${{ matrix.jdk }}
