@@ -1,3 +1,4 @@
+import dev.suresh.gradle.*
 import gg.jte.*
 import kotlinx.kover.api.*
 import org.gradle.api.tasks.testing.logging.*
@@ -633,48 +634,13 @@ publishing {
             artifact(dokkaHtmlJar)
             artifact(tasks.buildExecutable)
             // artifact(tasks.shadowJar)
-
-            pom {
-                packaging = "jar"
-                description.set(project.description)
-                inceptionYear.set("2021")
-                url.set(githubProject)
-
-                developers {
-                    developer {
-                        id.set("sureshg")
-                        name.set("Suresh")
-                        email.set("email@suresh.dev")
-                        organization.set("Suresh")
-                        organizationUrl.set("https://suresh.dev")
-                    }
-                }
-
-                licenses {
-                    license {
-                        name.set("The Apache Software License, Version 2.0")
-                        url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
-                        distribution.set("repo")
-                    }
-                }
-
-                scm {
-                    url.set(githubProject)
-                    tag.set("HEAD")
-                    connection.set("scm:git:$githubProject.git")
-                    developerConnection.set("scm:git:$githubProject.git")
-                }
-
-                issueManagement {
-                    system.set("github")
-                    url.set("$githubProject/issues")
-                }
-            }
+            configurePom(project)
         }
 
         // GitHub Package Registry
         register<MavenPublication>("gpr") {
             from(components["java"])
+            configurePom(project)
         }
     }
 }

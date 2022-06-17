@@ -1,6 +1,6 @@
 package tasks
 
-import mebiSize
+import dev.suresh.gradle.*
 import org.gradle.api.*
 import org.gradle.api.file.*
 import org.gradle.api.provider.*

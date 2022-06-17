@@ -26,11 +26,11 @@ $ echo -n | openssl s_client -showcerts -connect google.com:443 | sed -ne '/-BEG
 # OR use java keytool
 $ keytool -printcert -rfc -sslserver google.com:443 > google.pem
 
+# Show full cert chain (with subject and expiry)
+$ echo | openssl s_client -showcerts -connect google.com:443 2>/dev/null | while openssl x509 -noout -subject -dates 2>/dev/null; do : ; done
+
 # Extract and show cert details
 $ echo | openssl s_client -showcerts -connect google.com:443 2>/dev/null | openssl x509 -inform pem -noout -text
-
-# Show certs expiry
-$ echo | openssl s_client -servername google.com -connect google.com:443 2>/dev/null | openssl x509 -noout -dates
 
 $ curl -vvI https://google.com 2>&1 | grep -i date
 ```

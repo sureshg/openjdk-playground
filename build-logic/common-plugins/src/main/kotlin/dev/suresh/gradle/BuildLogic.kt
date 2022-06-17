@@ -1,3 +1,5 @@
+package dev.suresh.gradle
+
 import org.gradle.accessors.dm.*
 import org.gradle.api.*
 import org.gradle.api.artifacts.*
@@ -12,15 +14,20 @@ import java.io.*
 import java.nio.file.*
 import java.util.concurrent.*
 
-/** OS temp location */
-val tmp: String = System.getProperty("java.io.tmpdir")
+internal val Project.libs get() = the<LibrariesForLibs>()
 
 /** Quote for -Xlog file */
-val xQuote = if (OperatingSystem.current().isWindows) """\"""" else """""""
+val Project.xQuote get() = if (OperatingSystem.current().isWindows) """\"""" else """""""
 
 val Project.isKotlinMPP get() = plugins.hasPlugin("org.jetbrains.kotlin.multiplatform")
 
+val Project.isKotlinJvmProject get() = plugins.hasPlugin("org.jetbrains.kotlin.jvm")
+
 val Project.isKotlinJsProject get() = plugins.hasPlugin("org.jetbrains.kotlin.js")
+
+val Project.isPlatformProject get() = plugins.hasPlugin("java-platform")
+
+val Project.isJavaLibraryProject get() = plugins.hasPlugin("java-library")
 
 // val debug: String? by project
 val Project.debugEnabled get() = properties["debug"]?.toString()?.toBoolean() ?: false
@@ -46,7 +53,7 @@ val Project.javaToolchainPath
     get(): Path {
         val defToolchain = extensions.findByType(JavaPluginExtension::class)?.toolchain
         val javaToolchainSvc = extensions.findByType(JavaToolchainService::class)
-        val javaVersion = the<LibrariesForLibs>().versions.java.asProvider().get()
+        val javaVersion = libs.versions.java.asProvider().get()
 
         val jLauncher = when (defToolchain != null) {
             true -> javaToolchainSvc?.launcherFor(defToolchain)

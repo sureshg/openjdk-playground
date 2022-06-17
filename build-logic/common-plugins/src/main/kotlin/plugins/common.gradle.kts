@@ -1,14 +1,8 @@
 package plugins
 
 import GithubAction
-import appRunCmd
-import debugEnabled
-import forkTask
-import hasCleanTask
-import mebiSize
-import org.gradle.accessors.dm.*
+import dev.suresh.gradle.*
 import org.gradle.internal.os.OperatingSystem
-import printVersionCatalog
 import tasks.*
 import java.io.PrintWriter
 import java.io.StringWriter
@@ -24,7 +18,6 @@ plugins {
 }
 
 // Access version catalogs
-val libs = the<LibrariesForLibs>()
 printVersionCatalog()
 
 // apply(from ="")

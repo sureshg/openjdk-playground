@@ -1,7 +1,12 @@
+package dev.suresh.gradle
+
 import java.io.*
 import java.nio.file.*
 import kotlin.properties.*
 import kotlin.reflect.*
+
+/** OS temp location */
+val tmp: String = System.getProperty("java.io.tmpdir")
 
 val File.mebiSize get() = "%.2f MiB".format(length() / (1024 * 1024f))
 

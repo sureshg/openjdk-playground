@@ -88,7 +88,7 @@ object Deps {
     }
 
     object Kotlinx {
-        const val atomicfuVersion = "0.17.3"
+        const val atomicfuVersion = "0.18.0"
         const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.3.3"
         const val reflectLite = "org.jetbrains.kotlinx:kotlinx.reflect.lite:1.0.0"
         const val atomicfu = "org.jetbrains.kotlinx:atomicfu:$atomicfuVersion"
@@ -136,7 +136,7 @@ object Deps {
         const val gfmPlugin = "org.jetbrains.dokka:gfm-plugin:$version"
         const val jekyllPlugin = "org.jetbrains.dokka:jekyll-plugin:$version"
         const val mathjaxPlugin = "org.jetbrains.dokka:mathjax-plugin:$version"
-        const val mermaidPlugin = "com.glureau:html-mermaid-dokka-plugin:0.3.1"
+        const val mermaidPlugin = "com.glureau:html-mermaid-dokka-plugin:0.3.2"
     }
 
     object OpenJDK {
@@ -185,7 +185,7 @@ object Deps {
     }
 
     object OkHttp {
-        const val version = "5.0.0-alpha.8"
+        const val version = "5.0.0-alpha.9"
         const val bom = "com.squareup.okhttp3:okhttp-bom:$version"
         const val okhttp = "com.squareup.okhttp3:okhttp:$version"
         const val mockWebServer = "com.squareup.okhttp3:mockwebserver:$version"
@@ -296,7 +296,7 @@ object Deps {
         const val stringTemplate = "org.antlr:ST4:4.3.1"
 
         object Jte {
-            const val version = "2.0.4"
+            const val version = "2.1.1"
             const val jte = "gg.jte:jte:$version"
             const val runtime = "gg.jte:jte-runtime:$version"
             const val kotlin = "gg.jte:jte-kotlin:$version"
@@ -383,7 +383,7 @@ object Deps {
         }
 
         object Log4j2 {
-            const val version = "2.16.0"
+            const val version = "2.17.2"
             const val bom = "org.apache.logging.log4j:log4j-bom:$version"
             const val core = "org.apache.logging.log4j:log4j-core:$version"
         }
@@ -688,7 +688,7 @@ inline val PluginDependenciesSpec.dokka get() = id("org.jetbrains.dokka") versio
 
 inline val PluginDependenciesSpec.exposed get() = id("com.jetbrains.exposed.gradle.plugin") version "0.2.1"
 inline val PluginDependenciesSpec.kotlinxAtomicfu get() = id("kotlinx-atomicfu") version Deps.Kotlinx.atomicfuVersion
-inline val PluginDependenciesSpec.binCompatValidator get() = id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.10.0"
+inline val PluginDependenciesSpec.binCompatValidator get() = id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.10.1"
 inline val PluginDependenciesSpec.reflektPlugin get() = id("io.reflekt") version Deps.Kotlin.Reflekt.version
 
 inline val PluginDependenciesSpec.kover get() = id("org.jetbrains.kotlinx.kover") version "0.5.1"
@@ -700,7 +700,7 @@ inline val PluginDependenciesSpec.googleJib get() = id("com.google.cloud.tools.j
 
 // Dependency Versions
 inline val PluginDependenciesSpec.benmanesVersions get() = id("com.github.ben-manes.versions") version "0.42.0"
-inline val PluginDependenciesSpec.versionCatalogUpdate get() = id("nl.littlerobots.version-catalog-update") version "0.4.0"
+inline val PluginDependenciesSpec.versionCatalogUpdate get() = id("nl.littlerobots.version-catalog-update") version "0.5.1"
 inline val PluginDependenciesSpec.consistentVersions get() = id("com.palantir.consistent-versions") version "1.28.0"
 
 // Dependencies

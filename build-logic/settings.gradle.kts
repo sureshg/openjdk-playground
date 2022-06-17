@@ -1,3 +1,4 @@
+@Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
     repositories.gradlePluginPortal()
     versionCatalogs {

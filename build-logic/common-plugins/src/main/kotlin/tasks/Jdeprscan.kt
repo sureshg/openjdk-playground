@@ -1,7 +1,6 @@
 package tasks
 
-import javaToolchainPath
-import org.gradle.accessors.dm.*
+import dev.suresh.gradle.*
 import org.gradle.api.*
 import org.gradle.api.file.*
 import org.gradle.api.model.*
@@ -120,7 +119,7 @@ open class JdeprscanExtension @Inject constructor(private val project: Project) 
 
     @get:Input
     val release = project.objects.property<Int>().apply {
-        val javaVersion = project.the<LibrariesForLibs>().versions.java.asProvider()
+        val javaVersion = project.libs.versions.java.asProvider()
         set(javaVersion.map { it.toInt() })
     }
 
