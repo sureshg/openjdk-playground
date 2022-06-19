@@ -456,7 +456,7 @@ object Deps {
     }
 
     object Security {
-        const val password4j = "com.password4j:password4j:1.5.4"
+        const val password4j = "com.password4j:password4j:1.6.0"
         const val otp = "com.github.bastiaanjansen:otp-java:1.3.2"
         const val totp = "dev.samstevens.totp:totp:1.7.1"
         const val jwtJava = "com.github.bastiaanjansen:jwt-java:1.2.0"
@@ -705,7 +705,7 @@ inline val PluginDependenciesSpec.consistentVersions get() = id("com.palantir.co
 
 // Dependencies
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "7.1.2"
-inline val PluginDependenciesSpec.dependencyAnalysis get() = id("com.autonomousapps.dependency-analysis") version "1.5.0"
+inline val PluginDependenciesSpec.dependencyAnalysis get() = id("com.autonomousapps.dependency-analysis") version "1.6.0"
 inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.9.0" apply true
 inline val PluginDependenciesSpec.taskinfo get() = id("org.barfuin.gradle.taskinfo") version "1.4.0" apply false
 inline val PluginDependenciesSpec.taskTree get() = id("com.dorongold.task-tree") version "1.5"

@@ -3,17 +3,16 @@ package dev.suresh.gradle
 import org.gradle.api.*
 import org.gradle.api.publish.maven.*
 
-internal val githubProject by sysProp<String>()
-
 fun MavenPublication.configurePom(
     project: Project,
 ) {
+    val githubUrl = project.libs.versions.githubProject.getOrElse("")
     pom {
         packaging = "jar"
         name.set(project.name)
         description.set(project.description)
         inceptionYear.set("2021")
-        url.set(githubProject)
+        url.set(githubUrl)
 
         developers {
             developer {
@@ -34,15 +33,15 @@ fun MavenPublication.configurePom(
         }
 
         scm {
-            url.set(githubProject)
+            url.set(githubUrl)
             tag.set("HEAD")
-            connection.set("scm:git:$githubProject.git")
-            developerConnection.set("scm:git:$githubProject.git")
+            connection.set("scm:git:$githubUrl.git")
+            developerConnection.set("scm:git:$githubUrl.git")
         }
 
         issueManagement {
             system.set("github")
-            url.set("$githubProject/issues")
+            url.set("$githubUrl/issues")
         }
     }
 }

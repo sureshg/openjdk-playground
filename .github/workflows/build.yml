@@ -75,6 +75,10 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          # repository: sureshg/openjdk-playground
+          # path: main
+          # ref: ${{ github.event.pull_request.head.sha }}
+          # submodules: recursive
 
       - name: ⬇️ Download OpenJDK ${{ matrix.jdk }} build from jdk.java.net
         id: download-jdk
@@ -158,6 +162,23 @@ jobs:
           clean: true
           commit-message: 'doc: Deployed coverage report'
 
+      - name: 📌 Push the changes to Github
+        if: ${{ false }}
+        id: push-to-github
+        run: |
+          # date > generated.txt
+          git diff
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          if [ -z "$(git status --porcelain)" ]; then
+            echo 'No changes detected.'
+            exit 0
+          else
+            git commit --message "doc: Update generated.txt"
+            git push
+          fi
+
   # Github Release Action on tag push
   release:
     name: 🚰 Release new version.
@@ -166,13 +187,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out the source code
+      - name: 🛎️Check out the source code
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
           submodules: recursive
 
-      - name: Build Changelog
+      - name: ⚙️Build Changelog
         id: github_release
         uses: mikepenz/release-changelog-builder-action@v3
         with:
@@ -182,12 +203,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Download all the build artifacts
+      - name: ⏬Download all the build artifacts
         uses: actions/download-artifact@v3
         with:
           path: release-artifacts
 
-      - name: Github Release (version = ${{ needs.build.outputs.version }})
+      - name: ✨Github Release (version = ${{ needs.build.outputs.version }})
         uses: softprops/action-gh-release@v1
         with:
           body: ${{ steps.github_release.outputs.changelog }}
@@ -207,7 +228,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        jdk: [ "openjdk:19-slim", "openjdk:19-alpine" ]
+        jdk: [ "openjdk:20-slim", "openjdk:19-alpine" ]
 
     defaults:
       run:
@@ -217,17 +238,17 @@ jobs:
       image: ${{ matrix.jdk }}
 
     steps:
-      - name: Check out the source code
+      - name: 🛎️Check out the source code
         uses: actions/checkout@v3
 
-      - name: Run Java App on OpenJDK ${{ matrix.jdk }} container image
+      - name: ☕ Run Java App on OpenJDK ${{ matrix.jdk }} container image
         if: always()
         run: |
           java -ea --show-version src/main/java/JavaApp.java
         env:
           RUNNER_CONTEXT: ${{ toJson(runner) }}
 
-      - name: Github Action Contexts
+      - name: ⏳Github Action Contexts
         run: |
           echo "$JOB_CONTEXT"
           echo "$STEPS_CONTEXT"

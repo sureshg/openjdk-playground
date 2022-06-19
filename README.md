@@ -93,6 +93,9 @@ $ docker run -it --rm --name openjdk-playground sureshg/openjdk-playground
 # Check the current version
 $ ./gradlew -q --console plain version
 
+# Publish to local repository
+$ ./gradlew publishMavenPublicationToLocalRepository
+
 # Stop Gradle and Kotlin daemon
 $ ./gradlew --stop && pkill -f KotlinCompileDaemon
 
