@@ -175,10 +175,11 @@ object GithubAction {
             val env = when {
                 // Multiline string
                 value.lines().size > 1 -> """
-          |${name}<<EOF
-          |$value
-          |EOF
-          """.trimMargin()
+                                          |${name}<<EOF
+                                          |$value
+                                          |EOF
+                                          """.trimMargin()
+
                 else -> "$name=$value${System.lineSeparator()}"
             }
             Files.writeString(Path.of(ghActionEnv), env, Charsets.UTF_8, CREATE, APPEND)
@@ -519,6 +520,21 @@ object GithubAction {
          * C:\hostedtoolcache\windows
          */
         val RUNNER_TOOL_CACHE get() = System.getenv("RUNNER_TOOL_CACHE")
+
+        /**
+         * Default location of your repository when using the checkout
+         * action. Can access like `${{ env.RUNNER_WORKSPACE }}` from
+         * GitHub action YAML.
+         */
+        val RUNNER_WORKSPACE get() = System.getenv("RUNNER_WORKSPACE")
+
+        /**
+         * GitHub runner context. Contexts are a way to access
+         * information about workflow runs, runner environments,
+         * jobs, and steps. Each context is an object that contains
+         * properties, which can be strings or other objects.
+         */
+        val RUNNER_CONTEXT get() = System.getenv("RUNNER_CONTEXT")
 
         /**
          * Gets the value of the environment variable set in the Github

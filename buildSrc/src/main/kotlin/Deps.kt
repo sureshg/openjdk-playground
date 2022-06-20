@@ -568,18 +568,6 @@ object Deps {
         const val flowAdapters = "org.reactivestreams:reactive-streams-flow-adapters:$version"
     }
 
-    object Reactor {
-        const val version = "3.4.2"
-        const val core = "io.projectreactor:reactor-core:$version"
-        const val test = "io.projectreactor:reactor-test:$version"
-    }
-
-    object RSocket {
-        const val version = "1.1.1"
-        const val core = "io.rsocket:rsocket-core:$version"
-        const val netty = "io.rsocket:rsocket-transport-netty:$version"
-    }
-
     object Jfr {
         const val jfr2ctf = "de.marcphilipp.jfr2ctf:jfr2ctf:0.1.0"
         const val streaming = "com.microsoft.censum:jfr-streaming:1.0.0"
