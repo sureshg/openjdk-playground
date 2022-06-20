@@ -38,6 +38,7 @@ object Deps {
         val test = "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
         val testJunit = "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
         val compiler = "org.jetbrains.kotlin:kotlin-compiler-embeddable:$kotlinVersion"
+        val libsPubVersion = "0.0.60-dev-32"
 
         object Script {
             val runtime = "org.jetbrains.kotlin:kotlin-script-runtime:$kotlinVersion"
@@ -129,7 +130,7 @@ object Deps {
     }
 
     object Dokka {
-        const val version = "1.6.21"
+        const val version = "1.7.0"
         const val gradlePlugin = "org.jetbrains.dokka:dokka-gradle-plugin:$version"
         const val javadocPlugin = "org.jetbrains.dokka:javadoc-plugin:$version"
         const val kotlinAsJavaPlugin = "org.jetbrains.dokka:kotlin-as-java-plugin:$version"
@@ -685,6 +686,8 @@ inline val PluginDependenciesSpec.kotlinJpa get() = kotlin("plugin.jpa") version
 
 inline val PluginDependenciesSpec.kotlinScript get() = kotlin("plugin.scripting") version kotlinVersion
 inline val PluginDependenciesSpec.dokka get() = id("org.jetbrains.dokka") version Deps.Dokka.version
+inline val PluginDependenciesSpec.kotlinLibsPublisher get() = id("org.jetbrains.kotlin.libs.publisher") version Deps.Kotlin.libsPubVersion apply false
+inline val PluginDependenciesSpec.kotlinDocsPublisher get() = id("org.jetbrains.kotlin.libs.doc") version Deps.Kotlin.libsPubVersion apply false
 
 inline val PluginDependenciesSpec.exposed get() = id("com.jetbrains.exposed.gradle.plugin") version "0.2.1"
 inline val PluginDependenciesSpec.kotlinxAtomicfu get() = id("kotlinx-atomicfu") version Deps.Kotlinx.atomicfuVersion

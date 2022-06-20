@@ -116,8 +116,8 @@ $ ./gradlew -q javaToolchains
 
 ##### Resources
 
-* :electric_plug: [Intellij Platform Explorer](https://plugins.jetbrains.com/intellij-platform-explorer/6954)
-
+* 🔌 [Intellij Platform Explorer](https://plugins.jetbrains.com/intellij-platform-explorer/6954)
+* 🌲 [Maven Deps Tree](https://github.com/SimonMarquis/Maven-Dependency-Tree)
  <!--
  Idiomatic Gradle  - https://github.com/jjohannes/idiomatic-gradle
                      https://github.com/jjohannes/gradle-demos/blob/main/java-17/ (Build Logic)

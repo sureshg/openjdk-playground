@@ -171,12 +171,14 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
+          # git commit -m "doc: Update generated.txt" || exit 0
           if [ -z "$(git status --porcelain)" ]; then
             echo 'No changes detected.'
             exit 0
           else
             git commit --message "doc: Update generated.txt"
             git push
+            # git push origin HEAD:${{ github.event.repository.default_branch }}
           fi
 
   # Github Release Action on tag push
