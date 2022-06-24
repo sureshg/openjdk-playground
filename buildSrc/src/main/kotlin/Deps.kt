@@ -48,7 +48,7 @@ object Deps {
         }
 
         object Coroutines {
-            const val version = "1.6.2"
+            const val version = "1.6.3"
             const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
             const val jdk8 = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$version"
             const val reactor = "org.jetbrains.kotlinx:coroutines-reactor:$version"
@@ -150,7 +150,7 @@ object Deps {
     }
 
     object Jetty {
-        const val version = "11.0.9"
+        const val version = "11.0.11"
         const val bom = "org.eclipse.jetty:jetty-bom:$version"
         const val server = "org.eclipse.jetty:jetty-server:$version"
         const val servlet = "org.eclipse.jetty:jetty-servlet:$version"
@@ -162,7 +162,7 @@ object Deps {
         const val jakartaServletApi = "org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api:5.0.2"
 
         object LoadGen {
-            const val version = "3.1.1"
+            const val version = "3.1.2"
             const val client =
                 "org.mortbay.jetty.loadgenerator:jetty-load-generator-client:$version"
             const val listebers =
@@ -696,7 +696,7 @@ inline val PluginDependenciesSpec.consistentVersions get() = id("com.palantir.co
 
 // Dependencies
 inline val PluginDependenciesSpec.shadow get() = id("com.github.johnrengelman.shadow") version "7.1.2"
-inline val PluginDependenciesSpec.dependencyAnalysis get() = id("com.autonomousapps.dependency-analysis") version "1.6.0"
+inline val PluginDependenciesSpec.dependencyAnalysis get() = id("com.autonomousapps.dependency-analysis") version "1.8.0"
 inline val PluginDependenciesSpec.dependencyAnalyze get() = id("ca.cutterslade.analyze") version "1.9.0" apply true
 inline val PluginDependenciesSpec.taskinfo get() = id("org.barfuin.gradle.taskinfo") version "1.4.0" apply false
 inline val PluginDependenciesSpec.taskTree get() = id("com.dorongold.task-tree") version "1.5"

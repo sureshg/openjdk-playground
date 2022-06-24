@@ -32,6 +32,9 @@ $ echo | openssl s_client -showcerts -connect google.com:443 2>/dev/null | while
 # Extract and show cert details
 $ echo | openssl s_client -showcerts -connect google.com:443 2>/dev/null | openssl x509 -inform pem -noout -text
 
+# Extract TLS public keys in Cert pinning format
+$ openssl s_client -connect 'dns.google.com:443' 2>&1 < /dev/null | sed -n '/-----BEGIN/,/-----END/p' | openssl x509 -noout -pubkey | openssl asn1parse -noout -inform pem -out /dev/stdout | openssl dgst -sha256 -binary | openssl base64
+
 $ curl -vvI https://google.com 2>&1 | grep -i date
 ```
 
@@ -58,6 +61,9 @@ $ openssl pkcs12 -export -chain -out keystore.p12 \
                   -CAfile cacert.crt -caname root-ca \
                   -name client-key
 
+# Convert a PEM certificate file to PKCS#12 without private key.
+$ openssl pkcs12 -export -nokeys -in certificate.pem -out keystore.p12
+
 # Change the keystore password
 # Convert PKCS#12 to PEM (don't encrypt private keys)
 $ openssl pkcs12 -in keystore.p12 -out keystore.pem -nodes
@@ -69,6 +75,34 @@ $ openssl pkcs12 -export -in keystore.pem -nodes -out keystore.p12
 $ openssl x509 -noout -modulus -in cert.pem | openssl md5
 $ openssl rsa  -noout -modulus -in cert.key | openssl md5
 ```
+
+
+
+   * **Extract certs from `PKCS#12`**
+
+```bash
+# Client Certificate (Remove "-clcerts" to include intermediate/root certs)
+$ openssl pkcs12 -in keystore.p12 -nodes -clcerts -nokeys -passin pass:<password>  -out client.crt
+
+# Certificate Key (Remove "-nodes" for encrypted)
+$ openssl pkcs12 -in keystore.p12 -nodes -nocerts -passin pass:<password> -out client.key
+
+# Decrypt Key
+$ openssl rsa -in client-encrypted.key -passin pass:<password> -out client.key
+
+# CA cert
+$ openssl pkcs12 -in keystore.p12 -nodes -nokeys -cacerts -passin pass:<password> -out cacert.crt
+
+# Remove attribtes (Optional)
+# openssl pkcs12 -in keystore.p12 -nodes  -nokeys -passin pass:<password> | openssl x509 -out client.crt
+# openssl pkcs12 -in keystore.p12 -nodes -nocerts -passin pass:<password> | openssl rsa -out client.key
+# openssl pkcs12 -in keystore.p12 -nodes -nokeys -cacerts -passin pass:<password> | openssl x509 -out cacert.crt
+
+# Convert to PKCS8 private key (For java)
+$ openssl pkcs8 -topk8 -inform PEM -outform DER -in cert.pem -out out.pem -nocrypt
+```
+
+
 
 
 
@@ -84,6 +118,37 @@ $ keytool -printcert -file /etc/ssl/certs/ca-bundle.crt | grep -i issuer
 # Using some awk trick
 $ awk -v cmd='openssl x509 -noout -subject -dates ' '/BEGIN/{close(cmd)};{print | cmd}' < /etc/ssl/certs/ca-bundle.crt
 ```
+
+
+
+### OpenJDK
+
+* List all [JDK cacerts](https://seanjmullan.org/blog/2022/03/23/jdk18#pki) using `OpenSSL`
+
+  ```bash
+  # Since JDK 18, cacert migrated to Password-Less PKCS12(https://jdk.java.net/18/release-notes#JDK-8275252)
+  $ openssl pkcs12 \
+            -cacerts \
+            -chain \
+            -nokeys \
+            -nomacver \
+            -in "$(find $JAVA_HOME -name cacerts)" \
+            -passin pass: | grep -i "subject="
+  ```
+
+
+
+* Show all JDK CA Certs using `Keytool`
+
+  ```bash
+  $ keytool -list -rfc -cacerts
+  # OR
+  $ keytool -list \
+            -rfc \
+            -storetype pkcs12 \
+            -storepass changeit \
+            -keystore "$(find $JAVA_HOME -name cacerts)"
+  ```
 
 
 
@@ -127,13 +192,24 @@ $ openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes \
 
 ```
 
-### OpenJDK
 
-* List all [JDK cacerts](https://seanjmullan.org/blog/2022/03/23/jdk18#pki)
+
+### Curl - Mutual TLS
 
 ```bash
-# Since JDK 18, cacert migrated to Password-Less PKCS12(https://jdk.java.net/18/release-notes#JDK-8275252)
-$ openssl pkcs12 -cacerts -chain -nokeys -nomacver -in "$JAVA_HOME/lib/security/cacerts" -passin pass: | grep -i "subject="
+# mTLS Authentication using PKCS#12 bundle
+$ curl -v \
+       --cert-type P12 \
+       --cert ~/keystore.p12:xxxxx \
+       -X GET "https://my-server:443/api"
+
+
+# Mutual TLS using PEM files
+$ curl -v \
+       --cacert ca.pem \
+       --key client.key \
+       --cert client.pem \
+       -X GET "https://my-server:443/api"
 ```
 
 
@@ -141,7 +217,7 @@ $ openssl pkcs12 -cacerts -chain -nokeys -nomacver -in "$JAVA_HOME/lib/security/
 ### Add Certs to IntelliJ Truststore
 
 ```bash
-$ cacerts="$HOME/Library/Application Support/JetBrains/IntelliJIdea2022.1/ssl/cacerts"
+$ cacerts="$(find "$HOME/Library/Application Support/JetBrains/IntelliJIdea2022.1" -name cacerts)"
 $ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
 $ keytool -importcert -trustcacerts -alias rootca -storetype PKCS12 -keystore $cacerts -storepass changeit -file "$HOME/Desktop/RootCA-SHA256.crt"
 $ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit

@@ -80,7 +80,7 @@ application {
         "-XX:+ShowHiddenFrames",
         "-ea"
         // "-XX:+AutoCreateSharedArchive",
-        // "-XX:SharedArchiveFile=$tmp/$name.jsa",
+        // "-XX:SharedArchiveFile=$tmp/$name.jsa"
         // "-verbose:module",
         // "-XX:ConcGCThreads=2",
         // "-XX:ZUncommitDelay=60",
@@ -93,6 +93,7 @@ application {
         // "-XX:+DisableAttachMechanism",
         // "-XX:+DebugNonSafepoints",
         // "-XX:OnOutOfMemoryError="./restart.sh"",
+        // "-XX:SelfDestructTimer=0.05",
         // "-Duser.timezone=\"PST8PDT\"",
         // "-Djava.net.preferIPv4Stack=true",
         // "-Djavax.net.debug=all",

@@ -13,11 +13,6 @@ dependencyResolutionManagement {
     // repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
 }
 
-// extra.properties.forEach { (k, v) ->
-//   println("$k -> $v")
-// }
-// val ktVersion = extra["kotlin.version"] as String
-
 pluginManagement {
     includeBuild("build-logic")
 
@@ -46,6 +41,11 @@ pluginManagement {
         }
     }
 }
+
+// extra.properties.forEach { (k, v) ->
+//   println("$k -> $v")
+// }
+// val ktVersion = extra["kotlin.version"] as String
 
 plugins {
     id("com.gradle.enterprise") version System.getProperty("gradleEnterprise")
