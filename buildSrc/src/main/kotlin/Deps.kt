@@ -90,7 +90,7 @@ object Deps {
 
     object Kotlinx {
         const val atomicfuVersion = "0.18.0"
-        const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.3.3"
+        const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
         const val reflectLite = "org.jetbrains.kotlinx:kotlinx.reflect.lite:1.0.0"
         const val atomicfu = "org.jetbrains.kotlinx:atomicfu:$atomicfuVersion"
         const val io = "org.jetbrains.kotlinx:kotlinx-io-jvm:0.1.16"
@@ -271,7 +271,7 @@ object Deps {
     }
 
     object KoTest {
-        const val version = "5.3.1"
+        const val version = "5.3.2"
         const val junit5Runner = "io.kotest:kotest-runner-junit5:$version"
         const val assertions = "io.kotest:kotest-assertions-core:$version"
         const val property = "io.kotest:kotest-property:$version"

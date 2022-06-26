@@ -65,6 +65,19 @@ jobs:
       artifact_name: ${{ steps.gradle-build.outputs.uberjar_name }}
       artifact_path: ${{ steps.gradle-build.outputs.uberjar_path }}
 
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
     steps:
       - name: ⏹️ Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.9.1
@@ -181,7 +194,7 @@ jobs:
             # git push origin HEAD:${{ github.event.repository.default_branch }}
           fi
 
-  # Github Release Action on tag push
+  # GitHub Release Action on tag push
   release:
     name: 🚰 Release new version.
     needs: [ build ]

@@ -19,12 +19,6 @@ internal val Project.libs get() = the<LibrariesForLibs>()
 /** Quote for -Xlog file */
 val Project.xQuote get() = if (OperatingSystem.current().isWindows) """\"""" else """""""
 
-val Project.isKotlinMPP get() = plugins.hasPlugin("org.jetbrains.kotlin.multiplatform")
-
-val Project.isKotlinJvmProject get() = plugins.hasPlugin("org.jetbrains.kotlin.jvm")
-
-val Project.isKotlinJsProject get() = plugins.hasPlugin("org.jetbrains.kotlin.js")
-
 val Project.isPlatformProject get() = plugins.hasPlugin("java-platform")
 
 val Project.isJavaLibraryProject get() = plugins.hasPlugin("java-library")

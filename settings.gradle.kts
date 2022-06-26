@@ -2,8 +2,6 @@ rootProject.name = "openjdk-playground"
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-includeBuild("build-logic")
-
 // Centralizing repositories declaration
 dependencyResolutionManagement {
     repositories {
@@ -13,22 +11,28 @@ dependencyResolutionManagement {
     // repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
 }
 
+val description: String by settings
+println(description)
+
 pluginManagement {
+    // Included plugin builds can contribute settings and project plugins
     includeBuild("build-logic")
 
-//  val kotlinVersion: String by settings
-//  val composeVersion: String by settings
-//  plugins {
-//    id("plugins.common") // From build-logic
-//    kotlin("multiplatform") version kotlinVersion
-//    id("org.jetbrains.compose") version composeVersion
-//  }
-
+    // Plugin repositories to use
     repositories {
         gradlePluginPortal()
         mavenCentral()
         google()
-        // maven(url = uri("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev"))
+    }
+
+    // Configures default plugin versions
+    plugins {
+        // val kotlinVersion = extra["kotlin.version"] as String
+        // kotlin("multiplatform") version kotlinVersion
+        // kotlin("jvm") version kotlinVersion
+        // kotlin("js") version kotlinVersion
+        // kotlin("plugin.serialization") version kotlinVersion
+        // id("plugins.common") // From build-logic
     }
 
     resolutionStrategy {
@@ -42,19 +46,18 @@ pluginManagement {
     }
 }
 
-// extra.properties.forEach { (k, v) ->
-//   println("$k -> $v")
-// }
-// val ktVersion = extra["kotlin.version"] as String
-
 plugins {
     id("com.gradle.enterprise") version System.getProperty("gradleEnterprise")
 }
 
 // Composite Builds
-// includeBuild("ksp-app")
+includeBuild("build-logic")
 // includeBuild("path-to-repo-clone")
 
 // Add a project
 // include("lib")
 // project(":lib").projectDir = file("ksp/lib")
+
+// extra.properties.forEach { (k, v) ->
+//   println("$k -> $v")
+// }

@@ -77,6 +77,24 @@
 
 
 
+### [Proc FileSystem](https://dashdash.io/5/proc)
+
+* Checking the Init system
+
+  ```bash
+  case "$(cat /proc/1/comm)" in
+      init)    echo Init ;;
+      systemd) echo SystemD ;;
+      upstart) echo Upstart ;;
+      *) echo "unknown: '`cat /proc/1/comm`'" ;;
+  esac
+
+  # OR
+  $ ps --no-headers -o comm 1 | grep -q 'systemd'
+  ```
+
+
+
 ### Curl
 
    * Get round trip time
