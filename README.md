@@ -16,7 +16,7 @@
 
 ```bash
 $ curl -s "https://get.sdkman.io" | bash
-$ sdk i java 20.ea.1-open
+$ sdk i java 20.ea.3-open
 ```
 
 #### Build
