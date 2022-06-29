@@ -1,4 +1,4 @@
-# JDK Commands
+# OpenJDK
 
 This document contains list of [Java/JDK](http://jdk.java.net/) commands which i find useful for my
 day to day work.

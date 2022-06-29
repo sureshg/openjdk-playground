@@ -108,6 +108,30 @@
 
 
 
+   * Download a file with retry
+
+     ```bash
+     # -fsSLO
+     $curl --fail \
+           --silent \
+           --show-error \
+           --location \
+           --remote-name \
+           --compressed \
+           --progress-bar \
+           --retry 3 \
+           --retry-connrefused \
+           --retry-delay 1 \
+           --connect-timeout 5 \
+           --max-time 10 \
+           --request GET \
+     https://search.maven.org/remotecontent?filepath=org/jetbrains/kotlin/kotlin-stdlib/1.7.0/kotlin-stdlib-1.7.0.jar
+     ```
+
+
+
+
+
 ### SSH
 
 - Port Forwarding
