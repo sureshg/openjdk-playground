@@ -17,27 +17,6 @@ plugins {
     //`java-library`
 }
 
-// Access version catalogs
-printVersionCatalog()
-
-// apply(from ="")
-idea {
-    module {
-        isDownloadJavadoc = true
-        isDownloadSources = true
-    }
-    project.vcs = "Git"
-}
-
-if (debugEnabled) {
-    // Print all the tasks
-    gradle.taskGraph.whenReady {
-        allTasks.forEachIndexed { index, task ->
-            println("${index + 1}. ${task.name}")
-        }
-    }
-}
-
 if (hasCleanTask) {
     logger.warn(
         """
@@ -50,9 +29,24 @@ if (hasCleanTask) {
     )
 }
 
+// Print all the tasks
+printTaskGraph()
+
+// Access version catalogs
+printVersionCatalog()
+
 // After the project configure
 afterEvaluate {
     println("=== Project Configuration Completed ===")
+}
+// apply(from ="")
+
+idea {
+    module {
+        isDownloadJavadoc = true
+        isDownloadSources = true
+    }
+    project.vcs = "Git"
 }
 
 java {
@@ -67,7 +61,6 @@ java {
 }
 
 tasks {
-
     // Clean all composite builds
     register("cleanAll") {
         description = "Clean all composite builds"
@@ -143,7 +136,7 @@ tasks {
         description = "Generate template classes"
         group = LifecycleBasePlugin.BUILD_TASK_NAME
 
-        // Github actions workaround
+        // GitHub actions workaround
         val props = project.properties.toMutableMap()
         props["git_branch"] = project.findProperty("branch_name")
         props["git_tag"] = project.findProperty("base_tag")
@@ -197,7 +190,8 @@ tasks {
     }
 }
 
-
+// Set additional jvm args
+// -----------------------
 //  tasks.withType<JavaExec>().matching {  }.configureEach {
 //    jvmArgs(
 //      "--enable-native-access=ALL-UNNAMED",
@@ -208,3 +202,15 @@ tasks {
 //    javaLauncher.set(project.javaToolchains.launcherFor(java.toolchain))
 //  }
 
+// Gradle dependency substitution
+// ------------------------------
+// allprojects {
+//    configurations.all {
+//        resolutionStrategy.dependencySubstitution {
+//            substitute(module("org.jetbrains.compose.compiler:compiler")).apply {
+//                using(module("androidx.compose.compiler:compiler:1.2.0"))
+//                using(project(":api"))
+//            }
+//        }
+//    }
+// }

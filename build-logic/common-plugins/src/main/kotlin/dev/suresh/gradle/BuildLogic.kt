@@ -78,6 +78,17 @@ fun Project.printVersionCatalog() {
     }
 }
 
+/** Print all the tasks */
+fun Project.printTaskGraph() {
+    if (debugEnabled) {
+        gradle.taskGraph.whenReady {
+            allTasks.forEachIndexed { index, task ->
+                println("${index + 1}. ${task.name}")
+            }
+        }
+    }
+}
+
 /** Returns the application `run` command. */
 fun Project.appRunCmd(jar: File, args: List<String>): String {
     val path = layout.projectDirectory.asFile.toPath().relativize(jar.toPath())

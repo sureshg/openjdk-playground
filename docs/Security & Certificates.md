@@ -180,7 +180,7 @@ $ openssl pkey -check -in example.key -pubout -outform PEM
 $ diff <(openssl x509 -pubkey -in example.pem -noout) <(openssl pkey -check -in example.key -pubout -outform PEM)
 
 # OR create a test TLS server that will verify that a key and certificate match
-$ openssl s_server -key example.key -cert example.pem
+$ openssl s_server -accept 443 -www -key example.key -cert example.pem
 
 
 # Using OpenSSL ≤ 1.1.0

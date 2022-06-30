@@ -708,7 +708,7 @@ inline val PluginDependenciesSpec.javafx get() = id("org.openjfx.javafxplugin") 
 inline val PluginDependenciesSpec.mrjar get() = id("me.champeau.mrjar") version "0.1"
 
 // inline val PluginDependenciesSpec.mrjar get() = id("com.lingocoder.mrjar") version "0.0.16"
-inline val PluginDependenciesSpec.protobuf get() = id("com.google.protobuf") version "0.8.18"
+inline val PluginDependenciesSpec.protobuf get() = id("com.google.protobuf") version "0.8.19"
 inline val PluginDependenciesSpec.changelog get() = id("org.jetbrains.changelog") version "0.4.0"
 
 inline val PluginDependenciesSpec.kotless get() = id("io.kotless") version "0.1.6"

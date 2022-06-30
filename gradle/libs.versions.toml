@@ -4,7 +4,7 @@ kotlin                         = "1.7.0"
 kotlin-jvm-target              = "18"
 kotlin-api-version             = "1.7"
 kotlin-lang-version            = "1.7"
-gradle                         = "7.5-rc-2"
+gradle                         = "7.5-rc-3"
 
 # Additional metadata
 githubProject                  = "https://github.com/sureshg/openjdk-playground"

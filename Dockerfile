@@ -29,28 +29,3 @@ ENV PATH "${JAVA_HOME}/bin:${PATH}"
 # COPY ./docs/scripts/*.sh /scripts
 # RUN ./scripts/openjdk-ea.sh ${JDK_VERSION}
 
-COPY src/main/java/JavaApp.java /app
-WORKDIR /app
-
-RUN javac *.java \
-    && jar cfe app.jar JavaApp *.class
-
-RUN $JAVA_HOME/bin/jlink \
-         --add-modules java.compiler,java.desktop,java.base \
-         --verbose \
-         --strip-debug \
-         --no-man-pages \
-         --no-header-files \
-         --compress=2 \
-         --output /jvm
-
-CMD ["java", "--list-modules"]
-# CMD ["jshell"]
-
-# FROM gcr.io/distroless/java-debian10:base
-# ARG JAR_FILE=openjdk-playground-1.2.0-12-main-uber.jar
-#
-# COPY --from=jreBuilder /jre /usr/lib/jre
-# ENTRYPOINT ["/usr/lib/jre/bin/java", "-jar", "./app.jar"]
-# COPY ./build/libs/${JAR_FILE} ./app.jar
-
