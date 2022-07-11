@@ -7,8 +7,8 @@ import java.util.UUID
 /**
  * Workflow commands for GitHub Actions.
  *
- * @see
- *     [WorkflowCommands](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions)
+ * [WorkflowCommands](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions)
+ *
  *     for more details.
  */
 object GithubAction {
@@ -151,10 +151,10 @@ object GithubAction {
             val token = UUID.randomUUID().toString()
             println(
                 """
-        |::stop-commands::$token
-        |${messages.joinToString(System.lineSeparator())}
-        |::$token::
-        """.trimMargin()
+                |::stop-commands::$token
+                |${messages.joinToString(System.lineSeparator())}
+                |::$token::
+                """.trimMargin()
             )
         }
     }
@@ -227,7 +227,7 @@ object GithubAction {
         endColumn: Int = 0,
     ) = buildString {
         append("::")
-        append(type.name.toLowerCase())
+        append(type.name.lowercase())
         when {
             type != DEBUG -> {
                 val params = mutableListOf<String>()

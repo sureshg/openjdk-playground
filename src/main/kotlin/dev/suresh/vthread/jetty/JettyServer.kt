@@ -2,7 +2,6 @@ package dev.suresh.vthread.jetty
 
 import io.mikael.urlbuilder.*
 import jakarta.servlet.http.*
-import jdk.incubator.concurrent.*
 import org.eclipse.jetty.http.*
 import org.eclipse.jetty.server.*
 import org.eclipse.jetty.server.handler.*
@@ -10,6 +9,7 @@ import org.eclipse.jetty.servlet.*
 import org.eclipse.jetty.util.*
 import org.eclipse.jetty.util.component.*
 import java.net.http.*
+import java.net.http.HttpResponse.BodyHandlers
 import java.time.Duration
 import java.util.concurrent.*
 import kotlin.time.*
@@ -59,11 +59,14 @@ fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
 
     val client = HttpClient.newBuilder()
         .version(HttpClient.Version.HTTP_1_1)
+        .followRedirects(HttpClient.Redirect.NORMAL)
         .connectTimeout(Duration.ofSeconds(10))
         .build()
 
     val factory = Thread.ofVirtual().name("VirtualThreadPool-", 1).factory()
     val execSvc = Executors.newThreadPerTaskExecutor(factory)
+
+    // val ecs = ExecutorCompletionService<String>(execSvc)
 
     val results = execSvc.use { exec ->
         val user = System.getProperty("user.name", "user")
@@ -77,12 +80,16 @@ fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
                         .addParameter("id", idx.toString())
                         .addParameter("user", user)
                         .toUri()
-                    val res = client.send(
-                        HttpRequest.newBuilder().uri(uri).build(),
-                        HttpResponse.BodyHandlers.ofString()
-                    )
 
-                    println("<--- $idx. Response($threadInfo): ${res.body()}")
+                    val req = HttpRequest.newBuilder()
+                        .uri(uri)
+                        .timeout(Duration.ofSeconds(2))
+                        .header("Content-Type", "application/json")
+                        .GET()
+                        .build()
+                    val res = client.send(req, BodyHandlers.ofString())
+
+                    println("<--- $idx. Response($threadInfo): ${res.statusCode()} - ${res.body()}")
                     Result.success(res.body())
                 } catch (t: Throwable) {
                     Result.failure(t)
