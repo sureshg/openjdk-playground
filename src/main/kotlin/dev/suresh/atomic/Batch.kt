@@ -10,13 +10,13 @@ import java.util.concurrent.atomic.*
  */
 data class Counter(@Volatile private var count: Int = 0) {
 
-    companion object {
-        private val COUNT = AtomicIntegerFieldUpdater.newUpdater(Counter::class.java, "count")
-    }
+  companion object {
+    private val COUNT = AtomicIntegerFieldUpdater.newUpdater(Counter::class.java, "count")
+  }
 
-    fun increment(delta: Int) = COUNT.addAndGet(this, delta)
+  fun increment(delta: Int) = COUNT.addAndGet(this, delta)
 }
 
 fun main() {
-    println(Counter().apply { increment(100) })
+  println(Counter().apply { increment(100) })
 }

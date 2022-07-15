@@ -379,7 +379,6 @@
             <arg>-Xjvm-default=all</arg>
             <arg>-Xassertions=jvm</arg>
             <arg>-Xuse-experimental=kotlin.ExperimentalStdlibApi</arg>
-            <arg>-opt-in=kotlin.RequiresOptIn</arg>
             <arg>-Xopt-in=kotlinx.serialization.ImplicitReflectionSerializer</arg>
           </args>
         </configuration>

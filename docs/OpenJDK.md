@@ -416,7 +416,6 @@ kotlin {
     main {
       kotlin.srcDirs("src")
       languageSettings.apply {
-        optIn("kotlin.RequiresOptIn")
         optIn("kotlin.ExperimentalStdlibApi")
       }
     }

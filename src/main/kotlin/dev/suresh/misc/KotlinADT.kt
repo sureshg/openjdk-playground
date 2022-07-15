@@ -5,23 +5,23 @@ import kotlin.math.*
 sealed class Tree<out T>
 
 object Empty : Tree<Nothing>() {
-    override fun toString() = "Empty"
+  override fun toString() = "Empty"
 }
 
 data class Node<T>(
-    val value: T,
-    val right: Tree<T> = Empty,
-    val left: Tree<T> = Empty
+  val value: T,
+  val right: Tree<T> = Empty,
+  val left: Tree<T> = Empty
 ) : Tree<T>()
 
 fun <T : Number> Tree<T>.sum(): Long = when (this) {
-    Empty -> 0
-    is Node -> value.toLong() + left.sum() + right.sum()
+  Empty -> 0
+  is Node -> value.toLong() + left.sum() + right.sum()
 }
 
 fun <T> Tree<T>.depth(): Int = when (this) {
-    Empty -> 0
-    is Node -> max(left.depth(), right.depth()) + 1
+  Empty -> 0
+  is Node -> max(left.depth(), right.depth()) + 1
 }
 
 // fun <T> Tree<T>.printTree(depth: Int = 0) {
