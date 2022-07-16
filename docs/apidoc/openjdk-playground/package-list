@@ -34,6 +34,8 @@ $dokka.location:/Result.Success/Success/#TypeParam(bounds=[kotlin.Any])/Pointing
 $dokka.location:/Result.Success/data/#/PointingToDeclaration/openjdk-playground/[root]/-result/-success/data.html
 $dokka.location:/Result///PointingToDeclaration/openjdk-playground/[root]/-result/index.html
 $dokka.location:dev.suresh.adt////PointingToDeclaration/openjdk-playground/dev.suresh.adt/index.html
+$dokka.location:dev.suresh.adt/DOP///PointingToDeclaration/openjdk-playground/dev.suresh.adt/-d-o-p/index.html
+$dokka.location:dev.suresh.adt/DOP/main/#java.lang.String[]/PointingToDeclaration/openjdk-playground/dev.suresh.adt/-d-o-p/main.html
 $dokka.location:dev.suresh.adt/Records///PointingToDeclaration/openjdk-playground/dev.suresh.adt/-records/index.html
 $dokka.location:dev.suresh.adt/Records/main/#java.lang.String[]/PointingToDeclaration/openjdk-playground/dev.suresh.adt/-records/main.html
 $dokka.location:dev.suresh.adt/Records/run/#/PointingToDeclaration/openjdk-playground/dev.suresh.adt/-records/run.html
@@ -52,6 +54,7 @@ $dokka.location:dev.suresh.collection/CollectionTest///PointingToDeclaration/op
 $dokka.location:dev.suresh.collection/CollectionTest/main/#java.lang.String[]/PointingToDeclaration/openjdk-playground/dev.suresh.collection/-collection-test/main.html
 $dokka.location:dev.suresh.collection/CollectionTest/teeing/#/PointingToDeclaration/openjdk-playground/dev.suresh.collection/-collection-test/teeing.html
 $dokka.location:dev.suresh.concurrent////PointingToDeclaration/openjdk-playground/dev.suresh.concurrent/index.html
+$dokka.location:dev.suresh.concurrent//factorial/#kotlin.Int/PointingToDeclaration/openjdk-playground/dev.suresh.concurrent/factorial.html
 $dokka.location:dev.suresh.concurrent//getString/#/PointingToDeclaration/openjdk-playground/dev.suresh.concurrent/get-string.html
 $dokka.location:dev.suresh.concurrent//main/#/PointingToDeclaration/openjdk-playground/dev.suresh.concurrent/main.html
 $dokka.location:dev.suresh.concurrent//printFiveTimes/#kotlin.Function0[kotlin.String]/PointingToDeclaration/openjdk-playground/dev.suresh.concurrent/print-five-times.html
@@ -118,26 +121,6 @@ $dokka.location:dev.suresh.lang/Foo///PointingToDeclaration/openjdk-playground/
 $dokka.location:dev.suresh.lang/HiddenData///PointingToDeclaration/openjdk-playground/dev.suresh.lang/-hidden-data/index.html
 $dokka.location:dev.suresh.lang/HiddenData/HiddenData/#kotlin.String/PointingToDeclaration/openjdk-playground/dev.suresh.lang/-hidden-data/-hidden-data.html
 $dokka.location:dev.suresh.lang/HiddenData/name/#/PointingToDeclaration/openjdk-playground/dev.suresh.lang/-hidden-data/name.html
-$dokka.location:dev.suresh.loom.jetty////PointingToDeclaration/openjdk-playground/dev.suresh.loom.jetty/index.html
-$dokka.location:dev.suresh.loom.jetty//fullURL/jakarta.servlet.http.HttpServletRequest#/PointingToDeclaration/openjdk-playground/dev.suresh.loom.jetty/full-u-r-l.html
-$dokka.location:dev.suresh.loom.jetty//main/#/PointingToDeclaration/openjdk-playground/dev.suresh.loom.jetty/main.html
-$dokka.location:dev.suresh.loom.jetty//pumpRequests/#org.eclipse.jetty.server.Server#kotlin.Int#kotlin.Long/PointingToDeclaration/openjdk-playground/dev.suresh.loom.jetty/pump-requests.html
-$dokka.location:dev.suresh.loom.jetty//run/#kotlin.Array[kotlin.String]?/PointingToDeclaration/openjdk-playground/dev.suresh.loom.jetty/run.html
-$dokka.location:dev.suresh.loom.jetty//threadInfo/#/PointingToDeclaration/openjdk-playground/dev.suresh.loom.jetty/thread-info.html
-$dokka.location:dev.suresh.loom.jetty/HelloServlet///PointingToDeclaration/openjdk-playground/dev.suresh.loom.jetty/-hello-servlet/index.html
-$dokka.location:dev.suresh.loom.jetty/HelloServlet/HelloServlet/#/PointingToDeclaration/openjdk-playground/dev.suresh.loom.jetty/-hello-servlet/-hello-servlet.html
-$dokka.location:dev.suresh.loom.jetty/LoomThreadPool///PointingToDeclaration/openjdk-playground/dev.suresh.loom.jetty/-loom-thread-pool/index.html
-$dokka.location:dev.suresh.loom.jetty/LoomThreadPool/LoomThreadPool/#/PointingToDeclaration/openjdk-playground/dev.suresh.loom.jetty/-loom-thread-pool/-loom-thread-pool.html
-$dokka.location:dev.suresh.loom.jetty/LoomThreadPool/execute/#java.lang.Runnable/PointingToDeclaration/openjdk-playground/dev.suresh.loom.jetty/-loom-thread-pool/execute.html
-$dokka.location:dev.suresh.loom.jetty/LoomThreadPool/getIdleThreads/#/PointingToDeclaration/openjdk-playground/dev.suresh.loom.jetty/-loom-thread-pool/get-idle-threads.html
-$dokka.location:dev.suresh.loom.jetty/LoomThreadPool/getThreads/#/PointingToDeclaration/openjdk-playground/dev.suresh.loom.jetty/-loom-thread-pool/get-threads.html
-$dokka.location:dev.suresh.loom.jetty/LoomThreadPool/isLowOnThreads/#/PointingToDeclaration/openjdk-playground/dev.suresh.loom.jetty/-loom-thread-pool/is-low-on-threads.html
-$dokka.location:dev.suresh.loom.jetty/LoomThreadPool/join/#/PointingToDeclaration/openjdk-playground/dev.suresh.loom.jetty/-loom-thread-pool/join.html
-$dokka.location:dev.suresh.loom////PointingToDeclaration/openjdk-playground/dev.suresh.loom/index.html
-$dokka.location:dev.suresh.loom//main/#/PointingToDeclaration/openjdk-playground/dev.suresh.loom/main.html
-$dokka.location:dev.suresh.loom//tracePinnedThread/#/PointingToDeclaration/openjdk-playground/dev.suresh.loom/trace-pinned-thread.html
-$dokka.location:dev.suresh.loom/LoomServer///PointingToDeclaration/openjdk-playground/dev.suresh.loom/-loom-server/index.html
-$dokka.location:dev.suresh.loom/LoomServer/run/#/PointingToDeclaration/openjdk-playground/dev.suresh.loom/-loom-server/run.html
 $dokka.location:dev.suresh.misc////PointingToDeclaration/openjdk-playground/dev.suresh.misc/index.html
 $dokka.location:dev.suresh.misc//depth/dev.suresh.misc.Node1[TypeParam(bounds=[kotlin.Any?])]?#/PointingToDeclaration/openjdk-playground/dev.suresh.misc/depth.html
 $dokka.location:dev.suresh.misc//depth/dev.suresh.misc.Tree[TypeParam(bounds=[kotlin.Any?])]#/PointingToDeclaration/openjdk-playground/dev.suresh.misc/depth.html
@@ -198,6 +181,26 @@ $dokka.location:dev.suresh.util/Hex/parseLong/#kotlin.String/PointingToDeclarati
 $dokka.location:dev.suresh.util/Hex/toHex/#kotlin.ByteArray#kotlin.CharArray/PointingToDeclaration/openjdk-playground/dev.suresh.util/-hex/to-hex.html
 $dokka.location:dev.suresh.util/Hex/toHex/#kotlin.Int#kotlin.CharArray/PointingToDeclaration/openjdk-playground/dev.suresh.util/-hex/to-hex.html
 $dokka.location:dev.suresh.util/Hex/toHex/#kotlin.Long#kotlin.CharArray/PointingToDeclaration/openjdk-playground/dev.suresh.util/-hex/to-hex.html
+$dokka.location:dev.suresh.vthread.jetty////PointingToDeclaration/openjdk-playground/dev.suresh.vthread.jetty/index.html
+$dokka.location:dev.suresh.vthread.jetty//fullURL/jakarta.servlet.http.HttpServletRequest#/PointingToDeclaration/openjdk-playground/dev.suresh.vthread.jetty/full-u-r-l.html
+$dokka.location:dev.suresh.vthread.jetty//main/#/PointingToDeclaration/openjdk-playground/dev.suresh.vthread.jetty/main.html
+$dokka.location:dev.suresh.vthread.jetty//pumpRequests/#org.eclipse.jetty.server.Server#kotlin.Int#kotlin.Long/PointingToDeclaration/openjdk-playground/dev.suresh.vthread.jetty/pump-requests.html
+$dokka.location:dev.suresh.vthread.jetty//run/#kotlin.Array[kotlin.String]?/PointingToDeclaration/openjdk-playground/dev.suresh.vthread.jetty/run.html
+$dokka.location:dev.suresh.vthread.jetty//threadInfo/#/PointingToDeclaration/openjdk-playground/dev.suresh.vthread.jetty/thread-info.html
+$dokka.location:dev.suresh.vthread.jetty/HelloServlet///PointingToDeclaration/openjdk-playground/dev.suresh.vthread.jetty/-hello-servlet/index.html
+$dokka.location:dev.suresh.vthread.jetty/HelloServlet/HelloServlet/#/PointingToDeclaration/openjdk-playground/dev.suresh.vthread.jetty/-hello-servlet/-hello-servlet.html
+$dokka.location:dev.suresh.vthread.jetty/VThreadThreadPool///PointingToDeclaration/openjdk-playground/dev.suresh.vthread.jetty/-v-thread-thread-pool/index.html
+$dokka.location:dev.suresh.vthread.jetty/VThreadThreadPool/VThreadThreadPool/#/PointingToDeclaration/openjdk-playground/dev.suresh.vthread.jetty/-v-thread-thread-pool/-v-thread-thread-pool.html
+$dokka.location:dev.suresh.vthread.jetty/VThreadThreadPool/execute/#java.lang.Runnable/PointingToDeclaration/openjdk-playground/dev.suresh.vthread.jetty/-v-thread-thread-pool/execute.html
+$dokka.location:dev.suresh.vthread.jetty/VThreadThreadPool/getIdleThreads/#/PointingToDeclaration/openjdk-playground/dev.suresh.vthread.jetty/-v-thread-thread-pool/get-idle-threads.html
+$dokka.location:dev.suresh.vthread.jetty/VThreadThreadPool/getThreads/#/PointingToDeclaration/openjdk-playground/dev.suresh.vthread.jetty/-v-thread-thread-pool/get-threads.html
+$dokka.location:dev.suresh.vthread.jetty/VThreadThreadPool/isLowOnThreads/#/PointingToDeclaration/openjdk-playground/dev.suresh.vthread.jetty/-v-thread-thread-pool/is-low-on-threads.html
+$dokka.location:dev.suresh.vthread.jetty/VThreadThreadPool/join/#/PointingToDeclaration/openjdk-playground/dev.suresh.vthread.jetty/-v-thread-thread-pool/join.html
+$dokka.location:dev.suresh.vthread////PointingToDeclaration/openjdk-playground/dev.suresh.vthread/index.html
+$dokka.location:dev.suresh.vthread//main/#/PointingToDeclaration/openjdk-playground/dev.suresh.vthread/main.html
+$dokka.location:dev.suresh.vthread//tracePinnedThread/#/PointingToDeclaration/openjdk-playground/dev.suresh.vthread/trace-pinned-thread.html
+$dokka.location:dev.suresh.vthread/VThreadServer///PointingToDeclaration/openjdk-playground/dev.suresh.vthread/-v-thread-server/index.html
+$dokka.location:dev.suresh.vthread/VThreadServer/run/#/PointingToDeclaration/openjdk-playground/dev.suresh.vthread/-v-thread-server/run.html
 $dokka.location:dev.suresh////PointingToDeclaration/openjdk-playground/dev.suresh/index.html
 $dokka.location:dev.suresh/Main///PointingToDeclaration/openjdk-playground/dev.suresh/-main/index.html
 $dokka.location:dev.suresh/Main/computeScore/#dev.suresh.Person/PointingToDeclaration/openjdk-playground/dev.suresh/-main/compute-score.html
@@ -230,8 +233,6 @@ dev.suresh.jackson
 dev.suresh.json
 dev.suresh.jte
 dev.suresh.lang
-dev.suresh.loom
-dev.suresh.loom.jetty
 dev.suresh.misc
 dev.suresh.mvn
 dev.suresh.network
@@ -239,5 +240,7 @@ dev.suresh.npe
 dev.suresh.server
 dev.suresh.service
 dev.suresh.util
+dev.suresh.vthread
+dev.suresh.vthread.jetty
 gg.jte.generated.precompiled
 
