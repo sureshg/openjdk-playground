@@ -31,6 +31,14 @@ val Project.hasCleanTask get() = gradle.startParameter.taskNames.any { it == "cl
 /** Checks if the project has a snapshot version. */
 val Project.isSnapshot get() = version.toString().endsWith("SNAPSHOT", true)
 
+/** Editor config for the kotlin formatter */
+val Project.editorConfig
+  get() = mapOf(
+    "indent_size" to 2,
+    "indent_style" to "space",
+    "disabled_rules" to "no-wildcard-imports,filename"
+  )
+
 /** Check if it's a non-stable(RC) version. */
 val String.isNonStable: Boolean
   get() {

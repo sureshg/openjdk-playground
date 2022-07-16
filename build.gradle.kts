@@ -182,23 +182,16 @@ apiValidation {
 spotless {
   // if(plugins.hasPlugin(JavaPlugin::class.java)){}
   java {
-    googleJavaFormat(gjfVersion)
-    // Exclude sealed types until it supports.
-    targetExclude("**/ResultType.java", "build/generated-sources/**/*.java")
+    googleJavaFormat()
+    targetExclude("build/generated-sources/**/*.java")
     importOrder()
     removeUnusedImports()
     toggleOffOn()
     trimTrailingWhitespace()
   }
 
-  val editorConfig = mapOf(
-    "indent_size" to 2,
-    "indent_style" to "space",
-    "disabled_rules" to "no-wildcard-imports,filename"
-  )
-
   kotlin {
-    ktlint(ktlintVersion).setUseExperimental(true).editorConfigOverride(editorConfig)
+    ktlint().setUseExperimental(true).editorConfigOverride(editorConfig)
     targetExclude("$buildDir/**/*.kt", "bin/**/*.kt", "build/generated-sources/**/*.kt")
     endWithNewline()
     indentWithSpaces()
@@ -207,7 +200,7 @@ spotless {
   }
 
   kotlinGradle {
-    ktlint(ktlintVersion).setUseExperimental(true).editorConfigOverride(editorConfig)
+    ktlint().setUseExperimental(true).editorConfigOverride(editorConfig)
     target("*.gradle.kts")
   }
 
@@ -363,7 +356,7 @@ tasks {
         "-Xjspecify-annotations=strict"
         // "-Xuse-k2",
         // "-Xbackend-threads=4",
-        // "-Xjdk-release=${javaVersion}",
+        // "-Xjdk-release=$javaVersion",
         // "-Xadd-modules=ALL-MODULE-PATH",
         // "-Xmodule-path=",
         // "-Xjvm-enable-preview",

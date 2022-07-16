@@ -5,7 +5,7 @@ import java.time.*
 import javax.jmdns.*
 
 /** On Mac : "$ dns-sd -B _services._dns-sd._udp ." */
-fun run() {
+fun main() {
   JmDNS.create(InetAddress.getLocalHost()).use {
     it.addServiceListener(
       "_googlecast._tcp.local.",
