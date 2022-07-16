@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > MyProcessor</title>
+  <title>Coverage Report > TracePinnedThreadsKt</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/highlight-idea.css";
@@ -17,10 +17,10 @@
 <div class="breadCrumbs">
 Current scope:     <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">dev.suresh.service</a>
+    <a href="../index.html">dev.suresh.vthread</a>
 </div>
 
-<h1>Coverage Summary for Class: MyProcessor (dev.suresh.service)</h1>
+<h1>Coverage Summary for Class: TracePinnedThreadsKt (dev.suresh.vthread)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -47,7 +47,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">MyProcessor</td>
+  <td class="name">TracePinnedThreadsKt</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -64,13 +64,12 @@ Current scope:     <a href="../../index.html">all classes</a>
     (0/3)
   </span>
 </td>
-    <td class="coverageStat"/>
 <td class="coverageStat">
   <span class="percent">
     0%
   </span>
   <span class="absValue">
-    (0/4)
+    (0/2)
   </span>
 </td>
 <td class="coverageStat">
@@ -78,7 +77,15 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/10)
+    (0/20)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/90)
   </span>
 </td>
 </tr>
@@ -90,24 +97,50 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package dev.suresh.service
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package dev.suresh.vthread
 <i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import com.google.auto.service.*
-<i class="no-highlight">4</i>&nbsp;import javax.annotation.processing.*
-<i class="no-highlight">5</i>&nbsp;import javax.lang.model.element.*
+<i class="no-highlight">3</i>&nbsp;import java.io.*
+<i class="no-highlight">4</i>&nbsp;import java.time.*
+<i class="no-highlight">5</i>&nbsp;import java.util.concurrent.locks.*
 <i class="no-highlight">6</i>&nbsp;
-<i class="no-highlight">7</i>&nbsp;@AutoService(Processor::class)
-<b class="nc"><i class="no-highlight">8</i>&nbsp;class MyProcessor : AbstractProcessor() {</b>
-<i class="no-highlight">9</i>&nbsp;    override fun init(processingEnv: ProcessingEnvironment?) {
-<b class="nc"><i class="no-highlight">10</i>&nbsp;        super.init(processingEnv)</b>
-<b class="nc"><i class="no-highlight">11</i>&nbsp;        println(&quot;Initializing MyProcessor...&quot;)</b>
-<i class="no-highlight">12</i>&nbsp;    }
-<i class="no-highlight">13</i>&nbsp;
-<i class="no-highlight">14</i>&nbsp;    override fun process(
-<i class="no-highlight">15</i>&nbsp;        annotations: MutableSet&lt;out TypeElement&gt;?,
-<i class="no-highlight">16</i>&nbsp;        roundEnv: RoundEnvironment?
-<b class="nc"><i class="no-highlight">17</i>&nbsp;    ) = true</b>
-<i class="no-highlight">18</i>&nbsp;}
+<i class="no-highlight">7</i>&nbsp;/**
+<i class="no-highlight">8</i>&nbsp; * Run with -Djdk.tracePinnedThreads=short|full
+<i class="no-highlight">9</i>&nbsp; *
+<i class="no-highlight">10</i>&nbsp; * [TracePinnedThreads.java](https://github.com/openjdk/jdk/blob/master/test/jdk/java/lang/Thread/virtual/TracePinnedThreads.java)
+<i class="no-highlight">11</i>&nbsp; *
+<i class="no-highlight">12</i>&nbsp; * [VirtualThreadTests](https://github.com/openjdk/jdk/tree/master/test/jdk/java/lang/Thread/virtual)
+<i class="no-highlight">13</i>&nbsp; *
+<i class="no-highlight">14</i>&nbsp; * [LoomTroubleshootingGuide](https://wiki.openjdk.java.net/display/loom/Troubleshooting)
+<i class="no-highlight">15</i>&nbsp; */
+<i class="no-highlight">16</i>&nbsp;fun main() {
+<b class="nc"><i class="no-highlight">17</i>&nbsp;  System.setProperty(&quot;jdk.tracePinnedThreads&quot;, &quot;full&quot;)</b>
+<b class="nc"><i class="no-highlight">18</i>&nbsp;  tracePinnedThread()</b>
+<i class="no-highlight">19</i>&nbsp;}
+<i class="no-highlight">20</i>&nbsp;
+<i class="no-highlight">21</i>&nbsp;fun tracePinnedThread() {
+<b class="nc"><i class="no-highlight">22</i>&nbsp;  val lock = Object()</b>
+<b class="nc"><i class="no-highlight">23</i>&nbsp;  val out = System.out</b>
+<b class="nc"><i class="no-highlight">24</i>&nbsp;  val baos = ByteArrayOutputStream()</b>
+<b class="nc"><i class="no-highlight">25</i>&nbsp;  System.setOut(PrintStream(baos))</b>
+<i class="no-highlight">26</i>&nbsp;
+<b class="nc"><i class="no-highlight">27</i>&nbsp;  try {</b>
+<b class="nc"><i class="no-highlight">28</i>&nbsp;    Thread.ofVirtual().start {</b>
+<b class="nc"><i class="no-highlight">29</i>&nbsp;      synchronized(lock) {</b>
+<b class="nc"><i class="no-highlight">30</i>&nbsp;        val nanos: Long = Duration.ofSeconds(1).toNanos()</b>
+<b class="nc"><i class="no-highlight">31</i>&nbsp;        LockSupport.parkNanos(nanos)</b>
+<i class="no-highlight">32</i>&nbsp;        // OR lock.wait()
+<b class="nc"><i class="no-highlight">33</i>&nbsp;      }</b>
+<b class="nc"><i class="no-highlight">34</i>&nbsp;    }.join()</b>
+<b class="nc"><i class="no-highlight">35</i>&nbsp;    System.out.flush()</b>
+<i class="no-highlight">36</i>&nbsp;  } finally {
+<b class="nc"><i class="no-highlight">37</i>&nbsp;    System.setOut(out)</b>
+<b class="nc"><i class="no-highlight">38</i>&nbsp;  }</b>
+<i class="no-highlight">39</i>&nbsp;
+<b class="nc"><i class="no-highlight">40</i>&nbsp;  val output = baos.toString() // default charset</b>
+<b class="nc"><i class="no-highlight">41</i>&nbsp;  println(output)</b>
+<b class="nc"><i class="no-highlight">42</i>&nbsp;  val expected = &quot;&lt;== monitors:1&quot;</b>
+<b class="nc"><i class="no-highlight">43</i>&nbsp;  check(expected in output) { &quot;&quot;&quot;expected:&quot;$expected&quot;&quot;&quot;&quot; }</b>
+<i class="no-highlight">44</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -134,7 +167,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-06-10 18:47</div>
+    <div style="float:right;">generated on 2022-07-16 00:17</div>
 </div>
 </body>
 </html>

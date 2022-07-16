@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > LoomThreadPool</title>
+  <title>Coverage Report > VThreadThreadPool</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/highlight-idea.css";
@@ -17,10 +17,10 @@
 <div class="breadCrumbs">
 Current scope:     <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">dev.suresh.loom.jetty</a>
+    <a href="../index.html">dev.suresh.vthread.jetty</a>
 </div>
 
-<h1>Coverage Summary for Class: LoomThreadPool (dev.suresh.loom.jetty)</h1>
+<h1>Coverage Summary for Class: VThreadThreadPool (dev.suresh.vthread.jetty)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -47,7 +47,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">LoomThreadPool</td>
+  <td class="name">VThreadThreadPool</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -97,34 +97,34 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package dev.suresh.loom.jetty
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package dev.suresh.vthread.jetty
 <i class="no-highlight">2</i>&nbsp;
 <i class="no-highlight">3</i>&nbsp;import org.eclipse.jetty.util.component.*
 <i class="no-highlight">4</i>&nbsp;import org.eclipse.jetty.util.thread.*
 <i class="no-highlight">5</i>&nbsp;import java.util.concurrent.*
 <i class="no-highlight">6</i>&nbsp;
-<b class="nc"><i class="no-highlight">7</i>&nbsp;class LoomThreadPool : AbstractLifeCycle(), ThreadPool {</b>
+<b class="nc"><i class="no-highlight">7</i>&nbsp;class VThreadThreadPool : AbstractLifeCycle(), ThreadPool {</b>
 <i class="no-highlight">8</i>&nbsp;
-<b class="nc"><i class="no-highlight">9</i>&nbsp;    private val execSvc = Executors.newVirtualThreadPerTaskExecutor()</b>
+<b class="nc"><i class="no-highlight">9</i>&nbsp;  private val execSvc = Executors.newVirtualThreadPerTaskExecutor()</b>
 <i class="no-highlight">10</i>&nbsp;
-<i class="no-highlight">11</i>&nbsp;    override fun execute(cmd: Runnable) {
-<b class="nc"><i class="no-highlight">12</i>&nbsp;        execSvc.submit(cmd)</b>
-<i class="no-highlight">13</i>&nbsp;    }
+<i class="no-highlight">11</i>&nbsp;  override fun execute(cmd: Runnable) {
+<b class="nc"><i class="no-highlight">12</i>&nbsp;    execSvc.submit(cmd)</b>
+<i class="no-highlight">13</i>&nbsp;  }
 <i class="no-highlight">14</i>&nbsp;
-<i class="no-highlight">15</i>&nbsp;    override fun join() {
-<b class="nc"><i class="no-highlight">16</i>&nbsp;        while (!execSvc.isTerminated) {</b>
-<b class="nc"><i class="no-highlight">17</i>&nbsp;            Thread.onSpinWait()</b>
-<i class="no-highlight">18</i>&nbsp;        }
-<i class="no-highlight">19</i>&nbsp;    }
+<i class="no-highlight">15</i>&nbsp;  override fun join() {
+<b class="nc"><i class="no-highlight">16</i>&nbsp;    while (!execSvc.isTerminated) {</b>
+<b class="nc"><i class="no-highlight">17</i>&nbsp;      Thread.onSpinWait()</b>
+<i class="no-highlight">18</i>&nbsp;    }
+<i class="no-highlight">19</i>&nbsp;  }
 <i class="no-highlight">20</i>&nbsp;
-<i class="no-highlight">21</i>&nbsp;    override fun doStop() {
-<b class="nc"><i class="no-highlight">22</i>&nbsp;        super.doStop()</b>
-<b class="nc"><i class="no-highlight">23</i>&nbsp;        execSvc.shutdown()</b>
-<i class="no-highlight">24</i>&nbsp;    }
+<i class="no-highlight">21</i>&nbsp;  override fun doStop() {
+<b class="nc"><i class="no-highlight">22</i>&nbsp;    super.doStop()</b>
+<b class="nc"><i class="no-highlight">23</i>&nbsp;    execSvc.shutdown()</b>
+<i class="no-highlight">24</i>&nbsp;  }
 <i class="no-highlight">25</i>&nbsp;
-<b class="nc"><i class="no-highlight">26</i>&nbsp;    override fun getThreads() = Int.MAX_VALUE</b>
-<b class="nc"><i class="no-highlight">27</i>&nbsp;    override fun getIdleThreads() = Int.MAX_VALUE</b>
-<b class="nc"><i class="no-highlight">28</i>&nbsp;    override fun isLowOnThreads() = false</b>
+<b class="nc"><i class="no-highlight">26</i>&nbsp;  override fun getThreads() = Int.MAX_VALUE</b>
+<b class="nc"><i class="no-highlight">27</i>&nbsp;  override fun getIdleThreads() = Int.MAX_VALUE</b>
+<b class="nc"><i class="no-highlight">28</i>&nbsp;  override fun isLowOnThreads() = false</b>
 <i class="no-highlight">29</i>&nbsp;}
 </div>
 </pre>
@@ -152,7 +152,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-06-10 18:47</div>
+    <div style="float:right;">generated on 2022-07-16 00:17</div>
 </div>
 </body>
 </html>

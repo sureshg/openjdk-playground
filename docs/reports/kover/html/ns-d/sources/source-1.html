@@ -168,8 +168,8 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">11</i>&nbsp;
 <i class="no-highlight">12</i>&nbsp;/** Read the [Class] as [ByteArray] */
 <i class="no-highlight">13</i>&nbsp;fun &lt;T : Class&lt;*&gt;&gt; T.toBytes(): ByteArray? {
-<b class="nc"><i class="no-highlight">14</i>&nbsp;    val classAsPath = &quot;${name.replace(&#39;.&#39;, &#39;/&#39;)}.class&quot;</b>
-<b class="nc"><i class="no-highlight">15</i>&nbsp;    return classLoader.getResourceAsStream(classAsPath)?.readBytes()</b>
+<b class="nc"><i class="no-highlight">14</i>&nbsp;  val classAsPath = &quot;${name.replace(&#39;.&#39;, &#39;/&#39;)}.class&quot;</b>
+<b class="nc"><i class="no-highlight">15</i>&nbsp;  return classLoader.getResourceAsStream(classAsPath)?.readBytes()</b>
 <i class="no-highlight">16</i>&nbsp;}
 <i class="no-highlight">17</i>&nbsp;
 <i class="no-highlight">18</i>&nbsp;/**
@@ -183,13 +183,13 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">26</i>&nbsp;
 <i class="no-highlight">27</i>&nbsp;/** Run the lambda in the context of the receiver classloader. */
 <i class="no-highlight">28</i>&nbsp;fun ClassLoader.using(run: () -&gt; Unit) {
-<b class="nc"><i class="no-highlight">29</i>&nbsp;    val cl = Thread.currentThread().contextClassLoader</b>
-<b class="nc"><i class="no-highlight">30</i>&nbsp;    try {</b>
-<b class="nc"><i class="no-highlight">31</i>&nbsp;        Thread.currentThread().contextClassLoader = this</b>
-<b class="nc"><i class="no-highlight">32</i>&nbsp;        run()</b>
-<i class="no-highlight">33</i>&nbsp;    } finally {
-<b class="nc"><i class="no-highlight">34</i>&nbsp;        Thread.currentThread().contextClassLoader = cl</b>
-<b class="nc"><i class="no-highlight">35</i>&nbsp;    }</b>
+<b class="nc"><i class="no-highlight">29</i>&nbsp;  val cl = Thread.currentThread().contextClassLoader</b>
+<b class="nc"><i class="no-highlight">30</i>&nbsp;  try {</b>
+<b class="nc"><i class="no-highlight">31</i>&nbsp;    Thread.currentThread().contextClassLoader = this</b>
+<b class="nc"><i class="no-highlight">32</i>&nbsp;    run()</b>
+<i class="no-highlight">33</i>&nbsp;  } finally {
+<b class="nc"><i class="no-highlight">34</i>&nbsp;    Thread.currentThread().contextClassLoader = cl</b>
+<b class="nc"><i class="no-highlight">35</i>&nbsp;  }</b>
 <i class="no-highlight">36</i>&nbsp;}
 </div>
 </pre>
@@ -217,7 +217,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-06-10 18:47</div>
+    <div style="float:right;">generated on 2022-07-16 00:17</div>
 </div>
 </body>
 </html>

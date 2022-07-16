@@ -151,23 +151,23 @@ Current scope:     <a href="../../index.html">all classes</a>
 <div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package dev.suresh.misc
 <i class="no-highlight">2</i>&nbsp;
 <i class="no-highlight">3</i>&nbsp;fun main2() {
-<b class="nc"><i class="no-highlight">4</i>&nbsp;    val root = generateSequence(Node1(1)) { prev -&gt;</b>
-<i class="no-highlight">5</i>&nbsp;        // Repeatedly generate parent nodes that link to the previous node as their left children
-<b class="nc"><i class="no-highlight">6</i>&nbsp;        Node1(prev.data + 1, prev, null)</b>
-<b class="nc"><i class="no-highlight">7</i>&nbsp;    }.take(100_000).last()</b>
-<b class="nc"><i class="no-highlight">8</i>&nbsp;    println(root.depth)</b>
+<b class="nc"><i class="no-highlight">4</i>&nbsp;  val root = generateSequence(Node1(1)) { prev -&gt;</b>
+<i class="no-highlight">5</i>&nbsp;    // Repeatedly generate parent nodes that link to the previous node as their left children
+<b class="nc"><i class="no-highlight">6</i>&nbsp;    Node1(prev.data + 1, prev, null)</b>
+<b class="nc"><i class="no-highlight">7</i>&nbsp;  }.take(100_000).last()</b>
+<b class="nc"><i class="no-highlight">8</i>&nbsp;  println(root.depth)</b>
 <i class="no-highlight">9</i>&nbsp;}
 <i class="no-highlight">10</i>&nbsp;
 <i class="no-highlight">11</i>&nbsp;data class Node1&lt;T&gt;(val data: T, val left: Node1&lt;T&gt;? = null, val right: Node1&lt;T&gt;? = null)
 <i class="no-highlight">12</i>&nbsp;
 <i class="no-highlight">13</i>&nbsp;val &lt;T&gt; Node1&lt;T&gt;?.depth: Int
-<b class="nc"><i class="no-highlight">14</i>&nbsp;    get() = when (this) {</b>
-<b class="nc"><i class="no-highlight">15</i>&nbsp;        null -&gt; 0</b>
-<b class="nc"><i class="no-highlight">16</i>&nbsp;        else -&gt; maxOf(</b>
-<b class="nc"><i class="no-highlight">17</i>&nbsp;            left.depth,</b>
-<b class="nc"><i class="no-highlight">18</i>&nbsp;            right.depth</b>
-<b class="nc"><i class="no-highlight">19</i>&nbsp;        ) + 1</b>
-<i class="no-highlight">20</i>&nbsp;    }
+<b class="nc"><i class="no-highlight">14</i>&nbsp;  get() = when (this) {</b>
+<b class="nc"><i class="no-highlight">15</i>&nbsp;    null -&gt; 0</b>
+<b class="nc"><i class="no-highlight">16</i>&nbsp;    else -&gt; maxOf(</b>
+<b class="nc"><i class="no-highlight">17</i>&nbsp;      left.depth,</b>
+<b class="nc"><i class="no-highlight">18</i>&nbsp;      right.depth</b>
+<b class="nc"><i class="no-highlight">19</i>&nbsp;    ) + 1</b>
+<i class="no-highlight">20</i>&nbsp;  }
 </div>
 </pre>
 </div>
@@ -194,7 +194,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-06-10 18:47</div>
+    <div style="float:right;">generated on 2022-07-16 00:17</div>
 </div>
 </body>
 </html>

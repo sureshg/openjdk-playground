@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > TracePinnedThreadsKt</title>
+  <title>Coverage Report > Foo</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/highlight-idea.css";
@@ -17,10 +17,10 @@
 <div class="breadCrumbs">
 Current scope:     <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">dev.suresh.loom</a>
+    <a href="../index.html">dev.suresh.misc</a>
 </div>
 
-<h1>Coverage Summary for Class: TracePinnedThreadsKt (dev.suresh.loom)</h1>
+<h1>Coverage Summary for Class: Foo (dev.suresh.misc)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -47,7 +47,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">TracePinnedThreadsKt</td>
+  <td class="name">Foo</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -61,7 +61,16 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/3)
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
   </span>
 </td>
 <td class="coverageStat">
@@ -69,23 +78,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/2)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/20)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/90)
+    (0/7)
   </span>
 </td>
 </tr>
@@ -97,52 +90,23 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package dev.suresh.loom
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package dev.suresh.misc
 <i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import java.io.*
-<i class="no-highlight">4</i>&nbsp;import java.time.*
-<i class="no-highlight">5</i>&nbsp;import java.util.concurrent.locks.*
-<i class="no-highlight">6</i>&nbsp;
-<i class="no-highlight">7</i>&nbsp;/**
-<i class="no-highlight">8</i>&nbsp; * Run with -Djdk.tracePinnedThreads=short|full
-<i class="no-highlight">9</i>&nbsp; * -
-<i class="no-highlight">10</i>&nbsp; * [TracePinnedThreads.java](https://github.com/openjdk/loom/blob/fibers/test/jdk/java/lang/Thread/virtual/TracePinnedThreads.java)
-<i class="no-highlight">11</i>&nbsp; * -
-<i class="no-highlight">12</i>&nbsp; * [Virtual Thread
-<i class="no-highlight">13</i>&nbsp; * Tests](https://github.com/openjdk/loom/tree/fibers/test/jdk/java/lang/Thread/virtual)
-<i class="no-highlight">14</i>&nbsp; * -
-<i class="no-highlight">15</i>&nbsp; * [Loom Troubleshooting
-<i class="no-highlight">16</i>&nbsp; * Guide](https://wiki.openjdk.java.net/display/loom/Troubleshooting)
-<i class="no-highlight">17</i>&nbsp; */
-<i class="no-highlight">18</i>&nbsp;fun main() {
-<b class="nc"><i class="no-highlight">19</i>&nbsp;    System.setProperty(&quot;jdk.tracePinnedThreads&quot;, &quot;full&quot;)</b>
-<b class="nc"><i class="no-highlight">20</i>&nbsp;    tracePinnedThread()</b>
-<i class="no-highlight">21</i>&nbsp;}
-<i class="no-highlight">22</i>&nbsp;
-<i class="no-highlight">23</i>&nbsp;fun tracePinnedThread() {
-<b class="nc"><i class="no-highlight">24</i>&nbsp;    val lock = Object()</b>
-<b class="nc"><i class="no-highlight">25</i>&nbsp;    val out = System.out</b>
-<b class="nc"><i class="no-highlight">26</i>&nbsp;    val baos = ByteArrayOutputStream()</b>
-<b class="nc"><i class="no-highlight">27</i>&nbsp;    System.setOut(PrintStream(baos))</b>
-<i class="no-highlight">28</i>&nbsp;
-<b class="nc"><i class="no-highlight">29</i>&nbsp;    try {</b>
-<b class="nc"><i class="no-highlight">30</i>&nbsp;        Thread.ofVirtual().start {</b>
-<b class="nc"><i class="no-highlight">31</i>&nbsp;            synchronized(lock) {</b>
-<b class="nc"><i class="no-highlight">32</i>&nbsp;                val nanos: Long = Duration.ofSeconds(1).toNanos()</b>
-<b class="nc"><i class="no-highlight">33</i>&nbsp;                LockSupport.parkNanos(nanos)</b>
-<i class="no-highlight">34</i>&nbsp;                // OR lock.wait()
-<b class="nc"><i class="no-highlight">35</i>&nbsp;            }</b>
-<b class="nc"><i class="no-highlight">36</i>&nbsp;        }.join()</b>
-<b class="nc"><i class="no-highlight">37</i>&nbsp;        System.out.flush()</b>
-<i class="no-highlight">38</i>&nbsp;    } finally {
-<b class="nc"><i class="no-highlight">39</i>&nbsp;        System.setOut(out)</b>
-<b class="nc"><i class="no-highlight">40</i>&nbsp;    }</b>
-<i class="no-highlight">41</i>&nbsp;
-<b class="nc"><i class="no-highlight">42</i>&nbsp;    val output = baos.toString() // default charset</b>
-<b class="nc"><i class="no-highlight">43</i>&nbsp;    println(output)</b>
-<b class="nc"><i class="no-highlight">44</i>&nbsp;    val expected = &quot;&lt;== monitors:1&quot;</b>
-<b class="nc"><i class="no-highlight">45</i>&nbsp;    check(expected in output) { &quot;&quot;&quot;expected:&quot;$expected&quot;&quot;&quot;&quot; }</b>
-<i class="no-highlight">46</i>&nbsp;}
+<b class="nc"><i class="no-highlight">3</i>&nbsp;class Foo&lt;T&gt;(val bar: T)</b>
+<i class="no-highlight">4</i>&nbsp;
+<i class="no-highlight">5</i>&nbsp;/**
+<i class="no-highlight">6</i>&nbsp; * Unbounded T is same as &quot;T: Any?&quot;
+<i class="no-highlight">7</i>&nbsp; */
+<i class="no-highlight">8</i>&nbsp;fun main() {
+<i class="no-highlight">9</i>&nbsp;  val f1: Foo&lt;String&gt; = Foo(&quot;hello&quot;)
+<i class="no-highlight">10</i>&nbsp;  println(f1.bar)
+<i class="no-highlight">11</i>&nbsp;
+<i class="no-highlight">12</i>&nbsp;  val f2 = Foo(null)
+<i class="no-highlight">13</i>&nbsp;  println(f2.bar)
+<i class="no-highlight">14</i>&nbsp;
+<i class="no-highlight">15</i>&nbsp;  val f3: Foo&lt;String?&gt; = Foo(&quot;NullableString&quot;)
+<i class="no-highlight">16</i>&nbsp;  println(f3.bar)
+<i class="no-highlight">17</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -169,7 +133,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-06-10 18:47</div>
+    <div style="float:right;">generated on 2022-07-16 00:17</div>
 </div>
 </body>
 </html>

@@ -97,23 +97,23 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">5</i>&nbsp;sealed class Tree&lt;out T&gt;
 <i class="no-highlight">6</i>&nbsp;
 <i class="no-highlight">7</i>&nbsp;object Empty : Tree&lt;Nothing&gt;() {
-<i class="no-highlight">8</i>&nbsp;    override fun toString() = &quot;Empty&quot;
+<i class="no-highlight">8</i>&nbsp;  override fun toString() = &quot;Empty&quot;
 <i class="no-highlight">9</i>&nbsp;}
 <i class="no-highlight">10</i>&nbsp;
 <i class="no-highlight">11</i>&nbsp;data class Node&lt;T&gt;(
-<b class="nc"><i class="no-highlight">12</i>&nbsp;    val value: T,</b>
-<b class="nc"><i class="no-highlight">13</i>&nbsp;    val right: Tree&lt;T&gt; = Empty,</b>
-<b class="nc"><i class="no-highlight">14</i>&nbsp;    val left: Tree&lt;T&gt; = Empty</b>
+<b class="nc"><i class="no-highlight">12</i>&nbsp;  val value: T,</b>
+<b class="nc"><i class="no-highlight">13</i>&nbsp;  val right: Tree&lt;T&gt; = Empty,</b>
+<b class="nc"><i class="no-highlight">14</i>&nbsp;  val left: Tree&lt;T&gt; = Empty</b>
 <b class="nc"><i class="no-highlight">15</i>&nbsp;) : Tree&lt;T&gt;()</b>
 <i class="no-highlight">16</i>&nbsp;
 <i class="no-highlight">17</i>&nbsp;fun &lt;T : Number&gt; Tree&lt;T&gt;.sum(): Long = when (this) {
-<i class="no-highlight">18</i>&nbsp;    Empty -&gt; 0
-<i class="no-highlight">19</i>&nbsp;    is Node -&gt; value.toLong() + left.sum() + right.sum()
+<i class="no-highlight">18</i>&nbsp;  Empty -&gt; 0
+<i class="no-highlight">19</i>&nbsp;  is Node -&gt; value.toLong() + left.sum() + right.sum()
 <i class="no-highlight">20</i>&nbsp;}
 <i class="no-highlight">21</i>&nbsp;
 <i class="no-highlight">22</i>&nbsp;fun &lt;T&gt; Tree&lt;T&gt;.depth(): Int = when (this) {
-<i class="no-highlight">23</i>&nbsp;    Empty -&gt; 0
-<i class="no-highlight">24</i>&nbsp;    is Node -&gt; max(left.depth(), right.depth()) + 1
+<i class="no-highlight">23</i>&nbsp;  Empty -&gt; 0
+<i class="no-highlight">24</i>&nbsp;  is Node -&gt; max(left.depth(), right.depth()) + 1
 <i class="no-highlight">25</i>&nbsp;}
 <i class="no-highlight">26</i>&nbsp;
 <i class="no-highlight">27</i>&nbsp;// fun &lt;T&gt; Tree&lt;T&gt;.printTree(depth: Int = 0) {
@@ -153,7 +153,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-06-10 18:47</div>
+    <div style="float:right;">generated on 2022-07-16 00:17</div>
 </div>
 </body>
 </html>

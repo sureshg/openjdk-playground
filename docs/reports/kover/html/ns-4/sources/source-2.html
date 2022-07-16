@@ -146,15 +146,15 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">10</i>&nbsp; */
 <b class="nc"><i class="no-highlight">11</i>&nbsp;data class Counter(@Volatile private var count: Int = 0) {</b>
 <i class="no-highlight">12</i>&nbsp;
-<b class="nc"><i class="no-highlight">13</i>&nbsp;    companion object {</b>
-<b class="nc"><i class="no-highlight">14</i>&nbsp;        private val COUNT = AtomicIntegerFieldUpdater.newUpdater(Counter::class.java, &quot;count&quot;)</b>
-<i class="no-highlight">15</i>&nbsp;    }
+<b class="nc"><i class="no-highlight">13</i>&nbsp;  companion object {</b>
+<b class="nc"><i class="no-highlight">14</i>&nbsp;    private val COUNT = AtomicIntegerFieldUpdater.newUpdater(Counter::class.java, &quot;count&quot;)</b>
+<i class="no-highlight">15</i>&nbsp;  }
 <i class="no-highlight">16</i>&nbsp;
-<b class="nc"><i class="no-highlight">17</i>&nbsp;    fun increment(delta: Int) = COUNT.addAndGet(this, delta)</b>
+<b class="nc"><i class="no-highlight">17</i>&nbsp;  fun increment(delta: Int) = COUNT.addAndGet(this, delta)</b>
 <i class="no-highlight">18</i>&nbsp;}
 <i class="no-highlight">19</i>&nbsp;
 <i class="no-highlight">20</i>&nbsp;fun main() {
-<i class="no-highlight">21</i>&nbsp;    println(Counter().apply { increment(100) })
+<i class="no-highlight">21</i>&nbsp;  println(Counter().apply { increment(100) })
 <i class="no-highlight">22</i>&nbsp;}
 </div>
 </pre>
@@ -182,7 +182,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-06-10 18:47</div>
+    <div style="float:right;">generated on 2022-07-16 00:17</div>
 </div>
 </body>
 </html>

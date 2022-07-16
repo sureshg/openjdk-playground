@@ -98,28 +98,28 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">6</i>&nbsp;import gg.jte.output.*
 <i class="no-highlight">7</i>&nbsp;
 <i class="no-highlight">8</i>&nbsp;data class KtConfig(
-<i class="no-highlight">9</i>&nbsp;    val language: String = &quot;Kotlin&quot;,
-<i class="no-highlight">10</i>&nbsp;    val version: String,
-<i class="no-highlight">11</i>&nbsp;    val appVersion: String?
+<i class="no-highlight">9</i>&nbsp;  val language: String = &quot;Kotlin&quot;,
+<i class="no-highlight">10</i>&nbsp;  val version: String,
+<i class="no-highlight">11</i>&nbsp;  val appVersion: String?
 <i class="no-highlight">12</i>&nbsp;)
 <i class="no-highlight">13</i>&nbsp;
 <b class="nc"><i class="no-highlight">14</i>&nbsp;class RenderJte {</b>
-<i class="no-highlight">15</i>&nbsp;    fun run() {
-<b class="nc"><i class="no-highlight">16</i>&nbsp;        val tmplEngine = TemplateEngine.createPrecompiled(ContentType.Plain)</b>
-<b class="nc"><i class="no-highlight">17</i>&nbsp;        val params = mapOf(</b>
-<b class="nc"><i class="no-highlight">18</i>&nbsp;            &quot;config&quot; to JConfig(),</b>
-<b class="nc"><i class="no-highlight">19</i>&nbsp;            &quot;ktConfig&quot; to KtConfig(</b>
-<b class="nc"><i class="no-highlight">20</i>&nbsp;                version = App.KOTLIN_VERSION,</b>
-<b class="nc"><i class="no-highlight">21</i>&nbsp;                appVersion = App.VERSION</b>
-<i class="no-highlight">22</i>&nbsp;            )
-<i class="no-highlight">23</i>&nbsp;        )
+<i class="no-highlight">15</i>&nbsp;  fun run() {
+<b class="nc"><i class="no-highlight">16</i>&nbsp;    val tmplEngine = TemplateEngine.createPrecompiled(ContentType.Plain)</b>
+<b class="nc"><i class="no-highlight">17</i>&nbsp;    val params = mapOf(</b>
+<b class="nc"><i class="no-highlight">18</i>&nbsp;      &quot;config&quot; to JConfig(),</b>
+<b class="nc"><i class="no-highlight">19</i>&nbsp;      &quot;ktConfig&quot; to KtConfig(</b>
+<b class="nc"><i class="no-highlight">20</i>&nbsp;        version = App.KOTLIN_VERSION,</b>
+<b class="nc"><i class="no-highlight">21</i>&nbsp;        appVersion = App.VERSION</b>
+<i class="no-highlight">22</i>&nbsp;      )
+<i class="no-highlight">23</i>&nbsp;    )
 <i class="no-highlight">24</i>&nbsp;
-<b class="nc"><i class="no-highlight">25</i>&nbsp;        listOf(&quot;hello.jte&quot;, &quot;hello-kt.kte&quot;).forEach {</b>
-<b class="nc"><i class="no-highlight">26</i>&nbsp;            val output = StringOutput()</b>
-<b class="nc"><i class="no-highlight">27</i>&nbsp;            tmplEngine.render(it, params, output)</b>
-<b class="nc"><i class="no-highlight">28</i>&nbsp;            println(output)</b>
-<b class="nc"><i class="no-highlight">29</i>&nbsp;        }</b>
-<i class="no-highlight">30</i>&nbsp;    }
+<b class="nc"><i class="no-highlight">25</i>&nbsp;    listOf(&quot;hello.jte&quot;, &quot;hello-kt.kte&quot;).forEach {</b>
+<b class="nc"><i class="no-highlight">26</i>&nbsp;      val output = StringOutput()</b>
+<b class="nc"><i class="no-highlight">27</i>&nbsp;      tmplEngine.render(it, params, output)</b>
+<b class="nc"><i class="no-highlight">28</i>&nbsp;      println(output)</b>
+<b class="nc"><i class="no-highlight">29</i>&nbsp;    }</b>
+<i class="no-highlight">30</i>&nbsp;  }
 <i class="no-highlight">31</i>&nbsp;}
 </div>
 </pre>
@@ -147,7 +147,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-06-10 18:47</div>
+    <div style="float:right;">generated on 2022-07-16 00:17</div>
 </div>
 </body>
 </html>

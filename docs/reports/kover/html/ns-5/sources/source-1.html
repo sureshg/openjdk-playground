@@ -95,15 +95,15 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">3</i>&nbsp;import com.jakewharton.crossword.*
 <i class="no-highlight">4</i>&nbsp;
 <i class="no-highlight">5</i>&nbsp;fun main() {
-<b class="nc"><i class="no-highlight">6</i>&nbsp;    val canvas = TextCanvas(30, 30)</b>
-<b class="nc"><i class="no-highlight">7</i>&nbsp;    (1..10).forEach {</b>
-<b class="nc"><i class="no-highlight">8</i>&nbsp;        canvas.write(0, 0, &quot;\u001B[31mX\u001B[0m&quot;)</b>
-<b class="nc"><i class="no-highlight">9</i>&nbsp;        canvas.write(0, 2, &quot;\u001B[34mO\u001B[0m&quot;)</b>
-<b class="nc"><i class="no-highlight">10</i>&nbsp;        canvas.write(1, 0, &quot;Hello World $it&quot;)</b>
-<b class="nc"><i class="no-highlight">11</i>&nbsp;        println(canvas.toString())</b>
-<b class="nc"><i class="no-highlight">12</i>&nbsp;        Thread.sleep(100)</b>
-<b class="nc"><i class="no-highlight">13</i>&nbsp;        println(&quot;&quot;&quot;\x1B[${canvas.height}F&quot;&quot;&quot;)</b>
-<b class="nc"><i class="no-highlight">14</i>&nbsp;    }</b>
+<b class="nc"><i class="no-highlight">6</i>&nbsp;  val canvas = TextCanvas(30, 30)</b>
+<b class="nc"><i class="no-highlight">7</i>&nbsp;  (1..10).forEach {</b>
+<b class="nc"><i class="no-highlight">8</i>&nbsp;    canvas.write(0, 0, &quot;\u001B[31mX\u001B[0m&quot;)</b>
+<b class="nc"><i class="no-highlight">9</i>&nbsp;    canvas.write(0, 2, &quot;\u001B[34mO\u001B[0m&quot;)</b>
+<b class="nc"><i class="no-highlight">10</i>&nbsp;    canvas.write(1, 0, &quot;Hello World $it&quot;)</b>
+<b class="nc"><i class="no-highlight">11</i>&nbsp;    println(canvas.toString())</b>
+<b class="nc"><i class="no-highlight">12</i>&nbsp;    Thread.sleep(100)</b>
+<b class="nc"><i class="no-highlight">13</i>&nbsp;    println(&quot;&quot;&quot;\x1B[${canvas.height}F&quot;&quot;&quot;)</b>
+<b class="nc"><i class="no-highlight">14</i>&nbsp;  }</b>
 <i class="no-highlight">15</i>&nbsp;}
 </div>
 </pre>
@@ -131,7 +131,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-06-10 18:47</div>
+    <div style="float:right;">generated on 2022-07-16 00:17</div>
 </div>
 </body>
 </html>

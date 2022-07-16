@@ -193,43 +193,38 @@
 <counter type="METHOD" missed="7" covered="0"/>
 <counter type="CLASS" missed="1" covered="0"/>
 </package>
-<package name="dev/suresh/loom/jetty">
-<class name="dev/suresh/loom/jetty/HelloServlet" sourcefilename="JettyServer.kt">
+<package name="dev/suresh/vthread/jetty">
+<class name="dev/suresh/vthread/jetty/HelloServlet" sourcefilename="JettyServer.kt">
 <method name="exec" desc="(Ljakarta/servlet/http/HttpServletRequest;)Ljava/lang/String;">
-<counter type="INSTRUCTION" missed="25" covered="0"/>
+<counter type="INSTRUCTION" missed="17" covered="0"/>
 <counter type="BRANCH" missed="2" covered="0"/>
-<counter type="LINE" missed="9" covered="0"/>
-</method>
-<method name="&lt;init&gt;" desc="()V">
-<counter type="INSTRUCTION" missed="21" covered="0"/>
-<counter type="BRANCH" missed="0" covered="0"/>
 <counter type="LINE" missed="7" covered="0"/>
 </method>
+<method name="&lt;init&gt;" desc="()V">
+<counter type="INSTRUCTION" missed="15" covered="0"/>
+<counter type="BRANCH" missed="0" covered="0"/>
+<counter type="LINE" missed="5" covered="0"/>
+</method>
 <method name="doGet" desc="(Ljakarta/servlet/http/HttpServletRequest;Ljakarta/servlet/http/HttpServletResponse;)V">
-<counter type="INSTRUCTION" missed="31" covered="0"/>
+<counter type="INSTRUCTION" missed="18" covered="0"/>
 <counter type="BRANCH" missed="4" covered="0"/>
-<counter type="LINE" missed="5" covered="0"/>
+<counter type="LINE" missed="2" covered="0"/>
 </method>
-<method name="doGet$lambda-1" desc="(Ljakarta/servlet/http/HttpServletResponse;Ldev/suresh/loom/jetty/HelloServlet;Ljakarta/servlet/http/HttpServletRequest;)V">
-<counter type="INSTRUCTION" missed="28" covered="0"/>
-<counter type="BRANCH" missed="4" covered="0"/>
-<counter type="LINE" missed="5" covered="0"/>
-</method>
-<counter type="INSTRUCTION" missed="105" covered="0"/>
-<counter type="BRANCH" missed="10" covered="0"/>
-<counter type="LINE" missed="26" covered="0"/>
-<counter type="METHOD" missed="4" covered="0"/>
+<counter type="INSTRUCTION" missed="50" covered="0"/>
+<counter type="BRANCH" missed="6" covered="0"/>
+<counter type="LINE" missed="14" covered="0"/>
+<counter type="METHOD" missed="3" covered="0"/>
 </class>
-<class name="dev/suresh/loom/jetty/JettyServerKt" sourcefilename="JettyServer.kt">
+<class name="dev/suresh/vthread/jetty/JettyServerKt" sourcefilename="JettyServer.kt">
 <method name="getFullURL" desc="(Ljakarta/servlet/http/HttpServletRequest;)Ljava/lang/String;">
 <counter type="INSTRUCTION" missed="33" covered="0"/>
 <counter type="BRANCH" missed="6" covered="0"/>
 <counter type="LINE" missed="3" covered="0"/>
 </method>
 <method name="pumpRequests" desc="(Lorg/eclipse/jetty/server/Server;IJ)V">
-<counter type="INSTRUCTION" missed="226" covered="0"/>
+<counter type="INSTRUCTION" missed="228" covered="0"/>
 <counter type="BRANCH" missed="16" covered="0"/>
-<counter type="LINE" missed="29" covered="0"/>
+<counter type="LINE" missed="30" covered="0"/>
 </method>
 <method name="getThreadInfo" desc="()Ljava/lang/String;">
 <counter type="INSTRUCTION" missed="10" covered="0"/>
@@ -242,21 +237,21 @@
 <counter type="LINE" missed="1" covered="0"/>
 </method>
 <method name="pumpRequests$lambda-5$lambda-4$lambda-3" desc="(ILorg/eclipse/jetty/server/Server;Ljava/lang/String;Ljava/net/http/HttpClient;)Lkotlin/Result;">
-<counter type="INSTRUCTION" missed="50" covered="0"/>
+<counter type="INSTRUCTION" missed="61" covered="0"/>
 <counter type="BRANCH" missed="0" covered="0"/>
-<counter type="LINE" missed="14" covered="0"/>
+<counter type="LINE" missed="18" covered="0"/>
 </method>
 <method name="run" desc="([Ljava/lang/String;)V">
 <counter type="INSTRUCTION" missed="132" covered="0"/>
 <counter type="BRANCH" missed="4" covered="0"/>
 <counter type="LINE" missed="24" covered="0"/>
 </method>
-<counter type="INSTRUCTION" missed="455" covered="0"/>
+<counter type="INSTRUCTION" missed="468" covered="0"/>
 <counter type="BRANCH" missed="26" covered="0"/>
-<counter type="LINE" missed="72" covered="0"/>
+<counter type="LINE" missed="77" covered="0"/>
 <counter type="METHOD" missed="6" covered="0"/>
 </class>
-<class name="dev/suresh/loom/jetty/LoomThreadPool" sourcefilename="LoomThreadPool.kt">
+<class name="dev/suresh/vthread/jetty/VThreadThreadPool" sourcefilename="VThreadThreadPool.kt">
 <method name="getIdleThreads" desc="()I">
 <counter type="INSTRUCTION" missed="1" covered="0"/>
 <counter type="BRANCH" missed="0" covered="0"/>
@@ -328,79 +323,72 @@
 <line nr="58" mi="8" ci="0" mb="0" cb="0"/>
 <line nr="60" mi="2" ci="0" mb="0" cb="0"/>
 <line nr="61" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="62" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="63" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="65" mi="6" ci="0" mb="0" cb="0"/>
-<line nr="66" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="68" mi="29" ci="0" mb="0" cb="0"/>
-<line nr="69" mi="4" ci="0" mb="0" cb="0"/>
-<line nr="71" mi="10" ci="0" mb="0" cb="0"/>
-<line nr="72" mi="12" ci="0" mb="0" cb="0"/>
-<line nr="73" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="74" mi="5" ci="0" mb="0" cb="0"/>
-<line nr="75" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="76" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="77" mi="4" ci="0" mb="0" cb="0"/>
-<line nr="78" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="79" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="80" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="81" mi="4" ci="0" mb="0" cb="0"/>
+<line nr="62" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="63" mi="3" ci="0" mb="0" cb="0"/>
+<line nr="64" mi="1" ci="0" mb="0" cb="0"/>
+<line nr="66" mi="6" ci="0" mb="0" cb="0"/>
+<line nr="67" mi="3" ci="0" mb="0" cb="0"/>
+<line nr="71" mi="29" ci="0" mb="0" cb="0"/>
+<line nr="72" mi="4" ci="0" mb="0" cb="0"/>
+<line nr="74" mi="10" ci="0" mb="0" cb="0"/>
+<line nr="75" mi="12" ci="0" mb="0" cb="0"/>
+<line nr="76" mi="1" ci="0" mb="0" cb="0"/>
+<line nr="77" mi="5" ci="0" mb="0" cb="0"/>
+<line nr="78" mi="1" ci="0" mb="0" cb="0"/>
+<line nr="79" mi="3" ci="0" mb="0" cb="0"/>
+<line nr="80" mi="4" ci="0" mb="0" cb="0"/>
+<line nr="81" mi="3" ci="0" mb="0" cb="0"/>
 <line nr="82" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="85" mi="8" ci="0" mb="0" cb="0"/>
-<line nr="86" mi="7" ci="0" mb="0" cb="0"/>
-<line nr="87" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="88" mi="8" ci="0" mb="0" cb="0"/>
-<line nr="95" mi="5" ci="0" mb="0" cb="0"/>
-<line nr="96" mi="32" ci="0" mb="2" cb="0"/>
-<line nr="97" mi="5" ci="0" mb="0" cb="0"/>
-<line nr="98" mi="20" ci="0" mb="2" cb="0"/>
-<line nr="99" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="101" mi="5" ci="0" mb="0" cb="0"/>
-<line nr="102" mi="6" ci="0" mb="2" cb="0"/>
-<line nr="103" mi="8" ci="0" mb="0" cb="0"/>
-<line nr="104" mi="5" ci="0" mb="2" cb="0"/>
-<line nr="105" mi="10" ci="0" mb="4" cb="0"/>
-<line nr="107" mi="8" ci="0" mb="0" cb="0"/>
-<line nr="108" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="110" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="112" mi="4" ci="0" mb="0" cb="0"/>
-<line nr="113" mi="5" ci="0" mb="0" cb="0"/>
+<line nr="84" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="85" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="86" mi="3" ci="0" mb="0" cb="0"/>
+<line nr="87" mi="3" ci="0" mb="0" cb="0"/>
+<line nr="88" mi="1" ci="0" mb="0" cb="0"/>
+<line nr="89" mi="1" ci="0" mb="0" cb="0"/>
+<line nr="90" mi="5" ci="0" mb="0" cb="0"/>
+<line nr="92" mi="10" ci="0" mb="0" cb="0"/>
+<line nr="93" mi="7" ci="0" mb="0" cb="0"/>
+<line nr="94" mi="1" ci="0" mb="0" cb="0"/>
+<line nr="95" mi="8" ci="0" mb="0" cb="0"/>
+<line nr="102" mi="5" ci="0" mb="0" cb="0"/>
+<line nr="103" mi="32" ci="0" mb="2" cb="0"/>
+<line nr="104" mi="5" ci="0" mb="0" cb="0"/>
+<line nr="105" mi="20" ci="0" mb="2" cb="0"/>
+<line nr="106" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="108" mi="5" ci="0" mb="0" cb="0"/>
+<line nr="109" mi="6" ci="0" mb="2" cb="0"/>
+<line nr="110" mi="8" ci="0" mb="0" cb="0"/>
+<line nr="111" mi="5" ci="0" mb="2" cb="0"/>
+<line nr="112" mi="10" ci="0" mb="4" cb="0"/>
+<line nr="114" mi="8" ci="0" mb="0" cb="0"/>
 <line nr="115" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="119" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="121" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="123" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="125" mi="7" ci="0" mb="0" cb="0"/>
-<line nr="127" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="128" mi="4" ci="0" mb="0" cb="0"/>
-<line nr="129" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="132" mi="9" ci="0" mb="2" cb="0"/>
-<line nr="133" mi="9" ci="0" mb="2" cb="0"/>
-<line nr="136" mi="4" ci="0" mb="0" cb="0"/>
-<line nr="137" mi="4" ci="0" mb="0" cb="0"/>
-<line nr="138" mi="5" ci="0" mb="0" cb="0"/>
-<line nr="139" mi="11" ci="0" mb="2" cb="0"/>
-<line nr="140" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="141" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="142" mi="10" ci="0" mb="2" cb="0"/>
-<line nr="143" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="149" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="152" mi="4" ci="0" mb="0" cb="0"/>
-<line nr="153" mi="4" ci="0" mb="0" cb="0"/>
-<line nr="154" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="155" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="156" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="157" mi="7" ci="0" mb="2" cb="0"/>
-<line nr="158" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="117" mi="3" ci="0" mb="0" cb="0"/>
+<line nr="119" mi="4" ci="0" mb="0" cb="0"/>
+<line nr="120" mi="5" ci="0" mb="0" cb="0"/>
+<line nr="122" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="126" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="132" mi="7" ci="0" mb="0" cb="0"/>
+<line nr="134" mi="1" ci="0" mb="0" cb="0"/>
+<line nr="135" mi="4" ci="0" mb="0" cb="0"/>
+<line nr="136" mi="1" ci="0" mb="0" cb="0"/>
+<line nr="139" mi="9" ci="0" mb="2" cb="0"/>
+<line nr="140" mi="9" ci="0" mb="2" cb="0"/>
+<line nr="156" mi="3" ci="0" mb="0" cb="0"/>
 <line nr="160" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="165" mi="13" ci="0" mb="4" cb="0"/>
-<line nr="166" mi="9" ci="0" mb="2" cb="0"/>
-<line nr="167" mi="11" ci="0" mb="0" cb="0"/>
-<line nr="170" mi="10" ci="0" mb="0" cb="0"/>
-<counter type="INSTRUCTION" missed="560" covered="0"/>
-<counter type="BRANCH" missed="36" covered="0"/>
-<counter type="LINE" missed="98" covered="0"/>
+<line nr="161" mi="1" ci="0" mb="0" cb="0"/>
+<line nr="162" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="163" mi="7" ci="0" mb="2" cb="0"/>
+<line nr="164" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="166" mi="1" ci="0" mb="0" cb="0"/>
+<line nr="173" mi="13" ci="0" mb="4" cb="0"/>
+<line nr="174" mi="9" ci="0" mb="2" cb="0"/>
+<line nr="175" mi="11" ci="0" mb="0" cb="0"/>
+<line nr="178" mi="10" ci="0" mb="0" cb="0"/>
+<counter type="INSTRUCTION" missed="518" covered="0"/>
+<counter type="BRANCH" missed="32" covered="0"/>
+<counter type="LINE" missed="91" covered="0"/>
 </sourcefile>
-<sourcefile name="LoomThreadPool.kt">
+<sourcefile name="VThreadThreadPool.kt">
 <line nr="7" mi="2" ci="0" mb="0" cb="0"/>
 <line nr="9" mi="3" ci="0" mb="0" cb="0"/>
 <line nr="12" mi="5" ci="0" mb="0" cb="0"/>
@@ -415,10 +403,10 @@
 <counter type="BRANCH" missed="2" covered="0"/>
 <counter type="LINE" missed="10" covered="0"/>
 </sourcefile>
-<counter type="INSTRUCTION" missed="584" covered="0"/>
-<counter type="BRANCH" missed="38" covered="0"/>
-<counter type="LINE" missed="108" covered="0"/>
-<counter type="METHOD" missed="17" covered="0"/>
+<counter type="INSTRUCTION" missed="542" covered="0"/>
+<counter type="BRANCH" missed="34" covered="0"/>
+<counter type="LINE" missed="101" covered="0"/>
+<counter type="METHOD" missed="16" covered="0"/>
 <counter type="CLASS" missed="3" covered="0"/>
 </package>
 <package name="Result$InProgress">
@@ -434,7 +422,7 @@
 <counter type="METHOD" missed="1" covered="0"/>
 </class>
 <sourcefile name="Main.kt">
-<line nr="47" mi="3" ci="0" mb="0" cb="0"/>
+<line nr="46" mi="3" ci="0" mb="0" cb="0"/>
 <counter type="INSTRUCTION" missed="3" covered="0"/>
 <counter type="BRANCH" missed="0" covered="0"/>
 <counter type="LINE" missed="1" covered="0"/>
@@ -458,25 +446,63 @@
 <counter type="METHOD" missed="1" covered="0"/>
 </class>
 <class name="dev/suresh/concurrent/CoroutineTestKt" sourcefilename="CoroutineTest.kt">
+<method name="factorial" desc="(ILkotlin/coroutines/Continuation;)Ljava/lang/Object;">
+<counter type="INSTRUCTION" missed="23" covered="0"/>
+<counter type="BRANCH" missed="0" covered="0"/>
+<counter type="LINE" missed="1" covered="0"/>
+</method>
 <method name="printFiveTimes" desc="(Lkotlin/jvm/functions/Function0;)V">
 <counter type="INSTRUCTION" missed="20" covered="0"/>
 <counter type="BRANCH" missed="2" covered="0"/>
 <counter type="LINE" missed="4" covered="0"/>
 </method>
 <method name="main" desc="(Lkotlin/coroutines/Continuation;)Ljava/lang/Object;">
-<counter type="INSTRUCTION" missed="35" covered="0"/>
+<counter type="INSTRUCTION" missed="45" covered="0"/>
 <counter type="BRANCH" missed="0" covered="0"/>
-<counter type="LINE" missed="6" covered="0"/>
+<counter type="LINE" missed="7" covered="0"/>
 </method>
 <method name="getString" desc="(Lkotlin/coroutines/Continuation;)Ljava/lang/Object;">
 <counter type="INSTRUCTION" missed="20" covered="0"/>
 <counter type="BRANCH" missed="0" covered="0"/>
 <counter type="LINE" missed="2" covered="0"/>
 </method>
-<counter type="INSTRUCTION" missed="75" covered="0"/>
+<counter type="INSTRUCTION" missed="108" covered="0"/>
 <counter type="BRANCH" missed="2" covered="0"/>
-<counter type="LINE" missed="12" covered="0"/>
-<counter type="METHOD" missed="3" covered="0"/>
+<counter type="LINE" missed="14" covered="0"/>
+<counter type="METHOD" missed="4" covered="0"/>
+</class>
+<class name="dev/suresh/concurrent/CoroutineTestKt$factorial$2" sourcefilename="CoroutineTest.kt">
+<method name="invokeSuspend" desc="(Ljava/lang/Object;)Ljava/lang/Object;">
+<counter type="INSTRUCTION" missed="50" covered="0"/>
+<counter type="BRANCH" missed="4" covered="0"/>
+<counter type="LINE" missed="6" covered="0"/>
+</method>
+<counter type="INSTRUCTION" missed="50" covered="0"/>
+<counter type="BRANCH" missed="4" covered="0"/>
+<counter type="LINE" missed="6" covered="0"/>
+<counter type="METHOD" missed="1" covered="0"/>
+</class>
+<class name="dev/suresh/concurrent/CoroutineTestKt$main$3" sourcefilename="CoroutineTest.kt">
+<method name="invokeSuspend" desc="(Ljava/lang/Object;)Ljava/lang/Object;">
+<counter type="INSTRUCTION" missed="39" covered="0"/>
+<counter type="BRANCH" missed="0" covered="0"/>
+<counter type="LINE" missed="4" covered="0"/>
+</method>
+<counter type="INSTRUCTION" missed="39" covered="0"/>
+<counter type="BRANCH" missed="0" covered="0"/>
+<counter type="LINE" missed="4" covered="0"/>
+<counter type="METHOD" missed="1" covered="0"/>
+</class>
+<class name="dev/suresh/concurrent/CoroutineTestKt$main$3$job$1" sourcefilename="CoroutineTest.kt">
+<method name="invokeSuspend" desc="(Ljava/lang/Object;)Ljava/lang/Object;">
+<counter type="INSTRUCTION" missed="15" covered="0"/>
+<counter type="BRANCH" missed="0" covered="0"/>
+<counter type="LINE" missed="2" covered="0"/>
+</method>
+<counter type="INSTRUCTION" missed="15" covered="0"/>
+<counter type="BRANCH" missed="0" covered="0"/>
+<counter type="LINE" missed="2" covered="0"/>
+<counter type="METHOD" missed="1" covered="0"/>
 </class>
 <class name="dev/suresh/concurrent/CoroutineTestKt$main$num$1$1" sourcefilename="CoroutineTest.kt">
 <method name="invoke" desc="(Ljava/lang/Throwable;)V">
@@ -501,30 +527,44 @@
 <counter type="METHOD" missed="1" covered="0"/>
 </class>
 <sourcefile name="CoroutineTest.kt">
-<line nr="6" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="9" mi="5" ci="0" mb="0" cb="0"/>
-<line nr="10" mi="6" ci="0" mb="0" cb="0"/>
-<line nr="11" mi="0" ci="0" mb="0" cb="0"/>
-<line nr="13" mi="4" ci="0" mb="0" cb="0"/>
-<line nr="13" mi="0" ci="0" mb="0" cb="0"/>
-<line nr="14" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="17" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="18" mi="17" ci="0" mb="0" cb="0"/>
-<line nr="23" mi="13" ci="0" mb="0" cb="0"/>
-<line nr="24" mi="7" ci="0" mb="0" cb="0"/>
-<line nr="28" mi="13" ci="0" mb="2" cb="0"/>
-<line nr="29" mi="5" ci="0" mb="0" cb="0"/>
-<line nr="30" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="31" mi="1" ci="0" mb="0" cb="0"/>
-<counter type="INSTRUCTION" missed="78" covered="0"/>
-<counter type="BRANCH" missed="2" covered="0"/>
-<counter type="LINE" missed="15" covered="0"/>
+<line nr="7" mi="3" ci="0" mb="0" cb="0"/>
+<line nr="10" mi="5" ci="0" mb="0" cb="0"/>
+<line nr="11" mi="6" ci="0" mb="0" cb="0"/>
+<line nr="12" mi="0" ci="0" mb="0" cb="0"/>
+<line nr="14" mi="4" ci="0" mb="0" cb="0"/>
+<line nr="14" mi="0" ci="0" mb="0" cb="0"/>
+<line nr="15" mi="1" ci="0" mb="0" cb="0"/>
+<line nr="18" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="19" mi="17" ci="0" mb="0" cb="0"/>
+<line nr="22" mi="10" ci="0" mb="0" cb="0"/>
+<line nr="23" mi="12" ci="0" mb="0" cb="0"/>
+<line nr="24" mi="10" ci="0" mb="0" cb="0"/>
+<line nr="25" mi="5" ci="0" mb="0" cb="0"/>
+<line nr="28" mi="17" ci="0" mb="0" cb="0"/>
+<line nr="29" mi="6" ci="0" mb="0" cb="0"/>
+<line nr="30" mi="4" ci="0" mb="0" cb="0"/>
+<line nr="35" mi="23" ci="0" mb="0" cb="0"/>
+<line nr="36" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="37" mi="12" ci="0" mb="4" cb="0"/>
+<line nr="38" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="39" mi="21" ci="0" mb="0" cb="0"/>
+<line nr="41" mi="7" ci="0" mb="0" cb="0"/>
+<line nr="42" mi="6" ci="0" mb="0" cb="0"/>
+<line nr="46" mi="13" ci="0" mb="0" cb="0"/>
+<line nr="47" mi="7" ci="0" mb="0" cb="0"/>
+<line nr="51" mi="13" ci="0" mb="2" cb="0"/>
+<line nr="52" mi="5" ci="0" mb="0" cb="0"/>
+<line nr="53" mi="1" ci="0" mb="0" cb="0"/>
+<line nr="54" mi="1" ci="0" mb="0" cb="0"/>
+<counter type="INSTRUCTION" missed="215" covered="0"/>
+<counter type="BRANCH" missed="6" covered="0"/>
+<counter type="LINE" missed="29" covered="0"/>
 </sourcefile>
-<counter type="INSTRUCTION" missed="78" covered="0"/>
-<counter type="BRANCH" missed="2" covered="0"/>
-<counter type="LINE" missed="15" covered="0"/>
-<counter type="METHOD" missed="6" covered="0"/>
-<counter type="CLASS" missed="4" covered="0"/>
+<counter type="INSTRUCTION" missed="215" covered="0"/>
+<counter type="BRANCH" missed="6" covered="0"/>
+<counter type="LINE" missed="29" covered="0"/>
+<counter type="METHOD" missed="10" covered="0"/>
+<counter type="CLASS" missed="7" covered="0"/>
 </package>
 <package name="dev/suresh/network">
 <class name="dev/suresh/network/MDnsKt" sourcefilename="MDns.kt">
@@ -586,20 +626,20 @@
 <counter type="METHOD" missed="3" covered="0"/>
 </class>
 <sourcefile name="MDns.kt">
-<line nr="11" mi="28" ci="0" mb="0" cb="0"/>
+<line nr="9" mi="28" ci="0" mb="0" cb="0"/>
+<line nr="10" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="11" mi="1" ci="0" mb="0" cb="0"/>
+<line nr="12" mi="4" ci="0" mb="0" cb="0"/>
 <line nr="12" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="13" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="14" mi="4" ci="0" mb="0" cb="0"/>
-<line nr="14" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="16" mi="14" ci="0" mb="4" cb="0"/>
-<line nr="19" mi="14" ci="0" mb="4" cb="0"/>
-<line nr="22" mi="11" ci="0" mb="2" cb="0"/>
-<line nr="26" mi="6" ci="0" mb="0" cb="0"/>
-<line nr="26" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="28" mi="11" ci="0" mb="2" cb="0"/>
-<line nr="31" mi="11" ci="0" mb="2" cb="0"/>
-<line nr="33" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="34" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="14" mi="14" ci="0" mb="4" cb="0"/>
+<line nr="17" mi="14" ci="0" mb="4" cb="0"/>
+<line nr="20" mi="11" ci="0" mb="2" cb="0"/>
+<line nr="24" mi="6" ci="0" mb="0" cb="0"/>
+<line nr="24" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="26" mi="11" ci="0" mb="2" cb="0"/>
+<line nr="29" mi="11" ci="0" mb="2" cb="0"/>
+<line nr="31" mi="3" ci="0" mb="0" cb="0"/>
+<line nr="32" mi="2" ci="0" mb="0" cb="0"/>
 <counter type="INSTRUCTION" missed="111" covered="0"/>
 <counter type="BRANCH" missed="14" covered="0"/>
 <counter type="LINE" missed="14" covered="0"/>
@@ -764,7 +804,7 @@
 <counter type="METHOD" missed="1" covered="0"/>
 </class>
 <sourcefile name="Main.kt">
-<line nr="44" mi="9" ci="0" mb="0" cb="0"/>
+<line nr="43" mi="9" ci="0" mb="0" cb="0"/>
 <counter type="INSTRUCTION" missed="9" covered="0"/>
 <counter type="BRANCH" missed="0" covered="0"/>
 <counter type="LINE" missed="1" covered="0"/>
@@ -793,20 +833,15 @@
 <counter type="METHOD" missed="2" covered="0"/>
 </class>
 <class name="dev/suresh/jackson/Animals" sourcefilename="Animal.java">
-<method name="getAnimals" desc="()Ljava/util/List;">
-<counter type="INSTRUCTION" missed="2" covered="0"/>
+<method name="&lt;init&gt;" desc="(Ljava/util/List;)V">
+<counter type="INSTRUCTION" missed="14" covered="0"/>
 <counter type="BRANCH" missed="0" covered="0"/>
 <counter type="LINE" missed="1" covered="0"/>
 </method>
-<method name="&lt;init&gt;" desc="(Ljava/util/List;)V">
-<counter type="INSTRUCTION" missed="5" covered="0"/>
+<counter type="INSTRUCTION" missed="14" covered="0"/>
 <counter type="BRANCH" missed="0" covered="0"/>
-<counter type="LINE" missed="2" covered="0"/>
-</method>
-<counter type="INSTRUCTION" missed="7" covered="0"/>
-<counter type="BRANCH" missed="0" covered="0"/>
-<counter type="LINE" missed="3" covered="0"/>
-<counter type="METHOD" missed="2" covered="0"/>
+<counter type="LINE" missed="1" covered="0"/>
+<counter type="METHOD" missed="1" covered="0"/>
 </class>
 <class name="dev/suresh/jackson/Cat" sourcefilename="Animal.java">
 <method name="&lt;init&gt;" desc="(Ljava/lang/String;)V">
@@ -890,17 +925,15 @@
 <line nr="56" mi="2" ci="0" mb="0" cb="0"/>
 <line nr="61" mi="6" ci="0" mb="0" cb="0"/>
 <line nr="67" mi="9" ci="0" mb="0" cb="0"/>
-<line nr="75" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="76" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="80" mi="2" ci="0" mb="0" cb="0"/>
-<counter type="INSTRUCTION" missed="60" covered="0"/>
+<line nr="71" mi="14" ci="0" mb="0" cb="0"/>
+<counter type="INSTRUCTION" missed="67" covered="0"/>
 <counter type="BRANCH" missed="0" covered="0"/>
-<counter type="LINE" missed="16" covered="0"/>
+<counter type="LINE" missed="14" covered="0"/>
 </sourcefile>
-<counter type="INSTRUCTION" missed="79" covered="0"/>
+<counter type="INSTRUCTION" missed="86" covered="0"/>
 <counter type="BRANCH" missed="0" covered="0"/>
-<counter type="LINE" missed="21" covered="0"/>
-<counter type="METHOD" missed="12" covered="0"/>
+<counter type="LINE" missed="19" covered="0"/>
+<counter type="METHOD" missed="11" covered="0"/>
 <counter type="CLASS" missed="5" covered="0"/>
 </package>
 <package name="MainKt">
@@ -921,18 +954,18 @@
 <counter type="METHOD" missed="2" covered="0"/>
 </class>
 <sourcefile name="Main.kt">
-<line nr="7" mi="4" ci="0" mb="0" cb="0"/>
-<line nr="8" mi="7" ci="0" mb="0" cb="0"/>
+<line nr="6" mi="4" ci="0" mb="0" cb="0"/>
+<line nr="7" mi="7" ci="0" mb="0" cb="0"/>
+<line nr="8" mi="1" ci="0" mb="0" cb="0"/>
 <line nr="9" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="10" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="14" mi="6" ci="0" mb="0" cb="0"/>
-<line nr="15" mi="5" ci="0" mb="0" cb="0"/>
-<line nr="17" mi="6" ci="0" mb="0" cb="0"/>
-<line nr="21" mi="7" ci="0" mb="0" cb="0"/>
-<line nr="22" mi="6" ci="0" mb="0" cb="0"/>
-<line nr="23" mi="4" ci="0" mb="0" cb="0"/>
-<line nr="24" mi="5" ci="0" mb="0" cb="0"/>
-<line nr="25" mi="6" ci="0" mb="0" cb="0"/>
+<line nr="13" mi="6" ci="0" mb="0" cb="0"/>
+<line nr="14" mi="5" ci="0" mb="0" cb="0"/>
+<line nr="16" mi="6" ci="0" mb="0" cb="0"/>
+<line nr="20" mi="7" ci="0" mb="0" cb="0"/>
+<line nr="21" mi="6" ci="0" mb="0" cb="0"/>
+<line nr="22" mi="4" ci="0" mb="0" cb="0"/>
+<line nr="23" mi="5" ci="0" mb="0" cb="0"/>
+<line nr="24" mi="6" ci="0" mb="0" cb="0"/>
 <counter type="INSTRUCTION" missed="58" covered="0"/>
 <counter type="BRANCH" missed="0" covered="0"/>
 <counter type="LINE" missed="12" covered="0"/>
@@ -956,7 +989,7 @@
 <counter type="METHOD" missed="1" covered="0"/>
 </class>
 <sourcefile name="Main.kt">
-<line nr="40" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="39" mi="2" ci="0" mb="0" cb="0"/>
 <counter type="INSTRUCTION" missed="2" covered="0"/>
 <counter type="BRANCH" missed="0" covered="0"/>
 <counter type="LINE" missed="1" covered="0"/>
@@ -966,208 +999,6 @@
 <counter type="LINE" missed="1" covered="0"/>
 <counter type="METHOD" missed="1" covered="0"/>
 <counter type="CLASS" missed="1" covered="0"/>
-</package>
-<package name="dev/suresh/loom">
-<class name="dev/suresh/loom/LoomServer" sourcefilename="LoomServer.kt">
-<method name="run" desc="()V">
-<counter type="INSTRUCTION" missed="13" covered="0"/>
-<counter type="BRANCH" missed="0" covered="0"/>
-<counter type="LINE" missed="4" covered="0"/>
-</method>
-<method name="top$lambda-9" desc="(Ljava/lang/ProcessHandle;)Ljava/lang/String;">
-<counter type="INSTRUCTION" missed="27" covered="0"/>
-<counter type="BRANCH" missed="0" covered="0"/>
-<counter type="LINE" missed="6" covered="0"/>
-</method>
-<method name="disableHostnameVerification" desc="()Ljava/lang/String;">
-<counter type="INSTRUCTION" missed="3" covered="0"/>
-<counter type="BRANCH" missed="0" covered="0"/>
-<counter type="LINE" missed="1" covered="0"/>
-</method>
-<method name="exec" desc="()V">
-<counter type="INSTRUCTION" missed="137" covered="0"/>
-<counter type="BRANCH" missed="0" covered="0"/>
-<counter type="LINE" missed="29" covered="0"/>
-</method>
-<method name="top" desc="(Lcom/sun/net/httpserver/HttpExchange;)V">
-<counter type="INSTRUCTION" missed="53" covered="0"/>
-<counter type="BRANCH" missed="0" covered="0"/>
-<counter type="LINE" missed="9" covered="0"/>
-</method>
-<method name="root" desc="(Lcom/sun/net/httpserver/HttpExchange;)V">
-<counter type="INSTRUCTION" missed="61" covered="0"/>
-<counter type="BRANCH" missed="0" covered="0"/>
-<counter type="LINE" missed="14" covered="0"/>
-</method>
-<method name="exec$lambda-7" desc="(Ljava/util/List;)V">
-<counter type="INSTRUCTION" missed="12" covered="0"/>
-<counter type="BRANCH" missed="0" covered="0"/>
-<counter type="LINE" missed="1" covered="0"/>
-</method>
-<method name="&lt;clinit&gt;" desc="()V">
-<counter type="INSTRUCTION" missed="2" covered="0"/>
-<counter type="BRANCH" missed="0" covered="0"/>
-<counter type="LINE" missed="1" covered="0"/>
-</method>
-<method name="exec$lambda-4$lambda-2" desc="(Ljava/net/http/HttpClient;Ljava/lang/String;)Ljava/lang/String;">
-<counter type="INSTRUCTION" missed="26" covered="0"/>
-<counter type="BRANCH" missed="0" covered="0"/>
-<counter type="LINE" missed="8" covered="0"/>
-</method>
-<method name="exec$lambda-6" desc="(Lcom/sun/net/httpserver/HttpsServer;Ljava/util/List;Ljava/lang/Void;Ljava/lang/Throwable;)Ljava/util/List;">
-<counter type="INSTRUCTION" missed="20" covered="0"/>
-<counter type="BRANCH" missed="0" covered="0"/>
-<counter type="LINE" missed="3" covered="0"/>
-</method>
-<counter type="INSTRUCTION" missed="354" covered="0"/>
-<counter type="BRANCH" missed="0" covered="0"/>
-<counter type="LINE" missed="76" covered="0"/>
-<counter type="METHOD" missed="10" covered="0"/>
-</class>
-<class name="dev/suresh/loom/LoomServer$exec$futures$1$2" sourcefilename="LoomServer.kt">
-<method name="get" desc="(Ljava/lang/Object;)Ljava/lang/Object;">
-<counter type="INSTRUCTION" missed="3" covered="0"/>
-<counter type="BRANCH" missed="0" covered="0"/>
-<counter type="LINE" missed="1" covered="0"/>
-</method>
-<counter type="INSTRUCTION" missed="3" covered="0"/>
-<counter type="BRANCH" missed="0" covered="0"/>
-<counter type="LINE" missed="1" covered="0"/>
-<counter type="METHOD" missed="1" covered="0"/>
-</class>
-<class name="dev/suresh/loom/TracePinnedThreadsKt" sourcefilename="TracePinnedThreads.kt">
-<method name="tracePinnedThread$lambda-1" desc="(Ljava/lang/Object;)V">
-<counter type="INSTRUCTION" missed="24" covered="0"/>
-<counter type="BRANCH" missed="0" covered="0"/>
-<counter type="LINE" missed="4" covered="0"/>
-</method>
-<method name="main" desc="()V">
-<counter type="INSTRUCTION" missed="5" covered="0"/>
-<counter type="BRANCH" missed="0" covered="0"/>
-<counter type="LINE" missed="2" covered="0"/>
-</method>
-<method name="tracePinnedThread" desc="()V">
-<counter type="INSTRUCTION" missed="61" covered="0"/>
-<counter type="BRANCH" missed="2" covered="0"/>
-<counter type="LINE" missed="14" covered="0"/>
-</method>
-<counter type="INSTRUCTION" missed="90" covered="0"/>
-<counter type="BRANCH" missed="2" covered="0"/>
-<counter type="LINE" missed="20" covered="0"/>
-<counter type="METHOD" missed="3" covered="0"/>
-</class>
-<sourcefile name="LoomServer.kt">
-<line nr="16" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="20" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="21" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="22" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="23" mi="7" ci="0" mb="0" cb="0"/>
-<line nr="27" mi="4" ci="0" mb="0" cb="0"/>
-<line nr="28" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="29" mi="7" ci="0" mb="0" cb="0"/>
-<line nr="30" mi="5" ci="0" mb="0" cb="0"/>
-<line nr="33" mi="8" ci="0" mb="0" cb="0"/>
-<line nr="34" mi="5" ci="0" mb="0" cb="0"/>
-<line nr="35" mi="7" ci="0" mb="0" cb="0"/>
-<line nr="36" mi="4" ci="0" mb="0" cb="0"/>
-<line nr="37" mi="6" ci="0" mb="0" cb="0"/>
-<line nr="38" mi="6" ci="0" mb="0" cb="0"/>
-<line nr="39" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="40" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="42" mi="5" ci="0" mb="0" cb="0"/>
-<line nr="43" mi="5" ci="0" mb="0" cb="0"/>
-<line nr="45" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="46" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="47" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="48" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="49" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="50" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="52" mi="5" ci="0" mb="0" cb="0"/>
-<line nr="53" mi="10" ci="0" mb="0" cb="0"/>
-<line nr="54" mi="4" ci="0" mb="0" cb="0"/>
-<line nr="56" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="57" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="58" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="59" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="60" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="62" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="63" mi="12" ci="0" mb="0" cb="0"/>
-<line nr="64" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="66" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="67" mi="14" ci="0" mb="0" cb="0"/>
-<line nr="67" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="71" mi="13" ci="0" mb="0" cb="0"/>
-<line nr="72" mi="5" ci="0" mb="0" cb="0"/>
-<line nr="74" mi="4" ci="0" mb="0" cb="0"/>
-<line nr="75" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="76" mi="13" ci="0" mb="0" cb="0"/>
-<line nr="77" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="78" mi="12" ci="0" mb="0" cb="0"/>
-<line nr="79" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="83" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="84" mi="14" ci="0" mb="0" cb="0"/>
-<line nr="86" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="87" mi="5" ci="0" mb="0" cb="0"/>
-<line nr="88" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="91" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="92" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="93" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="95" mi="9" ci="0" mb="0" cb="0"/>
-<line nr="97" mi="6" ci="0" mb="0" cb="0"/>
-<line nr="98" mi="8" ci="0" mb="0" cb="0"/>
-<line nr="99" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="100" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="101" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="105" mi="8" ci="0" mb="0" cb="0"/>
-<line nr="106" mi="4" ci="0" mb="0" cb="0"/>
-<line nr="107" mi="9" ci="0" mb="0" cb="0"/>
-<line nr="108" mi="4" ci="0" mb="0" cb="0"/>
-<line nr="109" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="111" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="112" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="113" mi="6" ci="0" mb="0" cb="0"/>
-<line nr="114" mi="16" ci="0" mb="0" cb="0"/>
-<line nr="116" mi="5" ci="0" mb="0" cb="0"/>
-<line nr="117" mi="6" ci="0" mb="0" cb="0"/>
-<line nr="118" mi="8" ci="0" mb="0" cb="0"/>
-<line nr="119" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="120" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="121" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="129" mi="3" ci="0" mb="0" cb="0"/>
-<counter type="INSTRUCTION" missed="357" covered="0"/>
-<counter type="BRANCH" missed="0" covered="0"/>
-<counter type="LINE" missed="77" covered="0"/>
-</sourcefile>
-<sourcefile name="TracePinnedThreads.kt">
-<line nr="19" mi="4" ci="0" mb="0" cb="0"/>
-<line nr="20" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="24" mi="4" ci="0" mb="0" cb="0"/>
-<line nr="25" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="26" mi="4" ci="0" mb="0" cb="0"/>
-<line nr="27" mi="6" ci="0" mb="0" cb="0"/>
-<line nr="29" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="30" mi="4" ci="0" mb="0" cb="0"/>
-<line nr="31" mi="16" ci="0" mb="0" cb="0"/>
-<line nr="32" mi="4" ci="0" mb="0" cb="0"/>
-<line nr="33" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="35" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="36" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="37" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="39" mi="7" ci="0" mb="0" cb="0"/>
-<line nr="40" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="42" mi="6" ci="0" mb="0" cb="0"/>
-<line nr="43" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="44" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="45" mi="18" ci="0" mb="2" cb="0"/>
-<counter type="INSTRUCTION" missed="90" covered="0"/>
-<counter type="BRANCH" missed="2" covered="0"/>
-<counter type="LINE" missed="20" covered="0"/>
-</sourcefile>
-<counter type="INSTRUCTION" missed="447" covered="0"/>
-<counter type="BRANCH" missed="2" covered="0"/>
-<counter type="LINE" missed="97" covered="0"/>
-<counter type="METHOD" missed="14" covered="0"/>
-<counter type="CLASS" missed="3" covered="0"/>
 </package>
 <package name="dev/suresh/json">
 <class name="dev/suresh/json/SerialTest" sourcefilename="Serializers.kt">
@@ -1626,7 +1457,7 @@
 <counter type="METHOD" missed="1" covered="0"/>
 </class>
 <sourcefile name="Main.kt">
-<line nr="41" mi="8" ci="0" mb="0" cb="0"/>
+<line nr="40" mi="8" ci="0" mb="0" cb="0"/>
 <counter type="INSTRUCTION" missed="8" covered="0"/>
 <counter type="BRANCH" missed="0" covered="0"/>
 <counter type="LINE" missed="1" covered="0"/>
@@ -1650,7 +1481,7 @@
 <counter type="METHOD" missed="1" covered="0"/>
 </class>
 <sourcefile name="Main.kt">
-<line nr="43" mi="9" ci="0" mb="0" cb="0"/>
+<line nr="42" mi="9" ci="0" mb="0" cb="0"/>
 <counter type="INSTRUCTION" missed="9" covered="0"/>
 <counter type="BRANCH" missed="0" covered="0"/>
 <counter type="LINE" missed="1" covered="0"/>
@@ -1890,6 +1721,22 @@
 <counter type="CLASS" missed="8" covered="0"/>
 </package>
 <package name="dev/suresh/adt">
+<class name="dev/suresh/adt/DOP" sourcefilename="DOP.java">
+<method name="main" desc="([Ljava/lang/String;)V">
+<counter type="INSTRUCTION" missed="17" covered="0"/>
+<counter type="BRANCH" missed="0" covered="0"/>
+<counter type="LINE" missed="5" covered="0"/>
+</method>
+<method name="&lt;init&gt;" desc="()V">
+<counter type="INSTRUCTION" missed="2" covered="0"/>
+<counter type="BRANCH" missed="0" covered="0"/>
+<counter type="LINE" missed="1" covered="0"/>
+</method>
+<counter type="INSTRUCTION" missed="19" covered="0"/>
+<counter type="BRANCH" missed="0" covered="0"/>
+<counter type="LINE" missed="6" covered="0"/>
+<counter type="METHOD" missed="2" covered="0"/>
+</class>
 <class name="dev/suresh/adt/Failure" sourcefilename="ResultType.java">
 <method name="&lt;init&gt;" desc="(Ljava/lang/Throwable;)V">
 <counter type="INSTRUCTION" missed="14" covered="0"/>
@@ -1988,7 +1835,7 @@
 <method name="printResult" desc="(Ldev/suresh/adt/Result;)V">
 <counter type="INSTRUCTION" missed="33" covered="0"/>
 <counter type="BRANCH" missed="0" covered="0"/>
-<counter type="LINE" missed="7" covered="0"/>
+<counter type="LINE" missed="3" covered="0"/>
 </method>
 <method name="main" desc="([Ljava/lang/String;)V">
 <counter type="INSTRUCTION" missed="6" covered="0"/>
@@ -2007,7 +1854,7 @@
 </method>
 <counter type="INSTRUCTION" missed="54" covered="0"/>
 <counter type="BRANCH" missed="2" covered="0"/>
-<counter type="LINE" missed="13" covered="0"/>
+<counter type="LINE" missed="9" covered="0"/>
 <counter type="METHOD" missed="4" covered="0"/>
 </class>
 <class name="dev/suresh/adt/Success" sourcefilename="ResultType.java">
@@ -2021,31 +1868,38 @@
 <counter type="LINE" missed="1" covered="0"/>
 <counter type="METHOD" missed="1" covered="0"/>
 </class>
+<sourcefile name="DOP.java">
+<line nr="8" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="11" mi="4" ci="0" mb="0" cb="0"/>
+<line nr="12" mi="4" ci="0" mb="0" cb="0"/>
+<line nr="13" mi="4" ci="0" mb="0" cb="0"/>
+<line nr="15" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="28" mi="3" ci="0" mb="0" cb="0"/>
+<counter type="INSTRUCTION" missed="19" covered="0"/>
+<counter type="BRANCH" missed="0" covered="0"/>
+<counter type="LINE" missed="6" covered="0"/>
+</sourcefile>
 <sourcefile name="ResultType.java">
-<line nr="14" mi="4" ci="0" mb="0" cb="0"/>
-<line nr="18" mi="4" ci="0" mb="0" cb="0"/>
-<line nr="22" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="26" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="30" mi="12" ci="0" mb="2" cb="0"/>
-<line nr="34" mi="12" ci="0" mb="2" cb="0"/>
+<line nr="15" mi="4" ci="0" mb="0" cb="0"/>
+<line nr="19" mi="4" ci="0" mb="0" cb="0"/>
+<line nr="23" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="27" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="31" mi="12" ci="0" mb="2" cb="0"/>
+<line nr="35" mi="12" ci="0" mb="2" cb="0"/>
 <line nr="39" mi="14" ci="0" mb="0" cb="0"/>
 <line nr="41" mi="14" ci="0" mb="0" cb="0"/>
-<line nr="46" mi="2" ci="0" mb="0" cb="0"/>
-<line nr="49" mi="3" ci="0" mb="0" cb="0"/>
+<line nr="47" mi="2" ci="0" mb="0" cb="0"/>
 <line nr="50" mi="3" ci="0" mb="0" cb="0"/>
-<line nr="54" mi="3" ci="0" mb="2" cb="0"/>
-<line nr="55" mi="4" ci="0" mb="0" cb="0"/>
-<line nr="56" mi="6" ci="0" mb="0" cb="0"/>
-<line nr="60" mi="8" ci="0" mb="0" cb="0"/>
-<line nr="66" mi="1" ci="0" mb="0" cb="0"/>
-<line nr="67" mi="5" ci="0" mb="0" cb="0"/>
-<line nr="68" mi="5" ci="0" mb="0" cb="0"/>
-<line nr="69" mi="6" ci="0" mb="0" cb="0"/>
-<line nr="70" mi="6" ci="0" mb="0" cb="0"/>
-<line nr="71" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="51" mi="3" ci="0" mb="0" cb="0"/>
+<line nr="55" mi="3" ci="0" mb="2" cb="0"/>
+<line nr="56" mi="4" ci="0" mb="0" cb="0"/>
+<line nr="57" mi="6" ci="0" mb="0" cb="0"/>
+<line nr="61" mi="8" ci="0" mb="0" cb="0"/>
+<line nr="69" mi="1" ci="0" mb="0" cb="0"/>
+<line nr="70" mi="24" ci="0" mb="0" cb="0"/>
 <counter type="INSTRUCTION" missed="118" covered="0"/>
 <counter type="BRANCH" missed="6" covered="0"/>
-<counter type="LINE" missed="21" covered="0"/>
+<counter type="LINE" missed="17" covered="0"/>
 </sourcefile>
 <sourcefile name="Records.java">
 <line nr="15" mi="2" ci="0" mb="0" cb="0"/>
@@ -2088,11 +1942,11 @@
 <counter type="BRANCH" missed="16" covered="0"/>
 <counter type="LINE" missed="36" covered="0"/>
 </sourcefile>
-<counter type="INSTRUCTION" missed="340" covered="0"/>
+<counter type="INSTRUCTION" missed="359" covered="0"/>
 <counter type="BRANCH" missed="22" covered="0"/>
-<counter type="LINE" missed="57" covered="0"/>
-<counter type="METHOD" missed="19" covered="0"/>
-<counter type="CLASS" missed="6" covered="0"/>
+<counter type="LINE" missed="59" covered="0"/>
+<counter type="METHOD" missed="21" covered="0"/>
+<counter type="CLASS" missed="7" covered="0"/>
 </package>
 <package name="dev/suresh">
 <class name="dev/suresh/Main" sourcefilename="Main.java">
@@ -2627,7 +2481,7 @@
 <counter type="METHOD" missed="1" covered="0"/>
 </class>
 <sourcefile name="Main.kt">
-<line nr="42" mi="8" ci="0" mb="0" cb="0"/>
+<line nr="41" mi="8" ci="0" mb="0" cb="0"/>
 <counter type="INSTRUCTION" missed="8" covered="0"/>
 <counter type="BRANCH" missed="0" covered="0"/>
 <counter type="LINE" missed="1" covered="0"/>
@@ -2848,6 +2702,208 @@
 <counter type="METHOD" missed="1" covered="0"/>
 <counter type="CLASS" missed="1" covered="0"/>
 </package>
+<package name="dev/suresh/vthread">
+<class name="dev/suresh/vthread/TracePinnedThreadsKt" sourcefilename="TracePinnedThreads.kt">
+<method name="tracePinnedThread$lambda-1" desc="(Ljava/lang/Object;)V">
+<counter type="INSTRUCTION" missed="24" covered="0"/>
+<counter type="BRANCH" missed="0" covered="0"/>
+<counter type="LINE" missed="4" covered="0"/>
+</method>
+<method name="main" desc="()V">
+<counter type="INSTRUCTION" missed="5" covered="0"/>
+<counter type="BRANCH" missed="0" covered="0"/>
+<counter type="LINE" missed="2" covered="0"/>
+</method>
+<method name="tracePinnedThread" desc="()V">
+<counter type="INSTRUCTION" missed="61" covered="0"/>
+<counter type="BRANCH" missed="2" covered="0"/>
+<counter type="LINE" missed="14" covered="0"/>
+</method>
+<counter type="INSTRUCTION" missed="90" covered="0"/>
+<counter type="BRANCH" missed="2" covered="0"/>
+<counter type="LINE" missed="20" covered="0"/>
+<counter type="METHOD" missed="3" covered="0"/>
+</class>
+<class name="dev/suresh/vthread/VThreadServer" sourcefilename="VThreadServer.kt">
+<method name="run" desc="()V">
+<counter type="INSTRUCTION" missed="13" covered="0"/>
+<counter type="BRANCH" missed="0" covered="0"/>
+<counter type="LINE" missed="4" covered="0"/>
+</method>
+<method name="top$lambda-9" desc="(Ljava/lang/ProcessHandle;)Ljava/lang/String;">
+<counter type="INSTRUCTION" missed="27" covered="0"/>
+<counter type="BRANCH" missed="0" covered="0"/>
+<counter type="LINE" missed="6" covered="0"/>
+</method>
+<method name="disableHostnameVerification" desc="()Ljava/lang/String;">
+<counter type="INSTRUCTION" missed="3" covered="0"/>
+<counter type="BRANCH" missed="0" covered="0"/>
+<counter type="LINE" missed="1" covered="0"/>
+</method>
+<method name="exec" desc="()V">
+<counter type="INSTRUCTION" missed="137" covered="0"/>
+<counter type="BRANCH" missed="0" covered="0"/>
+<counter type="LINE" missed="29" covered="0"/>
+</method>
+<method name="top" desc="(Lcom/sun/net/httpserver/HttpExchange;)V">
+<counter type="INSTRUCTION" missed="53" covered="0"/>
+<counter type="BRANCH" missed="0" covered="0"/>
+<counter type="LINE" missed="9" covered="0"/>
+</method>
+<method name="root" desc="(Lcom/sun/net/httpserver/HttpExchange;)V">
+<counter type="INSTRUCTION" missed="61" covered="0"/>
+<counter type="BRANCH" missed="0" covered="0"/>
+<counter type="LINE" missed="14" covered="0"/>
+</method>
+<method name="exec$lambda-7" desc="(Ljava/util/List;)V">
+<counter type="INSTRUCTION" missed="12" covered="0"/>
+<counter type="BRANCH" missed="0" covered="0"/>
+<counter type="LINE" missed="1" covered="0"/>
+</method>
+<method name="&lt;clinit&gt;" desc="()V">
+<counter type="INSTRUCTION" missed="2" covered="0"/>
+<counter type="BRANCH" missed="0" covered="0"/>
+<counter type="LINE" missed="1" covered="0"/>
+</method>
+<method name="exec$lambda-4$lambda-2" desc="(Ljava/net/http/HttpClient;Ljava/lang/String;)Ljava/lang/String;">
+<counter type="INSTRUCTION" missed="26" covered="0"/>
+<counter type="BRANCH" missed="0" covered="0"/>
+<counter type="LINE" missed="8" covered="0"/>
+</method>
+<method name="exec$lambda-6" desc="(Lcom/sun/net/httpserver/HttpsServer;Ljava/util/List;Ljava/lang/Void;Ljava/lang/Throwable;)Ljava/util/List;">
+<counter type="INSTRUCTION" missed="20" covered="0"/>
+<counter type="BRANCH" missed="0" covered="0"/>
+<counter type="LINE" missed="3" covered="0"/>
+</method>
+<counter type="INSTRUCTION" missed="354" covered="0"/>
+<counter type="BRANCH" missed="0" covered="0"/>
+<counter type="LINE" missed="76" covered="0"/>
+<counter type="METHOD" missed="10" covered="0"/>
+</class>
+<class name="dev/suresh/vthread/VThreadServer$exec$futures$1$2" sourcefilename="VThreadServer.kt">
+<method name="get" desc="(Ljava/lang/Object;)Ljava/lang/Object;">
+<counter type="INSTRUCTION" missed="3" covered="0"/>
+<counter type="BRANCH" missed="0" covered="0"/>
+<counter type="LINE" missed="1" covered="0"/>
+</method>
+<counter type="INSTRUCTION" missed="3" covered="0"/>
+<counter type="BRANCH" missed="0" covered="0"/>
+<counter type="LINE" missed="1" covered="0"/>
+<counter type="METHOD" missed="1" covered="0"/>
+</class>
+<sourcefile name="VThreadServer.kt">
+<line nr="16" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="20" mi="3" ci="0" mb="0" cb="0"/>
+<line nr="21" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="22" mi="1" ci="0" mb="0" cb="0"/>
+<line nr="23" mi="7" ci="0" mb="0" cb="0"/>
+<line nr="27" mi="4" ci="0" mb="0" cb="0"/>
+<line nr="28" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="29" mi="7" ci="0" mb="0" cb="0"/>
+<line nr="30" mi="5" ci="0" mb="0" cb="0"/>
+<line nr="33" mi="8" ci="0" mb="0" cb="0"/>
+<line nr="34" mi="5" ci="0" mb="0" cb="0"/>
+<line nr="35" mi="7" ci="0" mb="0" cb="0"/>
+<line nr="36" mi="4" ci="0" mb="0" cb="0"/>
+<line nr="37" mi="6" ci="0" mb="0" cb="0"/>
+<line nr="38" mi="6" ci="0" mb="0" cb="0"/>
+<line nr="39" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="40" mi="1" ci="0" mb="0" cb="0"/>
+<line nr="42" mi="5" ci="0" mb="0" cb="0"/>
+<line nr="43" mi="5" ci="0" mb="0" cb="0"/>
+<line nr="45" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="46" mi="3" ci="0" mb="0" cb="0"/>
+<line nr="47" mi="3" ci="0" mb="0" cb="0"/>
+<line nr="48" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="49" mi="3" ci="0" mb="0" cb="0"/>
+<line nr="50" mi="1" ci="0" mb="0" cb="0"/>
+<line nr="52" mi="5" ci="0" mb="0" cb="0"/>
+<line nr="53" mi="10" ci="0" mb="0" cb="0"/>
+<line nr="54" mi="4" ci="0" mb="0" cb="0"/>
+<line nr="56" mi="3" ci="0" mb="0" cb="0"/>
+<line nr="57" mi="1" ci="0" mb="0" cb="0"/>
+<line nr="58" mi="3" ci="0" mb="0" cb="0"/>
+<line nr="59" mi="1" ci="0" mb="0" cb="0"/>
+<line nr="60" mi="1" ci="0" mb="0" cb="0"/>
+<line nr="62" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="63" mi="12" ci="0" mb="0" cb="0"/>
+<line nr="64" mi="3" ci="0" mb="0" cb="0"/>
+<line nr="66" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="67" mi="14" ci="0" mb="0" cb="0"/>
+<line nr="67" mi="3" ci="0" mb="0" cb="0"/>
+<line nr="71" mi="13" ci="0" mb="0" cb="0"/>
+<line nr="72" mi="5" ci="0" mb="0" cb="0"/>
+<line nr="74" mi="4" ci="0" mb="0" cb="0"/>
+<line nr="75" mi="3" ci="0" mb="0" cb="0"/>
+<line nr="76" mi="13" ci="0" mb="0" cb="0"/>
+<line nr="77" mi="1" ci="0" mb="0" cb="0"/>
+<line nr="78" mi="12" ci="0" mb="0" cb="0"/>
+<line nr="79" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="83" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="84" mi="14" ci="0" mb="0" cb="0"/>
+<line nr="86" mi="3" ci="0" mb="0" cb="0"/>
+<line nr="87" mi="5" ci="0" mb="0" cb="0"/>
+<line nr="88" mi="1" ci="0" mb="0" cb="0"/>
+<line nr="91" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="92" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="93" mi="3" ci="0" mb="0" cb="0"/>
+<line nr="95" mi="9" ci="0" mb="0" cb="0"/>
+<line nr="97" mi="6" ci="0" mb="0" cb="0"/>
+<line nr="98" mi="8" ci="0" mb="0" cb="0"/>
+<line nr="99" mi="3" ci="0" mb="0" cb="0"/>
+<line nr="100" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="101" mi="1" ci="0" mb="0" cb="0"/>
+<line nr="105" mi="8" ci="0" mb="0" cb="0"/>
+<line nr="106" mi="4" ci="0" mb="0" cb="0"/>
+<line nr="107" mi="9" ci="0" mb="0" cb="0"/>
+<line nr="108" mi="4" ci="0" mb="0" cb="0"/>
+<line nr="109" mi="3" ci="0" mb="0" cb="0"/>
+<line nr="111" mi="3" ci="0" mb="0" cb="0"/>
+<line nr="112" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="113" mi="6" ci="0" mb="0" cb="0"/>
+<line nr="114" mi="16" ci="0" mb="0" cb="0"/>
+<line nr="116" mi="5" ci="0" mb="0" cb="0"/>
+<line nr="117" mi="6" ci="0" mb="0" cb="0"/>
+<line nr="118" mi="8" ci="0" mb="0" cb="0"/>
+<line nr="119" mi="3" ci="0" mb="0" cb="0"/>
+<line nr="120" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="121" mi="1" ci="0" mb="0" cb="0"/>
+<line nr="129" mi="3" ci="0" mb="0" cb="0"/>
+<counter type="INSTRUCTION" missed="357" covered="0"/>
+<counter type="BRANCH" missed="0" covered="0"/>
+<counter type="LINE" missed="77" covered="0"/>
+</sourcefile>
+<sourcefile name="TracePinnedThreads.kt">
+<line nr="17" mi="4" ci="0" mb="0" cb="0"/>
+<line nr="18" mi="1" ci="0" mb="0" cb="0"/>
+<line nr="22" mi="4" ci="0" mb="0" cb="0"/>
+<line nr="23" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="24" mi="4" ci="0" mb="0" cb="0"/>
+<line nr="25" mi="6" ci="0" mb="0" cb="0"/>
+<line nr="27" mi="1" ci="0" mb="0" cb="0"/>
+<line nr="28" mi="4" ci="0" mb="0" cb="0"/>
+<line nr="29" mi="16" ci="0" mb="0" cb="0"/>
+<line nr="30" mi="4" ci="0" mb="0" cb="0"/>
+<line nr="31" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="33" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="34" mi="1" ci="0" mb="0" cb="0"/>
+<line nr="35" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="37" mi="7" ci="0" mb="0" cb="0"/>
+<line nr="38" mi="1" ci="0" mb="0" cb="0"/>
+<line nr="40" mi="6" ci="0" mb="0" cb="0"/>
+<line nr="41" mi="3" ci="0" mb="0" cb="0"/>
+<line nr="42" mi="2" ci="0" mb="0" cb="0"/>
+<line nr="43" mi="18" ci="0" mb="2" cb="0"/>
+<counter type="INSTRUCTION" missed="90" covered="0"/>
+<counter type="BRANCH" missed="2" covered="0"/>
+<counter type="LINE" missed="20" covered="0"/>
+</sourcefile>
+<counter type="INSTRUCTION" missed="447" covered="0"/>
+<counter type="BRANCH" missed="2" covered="0"/>
+<counter type="LINE" missed="97" covered="0"/>
+<counter type="METHOD" missed="14" covered="0"/>
+<counter type="CLASS" missed="3" covered="0"/>
+</package>
 <package name="dev/suresh/config">
 <class name="dev/suresh/config/JConfig" sourcefilename="JConfig.java">
 <method name="toString" desc="()Ljava/lang/String;">
@@ -2956,10 +3012,10 @@
 <counter type="METHOD" missed="2" covered="0"/>
 <counter type="CLASS" missed="1" covered="0"/>
 </package>
-<counter type="INSTRUCTION" missed="5683" covered="8"/>
+<counter type="INSTRUCTION" missed="5804" covered="8"/>
 <counter type="BRANCH" missed="190" covered="2"/>
-<counter type="LINE" missed="957" covered="0"/>
-<counter type="METHOD" missed="204" covered="0"/>
-<counter type="CLASS" missed="87" covered="0"/>
+<counter type="LINE" missed="964" covered="0"/>
+<counter type="METHOD" missed="208" covered="0"/>
+<counter type="CLASS" missed="91" covered="0"/>
 </report>
 

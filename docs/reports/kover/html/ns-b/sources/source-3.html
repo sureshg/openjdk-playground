@@ -109,61 +109,61 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">10</i>&nbsp;
 <i class="no-highlight">11</i>&nbsp;@OptIn(BleedingEdge::class)
 <i class="no-highlight">12</i>&nbsp;fun main() {
-<b class="nc"><i class="no-highlight">13</i>&nbsp;    val data = SerialTest&lt;List&lt;Map&lt;String, Int&gt;&gt;&gt;()</b>
-<b class="nc"><i class="no-highlight">14</i>&nbsp;    val j = data::class</b>
-<b class="nc"><i class="no-highlight">15</i>&nbsp;    val type = typeOf&lt;SerialTest&lt;List&lt;Map&lt;String, Int&gt;&gt;&gt;&gt;()</b>
-<b class="nc"><i class="no-highlight">16</i>&nbsp;    println(type)</b>
+<b class="nc"><i class="no-highlight">13</i>&nbsp;  val data = SerialTest&lt;List&lt;Map&lt;String, Int&gt;&gt;&gt;()</b>
+<b class="nc"><i class="no-highlight">14</i>&nbsp;  val j = data::class</b>
+<b class="nc"><i class="no-highlight">15</i>&nbsp;  val type = typeOf&lt;SerialTest&lt;List&lt;Map&lt;String, Int&gt;&gt;&gt;&gt;()</b>
+<b class="nc"><i class="no-highlight">16</i>&nbsp;  println(type)</b>
 <i class="no-highlight">17</i>&nbsp;
-<b class="nc"><i class="no-highlight">18</i>&nbsp;    val stringListSerializer = ListSerializer(String.serializer().nullable)</b>
-<b class="nc"><i class="no-highlight">19</i>&nbsp;    println(stringListSerializer.descriptor)</b>
+<b class="nc"><i class="no-highlight">18</i>&nbsp;  val stringListSerializer = ListSerializer(String.serializer().nullable)</b>
+<b class="nc"><i class="no-highlight">19</i>&nbsp;  println(stringListSerializer.descriptor)</b>
 <i class="no-highlight">20</i>&nbsp;
-<b class="nc"><i class="no-highlight">21</i>&nbsp;    val s = serializer&lt;SerialTest&lt;List&lt;Map&lt;String, String&gt;&gt;&gt;&gt;()</b>
-<b class="nc"><i class="no-highlight">22</i>&nbsp;    println(SerialTest.serializer(stringListSerializer))</b>
-<b class="nc"><i class="no-highlight">23</i>&nbsp;    println(s)</b>
+<b class="nc"><i class="no-highlight">21</i>&nbsp;  val s = serializer&lt;SerialTest&lt;List&lt;Map&lt;String, String&gt;&gt;&gt;&gt;()</b>
+<b class="nc"><i class="no-highlight">22</i>&nbsp;  println(SerialTest.serializer(stringListSerializer))</b>
+<b class="nc"><i class="no-highlight">23</i>&nbsp;  println(s)</b>
 <i class="no-highlight">24</i>&nbsp;
-<b class="nc"><i class="no-highlight">25</i>&nbsp;    val b = &quot;1000010&quot;.toIntOrNull(2)</b>
-<b class="nc"><i class="no-highlight">26</i>&nbsp;    println(b)</b>
-<b class="nc"><i class="no-highlight">27</i>&nbsp;    println(b?.toString(2))</b>
+<b class="nc"><i class="no-highlight">25</i>&nbsp;  val b = &quot;1000010&quot;.toIntOrNull(2)</b>
+<b class="nc"><i class="no-highlight">26</i>&nbsp;  println(b)</b>
+<b class="nc"><i class="no-highlight">27</i>&nbsp;  println(b?.toString(2))</b>
 <i class="no-highlight">28</i>&nbsp;
-<b class="nc"><i class="no-highlight">29</i>&nbsp;    previewMethod()</b>
-<b class="nc"><i class="no-highlight">30</i>&nbsp;    val clock = TimeSource.Monotonic</b>
-<b class="nc"><i class="no-highlight">31</i>&nbsp;    val d = measureTimedValue {</b>
-<b class="nc"><i class="no-highlight">32</i>&nbsp;        val mark = clock.markNow()</b>
-<b class="nc"><i class="no-highlight">33</i>&nbsp;        val list = buildList {</b>
-<b class="nc"><i class="no-highlight">34</i>&nbsp;            add(&quot;Hello&quot;)</b>
-<b class="nc"><i class="no-highlight">35</i>&nbsp;            add(&quot;Kotlin&quot;)</b>
-<b class="nc"><i class="no-highlight">36</i>&nbsp;        }</b>
-<b class="nc"><i class="no-highlight">37</i>&nbsp;        println(list)</b>
-<b class="nc"><i class="no-highlight">38</i>&nbsp;        mark.elapsedNow()</b>
-<i class="no-highlight">39</i>&nbsp;    }
-<b class="nc"><i class="no-highlight">40</i>&nbsp;    println(d.value.toDouble(DurationUnit.SECONDS))</b>
-<b class="nc"><i class="no-highlight">41</i>&nbsp;    deprecatedMethod()</b>
+<b class="nc"><i class="no-highlight">29</i>&nbsp;  previewMethod()</b>
+<b class="nc"><i class="no-highlight">30</i>&nbsp;  val clock = TimeSource.Monotonic</b>
+<b class="nc"><i class="no-highlight">31</i>&nbsp;  val d = measureTimedValue {</b>
+<b class="nc"><i class="no-highlight">32</i>&nbsp;    val mark = clock.markNow()</b>
+<b class="nc"><i class="no-highlight">33</i>&nbsp;    val list = buildList {</b>
+<b class="nc"><i class="no-highlight">34</i>&nbsp;      add(&quot;Hello&quot;)</b>
+<b class="nc"><i class="no-highlight">35</i>&nbsp;      add(&quot;Kotlin&quot;)</b>
+<b class="nc"><i class="no-highlight">36</i>&nbsp;    }</b>
+<b class="nc"><i class="no-highlight">37</i>&nbsp;    println(list)</b>
+<b class="nc"><i class="no-highlight">38</i>&nbsp;    mark.elapsedNow()</b>
+<i class="no-highlight">39</i>&nbsp;  }
+<b class="nc"><i class="no-highlight">40</i>&nbsp;  println(d.value.toDouble(DurationUnit.SECONDS))</b>
+<b class="nc"><i class="no-highlight">41</i>&nbsp;  deprecatedMethod()</b>
 <i class="no-highlight">42</i>&nbsp;
-<i class="no-highlight">43</i>&nbsp;    // LocalDate     --&gt; Period
-<i class="no-highlight">44</i>&nbsp;    // LocalDateTime --&gt; Duration
+<i class="no-highlight">43</i>&nbsp;  // LocalDate     --&gt; Period
+<i class="no-highlight">44</i>&nbsp;  // LocalDateTime --&gt; Duration
 <i class="no-highlight">45</i>&nbsp;
-<b class="nc"><i class="no-highlight">46</i>&nbsp;    val today = LocalDateTime.now()</b>
-<b class="nc"><i class="no-highlight">47</i>&nbsp;    println(today.plus(Duration.ofDays(1)))</b>
-<b class="nc"><i class="no-highlight">48</i>&nbsp;    println(</b>
-<b class="nc"><i class="no-highlight">49</i>&nbsp;        runCatching {</b>
-<b class="nc"><i class="no-highlight">50</i>&nbsp;            println(LocalDate.now().minus(Duration.ofDays(10)))</b>
-<b class="nc"><i class="no-highlight">51</i>&nbsp;        }.exceptionOrNull()?.message</b>
-<i class="no-highlight">52</i>&nbsp;    )
-<b class="nc"><i class="no-highlight">53</i>&nbsp;    println(LocalDate.now().minus(Period.ofDays(10)))</b>
+<b class="nc"><i class="no-highlight">46</i>&nbsp;  val today = LocalDateTime.now()</b>
+<b class="nc"><i class="no-highlight">47</i>&nbsp;  println(today.plus(Duration.ofDays(1)))</b>
+<b class="nc"><i class="no-highlight">48</i>&nbsp;  println(</b>
+<b class="nc"><i class="no-highlight">49</i>&nbsp;    runCatching {</b>
+<b class="nc"><i class="no-highlight">50</i>&nbsp;      println(LocalDate.now().minus(Duration.ofDays(10)))</b>
+<b class="nc"><i class="no-highlight">51</i>&nbsp;    }.exceptionOrNull()?.message</b>
+<i class="no-highlight">52</i>&nbsp;  )
+<b class="nc"><i class="no-highlight">53</i>&nbsp;  println(LocalDate.now().minus(Period.ofDays(10)))</b>
 <i class="no-highlight">54</i>&nbsp;}
 <i class="no-highlight">55</i>&nbsp;
 <i class="no-highlight">56</i>&nbsp;@Serializable
 <i class="no-highlight">57</i>&nbsp;class SerialTest&lt;T&gt;(val data: T? = null)
 <i class="no-highlight">58</i>&nbsp;
 <i class="no-highlight">59</i>&nbsp;@RequiresOptIn(
-<i class="no-highlight">60</i>&nbsp;    level = ERROR,
-<i class="no-highlight">61</i>&nbsp;    message = &quot;This is a Bleeding edge API&quot;
+<i class="no-highlight">60</i>&nbsp;  level = ERROR,
+<i class="no-highlight">61</i>&nbsp;  message = &quot;This is a Bleeding edge API&quot;
 <i class="no-highlight">62</i>&nbsp;)
 <i class="no-highlight">63</i>&nbsp;annotation class BleedingEdge
 <i class="no-highlight">64</i>&nbsp;
 <i class="no-highlight">65</i>&nbsp;@BleedingEdge
 <i class="no-highlight">66</i>&nbsp;fun previewMethod() {
-<b class="nc"><i class="no-highlight">67</i>&nbsp;    println(&quot;Called Bleeding edge method!&quot;)</b>
+<b class="nc"><i class="no-highlight">67</i>&nbsp;  println(&quot;Called Bleeding edge method!&quot;)</b>
 <i class="no-highlight">68</i>&nbsp;}
 <i class="no-highlight">69</i>&nbsp;
 <i class="no-highlight">70</i>&nbsp;@Deprecated(&quot;test&quot;, replaceWith = ReplaceWith(&quot;previewMethod()&quot;))
@@ -171,7 +171,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc"><i class="no-highlight">72</i>&nbsp;}</b>
 <i class="no-highlight">73</i>&nbsp;
 <i class="no-highlight">74</i>&nbsp;fun interface FunInterface {
-<i class="no-highlight">75</i>&nbsp;    fun tt()
+<i class="no-highlight">75</i>&nbsp;  fun tt()
 <i class="no-highlight">76</i>&nbsp;}
 </div>
 </pre>
@@ -199,7 +199,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-06-10 18:47</div>
+    <div style="float:right;">generated on 2022-07-16 00:17</div>
 </div>
 </body>
 </html>
