@@ -132,7 +132,7 @@ $ awk -v cmd='openssl x509 -noout -subject -dates ' '/BEGIN/{close(cmd)};{print 
             -chain \
             -nokeys \
             -nomacver \
-            -in "$(find $JAVA_HOME -name cacerts)" \
+            -in "$(find -L $JAVA_HOME -name cacerts)" \
             -passin pass: | grep -i "subject="
   ```
 
@@ -147,7 +147,7 @@ $ awk -v cmd='openssl x509 -noout -subject -dates ' '/BEGIN/{close(cmd)};{print 
             -rfc \
             -storetype pkcs12 \
             -storepass changeit \
-            -keystore "$(find $JAVA_HOME -name cacerts)"
+            -keystore "$(find -L $JAVA_HOME -name cacerts)"
   ```
 
 
@@ -234,16 +234,16 @@ $ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
   ```bash
   # GPU key files
   $ ~/.gnupg
-
+  
   # Show all keys
   $ gpg --list-keys --keyid-format=[long|short]
-
+  
   # List secrets keys
   $ gpg --list-secret-keys --keyid-format=short
-
+  
   # Update all keys from a keyserver
   $ gpg --refresh-keys [--keyserver pgp.mit.edu]
-
+  
   $ gpg --recv-key XXXXXX
   $ gpg --delete-key  "xxx@gmail.com"
   ```
@@ -254,10 +254,10 @@ $ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
 
   ```bash
   # Note: The private key can never expire
-
+  
   # Get the key id
   $ gpg --list-keys --keyid-format SHORT
-
+  
   # Comment out 'no-tty' in ~/.gnupg/gpg.conf
   $ gpg --edit-key C8B53CA1
   $ gpg> list
@@ -267,15 +267,15 @@ $ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
          trust
          save
          quit
-
+  
   # Export for backup
   $ gpg -a --export C8B53CA1 > sureshg.gpg.public
   $ gpg -a --export-secret-keys C8B53CA1 > sureshg.gpg.private
-
+  
   # Send it to key servers
   $ gpg --keyserver keyserver.ubuntu.com --send-keys C8B53CA1
   $ gpg --keyserver pgp.mit.edu --send-keys C8B53CA1
-
+  
   # Update GPG key in Github
   $ cat sureshg.gpg.public| pbcopy
   $ https://github.com/settings/gpg/new
