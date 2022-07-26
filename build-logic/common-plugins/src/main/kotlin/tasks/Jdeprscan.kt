@@ -84,6 +84,9 @@ abstract class Jdeprscan @Inject constructor(
     val deprecations = bos.toString(Charsets.UTF_8)
     println(deprecations)
 
+    // Another way to access the process output as a provider (lazy)
+    // val output: Provider<String> = project.providers.exec {}.standardOutput.asText
+
     // Just documenting for future use.
     if (extension.verbose.get()) {
       // Runtime classpath to execute the source.

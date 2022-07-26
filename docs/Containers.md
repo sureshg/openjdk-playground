@@ -27,7 +27,7 @@ $ docker pull gcr.io/distroless/base:latest
 
 # Openjdk
 # https://github.com/docker-library/openjdk
-$ docker pull openjdk:19-slim
+$ docker pull openjdk:20-slim
 $ docker pull openjdk:19-alpine
 $ docker pull openjdk:19-jdk-oracle
 
@@ -154,8 +154,8 @@ $ docker run \
         --pull always \
         -v "$HOME":/app \
         -v /:/host \
-        --name jdk-19 \
-        openjdk:19-slim \
+        --name openjdk \
+        openjdk:20-slim \
         java \
         -XX:+UnlockExperimentalVMOptions \
         -XX:+UnlockDiagnosticVMOptions \
@@ -171,12 +171,26 @@ $ docker run \
 
 
 
+##### App Running on K8S/Docker
+
+```bash
+$ docker run \
+     -it \
+     --rm \
+     openjdk:20-slim \
+     sh -c "cat /proc/self/cgroup | grep -i '/docker'"
+```
+
+   * [Check if the container is running inside K8S](https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/#environment-variables:~:text=printenv%20%7C%20grep%20SERVICE-,KUBERNETES_SERVICE_HOST,-%3D10.0.0.1%0AKUBERNETES_SERVICE_PORT%3D443)
+
+
+
 ##### JVM default GC
 
 ```bash
 # https://github.com/openjdk/jdk/blob/master/src/hotspot/share/runtime/os.cpp#L1605
 # OpenJDK reverts to Serial GC when it detects < 2 CPUs or < 2GB RAM
-$ docker run -it --rm --cpus=1 --memory=1G openjdk:19-slim java -Xlog:gc --version
+$ docker run -it --rm --cpus=1 --memory=1G openjdk:20-slim java -Xlog:gc --version
 #[0.007s][info][gc] Using Serial
 ```
 

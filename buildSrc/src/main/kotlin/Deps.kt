@@ -89,7 +89,7 @@ object Deps {
   }
 
   object Kotlinx {
-    const val atomicfuVersion = "0.18.2"
+    const val atomicfuVersion = "0.18.3"
     const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
     const val reflectLite = "org.jetbrains.kotlinx:kotlinx.reflect.lite:1.0.0"
     const val atomicfu = "org.jetbrains.kotlinx:atomicfu:$atomicfuVersion"
@@ -99,9 +99,10 @@ object Deps {
       "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:0.3.4"
 
     object Serialization {
-      const val version = "1.3.3"
+      const val version = "1.4.0-RC"
       const val core = "org.jetbrains.kotlinx:kotlinx-serialization-core:$version"
       const val json = "org.jetbrains.kotlinx:kotlinx-serialization-json:$version"
+      const val jsonOkio = "org.jetbrains.kotlinx:kotlinx-serialization-json-okio:$version"
       const val cbor = "org.jetbrains.kotlinx:kotlinx-serialization-cbor:$version"
       const val hocon = "org.jetbrains.kotlinx:kotlinx-serialization-hocon:$version"
       const val protobuf = "org.jetbrains.kotlinx:kotlinx-serialization-protobuf:$version"
@@ -261,7 +262,7 @@ object Deps {
   }
 
   object Junit {
-    const val version = "5.9.0-RC1"
+    const val version = "5.9.0"
     const val bom = "org.junit:junit-bom:$version"
     const val jupiter = "org.junit.jupiter:junit-jupiter"
     const val jupiterApi = "org.junit.jupiter:junit-jupiter-api"
@@ -271,7 +272,7 @@ object Deps {
   }
 
   object KoTest {
-    const val version = "5.3.2"
+    const val version = "5.4.0"
     const val junit5Runner = "io.kotest:kotest-runner-junit5:$version"
     const val assertions = "io.kotest:kotest-assertions-core:$version"
     const val property = "io.kotest:kotest-property:$version"
@@ -413,7 +414,7 @@ object Deps {
     const val crossword = "com.jakewharton.crossword:crossword:0.2.0"
     const val progressbar = "me.tongfei:progressbar:0.9.0"
     const val progressKt = "com.importre:progress:0.1.0"
-    const val textTree = "org.barfuin.texttree:text-tree:2.1.1"
+    const val textTree = "org.barfuin.texttree:text-tree:2.1.2"
 
     const val lanterna = "com.googlecode.lanterna:lanterna:3.2.0-alpha1"
     const val jexerTui = "com.gitlab.klamonte:jexer:0.3.2"
