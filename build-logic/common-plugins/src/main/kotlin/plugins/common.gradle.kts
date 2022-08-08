@@ -171,8 +171,8 @@ tasks {
     finalizedBy(printModuleDeps, buildExecutable, githubActionOutput)
   }
 
-  // Custom task for GitHub action CI build.
   val ciBuild by registering {
+    description = "Custom task for GitHub action CI build"
     dependsOn(tasks.run, tasks.build, "koverMergedHtmlReport", "dokkaHtml")
     named("koverMergedHtmlReport").map { it.mustRunAfter(tasks.build) }
     named("dokkaHtml").map { it.mustRunAfter(tasks.build) }

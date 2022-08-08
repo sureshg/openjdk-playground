@@ -12,7 +12,7 @@
 @file:DependsOn("com.microsoft.playwright:playwright:1.24.0")
 // @file:Import("common.main.kts")
 
-@file:CompilerOptions("-jvm-target", "11")
+@file:CompilerOptions("-jvm-target", "1.8")
 
 import com.microsoft.playwright.*
 import kotlinx.coroutines.*
