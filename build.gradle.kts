@@ -1,3 +1,4 @@
+import com.google.devtools.ksp.gradle.*
 import dev.suresh.gradle.*
 import gg.jte.*
 import kotlinx.kover.api.*
@@ -5,6 +6,7 @@ import org.gradle.api.tasks.testing.logging.*
 import org.jetbrains.dokka.gradle.*
 import org.jetbrains.kotlin.config.*
 import org.jetbrains.kotlin.gradle.tasks.*
+import tasks.*
 import java.net.*
 
 plugins {
@@ -154,6 +156,9 @@ kotlin {
 }
 
 ksp {
+  arg("autoserviceKsp.verify", "true")
+  arg("autoserviceKsp.verbose", "true")
+  // arg(KspArgsProvider(project.layout.projectDirectory.file("config").asFile))
 }
 
 kapt {
@@ -217,9 +222,17 @@ qodana {
 }
 
 kover {
-  coverageEngine.set(CoverageEngine.INTELLIJ)
-  // intellijEngineVersion.set("1.0.656")
-  // jacocoEngineVersion.set("0.8.7")
+  isDisabled.set(false)
+  engine.set(DefaultIntellijEngine)
+  filters {
+    classes {
+      excludes += listOf("dev.suresh.example.*")
+    }
+  }
+}
+
+koverMerged {
+  enable()
 }
 
 kotlinPowerAssert {
@@ -393,22 +406,8 @@ tasks {
 
     // Configure coverage for test task.
     extensions.configure<KoverTaskExtension> {
-      isDisabled = false
-    }
-  }
-
-  // Code Coverage
-  koverMergedHtmlReport {
-    isEnabled = true
-  }
-
-  koverMergedVerify {
-    rule {
-      name = "Minimum number of lines covered"
-      bound {
-        minValue = 0
-        valueType = VerificationValueType.COVERED_LINES_COUNT
-      }
+      isDisabled.set(false)
+      // excludes.addAll(...)
     }
   }
 
@@ -516,7 +515,7 @@ val dokkaHtmlJar by tasks.registering(Jar::class) {
   archiveClassifier.set("htmldoc")
 }
 
-// For publishing pure kotlin project
+// For publishing a pure kotlin project
 val emptyJar by tasks.registering(Jar::class) {
   archiveClassifier.set("javadoc")
   // duplicatesStrategy = DuplicatesStrategy.EXCLUDE
@@ -585,7 +584,7 @@ dependencies {
   constraints {
     implementation("org.apache.logging.log4j:log4j-core") {
       version {
-        prefer("[2.17,2[")
+        prefer("[2.18,0[")
         strictly(Deps.Logging.Log4j2.version)
       }
       because("CVE-2021-44228 - Log4shell")

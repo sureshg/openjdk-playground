@@ -138,7 +138,7 @@ jobs:
       - name: 🏗️ Gradle Build, Run & Analyze
         id: gradle-build
         run: |
-          ./gradlew run build dokkaHtml
+          ./gradlew ciBuild
           #./gradlew build sonarqube --info
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

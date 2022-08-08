@@ -27,6 +27,7 @@ public class Main {
 
   public static List<Person> topN(List<Person> persons, int count) {
     record PersonX(Person p, int score) {}
+
     var list =
         persons.stream()
             .sorted(Comparator.comparing(Main::computeScore))

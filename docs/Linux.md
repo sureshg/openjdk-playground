@@ -1,81 +1,129 @@
 # Linux
 
 -------------------------
+<!-- TOC -->
 
-[TOC]
+* [Linux](#linux)
+    * [Command Line Tools](#command-line-tools)
+    * [Proc FileSystem](#proc-filesystem)
+    * [Curl](#curl)
+    * [SSH](#ssh)
+    * [Wireshark](#wireshark)
+    <!-- TOC -->
 
 ### Command Line Tools
 
- * ##### Process threads, cpu and memory usage.
+* ##### Process threads, cpu and memory usage.
+
+  ```bash
+  # Show process threads and it's CPU usage
+  $ ps  -p  <pid> \
+        -T \
+        -o start_time,uname,fname,pid,ppid,%cpu,%mem,tid,tname,thcount,time,size,rss,m_size,vsize,lwp | awk '{print $6}' | sort -rn | less
+
+  # OR
+  $ ps  -p  <pid> \
+        -T \
+        -o start_time,uname,fname,pid,ppid,%cpu,%mem,tid,tname,thcount,time,size,rss,m_size,vsize,lwp --sort -tid
+
+  # Show all processes sorted by RSS
+  $ ps -eo user,pid,pmem,rss,vsz,comm,start,time,command --sort -rss | numfmt --header --from-unit=1024 --to=iec --field 4-5 | awk '$3 != 0'
+
+  # Show process tree
+  $ pstree -aps
+
+  # Show all threads
+  $ ls /proc/<pid>/task
+
+  # Show all threads using top
+  $ top -H -p <pid>
+  ```
+
+
+* ##### Sysctl
+
+  ```bash
+  # /etc/sysctl.conf
+  fs.file-max=10485760
+  fs.nr_open=10485760
+
+  net.core.somaxconn=16192
+  net.core.netdev_max_backlog=16192
+  net.ipv4.tcp_max_syn_backlog=16192
+
+  net.ipv4.ip_local_port_range = 1024 65535
+
+  net.core.rmem_max = 16777216
+  net.core.wmem_max = 16777216
+  net.core.rmem_default = 16777216
+  net.core.wmem_default = 16777216
+  net.ipv4.tcp_rmem = 4096 87380 16777216
+  net.ipv4.tcp_wmem = 4096 87380 16777216
+  net.ipv4.tcp_mem = 1638400 1638400 1638400
+
+  net.netfilter.nf_conntrack_buckets = 1966050
+  net.netfilter.nf_conntrack_max = 7864200
+
+  # EC2 Amazon Linux
+  net.core.netdev_max_backlog = 65536
+  net.core.optmem_max = 25165824
+  net.ipv4.tcp_max_tw_buckets = 1440000
+
+  # /etc/security/limits.conf (set max open file descriptors)
+  * soft nofile 8000000
+  * hard nofile 9000000
+  ```
+
+    - [**Java Virtual Threads - c5m**](https://github.com/ebarlas/project-loom-c5m#experiments)
+
+    -
+    See [2M websocket connections](http://www.phoenixframework.org/blog/the-road-to-2-million-websocket-connections)
+
+    - See [Tuning HA Proxy for 300K connections](https://www.linangran.com/?p=547)
+
+    - See [Kernel Tuning params](https://tweaked.io/guide/kernel/)
+
+    -
+    See [How TCP backlog works in Linux](http://veithen.github.io/2014/01/01/how-tcp-backlog-works-in-linux.html)
+
+    - See [TCP TIME_WAIT config](http://www.fromdual.com/huge-amount-of-time-wait-connections)
 
    ```bash
-   $ ps  -p  <pid> \
-         -T \
-         -o start_time,uname,fname,pid,ppid,%cpu,%mem,tid,tname,thcount,time,size,rss,m_size,vsize,lwp | awk '{print $6}' | sort -rn | less
-
-   # Show process tree
-   $ pstree -aps
-
-   # Show all threads
-   $ ls /proc/<pid>/task
-
-   # Show all threads using top
-   $ top -H -p <pid>
+    # Can also set it using sysctl commands
+    sysctl -w fs.file-max=12000500
+    sysctl -w fs.nr_open=20000500
+    sysctl -w net.ipv4.tcp_mem='10000000 10000000 10000000'
+    sysctl -w net.ipv4.tcp_rmem='1024 4096 16384'
+    sysctl -w net.ipv4.tcp_wmem='1024 4096 16384'
+    sysctl -w net.core.rmem_max=16384
+    sysctl -w net.core.wmem_max=16384
+    sysctl -w net.core.somaxconn=1024
+    ulimit -n 20000000
    ```
 
 
+* Netstat
 
- * ##### Sysctl
+  ```bash
+  # Find all TCP/UDP listening port's PID
+  $ netstat -tunalp
 
-   ```bash
-   sysctl -w fs.file-max=12000500
-   sysctl -w fs.nr_open=20000500
-   ulimit -n 20000000
-   sysctl -w net.ipv4.tcp_mem='10000000 10000000 10000000'
-   sysctl -w net.ipv4.tcp_rmem='1024 4096 16384'
-   sysctl -w net.ipv4.tcp_wmem='1024 4096 16384'
-   sysctl -w net.core.rmem_max=16384
-   sysctl -w net.core.wmem_max=16384
-   sysctl -w net.core.somaxconn=1024
-   ```
+  # On Mac
+  $ netstat -vanp tcp  | grep -i 8080
 
-   - See [2M websocket connections](http://www.phoenixframework.org/blog/the-road-to-2-million-websocket-connections)
+  # Find process used by given port
+  $ lsof -i :8080
 
-   - See [Tuning HA Proxy for 300K connections](https://www.linangran.com/?p=547)
-
-   - See [Kernel Tuning params](https://tweaked.io/guide/kernel/)
-
-   - See [How TCP backlog works in Linux](http://veithen.github.io/2014/01/01/how-tcp-backlog-works-in-linux.html)
-
-   - See [TCP TIME_WAIT config](http://www.fromdual.com/huge-amount-of-time-wait-connections)
+  # Socket stats
+  $ ss -s
+  ```
 
 
+* XArgs
 
- * Netstat
-
-   ```bash
-   # Find all TCP/UDP listening port's PID
-   $ netstat -tunalp
-
-   # On Mac
-   $ netstat -vanp tcp  | grep -i 8080
-
-   # Find process used by given port
-   $ lsof -i :8080
-
-   # Socket stats
-   $ ss -s
-   ```
-
-
-
- * XArgs
-
-   ```bash
-   sudo -S pgrep -f tomcat  | xargs -n 1  -I {}  sh -c 'echo "Killing process pid: {}" &&  sudo kill -9 {} && echo Done.'
-   ```
-
-
+  ```bash
+  sudo -S pgrep -f tomcat  | xargs -n 1  -I {}  sh -c 'echo "Killing process pid: {}" &&  sudo kill -9 {} && echo Done.'
+  ```
 
 ### [Proc FileSystem](https://dashdash.io/5/proc)
 
@@ -93,44 +141,37 @@
   $ ps --no-headers -o comm 1 | grep -q 'systemd'
   ```
 
-
-
 ### Curl
 
-   * Get round trip time
+* Get round trip time
 
-     ```bash
-     $ curl -X GET \
-            -o /dev/null  \
-            -I -w "Connect: %{time_connect}s, Transfer: %{time_starttransfer}s, Total: %{time_total}s" \
-            -X GET http://www.google.com
-     ```
-
-
-
-   * Download a file with retry
-
-     ```bash
-     # -fsSLO
-     $curl --fail \
-           --silent \
-           --show-error \
-           --location \
-           --remote-name \
-           --compressed \
-           --progress-bar \
-           --retry 3 \
-           --retry-connrefused \
-           --retry-delay 1 \
-           --connect-timeout 5 \
-           --max-time 10 \
-           --request GET \
-     https://search.maven.org/remotecontent?filepath=org/jetbrains/kotlin/kotlin-stdlib/1.7.0/kotlin-stdlib-1.7.0.jar
-     ```
+  ```bash
+  $ curl -X GET \
+         -o /dev/null  \
+         -I -w "Connect: %{time_connect}s, Transfer: %{time_starttransfer}s, Total: %{time_total}s" \
+         -X GET http://www.google.com
+  ```
 
 
+* Download a file with retry
 
-
+  ```bash
+  # -fsSLO
+  $ curl --fail \
+        --silent \
+        --show-error \
+        --location \
+        --remote-name \
+        --compressed \
+        --progress-bar \
+        --retry 3 \
+        --retry-connrefused \
+        --retry-delay 1 \
+        --connect-timeout 5 \
+        --max-time 10 \
+        --request GET \
+  https://search.maven.org/remotecontent?filepath=org/jetbrains/kotlin/kotlin-stdlib/1.7.0/kotlin-stdlib-1.7.0.jar
+  ```
 
 ### SSH
 
@@ -145,8 +186,6 @@
   ssh -v  -R  :8091:localip:remoteport  user@remoteip
   # ssh -v  -R  :8091:172.28.170.95:3000  app@10.242.182.199
   ```
-
-
 
 ### Wireshark
 
@@ -166,6 +205,7 @@
   $ ssh user@remote-host "sudo /usr/sbin/tcpdump -s0 -w - 'port 8080'" | wireshark -k -i -
   ```
 
-  ★ See [Wireshark Over SSH](https://kaischroed.wordpress.com/2013/01/28/howto-use-wireshark-over-ssh/)
+  ★
+  See [Wireshark Over SSH](https://kaischroed.wordpress.com/2013/01/28/howto-use-wireshark-over-ssh/)
 
   ★ See [Using Unix Named Pipe](https://serverfault.com/a/530020/184962)

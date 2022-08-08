@@ -1,6 +1,7 @@
 @import dev.suresh.config.JConfig
 @import dev.suresh.jte.KtConfig
 @import java.time.LocalDateTime
+@import gg.jte.support.ForSupport
 
 @param config: JConfig
 @param ktConfig: KtConfig
@@ -8,6 +9,7 @@
 App Version  = ${ktConfig.appVersion ?: "1.0.0"}
 ${config.language()} = ${config.version()}
 ${ktConfig.language} = ${ktConfig.version}
+
 <%-- Show App Properties --%>
 ----------Application Properties-----------
 VERSION              : ${App.VERSION}
@@ -15,8 +17,6 @@ BASE_VERSION         : ${App.BASE_VERSION}
 JAVA_VERSION         : ${App.JAVA_VERSION}
 KOTLIN_VERSION       : ${App.KOTLIN_VERSION}
 GRADLE_VERSION       : ${App.GRADLE_VERSION}
-GOOGLE_JAVA_FORMAT   : ${App.GJF_VERSION}
-KTLINT_VERSION       : ${App.KTLINT_VERSION}
 GIT_BRANCH           : ${App.GIT_BRANCH}
 GIT_TAG              : ${App.GIT_TAG}
 GIT_COMMITER_EMAIL   : ${App.GIT_COMMITER_EMAIL}
@@ -24,5 +24,12 @@ GIT_COMMITER_NAME    : ${App.GIT_COMMITER_NAME}
 GIT_COMMIT_TIMESTAMP : ${App.GIT_COMMIT_TIMESTAMP}
 GIT_SHA1_8           : ${App.GIT_SHA1_8}
 GIT_SHA1_FULL        : ${App.GIT_SHA1_FULL}
--------------------------------------------
+
+----------Application Dependencies-----------
+@if(App.dependencies.isNotEmpty())
+Total Dependencies: ${App.dependencies.size} @endif
+@for(dep in ForSupport.of(App.dependencies))
+${(dep.index + 1)}) ${dep.get()} @endfor
+---------------------------------------------
 Rendered By Kotlin Jte on ${LocalDateTime.now().toString()}
+---------------------------------------------

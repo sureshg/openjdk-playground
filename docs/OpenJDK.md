@@ -3,7 +3,83 @@
 This document contains list of [Java/JDK](http://jdk.java.net/) commands which i find useful for my
 day to day work.
 
-[TOC]
+<!-- TOC -->
+
+* [OpenJDK](#openjdk)
+    * [Java Commands](#java-commands)
+        * [1. Create Source Code Structure](#1-create-source-code-structure)
+        * [2. Preview features](#2-preview-features)
+        * [3. Java Platform Module Systems (JPMS)](#3-java-platform-module-systems--jpms-)
+        * [4. Disassembles a class](#4-disassembles-a-class)
+        * [5. App/Dynamic CDS](#5-appdynamic-cds)
+        * [6. Show Java VM/Property Settings](#6-show-java-vmproperty-settings)
+        * [7. Scan deprecated APIs](#7-scan-deprecated-apis)
+        * [8. JPMS](#8-jpms)
+        * [9. JVMCI (Graal) Compiler](#9-jvmci--graal--compiler)
+        * [10. JShell](#10-jshell)
+        * [11. Virtual Thread config](#11-virtual-thread-config)
+        * [12. Kotlin + Graal Native-Image](#12-kotlin--graal-native-image)
+        * [13. Generics](#13-generics)
+    * [IDEs and Tools](#ides-and-tools)
+        * [1. IntelliJ Selection Modes](#1-intellij-selection-modes)
+    * [Networking & Security](#networking--security)
+        * [🚨 Security Developer’s Guide](#-security-developers-guide)
+        * [1. Allow Unsafe Server Cert Change](#1-allow-unsafe-server-cert-change)
+        * [2 . Debugging TLS](#2--debugging-tls)
+        * [2. Java Networking Properties](#2-java-networking-properties)
+        * [3. HTTP Client Properties](#3-http-client-properties)
+    * [Gradle Kotlin DSL](#gradle-kotlin-dsl)
+        * [1. Docs](#1-docs)
+        * [2. Name Abbrevation](#2-name-abbrevation)
+        * [3. Create new Java `SourceSet`](#3-create-new-java-sourceset)
+        * [4. Custom SourceSet directories](#4-custom-sourceset-directories)
+        * [5. Kotlin SourceSets](#5-kotlin-sourcesets)
+        * [6. Compile class path](#6-compile-class-path)
+        * [7. Configure/Create Tasks](#7-configurecreate-tasks)
+        * [8. Enabling Java preview feature](#8-enabling-java-preview-feature)
+        * [9. Reproducible builds](#9-reproducible-builds)
+        * [10. Multi Release Jar](#10-multi-release-jar)
+        * [11. Dependencies](#11-dependencies)
+        * [12. Update Wrapper and others](#12-update-wrapper-and-others)
+        * [13. Gradle Versions](#13-gradle-versions)
+    * [Maven](#maven)
+        * [1. Public Maven Repositories](#1-public-maven-repositories)
+        * [2. Create a Project](#2-create-a-project)
+        * [3. Enabling Java preview feature](#3-enabling-java-preview-feature)
+        * [4. Reproducible Builds](#4-reproducible-builds)
+        * [5. Maven Wrapper](#5-maven-wrapper)
+        * [6. Update Version number](#6-update-version-number)
+        * [7. Dependency Tree](#7-dependency-tree)
+    * [Microservices Starters](#microservices-starters)
+        * [1. Micronaut](#1-micronaut)
+        * [2. SpringBoot](#2-springboot)
+        * [3. Gradle Initializr](#3-gradle-initializr)
+        * [4. Maven Archetype Quickstart](#4-maven-archetype-quickstart)
+    * [Misc](#misc)
+        * [1. SDKMAN](#1-sdkman)
+        * [2. jEnv](#2-jenv)
+        * [3. Codelabs](#3-codelabs)
+        * [4. Typora](#4-typora)
+        * [5. Github Actions](#5-github-actions)
+    * [Mac OS](#mac-os)
+    * [LDAP Tools](#ldap-tools)
+    * [OpenJDK Build](#openjdk-build)
+    * [Oracle A1 Flex](#oracle-a1-flex)
+    * [Native-Image](#native-image)
+        * [1. Workshop](#1-workshop)
+        * [2. Graal Updater & Truffle](#2-graal-updater--truffle)
+
+    * [Blogs](#blogs)
+    * [Awesome Svgs](#awesome-svgs)
+        * [Illustrations](#illustrations)
+        * [Background](#background)
+        * [Icons](#icons)
+        * [Emojis](#emojis)
+        * [Awesome List](#awesome-list)
+        * [Tools](#tools)
+        * [JBang](#jbang)
+
+<!-- TOC -->
 
 ### Java Commands
 
@@ -49,8 +125,6 @@ $ javap -p -v <classfile>
 
 * **[Javap Pastebin](https://javap.yawk.at/)**
 
-
-
 ##### 5. App/Dynamic CDS
 
 ```bash
@@ -70,13 +144,11 @@ $ jlink-runtime/java -Xshare:dump
 $ jlink-runtime/java -Xshare:on --version
 ```
 
-   * https://ionutbalosin.com/2022/04/application-dynamic-class-data-sharing-in-hotspot-jvm
+* https://ionutbalosin.com/2022/04/application-dynamic-class-data-sharing-in-hotspot-jvm
 
-   * https://dev.java/learn/class-data-sharing-and-application-class-data-sharing-in-hotspot
+* https://dev.java/learn/class-data-sharing-and-application-class-data-sharing-in-hotspot
 
-   * https://mbien.dev/blog/entry/custom-java-runtimes-with-jlink
-
-
+* https://mbien.dev/blog/entry/custom-java-runtimes-with-jlink
 
 ##### 6. Show Java VM/Property Settings
 
@@ -103,7 +175,8 @@ $ java -Xmixed           mixed mode execution (default)
 
 * [**Java Command Options***](https://docs.oracle.com/en/java/javase/18/docs/specs/man/java.html)
 * **[VM Options](https://www.oracle.com/java/technologies/javase/vmoptions-jsp.html)**
-* [**`class` file format major versions**](https://docs.oracle.com/javase/specs/jvms/se18/html/jvms-4.html#jvms-4.1-200-B.2)
+* [**`class` file format major
+  versions**](https://docs.oracle.com/javase/specs/jvms/se18/html/jvms-4.html#jvms-4.1-200-B.2)
 
 ##### 7. Scan deprecated APIs
 
@@ -203,8 +276,6 @@ $ java -Djdk.defaultScheduler.parallelism=4   // Default to Runtime.getRuntime()
 $ java -Djdk.tracePinnedThreads=short|full
 ```
 
-
-
 ##### 12. Kotlin + Graal Native-Image
 
 ```bash
@@ -224,8 +295,6 @@ $ time ./app
 
 - [GenericsFAQ](http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html)
 - [How we got Generics we have](https://cr.openjdk.java.net/~briangoetz/valhalla/erasure.html)
-
-
 
 ### IDEs and Tools
 
@@ -326,8 +395,6 @@ $ time ./app
 -Djdk.tls.client.protocols="TLSv1.2"
 ```
 
-
-
 ### Gradle Kotlin DSL
 
 ------
@@ -358,11 +425,11 @@ $ ./gradlew --console=plain \
 
 ```kotlin
 sourceSets {
-  create("java15") {
-      java {
-          srcDirs("src/main/java15")
-      }
-  }
+    create("java15") {
+        java {
+            srcDirs("src/main/java15")
+        }
+    }
 }
 
 // OR can also do
@@ -412,14 +479,14 @@ kotlin {
 
 // Change kotlin src dir
 kotlin {
-  sourceSets {
-    main {
-      kotlin.srcDirs("src")
-      languageSettings.apply {
-        optIn("kotlin.ExperimentalStdlibApi")
-      }
+    sourceSets {
+        main {
+            kotlin.srcDirs("src")
+            languageSettings.apply {
+                optIn("kotlin.ExperimentalStdlibApi")
+            }
+        }
     }
-  }
 }
 
 // or
@@ -612,6 +679,7 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
 ##### 3. [Enabling Java preview feature](https://blog.codefx.org/java/enable-preview-language-features/#Enabling-Previews-In-Tools)
 
 ```xml
+
 <build>
   <plugins>
     <plugin>
@@ -646,6 +714,7 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
 ##### 4. [Reproducible Builds](https://maven.apache.org/guides/mini/guide-reproducible-builds.html)
 
 ```xml
+
 <properties>
   <project.build.outputTimestamp>2020-04-02T08:04:00Z</project.build.outputTimestamp>
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -766,6 +835,7 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
 - [GITHUB_TOKEN](https://help.github.com/en/actions/configuring-and-managing-workflows/authenticating-with-the-github_token)
 
 - [Awesome Actions](https://github.com/sdras/awesome-actions)
+
 * Docker hub push - https://github.com/marketplace/actions/build-and-push-docker-images
 
 * [Github Registry](https://help.github.com/en/packages/using-github-packages-with-your-projects-ecosystem/configuring-docker-for-use-with-github-packages)
@@ -793,8 +863,6 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
    jobs.services.postgres.ports[5432]
   ```
 
-
-
 ### Mac OS
 
 ```bash
@@ -804,13 +872,9 @@ $ sudo xattr -cr /Applications/compose-desktop-sample.app
 $ sudo xattr -r -d com.apple.quarantine path/to/app/folder/
 ```
 
-
-
 ### LDAP Tools
 
 * https://ldap.com/ldap-tools/
-
-
 
 ### [OpenJDK Build](https://openjdk.java.net/groups/build/doc/building.html)
 
@@ -868,6 +932,7 @@ $ java -truffle [-options] -jar jarfile [args...]
 ```
 
 ```xml
+
 <dependency>
   <groupId>org.graalvm.nativeimage</groupId>
   <artifactId>svm</artifactId>
@@ -909,18 +974,16 @@ $ git commit --allow-empty -m "empty commit"
 
 * Tools
 
-  * https://utteranc.es/ - Comments Widgets
+    * https://utteranc.es/ - Comments Widgets
 
-  * https://orchid.run/wiki/learn/tutorials/how-to-document-kotlin
+    * https://orchid.run/wiki/learn/tutorials/how-to-document-kotlin
 
-  * http://casual-effects.com/markdeep/
+    * http://casual-effects.com/markdeep/
 
-  * https://www.mkdocs.org/ (eg: https://github.com/hexagonkt/hexagon/tree/master/hexagon_site)
+    * https://www.mkdocs.org/ (eg: https://github.com/hexagonkt/hexagon/tree/master/hexagon_site)
 
-  * Github publish example
-    - https://github.com/hexagonkt/hexagon/blob/master/.github/workflows/main.yml
-
-
+    * Github publish example
+        - https://github.com/hexagonkt/hexagon/blob/master/.github/workflows/main.yml
 
 ### Awesome Svgs
 

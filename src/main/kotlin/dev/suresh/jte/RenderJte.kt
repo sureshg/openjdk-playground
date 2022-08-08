@@ -13,7 +13,10 @@ data class KtConfig(
 
 class RenderJte {
   fun run() {
-    val tmplEngine = TemplateEngine.createPrecompiled(ContentType.Plain)
+    val tmplEngine = TemplateEngine.createPrecompiled(ContentType.Plain).apply {
+      setTrimControlStructures(true)
+    }
+
     val params = mapOf(
       "config" to JConfig(),
       "ktConfig" to KtConfig(

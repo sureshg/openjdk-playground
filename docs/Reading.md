@@ -2,6 +2,15 @@
 
 ------
 
+<!-- TOC -->
+
+* [Readings](#readings)
+    * [Java](#java)
+    * [Happy eyeballs](#happy-eyeballs)
+    * [Database](#database)
+
+<!-- TOC -->
+
 ### Java
 
 1. https://openjdk.java.net/jeps/425
@@ -27,8 +36,6 @@
 21. https://foojay.io/today/thinking-about-massive-throughput-meet-virtual-threads/
 22. https://github.com/cmpxchg16/kotlin-loom#linux-kernel-configuration
 
-
-
 ### Happy eyeballs
 
 * https://mail.openjdk.java.net/pipermail/loom-dev/2022-May/004613.html
@@ -36,8 +43,6 @@
 * https://mail.openjdk.java.net/pipermail/loom-dev/2022-May/004615.html
 
 * https://publicobject.com/2022/03/14/uncertainty-in-tests/
-
-
 
 ### Database
 

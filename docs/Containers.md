@@ -1,6 +1,26 @@
 ## Containers
 
 ------
+<!-- TOC -->
+
+* [Containers](#containers)
+    * [Offical Java Images](#offical-java-images)
+        * [Oracle JDK (NFTC)](#oracle-jdk--nftc-)
+        * [Docker Commands](#docker-commands)
+        * [Java Container logs](#java-container-logs)
+        * [App Running on K8S/Docker](#app-running-on-k8sdocker)
+        * [JVM default GC](#jvm-default-gc)
+        * [Access Docker desktop LinuxKit VM on MacOS](#access-docker-desktop-linuxkit-vm-on-macos)
+        * [Multi Architecture Support](#multi-architecture-support)
+        * [Netcat Webserver](#netcat-webserver)
+        * [Container Tools](#container-tools)
+        * [Jlink](#jlink)
+        * [Distroless](#distroless)
+        * [Documentation](#documentation)
+* [Kubernetes](#kubernetes)
+* [Git](#git)
+
+<!-- TOC -->
 
 ### Offical Java Images
 
@@ -141,8 +161,6 @@ $ docker run -it --rm ,
     suresh/openjdk-playground:latest
 ```
 
-
-
 ##### Java Container logs
 
 ```bash
@@ -169,8 +187,6 @@ $ docker run \
 # -XX:ActiveProcessorCount=<n>
 ```
 
-
-
 ##### App Running on K8S/Docker
 
 ```bash
@@ -181,9 +197,7 @@ $ docker run \
      sh -c "cat /proc/self/cgroup | grep -i '/docker'"
 ```
 
-   * [Check if the container is running inside K8S](https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/#environment-variables:~:text=printenv%20%7C%20grep%20SERVICE-,KUBERNETES_SERVICE_HOST,-%3D10.0.0.1%0AKUBERNETES_SERVICE_PORT%3D443)
-
-
+* [Check if the container is running inside K8S](https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/#environment-variables:~:text=printenv%20%7C%20grep%20SERVICE-,KUBERNETES_SERVICE_HOST,-%3D10.0.0.1%0AKUBERNETES_SERVICE_PORT%3D443)
 
 ##### JVM default GC
 
@@ -194,10 +208,8 @@ $ docker run -it --rm --cpus=1 --memory=1G openjdk:20-slim java -Xlog:gc --versi
 #[0.007s][info][gc] Using Serial
 ```
 
-   * https://github.com/brunoborges/jvm-ergonomics
-   * https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-
-
+* https://github.com/brunoborges/jvm-ergonomics
+* https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 ##### Access Docker desktop LinuxKit VM on MacOS
 
@@ -206,8 +218,6 @@ $ docker run -it --rm --memory=256m --cpus=1 -v /:/host --name alpine alpine
  /# chroot /host
   # docker version
 ```
-
-
 
 ##### [Multi Architecture Support](https://docs.docker.com/desktop/multi-arch/)
 
@@ -242,8 +252,6 @@ $ docker run -it --rm --memory=256m --cpus=1 -v /:/host --name alpine alpine
   $ docker run --rm tonistiigi/debian:riscv uname -a
   ```
 
-
-
 ##### Netcat Webserver
 
 ```bash
@@ -254,8 +262,6 @@ ENTRYPOINT while :; do nc -k -l -p $PORT -e sh -c 'echo -e "HTTP/1.1 200 OK\n\n 
 # docker build -t hello-netcat .
 # docker run -p 8080:80 -e PORT=80 -it hello-netcat
 ```
-
-
 
 Forwards Logs
 
@@ -311,8 +317,6 @@ RUN apt-get update && apt-get upgrade -y && \
     rm -rf /var/lib/apt/lists/*
 ```
 
-
-
 #### Container Tools
 
 ------
@@ -351,8 +355,6 @@ RUN apt-get update && apt-get upgrade -y && \
 
 * [Colima - Container runtimes on MacOS ](https://github.com/abiosoft/colima)
 
-
-
 #### Jlink
 
 ------
@@ -363,21 +365,17 @@ RUN apt-get update && apt-get upgrade -y && \
 
 * https://docs.microsoft.com/en-us/java/openjdk/java-jlink-runtimes
 
-  * https://github.com/dsyer/sample-docker-microservice/
+    * https://github.com/dsyer/sample-docker-microservice/
 
 * https://mbien.dev/blog/entry/custom-java-runtimes-with-jlink
 
 * https://jpetazzo.github.io/2020/03/01/quest-minimal-docker-images-part-2/
-
-
 
 #### Distroless
 
 ------
 
 https://github.com/GoogleContainerTools/distroless/blob/master/base/README.md
-
-
 
 #### Documentation
 

@@ -75,16 +75,17 @@ tasks {
     exclude("META-INF/*.RSA", "META-INF/*.SF", "META-INF/*.DSA")
   }
 
+  // Prints java module dependencies using jdeps
   val printModuleDeps by registering {
     description = "Print Java Platform Module dependencies of the application."
     group = LifecycleBasePlugin.BUILD_TASK_NAME
 
     doLast {
-      val uberJar = named("shadowJar", Jar::class)
-      val jarFile = uberJar.get().archiveFile.get().asFile
+      val jarTask = named("shadowJar", Jar::class)
+      val jarFile = jarTask.get().archiveFile.get().asFile
 
-      val jdeps = ToolProvider.findFirst("jdeps")
-        .orElseGet { error("jdeps tool is missing in the JDK!") }
+      val jdeps =
+        ToolProvider.findFirst("jdeps").orElseGet { error("jdeps tool is missing in the JDK!") }
       val out = StringWriter()
       val pw = PrintWriter(out)
       jdeps.run(
@@ -133,6 +134,7 @@ tasks {
     onlyIf { OperatingSystem.current().isUnix }
   }
 
+
   val copyTemplates by registering(Copy::class) {
     description = "Generate template classes"
     group = LifecycleBasePlugin.BUILD_TASK_NAME
@@ -141,6 +143,12 @@ tasks {
     val props = project.properties.toMutableMap()
     props["git_branch"] = project.findProperty("branch_name")
     props["git_tag"] = project.findProperty("base_tag")
+
+    // Find resolved runtime dependencies
+    val dependencies = project.configurations.named("runtimeClasspath")
+      .get().resolvedConfiguration.resolvedArtifacts.map { it.moduleVersion.id.toString() }.sorted()
+      .joinToString(System.getProperty("line.separator"))
+    props["dependencies"] = dependencies
 
     if (debugEnabled) {
       props.forEach { (t, u) ->
@@ -159,19 +167,27 @@ tasks {
     // inputs.property("buildversions", props.hashCode())
   }
 
-  named("build") {
+  build {
     finalizedBy(printModuleDeps, buildExecutable, githubActionOutput)
+  }
+
+  // Custom task for GitHub action CI build.
+  val ciBuild by registering {
+    dependsOn(tasks.run, tasks.build, "koverMergedHtmlReport", "dokkaHtml")
+    named("koverMergedHtmlReport").map { it.mustRunAfter(tasks.build) }
+    named("dokkaHtml").map { it.mustRunAfter(tasks.build) }
   }
 
   // jdeprscan task configuration
   val jdepExtn = extensions.create<JdeprscanExtension>("jdeprscan")
   val jdeprscan = register<Jdeprscan>("jdeprscan", jdepExtn)
+
   jdeprscan {
     val shadowJar by existing(Jar::class)
     jarFile.set(shadowJar.flatMap { it.archiveFile })
   }
 
-  /** Dev task that does both the continuous compiling and run. */
+  // Dev task that does both the continuous compiling and run.
   register("dev") {
     description = "A task to continuous compile and run"
     group = LifecycleBasePlugin.BUILD_GROUP

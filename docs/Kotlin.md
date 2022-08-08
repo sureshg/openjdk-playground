@@ -1,7 +1,5 @@
 ## Kotlin
 
-
-
 ### Videos
 
 * https://www.youtube.com/watch?v=SEKsvHYZz8s (crypto 101)

@@ -2,12 +2,28 @@
 
 ------
 
+<!-- TOC -->
+
+* [JVM Monitoring & Profiling](#jvm-monitoring--profiling)
+    * [1. Flight Recorder](#1-flight-recorder)
+    * [2. Java Mission Control](#2-java-mission-control)
+    * [3. Visualization](#3-visualization)
+    * [4. Profilers & Tools](#4-profilers--tools)
+    * [5. Commands](#5-commands)
+    * [6.JFR Streaming](#6jfr-streaming)
+    * [7. HeapDump](#7-heapdump)
+    * [8. ThreadDump](#8-threaddump)
+    * [9. Unified GC Logging](#9-unified-gc-logging)
+    * [10. System/Node Health](#10-systemnode-health)
+    * [11. Commands](#11-commands)
+    * [12. Resources](#12-resources)
+
+<!-- TOC -->
+
 #### 1. Flight Recorder
 
 * [Java Flight Recorder Events](https://bestsolution-at.github.io/jfr-doc/index.html)
 * [JFR Profile Configs](https://github.com/openjdk/jdk/tree/master/src/jdk.jfr/share/conf/jfr)
-
-
 
 #### 2. Java Mission Control
 
@@ -31,8 +47,6 @@ $ ./jmc -vm %JAVA_HOME%\bin
 $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 ```
 
-
-
 #### 3. Visualization
 
 * [Jfr2Flame Converter](https://github.com/jvm-profiling-tools/async-profiler/releases/latest/download/converter.jar)
@@ -40,8 +54,6 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 * [Jfr2Flame Converter Repo](https://github.com/jvm-profiling-tools/async-profiler/tree/master/src/converter)
 
 * [D3 Flame Graph ](https://github.com/spiermar/d3-flame-graph)
-
-
 
 #### 4. Profilers & Tools
 
@@ -58,8 +70,6 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 * [jmxviewer](https://github.com/ivanyu/jmxviewer)
 
 * [Cryostat](https://github.com/cryostatio/cryostat)
-
-
 
 #### 5. Commands
 
@@ -100,15 +110,11 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 
 * [Flight Recorder API Guide](https://docs.oracle.com/en/java/javase/18/jfapi/flight-recorder-configurations.html)
 
-
-
 #### 6.JFR Streaming
 
 - [RemoteRecordingStream](https://egahlin.github.io/2021/05/17/remote-recording-stream.html)
 
 - [Stream JFR files](https://github.com/microsoft/jfr-streaming)
-
-
 
 #### 7. HeapDump
 
@@ -121,8 +127,6 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 * [HPROF Parser](https://github.com/openjdk/jdk/blob/master/test/lib/jdk/test/lib/hprof/HprofParser.java)
 
 * [Capture Java Heap Dumps](https://www.baeldung.com/java-heap-dump-capture)
-
-
 
 #### 8. ThreadDump
 
@@ -148,8 +152,6 @@ $ kill -3 "$(jcmd -l | grep "dev.suresh.Main" | cut -d " " -f1)"
 $ jstack -l -e  <pid>
 ```
 
-
-
 #### 9. [Unified GC Logging](https://openjdk.java.net/jeps/158#Simple-Examples:)
 
 ```bash
@@ -170,79 +172,69 @@ $  java -Xlog:help
 -XX:GCLogFileSize=10M
 ```
 
-
-
 #### 10. System/Node Health
 
-   * [SAR](https://github.com/sysstat/sysstat) (System Activity Report)
+* [SAR](https://github.com/sysstat/sysstat) (System Activity Report)
 
-     ```bash
-     $ yum install sysstat
+  ```bash
+  $ yum install sysstat
 
-     $ sar -A
+  $ sar -A
 
-     # Generate file for single day:
-     $ sar -A -f /var/log/sa/sa19 > /tmp/sa19_$(hostname).txt
+  # Generate file for single day:
+  $ sar -A -f /var/log/sa/sa19 > /tmp/sa19_$(hostname).txt
 
-     # Generate file for multiple days files:
-     $ ls /var/log/sa/sa?? | xargs -i sar -A -f {} > /tmp/sar_$(uname -n).txt
+  # Generate file for multiple days files:
+  $ ls /var/log/sa/sa?? | xargs -i sar -A -f {} > /tmp/sar_$(uname -n).txt
 
-     ```
+  ```
 
-     - https://github.com/vlsi/ksar
-     - https://github.com/sargraph/sargraph.github.io
-     - https://sarcharts.tuxfamily.org/
-     - https://www.cyberciti.biz/tips/top-linux-monitoring-tools.html
-
-
-
-   * [Node Exporter](https://prometheus.io/docs/guides/node-exporter/)
-
-     - https://github.com/prometheus/node_exporter#docker
+    - https://github.com/vlsi/ksar
+    - https://github.com/sargraph/sargraph.github.io
+    - https://sarcharts.tuxfamily.org/
+    - https://www.cyberciti.biz/tips/top-linux-monitoring-tools.html
 
 
+* [Node Exporter](https://prometheus.io/docs/guides/node-exporter/)
 
-   * [Prometheus JFR Exporter](https://github.com/rh-jmc-team/prometheus-jfr-exporter)
+    - https://github.com/prometheus/node_exporter#docker
 
 
+* [Prometheus JFR Exporter](https://github.com/rh-jmc-team/prometheus-jfr-exporter)
 
 #### 11. Commands
 
-   * Grabbing a file from a remote system with ssh
+* Grabbing a file from a remote system with ssh
 
-     ```bash
-     # grabbing a file from a remote system with ssh but no scp binary
+  ```bash
+  # grabbing a file from a remote system with ssh but no scp binary
 
-     $ ssh user@remote-system "cat <file.txt" > file.txt
-     $ ssh user@remote-system  'tar -S cz somedirectory' | tar -S xvz
+  $ ssh user@remote-system "cat <file.txt" > file.txt
+  $ ssh user@remote-system  'tar -S cz somedirectory' | tar -S xvz
 
-     # Using Rsync: Upload
-     $ rsync -Pavze ssh path/to/src remote-system:path/to/dst
-     # Download
-     $ rsync -Pavze ssh remote-system:path/to/src path/to/dst
-     ```
-
-
-
-   * Strace
-
-     ```bash
-     # Syscall trace
-     $ strace -tttTf -p <pid>
-     ```
+  # Using Rsync: Upload
+  $ rsync -Pavze ssh path/to/src remote-system:path/to/dst
+  # Download
+  $ rsync -Pavze ssh remote-system:path/to/src path/to/dst
+  ```
 
 
+* Strace
 
-   * Netstat
-
-     ```bash
-     $ netstat -tunalp
-
-     # Socket stats
-     $ ss -s
-     ```
+  ```bash
+  # Syscall trace
+  $ strace -tttTf -p <pid>
+  ```
 
 
+* Netstat
+
+  ```bash
+  $ netstat -tunalp
+
+  # Socket stats
+  $ ss -s
+  ```
 
 #### 12. Resources
 
