@@ -1,7 +1,6 @@
 package dev.suresh.vthread
 
 import com.sun.net.httpserver.*
-import okhttp3.tls.internal.*
 import java.lang.Thread.sleep
 import java.net.*
 import java.net.http.*
@@ -10,6 +9,7 @@ import java.time.*
 import java.util.concurrent.*
 import java.util.stream.Collectors.joining
 import kotlin.system.*
+import okhttp3.tls.internal.*
 
 object VThreadServer {
 
@@ -17,9 +17,7 @@ object VThreadServer {
 
   @JvmStatic
   fun run() {
-    val took = measureTimeMillis {
-      exec()
-    }
+    val took = measureTimeMillis { exec() }
     println(">> Took ${Duration.ofMillis(took).toSeconds()} seconds!")
   }
 
@@ -30,8 +28,8 @@ object VThreadServer {
     println("Self signed cert: $cn")
 
     // Starts HTTPS server
-    val httpsServer = HttpsServer.create(InetSocketAddress(8443), 1_000)
-      .apply {
+    val httpsServer =
+      HttpsServer.create(InetSocketAddress(8443), 1_000).apply {
         httpsConfigurator = HttpsConfigurator(selfSignedCert.sslContext())
         executor = execSvc
         createContext("/", ::root)
@@ -42,30 +40,34 @@ object VThreadServer {
     val url = "https://localhost:${httpsServer.address.port}"
     println("Started the server on $url")
 
-    val client = HttpClient.newBuilder()
-      .connectTimeout(Duration.ofSeconds(5))
-      .sslContext(selfSignedCert.sslContext())
-      .version(HttpClient.Version.HTTP_2)
-      .executor(execSvc)
-      .build()
+    val client =
+      HttpClient.newBuilder()
+        .connectTimeout(Duration.ofSeconds(5))
+        .sslContext(selfSignedCert.sslContext())
+        .version(HttpClient.Version.HTTP_2)
+        .executor(execSvc)
+        .build()
 
     println("Sending 500 concurrent requests to $url")
-    val futures = (1..500).map {
-      CompletableFuture.supplyAsync(
-        {
-          val res = client.send(
-            HttpRequest.newBuilder()
-              .uri(URI.create(url))
-              .build(),
-            BodyHandlers.ofString()
+    val futures =
+      (1..500).map {
+        CompletableFuture.supplyAsync(
+            {
+              val res =
+                client.send(
+                  HttpRequest.newBuilder().uri(URI.create(url)).build(),
+                  BodyHandlers.ofString()
+                )
+              val thread = Thread.currentThread()
+              println(
+                "<--- Response(${thread.name}-${thread.threadId()}-${thread.isVirtual}): ${res.body()}"
+              )
+              res.body()
+            },
+            execSvc
           )
-          val thread = Thread.currentThread()
-          println("<--- Response(${thread.name}-${thread.threadId()}-${thread.isVirtual}): ${res.body()}")
-          res.body()
-        },
-        execSvc
-      ).exceptionally(Throwable::message)
-    }
+          .exceptionally(Throwable::message)
+      }
 
     // Wait for all tasks to complete and prints the response.
     CompletableFuture.allOf(*futures.toTypedArray())
@@ -74,14 +76,16 @@ object VThreadServer {
         println("Shutting down the server!")
         httpsServer.stop(1)
         futures.map { it.join() }
-      }.thenAccept {
-        it.forEach(::println)
-      }.join()
+      }
+      .thenAccept { it.forEach(::println) }
+      .join()
   }
 
   private fun root(ex: HttpExchange) {
     val thread = Thread.currentThread()
-    println("---> Request(${thread.name}-${thread.threadId()}-${thread.isVirtual}): ${ex.requestMethod} - ${ex.requestURI}")
+    println(
+      "---> Request(${thread.name}-${thread.threadId()}-${thread.isVirtual}): ${ex.requestMethod} - ${ex.requestURI}"
+    )
     // Simulate blocking call.
     sleep(Duration.ofMillis(100))
     ex.responseHeaders.add("Content-Type", "application/json")
@@ -92,7 +96,9 @@ object VThreadServer {
                "version"  : ${System.getProperty("java.vm.version")},
                "virtual"  : ${thread.isVirtual}
             }
-      """.trimIndent().toByteArray()
+      """
+        .trimIndent()
+        .toByteArray()
 
     ex.sendResponseHeaders(200, res.size.toLong())
     ex.responseBody.apply {
@@ -103,15 +109,19 @@ object VThreadServer {
 
   private fun top(ex: HttpExchange) {
     println("---> Request: ${ex.requestMethod} - ${ex.requestURI}")
-    val res = ProcessHandle.allProcesses().map {
-      "${it.pid()} ${it.parent().map(ProcessHandle::pid).orElse(0)} ${
+    val res =
+      ProcessHandle.allProcesses()
+        .map {
+          "${it.pid()} ${it.parent().map(ProcessHandle::pid).orElse(0)} ${
       it.info().startInstant()
         .map(Instant::toString).orElse("-")
       } ${
       it.info().commandLine()
         .orElse("-")
       } ${it.info().user().orElse("-")}"
-    }.collect(joining("<br>")).toByteArray()
+        }
+        .collect(joining("<br>"))
+        .toByteArray()
 
     ex.responseHeaders.add("Content-Type", "text/html; charset=UTF-8")
     ex.sendResponseHeaders(200, res.size.toLong())

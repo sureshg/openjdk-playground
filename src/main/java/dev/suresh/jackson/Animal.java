@@ -1,6 +1,5 @@
 package dev.suresh.jackson;
 
-
 import java.util.List;
 
 public abstract class Animal {

@@ -1,15 +1,9 @@
 import java.util.*
-import javax.crypto.*
-import javax.crypto.spec.*
+import javax.crypto.Mac
+import javax.crypto.spec.SecretKeySpec
 
 fun main() {
   println("Hello Kotlin! ${App.KOTLIN_VERSION}")
-  val s: Result<Int> = Result.Success(10)
-  when (s) {
-    is Result.Success -> 1
-    else -> 2
-  }
-
   println("Security Manager Allowed: ${System.getProperty("java.security.manager")}")
   println("Security Manager: ${System.getSecurityManager()}")
   // echo -n "test" | openssl dgst -sha256 -hmac 1234 -binary | base64
@@ -26,8 +20,7 @@ fun String.hmacSha256(secret: String): String {
 
 /**
  * See the graph for more details,
- *
- * ```mermaid
+ * ```
  * graph LR
  *   A[Christmas] -->|Get money| B(Go shopping)
  *   B --> C{Let me think}

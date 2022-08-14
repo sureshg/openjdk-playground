@@ -16,4 +16,5 @@ object PrimeGen {
   fun primeSeq(min: Long, max: Long) = (min..max).filter { it.isPrime }
 }
 
-val Long.isPrime get() = (2L..sqrt(this.toDouble()).toLong()).all { this % it != 0L }
+val Long.isPrime
+  get() = (2L..sqrt(this.toDouble()).toLong()).all { this % it != 0L }

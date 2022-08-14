@@ -43,9 +43,12 @@ public class Records {
   private static void serializeRecord() throws Exception {
     // Local record
     record Lang(String name, int age) implements Serializable {
+
       Lang {
         requireNonNull(name);
-        if (age <= 0) throw new IllegalArgumentException("Invalid age " + age);
+        if (age <= 0) {
+          throw new IllegalArgumentException("Invalid age " + age);
+        }
       }
     }
 

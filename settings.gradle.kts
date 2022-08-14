@@ -1,22 +1,27 @@
-rootProject.name = "openjdk-playground"
-
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-
-// Centralizing repositories declaration
-dependencyResolutionManagement {
-  repositories {
-    mavenCentral()
-    google()
-  }
-  // repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
-}
-
-val description: String by settings
-println(description)
-
 pluginManagement {
   // Included plugin builds can contribute settings and project plugins
   includeBuild("build-logic")
+
+  // Configures default plugin versions
+  val gradleEnterprise: String by settings
+  // val kotlinVersion = extra["kotlin.version"] as String
+  plugins {
+    id("com.gradle.enterprise") version gradleEnterprise
+    // kotlin("jvm") version kotlinVersion
+    // id("plugins.common-plugins") // From build-logic
+  }
+
+  resolutionStrategy {
+    eachPlugin {
+      when (requested.id.id) {
+        "kotlinx-atomicfu" ->
+            useModule("org.jetbrains.kotlinx:atomicfu-gradle-plugin:${requested.version}")
+        "app.cash.licensee" ->
+            useModule("app.cash.licensee:licensee-gradle-plugin:${requested.version}")
+        "io.reflekt" -> useModule("io.reflekt:gradle-plugin:${this.requested.version}")
+      }
+    }
+  }
 
   // Plugin repositories to use
   repositories {
@@ -24,38 +29,32 @@ pluginManagement {
     mavenCentral()
     google()
   }
-
-  // Configures default plugin versions
-  plugins {
-    // val kotlinVersion = extra["kotlin.version"] as String
-    // kotlin("multiplatform") version kotlinVersion
-    // kotlin("jvm") version kotlinVersion
-    // kotlin("js") version kotlinVersion
-    // kotlin("plugin.serialization") version kotlinVersion
-    // id("plugins.common") // From build-logic
-  }
-
-  resolutionStrategy {
-    eachPlugin {
-      when (requested.id.id) {
-        "kotlinx-atomicfu" -> useModule("org.jetbrains.kotlinx:atomicfu-gradle-plugin:${requested.version}")
-        "app.cash.licensee" -> useModule("app.cash.licensee:licensee-gradle-plugin:${requested.version}")
-        "io.reflekt" -> useModule("io.reflekt:gradle-plugin:${this.requested.version}")
-      }
-    }
-  }
 }
 
+// Apply the plugins to all projects
 plugins {
-  id("com.gradle.enterprise") version System.getProperty("gradleEnterprise")
+  id("com.gradle.enterprise")
+  // id("plugins.common-settings")
 }
+
+// Centralizing repositories declaration
+dependencyResolutionManagement {
+  repositories {
+    mavenCentral()
+    google()
+  }
+}
+
+rootProject.name = "openjdk-playground"
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 // Composite Builds
-includeBuild("build-logic")
-// includeBuild("path-to-repo-clone")
+includeBuild("build-logic") // includeBuild("path-to-repo-clone")
 
-// Add a project
-// include("lib")
+// Add modules
+// include("bom")
+// include("core")
 // project(":lib").projectDir = file("ksp/lib")
 
 // extra.properties.forEach { (k, v) ->

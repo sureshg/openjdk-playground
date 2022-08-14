@@ -17,8 +17,8 @@ specific language governing permissions and limitations
 under the License.
 */
 
-import java.net.*;
 import java.io.*;
+import java.net.*;
 import java.nio.channels.*;
 import java.util.Properties;
 

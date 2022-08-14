@@ -1,6 +1,8 @@
 package tasks
 
 import dev.suresh.gradle.*
+import java.io.*
+import javax.inject.*
 import org.gradle.api.*
 import org.gradle.api.file.*
 import org.gradle.api.model.*
@@ -8,11 +10,11 @@ import org.gradle.api.plugins.*
 import org.gradle.api.tasks.*
 import org.gradle.kotlin.dsl.*
 import org.gradle.process.*
-import java.io.*
-import javax.inject.*
 
 @CacheableTask
-abstract class Jdeprscan @Inject constructor(
+abstract class Jdeprscan
+@Inject
+constructor(
   private val layout: ProjectLayout,
   private val objects: ObjectFactory,
   private val execOps: ExecOperations,
@@ -26,8 +28,7 @@ abstract class Jdeprscan @Inject constructor(
   @get:[Input Optional]
   val classPath = objects.listProperty<File>()
 
-  @get:Internal
-  internal val projectName = project.name
+  @get:Internal internal val projectName = project.name
 
   // @get:InputFiles
   // @get:PathSensitive(RELATIVE)
@@ -51,8 +52,10 @@ abstract class Jdeprscan @Inject constructor(
   fun execute() {
     val jdsArgs = buildList {
       if (classPath.getOrElse(emptyList()).isNotEmpty()) {
-        val classPath = classPath.getOrElse(emptyList())
-          .joinToString(separator = File.pathSeparator) { it.absolutePath }
+        val classPath =
+          classPath.getOrElse(emptyList()).joinToString(separator = File.pathSeparator) {
+            it.absolutePath
+          }
         add("--class-path $classPath")
       }
 
@@ -73,13 +76,14 @@ abstract class Jdeprscan @Inject constructor(
     // java bin directory
     val jdeprscan = project.javaToolchainPath.resolve("bin").resolve("jdeprscan")
     val bos = ByteArrayOutputStream()
-    val execResult = execOps.exec {
-      workingDir = layout.buildDirectory.get().asFile
-      commandLine = listOf(jdeprscan.toString())
-      args = jdsArgs
-      standardOutput = bos
-      errorOutput = bos
-    }
+    val execResult =
+      execOps.exec {
+        workingDir = layout.buildDirectory.get().asFile
+        commandLine = listOf(jdeprscan.toString())
+        args = jdsArgs
+        standardOutput = bos
+        errorOutput = bos
+      }
     execResult.assertNormalExitValue()
     val deprecations = bos.toString(Charsets.UTF_8)
     println(deprecations)
@@ -90,48 +94,44 @@ abstract class Jdeprscan @Inject constructor(
     // Just documenting for future use.
     if (extension.verbose.get()) {
       // Runtime classpath to execute the source.
-      val srcClassPath = project
-        .extensions
-        .findByType(SourceSetContainer::class.java)
-        ?.named("main")
-        ?.get()
-        ?.runtimeClasspath
-        ?.files
-        ?.joinToString(separator = File.pathSeparator) { it.absolutePath }
+      val srcClassPath =
+        project.extensions
+          .findByType(SourceSetContainer::class.java)
+          ?.named("main")
+          ?.get()
+          ?.runtimeClasspath
+          ?.files
+          ?.joinToString(separator = File.pathSeparator) { it.absolutePath }
       logger.debug("srcClassPath: $srcClassPath")
 
-      val runtimeClasspath = project
-        .configurations
-        .named("runtimeClasspath")
-        .get().files
-        .joinToString(separator = File.pathSeparator) { it.absolutePath }
+      val runtimeClasspath =
+        project.configurations.named("runtimeClasspath").get().files.joinToString(
+          separator = File.pathSeparator
+        ) { it.absolutePath }
       logger.debug("runtimeClasspath: $runtimeClasspath")
 
-      val resolvedRuntimeClasspath = project
-        .configurations
-        .named("runtimeClasspath")
-        .get().resolvedConfiguration.resolvedArtifacts
-        .joinToString(separator = File.pathSeparator) { it.file.absolutePath }
+      val resolvedRuntimeClasspath =
+        project.configurations
+          .named("runtimeClasspath")
+          .get()
+          .resolvedConfiguration
+          .resolvedArtifacts
+          .joinToString(separator = File.pathSeparator) { it.file.absolutePath }
       logger.debug("resolvedRuntimeClasspath: $resolvedRuntimeClasspath")
     }
   }
 }
 
-open class JdeprscanExtension @Inject constructor(private val project: Project) {
+open class JdeprscanExtension(@Inject val project: Project) {
 
   @get:Input
-  val release = project.objects.property<Int>().apply {
-    val javaVersion = project.libs.versions.java.asProvider()
-    set(javaVersion.map { it.toInt() })
-  }
+  val release =
+    project.objects.property<Int>().apply {
+      val javaVersion = project.libs.versions.java.asProvider()
+      set(javaVersion.map { it.toInt() })
+    }
 
-  @get:Input
-  val forRemoval = project.objects.property<Boolean>().apply {
-    set(false)
-  }
+  @get:Input val forRemoval = project.objects.property<Boolean>().apply { set(false) }
 
-  @get:Input
-  val verbose = project.objects.property<Boolean>().apply {
-    set(false)
-  }
+  @get:Input val verbose = project.objects.property<Boolean>().apply { set(false) }
 }

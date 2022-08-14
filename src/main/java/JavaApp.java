@@ -132,23 +132,23 @@ public class JavaApp {
     var stats =
         """
 
-      +---------Summary----------+
-      | Processes      : %-5d   |
-      | Dns Addresses  : %-5d   |
-      | Trust Stores   : %-5d   |
-      | TimeZones      : %-5d   |
-      | CharSets       : %-5d   |
-      | Locales        : %-5d   |
-      | Countries      : %-5d   |
-      | Languages      : %-5d   |
-      | Currencies     : %-5d   |
-      | Env Vars       : %-5d   |
-      | Sys Props      : %-5d   |
-      | Total time     : %-5dms |
-      | JVM Startup    : %-5dms |
-      | Process Time   : %-5dms |
-      +--------------------------+
-      """
+            +---------Summary----------+
+            | Processes      : %-5d   |
+            | Dns Addresses  : %-5d   |
+            | Trust Stores   : %-5d   |
+            | TimeZones      : %-5d   |
+            | CharSets       : %-5d   |
+            | Locales        : %-5d   |
+            | Countries      : %-5d   |
+            | Languages      : %-5d   |
+            | Currencies     : %-5d   |
+            | Env Vars       : %-5d   |
+            | Sys Props      : %-5d   |
+            | Total time     : %-5dms |
+            | JVM Startup    : %-5dms |
+            | Process Time   : %-5dms |
+            +--------------------------+
+            """
             .formatted(
                 ps.size(),
                 dns.size(),

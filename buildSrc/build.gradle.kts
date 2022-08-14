@@ -1,6 +1,4 @@
-plugins {
-  `kotlin-dsl`
-}
+plugins { `kotlin-dsl` }
 
 kotlin {
   sourceSets {
@@ -18,6 +16,4 @@ repositories {
   gradlePluginPortal()
 }
 
-dependencies {
-  implementation(kotlin("stdlib-jdk8"))
-}
+dependencies { implementation(kotlin("stdlib-jdk8")) }

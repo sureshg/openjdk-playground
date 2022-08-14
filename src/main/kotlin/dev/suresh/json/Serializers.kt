@@ -1,12 +1,12 @@
 package dev.suresh.json
 
-import kotlinx.serialization.*
-import kotlinx.serialization.builtins.*
 import java.time.*
 import java.time.Duration
 import kotlin.RequiresOptIn.Level.ERROR
 import kotlin.reflect.*
 import kotlin.time.*
+import kotlinx.serialization.*
+import kotlinx.serialization.builtins.*
 
 @OptIn(BleedingEdge::class)
 fun main() {
@@ -46,20 +46,14 @@ fun main() {
   val today = LocalDateTime.now()
   println(today.plus(Duration.ofDays(1)))
   println(
-    runCatching {
-      println(LocalDate.now().minus(Duration.ofDays(10)))
-    }.exceptionOrNull()?.message
+    runCatching { println(LocalDate.now().minus(Duration.ofDays(10))) }.exceptionOrNull()?.message
   )
   println(LocalDate.now().minus(Period.ofDays(10)))
 }
 
-@Serializable
-class SerialTest<T>(val data: T? = null)
+@Serializable class SerialTest<T>(val data: T? = null)
 
-@RequiresOptIn(
-  level = ERROR,
-  message = "This is a Bleeding edge API"
-)
+@RequiresOptIn(level = ERROR, message = "This is a Bleeding edge API")
 annotation class BleedingEdge
 
 @BleedingEdge
@@ -67,9 +61,7 @@ fun previewMethod() {
   println("Called Bleeding edge method!")
 }
 
-@Deprecated("test", replaceWith = ReplaceWith("previewMethod()"))
-fun deprecatedMethod() {
-}
+@Deprecated("test", replaceWith = ReplaceWith("previewMethod()")) fun deprecatedMethod() {}
 
 fun interface FunInterface {
   fun tt()

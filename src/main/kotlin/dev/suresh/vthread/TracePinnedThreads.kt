@@ -25,13 +25,15 @@ fun tracePinnedThread() {
   System.setOut(PrintStream(baos))
 
   try {
-    Thread.ofVirtual().start {
-      synchronized(lock) {
-        val nanos: Long = Duration.ofSeconds(1).toNanos()
-        LockSupport.parkNanos(nanos)
-        // OR lock.wait()
+    Thread.ofVirtual()
+      .start {
+        synchronized(lock) {
+          val nanos: Long = Duration.ofSeconds(1).toNanos()
+          LockSupport.parkNanos(nanos)
+          // OR lock.wait()
+        }
       }
-    }.join()
+      .join()
     System.out.flush()
   } finally {
     System.setOut(out)

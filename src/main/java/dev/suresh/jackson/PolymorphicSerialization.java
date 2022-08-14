@@ -1,6 +1,5 @@
 package dev.suresh.jackson;
 
-
 import java.util.List;
 
 // https://www.mkammerer.de/blog/jacksons-polymorphic-deserialization/

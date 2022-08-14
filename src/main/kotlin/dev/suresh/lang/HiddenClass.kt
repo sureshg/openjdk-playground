@@ -4,10 +4,9 @@ import java.lang.invoke.*
 import java.util.*
 
 /**
- * Run with "-XX:+UnlockDiagnosticVMOptions -XX:+ShowHiddenFrames"
- * to see the hidden classes.
+ * Run with "-XX:+UnlockDiagnosticVMOptions -XX:+ShowHiddenFrames" to see the hidden classes.
  *
- *  --add-opens java.base/java.util=ALL-UNNAMED
+ * --add-opens java.base/java.util=ALL-UNNAMED
  * @since JDK15
  */
 fun main() {
@@ -28,7 +27,12 @@ fun main() {
   println(mh.lookupClass())
 
   println(mh.lookupModes())
-  val m = mh.findVirtual(mh.lookupClass(), "parse", MethodType.methodType(java.util.List::class.java, java.lang.String::class.java))
+  val m =
+    mh.findVirtual(
+      mh.lookupClass(),
+      "parse",
+      MethodType.methodType(java.util.List::class.java, java.lang.String::class.java)
+    )
 
   println(m.invoke(Formatter(), "%s"))
   // Concurrent

@@ -1,6 +1,5 @@
 package dev.suresh.config;
 
-
 import java.util.Objects;
 
 public record JConfig(String language, String version) {

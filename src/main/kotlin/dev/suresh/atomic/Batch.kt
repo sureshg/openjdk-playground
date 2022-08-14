@@ -3,8 +3,8 @@ package dev.suresh.atomic
 import java.util.concurrent.atomic.*
 
 /**
- * If you're using AtomicInteger and friends you can probably save
- * some memory and improve locality by using Atomic*FieldUpdaters.
+ * If you're using AtomicInteger and friends you can probably save some memory and improve locality
+ * by using Atomic*FieldUpdaters.
  *
  * $ ./gradlew run -PappMainClass=dev.suresh.atomic.BatchKt
  */

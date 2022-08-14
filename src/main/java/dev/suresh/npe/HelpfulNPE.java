@@ -10,7 +10,7 @@ public class HelpfulNPE {
       System.out.println("Helpful NPE: " + npe.getMessage());
       assert npe.getMessage()
           .equals("""
-        Cannot read field "name" because "address.country" is null""");
+              Cannot read field "name" because "address.country" is null""");
     }
   }
 

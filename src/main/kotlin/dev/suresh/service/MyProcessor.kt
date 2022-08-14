@@ -11,8 +11,6 @@ class MyProcessor : AbstractProcessor() {
     println("Initializing MyProcessor...")
   }
 
-  override fun process(
-    annotations: MutableSet<out TypeElement>?,
-    roundEnv: RoundEnvironment?
-  ) = true
+  override fun process(annotations: MutableSet<out TypeElement>?, roundEnv: RoundEnvironment?) =
+    true
 }

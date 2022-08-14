@@ -3,9 +3,7 @@ package dev.suresh.gradle
 import org.gradle.api.*
 import org.gradle.api.publish.maven.*
 
-fun MavenPublication.configurePom(
-  project: Project
-) {
+fun MavenPublication.configurePom(project: Project) {
   val githubUrl = project.libs.versions.githubProject.getOrElse("")
   pom {
     packaging = "jar"

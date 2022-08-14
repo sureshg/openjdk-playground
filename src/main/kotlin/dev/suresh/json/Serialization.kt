@@ -7,5 +7,4 @@ val json = Json {
   encodeDefaults = true
 }
 
-fun main() {
-}
+fun main() {}

@@ -2,11 +2,14 @@ package dev.suresh.gradle
 
 import org.gradle.api.*
 
-val Project.isKotlinMPP get() = plugins.hasPlugin("org.jetbrains.kotlin.multiplatform")
+val Project.isKotlinMPP
+  get() = plugins.hasPlugin("org.jetbrains.kotlin.multiplatform")
 
-val Project.isKotlinJvmProject get() = plugins.hasPlugin("org.jetbrains.kotlin.jvm")
+val Project.isKotlinJvmProject
+  get() = plugins.hasPlugin("org.jetbrains.kotlin.jvm")
 
-val Project.isKotlinJsProject get() = plugins.hasPlugin("org.jetbrains.kotlin.js")
+val Project.isKotlinJsProject
+  get() = plugins.hasPlugin("org.jetbrains.kotlin.js")
 
 fun Project.kotlinxHtml(name: String): String =
   kotlinx("kotlinx-html", name, libs.versions.kotlinx.html.get())

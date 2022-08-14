@@ -1,9 +1,9 @@
 package dev.suresh.util
 
 /**
- * This is the direct port from one-nio library [https://github.com/odnoklassniki/one-nio/tree/master/src/one/nio/util]
+ * This is the direct port from one-nio library
+ * [https://github.com/odnoklassniki/one-nio/tree/master/src/one/nio/util]
  */
-
 object Hex {
 
   private val SMALL = "0123456789abcdef".toCharArray()
@@ -12,9 +12,7 @@ object Hex {
 
   init {
     DIGIT_VALUE.fill(-1)
-    (0..9).forEach {
-      DIGIT_VALUE['0'.code + it] = it
-    }
+    (0..9).forEach { DIGIT_VALUE['0'.code + it] = it }
     (10..15).forEach {
       DIGIT_VALUE['A'.code + it - 10] = it
       DIGIT_VALUE['a'.code + it - 10] = it
@@ -54,10 +52,8 @@ object Hex {
     val length = input.length
     val result = ByteArray(length / 2)
     for (i in 0 until length step 2) {
-      result[i ushr 1] = (
-        DIGIT_VALUE[input[i].code] shl 4 or
-          DIGIT_VALUE[input[i + 1].code]
-        ).toByte()
+      result[i ushr 1] =
+        (DIGIT_VALUE[input[i].code] shl 4 or DIGIT_VALUE[input[i + 1].code]).toByte()
     }
     return result
   }

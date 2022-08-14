@@ -13,28 +13,27 @@
 
 ### Java
 
-1. https://openjdk.java.net/jeps/425
-2. https://openjdk.java.net/jeps/428 (Structured Concurrency)
-3. https://www.reddit.com/r/java/comments/v394uh/loom_and_thread_fairness/
-4. https://isopov.github.io/posts/loom-cooperative-downside/
-5. https://jbaker.io/2022/05/09/project-loom-for-distributed-systems/
-6. https://www.reddit.com/r/java/comments/v7v3v5/conways_game_of_life_implemented_with/
-7. https://github.com/ebarlas/game-of-life-csp
-8. https://github.com/ebarlas/project-loom-comparison
-9. https://github.com/ebarlas/project-loom-c5m
-10. https://openjdk.java.net/jeps/8277129
-11. https://openjdk.java.net/jeps/8263012
+1. https://openjdk.org/jeps/425
+2. https://openjdk.org/jeps/428 (Structured Concurrency)
+3. https://openjdk.org/jeps/429 (Extent-Local Variables)
+4. https://openjdk.org/jeps/411 (Deprecate the Security Manager for Removal)
+5. https://www.reddit.com/r/java/comments/v394uh/loom_and_thread_fairness/
+6. https://isopov.github.io/posts/loom-cooperative-downside/
+7. https://jbaker.io/2022/05/09/project-loom-for-distributed-systems/
+8. https://www.reddit.com/r/java/comments/v7v3v5/conways_game_of_life_implemented_with/
+9. https://github.com/ebarlas/game-of-life-csp
+10. https://github.com/ebarlas/project-loom-comparison
+11. https://github.com/ebarlas/project-loom-c5m
 12. https://inside.java/2021/11/30/on-parallelism-and-concurrency/
 13. https://inside.java/2021/09/10/what-are-modules-about/
 14. https://inside.java/2021/04/23/security-and-sandboxing-post-securitymanager/
-15. https://openjdk.java.net/jeps/411 (Deprecate the Security Manager for Removal)
-16. https://inside.java/2020/08/07/loom-performance/
-17. https://inside.java/2020/07/15/loomqa/
-18. https://cr.openjdk.java.net/~rpressler/loom/loom/sol1_part1.html
-19. https://inside.java/2021/10/26/why-user-mode-thread-video/
-20. https://stackoverflow.com/questions/71945866/project-loom-why-are-virtual-threads-not-the-default
-21. https://foojay.io/today/thinking-about-massive-throughput-meet-virtual-threads/
-22. https://github.com/cmpxchg16/kotlin-loom#linux-kernel-configuration
+15. https://inside.java/2020/08/07/loom-performance/
+16. https://inside.java/2020/07/15/loomqa/
+17. https://cr.openjdk.java.net/~rpressler/loom/loom/sol1_part1.html
+18. https://inside.java/2021/10/26/why-user-mode-thread-video/
+19. https://stackoverflow.com/questions/71945866/project-loom-why-are-virtual-threads-not-the-default
+20. https://foojay.io/today/thinking-about-massive-throughput-meet-virtual-threads/
+21. https://github.com/cmpxchg16/kotlin-loom#linux-kernel-configuration
 
 ### Happy eyeballs
 

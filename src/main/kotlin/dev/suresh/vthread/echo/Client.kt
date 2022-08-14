@@ -1,11 +1,11 @@
 package dev.suresh.vthread.echo
 
-import kotlinx.datetime.*
-import kotlinx.datetime.Clock
 import java.net.InetSocketAddress
 import java.net.Socket
 import java.time.*
 import java.util.concurrent.atomic.*
+import kotlinx.datetime.*
+import kotlinx.datetime.Clock
 
 object Client {
 
@@ -17,9 +17,7 @@ object Client {
   fun run() {
     println("Connecting to server on ports range: ${Server.ports}")
     Server.ports.forEach { port ->
-      (1..count).forEach { id ->
-        Thread.startVirtualThread { connect(id, port) }
-      }
+      (1..count).forEach { id -> Thread.startVirtualThread { connect(id, port) } }
     }
 
     while (true) {

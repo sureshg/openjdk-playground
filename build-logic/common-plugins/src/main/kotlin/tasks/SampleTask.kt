@@ -7,23 +7,15 @@ import org.gradle.api.tasks.*
 
 abstract class SampleTask : DefaultTask() {
 
-  @get:Input
-  abstract val greeting: Property<String>
+  @get:Input abstract val greeting: Property<String>
 
-  @get:Input
-  @get:Optional
-  abstract val versions: MapProperty<String, String>
+  @get:Input @get:Optional abstract val versions: MapProperty<String, String>
 
-  @get:InputDirectory
-  @get:Optional
-  abstract val inputDirectory: DirectoryProperty
+  @get:InputDirectory @get:Optional abstract val inputDirectory: DirectoryProperty
 
-  @get:InputFile
-  @get:Optional
-  abstract val inputFile: RegularFileProperty
+  @get:InputFile @get:Optional abstract val inputFile: RegularFileProperty
 
-  @get:Internal
-  val type = "Sample Task"
+  @get:Internal val type = "Sample Task"
 
   init {
     greeting.convention("Hello Kotlin!")

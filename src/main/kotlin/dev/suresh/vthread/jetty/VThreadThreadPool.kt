@@ -1,8 +1,8 @@
 package dev.suresh.vthread.jetty
 
+import java.util.concurrent.*
 import org.eclipse.jetty.util.component.*
 import org.eclipse.jetty.util.thread.*
-import java.util.concurrent.*
 
 class VThreadThreadPool : AbstractLifeCycle(), ThreadPool {
 

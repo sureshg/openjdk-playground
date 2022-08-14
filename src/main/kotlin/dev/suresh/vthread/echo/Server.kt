@@ -1,12 +1,12 @@
 package dev.suresh.vthread.echo
 
-import kotlinx.datetime.*
-import kotlinx.datetime.Clock
 import java.net.*
 import java.net.StandardSocketOptions.SO_REUSEADDR
 import java.net.StandardSocketOptions.SO_REUSEPORT
 import java.time.*
 import java.util.concurrent.atomic.*
+import kotlinx.datetime.*
+import kotlinx.datetime.Clock
 
 object Server {
   val ports = 9001..9010
@@ -15,11 +15,7 @@ object Server {
 
   fun run() {
     println("Starting echo server on ports range: $ports")
-    ports.forEach { port ->
-      Thread.startVirtualThread {
-        serve(port)
-      }
-    }
+    ports.forEach { port -> Thread.startVirtualThread { serve(port) } }
 
     while (true) {
       Thread.sleep(Duration.ofSeconds(2))

@@ -1,6 +1,5 @@
 package dev.suresh.adt;
 
-
 import java.io.Serializable;
 
 /**
@@ -60,12 +59,12 @@ public class ResultType {
   static <T> void printResult(Result<T> r) {
     System.out.println(
         """
-       ToString  -> %1$s
-       Result    -> %2$s
-       Success   -> %3$s
-       Failure   -> %4$s
-       Exception -> %5$s
-       """
+            ToString  -> %1$s
+            Result    -> %2$s
+            Success   -> %3$s
+            Failure   -> %4$s
+            Exception -> %5$s
+            """
             .formatted(
                 r.toString(), r.getOrNull(), r.isSuccess(), r.isFailure(), r.exceptionOrNull()));
   }

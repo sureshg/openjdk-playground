@@ -4,7 +4,8 @@ import App
 import org.jboss.shrinkwrap.resolver.api.maven.*
 
 /**
- * - https://github.com/apache/maven-resolver/tree/master/maven-resolver-demos/maven-resolver-demo-snippets
+ * -
+ * https://github.com/apache/maven-resolver/tree/master/maven-resolver-demos/maven-resolver-demo-snippets
  * - https://github.com/apache/maven/tree/master/maven-resolver-provider
  * - https://github.com/shrinkwrap/resolver
  * - https://blog.sonatype.com/2011/06/you-dont-need-a-browser-to-use-maven-central/
@@ -12,16 +13,16 @@ import org.jboss.shrinkwrap.resolver.api.maven.*
  */
 class MavenResolver {
   fun run() {
-    // val repo = RemoteRepository.Builder( "central", "default", "https://repo1.maven.org/maven2/" ).build()
-    val files = Maven.configureResolver()
-      .withMavenCentralRepo(true)
-      .resolve("org.jetbrains.kotlin:kotlin-klib-commonizer:${App.KOTLIN_VERSION}")
-      .withTransitivity()
-      .asResolvedArtifact()
+    // val repo = RemoteRepository.Builder( "central", "default", "https://repo1.maven.org/maven2/"
+    // ).build()
+    val files =
+      Maven.configureResolver()
+        .withMavenCentralRepo(true)
+        .resolve("org.jetbrains.kotlin:kotlin-klib-commonizer:${App.KOTLIN_VERSION}")
+        .withTransitivity()
+        .asResolvedArtifact()
 
     println("\nResolved Artifacts are,")
-    files.forEach {
-      println(it.coordinate)
-    }
+    files.forEach { println(it.coordinate) }
   }
 }

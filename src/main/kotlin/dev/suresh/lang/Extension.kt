@@ -7,7 +7,8 @@ import java.util.*
 fun <T> Optional<T>.orNull(): T? = orElse(null)
 
 /** Returns the method name contains this call-site */
-inline val methodName get() = StackWalker.getInstance().walk { it.findFirst().orNull()?.methodName }
+inline val methodName
+  get() = StackWalker.getInstance().walk { it.findFirst().orNull()?.methodName }
 
 /** Read the [Class] as [ByteArray] */
 fun <T : Class<*>> T.toBytes(): ByteArray? {
@@ -22,7 +23,8 @@ fun <T : Class<*>> T.toBytes(): ByteArray? {
  * val url = LogManager::class.java.resourcePath
  * ```
  */
-val <T : Class<*>> T.resourcePath: URL? get() = getResource("$simpleName.class")
+val <T : Class<*>> T.resourcePath: URL?
+  get() = getResource("$simpleName.class")
 
 /** Run the lambda in the context of the receiver classloader. */
 fun ClassLoader.using(run: () -> Unit) {

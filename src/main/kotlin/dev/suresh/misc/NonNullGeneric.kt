@@ -2,9 +2,7 @@ package dev.suresh.misc
 
 class Foo<T>(val bar: T)
 
-/**
- * Unbounded T is same as "T: Any?"
- */
+/** Unbounded T is same as "T: Any?" */
 fun main() {
   val f1: Foo<String> = Foo("hello")
   println(f1.bar)

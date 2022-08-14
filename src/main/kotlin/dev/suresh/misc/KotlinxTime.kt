@@ -1,12 +1,12 @@
 package dev.suresh.misc
 
+import java.time.Month
+import java.time.format.*
 import kotlinx.datetime.*
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
-import java.time.Month
-import java.time.format.*
 
 fun main() {
   physicalTime()
@@ -16,8 +16,7 @@ fun main() {
 /**
  * Wall clock/calender time.
  *
- * Duration - Temporal amount deals with DateTime
- * Period   - Temporal amount deals with Date
+ * Duration - Temporal amount deals with DateTime Period - Temporal amount deals with Date
  */
 private fun civilTime() {
   val iso8601String = "2020-10-18T06:41:05.123743"
@@ -42,22 +41,21 @@ private fun civilTime() {
   println("ZonedDateTime  $zonedDateTime")
 
   val local = wallCalender.atTime(14, 51, 10, 234)
-  TimeZone.availableZoneIds.map { it.split("/") }.groupBy { it.first() }.forEach { (t, u) ->
-    println(t)
-    println("--------")
-    u.forEachIndexed { index, list ->
+  TimeZone.availableZoneIds
+    .map { it.split("/") }
+    .groupBy { it.first() }
+    .forEach { (t, u) ->
+      println(t)
+      println("--------")
+      u.forEachIndexed { index, list -> }
     }
-  }
 
   println(
-    local.toInstant(TimeZone.of("Europe/Berlin"))
-      .toLocalDateTime(TimeZone.of("Asia/Calcutta"))
+    local.toInstant(TimeZone.of("Europe/Berlin")).toLocalDateTime(TimeZone.of("Asia/Calcutta"))
   )
 }
 
-/**
- * Epoch time.
- */
+/** Epoch time. */
 private fun physicalTime() {
   val timestamp = Clock.System.now()
   timestamp.testPrint()

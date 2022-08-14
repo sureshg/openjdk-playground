@@ -41,13 +41,13 @@ public class Main {
   public static void main(String[] args) throws Exception {
     var textBlock =
         """
-        This is a textBlock
-        example \t introduced \\n in
-        \s Java 15. \\n It \\
-        avoids the
-        need for most escape sequences.
-        \u2022
-        """;
+            This is a textBlock
+            example \t introduced \\n in
+            \s Java 15. \\n It \\
+            avoids the
+            need for most escape sequences.
+            \u2022
+            """;
     out.println(textBlock);
     out.println(textBlock.translateEscapes());
     out.println("Record Test: " + new Person("Hello Kotlin", 8));
