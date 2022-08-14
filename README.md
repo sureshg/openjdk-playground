@@ -8,7 +8,7 @@
 [![OpenJDK Version][java_img]][java_url]
 [![Kotlin release][kt_img]][kt_url]
 [![Docker Image][docker_img]][docker_url]
-[![Style guide][ktlint_img]][ktlint_url]
+[![Style guide][ktfmt_img]][ktfmt_url]
 [![SonarCloud][sonar_img]][sonar_url]
 <a href="https://deploy.cloud.run"><img src="https://deploy.cloud.run/button.svg" alt="CloudRun" title="CloudRun" width="18%"></a>
 
@@ -181,8 +181,8 @@ $ ./gradlew -q javaToolchains
 
 [sty_img]: https://img.shields.io/badge/style-Kotlin--Official-40c4ff.svg?style=for-the-badge&logo=kotlin&logoColor=40c4ff
 
-[ktlint_url]: https://ktlint.github.io/
+[ktfmt_url]: https://github.com/facebookincubator/ktfmt#ktfmt
 
-[ktlint_img]: https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg?logo=kotlin&style=for-the-badge&logoColor=FF4081
+[ktfmt_img]: https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg?logo=kotlin&style=for-the-badge&logoColor=FF4081
 
 [native_images_actions]: https://github.com/micronaut-projects/micronaut-starter/tree/2.5.x/.github
