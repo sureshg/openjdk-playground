@@ -119,8 +119,8 @@ fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
 
   println(
     """
-        SUCCESS: ${ok.size} / ${results.size}
-        FAILURE: ${err.size} / ${results.size}
+    SUCCESS: ${ok.size} / ${results.size}
+    FAILURE: ${err.size} / ${results.size}
 
     """.trimIndent()
   )

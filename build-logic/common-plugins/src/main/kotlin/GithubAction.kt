@@ -13,7 +13,7 @@ import java.util.UUID
  */
 object GithubAction {
 
-  /** Returns `true` if the running on Github action workflow. */
+  /** Returns `true` if the running on GitHub action workflow. */
   val isEnabled = System.getenv("GITHUB_ACTIONS").toBoolean()
 
   /** Returns workflow run's URL */
@@ -149,10 +149,10 @@ object GithubAction {
       val token = UUID.randomUUID().toString()
       println(
         """
-                |::stop-commands::$token
-                |${messages.joinToString(System.lineSeparator())}
-                |::$token::
-        """.trimMargin()
+          |::stop-commands::$token
+          |${messages.joinToString(System.lineSeparator())}
+          |::$token::
+          """.trimMargin()
       )
     }
   }
@@ -173,10 +173,10 @@ object GithubAction {
           // Multiline string
           value.lines().size > 1 ->
             """
-                                          |$name<<EOF
-                                          |$value
-                                          |EOF
-        """.trimMargin()
+                |$name<<EOF
+                |$value
+                |EOF
+                """.trimMargin()
           else -> "$name=$value${System.lineSeparator()}"
         }
       Files.writeString(Path.of(ghActionEnv), env, Charsets.UTF_8, CREATE, APPEND)
