@@ -347,7 +347,7 @@ object Deps {
   }
 
   object Ktor {
-    const val version = "1.5.3"
+    const val version = "2.1.0"
     const val bom = "io.ktor:ktor-bom:$version"
     const val serverCore = "io.ktor:ktor-server-core:$version"
     const val serverCio = "io.ktor:ktor-server-cio:$version"
