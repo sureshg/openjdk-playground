@@ -15,6 +15,7 @@ plugins {
   application
   `test-suite-base`
   // `java-library`
+  // `java-test-fixtures`
 }
 
 if (hasCleanTask) {
@@ -32,7 +33,7 @@ if (hasCleanTask) {
 // Print all the tasks
 printTaskGraph()
 
-// Access version catalogs
+// Access version catalogs´
 printVersionCatalog()
 
 // After the project configure
@@ -167,6 +168,9 @@ tasks {
         // inputs.property("buildversions", props.hashCode())
       }
 
+  // Add the generated templates to the source set.
+  sourceSets { main { java.srcDirs(copyTemplates) } }
+
   // jdeprscan task configuration
   val jdepExtn = extensions.create<JdeprscanExtension>("jdeprscan")
   val jdeprscan = register<Jdeprscan>("jdeprscan", jdepExtn)
@@ -186,9 +190,6 @@ tasks {
       CompletableFuture.allOf(continuousCompile, run).join()
     }
   }
-
-  // Add the generated templates to the source set.
-  sourceSets { main { java.srcDirs(copyTemplates) } }
 
   build { finalizedBy(printModuleDeps, buildExecutable, githubActionOutput) }
 

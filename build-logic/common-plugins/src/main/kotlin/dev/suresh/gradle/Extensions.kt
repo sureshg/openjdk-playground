@@ -2,6 +2,7 @@ package dev.suresh.gradle
 
 import java.io.*
 import java.nio.file.*
+import java.text.NumberFormat
 import kotlin.properties.*
 import kotlin.reflect.*
 
@@ -10,6 +11,9 @@ val tmp: String = System.getProperty("java.io.tmpdir")
 
 val File.mebiSize
   get() = "%.2f MiB".format(length() / (1024 * 1024f))
+
+val Long.compactFmt: String
+  get() = NumberFormat.getCompactNumberInstance().format(this)
 
 /** Find the file ends with given [format] under the directory. */
 fun File.findPkg(format: String?) =

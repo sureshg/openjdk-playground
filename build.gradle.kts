@@ -143,14 +143,16 @@ kotlin {
       optIn("kotlin.ExperimentalMultiplatform")
       optIn("kotlin.js.ExperimentalJsExport")
     }
-    // kotlin.srcDirs()
+    // kotlin.setSrcDirs(listOf("src/kotlin"))
   }
 
   jvmToolchain {
     languageVersion.set(java.toolchain.languageVersion.get())
     vendor.set(java.toolchain.vendor.get())
   }
+  // jvmToolchain(libs.versions.java.asProvider().get().toInt())
 
+  // sourceSets { main { ... } }
   // kotlinDaemonJvmArgs = listOf("--show-version", "--enable-preview")
   // explicitApi()
 }
@@ -312,9 +314,9 @@ tasks {
               "-Xallow-result-return-type",
               "-Xemit-jvm-type-annotations",
               "-Xjspecify-annotations=strict",
+              // "-Xjdk-release=$javaVersion",
               // "-Xuse-k2",
               // "-Xbackend-threads=4",
-              // "-Xjdk-release=$javaVersion",
               // "-Xadd-modules=ALL-MODULE-PATH",
               // "-Xmodule-path=",
               // "-Xjvm-enable-preview",
