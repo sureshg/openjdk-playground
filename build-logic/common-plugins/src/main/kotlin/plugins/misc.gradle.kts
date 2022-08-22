@@ -5,6 +5,8 @@ import dev.suresh.gradle.libs
 plugins {
   signing
   `maven-publish`
+  wrapper
+  // id("plugins.common")
   id("com.diffplug.spotless")
   id("io.github.gradle-nexus.publish-plugin")
 }
@@ -17,7 +19,7 @@ spotless {
   java {
     googleJavaFormat(gjfVersion)
     target("**/*.java")
-    targetExclude("**/spotless.java", "**/build/**", "**/.gradle/**")
+    targetExclude("**/build/**", "**/.gradle/**")
   }
   // if(plugins.hasPlugin(JavaPlugin::class.java)){ }
 
@@ -26,7 +28,7 @@ spotless {
     target("**/*.kt")
     trimTrailingWhitespace()
     endWithNewline()
-    targetExclude("**/spotless.kt", "**/build/**", "**/.gradle/**")
+    targetExclude("**/build/**", "**/.gradle/**")
     // licenseHeader(rootProject.file("gradle/license-header.txt"))
   }
 
@@ -45,4 +47,19 @@ spotless {
     endWithNewline()
   }
   // isEnforceCheck = false
+}
+
+tasks {
+  wrapper {
+    gradleVersion = libs.versions.gradle.asProvider().get()
+    distributionType = Wrapper.DistributionType.ALL
+  }
+
+  // Default task (--rerun-tasks --no-build-cache)
+  defaultTasks("clean", "tasks", "--all")
+
+  // signing {
+  //   setRequired({ signPublications == "true" })
+  //   sign(publishing.publications["maven"])
+  // }
 }

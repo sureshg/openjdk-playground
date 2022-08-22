@@ -2,13 +2,20 @@ pluginManagement {
   // Included plugin builds can contribute settings and project plugins
   includeBuild("build-logic")
 
-  // Configures default plugin versions
-  val gradleEnterprise: String by settings
-  // val kotlinVersion = extra["kotlin.version"] as String
+  // https://docs.gradle.org/current/userguide/plugins.html#sec:plugin_version_management
   plugins {
-    id("com.gradle.enterprise") version gradleEnterprise
+    // val gradleEnterprise: String by settings
+    // id("com.gradle.enterprise") version gradleEnterprise
+
+    // val kotlinVersion = extra["kotlin.version"] as String
     // kotlin("jvm") version kotlinVersion
-    // id("plugins.common-plugins") // From build-logic
+  }
+
+  // Plugin repositories to use
+  repositories {
+    gradlePluginPortal()
+    mavenCentral()
+    google()
   }
 
   resolutionStrategy {
@@ -18,23 +25,16 @@ pluginManagement {
             useModule("org.jetbrains.kotlinx:atomicfu-gradle-plugin:${requested.version}")
         "app.cash.licensee" ->
             useModule("app.cash.licensee:licensee-gradle-plugin:${requested.version}")
-        "io.reflekt" -> useModule("io.reflekt:gradle-plugin:${this.requested.version}")
       }
     }
-  }
-
-  // Plugin repositories to use
-  repositories {
-    gradlePluginPortal()
-    mavenCentral()
-    google()
   }
 }
 
 // Apply the plugins to all projects
 plugins {
   id("com.gradle.enterprise")
-  // id("plugins.common-settings")
+  id("dev.suresh.gradle.settings")
+  // id("plugins.common")
 }
 
 // Centralizing repositories declaration
@@ -50,7 +50,8 @@ rootProject.name = "openjdk-playground"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 // Composite Builds
-includeBuild("build-logic") // includeBuild("path-to-repo-clone")
+includeBuild(
+    "build-logic")
 
 // Add modules
 // include("bom")

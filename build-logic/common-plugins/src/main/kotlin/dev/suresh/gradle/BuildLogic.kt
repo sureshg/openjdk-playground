@@ -70,7 +70,11 @@ val Project.javaToolchainPath
       ?: error("Requested JDK version ($javaVersion) is not available.")
   }
 
-/** Print all the catalog version strings and it's values. */
+/**
+ * Print all the catalog version strings and it's values.
+ *
+ * [VersionCatalogsExtension](https://docs.gradle.org/current/userguide/platforms.html#sub:type-unsafe-access-to-catalog)
+ */
 fun Project.printVersionCatalog() {
   if (debugEnabled) {
     val catalogs = the<VersionCatalogsExtension>()

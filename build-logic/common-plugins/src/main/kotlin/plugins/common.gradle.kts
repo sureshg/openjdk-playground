@@ -7,6 +7,7 @@ import java.io.StringWriter
 import java.util.concurrent.*
 import java.util.spi.*
 import org.gradle.internal.os.OperatingSystem
+import org.gradle.kotlin.dsl.*
 import tasks.*
 
 plugins {
@@ -64,7 +65,6 @@ tasks {
   register("cleanAll") {
     description = "Clean all composite builds"
     group = LifecycleBasePlugin.CLEAN_TASK_NAME
-
     gradle.includedBuilds.forEach { dependsOn(it.task(":clean")) }
   }
 
@@ -130,6 +130,7 @@ tasks {
         onlyIf { OperatingSystem.current().isUnix }
       }
 
+  // val versionCatalog = the<VersionCatalogsExtension>().named("libs")
   val copyTemplates by
       registering(Copy::class) {
         description = "Generate template classes"
@@ -151,6 +152,8 @@ tasks {
                 .sorted()
                 .joinToString(System.getProperty("line.separator"))
         props["dependencies"] = dependencies
+
+        // props["versionCatalog"] = versionCatalog.
 
         if (debugEnabled) {
           props.forEach { (t, u) -> println("%1\$-42s --> %2\$s".format(t, u)) }
@@ -193,7 +196,7 @@ tasks {
 
   build { finalizedBy(printModuleDeps, buildExecutable, githubActionOutput) }
 
-  val ciBuild by registering {
+  register("ciBuild") {
     description = "Custom task for GitHub action CI build"
     dependsOn(tasks.run, tasks.build, "koverMergedHtmlReport", "dokkaHtml")
     named("koverMergedHtmlReport").map { it.mustRunAfter(tasks.build) }

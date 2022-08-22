@@ -8,7 +8,6 @@ val kotlinVersion by sysProp<String>()
 val kotlinJvmTarget by sysProp<String>()
 val kotlinApiVersion by sysProp<String>()
 val kotlinLangVersion by sysProp<String>()
-val gradleRelease by sysProp<String>()
 val githubProject by sysProp<String>()
 val jvmArguments by sysProp<List<String>>()
 val addModules by sysProp<String>()
@@ -96,7 +95,7 @@ object Deps {
     const val collectionsImmutable = "org.jetbrains.kotlinx:kotlinx-collections-immutable-jvm:0.3.4"
 
     object Serialization {
-      const val version = "1.4.0-RC"
+      const val version = "1.4.0"
       const val core = "org.jetbrains.kotlinx:kotlinx-serialization-core:$version"
       const val json = "org.jetbrains.kotlinx:kotlinx-serialization-json:$version"
       const val jsonOkio = "org.jetbrains.kotlinx:kotlinx-serialization-json-okio:$version"
@@ -367,7 +366,7 @@ object Deps {
   object Logging {
 
     object Slf4j {
-      const val version = "2.0.0-beta1"
+      const val version = "2.0.0"
       const val api = "org.slf4j:slf4j-api:$version"
       const val nop = "org.slf4j:slf4j-nop:$version"
       const val simple = "org.slf4j:slf4j-simple:$version"
@@ -733,7 +732,7 @@ inline val PluginDependenciesSpec.taskTree
 inline val PluginDependenciesSpec.forbiddenApis
   get() = id("de.thetaphi.forbiddenapis") version "3.1"
 inline val PluginDependenciesSpec.extraJavaModuleInfo
-  get() = id("de.jjohannes.extra-java-module-info") version "0.15"
+  get() = id("org.gradlex.extra-java-module-info") version "1.0"
 inline val PluginDependenciesSpec.licensee
   get() = id("app.cash.licensee") version "1.5.0" apply false
 

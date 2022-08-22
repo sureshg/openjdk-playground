@@ -229,24 +229,6 @@ gitProperties {
 
 jdeprscan { forRemoval.set(true) }
 
-buildScan {
-  termsOfServiceUrl = "https://gradle.com/terms-of-service"
-  termsOfServiceAgree = "yes"
-  capture.isTaskInputFiles = true
-  if (GithubAction.isEnabled) {
-    publishAlways()
-    isUploadInBackground = false
-    tag("GITHUB_ACTION")
-    buildScanPublished {
-      GithubAction.setOutput("build_scan_uri", buildScanUri)
-      GithubAction.notice(
-          buildScanUri.toASCIIString(),
-          "${GithubAction.Env.RUNNER_OS} BuildScan URL",
-      )
-    }
-  }
-}
-
 // Create ShadowJar specific runtimeClasspath.
 val shadowRuntime: Configuration by
     configurations.creating {
@@ -357,6 +339,8 @@ tasks {
     }
   }
 
+  testing { suites.getByName<JvmTestSuite>("test").useJUnitJupiter() }
+
   // Javadoc
   javadoc {
     isFailOnError = true
@@ -431,20 +415,6 @@ tasks {
     isPreserveFileTimestamps = false
     isReproducibleFileOrder = true
   }
-
-  // Gradle Wrapper
-  wrapper {
-    gradleVersion = gradleRelease
-    distributionType = Wrapper.DistributionType.ALL
-  }
-
-  // signing {
-  //   setRequired({ signPublications == "true" })
-  //   sign(publishing.publications["maven"])
-  // }
-
-  // Default task (--rerun-tasks --no-build-cache)
-  defaultTasks("clean", "tasks", "--all")
 }
 
 // Dokka html doc

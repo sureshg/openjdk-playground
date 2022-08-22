@@ -64,6 +64,8 @@ jobs:
       version: ${{ steps.gradle-build.outputs.version }}
       artifact_name: ${{ steps.gradle-build.outputs.uberjar_name }}
       artifact_path: ${{ steps.gradle-build.outputs.uberjar_path }}
+      # Output JSON 'matrix'
+      # matrix: ${{ steps.gradle-build.outputs.matrix }}
 
     # services:
     #   postgres:
@@ -79,10 +81,10 @@ jobs:
     #       - 5432:5432
 
     steps:
-      - name: ⏹️ Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.10.0
-        with:
-          access_token: ${{ github.token }}
+      # - name: ⏹️ Cancel Previous Runs
+      #   uses: styfle/cancel-workflow-action@0.10.0
+      #   with:
+      #     access_token: ${{ github.token }}
 
       - name: 🛎️ Check out the source code
         uses: actions/checkout@v3
@@ -93,7 +95,7 @@ jobs:
           # ref: ${{ github.event.pull_request.head.sha }}
           # submodules: recursive
 
-      - name: ⬇️ Download OpenJDK ${{ matrix.jdk }} build from jdk.java.net
+      - name: ⬇️ Download OpenJDK ${{ matrix.jdk }} build from ☁️jdk.java.net
         id: download-jdk
         uses: oracle-actions/setup-java@v1
         with:
@@ -135,7 +137,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      - name: 🏗️ Gradle Build, Run & Analyze
+      - name: 🏗️ Gradle Build, Run & 🧪Analyze
         id: gradle-build
         run: |
           ./gradlew ciBuild
@@ -155,7 +157,7 @@ jobs:
 
       # Deploy the Dokka site for new tag on Linux
       # Can also use "peaceiris/actions-gh-pages@v3.8.0
-      - name: 🚀 Deploy html docs to website
+      - name: 🚀 Deploy html docs to 🕸️website
         if: startsWith(github.ref, 'refs/tags/') && runner.os == 'Linux'
         uses: JamesIves/github-pages-deploy-action@v4.4.0
         with:
@@ -200,6 +202,9 @@ jobs:
     needs: [ build ]
     if: startsWith(github.ref, 'refs/tags/') && needs.build.result == 'success'
     runs-on: ubuntu-latest
+
+    # strategy:
+    #  matrix: ${{ fromJson(needs.build.outputs.matrix) }}
 
     steps:
       - name: 🛎️Check out the source code

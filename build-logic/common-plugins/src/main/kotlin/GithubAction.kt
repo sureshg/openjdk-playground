@@ -112,7 +112,7 @@ object GithubAction {
       )
     )
 
-  /** Sets a Github Action's output parameter. */
+  /** Sets a GitHub Action's output parameter. */
   fun setOutput(name: String, value: Any) = echo("::set-output name=$name::$value")
 
   /** Creates an expandable group with a title in the log. */
@@ -127,7 +127,7 @@ object GithubAction {
   /** Masking a string. Masked word separated by whitespace is replaced with the * character. */
   fun mask(message: String) = "::add-mask::$message"
 
-  /** Prints message to the Github Action workflow log. */
+  /** Prints message to the GitHub Action workflow log. */
   fun echo(message: String, mask: Boolean = false) {
     if (isEnabled) {
       // Replace line feed in multiline strings.
@@ -198,7 +198,7 @@ object GithubAction {
   }
 
   /**
-   * Creates a Github Action workflow message to log. The message (except [DEBUG]) will create an
+   * Creates a GitHub Action workflow message to log. The message (except [DEBUG]) will create an
    * annotation, which can associate the message with a particular file in your repository.
    * Optionally, your message can specify a position within the file.
    *
