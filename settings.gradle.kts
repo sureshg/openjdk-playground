@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 pluginManagement {
   // Included plugin builds can contribute settings and project plugins
   includeBuild("build-logic")
@@ -49,15 +51,5 @@ rootProject.name = "openjdk-playground"
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-// Composite Builds
-includeBuild(
-    "build-logic")
-
-// Add modules
-// include("bom")
-// include("core")
-// project(":lib").projectDir = file("ksp/lib")
-
-// extra.properties.forEach { (k, v) ->
-//   println("$k -> $v")
-// }
+includeBuild("panama-api") // project(":api").projectDir = file("lib/api")
+// include("api")

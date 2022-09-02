@@ -1,12 +1,15 @@
 package plugins
 
 import dev.suresh.gradle.libs
+import tasks.BuildConfig
 
 plugins {
+  java
   signing
   `maven-publish`
   wrapper
   // id("plugins.common")
+  // id("gg.jte.gradle")
   id("com.diffplug.spotless")
   id("io.github.gradle-nexus.publish-plugin")
 }
@@ -49,7 +52,20 @@ spotless {
   // isEnforceCheck = false
 }
 
+// jte {
+//   contentType.set(ContentType.Plain)
+//   generateNativeImageResources.set(true)
+//   generate()
+// }
+
 tasks {
+  // Generate build config.
+  val buildConfig by registering(BuildConfig::class) { classFqName.set("BuildConfig") }
+  sourceSets { main { java.srcDirs(buildConfig) } }
+
+  // Fix "Execution optimizations have been disabled" warning for JTE
+  // tasks.named("dokkaHtml") { dependsOn(tasks.generateJte) }
+
   wrapper {
     gradleVersion = libs.versions.gradle.asProvider().get()
     distributionType = Wrapper.DistributionType.ALL

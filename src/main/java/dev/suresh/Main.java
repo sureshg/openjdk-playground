@@ -3,6 +3,7 @@ package dev.suresh;
 import static java.lang.System.out;
 
 import dev.suresh.adt.Records;
+import dev.suresh.ffm.FFMApi;
 import dev.suresh.jte.RenderJte;
 import dev.suresh.lang.JPMSKt;
 import dev.suresh.mvn.MavenResolver;
@@ -72,6 +73,7 @@ public class Main {
     JettyServerKt.run(args);
     JPMSKt.run();
     HelpfulNPE.run();
+    FFMApi.run();
   }
 
   @Override

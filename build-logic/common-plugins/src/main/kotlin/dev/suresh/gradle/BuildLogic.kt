@@ -40,8 +40,8 @@ val Project.hasCleanTask
 val Project.isSnapshot
   get() = version.toString().endsWith("SNAPSHOT", true)
 
-val Project.isCiServer
-  get() = System.getenv("CI").isNullOrBlank().not()
+val Project.runsOnCI
+  get() = providers.environmentVariable("CI").getOrElse("false").toBoolean()
 
 /** Check if it's a non-stable(RC) version. */
 val String.isNonStable: Boolean

@@ -1,12 +1,9 @@
 import dev.suresh.gradle.configurePom
 import dev.suresh.gradle.tmp
 import dev.suresh.gradle.xQuote
-import gg.jte.ContentType
 import java.net.URL
-import kotlinx.kover.api.DefaultIntellijEngine
-import kotlinx.kover.api.KoverTaskExtension
-import org.gradle.api.tasks.testing.logging.TestExceptionFormat
-import org.gradle.api.tasks.testing.logging.TestLogEvent
+import kotlinx.kover.api.*
+import org.gradle.api.tasks.testing.logging.*
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.config.LanguageFeature
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -16,12 +13,11 @@ plugins {
   id("plugins.misc")
   jgitPlugin
   ksp
-  kotlinJvm
-  kotlinKapt
+  kotlin("jvm")
+  kotlin("kapt")
   kotlinxSerialization
   kover
   dokka
-  jte
   protobuf
   googleJib
   shadow
@@ -170,12 +166,6 @@ kapt {
   }
 }
 
-jte {
-  contentType.set(ContentType.Plain)
-  generateNativeImageResources.set(true)
-  generate()
-}
-
 redacted {
   redactedAnnotation.set("Redacted")
   enabled.set(false)
@@ -278,6 +268,7 @@ tasks {
    * JVM backend compiler options can be found in,
    * https://github.com/JetBrains/kotlin/blob/master/compiler/cli/cli-common/src/org/jetbrains/kotlin/cli/common/arguments/K2JVMCompilerArguments.kt
    * https://github.com/JetBrains/kotlin/blob/master/compiler/config.jvm/src/org/jetbrains/kotlin/config/JvmTarget.kt
+   * https://github.com/JetBrains/kotlin/blob/master/compiler/util/src/org/jetbrains/kotlin/config/ApiVersion.kt#L35
    */
   withType<KotlinCompile>().configureEach {
     usePreciseJavaTracking = true
@@ -369,7 +360,7 @@ tasks {
 
         sourceLink {
           localDirectory.set(file("src/main/kotlin"))
-          remoteUrl.set(URL("$githubProject/tree/main/src/main/kotlin"))
+          remoteUrl.set(URL("${libs.versions.githubProject.get()}/tree/main/src/main/kotlin"))
           remoteLineSuffix.set("#L")
         }
 
@@ -434,9 +425,6 @@ val emptyJar by
       // }
     }
 
-// Fix "Execution optimizations have been disabled" warning for JTE
-tasks.named("dokkaHtml") { dependsOn(tasks.generateJte) }
-
 dependencies {
   implementation(platform(Deps.Kotlin.bom))
   implementation(platform(Deps.OkHttp.bom))
@@ -444,7 +432,6 @@ dependencies {
   implementation(Deps.Kotlin.reflect)
   implementation(Deps.Kotlin.Coroutines.jdk8)
   implementation(Deps.Kotlinx.Serialization.json)
-  implementation(Deps.Kotlinx.Serialization.properties)
   implementation(Deps.Kotlinx.dateTime)
   implementation(Deps.Jetty.server) { version { strictly(Deps.Jetty.version) } }
   implementation(Deps.Jetty.jakartaServletApi)
@@ -454,8 +441,6 @@ dependencies {
   implementation(Deps.OkHttp.mockWebServer)
   implementation(Deps.OkHttp.tls)
   implementation(Deps.OkHttp.loggingInterceptor)
-  implementation(Deps.Retrofit.retrofit)
-  implementation(Deps.Retrofit.koltinxSerializationAdapter)
   implementation(Deps.Retry.kotlinRetry)
   implementation(Deps.Cli.clikt)
   implementation(Deps.Cli.mordant)
@@ -467,32 +452,18 @@ dependencies {
   implementation(Deps.Google.AutoService.annotations)
   implementation(Deps.Jackson.databind)
   implementation(Deps.TemplateEngine.Jte.runtime)
-
-  implementation(Deps.Jetty.LoadGen.client)
   implementation(Deps.Network.jmdns)
   implementation(Deps.Security.password4j) { exclude(group = "org.slf4j", module = "slf4j-nop") }
   implementation(Deps.Security.otp)
-  implementation(Deps.Security.jwtJava)
-  implementation(Deps.Cli.textTree)
-  // implementation(Deps.Foojay.discoclient)
+  implementation(Deps.Logging.Log4j2.core)
 
   compileOnly(Deps.TemplateEngine.Jte.kotlin)
   compileOnly(Deps.Kotlinx.atomicfu)
   kapt(Deps.Google.AutoService.processor)
 
-  // implementation(platform("org.apache.maven.resolver:maven-resolver:1.4.1"))
-  // implementation("org.apache.maven:maven-resolver-provider:3.8.1")
-  // implementation(fileTree("lib") { include("*.jar") })
-
-  constraints {
-    implementation("org.apache.logging.log4j:log4j-core") {
-      version {
-        prefer("[2.18,0[")
-        strictly(Deps.Logging.Log4j2.version)
-      }
-      because("CVE-2021-44228 - Log4shell")
-    }
-  }
+  // api(platform(projects.bom))
+  // api(project(":panama-api/ffm-api"))
+  implementation(libs.ffm.api)
 
   testImplementation(Deps.Kotlin.Coroutines.test)
   testImplementation(platform(Deps.Junit.bom))
@@ -508,6 +479,20 @@ dependencies {
   // Dokka Plugins (dokkaHtmlPlugin, dokkaGfmPlugin)
   // dokkaPlugin(Deps.Dokka.kotlinAsJavaPlugin)
   dokkaPlugin(Deps.Dokka.mermaidPlugin)
+
+  // implementation(fileTree("lib") { include("*.jar") })
+  // implementation(platform("org.apache.maven.resolver:maven-resolver:1.4.1"))
+  // implementation("org.apache.maven:maven-resolver-provider:3.8.1")
+
+  //  constraints {
+  //    implementation("org.apache.logging.log4j:log4j-core") {
+  //      version {
+  //        prefer("[2.18,0[")
+  //        strictly(Deps.Logging.Log4j2.version)
+  //      }
+  //      because("CVE-2021-44228 - Log4shell")
+  //    }
+  //  }
 }
 
 publishing {

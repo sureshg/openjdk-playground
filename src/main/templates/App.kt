@@ -21,7 +21,7 @@ object App {
   const val KOTLIN_VERSION = "${getProperty('systemProp.kotlinVersion')}"
 
   /** Gradle version */
-  const val GRADLE_VERSION = "10"
+  const val GRADLE_VERSION = "7.5"
 
   /**
    * Git

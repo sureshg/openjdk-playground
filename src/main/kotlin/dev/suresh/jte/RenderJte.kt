@@ -1,6 +1,7 @@
 package dev.suresh.jte
 
 import App
+import BuildConfig
 import dev.suresh.config.*
 import gg.jte.*
 import gg.jte.output.*
@@ -20,8 +21,9 @@ class RenderJte {
 
     listOf("hello.jte", "hello-kt.kte").forEach {
       val output = StringOutput()
-      tmplEngine.render(it, params, output)
-      println(output)
+      // tmplEngine.render(it, params, output)
+      output.write(BuildConfig.time)
+      println("$it -> $output")
     }
   }
 }

@@ -4,12 +4,13 @@ kotlin                         = "1.7.20-Beta"
 kotlin-jvm-target              = "18"
 kotlin-api-version             = "1.8"
 kotlin-lang-version            = "1.8"
-gradle                         = "7.7-20220817221725+0000"
+kotlindsl-api-version          = "1.7"
+gradle                         = "7.7-20220830220955+0000"
 
 # Additional metadata
 githubProject                  = "https://github.com/sureshg/openjdk-playground"
 java-jvmArguments              = "--enable-preview"
-java-addModules                = "jdk.incubator.concurrent,jdk.incubator.foreign,jdk.incubator.vector"
+java-addModules                = "jdk.incubator.concurrent,jdk.incubator.vector"
 
 # Gradle Dependencies Versions
 ajalt-clikt                    = "3.5.0"
@@ -50,6 +51,7 @@ jgitver                        = "0.10.0-rc03"
 jmdns                          = "3.5.8"
 jreleaser                      = "0.9.1"
 jspecify                       = "0.2.0"
+jte                            = "2.1.2"
 junit                          = "5.9.0"
 junit-pioneer                  = "1.4.2"
 jqwik                          = "1.6.0"
@@ -115,8 +117,10 @@ protobuf-plugin                = "0.8.17"
 shadow                         = "7.1.2"
 spotless                       = "6.9.1"
 versioncatalog-update          = "0.5.1"
-dependency-analysis            = "1.12.0"
+dependency-analysis            = "1.13.1"
 
+# Composite build versions
+ffm-api                        = "1.0.0"
 
 # Gradle Dependencies
 [libraries]
@@ -221,6 +225,9 @@ rsocket-ktor-client         = { module = "io.rsocket.kotlin:rsocket-ktor-client"
 rsocket-ktor-server         = { module = "io.rsocket.kotlin:rsocket-ktor-server"            , version.ref = "rsocket"}
 
 jgit                        = { module = "org.eclipse.jgit:org.eclipse.jgit"          , version.ref = "jgit" }
+jte                         = { module = "gg.jte:jte"                                 , version.ref = "jte" }
+jte-runtime                 = { module = "gg.jte:jte-runtime"                         , version.ref = "jte" }
+jte-kotlin                  = { module = "gg.jte:jte-kotlin"                          , version.ref = "jte" }
 junit-bom                   = { module = "org.junit:junit-bom"                        , version.ref = "junit"}
 junit-jupiter               = { module = "org.junit.jupiter:junit-jupiter"            , version.ref = "junit"}
 junit-jupiter-api           = { module = "org.junit.jupiter:junit-jupiter-api"        , version.ref = "junit"}
@@ -264,12 +271,15 @@ testcontainers-junit        = { module = "org.testcontainers:junit-jupiter"     
 
 togglz-core                 = { module = "org.togglz:togglz-core"                           , version.ref = "togglz"}
 violations                  = { module = "se.bjurr.violations:violations-lib"               , version.ref = "violations" }
+ffm-api                     = { module = "dev.suresh:ffm-api"                               , version.ref = "ffm-api" }
 
 # External plugins for precompiled script plugins
+kotlin-jvm                  = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin"                      , version.ref = "kotlin"}
 gradlex-buildparameters     = { module = "org.gradlex:build-parameters"                                   , version.ref = "gradlex-buildparameters"}
+gradle-enterprise           = { module = "com.gradle.enterprise:com.gradle.enterprise.gradle.plugin"      , version.ref = "gradle-enterprise" }
+jte-plugin                  = { module = "gg.jte:jte-gradle-plugin"                                       , version.ref = "jte"}
 nexus-plugin                = { module = "io.github.gradle-nexus:publish-plugin"                          , version.ref = "nexus-publish"}
 spotless-plugin             = { module = "com.diffplug.spotless:spotless-plugin-gradle"                   , version.ref = "spotless"}
-gradle-enterprise           = { module = "com.gradle.enterprise:com.gradle.enterprise.gradle.plugin"      , version.ref = "gradle-enterprise" }
 
 
 # Gradle  Plugins
@@ -289,6 +299,7 @@ gradlex-buildparameters     = { id = "org.gradlex.build-parameters"             
 jetbrains-exposed           = { id = "com.jetbrains.exposed.gradle.plugin"                   , version.ref = "jetbrains-exposed"}
 jgitver                     = { id = "fr.brouillard.oss.gradle.jgitver"                      , version.ref = "jgitver" }
 jreleaser                   = { id = "org.jreleaser"                                         , version.ref = "jreleaser" }
+jte                         = { id = "gg.jte.gradle"                                         , version.ref = "jte" }
 kotlin-jvm                  = { id = "org.jetbrains.kotlin.jvm"                              , version.ref = "kotlin" }
 kotlin-kapt                 = { id = "org.jetbrains.kotlin.kapt"                             , version.ref = "kotlin" }
 kotlinx-serialization       = { id = "org.jetbrains.kotlin.plugin.serialization"             , version.ref = "kotlin" }

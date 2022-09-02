@@ -1,6 +1,7 @@
-import org.gradle.api.artifacts.dsl.*
+import dev.suresh.gradle.sysProp
 import org.gradle.kotlin.dsl.*
 import org.gradle.plugin.use.*
+import org.slf4j.LoggerFactory
 
 /** Platform versions defined as System Properties. */
 val javaVersion by sysProp<Int>()
@@ -8,9 +9,11 @@ val kotlinVersion by sysProp<String>()
 val kotlinJvmTarget by sysProp<String>()
 val kotlinApiVersion by sysProp<String>()
 val kotlinLangVersion by sysProp<String>()
-val githubProject by sysProp<String>()
 val jvmArguments by sysProp<List<String>>()
 val addModules by sysProp<String>()
+
+/** Build source logger */
+val logger = LoggerFactory.getLogger("build-logic")
 
 /** Dependency versions. */
 object Deps {
@@ -276,7 +279,7 @@ object Deps {
   }
 
   object Mock {
-    const val mockk = "io.mockk:mockk:1.12.5"
+    const val mockk = "io.mockk:mockk:1.12.7"
     const val mockito = "org.mockito:mockito-core:2.26.0"
     const val mockserver = "org.mock-server:mockserver-netty:5.10.0"
     const val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
@@ -646,24 +649,6 @@ object Deps {
   const val japicmp = "com.github.siom79.japicmp:japicmp:0.13.0"
 }
 
-/** Dependency Extensions */
-val DependencyHandler.KotlinBom
-  get() = kotlin("bom")
-val DependencyHandler.KotlinStdlibJdk8
-  get() = kotlin("stdlib-jdk8")
-val DependencyHandler.KotlinReflect
-  get() = kotlin("reflect")
-val DependencyHandler.KotlinTest
-  get() = kotlin("test")
-val DependencyHandler.KotlinTestJunit
-  get() = kotlin("test-junit")
-val DependencyHandler.KotlinScriptRuntime
-  get() = kotlin("script-runtime")
-val DependencyHandler.KotlinScripUtil
-  get() = kotlin("script-util")
-val DependencyHandler.KotlinScripJsr223
-  get() = kotlin("scripting-jsr223")
-
 /** PluginId Extensions */
 inline val PluginDependenciesSpec.kotlinJvm
   get() = kotlin("jvm") version kotlinVersion
@@ -700,7 +685,7 @@ inline val PluginDependenciesSpec.reflektPlugin
   get() = id("io.reflekt") version Deps.Kotlin.Reflekt.version
 
 inline val PluginDependenciesSpec.kover
-  get() = id("org.jetbrains.kotlinx.kover") version "0.6.0-Beta"
+  get() = id("org.jetbrains.kotlinx.kover") version "0.6.0"
 inline val PluginDependenciesSpec.sonarqube
   get() = id("org.sonarqube") version "3.4.0.2513" apply true
 
@@ -708,13 +693,13 @@ inline val PluginDependenciesSpec.sonarqube
 inline val PluginDependenciesSpec.ksp
   get() = id("com.google.devtools.ksp") version Deps.Kotlin.Ksp.version
 inline val PluginDependenciesSpec.googleJib
-  get() = id("com.google.cloud.tools.jib") version "3.2.1"
+  get() = id("com.google.cloud.tools.jib") version "3.3.0"
 
 // Dependency Versions
 inline val PluginDependenciesSpec.benmanesVersions
   get() = id("com.github.ben-manes.versions") version "0.42.0"
 inline val PluginDependenciesSpec.versionCatalogUpdate
-  get() = id("nl.littlerobots.version-catalog-update") version "0.5.3"
+  get() = id("nl.littlerobots.version-catalog-update") version "0.6.1"
 inline val PluginDependenciesSpec.consistentVersions
   get() = id("com.palantir.consistent-versions") version "1.28.0"
 
@@ -722,7 +707,7 @@ inline val PluginDependenciesSpec.consistentVersions
 inline val PluginDependenciesSpec.shadow
   get() = id("com.github.johnrengelman.shadow") version "7.1.2"
 inline val PluginDependenciesSpec.dependencyAnalysis
-  get() = id("com.autonomousapps.dependency-analysis") version "1.12.0"
+  get() = id("com.autonomousapps.dependency-analysis") version "1.13.1"
 inline val PluginDependenciesSpec.dependencyAnalyze
   get() = id("ca.cutterslade.analyze") version "1.9.0" apply true
 inline val PluginDependenciesSpec.taskinfo
@@ -812,7 +797,7 @@ inline val PluginDependenciesSpec.mavenPublish
 inline val PluginDependenciesSpec.gitProperties
   get() = id("com.gorylenko.gradle-git-properties") version "2.4.1"
 inline val PluginDependenciesSpec.buildconfig
-  get() = id("com.github.gmazzo.buildconfig") version "3.0.2" apply false
+  get() = id("com.github.gmazzo.buildconfig") version "3.1.0" apply false
 inline val PluginDependenciesSpec.buildkonfig
   get() = id("com.codingfeline.buildkonfig") version "0.13.3" apply false
 

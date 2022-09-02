@@ -5,6 +5,7 @@ import java.nio.file.*
 import java.text.NumberFormat
 import kotlin.properties.*
 import kotlin.reflect.*
+import kotlin.reflect.full.isSubtypeOf
 
 /** OS temp location */
 val tmp: String = System.getProperty("java.io.tmpdir")
@@ -35,18 +36,26 @@ inline fun <reified T> sysProp(): ReadOnlyProperty<Any?, T> = ReadOnlyProperty {
   val propVals = propVal.split(",", " ").filter { it.isNotBlank() }
 
   val kType = typeOf<T>()
-  when (kType) {
-    typeOf<String>() -> propVal
-    typeOf<Int>() -> propVal.toInt()
-    typeOf<Boolean>() -> propVal.toBoolean()
-    typeOf<Long>() -> propVal.toLong()
-    typeOf<Double>() -> propVal.toDouble()
-    typeOf<List<String>>() -> propVals
-    typeOf<List<Int>>() -> propVals.map { it.toInt() }
-    typeOf<List<Long>>() -> propVals.map { it.toLong() }
-    typeOf<List<Double>>() -> propVals.map { it.toDouble() }
-    typeOf<List<Boolean>>() -> propVals.map { it.toBoolean() }
-    else -> error("'${property.name}' system property type ($kType) is not supported!")
+  when {
+    // Handle enum values
+    kType.isSubtypeOf(typeOf<Enum<*>?>()) ->
+      T::class.java.enumConstants.filterIsInstance<Enum<*>>().singleOrNull { it.name == propVal }
+
+    // Handle primitive and collection types
+    else ->
+      when (kType) {
+        typeOf<String>() -> propVal
+        typeOf<Int>() -> propVal.toInt()
+        typeOf<Boolean>() -> propVal.toBoolean()
+        typeOf<Long>() -> propVal.toLong()
+        typeOf<Double>() -> propVal.toDouble()
+        typeOf<List<String>>() -> propVals
+        typeOf<List<Int>>() -> propVals.map { it.toInt() }
+        typeOf<List<Long>>() -> propVals.map { it.toLong() }
+        typeOf<List<Double>>() -> propVals.map { it.toDouble() }
+        typeOf<List<Boolean>>() -> propVals.map { it.toBoolean() }
+        else -> error("'${property.name}' system property type ($kType) is not supported!")
+      }
   }
     as T
 }

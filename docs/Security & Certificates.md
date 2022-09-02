@@ -25,6 +25,10 @@ Security & Certificates
 
 * https://crt.sh/test-websites?trustedBy=Java
 
+* [LintCert](https://crt.sh/lintcert)
+
+* [Cert Lint Library](https://github.com/amazon-archives/certlint)
+
 * [CT Logs](https://certificate.transparency.dev/logs/)
 
 ### OpenSSL & Keytool

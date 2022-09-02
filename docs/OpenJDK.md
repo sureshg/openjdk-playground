@@ -4,7 +4,6 @@ This document contains list of [Java/JDK](http://jdk.java.net/) commands which i
 day to day work.
 
 <!-- TOC -->
-
 * [OpenJDK](#openjdk)
     * [Java Commands](#java-commands)
         * [1. Create Source Code Structure](#1-create-source-code-structure)
@@ -78,8 +77,7 @@ day to day work.
         * [Awesome List](#awesome-list)
         * [Tools](#tools)
         * [JBang](#jbang)
-
-<!-- TOC -->
+        <!-- TOC -->
 
 ### Java Commands
 
@@ -865,16 +863,44 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
 
 ### Mac OS
 
-```bash
-$ sudo xattr -cr /Applications/compose-desktop-sample.app
+- ###### Remove Quarantine Attributes
 
-# If you are using macOS Catalina and later you may need to remove the quarantine attribute from the bits before you can use them
-$ sudo xattr -r -d com.apple.quarantine path/to/app/folder/
-```
+  ```bash
+  $ sudo xattr -cr /Applications/compose-desktop-sample.app
+
+  # If you are using macOS Catalina and later you may need to remove the quarantine attribute from the bits before you can use them
+  $ sudo xattr -r -d com.apple.quarantine path/to/app/folder/
+  ```
+
+- ###### Java Home settings in Xcode
+
+  Xcode uses Java env returned by `/usr/libexec/java_home`
+
+  Set `JAVA_HOME` in `XCode` -> `Preferences` -> `Locations` -> `Custom Paths` to `/Users/<user>/.sdkman/candidates/java/current`
+
+
+
+- Install Rosetta
+
+  ```bash
+  $ softwareupdate --install-rosetta --agree-to-license
+  ```
+
+
+
+- Install Command Line Tools
+
+  ```bash
+  $ xcode-select --install
+  ```
+
+
 
 ### LDAP Tools
 
 * https://ldap.com/ldap-tools/
+
+
 
 ### [OpenJDK Build](https://openjdk.java.net/groups/build/doc/building.html)
 

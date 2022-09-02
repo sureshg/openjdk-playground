@@ -221,10 +221,9 @@ tasks {
 // allprojects {
 //    configurations.all {
 //        resolutionStrategy.dependencySubstitution {
-//            substitute(module("org.jetbrains.compose.compiler:compiler")).apply {
-//                using(module("androidx.compose.compiler:compiler:1.2.0"))
-//                using(project(":api"))
-//            }
+//          substitute(module("org.jetbrains.compose.compiler:compiler"))
+//              .using(module("androidx.compose.compiler:compiler:$composeCompilerVersion"))
+//              .because("using the compose prerelease compiler")
 //        }
 //    }
 // }
