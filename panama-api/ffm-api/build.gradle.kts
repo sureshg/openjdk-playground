@@ -2,4 +2,6 @@ plugins { id("plugins.kotlin") }
 
 group = "dev.suresh"
 
-version = "1.0.0"
+version = libs.versions.ffm.api.get()
+
+dependencies { implementation(kotlin("stdlib-jdk8")) }
