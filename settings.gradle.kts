@@ -51,5 +51,6 @@ rootProject.name = "openjdk-playground"
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-includeBuild("panama-api") // project(":api").projectDir = file("lib/api")
-// include("api")
+// With composite builds, the module dependencies to 'panama-api' will always
+// be substituted with project dependencies.
+includeBuild("panama-api") // include("api")

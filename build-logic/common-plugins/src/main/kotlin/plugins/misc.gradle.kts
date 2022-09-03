@@ -66,6 +66,9 @@ tasks {
   // Fix "Execution optimizations have been disabled" warning for JTE
   // tasks.named("dokkaHtml") { dependsOn(tasks.generateJte) }
 
+  // Delegating tasks to composite build (./gradlew :panama-api:ffm-api:tasks --all)
+  register("ffm-build") { dependsOn(gradle.includedBuild("panama-api").task(":ffm-api:build")) }
+
   wrapper {
     gradleVersion = libs.versions.gradle.asProvider().get()
     distributionType = Wrapper.DistributionType.ALL
