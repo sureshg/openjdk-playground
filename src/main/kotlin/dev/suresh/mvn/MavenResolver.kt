@@ -1,6 +1,5 @@
 package dev.suresh.mvn
 
-import App
 import com.squareup.tools.maven.resolution.Artifact
 import com.squareup.tools.maven.resolution.ArtifactResolver
 
@@ -32,7 +31,9 @@ class MavenResolver {
           val artifact = resolver.artifactFor(it.coordinate)
           resolver.resolve(artifact).artifact?.model?.dependencies?.forEach { dep ->
             val depSpec = "${dep.groupId}:${dep.artifactId}:${dep.version}"
-            deps.addAll(callRecursive(resolver.artifactFor(depSpec)))
+            if (depSpec !in deps && dep.scope != "test") {
+              deps.addAll(callRecursive(resolver.artifactFor(depSpec)))
+            }
           }
         }
         deps
