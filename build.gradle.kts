@@ -50,7 +50,6 @@ application {
       listOf(
           "--show-version",
           "--enable-preview",
-          "--show-module-resolution",
           "--add-modules=$addModules",
           "--enable-native-access=ALL-UNNAMED",
           "-XshowSettings:all",
@@ -76,6 +75,7 @@ application {
           "-XX:NativeMemoryTracking=summary",
           "-XX:+ShowHiddenFrames",
           "-ea",
+          // "--show-module-resolution",
           // "-XX:+AutoCreateSharedArchive",
           // "-XX:SharedArchiveFile=$tmp/$name.jsa"
           // "-verbose:module",
@@ -447,7 +447,6 @@ dependencies {
   implementation(Deps.Cli.crossword)
   implementation(Deps.Logging.Slf4j.api)
   implementation(Deps.Logging.Slf4j.simple)
-  implementation(Deps.Maven.shrinkwrap)
   implementation(Deps.TLS.certifikit)
   implementation(Deps.Google.AutoService.annotations)
   implementation(Deps.Jackson.databind)
@@ -464,6 +463,7 @@ dependencies {
   // api(platform(projects.bom))
   // api(project(":panama-api/ffm-api"))
   implementation(libs.ffm.api)
+  implementation(libs.maven.archeologist)
 
   testImplementation(Deps.Kotlin.Coroutines.test)
   testImplementation(platform(Deps.Junit.bom))

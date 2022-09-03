@@ -80,6 +80,7 @@ ktor                           = "2.1.0"
 lwjgl                          = "3.3.0"
 libgdx                         = "1.10.0"
 logback                        = "1.2.6"
+maven-archeologist             = "0.0.10"
 os-appdirs                     = "1.2.1"
 os-oshi                        = "6.1.2"
 os-jfa                         = "1.2.0"
@@ -253,6 +254,7 @@ game-lwjgl-bom              = { module = "org.lwjgl:lwjgl-bom"                  
 game-libgdx                 = { module = "com.badlogicgames.gdx:gdx"                        , version.ref = "libgdx"}
 logback-classic             = { module = "ch.qos.logback:logback-classic"                   , version.ref = "logback"}
 logback-core                = { module = "ch.qos.logback:logback-core"                      , version.ref = "logback"}
+maven-archeologist          = { module = "com.squareup.tools.build:maven-archeologist"      , version.ref = "maven-archeologist"}
 
 os-appdirs                  = { module = "net.harawata:appdirs"                             , version.ref = "os-appdirs"}
 os-oshi                     = { module = "com.github.oshi:oshi-core"                        , version.ref = "os-oshi"}
