@@ -57,7 +57,7 @@ object Deps {
     }
 
     object Ksp {
-      const val version = "1.7.20-Beta-1.0.6"
+      const val version = "1.7.20-RC-1.0.6"
       const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
       const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
       const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.4.0"
@@ -391,11 +391,6 @@ object Deps {
     }
   }
 
-  object Jackson {
-    const val version = "2.13.3"
-    const val databind = "com.fasterxml.jackson.core:jackson-databind:$version"
-  }
-
   object Monitoring {
     const val beacon = "com.github.sbridges:beacon:0.9.3"
   }
@@ -680,7 +675,7 @@ inline val PluginDependenciesSpec.exposed
 inline val PluginDependenciesSpec.kotlinxAtomicfu
   get() = id("kotlinx-atomicfu") version Deps.Kotlinx.atomicfuVersion
 inline val PluginDependenciesSpec.binCompatValidator
-  get() = id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.11.0"
+  get() = id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.11.1"
 inline val PluginDependenciesSpec.reflektPlugin
   get() = id("io.reflekt") version Deps.Kotlin.Reflekt.version
 
@@ -696,8 +691,6 @@ inline val PluginDependenciesSpec.googleJib
   get() = id("com.google.cloud.tools.jib") version "3.3.0"
 
 // Dependency Versions
-inline val PluginDependenciesSpec.benmanesVersions
-  get() = id("com.github.ben-manes.versions") version "0.42.0"
 inline val PluginDependenciesSpec.versionCatalogUpdate
   get() = id("nl.littlerobots.version-catalog-update") version "0.6.1"
 inline val PluginDependenciesSpec.consistentVersions

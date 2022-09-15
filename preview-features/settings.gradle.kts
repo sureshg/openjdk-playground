@@ -14,8 +14,8 @@ dependencyResolutionManagement {
   versionCatalogs { create("libs") { from(files("../gradle/libs.versions.toml")) } }
 }
 
-rootProject.name = "panama-api"
-
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
+rootProject.name = "preview-features"
 
 include("ffm-api")

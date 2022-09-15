@@ -152,7 +152,8 @@ object GithubAction {
           |::stop-commands::$token
           |${messages.joinToString(System.lineSeparator())}
           |::$token::
-          """.trimMargin()
+          """.trimMargin(
+        )
       )
     }
   }
@@ -176,7 +177,8 @@ object GithubAction {
                 |$name<<EOF
                 |$value
                 |EOF
-                """.trimMargin()
+                """.trimMargin(
+            )
           else -> "$name=$value${System.lineSeparator()}"
         }
       Files.writeString(Path.of(ghActionEnv), env, Charsets.UTF_8, CREATE, APPEND)

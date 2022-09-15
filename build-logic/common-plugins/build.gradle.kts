@@ -4,6 +4,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
   `kotlin-dsl`
   alias(libs.plugins.jte)
+  alias(libs.plugins.benmanes)
 }
 
 kotlin {
@@ -59,6 +60,7 @@ dependencies {
   implementation(libs.kotlin.jvm)
   implementation(libs.nexus.plugin)
   implementation(libs.spotless.plugin)
+  implementation(libs.benmanesversions.plugin)
   // implementation(libs.jte.plugin)
 }
 

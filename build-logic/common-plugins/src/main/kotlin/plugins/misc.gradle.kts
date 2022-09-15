@@ -1,6 +1,10 @@
 package plugins
 
+import com.github.benmanes.gradle.versions.reporter.result.Result
+import dev.suresh.gradle.forkTask
 import dev.suresh.gradle.libs
+import java.util.concurrent.CompletableFuture
+import org.gradle.kotlin.dsl.*
 import tasks.BuildConfig
 
 plugins {
@@ -11,11 +15,18 @@ plugins {
   // id("plugins.common")
   // id("gg.jte.gradle")
   id("com.diffplug.spotless")
+  id("com.github.ben-manes.versions")
   id("io.github.gradle-nexus.publish-plugin")
 }
 
 val ktfmtVersion = libs.versions.ktfmt.get()
-val gjfVersion = libs.versions.gjf.get()
+val gjfVersion = libs.versions.google.javaformat.get()
+
+// jte {
+//   contentType.set(ContentType.Plain)
+//   generateNativeImageResources.set(true)
+//   generate()
+// }
 
 // Formatting
 spotless {
@@ -52,12 +63,6 @@ spotless {
   // isEnforceCheck = false
 }
 
-// jte {
-//   contentType.set(ContentType.Plain)
-//   generateNativeImageResources.set(true)
-//   generate()
-// }
-
 tasks {
   // Generate build config.
   val buildConfig by registering(BuildConfig::class) { classFqName.set("BuildConfig") }
@@ -66,8 +71,60 @@ tasks {
   // Fix "Execution optimizations have been disabled" warning for JTE
   // tasks.named("dokkaHtml") { dependsOn(tasks.generateJte) }
 
-  // Delegating tasks to composite build (./gradlew :panama-api:ffm-api:tasks --all)
-  register("ffm-build") { dependsOn(gradle.includedBuild("panama-api").task(":ffm-api:build")) }
+  jar { exclude("META-INF/*.RSA", "META-INF/*.SF", "META-INF/*.DSA") }
+
+  // Delegating tasks to composite build (./gradlew :preview-features:ffm-api:tasks --all)
+  register("ffm-build") {
+    dependsOn(gradle.includedBuild("preview-features").task(":ffm-api:build"))
+  }
+
+  // Clean all composite builds
+  register("cleanAll") {
+    description = "Clean all composite builds"
+    group = LifecycleBasePlugin.CLEAN_TASK_NAME
+    gradle.includedBuilds.forEach { dependsOn(it.task(":clean")) }
+  }
+
+  // Dev task that does both the continuous compiling and run.
+  register("dev") {
+    description = "A task to continuous compile and run"
+    group = LifecycleBasePlugin.BUILD_GROUP
+
+    doLast {
+      val continuousCompile = forkTask("classes", "-t")
+      val run = forkTask("run")
+      CompletableFuture.allOf(continuousCompile, run).join()
+    }
+  }
+
+  // Dependency version updates
+  dependencyUpdates {
+    checkForGradleUpdate = true
+    // outputFormatter = "json"
+    // outputDir = "build/dependencyUpdates"
+    // reportfileName = "report"
+    // rejectVersionIf { candidate.version.isNonStable && !currentVersion.isNonStable }
+    outputFormatter =
+        closureOf<Result> {
+          outdated.dependencies.forEach { dep ->
+            println("${dep.group}:${dep.name} -> ${dep.available.release}")
+          }
+        }
+
+    // Run "dependencyUpdates" on all "build-logic" projects also.
+    gradle.includedBuild("build-logic").apply {
+      projectDir
+          .listFiles()
+          .filter { it.isDirectory && File(it, "build.gradle.kts").exists() }
+          .forEach { dir -> dependsOn(task(":${dir.name}:dependencyUpdates")) }
+    }
+  }
+
+  // Reproducible builds
+  withType<AbstractArchiveTask>().configureEach {
+    isPreserveFileTimestamps = false
+    isReproducibleFileOrder = true
+  }
 
   wrapper {
     gradleVersion = libs.versions.gradle.asProvider().get()

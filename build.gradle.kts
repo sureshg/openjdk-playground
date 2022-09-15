@@ -26,7 +26,6 @@ plugins {
   redacted
   kotlinPowerAssert
   spotlessChangelog
-  benmanesVersions
   versionCatalogUpdate
   gitProperties
   taskinfo
@@ -390,22 +389,7 @@ tasks {
     // configurations = listOf(shadowRuntime)
   }
 
-  dependencyUpdates {
-    checkForGradleUpdate = true
-    outputFormatter = "json"
-    outputDir = "build/dependencyUpdates"
-    reportfileName = "report"
-    // Disallow release candidates as upgradable versions from stable versions
-    // rejectVersionIf { candidate.version.isNonStable && !currentVersion.isNonStable }
-  }
-
   dependencyAnalysis { issues { all { onAny { severity("warn") } } } }
-
-  // Reproducible builds
-  withType<AbstractArchiveTask>().configureEach {
-    isPreserveFileTimestamps = false
-    isReproducibleFileOrder = true
-  }
 }
 
 // Dokka html doc
@@ -449,7 +433,7 @@ dependencies {
   implementation(Deps.Logging.Slf4j.simple)
   implementation(Deps.TLS.certifikit)
   implementation(Deps.Google.AutoService.annotations)
-  implementation(Deps.Jackson.databind)
+  implementation(libs.jackson.databind)
   implementation(Deps.TemplateEngine.Jte.runtime)
   implementation(Deps.Network.jmdns)
   implementation(Deps.Security.password4j) { exclude(group = "org.slf4j", module = "slf4j-nop") }
@@ -461,7 +445,7 @@ dependencies {
   kapt(Deps.Google.AutoService.processor)
 
   // api(platform(projects.bom))
-  // api(project(":panama-api/ffm-api"))
+  // api(project(":preview-features/ffm-api"))
   implementation(libs.ffm.api)
   implementation(libs.maven.archeologist)
 

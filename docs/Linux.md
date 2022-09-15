@@ -205,7 +205,5 @@
   $ ssh user@remote-host "sudo /usr/sbin/tcpdump -s0 -w - 'port 8080'" | wireshark -k -i -
   ```
 
-  ★
-  See [Wireshark Over SSH](https://kaischroed.wordpress.com/2013/01/28/howto-use-wireshark-over-ssh/)
-
-  ★ See [Using Unix Named Pipe](https://serverfault.com/a/530020/184962)
+  * See [Wireshark Over SSH](https://kaischroed.wordpress.com/2013/01/28/howto-use-wireshark-over-ssh/)
+  * See [Using Unix Named Pipe](https://serverfault.com/a/530020/184962)

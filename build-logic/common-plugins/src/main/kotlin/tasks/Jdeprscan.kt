@@ -107,7 +107,9 @@ constructor(
       val runtimeClasspath =
         project.configurations.named("runtimeClasspath").get().files.joinToString(
           separator = File.pathSeparator
-        ) { it.absolutePath }
+        ) {
+          it.absolutePath
+        }
       logger.debug("runtimeClasspath: $runtimeClasspath")
 
       val resolvedRuntimeClasspath =

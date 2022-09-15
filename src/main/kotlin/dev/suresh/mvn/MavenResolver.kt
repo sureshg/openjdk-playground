@@ -14,6 +14,8 @@ import com.squareup.tools.maven.resolution.ArtifactResolver
  */
 class MavenResolver {
 
+  private val resolver = ArtifactResolver()
+
   fun run() {
     val artifacts =
       resolveTransitively("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${App.KOTLIN_VERSION}")
@@ -22,7 +24,6 @@ class MavenResolver {
   }
 
   private fun resolveTransitively(spec: String): Set<String> {
-    val resolver = ArtifactResolver()
     val deps = mutableSetOf<String>()
     val resolve =
       DeepRecursiveFunction<Artifact, Set<String>> {

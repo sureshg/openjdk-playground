@@ -11,6 +11,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyStore;
 import java.security.Security;
+import java.time.Instant;
 import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.Currency;
@@ -127,28 +128,28 @@ public class JavaApp {
     }
 
     var currTime = System.currentTimeMillis();
-    var vmTime = ManagementFactory.getRuntimeMXBean().getStartTime();
-
+    var vmTime =
+        ProcessHandle.current().info().startInstant().orElseGet(Instant::now).toEpochMilli();
     var stats =
         """
 
-            +---------Summary----------+
-            | Processes      : %-5d   |
-            | Dns Addresses  : %-5d   |
-            | Trust Stores   : %-5d   |
-            | TimeZones      : %-5d   |
-            | CharSets       : %-5d   |
-            | Locales        : %-5d   |
-            | Countries      : %-5d   |
-            | Languages      : %-5d   |
-            | Currencies     : %-5d   |
-            | Env Vars       : %-5d   |
-            | Sys Props      : %-5d   |
-            | Total time     : %-5dms |
-            | JVM Startup    : %-5dms |
-            | Process Time   : %-5dms |
-            +--------------------------+
-            """
+        +---------Summary----------+
+        | Processes      : %-5d   |
+        | Dns Addresses  : %-5d   |
+        | Trust Stores   : %-5d   |
+        | TimeZones      : %-5d   |
+        | CharSets       : %-5d   |
+        | Locales        : %-5d   |
+        | Countries      : %-5d   |
+        | Languages      : %-5d   |
+        | Currencies     : %-5d   |
+        | Env Vars       : %-5d   |
+        | Sys Props      : %-5d   |
+        | Total time     : %-5dms |
+        | JVM Startup    : %-5dms |
+        | Process Time   : %-5dms |
+        +--------------------------+
+        """
             .formatted(
                 ps.size(),
                 dns.size(),
@@ -191,8 +192,9 @@ public class JavaApp {
     server.start();
 
     var currTime = System.currentTimeMillis();
+    // The timestamp returned by the call to getRuntimeMXBean().getStartTime()
+    // returns the value *after* basic JVM initialization.
     var vmTime = ManagementFactory.getRuntimeMXBean().getStartTime();
-    // var vmTime  = ProcessHandle.current().info().startInstant().orElseGet(Instant::now);
     out.println("Starting Http Server on port " + server.getAddress().getPort() + "...");
     out.printf(
         "Started in %d millis! (JVM: %dms, Server: %dms)%n",

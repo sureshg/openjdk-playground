@@ -4,7 +4,6 @@ import GithubAction
 import dev.suresh.gradle.*
 import java.io.PrintWriter
 import java.io.StringWriter
-import java.util.concurrent.*
 import java.util.spi.*
 import org.gradle.internal.os.OperatingSystem
 import org.gradle.kotlin.dsl.*
@@ -61,14 +60,6 @@ java {
 }
 
 tasks {
-  // Clean all composite builds
-  register("cleanAll") {
-    description = "Clean all composite builds"
-    group = LifecycleBasePlugin.CLEAN_TASK_NAME
-    gradle.includedBuilds.forEach { dependsOn(it.task(":clean")) }
-  }
-
-  jar { exclude("META-INF/*.RSA", "META-INF/*.SF", "META-INF/*.DSA") }
 
   // Prints java module dependencies using jdeps
   val printModuleDeps by registering {
@@ -182,26 +173,14 @@ tasks {
     jarFile.set(shadowJar.flatMap { it.archiveFile })
   }
 
-  // Dev task that does both the continuous compiling and run.
-  register("dev") {
-    description = "A task to continuous compile and run"
-    group = LifecycleBasePlugin.BUILD_GROUP
-
-    doLast {
-      val continuousCompile = forkTask("classes", "-t")
-      val run = forkTask("run")
-      CompletableFuture.allOf(continuousCompile, run).join()
-    }
-  }
-
-  build { finalizedBy(printModuleDeps, buildExecutable, githubActionOutput) }
-
   register("ciBuild") {
     description = "Custom task for GitHub action CI build"
     dependsOn(tasks.run, tasks.build, "koverMergedHtmlReport", "dokkaHtml")
     named("koverMergedHtmlReport").map { it.mustRunAfter(tasks.build) }
     named("dokkaHtml").map { it.mustRunAfter(tasks.build) }
   }
+
+  build { finalizedBy(printModuleDeps, buildExecutable, githubActionOutput) }
 }
 
 // Set additional jvm args
