@@ -122,8 +122,8 @@ fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
     SUCCESS: ${ok.size} / ${results.size}
     FAILURE: ${err.size} / ${results.size}
 
-    """.trimIndent(
-    )
+    """
+      .trimIndent()
   )
 }
 
@@ -167,8 +167,8 @@ class HelloServlet : HttpServlet() {
             "target" : ${req?.fullURL},
             "Thread" : ${Thread.currentThread()}
           }
-    """.trimIndent(
-    )
+    """
+      .trimIndent()
     //        "Id"     : ${ID.orElse("n/a")},
     //        "User"   : ${USER.orElse("n/a")},
   }

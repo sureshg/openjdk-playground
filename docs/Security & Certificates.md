@@ -56,6 +56,8 @@ $ openssl s_client -connect 'dns.google.com:443' 2>&1 < /dev/null | sed -n '/---
 $ curl -vvI https://google.com 2>&1 | grep -i date
 ```
 
+
+
 * **Create `PKCS#12` trust-store from pem**
 
 ```bash
@@ -92,6 +94,8 @@ $ openssl x509 -noout -modulus -in cert.pem | openssl md5
 $ openssl rsa  -noout -modulus -in cert.key | openssl md5
 ```
 
+
+
 * **Extract certs from `PKCS#12`**
 
 ```bash
@@ -116,6 +120,8 @@ $ openssl pkcs12 -in keystore.p12 -nodes -nokeys -cacerts -passin pass:<password
 $ openssl pkcs8 -topk8 -inform PEM -outform DER -in cert.pem -out out.pem -nocrypt
 ```
 
+
+
 * **Show all certs from System truststore**
 
 ```bash
@@ -128,6 +134,8 @@ $ keytool -printcert -file /etc/ssl/certs/ca-bundle.crt | grep -i issuer
 # Using some awk trick
 $ awk -v cmd='openssl x509 -noout -subject -dates ' '/BEGIN/{close(cmd)};{print | cmd}' < /etc/ssl/certs/ca-bundle.crt
 ```
+
+
 
 ### OpenJDK
 
@@ -148,14 +156,26 @@ $ awk -v cmd='openssl x509 -noout -subject -dates ' '/BEGIN/{close(cmd)};{print 
 * Show all JDK CA Certs using `Keytool`
 
   ```bash
+  # JDK 17+
   $ keytool -list -rfc -cacerts
-  # OR
+
+  # Or using cacerts location.
   $ keytool -list \
             -rfc \
             -storetype pkcs12 \
             -storepass changeit \
             -keystore "$(find -L $JAVA_HOME -name cacerts)"
+
+  # Older JDKs
+  $ keytool -list \
+        -storetype jks \
+        -storepass changeit \
+        -keystore "$(find -L "$(dirname $(readlink -f "$(which java)"))/.." -name cacerts)"
   ```
+
+     * [OpenJDK CACerts](https://github.com/openjdk/jdk/tree/master/src/java.base/share/data/cacerts)
+
+
 
 ### Self Signed Certs
 
@@ -174,6 +194,10 @@ $ openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes \
 $ openssl x509 -in example.pem -text -noout
 # Instead of text form, just print subject/issuer/dates
 $ openssl x509 -in example.pem -noout -subject -issuer -dates
+
+# Show SAN entries
+$ openssl x509 -text -in example.pem -noout | grep -A1 'Subject Alternative Name'
+$ openssl x509 -text -noout -in example.pem -certopt no_subject,no_header,no_version,no_serial,no_signame,no_validity,no_issuer,no_pubkey,no_sigdump,no_aux
 
 # Show public key of a cert
 $ openssl x509 -in example.pem -pubkey -noout
@@ -197,7 +221,9 @@ $ openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes \
 
 ```
 
-### Curl - Mutual TLS
+
+
+### cURL: Auth/Mutual TLS
 
 ```bash
 # mTLS Authentication using PKCS#12 bundle
@@ -212,8 +238,11 @@ $ curl -v \
        --cacert ca.pem \
        --key client.key \
        --cert client.pem \
+       --resolve "my-server:443:8.8.8.8" \
        -X GET "https://my-server:443/api"
 ```
+
+
 
 ### Add Certs to IntelliJ Truststore
 
@@ -223,6 +252,8 @@ $ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
 $ keytool -importcert -trustcacerts -alias rootca -storetype PKCS12 -keystore $cacerts -storepass changeit -file "$HOME/Desktop/RootCA-SHA256.crt"
 $ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
 ```
+
+
 
 ### GPG/OpenPGP
 
@@ -282,6 +313,8 @@ $ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
   $ https://github.com/settings/gpg/new
   ```
 
+
+
 ### Tools
 
 * [BadSSL](https://badssl.com/)
@@ -302,11 +335,13 @@ $ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
 
 * https://github.com/mitmproxy/mitmproxy
 
+
+
 ### TLS Debugging
 
-* [Debugging TLS Connection in Java](https://docs.oracle.com/en/java/javase/18/security/java-secure-socket-extension-jsse-reference-guide.html#GUID-31B7E142-B874-46E9-8DD0-4E18EC0EB2CF)
+* [Debugging TLS Connection in Java](https://docs.oracle.com/en/java/javase/19/security/java-secure-socket-extension-jsse-reference-guide.html#GUID-31B7E142-B874-46E9-8DD0-4E18EC0EB2CF)
 
-* [Java Security Guide](https://docs.oracle.com/en/java/javase/18/security/java-security-overview1.html)
+* [Java Security Guide](https://docs.oracle.com/en/java/javase/19/security/java-security-overview1.html)
 
 ```bash
 $ java -Djavax.net.debug=help MyApp
@@ -339,6 +374,8 @@ The following can be used with ssl:
   plaintext    hex dump of record plaintext
   packet       print raw SSL/TLS packets
 ```
+
+
 
 ### Misc
 

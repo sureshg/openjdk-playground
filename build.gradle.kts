@@ -8,30 +8,27 @@ import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.config.LanguageFeature
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
   id("plugins.common")
   id("plugins.misc")
   jgitPlugin
-  ksp
   kotlin("jvm")
-  kotlin("kapt")
-  kotlinxSerialization
+  alias(libs.plugins.ksp)
+  alias(libs.plugins.kotlinx.serialization)
+  alias(libs.plugins.ksp.redacted)
+  alias(libs.plugins.ksp.powerassert)
   kover
   dokka
-  protobuf
   googleJib
   shadow
   qodanaPlugin
   sonarqube
-  redacted
-  kotlinPowerAssert
   spotlessChangelog
   versionCatalogUpdate
   gitProperties
-  taskinfo
   checksum
   binCompatValidator
-  dependencyAnalysis
   extraJavaModuleInfo
   licensee
   buildkonfig
@@ -158,17 +155,7 @@ ksp {
   // arg(KspArgsProvider(project.layout.projectDirectory.file("config").asFile))
 }
 
-kapt {
-  javacOptions {
-    option("--enable-preview")
-    option("-Xmaxerrs", 200)
-  }
-}
-
-redacted {
-  redactedAnnotation.set("Redacted")
-  enabled.set(false)
-}
+redacted { enabled.set(true) }
 
 apiValidation { validationDisabled = true }
 
@@ -388,8 +375,6 @@ tasks {
     // relocate("okio", "shaded.okio")
     // configurations = listOf(shadowRuntime)
   }
-
-  dependencyAnalysis { issues { all { onAny { severity("warn") } } } }
 }
 
 // Dokka html doc
@@ -417,9 +402,9 @@ dependencies {
   implementation(Deps.Kotlin.Coroutines.jdk8)
   implementation(Deps.Kotlinx.Serialization.json)
   implementation(Deps.Kotlinx.dateTime)
-  implementation(Deps.Jetty.server) { version { strictly(Deps.Jetty.version) } }
-  implementation(Deps.Jetty.jakartaServletApi)
-  implementation(Deps.Jetty.servlet)
+  implementation(libs.jetty.server) { version { strictly(libs.versions.jetty.asProvider().get()) } }
+  implementation(libs.jetty.jakarta.servlet)
+  implementation(libs.jetty.servlet)
   implementation(Deps.Http.urlbuilder)
   implementation(Deps.OkHttp.okhttp)
   implementation(Deps.OkHttp.mockWebServer)
@@ -429,20 +414,22 @@ dependencies {
   implementation(Deps.Cli.clikt)
   implementation(Deps.Cli.mordant)
   implementation(Deps.Cli.crossword)
-  implementation(Deps.Logging.Slf4j.api)
-  implementation(Deps.Logging.Slf4j.simple)
+  implementation(libs.slf4j.api)
+  implementation(libs.slf4j.simple)
   implementation(Deps.TLS.certifikit)
-  implementation(Deps.Google.AutoService.annotations)
   implementation(libs.jackson.databind)
-  implementation(Deps.TemplateEngine.Jte.runtime)
+  implementation(libs.jte.runtime)
   implementation(Deps.Network.jmdns)
   implementation(Deps.Security.password4j) { exclude(group = "org.slf4j", module = "slf4j-nop") }
   implementation(Deps.Security.otp)
-  implementation(Deps.Logging.Log4j2.core)
-
-  compileOnly(Deps.TemplateEngine.Jte.kotlin)
+  implementation(libs.log4j.core)
+  compileOnly(libs.jte.kotlin)
   compileOnly(Deps.Kotlinx.atomicfu)
-  kapt(Deps.Google.AutoService.processor)
+
+  // Auto-service
+  ksp(libs.ksp.auto.service)
+  implementation(libs.google.auto.annotations)
+  // kapt("com.google.auto.service:auto-service:1.0.1")
 
   // api(platform(projects.bom))
   // api(project(":preview-features/ffm-api"))
@@ -450,15 +437,15 @@ dependencies {
   implementation(libs.maven.archeologist)
 
   testImplementation(Deps.Kotlin.Coroutines.test)
-  testImplementation(platform(Deps.Junit.bom))
-  testImplementation(Deps.Junit.jupiter)
-  testImplementation(Deps.Junit.pioneer)
+  testImplementation(platform(libs.junit.bom))
+  testImplementation(libs.junit.jupiter)
+  testImplementation(libs.junit.pioneer)
   testImplementation(kotlin("test-junit5"))
 
   testImplementation(Deps.KoTest.junit5Runner)
   testImplementation(Deps.KoTest.assertions)
-  testImplementation(Deps.Logging.Slf4j.simple)
-  testImplementation(Deps.Mock.mockk)
+  testImplementation(libs.slf4j.simple)
+  testImplementation(libs.mockk)
 
   // Dokka Plugins (dokkaHtmlPlugin, dokkaGfmPlugin)
   // dokkaPlugin(Deps.Dokka.kotlinAsJavaPlugin)

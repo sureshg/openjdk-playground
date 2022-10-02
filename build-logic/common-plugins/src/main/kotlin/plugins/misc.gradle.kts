@@ -12,11 +12,14 @@ plugins {
   signing
   `maven-publish`
   wrapper
-  // id("plugins.common")
+  // id("common")
   // id("gg.jte.gradle")
   id("com.diffplug.spotless")
   id("com.github.ben-manes.versions")
   id("io.github.gradle-nexus.publish-plugin")
+  id("com.autonomousapps.dependency-analysis")
+  id("com.autonomousapps.plugin-best-practices-plugin")
+  // id("org.barfuin.gradle.taskinfo").apply(false)
 }
 
 val ktfmtVersion = libs.versions.ktfmt.get()
@@ -63,6 +66,8 @@ spotless {
   // isEnforceCheck = false
 }
 
+dependencyAnalysis { issues { all { onAny { severity("warn") } } } }
+
 tasks {
   // Generate build config.
   val buildConfig by registering(BuildConfig::class) { classFqName.set("BuildConfig") }
@@ -100,23 +105,23 @@ tasks {
   // Dependency version updates
   dependencyUpdates {
     checkForGradleUpdate = true
-    // outputFormatter = "json"
-    // outputDir = "build/dependencyUpdates"
-    // reportfileName = "report"
-    // rejectVersionIf { candidate.version.isNonStable && !currentVersion.isNonStable }
     outputFormatter =
         closureOf<Result> {
           outdated.dependencies.forEach { dep ->
             println("${dep.group}:${dep.name} -> ${dep.available.release}")
           }
         }
+    // outputFormatter = "json"
+    // outputDir = "build/dependencyUpdates"
+    // reportfileName = "report"
+    // rejectVersionIf { candidate.version.isNonStable && !currentVersion.isNonStable }
 
     // Run "dependencyUpdates" on all "build-logic" projects also.
     gradle.includedBuild("build-logic").apply {
       projectDir
           .listFiles()
-          .filter { it.isDirectory && File(it, "build.gradle.kts").exists() }
-          .forEach { dir -> dependsOn(task(":${dir.name}:dependencyUpdates")) }
+          ?.filter { it.isDirectory && File(it, "build.gradle.kts").exists() }
+          ?.forEach { dir -> dependsOn(task(":${dir.name}:dependencyUpdates")) }
     }
   }
 

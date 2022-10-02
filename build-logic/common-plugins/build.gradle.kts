@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
   `kotlin-dsl`
@@ -61,17 +59,20 @@ dependencies {
   implementation(libs.nexus.plugin)
   implementation(libs.spotless.plugin)
   implementation(libs.benmanesversions.plugin)
+  implementation(libs.taskinfo.plugin)
+  implementation(libs.dependency.analysis.plugin)
+  implementation(libs.best.practices.plugin)
   // implementation(libs.jte.plugin)
 }
 
 // https://handstandsam.com/2022/04/13/using-the-kotlin-dsl-gradle-plugin-forces-kotlin-1-4-compatibility/
-afterEvaluate {
-  tasks.withType<KotlinCompile>().configureEach {
-    kotlinOptions {
-      apiVersion = libs.versions.kotlindsl.api.version.get()
-      languageVersion = libs.versions.kotlindsl.api.version.get()
-      // suppress warnings for jte codegen.
-      suppressWarnings = true
-    }
-  }
-}
+// afterEvaluate {
+//   tasks.withType<KotlinCompile>().configureEach {
+//     kotlinOptions {
+//       apiVersion = libs.versions.kotlindsl.api.version.get()
+//       languageVersion = libs.versions.kotlindsl.api.version.get()
+//       // suppress warnings for jte codegen.
+//       suppressWarnings = true
+//     }
+//   }
+// }

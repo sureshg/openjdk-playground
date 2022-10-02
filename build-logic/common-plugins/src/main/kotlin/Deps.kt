@@ -57,7 +57,7 @@ object Deps {
     }
 
     object Ksp {
-      const val version = "1.7.20-RC-1.0.6"
+      const val version = "1.7.20-1.0.6"
       const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
       const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
       const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.4.0"
@@ -149,25 +149,6 @@ object Deps {
     const val discoclient = "io.foojay.api:discoclient:2.0.21"
   }
 
-  object Jetty {
-    const val version = "11.0.11"
-    const val bom = "org.eclipse.jetty:jetty-bom:$version"
-    const val server = "org.eclipse.jetty:jetty-server:$version"
-    const val servlet = "org.eclipse.jetty:jetty-servlet:$version"
-    const val servlets = "org.eclipse.jetty:jetty-servlets:$version" // Utility Servlets and Filters
-    const val util = "org.eclipse.jetty:jetty-util:$version"
-    const val slf4j = "org.eclipse.jetty:jetty-slf4j-impl:$version"
-    const val testHelper = "org.eclipse.jetty:jetty-test-helper:$version"
-    const val jakartaServletApi = "org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api:5.0.2"
-
-    object LoadGen {
-      const val version = "3.1.2"
-      const val client = "org.mortbay.jetty.loadgenerator:jetty-load-generator-client:$version"
-      const val listebers =
-        "org.mortbay.jetty.loadgenerator:jetty-load-generator-listeners:$version"
-    }
-  }
-
   // Java 11 HTTP addons
   object Http {
     const val methanol = "com.github.mizosoft.methanol:methanol:1.4.1"
@@ -220,12 +201,6 @@ object Deps {
   }
 
   object Google {
-    object AutoService {
-      const val version = "1.0.1"
-      const val annotations = "com.google.auto.service:auto-service-annotations:$version"
-      const val processor = "com.google.auto.service:auto-service:$version"
-    }
-
     object Jib {
       const val core = "com.google.cloud.tools:jib-core:0.1.1"
     }
@@ -258,16 +233,6 @@ object Deps {
     }
   }
 
-  object Junit {
-    const val version = "5.9.0"
-    const val bom = "org.junit:junit-bom:$version"
-    const val jupiter = "org.junit.jupiter:junit-jupiter"
-    const val jupiterApi = "org.junit.jupiter:junit-jupiter-api"
-    const val jupiterEngine = "org.junit.jupiter:junit-jupiter-engine"
-    const val jupiterParams = "org.junit.jupiter:junit-jupiter-params"
-    const val pioneer = "org.junit-pioneer:junit-pioneer:1.7.1"
-  }
-
   object KoTest {
     const val version = "5.4.2"
     const val junit5Runner = "io.kotest:kotest-runner-junit5:$version"
@@ -278,13 +243,6 @@ object Deps {
     const val testcontainers = "io.kotest.extensions:kotest-extensions-testcontainers:1.0.0"
   }
 
-  object Mock {
-    const val mockk = "io.mockk:mockk:1.12.7"
-    const val mockito = "org.mockito:mockito-core:2.26.0"
-    const val mockserver = "org.mock-server:mockserver-netty:5.10.0"
-    const val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
-  }
-
   object Config {
     const val hoplite = "com.sksamuel.hoplite:hoplite:1.0.3"
   }
@@ -292,13 +250,6 @@ object Deps {
   object TemplateEngine {
     const val rocker = "com.fizzed:rocker:1.3.0"
     const val stringTemplate = "org.antlr:ST4:4.3.1"
-
-    object Jte {
-      const val version = "2.1.2"
-      const val jte = "gg.jte:jte:$version"
-      const val runtime = "gg.jte:jte-runtime:$version"
-      const val kotlin = "gg.jte:jte-kotlin:$version"
-    }
   }
 
   object Parser {
@@ -364,31 +315,6 @@ object Deps {
   object CodeGen {
     const val javapoet = "com.squareup:javapoet:1.13.0"
     const val kotlinPoet = "com.squareup:kotlinpoet:1.6.0"
-  }
-
-  object Logging {
-
-    object Slf4j {
-      const val version = "2.0.0"
-      const val api = "org.slf4j:slf4j-api:$version"
-      const val nop = "org.slf4j:slf4j-nop:$version"
-      const val simple = "org.slf4j:slf4j-simple:$version"
-      const val jdk14 = "org.slf4j:slf4j-jdk14:$version"
-    }
-
-    object Logback {
-      const val classic = "ch.qos.logback:logback-classic:1.2.8"
-    }
-
-    object Log4j2 {
-      const val version = "2.18.0"
-      const val bom = "org.apache.logging.log4j:log4j-bom:$version"
-      const val core = "org.apache.logging.log4j:log4j-core:$version"
-    }
-
-    object Zerolog {
-      const val core = "com.obsidiandynamics.zerolog:zerolog-core:0.30.0"
-    }
   }
 
   object Monitoring {
@@ -647,10 +573,6 @@ object Deps {
 /** PluginId Extensions */
 inline val PluginDependenciesSpec.kotlinJvm
   get() = kotlin("jvm") version kotlinVersion
-inline val PluginDependenciesSpec.kotlinxSerialization
-  get() = kotlin("plugin.serialization") version kotlinVersion
-inline val PluginDependenciesSpec.kotlinKapt
-  get() = kotlin("kapt") version kotlinVersion
 
 inline val PluginDependenciesSpec.kotlinSpring
   get() = kotlin("plugin.spring") version kotlinVersion
@@ -685,8 +607,6 @@ inline val PluginDependenciesSpec.sonarqube
   get() = id("org.sonarqube") version "3.4.0.2513" apply true
 
 // Google Plugins
-inline val PluginDependenciesSpec.ksp
-  get() = id("com.google.devtools.ksp") version Deps.Kotlin.Ksp.version
 inline val PluginDependenciesSpec.googleJib
   get() = id("com.google.cloud.tools.jib") version "3.3.0"
 
@@ -699,12 +619,8 @@ inline val PluginDependenciesSpec.consistentVersions
 // Dependencies
 inline val PluginDependenciesSpec.shadow
   get() = id("com.github.johnrengelman.shadow") version "7.1.2"
-inline val PluginDependenciesSpec.dependencyAnalysis
-  get() = id("com.autonomousapps.dependency-analysis") version "1.13.1"
 inline val PluginDependenciesSpec.dependencyAnalyze
   get() = id("ca.cutterslade.analyze") version "1.9.0" apply true
-inline val PluginDependenciesSpec.taskinfo
-  get() = id("org.barfuin.gradle.taskinfo") version "1.4.0" apply false
 inline val PluginDependenciesSpec.taskTree
   get() = id("com.dorongold.task-tree") version "1.5"
 inline val PluginDependenciesSpec.forbiddenApis
@@ -720,8 +636,6 @@ inline val PluginDependenciesSpec.mrjar
   get() = id("me.champeau.mrjar") version "0.1"
 
 // inline val PluginDependenciesSpec.mrjar get() = id("com.lingocoder.mrjar") version "0.0.16"
-inline val PluginDependenciesSpec.protobuf
-  get() = id("com.google.protobuf") version "0.8.19"
 inline val PluginDependenciesSpec.changelog
   get() = id("org.jetbrains.changelog") version "0.4.0"
 
@@ -824,19 +738,9 @@ inline val PluginDependenciesSpec.javapackager
 inline val PluginDependenciesSpec.jpackageplugin
   get() = id("org.panteleyev.jpackageplugin") version "0.0.2"
 
-// Kotlin compiler plugins
-inline val PluginDependenciesSpec.redacted
-  get() = id("dev.zacsweers.redacted") version "1.1.0"
-inline val PluginDependenciesSpec.kotlinPowerAssert
-  get() = id("com.bnorm.power.kotlin-power-assert") version "0.12.0" apply true
-
 // Parsers
 inline val PluginDependenciesSpec.jflex
   get() = id("org.xbib.gradle.plugin.jflex") version "1.5.0"
-
-// Template Engines
-inline val PluginDependenciesSpec.jte
-  get() = id("gg.jte.gradle") version Deps.TemplateEngine.Jte.version
 
 // GraalVM
 inline val PluginDependenciesSpec.nativeImage

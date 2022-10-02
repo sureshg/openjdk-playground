@@ -108,8 +108,8 @@ fun Project.appRunCmd(jar: File, args: List<String>): String {
       """
           |To Run the app,
           |${'$'} java -jar $lineCont $newLine
-          """.trimMargin(
-      ),
+          """
+        .trimMargin(),
     postfix = "$newLine$indent$path",
     separator = newLine,
   ) {

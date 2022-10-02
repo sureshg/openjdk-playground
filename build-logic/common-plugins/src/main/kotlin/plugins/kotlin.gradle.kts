@@ -38,6 +38,7 @@ tasks {
               "-parameters",
               "--add-modules=$addModules",
               // "-Xlint:-deprecation", // suppress deprecations
+              // "-Werror",             // treat warnings as errors
               // "-XX:+IgnoreUnrecognizedVMOptions",
               // "--add-exports",
               // "java.base/sun.nio.ch=ALL-UNNAMED",

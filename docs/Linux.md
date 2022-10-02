@@ -207,3 +207,35 @@
 
   * See [Wireshark Over SSH](https://kaischroed.wordpress.com/2013/01/28/howto-use-wireshark-over-ssh/)
   * See [Using Unix Named Pipe](https://serverfault.com/a/530020/184962)
+
+
+
+### [TCPDump](https://www.tcpdump.org/)
+
+ ```bash
+ # HTTP traffic including req & res headers and message body from a particular source.
+ $ tcpdump -A -s 0 'src example.com and tcp port 80 and (((ip[2:2] - ((ip[0]&0xf)<<2)) - ((tcp[12]&0xf0)>>2)) != 0)'
+
+ # All incoming HTTP GET traffic
+ $ tcpdump -i any -s 0 -A 'tcp[((tcp[12:1] & 0xf0) >> 2):4] = 0x47455420'
+
+ # All incoming HTTP POST traffic to port 80
+ $ tcpdump -i any -s 0 -A 'tcp dst port 80 and tcp[((tcp[12:1] & 0xf0) >> 2):4] = 0x504F5354'
+
+ # HTTP GET/POST  Incoming calls to port 80/443 Originating from 192.168.10.1 Host.
+ $ tcpdump -i any -s 0 -A 'tcp dst port 80 or tcp dst port 443 and tcp[((tcp[12:1] & 0xf0) >> 2):4] = 0x47455420 or tcp[((tcp[12:1] & 0xf0) >> 2):4] = 0x504F5354' and host 192.168.10.1
+
+ # Filter HTTP User agents
+ $ tcpdump -vvAls0 | grep 'User-Agent:'
+
+ # Write to pcap file
+ $ tcpdump -i any -s 0 -X -w /tmp/tcpdump.pcap
+
+ # Capture TCP packets from local interface
+ $ tcpdump -i lo
+
+ # Print packet in ASCII
+ $ tcpdump -v -i lo -A
+ ```
+
+* https://danielmiessler.com/study/tcpdump/
