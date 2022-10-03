@@ -26,7 +26,6 @@ plugins {
   sonarqube
   spotlessChangelog
   versionCatalogUpdate
-  gitProperties
   checksum
   binCompatValidator
   extraJavaModuleInfo
@@ -196,11 +195,6 @@ jib {
 jgitver {
   useSnapshot = true
   nonQualifierBranches = "main"
-}
-
-gitProperties {
-  gitPropertiesDir.set(project.layout.buildDirectory.dir("resources/main/META-INF/${project.name}"))
-  customProperties["kotlin"] = kotlinVersion
 }
 
 jdeprscan { forRemoval.set(true) }
