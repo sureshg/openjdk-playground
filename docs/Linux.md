@@ -1,14 +1,15 @@
 # Linux
 
 -------------------------
-<!-- TOC -->
 
+<!-- TOC -->
 * [Linux](#linux)
     * [Command Line Tools](#command-line-tools)
     * [Proc FileSystem](#proc-filesystem)
     * [Curl](#curl)
     * [SSH](#ssh)
     * [Wireshark](#wireshark)
+    * [TCPDump](#tcpdump)
     <!-- TOC -->
 
 ### Command Line Tools
@@ -150,7 +151,33 @@
          -o /dev/null  \
          -I -w "Connect: %{time_connect}s, Transfer: %{time_starttransfer}s, Total: %{time_total}s" \
          -X GET http://www.google.com
+
+  # Curl Response time using specific DNS server
+  $  while true ;do curl \
+        --dns-servers 8.8.8.8 \
+        https://suresh.dev \
+        -o /dev/null \
+        -s \
+        -w 'Total: %{time_total}s\n' \
+  ;done
   ```
+
+
+
+
+* Download latest release from Github
+
+  ```bash
+  # Download the latest release from Github
+  $ LOCATION=$(curl -s https://api.github.com/repos/jvm-profiling-tools/async-profiler/releases/latest \
+      | grep -i "browser_download_url" \
+      | grep -i "converter.jar" \
+      | awk '{ print $2 }' \
+      | sed 's/,$//'       \
+      | sed 's/"//g' )     \
+      ; curl --progress-bar -L -o ${HOME}/install/tools/converter.jar ${LOCATION}
+  ```
+
 
 
 * Download a file with retry
@@ -173,6 +200,25 @@
   https://search.maven.org/remotecontent?filepath=org/jetbrains/kotlin/kotlin-stdlib/1.7.0/kotlin-stdlib-1.7.0.jar
   ```
 
+
+
+### DIG
+
+   * Commands
+
+     ```bash
+     # Find all nameserver IPs for a TLD
+     $ for i in $(dig ns suresh.dev +short); do echo -n "$i " && dig $i +short; done
+
+     # Trace DNS requests
+     $ dig +trace compute.suresh.dev
+
+     # Trace using specific resolver
+     $ dig @a.root-servers.net +trace compute.suresh.dev
+     ```
+
+
+
 ### SSH
 
 - Port Forwarding
@@ -186,6 +232,8 @@
   ssh -v  -R  :8091:localip:remoteport  user@remoteip
   # ssh -v  -R  :8091:172.28.170.95:3000  app@10.242.182.199
   ```
+
+
 
 ### Wireshark
 

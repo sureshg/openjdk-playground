@@ -19,6 +19,7 @@ plugins {
   id("io.github.gradle-nexus.publish-plugin")
   id("com.autonomousapps.dependency-analysis")
   id("com.autonomousapps.plugin-best-practices-plugin")
+  id("org.jetbrains.dokka")
   // id("org.barfuin.gradle.taskinfo").apply(false)
 }
 
@@ -111,9 +112,6 @@ tasks {
             println("${dep.group}:${dep.name} -> ${dep.available.release}")
           }
         }
-    // outputFormatter = "json"
-    // outputDir = "build/dependencyUpdates"
-    // reportfileName = "report"
     // rejectVersionIf { candidate.version.isNonStable && !currentVersion.isNonStable }
 
     // Run "dependencyUpdates" on all "build-logic" projects also.

@@ -3,12 +3,10 @@
 ------
 
 <!-- TOC -->
-
-* [Readings](#readings)
+  * [Readings](#readings)
     * [Java](#java)
     * [Happy eyeballs](#happy-eyeballs)
     * [Database](#database)
-
 <!-- TOC -->
 
 ### Java

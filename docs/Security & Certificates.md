@@ -2,21 +2,19 @@ Security & Certificates
 -------------------------
 
 <!-- TOC -->
-
-* [Security & Certificates](#security--certificates)
+  * [Security & Certificates](#security--certificates)
     * [CA Certs and Certificate Transparency Logs](#ca-certs-and-certificate-transparency-logs)
     * [OpenSSL & Keytool](#openssl--keytool)
     * [OpenJDK](#openjdk)
     * [Self Signed Certs](#self-signed-certs)
-    * [Curl - Mutual TLS](#curl---mutual-tls)
-    * [Add Certs to IntelliJ Truststore](#add-certs-to-intellij-truststore)
+    * [cURL: Auth/Mutual TLS](#curl--authmutual-tls)
+    * [Add CACerts](#add-cacerts)
     * [GPG/OpenPGP](#gpgopenpgp)
     * [Tools](#tools)
     * [TLS Debugging](#tls-debugging)
     * [Misc](#misc)
     * [TrustStore](#truststore)
     * [Cryptography](#cryptography)
-
 <!-- TOC -->
 
 ### CA Certs and Certificate Transparency Logs
@@ -125,8 +123,8 @@ $ openssl pkcs8 -topk8 -inform PEM -outform DER -in cert.pem -out out.pem -nocry
 * **Show all certs from System truststore**
 
 ```bash
-# Using Openssl (CentOS)
-$ while openssl x509 -noout -subject -issuer -dates; do echo ........... ; done <  /etc/ssl/certs/ca-bundle.crt
+# Using Openssl (CentOS/Ubuntu)
+$ while openssl x509 -noout -subject -issuer -dates; do echo ........... ; done < $(find -L /etc/ssl/certs -regex ".*/ca-\(bundle\|certificates\).crt") 2>/dev/null | grep -i subject
 
 # Using java keytool
 $ keytool -printcert -file /etc/ssl/certs/ca-bundle.crt | grep -i issuer
@@ -160,17 +158,19 @@ $ awk -v cmd='openssl x509 -noout -subject -dates ' '/BEGIN/{close(cmd)};{print 
   $ keytool -list -rfc -cacerts
 
   # Or using cacerts location.
+  $ JDK_CACERT="$(find -L "${JAVA_HOME:-$(dirname $(readlink -f "$(which java)"))/..}" -name cacerts -print -quit)"
+
   $ keytool -list \
             -rfc \
             -storetype pkcs12 \
             -storepass changeit \
-            -keystore "$(find -L $JAVA_HOME -name cacerts)"
+            -keystore "${JDK_CACERT}"
 
   # Older JDKs
   $ keytool -list \
         -storetype jks \
         -storepass changeit \
-        -keystore "$(find -L "$(dirname $(readlink -f "$(which java)"))/.." -name cacerts)"
+        -keystore "${JDK_CACERT}"
   ```
 
      * [OpenJDK CACerts](https://github.com/openjdk/jdk/tree/master/src/java.base/share/data/cacerts)
@@ -244,14 +244,57 @@ $ curl -v \
 
 
 
-### Add Certs to IntelliJ Truststore
+### Add CACerts
 
-```bash
-$ cacerts="$(find "$HOME/Library/Application Support/JetBrains/IntelliJIdea2022.1" -name cacerts)"
-$ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
-$ keytool -importcert -trustcacerts -alias rootca -storetype PKCS12 -keystore $cacerts -storepass changeit -file "$HOME/Desktop/RootCA-SHA256.crt"
-$ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
-```
+-  To JDK Truststore
+
+  ```bash
+  #!/usr/bin/env bash
+
+  certs=("https://pki.service.com/cacert1.crt"
+         "https://pki.service.com/cacert2.crt")
+
+  JDK_CACERT="$(find -L "${JAVA_HOME:-$(dirname $(readlink -f "$(which java)"))/..}" -name cacerts -print -quit)"
+  echo "Using JDK CACert: ${JDK_CACERT}"
+
+  pushd /tmp >/dev/null || exit 1
+
+  for cert in "${certs[@]}"; do
+    echo "Downloading $cert ..."
+    cert_file="$(basename "$cert")"
+    curl -fsSL "$cert" -o "${cert_file}"
+
+    echo "Installing ${cert_file} ..."
+    keytool -importcert \
+            -noprompt \
+            -trustcacerts \
+            -file "${cert_file}" \
+            -alias "${cert_file}" \
+            -keystore "${JDK_CACERT}" \
+            -storepass changeit
+
+    rm -f "${cert_file}"
+  done
+
+  popd >/dev/null || exit 1
+  ```
+
+
+
+- IntelliJ Truststore
+
+  ```bash
+  $ cacerts="$(find "$HOME/Library/Application Support/JetBrains/IntelliJIdea2022.3" -name cacerts)"
+  $ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
+  $ keytool -importcert \
+            -trustcacerts \
+            -alias rootca \
+            -storetype PKCS12 \
+            -keystore $cacerts \
+            -storepass changeit \
+            -file "$HOME/Desktop/RootCA-SHA256.crt"
+  $ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
+  ```
 
 
 

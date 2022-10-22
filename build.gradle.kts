@@ -19,7 +19,6 @@ plugins {
   alias(libs.plugins.ksp.redacted)
   alias(libs.plugins.ksp.powerassert)
   kover
-  dokka
   googleJib
   shadow
   qodanaPlugin
@@ -442,8 +441,7 @@ dependencies {
   testImplementation(libs.mockk)
 
   // Dokka Plugins (dokkaHtmlPlugin, dokkaGfmPlugin)
-  // dokkaPlugin(Deps.Dokka.kotlinAsJavaPlugin)
-  dokkaPlugin(Deps.Dokka.mermaidPlugin)
+  dokkaPlugin(libs.dokka.mermaid)
 
   // implementation(fileTree("lib") { include("*.jar") })
   // implementation(platform("org.apache.maven.resolver:maven-resolver:1.4.1"))

@@ -1,23 +1,20 @@
 ### JVM Monitoring & Profiling
 
 ------
-
 <!-- TOC -->
-
-* [JVM Monitoring & Profiling](#jvm-monitoring--profiling)
-    * [1. Flight Recorder](#1-flight-recorder)
-    * [2. Java Mission Control](#2-java-mission-control)
-    * [3. Visualization](#3-visualization)
-    * [4. Profilers & Tools](#4-profilers--tools)
-    * [5. Commands](#5-commands)
-    * [6.JFR Streaming](#6jfr-streaming)
-    * [7. HeapDump](#7-heapdump)
-    * [8. ThreadDump](#8-threaddump)
-    * [9. Unified GC Logging](#9-unified-gc-logging)
-    * [10. System/Node Health](#10-systemnode-health)
-    * [11. Commands](#11-commands)
-    * [12. Resources](#12-resources)
-
+    * [JVM Monitoring & Profiling](#jvm-monitoring--profiling)
+      * [1. Flight Recorder](#1-flight-recorder)
+      * [2. Java Mission Control](#2-java-mission-control)
+      * [3. Visualization](#3-visualization)
+      * [4. Profilers & Tools](#4-profilers--tools)
+      * [5. Commands](#5-commands)
+      * [6.JFR Streaming](#6jfr-streaming)
+      * [7. HeapDump](#7-heapdump)
+      * [8. ThreadDump](#8-threaddump)
+      * [9. Unified GC Logging](#9-unified-gc-logging)
+      * [10. System/Node Health](#10-systemnode-health)
+      * [11. Commands](#11-commands)
+      * [12. Resources](#12-resources)
 <!-- TOC -->
 
 #### 1. Flight Recorder
@@ -50,26 +47,38 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 #### 3. Visualization
 
 * [Jfr2Flame Converter](https://github.com/jvm-profiling-tools/async-profiler/releases/latest/download/converter.jar)
-
-* [Jfr2Flame Converter Repo](https://github.com/jvm-profiling-tools/async-profiler/tree/master/src/converter)
-
 * [D3 Flame Graph ](https://github.com/spiermar/d3-flame-graph)
 
 #### 4. Profilers & Tools
 
-* [OpenJDK Mission Control](https://github.com/openjdk/jmc)
+- [OpenJDK Mission Control](https://github.com/openjdk/jmc)
 
-* [Async Profiler](https://github.com/jvm-profiling-tools/async-profiler)
+- [VisualVM](https://visualvm.github.io/)
 
-* [VisualVM](https://visualvm.github.io/)
+-  [JVM-Profiling-Tools](https://github.com/jvm-profiling-tools)
+
+  * [Async Profiler](https://github.com/jvm-profiling-tools/async-profiler)
+
+  * [Perf-map Agent](https://github.com/jvm-profiling-tools/perf-map-agent)
+
+  * [JFR to Flame Graph Converter](https://github.com/jvm-profiling-tools/async-profiler/tree/master/src/converter)
+
+    ```bash
+    # Download the latest release from Github
+    $ LOCATION=$(curl -s https://api.github.com/repos/jvm-profiling-tools/async-profiler/releases/latest \
+        | grep -i "browser_download_url" \
+        | grep -i "converter.jar" \
+        | awk '{ print $2 }' \
+        | sed 's/,$//'       \
+        | sed 's/"//g' )     \
+        ; curl --progress-bar -L -o ${HOME}/install/tools/converter.jar ${LOCATION}
+    ```
 
 * [FlameGraph](http://www.brendangregg.com/flamegraphs.html)
-
 * [jconsole](https://github.com/openjdk/jdk/tree/master/src/jdk.jconsole)
-
 * [jmxviewer](https://github.com/ivanyu/jmxviewer)
-
 * [Cryostat](https://github.com/cryostatio/cryostat)
+* [Linux Perf -  JVMTI](https://github.com/torvalds/linux/tree/master/tools/perf/jvmti)
 
 #### 5. Commands
 

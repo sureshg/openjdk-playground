@@ -2,24 +2,23 @@
 
 ------
 <!-- TOC -->
-
-* [Containers](#containers)
+  * [Containers](#containers)
     * [Offical Java Images](#offical-java-images)
         * [Oracle JDK (NFTC)](#oracle-jdk--nftc-)
-        * [Docker Commands](#docker-commands)
-        * [Java Container logs](#java-container-logs)
-        * [App Running on K8S/Docker](#app-running-on-k8sdocker)
-        * [JVM default GC](#jvm-default-gc)
-        * [Access Docker desktop LinuxKit VM on MacOS](#access-docker-desktop-linuxkit-vm-on-macos)
-        * [Multi Architecture Support](#multi-architecture-support)
+    * [Docker Commands](#docker-commands)
+    * [Java Container logs](#java-container-logs)
+    * [App Running on K8S/Docker](#app-running-on-k8sdocker)
+    * [JVM default GC](#jvm-default-gc)
+    * [Access Docker desktop LinuxKit VM on MacOS](#access-docker-desktop-linuxkit-vm-on-macos)
+    * [Multi Architecture Support](#multi-architecture-support)
         * [Netcat Webserver](#netcat-webserver)
-        * [Container Tools](#container-tools)
-        * [Jlink](#jlink)
-        * [Distroless](#distroless)
-        * [Documentation](#documentation)
-* [Kubernetes](#kubernetes)
-* [Git](#git)
-
+      * [Container Tools](#container-tools)
+      * [Jlink](#jlink)
+      * [Distroless](#distroless)
+      * [Documentation](#documentation)
+  * [Kubernetes](#kubernetes)
+        * [https://github.com/kubernetes-client/java](#httpsgithubcomkubernetes-clientjava)
+  * [Git](#git)
 <!-- TOC -->
 
 ### Offical Java Images
@@ -131,7 +130,7 @@ $ docker run -it --rm gcr.io/distroless/java-debian11:base-nonroot openssl s_cli
 
 * [JDK Script Friendly URLs](https://www.oracle.com/java/technologies/jdk-script-friendly-urls/)
 
-##### Docker Commands
+### Docker Commands
 
 ```bash
 # Remove all unused images, not just dangling ones
@@ -161,7 +160,9 @@ $ docker run -it --rm ,
     suresh/openjdk-playground:latest
 ```
 
-##### Java Container logs
+
+
+### Java Container logs
 
 ```bash
 $ docker run \
@@ -187,7 +188,9 @@ $ docker run \
 # -XX:ActiveProcessorCount=<n>
 ```
 
-##### App Running on K8S/Docker
+
+
+### App Running on K8S/Docker
 
 ```bash
 $ docker run \
@@ -199,19 +202,24 @@ $ docker run \
 
 * [Check if the container is running inside K8S](https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/#environment-variables:~:text=printenv%20%7C%20grep%20SERVICE-,KUBERNETES_SERVICE_HOST,-%3D10.0.0.1%0AKUBERNETES_SERVICE_PORT%3D443)
 
-##### JVM default GC
+
+
+### JVM default GC
 
 ```bash
-# https://github.com/openjdk/jdk/blob/master/src/hotspot/share/runtime/os.cpp#L1605
+# https://github.com/openjdk/jdk/blob/master/src/hotspot/share/runtime/os.cpp#L1637
 # OpenJDK reverts to Serial GC when it detects < 2 CPUs or < 2GB RAM
 $ docker run -it --rm --cpus=1 --memory=1G openjdk:20-slim java -Xlog:gc --version
-#[0.007s][info][gc] Using Serial
+  #[0.007s][info][gc] Using Serial
 ```
 
-* https://github.com/brunoborges/jvm-ergonomics
+* https://github.com/openjdk/jdk/blob/master/src/hotspot/share/runtime/os.cpp#:~:text=is_server_class_machine
+* https://github.com/brunoborges/jvm-ergonomics (https://vimeo.com/748031919)
 * https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
-##### Access Docker desktop LinuxKit VM on MacOS
+
+
+### Access Docker desktop LinuxKit VM on MacOS
 
 ```bash
 $ docker run -it --rm --memory=256m --cpus=1 -v /:/host --name alpine alpine
@@ -219,7 +227,9 @@ $ docker run -it --rm --memory=256m --cpus=1 -v /:/host --name alpine alpine
   # docker version
 ```
 
-##### [Multi Architecture Support](https://docs.docker.com/desktop/multi-arch/)
+
+
+### [Multi Architecture Support](https://docs.docker.com/desktop/multi-arch/)
 
 * [**tonistiigi/binfmt**](https://github.com/tonistiigi/binfmt)
 

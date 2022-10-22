@@ -5,7 +5,7 @@ kotlin-jvm-target              = "18"
 kotlin-api-version             = "1.8"
 kotlin-lang-version            = "1.8"
 kotlindsl-api-version          = "1.7"
-gradle                         = "8.0-20220928221247+0000"
+gradle                         = "8.0-20221020221815+0000"
 
 # Additional metadata
 githubProject                  = "https://github.com/sureshg/openjdk-playground"
@@ -14,7 +14,7 @@ java-addModules                = "jdk.incubator.concurrent,jdk.incubator.vector"
 
 # Gradle Dependencies Versions
 ajalt-clikt                    = "3.5.0"
-ajalt-mordant                  = "2.0.0-beta7"
+ajalt-mordant                  = "2.0.0-beta8"
 ajalt-colormath                = "3.2.0"
 assertj                        = "3.21.0"
 beryx-textio                   = "3.4.1"
@@ -30,6 +30,8 @@ cv-boofcv                      = "0.40.1"
 db-scheduler                   = "10.5"
 db-shedlock                    = "4.33.0"
 db-sherlock                    = "0.4.14"
+dokka                          = "1.7.20"
+dokka-mermaid                  = "0.4.0"
 dikt                           = "1.0.0-alpha8"
 dir-watcher                    = "0.15.0"
 failsafe                       = "3.2.0"
@@ -53,7 +55,7 @@ jgitver                        = "0.10.0-rc03"
 jmdns                          = "3.5.8"
 jreleaser                      = "0.9.1"
 jspecify                       = "0.2.0"
-jte                            = "2.2.0"
+jte                            = "2.2.2"
 junit                          = "5.9.1"
 junit-pioneer                  = "1.7.1"
 jqwik                          = "1.6.0"
@@ -74,7 +76,7 @@ kotlin-wrappers                = "1.0.0-pre.347"
 kodein                         = "7.10.0"
 koin                           = "3.1.5"
 kotlininject                   = "0.4.1"
-ksp                            = "1.7.20-1.0.6"
+ksp                            = "1.7.20-1.0.7"
 ksp-auto-service               = "1.0.0"
 ksp-redacted                   = "1.1.0"
 ksp-powerassert                = "0.12.0"
@@ -99,7 +101,7 @@ versioncompare                 = "1.5.0"
 violations                     = "1.149.2"
 
 # Plugin versions
-benmanes                       = "0.42.0"
+benmanes                       = "0.43.0"
 beryx-jlink                    = "2.24.4"
 beryx-runtime                  = "1.12.7"
 beryx-jar                      = "2.0.0"
@@ -111,7 +113,7 @@ git-properties                 = "2.4.1"
 google-javaformat              = "1.15.0"
 graalvm-nativeimage            = "0.9.11"
 gradle-checksum                = "1.3.0"
-gradle-enterprise              = "3.11.1"
+gradle-enterprise              = "3.11.2"
 gradlex-buildparameters        = "1.0"
 jetbrains-exposed              = "0.2.1"
 ktfmt                          = "0.41"
@@ -125,7 +127,7 @@ spotless                       = "6.11.0"
 taskinfo                       = "2.0.0"
 versioncatalog-update          = "0.5.1"
 dependency-analysis            = "1.13.1"
-best-practices-plugin          = "0.3"
+best-practices-plugin          = "0.7"
 
 # Composite build versions
 ffm-api                        = "1.0.0"
@@ -197,6 +199,13 @@ jackson-databind           = { module = "com.fasterxml.jackson.core:jackson-data
 jetbrains-markdown         = { module = "org.jetbrains:markdown"                             , version.ref = "jetbrains-markdown"}
 jmdns                      = { module = "org.jmdns:jmdns"                                    , version.ref = "jmdns"}
 jspecify                   = { module = "org.jspecify:jspecify"                              , version.ref = "jspecify"}
+
+dokka-javadoc              = { module = "org.jetbrains.dokka:javadoc-plugin"                , version.ref = "dokka"}
+dokka-kotlinasjava         = { module = "org.jetbrains.dokka:kotlin-as-java-plugin"         , version.ref = "dokka"}
+dokka-gfm                  = { module = "org.jetbrains.dokka:gfm-plugin"                    , version.ref = "dokka"}
+dokka-jekyll               = { module = "org.jetbrains.dokka:jekyll-plugin"                 , version.ref = "dokka"}
+dokka-mathjax              = { module = "org.jetbrains.dokka:mathjax-plugin"                , version.ref = "dokka"}
+dokka-mermaid              = { module = "com.glureau:html-mermaid-dokka-plugin"             , version.ref = "dokka-mermaid"}
 
 kotlinx-coroutines-core    = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core"      , version.ref = "kotlinx-coroutines"}
 kotlinx-coroutines-jdk8    = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8"      , version.ref = "kotlinx-coroutines"}
@@ -301,16 +310,17 @@ violations                  = { module = "se.bjurr.violations:violations-lib"   
 ffm-api                     = { module = "dev.suresh:ffm-api"                               , version.ref = "ffm-api" }
 
 # External plugins for precompiled script plugins
-kotlin-jvm                  = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin"                      , version.ref = "kotlin"}
-benmanesversions-plugin     = { module = "com.github.ben-manes:gradle-versions-plugin"                    , version.ref = "benmanes"}
-gradlex-buildparameters     = { module = "org.gradlex:build-parameters"                                   , version.ref = "gradlex-buildparameters"}
-gradle-enterprise           = { module = "com.gradle.enterprise:com.gradle.enterprise.gradle.plugin"      , version.ref = "gradle-enterprise" }
-jte-plugin                  = { module = "gg.jte:jte-gradle-plugin"                                       , version.ref = "jte"}
-nexus-plugin                = { module = "io.github.gradle-nexus:publish-plugin"                          , version.ref = "nexus-publish"}
-spotless-plugin             = { module = "com.diffplug.spotless:spotless-plugin-gradle"                   , version.ref = "spotless"}
-taskinfo-plugin             = { module = "org.barfuin.gradle.taskinfo:gradle-taskinfo"                    , version.ref = "taskinfo" }
-dependency-analysis-plugin  = { module = "com.autonomousapps:dependency-analysis-gradle-plugin"           , version.ref = "dependency-analysis" }
-best-practices-plugin       = { module = "com.autonomousapps:plugin-best-practices-plugin"                , version.ref = "best-practices-plugin" }
+build-kotlin                    = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin"                      , version.ref = "kotlin"}
+build-dokka                     = { module = "org.jetbrains.dokka:dokka-gradle-plugin"                        , version.ref = "dokka"}
+build-benmanesversions          = { module = "com.github.ben-manes:gradle-versions-plugin"                    , version.ref = "benmanes"}
+build-gradlex-buildparameters   = { module = "org.gradlex:build-parameters"                                   , version.ref = "gradlex-buildparameters"}
+build-gradle-enterprise         = { module = "com.gradle.enterprise:com.gradle.enterprise.gradle.plugin"      , version.ref = "gradle-enterprise" }
+build-jte-plugin                = { module = "gg.jte:jte-gradle-plugin"                                       , version.ref = "jte"}
+build-nexus-plugin              = { module = "io.github.gradle-nexus:publish-plugin"                          , version.ref = "nexus-publish"}
+build-spotless-plugin           = { module = "com.diffplug.spotless:spotless-plugin-gradle"                   , version.ref = "spotless"}
+build-taskinfo                  = { module = "org.barfuin.gradle.taskinfo:gradle-taskinfo"                    , version.ref = "taskinfo" }
+build-dependencyanalysis        = { module = "com.autonomousapps:dependency-analysis-gradle-plugin"           , version.ref = "dependency-analysis" }
+build-bestpractices-plugin      = { module = "com.autonomousapps:plugin-best-practices-plugin"                , version.ref = "best-practices-plugin" }
 
 # Gradle  Plugins
 [plugins]
@@ -333,7 +343,9 @@ jgitver                     = { id = "fr.brouillard.oss.gradle.jgitver"         
 jreleaser                   = { id = "org.jreleaser"                                         , version.ref = "jreleaser" }
 jte                         = { id = "gg.jte.gradle"                                         , version.ref = "jte" }
 kotlin-jvm                  = { id = "org.jetbrains.kotlin.jvm"                              , version.ref = "kotlin" }
+kotlin-dokka                = { id = "org.jetbrains.dokka"                                   , version.ref = "dokka" }
 kotlin-kapt                 = { id = "org.jetbrains.kotlin.kapt"                             , version.ref = "kotlin" }
+kotlin-multiplatform        = { id = "org.jetbrains.kotlin.multiplatform"                    , version.ref = "kotlin" }
 kotlinx-serialization       = { id = "org.jetbrains.kotlin.plugin.serialization"             , version.ref = "kotlin" }
 ksp                         = { id = "com.google.devtools.ksp"                               , version.ref = "ksp"}
 ksp-redacted                = { id = "dev.zacsweers.redacted"                                , version.ref = "ksp-redacted" }

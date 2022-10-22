@@ -4,80 +4,73 @@ This document contains list of [Java/JDK](http://jdk.java.net/) commands which i
 day to day work.
 
 <!-- TOC -->
-
-- [OpenJDK](#openjdk)
-  - [Java Commands](#java-commands)
-    - [1. Create Source Code Structure](#1-create-source-code-structure)
-    - [2. Preview features](#2-preview-features)
-    - [3. Java Platform Module Systems (JPMS)](#3-java-platform-module-systems--jpms-)
-    - [4. Disassembles a class](#4-disassembles-a-class)
-    - [5. App/Dynamic CDS](#5-appdynamic-cds)
-    - [6. Show Java VM/Property Settings](#6-show-java-vmproperty-settings)
-    - [7. Scan deprecated APIs](#7-scan-deprecated-apis)
-    - [8. JPMS](#8-jpms)
-    - [9. JVMCI (Graal) Compiler](#9-jvmci--graal--compiler)
-    - [10. JShell](#10-jshell)
-    - [11. Virtual Thread config](#11-virtual-thread-config)
-    - [12. Kotlin + Graal Native-Image](#12-kotlin--graal-native-image)
-    - [13. Generics](#13-generics)
-  - [IDEs and Tools](#ides-and-tools)
-    - [1. IntelliJ Selection Modes](#1-intellij-selection-modes)
-  - [Networking & Security](#networking--security)
-    - [🚨 Security Developer’s Guide](#-security-developers-guide)
-    - [1. Allow Unsafe Server Cert Change](#1-allow-unsafe-server-cert-change)
-    - [2 . Debugging TLS](#2--debugging-tls)
-    - [2. Java Networking Properties](#2-java-networking-properties)
-    - [3. HTTP Client Properties](#3-http-client-properties)
-  - [Gradle Kotlin DSL](#gradle-kotlin-dsl)
-    - [1. Docs](#1-docs)
-    - [2. Name Abbrevation](#2-name-abbrevation)
-    - [3. Create new Java `SourceSet`](#3-create-new-java-sourceset)
-    - [4. Custom SourceSet directories](#4-custom-sourceset-directories)
-    - [5. Kotlin SourceSets](#5-kotlin-sourcesets)
-    - [6. Compile class path](#6-compile-class-path)
-    - [7. Configure/Create Tasks](#7-configurecreate-tasks)
-    - [8. Enabling Java preview feature](#8-enabling-java-preview-feature)
-    - [9. Reproducible builds](#9-reproducible-builds)
-    - [10. Multi Release Jar](#10-multi-release-jar)
-    - [11. Dependencies](#11-dependencies)
-    - [12. Update Wrapper and others](#12-update-wrapper-and-others)
-    - [13. Gradle Versions](#13-gradle-versions)
-  - [Maven](#maven)
-    - [1. Public Maven Repositories](#1-public-maven-repositories)
-    - [2. Create a Project](#2-create-a-project)
-    - [3. Enabling Java preview feature](#3-enabling-java-preview-feature)
-    - [4. Reproducible Builds](#4-reproducible-builds)
-    - [5. Maven Wrapper](#5-maven-wrapper)
-    - [6. Update Version number](#6-update-version-number)
-    - [7. Dependency Tree](#7-dependency-tree)
-  - [Microservices Starters](#microservices-starters)
-    - [1. Micronaut](#1-micronaut)
-    - [2. SpringBoot](#2-springboot)
-    - [3. Gradle Initializr](#3-gradle-initializr)
-    - [4. Maven Archetype Quickstart](#4-maven-archetype-quickstart)
-  - [Misc](#misc)
-    - [1. SDKMAN](#1-sdkman)
-    - [2. jEnv](#2-jenv)
-    - [3. Codelabs](#3-codelabs)
-    - [4. Typora](#4-typora)
-    - [5. Github Actions](#5-github-actions)
-  - [Mac OS](#mac-os)
-  - [LDAP Tools](#ldap-tools)
-  - [OpenJDK Build](#openjdk-build)
-  - [Oracle A1 Flex](#oracle-a1-flex)
-  - [Native-Image](#native-image)
-    - [1. Workshop](#1-workshop)
-    - [2. Graal Updater & Truffle](#2-graal-updater--truffle)
-  - [Blogs](#blogs)
-  - [Awesome Svgs](#awesome-svgs)
-    - [Illustrations](#illustrations)
-    - [Background](#background)
-    - [Icons](#icons)
-    - [Emojis](#emojis)
-    - [Awesome List](#awesome-list)
-    - [Tools](#tools)
-    - [JBang](#jbang)
-      <!-- TOC -->
+* [OpenJDK](#openjdk)
+    * [Java Commands](#java-commands)
+        * [1. Create Source Code Structure](#1-create-source-code-structure)
+        * [2. Preview features](#2-preview-features)
+        * [3. Java Platform Module Systems (JPMS)](#3-java-platform-module-systems--jpms-)
+        * [4. Disassembles a class](#4-disassembles-a-class)
+        * [5. App/Dynamic CDS](#5-appdynamic-cds)
+        * [6. Show Java VM/Property Settings](#6-show-java-vmproperty-settings)
+        * [7. Scan deprecated APIs](#7-scan-deprecated-apis)
+        * [8. JPMS](#8-jpms)
+        * [9. JVMCI (Graal) Compiler](#9-jvmci--graal--compiler)
+        * [10. JShell](#10-jshell)
+        * [11. Virtual Thread config](#11-virtual-thread-config)
+        * [12. Generics](#12-generics)
+    * [IDEs and Tools](#ides-and-tools)
+    * [Networking & Security](#networking--security)
+        * [🚨 Security Developer’s Guide](#-security-developers-guide)
+        * [1. Allow Unsafe Server Cert Change](#1-allow-unsafe-server-cert-change)
+        * [2 . Debugging TLS](#2--debugging-tls)
+        * [2. Java Networking Properties](#2-java-networking-properties)
+        * [3. HTTP Client Properties](#3-http-client-properties)
+    * [Gradle Kotlin DSL](#gradle-kotlin-dsl)
+        * [1. Docs](#1-docs)
+        * [2. Name Abbrevation](#2-name-abbrevation)
+        * [3. Create new Java `SourceSet`](#3-create-new-java-sourceset)
+        * [4. Custom SourceSet directories](#4-custom-sourceset-directories)
+        * [5. Kotlin SourceSets](#5-kotlin-sourcesets)
+        * [6. Compile class path](#6-compile-class-path)
+        * [7. Configure/Create Tasks](#7-configurecreate-tasks)
+        * [8. Enabling Java preview feature](#8-enabling-java-preview-feature)
+        * [9. Reproducible builds](#9-reproducible-builds)
+        * [10. Multi Release Jar](#10-multi-release-jar)
+        * [11. Dependencies](#11-dependencies)
+        * [12. Update Wrapper and others](#12-update-wrapper-and-others)
+        * [13. Gradle Versions](#13-gradle-versions)
+    * [Maven](#maven)
+        * [1. Public Maven Repositories](#1-public-maven-repositories)
+        * [2. Create a Project](#2-create-a-project)
+        * [3. Enabling Java preview feature](#3-enabling-java-preview-feature)
+        * [4. Reproducible Builds](#4-reproducible-builds)
+        * [5. Maven Wrapper](#5-maven-wrapper)
+        * [6. Update Version number](#6-update-version-number)
+        * [7. Dependency Tree](#7-dependency-tree)
+    * [Microservices Starters](#microservices-starters)
+        * [1. Micronaut](#1-micronaut)
+        * [2. SpringBoot](#2-springboot)
+        * [3. Gradle Initializr](#3-gradle-initializr)
+        * [4. Maven Archetype Quickstart](#4-maven-archetype-quickstart)
+    * [Misc](#misc)
+        * [1. SDKMAN](#1-sdkman)
+        * [2. jEnv](#2-jenv)
+        * [3. Codelabs](#3-codelabs)
+        * [4. Typora](#4-typora)
+        * [5. Github Actions](#5-github-actions)
+    * [Mac OS](#mac-os)
+    * [OpenJDK Build](#openjdk-build)
+    * [Oracle A1 Flex](#oracle-a1-flex)
+    * [Native-Image](#native-image)
+    * [Blogs](#blogs)
+    * [Awesome Svgs](#awesome-svgs)
+        * [Illustrations](#illustrations)
+        * [Background](#background)
+        * [Icons](#icons)
+        * [Emojis](#emojis)
+        * [Awesome List](#awesome-list)
+        * [Tools](#tools)
+        <!-- TOC -->
 
 ### Java Commands
 
@@ -270,39 +263,67 @@ $ java -Djdk.defaultScheduler.parallelism=4   // Default to Runtime.getRuntime()
 $ java -Djdk.tracePinnedThreads=short|full
 ```
 
-##### 12. Kotlin + Graal Native-Image
-
-```bash
-$ kotlinc -version -verbose -include-runtime -java-parameters -jvm-target 17 -api-version 1.7 -language-version 1.7 -Werror -progressive App.kt -d app.jar
-
-$ java -showversion -jar app.jar
-$ native-image --no-fallback --no-server -jar app.jar
-
-$ chmod +x app
-$ file app
-$ otool -L app
-$ objdump -section-headers  app
-$ time ./app
-```
-
-##### 13. Generics
+##### 12. Generics
 
 - [GenericsFAQ](http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html)
 - [How we got Generics we have](https://cr.openjdk.java.net/~briangoetz/valhalla/erasure.html)
 
+
+
 ### IDEs and Tools
 
-------
+----
 
-##### 1. IntelliJ Selection Modes
 
-- All Actions - <kbd>CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>A</kbd>
-- Select all occurrences - <kbd>CMD</kbd> + <kbd>CTRL</kbd> + <kbd>G</kbd>
-- Column selection mode - <kbd>CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>8</kbd>
-- Multiple Cursors - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + <kbd>Left Click</kbd>
-- Multi Selection - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + Select as usual
-- Caret Cloning - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + Middle click on end line
-- Move line - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + <kbd>Arrow UP/DOWN</kbd>
+
+- IntelliJ Selection Modes
+
+  - All Actions - <kbd>CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>A</kbd>
+
+  - Select all occurrences - <kbd>CMD</kbd> + <kbd>CTRL</kbd> + <kbd>G</kbd>
+
+  - Column selection mode - <kbd>CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>8</kbd>
+
+  - Multiple Cursors - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + <kbd>Left Click</kbd>
+
+  - Multi Selection - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + Select as usual
+
+  - Caret Cloning - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + Middle click on end line
+
+  - Move line - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + <kbd>Arrow UP/DOWN</kbd>
+
+
+
+- Plugin Version Update
+
+  ```bash
+  $ PLUGIN_VERSION="1.1.32.1956"
+  $ wget https://plugins.jetbrains.com/plugin/download?rel=true&updateId=228139
+  $ unzip github-copilot-intellij-${PLUGIN_VERSION}.zip
+  $ cd github-copilot-intellij/lib
+  $ jar -tvf github-copilot-intellij-${PLUGIN_VERSION}.jar | grep plugin.xml
+  $ unzip github-copilot-intellij-${PLUGIN_VERSION}.jar
+  # Change until-build="223.*"
+  $ vi META-INF/plugin.xml
+  $ zip -r github-copilot-intellij-${PLUGIN_VERSION}.jar META-INF
+  $ rm -rf META-INF
+  $ cd ../../
+  $ zip -r github-copilot-intellij-${PLUGIN_VERSION}.zip github-copilot-intellij/
+  $ rm -rf github-copilot-intellij
+
+  # Now upload github-copilot-intellij-${PLUGIN_VERSION}.zip (Preferences -> Plugins -> ⚙️ -> Install Plugin from Disk)
+  ```
+
+
+
+   * IntelliJ Plugin Channels
+
+     * https://plugins.jetbrains.com/plugins/beta/list
+     * https://plugins.jetbrains.com/plugins/snapshots/org.jetbrains.compose.desktop.ide
+
+
+
+
 
 ### Networking & Security
 
@@ -386,6 +407,8 @@ $ time ./app
 -Djdk.internal.httpclient.debug=false
 -Djdk.tls.client.protocols="TLSv1.2"
 ```
+
+
 
 ### Gradle Kotlin DSL
 
@@ -628,6 +651,19 @@ configurations.all {
         cacheDynamicVersionsFor(0, SECONDS)
     }
 }
+
+# Add dep update task for build-logic
+val allDepUpdates by
+    tasks.creating {
+      group = BasePlugin.BUILD_GROUP
+      description = "Run 'dependencyUpdates' task for all ${rootProject.name} projects"
+
+      dependsOn(rootProject.subprojects.map { ":${it.name}:dependencyUpdates" })
+      dependsOn(
+          rootProject.gradle.includedBuilds
+              .filter { it.name !in listOf(project.name) }
+              .map { it.task(":dependencyUpdates") })
+    }
 ```
 
 - [Debugging Dependencies](https://docs.gradle.org/current/userguide/viewing_debugging_dependencies.html)
@@ -636,7 +672,7 @@ configurations.all {
 ##### 12. Update Wrapper and others
 
 ```bash
-$ ./gradlew wrapper --gradle-version=7.4 --distribution-type=bin
+$ ./gradlew wrapper --gradle-version=7.5.1 --distribution-type=bin
 
 # Set system properties or tool options
 $ JAVA_TOOL_OPTIONS=-Dhttps.protocols=TLSv1.2 ./gradlew build
@@ -651,6 +687,8 @@ $ ./gradlew run --args="<JFR_FILE>"
 ##### 13. Gradle Versions
 
 - https://services.gradle.org/versions
+
+
 
 ### [Maven](https://search.maven.org/search?q=org.jetbrains.kotlin)
 
@@ -879,12 +917,6 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
 
 
 
-### LDAP Tools
-
-- https://ldap.com/ldap-tools/
-
-
-
 ### [OpenJDK Build](https://openjdk.java.net/groups/build/doc/building.html)
 
 ```bash
@@ -896,6 +928,8 @@ $ bash configure
 $ make images
 $ build/*/images/jdk/bin/java --version
 ```
+
+
 
 ### [Oracle A1 Flex](https://cloud.oracle.com/?region=us-sanjose-1)
 
@@ -946,6 +980,8 @@ $ strings -a $(which native-image) | grep -i com.oracle.svm.core.VM
 ```bash
 $ git commit --allow-empty -m "empty commit"
 ```
+
+- https://github.com/oracle/graalvm-reachability-metadata/tree/master/metadata
 
 - https://www.graalvm.org/dev/reference-manual/native-image/StaticImages/
 
@@ -1037,29 +1073,3 @@ $ Fix the img reference on Overview.md
 $ cd build/dokka
 $ mkdocs build
 ```
-
-
-
-### IntelliJ
-
-------
-
-- Plugin Version Update for EAP
-
-  ```bash
-  $ PLUGIN_VERSION="1.1.32.1956"
-  $ wget https://plugins.jetbrains.com/plugin/download?rel=true&updateId=228139
-  $ unzip github-copilot-intellij-${PLUGIN_VERSION}.zip
-  $ cd github-copilot-intellij/lib
-  $ jar -tvf github-copilot-intellij-${PLUGIN_VERSION}.jar | grep plugin.xml
-  $ unzip github-copilot-intellij-${PLUGIN_VERSION}.jar
-  # Change until-build="223.*"
-  $ vi META-INF/plugin.xml
-  $ zip -r github-copilot-intellij-${PLUGIN_VERSION}.jar META-INF
-  $ rm -rf META-INF
-  $ cd ../../
-  $ zip -r github-copilot-intellij-${PLUGIN_VERSION}.zip github-copilot-intellij/
-  $ rm -rf github-copilot-intellij
-
-  # Now upload github-copilot-intellij-${PLUGIN_VERSION}.zip (Preferences -> Plugins -> ⚙️ -> Install Plugin from Disk)
-  ```

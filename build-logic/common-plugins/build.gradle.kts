@@ -28,12 +28,12 @@ gradlePlugin {
     create("com.gradle.enterprise") {
       id = "com.gradle.enterprise"
       implementationClass = "com.gradle.enterprise.gradleplugin.GradleEnterprisePlugin"
-      dependencies { implementation(libs.gradle.enterprise) }
+      dependencies { implementation(libs.build.gradle.enterprise) }
     }
   }
 }
 
-// For generating build configuration.
+// Jte is used for generating build config.
 jte {
   contentType.set(gg.jte.ContentType.Plain)
   sourceDirectory.set(sourceSets.main.get().resources.srcDirs.firstOrNull()?.toPath())
@@ -55,14 +55,15 @@ dependencies {
   // compileOnly(libs.jte.kotlin)
 
   // External plugins deps to use in precompiled script plugins
-  implementation(libs.kotlin.jvm)
-  implementation(libs.nexus.plugin)
-  implementation(libs.spotless.plugin)
-  implementation(libs.benmanesversions.plugin)
-  implementation(libs.taskinfo.plugin)
-  implementation(libs.dependency.analysis.plugin)
-  implementation(libs.best.practices.plugin)
-  // implementation(libs.jte.plugin)
+  implementation(libs.build.kotlin)
+  implementation(libs.build.dokka)
+  implementation(libs.build.nexus.plugin)
+  implementation(libs.build.spotless.plugin)
+  implementation(libs.build.benmanesversions)
+  implementation(libs.build.taskinfo)
+  implementation(libs.build.dependencyanalysis)
+  implementation(libs.build.bestpractices.plugin)
+  // implementation(libs.build.jte.plugin)
 }
 
 // https://handstandsam.com/2022/04/13/using-the-kotlin-dsl-gradle-plugin-forces-kotlin-1-4-compatibility/

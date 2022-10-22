@@ -129,17 +129,6 @@ object Deps {
     const val opentracing = "com.github.fstien:exposed-opentracing:0.2.1"
   }
 
-  object Dokka {
-    const val version = "1.7.10"
-    const val gradlePlugin = "org.jetbrains.dokka:dokka-gradle-plugin:$version"
-    const val javadocPlugin = "org.jetbrains.dokka:javadoc-plugin:$version"
-    const val kotlinAsJavaPlugin = "org.jetbrains.dokka:kotlin-as-java-plugin:$version"
-    const val gfmPlugin = "org.jetbrains.dokka:gfm-plugin:$version"
-    const val jekyllPlugin = "org.jetbrains.dokka:jekyll-plugin:$version"
-    const val mathjaxPlugin = "org.jetbrains.dokka:mathjax-plugin:$version"
-    const val mermaidPlugin = "com.glureau:html-mermaid-dokka-plugin:0.3.2"
-  }
-
   object OpenJDK {
     const val jol = "org.openjdk.jol:jol-core:0.14"
     const val nashorn = "org.openjdk.nashorn:nashorn-core:15.0"
@@ -585,8 +574,6 @@ inline val PluginDependenciesSpec.kotlinJpa
 
 inline val PluginDependenciesSpec.kotlinScript
   get() = kotlin("plugin.scripting") version kotlinVersion
-inline val PluginDependenciesSpec.dokka
-  get() = id("org.jetbrains.dokka") version Deps.Dokka.version
 inline val PluginDependenciesSpec.kotlinLibsPublisher
   get() = id("org.jetbrains.kotlin.libs.publisher") version Deps.Kotlin.libsPubVersion apply false
 inline val PluginDependenciesSpec.kotlinDocsPublisher

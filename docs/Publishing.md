@@ -3,13 +3,11 @@
 ------
 
 <!-- TOC -->
-
-* [Maven Central Publishing](#maven-central-publishing)
-    * [OSSRH Publishing Guides](#ossrh-publishing-guides)
-    * [Group IDs](#group-ids)
-    * [Maven Central](#maven-central)
-    * [OSSRH](#ossrh)
-
+  * [Maven Central Publishing](#maven-central-publishing)
+        * [OSSRH Publishing Guides](#ossrh-publishing-guides)
+        * [Group IDs](#group-ids)
+        * [Maven Central](#maven-central)
+        * [OSSRH](#ossrh)
 <!-- TOC -->
 
 ##### OSSRH Publishing Guides
