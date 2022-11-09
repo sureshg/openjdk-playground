@@ -42,30 +42,18 @@ public class Main {
   public static void main(String[] args) throws Exception {
     var textBlock =
         """
-            This is a textBlock
-            example \t introduced \\n in
-            \s Java 15. \\n It \\
-            avoids the
-            need for most escape sequences.
-            \u2022
-            """;
+                This is a textBlock
+                example \t introduced \\n in
+                \s Java 15. \\n It \\
+                avoids the
+                need for most escape sequences.
+                \u2022
+                """;
     out.println(textBlock);
     out.println(textBlock.translateEscapes());
     out.println("Record Test: " + new Person("Hello Kotlin", 8));
 
-    // Since these 2 properties are part of the security policy, they are not
-    // set by either the -D option or the System.setProperty() API
-    var secMgr = System.getSecurityManager();
-    out.println("Security Manager: " + secMgr);
-
-    final String dnsCacheTTL = "networkaddress.cache.ttl";
-    final String dnsCacheNegTTL = "networkaddress.cache.negative.ttl";
-    out.println(dnsCacheTTL + " -> " + Security.getProperty(dnsCacheTTL));
-    out.println(dnsCacheNegTTL + " -> " + Security.getProperty(dnsCacheNegTTL));
-    Security.setProperty(dnsCacheTTL, "30");
-    Security.setProperty(dnsCacheNegTTL, "10");
-    // showAllSecurityProperties();
-
+    securityProperties();
     new MockServer().run();
     new MavenResolver().run();
     new RenderJte().run();
@@ -74,6 +62,23 @@ public class Main {
     JPMSKt.run();
     HelpfulNPE.run();
     FFMApi.run();
+  }
+
+  private static void securityProperties() {
+    var secMgr = System.getSecurityManager();
+    out.println("Security Manager: " + secMgr);
+
+    final String dnsCacheTTL = "networkaddress.cache.ttl";
+    final String dnsCacheNegTTL = "networkaddress.cache.negative.ttl";
+    final String disabledAlgorithms = "jdk.tls.disabledAlgorithms";
+
+    out.println(dnsCacheTTL + " -> " + Security.getProperty(dnsCacheTTL));
+    out.println(dnsCacheNegTTL + " -> " + Security.getProperty(dnsCacheNegTTL));
+    out.println(disabledAlgorithms + " -> " + Security.getProperty(disabledAlgorithms));
+
+    Security.setProperty(dnsCacheTTL, "30");
+    Security.setProperty(dnsCacheNegTTL, "10");
+    // showAllSecurityProperties();
   }
 
   @Override

@@ -53,7 +53,7 @@ object Hex {
     val result = ByteArray(length / 2)
     for (i in 0 until length step 2) {
       result[i ushr 1] =
-        (DIGIT_VALUE[input[i].code] shl 4 or DIGIT_VALUE[input[i + 1].code]).toByte()
+          (DIGIT_VALUE[input[i].code] shl 4 or DIGIT_VALUE[input[i + 1].code]).toByte()
     }
     return result
   }

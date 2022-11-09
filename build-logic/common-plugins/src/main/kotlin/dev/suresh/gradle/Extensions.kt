@@ -8,7 +8,7 @@ import kotlin.reflect.*
 import kotlin.reflect.full.isSubtypeOf
 
 /** OS temp location */
-val tmp: String = System.getProperty("java.io.tmpdir")
+val tmp: String = "${System.getProperty("java.io.tmpdir")}${File.separator}"
 
 val File.mebiSize
   get() = "%.2f MiB".format(length() / (1024 * 1024f))
@@ -18,10 +18,10 @@ val Long.compactFmt: String
 
 /** Find the file ends with given [format] under the directory. */
 fun File.findPkg(format: String?) =
-  when (format != null) {
-    true -> walk().firstOrNull { it.isFile && it.name.endsWith(format, ignoreCase = true) }
-    else -> null
-  }
+    when (format != null) {
+      true -> walk().firstOrNull { it.isFile && it.name.endsWith(format, ignoreCase = true) }
+      else -> null
+    }
 
 /** List files based on the glob [pattern] */
 fun Path.glob(pattern: String): List<Path> {
@@ -39,23 +39,23 @@ inline fun <reified T> sysProp(): ReadOnlyProperty<Any?, T> = ReadOnlyProperty {
   when {
     // Handle enum values
     kType.isSubtypeOf(typeOf<Enum<*>?>()) ->
-      T::class.java.enumConstants.filterIsInstance<Enum<*>>().singleOrNull { it.name == propVal }
+        T::class.java.enumConstants.filterIsInstance<Enum<*>>().singleOrNull { it.name == propVal }
 
     // Handle primitive and collection types
     else ->
-      when (kType) {
-        typeOf<String>() -> propVal
-        typeOf<Int>() -> propVal.toInt()
-        typeOf<Boolean>() -> propVal.toBoolean()
-        typeOf<Long>() -> propVal.toLong()
-        typeOf<Double>() -> propVal.toDouble()
-        typeOf<List<String>>() -> propVals
-        typeOf<List<Int>>() -> propVals.map { it.toInt() }
-        typeOf<List<Long>>() -> propVals.map { it.toLong() }
-        typeOf<List<Double>>() -> propVals.map { it.toDouble() }
-        typeOf<List<Boolean>>() -> propVals.map { it.toBoolean() }
-        else -> error("'${property.name}' system property type ($kType) is not supported!")
-      }
+        when (kType) {
+          typeOf<String>() -> propVal
+          typeOf<Int>() -> propVal.toInt()
+          typeOf<Boolean>() -> propVal.toBoolean()
+          typeOf<Long>() -> propVal.toLong()
+          typeOf<Double>() -> propVal.toDouble()
+          typeOf<List<String>>() -> propVals
+          typeOf<List<Int>>() -> propVals.map { it.toInt() }
+          typeOf<List<Long>>() -> propVals.map { it.toLong() }
+          typeOf<List<Double>>() -> propVals.map { it.toDouble() }
+          typeOf<List<Boolean>>() -> propVals.map { it.toBoolean() }
+          else -> error("'${property.name}' system property type ($kType) is not supported!")
+        }
   }
-    as T
+      as T
 }

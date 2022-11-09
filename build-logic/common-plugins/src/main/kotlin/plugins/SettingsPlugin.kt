@@ -20,8 +20,8 @@ class SettingsPlugin : Plugin<Settings> {
             buildScanPublished {
               GithubAction.setOutput("build_scan_uri", buildScanUri)
               GithubAction.notice(
-                buildScanUri.toASCIIString(),
-                "${GithubAction.Env.RUNNER_OS} BuildScan URL",
+                  buildScanUri.toASCIIString(),
+                  "${GithubAction.Env.RUNNER_OS} BuildScan URL",
               )
             }
           }

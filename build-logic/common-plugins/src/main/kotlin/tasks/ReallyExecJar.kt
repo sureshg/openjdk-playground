@@ -35,12 +35,13 @@ abstract class ReallyExecJar : DefaultTask() {
   fun execute() {
     // project.objects.property<String>()
     val shellStub =
-      javaClass
-        .getResourceAsStream("/exec-jar-stub.sh")
-        ?.readBytes()
-        ?.decodeToString()
-        ?.replace(oldValue = """"${'$'}JAVA_OPTS"""", newValue = javaOpts.get().joinToString(" "))
-        ?: throw GradleException("Can't find executable shell stub!")
+        javaClass
+            .getResourceAsStream("/exec-jar-stub.sh")
+            ?.readBytes()
+            ?.decodeToString()
+            ?.replace(
+                oldValue = """"${'$'}JAVA_OPTS"""", newValue = javaOpts.get().joinToString(" "))
+            ?: throw GradleException("Can't find executable shell stub!")
     logger.debug("Exec jar shell stub: $shellStub")
 
     val binFile = execJarFile.get().asFile

@@ -174,9 +174,9 @@ object Deps {
     const val logging = "com.nightlynexus.logging-retrofit:logging:0.10.0"
     const val reactorAdapter = "com.jakewharton.retrofit:retrofit2-reactor-adapter:2.1.0"
     const val coroutinesAdapter =
-      "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
+        "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
     const val koltinxSerializationAdapter =
-      "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
+        "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
     const val eithernet = "com.slack.eithernet:eithernet:1.0.0-rc01"
     const val scarlet = "com.tinder.scarlet:scarlet:0.2.5"
   }
@@ -196,7 +196,7 @@ object Deps {
 
     object ApiService {
       const val sdmv1 =
-        "com.google.apis:google-api-services-smartdevicemanagement:v1-rev20210604-2.0.0"
+          "com.google.apis:google-api-services-smartdevicemanagement:v1-rev20210604-2.0.0"
     }
 
     const val re2j = "com.google.re2j:re2j:1.6"
@@ -220,16 +220,6 @@ object Deps {
       const val api = "org.cache2k:cache2k-api:$version"
       const val core = "org.cache2k:cache2k-core:$version"
     }
-  }
-
-  object KoTest {
-    const val version = "5.4.2"
-    const val junit5Runner = "io.kotest:kotest-runner-junit5:$version"
-    const val assertions = "io.kotest:kotest-assertions-core:$version"
-    const val property = "io.kotest:kotest-property:$version"
-    const val datetimeAssertions = "io.kotest.extensions:kotest-assertions-kotlinx-datetime:1.0.0"
-    const val ktorAssertions = "io.kotest.extensions:kotest-assertions-ktor:1.0.1"
-    const val testcontainers = "io.kotest.extensions:kotest-extensions-testcontainers:1.0.0"
   }
 
   object Config {

@@ -84,4 +84,18 @@ tasks {
               )
     }
   }
+
+  register<Exec>("buildUniversalMacOsBinary") {
+    dependsOn("buildMacosX64", "buildMacosArm64")
+    commandLine(
+        "lipo",
+        "-create",
+        "-output",
+        "build/${rootProject.name}",
+        "build/macosX64/${rootProject.name}",
+        "build/macosArm64/${rootProject.name}")
+    workingDir = buildDir
+    group = LifecycleBasePlugin.BUILD_GROUP
+    description = "Builds universal macOS binary"
+  }
 }

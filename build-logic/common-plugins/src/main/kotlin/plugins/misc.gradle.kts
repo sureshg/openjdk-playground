@@ -42,7 +42,7 @@ spotless {
   // if(plugins.hasPlugin(JavaPlugin::class.java)){ }
 
   kotlin {
-    ktfmt(ktfmtVersion).googleStyle()
+    ktfmt(ktfmtVersion)
     target("**/*.kt")
     trimTrailingWhitespace()
     endWithNewline()

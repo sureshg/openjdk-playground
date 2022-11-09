@@ -42,17 +42,16 @@ private fun civilTime() {
 
   val local = wallCalender.atTime(14, 51, 10, 234)
   TimeZone.availableZoneIds
-    .map { it.split("/") }
-    .groupBy { it.first() }
-    .forEach { (t, u) ->
-      println(t)
-      println("--------")
-      u.forEachIndexed { index, list -> }
-    }
+      .map { it.split("/") }
+      .groupBy { it.first() }
+      .forEach { (t, u) ->
+        println(t)
+        println("--------")
+        u.forEachIndexed { index, list -> }
+      }
 
   println(
-    local.toInstant(TimeZone.of("Europe/Berlin")).toLocalDateTime(TimeZone.of("Asia/Calcutta"))
-  )
+      local.toInstant(TimeZone.of("Europe/Berlin")).toLocalDateTime(TimeZone.of("Asia/Calcutta")))
 }
 
 /** Epoch time. */

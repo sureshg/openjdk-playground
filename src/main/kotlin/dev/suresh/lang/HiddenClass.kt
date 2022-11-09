@@ -28,11 +28,10 @@ fun main() {
 
   println(mh.lookupModes())
   val m =
-    mh.findVirtual(
-      mh.lookupClass(),
-      "parse",
-      MethodType.methodType(java.util.List::class.java, java.lang.String::class.java)
-    )
+      mh.findVirtual(
+          mh.lookupClass(),
+          "parse",
+          MethodType.methodType(java.util.List::class.java, java.lang.String::class.java))
 
   println(m.invoke(Formatter(), "%s"))
   // Concurrent

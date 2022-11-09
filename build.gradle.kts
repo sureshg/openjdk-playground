@@ -1,6 +1,5 @@
 import dev.suresh.gradle.configurePom
 import dev.suresh.gradle.tmp
-import dev.suresh.gradle.xQuote
 import java.net.URL
 import kotlinx.kover.api.*
 import org.gradle.api.tasks.testing.logging.*
@@ -50,24 +49,48 @@ application {
           "-Xmx128M",
           "-XX:+PrintCommandLineFlags",
           "-XX:+UseZGC",
-          "-Xlog:cds,safepoint,gc*:file=$xQuote$tmp/$name-gc-%p-%t.log$xQuote:level,tags,time,uptime,pid,tid:filecount=5,filesize=10m", // os+thread,gc+heap=trace,
-          "-XX:StartFlightRecording:settings=profile.jfc,memory-leaks=gc-roots,gc=detailed,jdk.ObjectCount\\#enabled=true,filename=$tmp/$name.jfr,name=$name,maxsize=100M,dumponexit=true",
+          // os+thread,gc+heap=trace,
+          """-Xlog:cds,safepoint,gc*:
+              |file="$tmp$name-gc-%p-%t.log":
+              |level,tags,time,uptime,pid,tid:
+              |filecount=5,
+              |filesize=10m"""
+              .trimMargin()
+              .lines()
+              .joinToString("") { it.trim() },
+          """-XX:StartFlightRecording=
+              |settings=profile.jfc,
+              |filename=$tmp$name.jfr,
+              |name=$name,
+              |maxsize=100M,
+              |dumponexit=true,
+              |memory-leaks=gc-roots,
+              |gc=detailed,
+              |jdk.ObjectCount#enabled=true,
+              |jdk.SecurityPropertyModification#enabled=true,
+              |jdk.TLSHandshake#enabled=true,
+              |jdk.X509Certificate#enabled=true,
+              |jdk.X509Validation#enabled=true"""
+              .trimMargin()
+              .lines()
+              .joinToString("") { it.trim() },
           "-XX:FlightRecorderOptions:stackdepth=64",
           "-XX:+HeapDumpOnOutOfMemoryError",
-          "-XX:HeapDumpPath=$tmp/$name-%p.hprof",
-          "-XX:ErrorFile=$tmp/$name-hs-err-%p.log",
+          "-XX:HeapDumpPath=$tmp$name-%p.hprof",
+          "-XX:ErrorFile=$tmp$name-hs-err-%p.log",
           "-XX:OnOutOfMemoryError='kill -9 %p'",
           "-XX:+ExitOnOutOfMemoryError",
+          "-XX:+UnlockDiagnosticVMOptions",
+          "-XX:+LogVMOutput",
+          "-XX:LogFile=$tmp$name-jvm.log",
+          "-XX:NativeMemoryTracking=summary",
+          "-XX:+ShowHiddenFrames",
           "-Djava.awt.headless=true",
           "-Djdk.attach.allowAttachSelf=true",
           "-Djdk.tracePinnedThreads=full",
+          "-Djava.security.debug=properties",
           "-Djava.security.egd=file:/dev/./urandom",
           "-Djdk.includeInExceptions=hostInfo,jar",
-          "-XX:+UnlockDiagnosticVMOptions",
-          "-XX:+LogVMOutput",
-          "-XX:LogFile=$tmp/$name-jvm.log",
-          "-XX:NativeMemoryTracking=summary",
-          "-XX:+ShowHiddenFrames",
           "-ea",
           // "--show-module-resolution",
           // "-XX:+AutoCreateSharedArchive",
@@ -85,6 +108,7 @@ application {
           // "-XX:+DebugNonSafepoints",
           // "-XX:OnOutOfMemoryError="./restart.sh"",
           // "-XX:SelfDestructTimer=0.05",
+          // "-Djava.security.properties=/path/to/custom/java.security", // == to override
           // "-Duser.timezone=\"PST8PDT\"",
           // "-Djava.net.preferIPv4Stack=true",
           // "-Djavax.net.debug=all",
@@ -434,9 +458,8 @@ dependencies {
   testImplementation(libs.junit.jupiter)
   testImplementation(libs.junit.pioneer)
   testImplementation(kotlin("test-junit5"))
-
-  testImplementation(Deps.KoTest.junit5Runner)
-  testImplementation(Deps.KoTest.assertions)
+  testImplementation(libs.kotest.core)
+  testImplementation(libs.kotest.junit5)
   testImplementation(libs.slf4j.simple)
   testImplementation(libs.mockk)
 

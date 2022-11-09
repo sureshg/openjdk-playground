@@ -45,11 +45,11 @@ abstract class BuildConfig : DefaultTask() {
 
     // the<VersionCatalogsExtension>().named("libs").
     val params =
-      mapOf("className" to className, "pkg" to pkg, "additionalFields" to additionalFields.get())
+        mapOf("className" to className, "pkg" to pkg, "additionalFields" to additionalFields.get())
 
     val content = StringOutput()
     val tmplEngine =
-      TemplateEngine.createPrecompiled(ContentType.Plain).apply { setTrimControlStructures(true) }
+        TemplateEngine.createPrecompiled(ContentType.Plain).apply { setTrimControlStructures(true) }
 
     tmplEngine.render("BuildConfig.kte", params, content)
     file.writeText(content.toString())

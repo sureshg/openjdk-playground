@@ -29,76 +29,72 @@ object VThreadServer {
 
     // Starts HTTPS server
     val httpsServer =
-      HttpsServer.create(InetSocketAddress(8443), 1_000).apply {
-        httpsConfigurator = HttpsConfigurator(selfSignedCert.sslContext())
-        executor = execSvc
-        createContext("/", ::root)
-        createContext("/top", ::top)
-        start()
-      }
+        HttpsServer.create(InetSocketAddress(8443), 1_000).apply {
+          httpsConfigurator = HttpsConfigurator(selfSignedCert.sslContext())
+          executor = execSvc
+          createContext("/", ::root)
+          createContext("/top", ::top)
+          start()
+        }
 
     val url = "https://localhost:${httpsServer.address.port}"
     println("Started the server on $url")
 
     val client =
-      HttpClient.newBuilder()
-        .connectTimeout(Duration.ofSeconds(5))
-        .sslContext(selfSignedCert.sslContext())
-        .version(HttpClient.Version.HTTP_2)
-        .executor(execSvc)
-        .build()
+        HttpClient.newBuilder()
+            .connectTimeout(Duration.ofSeconds(5))
+            .sslContext(selfSignedCert.sslContext())
+            .version(HttpClient.Version.HTTP_2)
+            .executor(execSvc)
+            .build()
 
     println("Sending 500 concurrent requests to $url")
     val futures =
-      (1..500).map {
-        CompletableFuture.supplyAsync(
-            {
-              val res =
-                client.send(
-                  HttpRequest.newBuilder().uri(URI.create(url)).build(),
-                  BodyHandlers.ofString()
-                )
-              val thread = Thread.currentThread()
-              println(
-                "<--- Response(${thread.name}-${thread.threadId()}-${thread.isVirtual}): ${res.body()}"
-              )
-              res.body()
-            },
-            execSvc
-          )
-          .exceptionally(Throwable::message)
-      }
+        (1..500).map {
+          CompletableFuture.supplyAsync(
+                  {
+                    val res =
+                        client.send(
+                            HttpRequest.newBuilder().uri(URI.create(url)).build(),
+                            BodyHandlers.ofString())
+                    val thread = Thread.currentThread()
+                    println(
+                        "<--- Response(${thread.name}-${thread.threadId()}-${thread.isVirtual}): ${res.body()}")
+                    res.body()
+                  },
+                  execSvc)
+              .exceptionally(Throwable::message)
+        }
 
     // Wait for all tasks to complete and prints the response.
     CompletableFuture.allOf(*futures.toTypedArray())
-      .handle { _, _ -> // or thenRun
-        // Finally stop the server.
-        println("Shutting down the server!")
-        httpsServer.stop(1)
-        futures.map { it.join() }
-      }
-      .thenAccept { it.forEach(::println) }
-      .join()
+        .handle { _, _ -> // or thenRun
+          // Finally stop the server.
+          println("Shutting down the server!")
+          httpsServer.stop(1)
+          futures.map { it.join() }
+        }
+        .thenAccept { it.forEach(::println) }
+        .join()
   }
 
   private fun root(ex: HttpExchange) {
     val thread = Thread.currentThread()
     println(
-      "---> Request(${thread.name}-${thread.threadId()}-${thread.isVirtual}): ${ex.requestMethod} - ${ex.requestURI}"
-    )
+        "---> Request(${thread.name}-${thread.threadId()}-${thread.isVirtual}): ${ex.requestMethod} - ${ex.requestURI}")
     // Simulate blocking call.
     sleep(Duration.ofMillis(100))
     ex.responseHeaders.add("Content-Type", "application/json")
     val res =
-      """
+        """
             {
                "threadId" : ${thread.threadId()},
                "version"  : ${System.getProperty("java.vm.version")},
                "virtual"  : ${thread.isVirtual}
             }
       """
-        .trimIndent()
-        .toByteArray()
+            .trimIndent()
+            .toByteArray()
 
     ex.sendResponseHeaders(200, res.size.toLong())
     ex.responseBody.apply {
@@ -110,18 +106,18 @@ object VThreadServer {
   private fun top(ex: HttpExchange) {
     println("---> Request: ${ex.requestMethod} - ${ex.requestURI}")
     val res =
-      ProcessHandle.allProcesses()
-        .map {
-          "${it.pid()} ${it.parent().map(ProcessHandle::pid).orElse(0)} ${
+        ProcessHandle.allProcesses()
+            .map {
+              "${it.pid()} ${it.parent().map(ProcessHandle::pid).orElse(0)} ${
       it.info().startInstant()
         .map(Instant::toString).orElse("-")
       } ${
       it.info().commandLine()
         .orElse("-")
       } ${it.info().user().orElse("-")}"
-        }
-        .collect(joining("<br>"))
-        .toByteArray()
+            }
+            .collect(joining("<br>"))
+            .toByteArray()
 
     ex.responseHeaders.add("Content-Type", "text/html; charset=UTF-8")
     ex.sendResponseHeaders(200, res.size.toLong())
@@ -136,5 +132,5 @@ object VThreadServer {
    * http://mail.openjdk.java.net/pipermail/net-dev/2018-November/011912.html
    */
   private fun disableHostnameVerification() =
-    System.setProperty("jdk.internal.httpclient.disableHostnameVerification", "true")
+      System.setProperty("jdk.internal.httpclient.disableHostnameVerification", "true")
 }

@@ -16,7 +16,7 @@ fun run() {
   println("\nFound ${modules.size} jdk modules!")
 
   val jsModule =
-    ModuleLayer.boot().findModule("jdk.jshell").orElseGet { error("No JShell module found!") }
+      ModuleLayer.boot().findModule("jdk.jshell").orElseGet { error("No JShell module found!") }
 
   // Using Tool API
   jsModule.classLoader.using {
@@ -27,7 +27,7 @@ fun run() {
 
   // Using new ToolsProvider API
   val jdeps =
-    ToolProvider.findFirst("jdeps").orElseGet { error("jdeps tool is missing in the JDK!") }
+      ToolProvider.findFirst("jdeps").orElseGet { error("jdeps tool is missing in the JDK!") }
   val out = StringWriter()
   val pw = PrintWriter(out)
   jdeps.run(pw, pw, "--version")
@@ -47,8 +47,8 @@ private fun showAllSecurityProperties() {
   // Should add this VM args "--add-opens=java.base/java.security=ALL-UNNAMED"
   val lookup = MethodHandles.lookup()
   val varHandle =
-    MethodHandles.privateLookupIn(Security::class.java, lookup)
-      .findStaticVarHandle(Security::class.java, "props", Properties::class.java)
+      MethodHandles.privateLookupIn(Security::class.java, lookup)
+          .findStaticVarHandle(Security::class.java, "props", Properties::class.java)
   val sec = varHandle.get() as Properties
   sec.forEach { k: Any, v: Any -> println("$k --> $v") }
 }

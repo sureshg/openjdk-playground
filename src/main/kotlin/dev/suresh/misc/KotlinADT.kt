@@ -11,16 +11,16 @@ object Empty : Tree<Nothing>() {
 data class Node<T>(val value: T, val right: Tree<T> = Empty, val left: Tree<T> = Empty) : Tree<T>()
 
 fun <T : Number> Tree<T>.sum(): Long =
-  when (this) {
-    Empty -> 0
-    is Node -> value.toLong() + left.sum() + right.sum()
-  }
+    when (this) {
+      Empty -> 0
+      is Node -> value.toLong() + left.sum() + right.sum()
+    }
 
 fun <T> Tree<T>.depth(): Int =
-  when (this) {
-    Empty -> 0
-    is Node -> max(left.depth(), right.depth()) + 1
-  }
+    when (this) {
+      Empty -> 0
+      is Node -> max(left.depth(), right.depth()) + 1
+    }
 
 // fun <T> Tree<T>.printTree(depth: Int = 0) {
 //    val indent = " ".repeat(depth)

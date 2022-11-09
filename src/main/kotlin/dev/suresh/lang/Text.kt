@@ -13,14 +13,13 @@ fun main() {
   val text = "🇺🇸👨‍👩‍👧‍👦"
 
   println(
-    """
+      """
       String : $text
       String Length : ${text.length}  (Number of Unicode code units, characters as fixed-width 16-bit entities)
       Code Point Size : ${text.codePoints().count()} (Any surrogate pairs encountered in the sequence are combined)
       UTF-8 ByteArray Size : ${text.encodeToByteArray().size}
       """
-      .trimIndent()
-  )
+          .trimIndent())
 
   val codePoints = text.codePoints().toArray()
   for (i in codePoints.indices) {
@@ -55,4 +54,4 @@ fun IntArray.codePointsToString(): String = buildString {
 }
 
 fun IntArray.codePointsToString(separator: String = "") =
-  joinToString(separator) { Character.toString(it) }
+    joinToString(separator) { Character.toString(it) }

@@ -26,14 +26,14 @@ fun tracePinnedThread() {
 
   try {
     Thread.ofVirtual()
-      .start {
-        synchronized(lock) {
-          val nanos: Long = Duration.ofSeconds(1).toNanos()
-          LockSupport.parkNanos(nanos)
-          // OR lock.wait()
+        .start {
+          synchronized(lock) {
+            val nanos: Long = Duration.ofSeconds(1).toNanos()
+            LockSupport.parkNanos(nanos)
+            // OR lock.wait()
+          }
         }
-      }
-      .join()
+        .join()
     System.out.flush()
   } finally {
     System.setOut(out)

@@ -21,28 +21,27 @@ class MockServer {
 
   /** For accessing server and google.com */
   val clientCerts =
-    HandshakeCertificates.Builder()
-      .addTrustedCertificate(selfSignedCert.trustManager.acceptedIssuers[0])
-      .addInsecureHost(server.hostName)
-      .addPlatformTrustedCertificates()
-      .build()
+      HandshakeCertificates.Builder()
+          .addTrustedCertificate(selfSignedCert.trustManager.acceptedIssuers[0])
+          .addInsecureHost(server.hostName)
+          .addPlatformTrustedCertificates()
+          .build()
 
   val client =
-    OkHttpClient.Builder()
-      .sslSocketFactory(clientCerts.sslSocketFactory(), clientCerts.trustManager)
-      .callTimeout(Duration.ofSeconds(5))
-      .fastFallback(true)
-      .build()
+      OkHttpClient.Builder()
+          .sslSocketFactory(clientCerts.sslSocketFactory(), clientCerts.trustManager)
+          .callTimeout(Duration.ofSeconds(5))
+          .fastFallback(true)
+          .build()
 
   /** Enqueue a request, run a client and shutdown the server. */
   fun run() {
     server.use { server ->
       // Enqueue the request
       server.enqueue(
-        MockResponse()
-          .setResponseCode(HTTP_MOVED_TEMP)
-          .setHeader("Location", "https://www.google.com/robots.txt")
-      )
+          MockResponse()
+              .setResponseCode(HTTP_MOVED_TEMP)
+              .setHeader("Location", "https://www.google.com/robots.txt"))
 
       val url = server.url("/")
       println("\nConnecting to $url")

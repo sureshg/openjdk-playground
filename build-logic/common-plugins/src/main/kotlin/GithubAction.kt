@@ -19,11 +19,11 @@ object GithubAction {
   /** Returns workflow run's URL */
   val workflowRunURL
     get() =
-      when (isEnabled) {
-        true ->
-          "${Env.GITHUB_SERVER_URL}/${Env.GITHUB_REPOSITORY}/actions/runs/${Env.GITHUB_RUN_ID}"
-        else -> null
-      }
+        when (isEnabled) {
+          true ->
+              "${Env.GITHUB_SERVER_URL}/${Env.GITHUB_REPOSITORY}/actions/runs/${Env.GITHUB_RUN_ID}"
+          else -> null
+        }
 
   /**
    * Prints a debug message to the log. You must create a secret named **ACTIONS_STEP_DEBUG** with
@@ -37,26 +37,24 @@ object GithubAction {
    * Optionally, your message can specify a position within the file.
    */
   fun notice(
-    message: String,
-    title: String = "",
-    file: String = "",
-    line: Int = 0,
-    endLine: Int = 0,
-    col: Int = 0,
-    endColumn: Int = 0
+      message: String,
+      title: String = "",
+      file: String = "",
+      line: Int = 0,
+      endLine: Int = 0,
+      col: Int = 0,
+      endColumn: Int = 0
   ) =
-    echo(
-      message(
-        message = message,
-        type = NOTICE,
-        title = title,
-        file = file,
-        line = line,
-        endLine = endLine,
-        col = col,
-        endColumn = endColumn
-      )
-    )
+      echo(
+          message(
+              message = message,
+              type = NOTICE,
+              title = title,
+              file = file,
+              line = line,
+              endLine = endLine,
+              col = col,
+              endColumn = endColumn))
 
   /**
    * Creates a warning message and prints the message to the log. This message will create an
@@ -64,26 +62,24 @@ object GithubAction {
    * Optionally, your message can specify a position within the file.
    */
   fun warning(
-    message: String,
-    title: String = "",
-    file: String = "",
-    line: Int = 0,
-    endLine: Int = 0,
-    col: Int = 0,
-    endColumn: Int = 0
+      message: String,
+      title: String = "",
+      file: String = "",
+      line: Int = 0,
+      endLine: Int = 0,
+      col: Int = 0,
+      endColumn: Int = 0
   ) =
-    echo(
-      message(
-        message = message,
-        type = WARNING,
-        title = title,
-        file = file,
-        line = line,
-        endLine = endLine,
-        col = col,
-        endColumn = endColumn
-      )
-    )
+      echo(
+          message(
+              message = message,
+              type = WARNING,
+              title = title,
+              file = file,
+              line = line,
+              endLine = endLine,
+              col = col,
+              endColumn = endColumn))
 
   /**
    * Creates an error message and prints the message to the log. This message will create an
@@ -91,26 +87,24 @@ object GithubAction {
    * Optionally, your message can specify a position within the file.
    */
   fun error(
-    message: String,
-    title: String = "",
-    file: String = "",
-    line: Int = 0,
-    endLine: Int = 0,
-    col: Int = 0,
-    endColumn: Int = 0
+      message: String,
+      title: String = "",
+      file: String = "",
+      line: Int = 0,
+      endLine: Int = 0,
+      col: Int = 0,
+      endColumn: Int = 0
   ) =
-    echo(
-      message(
-        message = message,
-        type = ERROR,
-        title = title,
-        file = file,
-        line = line,
-        endLine = endLine,
-        col = col,
-        endColumn = endColumn
-      )
-    )
+      echo(
+          message(
+              message = message,
+              type = ERROR,
+              title = title,
+              file = file,
+              line = line,
+              endLine = endLine,
+              col = col,
+              endColumn = endColumn))
 
   /** Sets a GitHub Action's output parameter. */
   fun setOutput(name: String, value: Any) = echo("::set-output name=$name::$value")
@@ -132,10 +126,10 @@ object GithubAction {
     if (isEnabled) {
       // Replace line feed in multiline strings.
       val msg =
-        when (mask) {
-          true -> mask(message)
-          else -> message
-        }.replace("\\R", "%0A")
+          when (mask) {
+            true -> mask(message)
+            else -> message
+          }.replace("\\R", "%0A")
       println(msg)
     }
   }
@@ -148,13 +142,12 @@ object GithubAction {
     if (isEnabled) {
       val token = UUID.randomUUID().toString()
       println(
-        """
+          """
           |::stop-commands::$token
           |${messages.joinToString(System.lineSeparator())}
           |::$token::
           """
-          .trimMargin()
-      )
+              .trimMargin())
     }
   }
 
@@ -170,17 +163,17 @@ object GithubAction {
       debug("Writing to Github Action env file $ghActionEnv")
 
       val env =
-        when {
-          // Multiline string
-          value.lines().size > 1 ->
-            """
+          when {
+            // Multiline string
+            value.lines().size > 1 ->
+                """
                 |$name<<EOF
                 |$value
                 |EOF
                 """
-              .trimMargin()
-          else -> "$name=$value${System.lineSeparator()}"
-        }
+                    .trimMargin()
+            else -> "$name=$value${System.lineSeparator()}"
+          }
       Files.writeString(Path.of(ghActionEnv), env, Charsets.UTF_8, CREATE, APPEND)
     }
   }
@@ -214,14 +207,14 @@ object GithubAction {
    * @param endLine End line number
    */
   private fun message(
-    message: String,
-    type: MsgType,
-    title: String = "",
-    file: String = "",
-    line: Int = 0,
-    endLine: Int = 0,
-    col: Int = 0,
-    endColumn: Int = 0
+      message: String,
+      type: MsgType,
+      title: String = "",
+      file: String = "",
+      line: Int = 0,
+      endLine: Int = 0,
+      col: Int = 0,
+      endColumn: Int = 0
   ) = buildString {
     append("::")
     append(type.name.lowercase())

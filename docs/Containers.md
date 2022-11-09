@@ -95,14 +95,12 @@ $ docker pull amazoncorretto:18-alpine
 # GraalVM CE & EE
 # https://github.com/orgs/graalvm/packages
 $ docker pull ghcr.io/graalvm/graalvm-ce:latest
-$ docker pull ghcr.io/graalvm/native-image:java17-22
+$ docker pull ghcr.io/graalvm/native-image:latest
+$ docker pull ghcr.io/graalvm/native-image:muslib
 $ docker pull container-registry.oracle.com/graalvm/enterprise:latest
 
 # Eclipse OpenJ9
 $ docker pull ibm-semeru-runtimes:open-17-jre
-
-# Redhat Univeral Base Images (UBI)
-$ docker pull registry.access.redhat.com/ubi8/openjdk-11:1.10-1.1634738701
 
 # GraalVM CE Dev Builds (No docker images available)
 https://github.com/graalvm/graalvm-ce-dev-builds/releases/

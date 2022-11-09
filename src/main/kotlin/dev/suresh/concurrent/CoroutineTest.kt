@@ -30,15 +30,15 @@ suspend fun main() {
 
 // Support cooperative cancellation
 suspend fun factorial(n: Int): BigInteger =
-  withContext(Dispatchers.Default) {
-    var fact = BigInteger.ONE
-    for (i in 1..n) {
-      ensureActive() // or yield()
-      fact *= i.toBigInteger()
+    withContext(Dispatchers.Default) {
+      var fact = BigInteger.ONE
+      for (i in 1..n) {
+        ensureActive() // or yield()
+        fact *= i.toBigInteger()
+      }
+      println("factorial($n) = $fact")
+      fact
     }
-    println("factorial($n) = $fact")
-    fact
-  }
 
 suspend fun getString(): String {
   delay(10.milliseconds)

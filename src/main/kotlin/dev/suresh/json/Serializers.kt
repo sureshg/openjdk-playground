@@ -46,8 +46,9 @@ fun main() {
   val today = LocalDateTime.now()
   println(today.plus(Duration.ofDays(1)))
   println(
-    runCatching { println(LocalDate.now().minus(Duration.ofDays(10))) }.exceptionOrNull()?.message
-  )
+      runCatching { println(LocalDate.now().minus(Duration.ofDays(10))) }
+          .exceptionOrNull()
+          ?.message)
   println(LocalDate.now().minus(Period.ofDays(10)))
 }
 

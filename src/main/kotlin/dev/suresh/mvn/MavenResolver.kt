@@ -18,7 +18,7 @@ class MavenResolver {
 
   fun run() {
     val artifacts =
-      resolveTransitively("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${App.KOTLIN_VERSION}")
+        resolveTransitively("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${App.KOTLIN_VERSION}")
     println("\nResolved artifacts are,")
     artifacts.forEach { println(it) }
   }
@@ -26,19 +26,19 @@ class MavenResolver {
   private fun resolveTransitively(spec: String): Set<String> {
     val deps = mutableSetOf<String>()
     val resolve =
-      DeepRecursiveFunction<Artifact, Set<String>> {
-        if (it.coordinate !in deps) {
-          deps.add(it.coordinate)
-          val artifact = resolver.artifactFor(it.coordinate)
-          resolver.resolve(artifact).artifact?.model?.dependencies?.forEach { dep ->
-            val depSpec = "${dep.groupId}:${dep.artifactId}:${dep.version}"
-            if (depSpec !in deps && dep.scope != "test") {
-              deps.addAll(callRecursive(resolver.artifactFor(depSpec)))
+        DeepRecursiveFunction<Artifact, Set<String>> {
+          if (it.coordinate !in deps) {
+            deps.add(it.coordinate)
+            val artifact = resolver.artifactFor(it.coordinate)
+            resolver.resolve(artifact).artifact?.model?.dependencies?.forEach { dep ->
+              val depSpec = "${dep.groupId}:${dep.artifactId}:${dep.version}"
+              if (depSpec !in deps && dep.scope != "test") {
+                deps.addAll(callRecursive(resolver.artifactFor(depSpec)))
+              }
             }
           }
+          deps
         }
-        deps
-      }
     return resolve(resolver.artifactFor(spec))
   }
 }

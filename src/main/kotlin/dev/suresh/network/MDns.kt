@@ -8,26 +8,25 @@ import javax.jmdns.*
 fun main() {
   JmDNS.create(InetAddress.getLocalHost()).use {
     it.addServiceListener(
-      "_googlecast._tcp.local.",
-      object : ServiceListener {
-        override fun serviceAdded(event: ServiceEvent?) = println("--> ${event?.info?.name} added")
+        "_googlecast._tcp.local.",
+        object : ServiceListener {
+          override fun serviceAdded(event: ServiceEvent?) =
+              println("--> ${event?.info?.name} added")
 
-        override fun serviceRemoved(event: ServiceEvent?) =
-          println("<-- ${event?.info?.name} Removed")
+          override fun serviceRemoved(event: ServiceEvent?) =
+              println("<-- ${event?.info?.name} Removed")
 
-        override fun serviceResolved(event: ServiceEvent?) = println("${event?.info} resolved")
-      }
-    )
+          override fun serviceResolved(event: ServiceEvent?) = println("${event?.info} resolved")
+        })
 
     it.addServiceTypeListener(
-      object : ServiceTypeListener {
-        override fun serviceTypeAdded(event: ServiceEvent?) =
-          println("==>${event?.type} service added")
+        object : ServiceTypeListener {
+          override fun serviceTypeAdded(event: ServiceEvent?) =
+              println("==>${event?.type} service added")
 
-        override fun subTypeForServiceTypeAdded(event: ServiceEvent?) =
-          println("==>${event?.type} service sub type added")
-      }
-    )
+          override fun subTypeForServiceTypeAdded(event: ServiceEvent?) =
+              println("==>${event?.type} service sub type added")
+        })
     Thread.sleep(Duration.ofSeconds(5))
   }
 }

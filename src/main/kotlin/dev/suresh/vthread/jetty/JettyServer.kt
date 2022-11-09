@@ -27,10 +27,10 @@ fun run(args: Array<String>? = emptyArray()) {
 
   // NetworkTrafficServerConnector(server)
   val connector =
-    ServerConnector(server).apply {
-      this.port = port
-      acceptQueueSize = 128
-    }
+      ServerConnector(server).apply {
+        this.port = port
+        acceptQueueSize = 128
+      }
   server.addConnector(connector)
 
   val servletHandler = ServletHandler()
@@ -55,15 +55,14 @@ fun run(args: Array<String>? = emptyArray()) {
 fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
   require(count > 0)
   println(
-    "Sending $count concurrent requests to ${server.uri} and wait for $deadlineInSec seconds..."
-  )
+      "Sending $count concurrent requests to ${server.uri} and wait for $deadlineInSec seconds...")
 
   val client =
-    HttpClient.newBuilder()
-      .version(HttpClient.Version.HTTP_1_1)
-      .followRedirects(HttpClient.Redirect.NORMAL)
-      .connectTimeout(Duration.ofSeconds(10))
-      .build()
+      HttpClient.newBuilder()
+          .version(HttpClient.Version.HTTP_1_1)
+          .followRedirects(HttpClient.Redirect.NORMAL)
+          .connectTimeout(Duration.ofSeconds(10))
+          .build()
 
   val factory = Thread.ofVirtual().name("VirtualThreadPool-", 1).factory()
   val execSvc = Executors.newThreadPerTaskExecutor(factory)
@@ -71,36 +70,36 @@ fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
   // val ecs = ExecutorCompletionService<String>(execSvc)
 
   val results =
-    execSvc.use { exec ->
-      val user = System.getProperty("user.name", "user")
+      execSvc.use { exec ->
+        val user = System.getProperty("user.name", "user")
 
-      (1..count).map { idx ->
-        exec.submit<Result<String>> {
-          try {
-            println("---> $idx. Sending Request")
-            val uri =
-              UrlBuilder.fromUri(server.uri)
-                .addParameter("id", idx.toString())
-                .addParameter("user", user)
-                .toUri()
+        (1..count).map { idx ->
+          exec.submit<Result<String>> {
+            try {
+              println("---> $idx. Sending Request")
+              val uri =
+                  UrlBuilder.fromUri(server.uri)
+                      .addParameter("id", idx.toString())
+                      .addParameter("user", user)
+                      .toUri()
 
-            val req =
-              HttpRequest.newBuilder()
-                .uri(uri)
-                .timeout(Duration.ofSeconds(2))
-                .header("Content-Type", "application/json")
-                .GET()
-                .build()
-            val res = client.send(req, BodyHandlers.ofString())
+              val req =
+                  HttpRequest.newBuilder()
+                      .uri(uri)
+                      .timeout(Duration.ofSeconds(2))
+                      .header("Content-Type", "application/json")
+                      .GET()
+                      .build()
+              val res = client.send(req, BodyHandlers.ofString())
 
-            println("<--- $idx. Response($threadInfo): ${res.statusCode()} - ${res.body()}")
-            Result.success(res.body())
-          } catch (t: Throwable) {
-            Result.failure(t)
+              println("<--- $idx. Response($threadInfo): ${res.statusCode()} - ${res.body()}")
+              Result.success(res.body())
+            } catch (t: Throwable) {
+              Result.failure(t)
+            }
           }
         }
       }
-    }
 
   // Clear the interrupt status
   println("Checking if the current thread has been interrupted: ${Thread.interrupted()}")
@@ -110,21 +109,20 @@ fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
   err.forEachIndexed { i, r ->
     if (i == 0) println("=== ERRORS ===")
     val msg =
-      when (val ex = r.exceptionOrNull()) {
-        is InterruptedException -> "Task interrupted/cancelled due to timeout!"
-        else -> ex?.cause?.message
-      }
+        when (val ex = r.exceptionOrNull()) {
+          is InterruptedException -> "Task interrupted/cancelled due to timeout!"
+          else -> ex?.cause?.message
+        }
     println("ERROR ${i + 1} -> $msg")
   }
 
   println(
-    """
+      """
     SUCCESS: ${ok.size} / ${results.size}
     FAILURE: ${err.size} / ${results.size}
 
     """
-      .trimIndent()
-  )
+          .trimIndent())
 }
 
 class HelloServlet : HttpServlet() {
@@ -168,7 +166,7 @@ class HelloServlet : HttpServlet() {
             "Thread" : ${Thread.currentThread()}
           }
     """
-      .trimIndent()
+        .trimIndent()
     //        "Id"     : ${ID.orElse("n/a")},
     //        "User"   : ${USER.orElse("n/a")},
   }
@@ -176,10 +174,10 @@ class HelloServlet : HttpServlet() {
 
 val HttpServletRequest.fullURL: String
   get() =
-    when (queryString.isNullOrBlank()) {
-      true -> requestURL.toString()
-      else -> requestURL.append('?').append(queryString).toString()
-    }
+      when (queryString.isNullOrBlank()) {
+        true -> requestURL.toString()
+        else -> requestURL.append('?').append(queryString).toString()
+      }
 
 val threadInfo
   get() = Thread.currentThread().run { "$name-${threadId()}-$isVirtual" }

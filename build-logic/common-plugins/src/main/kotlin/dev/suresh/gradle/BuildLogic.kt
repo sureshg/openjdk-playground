@@ -60,14 +60,16 @@ val Project.javaToolchainPath
     val javaVersion = libs.versions.java.asProvider().get()
 
     val jLauncher =
-      when (defToolchain != null) {
-        true -> javaToolchainSvc?.launcherFor(defToolchain)
-        else ->
-          javaToolchainSvc?.launcherFor { languageVersion.set(JavaLanguageVersion.of(javaVersion)) }
-      }?.orNull
+        when (defToolchain != null) {
+          true -> javaToolchainSvc?.launcherFor(defToolchain)
+          else ->
+              javaToolchainSvc?.launcherFor {
+                languageVersion.set(JavaLanguageVersion.of(javaVersion))
+              }
+        }?.orNull
 
     return jLauncher?.metadata?.installationPath?.asFile?.toPath()
-      ?: error("Requested JDK version ($javaVersion) is not available.")
+        ?: error("Requested JDK version ($javaVersion) is not available.")
   }
 
 /**
@@ -104,17 +106,17 @@ fun Project.appRunCmd(jar: File, args: List<String>): String {
   val lineCont = """\""" // Bash line continuation
   val indent = "\t"
   return args.joinToString(
-    prefix =
-      """
-          |To Run the app,
-          |${'$'} java -jar $lineCont $newLine
+      prefix =
           """
-        .trimMargin(),
-    postfix = "$newLine$indent$path",
-    separator = newLine,
+             |To Run the app,
+             |${'$'} java -jar $lineCont $newLine
+             """
+              .trimMargin(),
+      postfix = "$newLine$indent$path",
+      separator = newLine,
   ) {
     // Escape the globstar
-    "$indent$it $lineCont".replace("*", """\*""").replace(""""""", """\"""")
+    "$indent$it $lineCont".replace("*", """\*""")
   }
 }
 
@@ -122,16 +124,16 @@ fun Project.appRunCmd(jar: File, args: List<String>): String {
 fun Project.addFileToJavaComponent(file: File) {
   // Here's a configuration to declare the outgoing variant
   val executable by
-    configurations.creating {
-      description = "Declares executable outgoing variant"
-      isCanBeConsumed = true
-      isCanBeResolved = false
-      attributes {
-        // See https://docs.gradle.org/current/userguide/variant_attributes.html
-        attribute(Category.CATEGORY_ATTRIBUTE, project.objects.named(Category.LIBRARY))
-        attribute(DocsType.DOCS_TYPE_ATTRIBUTE, project.objects.named("exe"))
+      configurations.creating {
+        description = "Declares executable outgoing variant"
+        isCanBeConsumed = true
+        isCanBeResolved = false
+        attributes {
+          // See https://docs.gradle.org/current/userguide/variant_attributes.html
+          attribute(Category.CATEGORY_ATTRIBUTE, project.objects.named(Category.LIBRARY))
+          attribute(DocsType.DOCS_TYPE_ATTRIBUTE, project.objects.named("exe"))
+        }
       }
-    }
 
   // val binFile = layout.buildDirectory.file("file")
   // val binArtifact = artifacts.add("archives", binFile.get().asFile) {
@@ -153,19 +155,18 @@ fun Project.addFileToJavaComponent(file: File) {
 
 /** Fork a new gradle [task] with given [args] */
 fun Project.forkTask(task: String, vararg args: String): CompletableFuture<Unit> =
-  CompletableFuture.supplyAsync {
-    GradleConnector.newConnector().forProjectDirectory(project.projectDir).connect().use {
-      it
-        .newBuild()
-        .addArguments(*args)
-        .addJvmArguments(
-          "--add-opens",
-          "jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED",
-        )
-        .forTasks(task)
-        .setStandardError(System.err)
-        .setStandardInput(System.`in`)
-        .setStandardOutput(System.out)
-        .run()
+    CompletableFuture.supplyAsync {
+      GradleConnector.newConnector().forProjectDirectory(project.projectDir).connect().use {
+        it.newBuild()
+            .addArguments(*args)
+            .addJvmArguments(
+                "--add-opens",
+                "jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED",
+            )
+            .forTasks(task)
+            .setStandardError(System.err)
+            .setStandardInput(System.`in`)
+            .setStandardOutput(System.out)
+            .run()
+      }
     }
-  }

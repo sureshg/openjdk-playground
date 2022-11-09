@@ -90,7 +90,7 @@ $ java  --enable-preview Foo
 ```
 
 - [JEP12](https://openjdk.java.net/jeps/12)
-- [Preview Features](https://docs.oracle.com/en/java/javase/18/language/preview-language-and-vm-features.html)
+- [Preview Features](https://docs.oracle.com/en/java/javase/19/language/preview-language-and-vm-features.html)
 - [Gradle - Enabling Java preview features](https://docs.gradle.org/current/userguide/building_java_projects.html#sec:feature_preview)
 
 ##### 3. Java Platform Module Systems (JPMS)
@@ -160,10 +160,13 @@ $ java -Xint             interpreted mode execution only (fast startup)
 $ java -Xmixed           mixed mode execution (default)
 ```
 
-- [**Java Command Options***](https://docs.oracle.com/en/java/javase/18/docs/specs/man/java.html)
-- **[VM Options](https://www.oracle.com/java/technologies/javase/vmoptions-jsp.html)**
-- [**`class` file format major
-  versions**](https://docs.oracle.com/javase/specs/jvms/se18/html/jvms-4.html#jvms-4.1-200-B.2)
+- [Java Command Options*](https://docs.oracle.com/en/java/javase/19/docs/specs/man/java.html)
+
+- [VM Options](https://www.oracle.com/java/technologies/javase/vmoptions-jsp.html)
+
+- [`class` file format major versions](https://docs.oracle.com/javase/specs/jvms/se19/html/jvms-4.html#jvms-4.1-200-B.2)
+
+
 
 ##### 7. Scan deprecated APIs
 
@@ -184,10 +187,10 @@ $ jlink --suggest-providers java.security.Provider
 $ jdeps --generate-module-info ./  app.jar
 
 # List all deprecated APIs for a release
-$ jdeprscan --for-removal --release 18 --list
+$ jdeprscan --for-removal --release 19 --list
 
 # Scan deprecated APIs
-$ jdeprscan --for-removal --release 18 app.jar
+$ jdeprscan --for-removal --release 19 app.jar
 ```
 
 - [Java EE Maven artifacts](https://openjdk.java.net/jeps/320)
@@ -364,7 +367,7 @@ $ java -Djdk.tracePinnedThreads=short|full
 ##### 2. Java Networking Properties
 
 - http://htmlpreview.github.io/?https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/net/doc-files/net-properties.html
-- https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/net/doc-files/net-properties.html
+- https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/net/doc-files/net-properties.html
 - https://docs.oracle.com/javase/8/docs/technotes/guides/net/proxies.html
 
 | Config             | Description                                   |
@@ -920,7 +923,7 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
 ### [OpenJDK Build](https://openjdk.java.net/groups/build/doc/building.html)
 
 ```bash
-$ sdk install java 18.ea.11-open
+$ sdk install java 20-open
 $ git clone https://github.com/openjdk/jdk.git
 $ cd jdk
 # $ make clean
