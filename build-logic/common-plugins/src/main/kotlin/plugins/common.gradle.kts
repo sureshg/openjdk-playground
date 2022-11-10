@@ -98,7 +98,7 @@ tasks {
 
     doLast {
       val uberJar = named("shadowJar", Jar::class).get().archiveFile.get().asFile
-      println("Uber Jar : ${uberJar.path} ${uberJar.mebiSize}")
+      println("Uber Jar : ${uberJar.path} ${uberJar.displaySize}")
       println(appRunCmd(uberJar, application.applicationDefaultJvmArgs.toList()))
 
       GithubAction.setOutput("version", project.version)

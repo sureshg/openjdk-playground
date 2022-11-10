@@ -52,6 +52,6 @@ abstract class ReallyExecJar : DefaultTask() {
       Files.copy(jarFile.get().asFile.toPath(), bos)
     }
     binFile.setExecutable(true)
-    logger.quiet("Executable Binary: ${binFile.path} ${binFile.mebiSize}")
+    logger.quiet("Executable Binary: ${binFile.path} ${binFile.displaySize}")
   }
 }

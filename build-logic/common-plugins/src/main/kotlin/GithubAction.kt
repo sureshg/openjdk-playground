@@ -499,6 +499,18 @@ object GithubAction {
     val RUNNER_CONTEXT
       get() = System.getenv("RUNNER_CONTEXT")
 
+    /** OpenJDK 8 Home */
+    val JAVA_HOME_8_X64
+      get() = System.getenv("JAVA_HOME_8_X64")
+
+    /** OpenJDK 11 Home */
+    val JAVA_HOME_11_X64
+      get() = System.getenv("JAVA_HOME_11_X64")
+
+    /** OpenJDK 17 Home */
+    val JAVA_HOME_17_X64
+      get() = System.getenv("JAVA_HOME_17_X64")
+
     /** Gets the value of the environment variable set in the Github action runner. */
     operator fun get(name: String): String? = System.getenv(name)
   }
