@@ -7,9 +7,7 @@ import java.util.UUID
  * Workflow commands for GitHub Actions.
  *
  * [WorkflowCommands](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions)
- * ```
- *     for more details.
- * ```
+ * for more details.
  */
 object GithubAction {
 
@@ -106,9 +104,6 @@ object GithubAction {
               col = col,
               endColumn = endColumn))
 
-  /** Sets a GitHub Action's output parameter. */
-  fun setOutput(name: String, value: Any) = echo("::set-output name=$name::$value")
-
   /** Creates an expandable group with a title in the log. */
   fun group(title: String, logs: List<String>) {
     if (isEnabled) {
@@ -118,7 +113,7 @@ object GithubAction {
     }
   }
 
-  /** Masking a string. Masked word separated by whitespace is replaced with the * character. */
+  /** Masking a string. Masked word separated by space is replaced with the `*` character. */
   fun mask(message: String) = "::add-mask::$message"
 
   /** Prints message to the GitHub Action workflow log. */
@@ -158,24 +153,19 @@ object GithubAction {
    * case-sensitive, and you can include punctuation.
    */
   fun setEnv(name: String, value: String) {
-    if (isEnabled) {
-      val ghActionEnv = System.getenv("GITHUB_ENV")
-      debug("Writing to Github Action env file $ghActionEnv")
-
-      val env =
-          when {
-            // Multiline string
-            value.lines().size > 1 ->
-                """
-                |$name<<EOF
-                |$value
-                |EOF
-                """
-                    .trimMargin()
-            else -> "$name=$value${System.lineSeparator()}"
-          }
-      Files.writeString(Path.of(ghActionEnv), env, Charsets.UTF_8, CREATE, APPEND)
-    }
+    val env =
+        when (value.lines().size > 1) {
+          // Multiline string
+          true ->
+              """
+              |$name<<EOF
+              |$value
+              |EOF
+              """
+                  .trimMargin()
+          else -> "$name=$value"
+        }
+    writeEnvFile("GITHUB_ENV", env)
   }
 
   /**
@@ -184,11 +174,49 @@ object GithubAction {
    * path variable. To see the currently defined paths for your job, you can use **echo "$PATH"** in
    * a step or an action.
    */
-  fun addPath(path: String) {
-    if (isEnabled && path.isNotBlank()) {
-      val ghActionEnv = System.getenv("GITHUB_PATH")
-      debug("Writing to Github Action path file $ghActionEnv")
-      Files.writeString(Path.of(ghActionEnv), path, Charsets.UTF_8, CREATE, APPEND)
+  fun addPath(path: String) = writeEnvFile("GITHUB_PATH", path)
+
+  /** Sets a GitHub Action's output parameter. */
+  fun setOutput(name: String, value: Any) = writeEnvFile("GITHUB_OUTPUT", "$name=$value")
+
+  /** Returns the workflow input with the given [name]. */
+  fun getInput(name: String): String? = System.getenv("INPUT_$name".uppercase())
+
+  /** Returns the workflow state with the given [name]. */
+  fun getState(name: String): String? = System.getenv("STATE_$name".uppercase())
+
+  /**
+   * Create environment variables for sharing with your workflow's `pre:` or `post:` actions by
+   * writing to the file located at `GITHUB_STATE`. For example, you can create a file with the pre:
+   * action, pass the file location to the main: action, and then use the post: action to delete the
+   * file.
+   */
+  fun saveState(name: String, value: Any) = writeEnvFile("GITHUB_STATE", "$name=$value")
+
+  /**
+   * Set some custom Markdown for each job so that it will be displayed on the summary page of a
+   * workflow run.
+   */
+  fun addJobSummary(gfmContent: String, overwrite: Boolean = false) =
+      writeEnvFile("GITHUB_STEP_SUMMARY", gfmContent, overwrite)
+
+  /** Completely remove a summary for the current step */
+  fun removeJobSummary() = Files.deleteIfExists(Path.of(System.getenv("GITHUB_STEP_SUMMARY")))
+
+  /** Append the [value] string with newline to file returned by the [env] variable. */
+  private fun writeEnvFile(env: String, value: String, truncate: Boolean = false) {
+    if (isEnabled && env.isNotBlank()) {
+      val ghActionEnv = System.getenv(env)
+      if (ghActionEnv != null) {
+        debug("Writing to Github Action '$env' file: $ghActionEnv, truncate: $truncate")
+        Files.writeString(
+            Path.of(ghActionEnv),
+            "$value${System.lineSeparator()}",
+            Charsets.UTF_8,
+            CREATE,
+            if (truncate) TRUNCATE_EXISTING else APPEND,
+            WRITE)
+      }
     }
   }
 
@@ -255,6 +283,10 @@ object GithubAction {
    * or step is sent to the runner, is always processed by GitHub Actions. You can use a context in
    * an if conditional statement to access the value of an environment variable (**${{
    * env.MY_VARIABLE }}**).
+   *
+   * Most of the default environment variables have a corresponding, and similarly named, context
+   * property. For example, the value of the **GITHUB_REF** environment variable can be read during
+   * workflow processing using the **${{ github.ref }}** context property.
    *
    * See
    * [EnvVars](https://docs.github.com/en/actions/learn-github-actions/environment-variables#default-environment-variables)
@@ -361,15 +393,22 @@ object GithubAction {
       get() = System.getenv("GITHUB_PATH")
 
     /**
-     * The branch or tag ref that triggered the workflow run. For branches this is the format
-     * refs/heads/<branch_name>, for tags it is refs/tags/<tag_name>, and for pull requests it is
-     * refs/pull/<pr_number>/merge. This variable is only set if a branch or tag is available for
-     * the event type. For example, refs/heads/feature-branch-1.
+     * The fully-formed ref of the branch or tag that triggered the workflow run. For workflows
+     * triggered by push, this is the branch or tag ref that was pushed. For workflows triggered by
+     * pull_request, this is the pull request merge branch. For workflows triggered by release, this
+     * is the release tag created. For other triggers, this is the branch or tag ref that triggered
+     * the workflow run. This is only set if a branch or tag is available for the event type. The
+     * ref given is fully-formed, meaning that for branches the format is refs/heads/<branch_name>,
+     * for pull requests it is refs/pull/<pr_number>/merge, and for tags it is refs/tags/<tag_name>.
+     * For example, refs/heads/feature-branch-1.
      */
     val GITHUB_REF
       get() = System.getenv("GITHUB_REF")
 
-    /** The branch or tag name that triggered the workflow run. For example, feature-branch-1. */
+    /**
+     * The short ref name of the branch or tag that triggered the workflow run. This value matches
+     * the branch or tag name shown on GitHub. For example, feature-branch-1.
+     */
     val GITHUB_REF_NAME
       get() = System.getenv("GITHUB_REF_NAME")
 
@@ -421,8 +460,9 @@ object GithubAction {
       get() = System.getenv("GITHUB_SERVER_URL")
 
     /**
-     * The commit SHA that triggered the workflow. For example,
-     * ffac537e6cbbf934b08745a378932722df287a53.
+     * The commit SHA that triggered the workflow. The value of this commit SHA depends on the event
+     * that triggered the workflow. For more information, see "Events that trigger workflows." For
+     * example, ffac537e6cbbf934b08745a378932722df287a53.
      */
     val GITHUB_SHA
       get() = System.getenv("GITHUB_SHA")
@@ -457,6 +497,13 @@ object GithubAction {
      */
     val RUNNER_ARCH
       get() = System.getenv("RUNNER_ARCH")
+
+    /**
+     * This is set only if debug logging is enabled, and always has the value of 1. It can be useful
+     * as an indicator to enable additional debugging or verbose logging in your own job steps.
+     */
+    val RUNNER_DEBUG
+      get() = System.getenv("RUNNER_DEBUG") == "1"
 
     /** The name of the runner executing the job. For example, Hosted Agent */
     val RUNNER_NAME

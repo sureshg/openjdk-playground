@@ -142,7 +142,7 @@ tasks {
                 .resolvedArtifacts
                 .map { it.moduleVersion.id.toString() }
                 .sorted()
-                .joinToString(System.getProperty("line.separator"))
+                .joinToString(System.lineSeparator())
         props["dependencies"] = dependencies
 
         // props["versionCatalog"] = versionCatalog.
