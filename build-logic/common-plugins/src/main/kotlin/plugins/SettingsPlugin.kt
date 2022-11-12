@@ -1,5 +1,7 @@
 package plugins
 
+import GithubAction
+import com.gradle.scan.plugin.PublishedBuildScan
 import org.gradle.api.Plugin
 import org.gradle.api.initialization.Settings
 import org.gradle.kotlin.dsl.gradleEnterprise
@@ -17,16 +19,31 @@ class SettingsPlugin : Plugin<Settings> {
             publishAlways()
             isUploadInBackground = false
             tag("GITHUB_ACTION")
-            buildScanPublished {
-              GithubAction.setOutput("build_scan_uri", buildScanUri)
-              GithubAction.notice(
-                  buildScanUri.toASCIIString(),
-                  "${GithubAction.Env.RUNNER_OS} BuildScan URL",
-              )
-            }
+            buildScanPublished { addJobSummary() }
           }
         }
       }
     }
+  }
+
+  /** Add build scan details to GitHub Job summary report! */
+  private fun PublishedBuildScan.addJobSummary() {
+    GithubAction.setOutput("build_scan_uri", buildScanUri)
+    if (GithubAction.getJobSummary().isBlank()) {
+      GithubAction.addJobSummary(
+          """
+          | #### `Gradle BuildScan` Report 🚀
+          |
+          | | Workflow Run 🏃 | OS 🏗️  |  BuildScan URL 🔗 |
+          | | :-------------: |:-------:| :-----:|
+          """
+              .trimIndent())
+    }
+
+    GithubAction.addJobSummary(
+        """
+        | | ${GithubAction.workflowRunURL} | ${GithubAction.Env.RUNNER_OS} | ${buildScanUri.toASCIIString()} |
+        """
+            .trimIndent())
   }
 }

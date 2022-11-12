@@ -200,6 +200,15 @@ object GithubAction {
   fun addJobSummary(gfmContent: String, overwrite: Boolean = false) =
       writeEnvFile("GITHUB_STEP_SUMMARY", gfmContent, overwrite)
 
+  /** Get the current job summary string. */
+  fun getJobSummary(): String {
+    val jonSummaryFile = System.getenv("GITHUB_STEP_SUMMARY")
+    return when (jonSummaryFile != null) {
+      true -> Path.of(jonSummaryFile).toFile().readText()
+      else -> ""
+    }
+  }
+
   /** Completely remove a summary for the current step */
   fun removeJobSummary() = Files.deleteIfExists(Path.of(System.getenv("GITHUB_STEP_SUMMARY")))
 
