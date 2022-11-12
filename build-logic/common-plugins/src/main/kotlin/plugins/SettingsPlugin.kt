@@ -37,13 +37,13 @@ class SettingsPlugin : Plugin<Settings> {
           | | Workflow Run 🏃 | OS 🏗️  |  BuildScan URL 🔗 |
           | | :-------------: |:-------:| :-----:|
           """
-              .trimIndent())
+              .trimMargin())
     }
 
     GithubAction.addJobSummary(
         """
         | | ${GithubAction.workflowRunURL} | ${GithubAction.Env.RUNNER_OS} | ${buildScanUri.toASCIIString()} |
         """
-            .trimIndent())
+            .trimMargin())
   }
 }
