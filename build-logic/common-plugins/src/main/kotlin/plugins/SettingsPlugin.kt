@@ -29,20 +29,9 @@ class SettingsPlugin : Plugin<Settings> {
   /** Add build scan details to GitHub Job summary report! */
   private fun PublishedBuildScan.addJobSummary() {
     GithubAction.setOutput("build_scan_uri", buildScanUri)
-    if (GithubAction.getJobSummary().isBlank()) {
-      GithubAction.addJobSummary(
-          """
-          | #### `Gradle BuildScan` Report 🚀
-          |
-          | | Workflow Run 🏃 | OS 🏗️  |  BuildScan URL 🔗 |
-          | | :-------------: |:-------:| :-----:|
-          """
-              .trimMargin())
-    }
-
     GithubAction.addJobSummary(
         """
-        | | ${GithubAction.workflowRunURL} | ${GithubAction.Env.RUNNER_OS} | ${buildScanUri.toASCIIString()} |
+        | ##### 🚀 Gradle BuildScan [URL](${buildScanUri.toASCIIString()})
         """
             .trimMargin())
   }
