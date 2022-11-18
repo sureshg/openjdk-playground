@@ -1,11 +1,6 @@
 /**
- * Returns the app's runtime version. Releases follow [semantic versioning][semver]. Versions with
- * the `-SNAPSHOT` qualifier are not unique and should only be used in development environments.
- *
- * Note that app's runtime version may be different from the version specified in your project's
- * build file due to the dependency resolution features of your build tool.
- *
- * [semver]: https://semver.org
+ * Application build config template. The gradle system property can be accessed using the
+ * **"💲{getProperty('systemProp.xxxx')}"** expression.
  */
 object App {
   /** Application version. */
@@ -15,13 +10,13 @@ object App {
   const val BASE_VERSION = "$base_version"
 
   /** Java version used for building the app. */
-  const val JAVA_VERSION = "${getProperty('systemProp.javaVersion')}"
+  const val JAVA_VERSION = "$javaVersion"
 
   /** Kotlin library version. */
-  const val KOTLIN_VERSION = "${getProperty('systemProp.kotlinVersion')}"
+  const val KOTLIN_VERSION = "$kotlinVersion"
 
   /** Gradle version */
-  const val GRADLE_VERSION = "7.5"
+  const val GRADLE_VERSION = "$gradleVersion"
 
   /**
    * Git

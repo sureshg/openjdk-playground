@@ -1,5 +1,4 @@
-import dev.suresh.gradle.configurePom
-import dev.suresh.gradle.tmp
+import dev.suresh.gradle.*
 import java.net.URL
 import kotlinx.kover.api.*
 import org.gradle.api.tasks.testing.logging.*
@@ -45,7 +44,9 @@ application {
           "--enable-preview",
           "--add-modules=$addModules",
           "--enable-native-access=ALL-UNNAMED",
-          "-XshowSettings:all",
+          "-XshowSettings:vm",
+          "-XshowSettings:system",
+          "-XshowSettings:properties",
           "-Xmx128M",
           "-XX:+PrintCommandLineFlags",
           "-XX:+UseZGC",
@@ -136,7 +137,8 @@ application {
           )
   // https://docs.oracle.com/en/java/javase/18/docs/specs/man/java.html
   // https://cs.oswego.edu/dl/jsr166/dist/jsr166.jar
-  // https://chriswhocodes.com/hotspot_options_openjdk19.html
+  // https://chriswhocodes.com/hotspot_options_openjdk20.html
+  // https://chriswhocodes.com/jfr_jdk20.html
 }
 
 kotlin {
@@ -164,7 +166,7 @@ kotlin {
     languageVersion.set(java.toolchain.languageVersion.get())
     vendor.set(java.toolchain.vendor.get())
   }
-  // jvmToolchain(libs.versions.java.asProvider().get().toInt())
+  // jvmToolchain(javaVersion)
 
   // sourceSets { main { ... } }
   // kotlinDaemonJvmArgs = listOf("--show-version", "--enable-preview")
@@ -412,13 +414,13 @@ val emptyJar by
     }
 
 dependencies {
-  implementation(platform(Deps.Kotlin.bom))
+  implementation(platform(libs.kotlin.bom))
   implementation(platform(Deps.OkHttp.bom))
-  implementation(Deps.Kotlin.stdlibJdk8)
-  implementation(Deps.Kotlin.reflect)
-  implementation(Deps.Kotlin.Coroutines.jdk8)
-  implementation(Deps.Kotlinx.Serialization.json)
-  implementation(Deps.Kotlinx.dateTime)
+  implementation(libs.kotlin.stdlib)
+  implementation(libs.kotlin.reflect)
+  implementation(libs.kotlinx.coroutines.jdk8)
+  implementation(libs.kotlinx.serialization.json)
+  implementation(libs.kotlinx.datetime)
   implementation(libs.jetty.server) { version { strictly(libs.versions.jetty.asProvider().get()) } }
   implementation(libs.jetty.jakarta.servlet)
   implementation(libs.jetty.servlet)

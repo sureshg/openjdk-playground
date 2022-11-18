@@ -1,11 +1,12 @@
 [versions]
 java                           = "20"
-kotlin                         = "1.7.21"
-kotlin-jvm-target              = "18"
-kotlin-api-version             = "1.8"
-kotlin-lang-version            = "1.8"
+kotlin                         = "1.8.0-Beta"
+kotlin-ksp                     = "1.8.0-Beta-1.0.8"
+kotlin-jvm-target              = "19"
+kotlin-api-version             = "1.9"
+kotlin-lang-version            = "1.9"
 kotlindsl-api-version          = "1.7"
-gradle                         = "8.0-20221110230947+0000"
+gradle                         = "8.0-20221116231019+0000"
 
 # Additional metadata
 githubProject                  = "https://github.com/sureshg/openjdk-playground"
@@ -31,7 +32,7 @@ db-scheduler                   = "10.5"
 db-shedlock                    = "4.33.0"
 db-sherlock                    = "0.4.14"
 dokka                          = "1.7.20"
-dokka-mermaid                  = "0.4.0"
+dokka-mermaid                  = "0.4.2"
 dikt                           = "1.0.0-alpha8"
 dir-watcher                    = "0.15.0"
 failsafe                       = "3.2.0"
@@ -46,7 +47,7 @@ http-common                    = "0.10.0"
 imageio-twelvemonkeys          = "3.8.1"
 jakewharton-picnic             = "0.4.0"
 jakewharton-crossword          = "0.1.2"
-jackson-databind               = "2.14.0-rc3"
+jackson-databind               = "2.14.0"
 jetbrains-markdown             = "0.2.4"
 jetty                          = "11.0.12"
 jetty-jakarta-servlet          = "5.0.2"
@@ -55,20 +56,20 @@ jgitver                        = "0.10.0-rc03"
 jmdns                          = "3.5.8"
 jreleaser                      = "0.9.1"
 jspecify                       = "0.2.0"
-jte                            = "2.2.2"
+jte                            = "2.2.3"
 junit                          = "5.9.1"
-junit-pioneer                  = "1.7.1"
+junit-pioneer                  = "1.9.0"
 jqwik                          = "1.6.0"
 jSystemThemeDetector           = "3.6"
 kmath                          = "0.2.1"
-kotlinx-atomicfu               = "0.18.3"
-kotlinx-coroutines             = "1.6.1"
+kotlinx-atomicfu               = "0.18.5"
+kotlinx-coroutines             = "1.6.4"
 kotlinx-collections-immutable  = "0.3.5"
 kotlinx-cli                    = "0.3.4"
 kotlinx-datetime               = "0.4.0"
 kotlinx-reflect-lite           = "1.0.0"
 kotlinx-io-jvm                 = "0.1.16"
-kotlinx-serialization          = "1.3.2"
+kotlinx-serialization          = "1.4.1"
 kotlinx-serialization-yaml     = "0.17.0"
 kotlinx-serialization-csv      = "2.0.0"
 kotlinx-html                   = "0.7.5"
@@ -77,9 +78,8 @@ kodein                         = "7.10.0"
 koin                           = "3.1.5"
 kotlininject                   = "0.4.1"
 kotest                         = "5.5.4"
-ksp                            = "1.7.21-1.0.8"
 ksp-auto-service               = "1.0.0"
-ksp-redacted                   = "1.1.0"
+ksp-redacted                   = "1.2.0"
 ksp-powerassert                = "0.12.0"
 ktor                           = "2.1.0"
 lwjgl                          = "3.3.0"
@@ -92,6 +92,7 @@ os-appdirs                     = "1.2.1"
 os-oshi                        = "6.1.2"
 os-jfa                         = "1.2.0"
 protobuf                       = "3.18.1"
+profiler-ap-loader             = "2.8.3"
 rsocket                        = "0.15.4"
 semver                         = "1.0.0"
 shapeshift                     = "0.5.0"
@@ -102,7 +103,7 @@ versioncompare                 = "1.5.0"
 violations                     = "1.149.2"
 
 # Plugin versions
-benmanes                       = "0.43.0"
+benmanes                       = "0.44.0"
 beryx-jlink                    = "2.24.4"
 beryx-runtime                  = "1.12.7"
 beryx-jar                      = "2.0.0"
@@ -127,7 +128,7 @@ shadow                         = "7.1.2"
 spotless                       = "6.11.0"
 taskinfo                       = "2.0.0"
 versioncatalog-update          = "0.5.1"
-dependency-analysis            = "1.13.1"
+dependency-analysis            = "1.14.1"
 best-practices-plugin          = "0.8"
 
 # Composite build versions
@@ -208,6 +209,17 @@ dokka-jekyll               = { module = "org.jetbrains.dokka:jekyll-plugin"     
 dokka-mathjax              = { module = "org.jetbrains.dokka:mathjax-plugin"                , version.ref = "dokka"}
 dokka-mermaid              = { module = "com.glureau:html-mermaid-dokka-plugin"             , version.ref = "dokka-mermaid"}
 
+kotlin-bom                 = { module = "org.jetbrains.kotlin:kotlin-bom"                    , version.ref = "kotlin"}
+kotlin-stdlib              = { module = "org.jetbrains.kotlin:kotlin-stdlib"                 , version.ref = "kotlin"}
+kotlin-reflect             = { module = "org.jetbrains.kotlin:kotlin-reflect"                , version.ref = "kotlin"}
+kotlin-test                = { module = "org.jetbrains.kotlin:kotlin-test"                   , version.ref = "kotlin"}
+kotlin-test-junit          = { module = "org.jetbrains.kotlin:kotlin-test-junit"             , version.ref = "kotlin"}
+kotlin-compiler-embeddable = { module = "org.jetbrains.kotlin:kotlin-compiler-embeddable"    , version.ref = "kotlin"}
+kotlin-script-runtime      = { module = "org.jetbrains.kotlin:kotlin-script-runtime"         , version.ref = "kotlin"}
+kotlin-script-util         = { module = "org.jetbrains.kotlin:kotlin-script-util"            , version.ref = "kotlin"}
+kotlin-script-jsr223       = { module = "org.jetbrains.kotlin:kotlin-scripting-jsr223"       , version.ref = "kotlin"}
+kotlin-script-mainkts      = { module = "org.jetbrains.kotlin:kotlin-main-kts"               , version.ref = "kotlin"}
+
 kotlinx-coroutines-core    = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core"      , version.ref = "kotlinx-coroutines"}
 kotlinx-coroutines-jdk8    = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8"      , version.ref = "kotlinx-coroutines"}
 kotlinx-coroutines-slf4j   = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-slf4j"     , version.ref = "kotlinx-coroutines"}
@@ -286,6 +298,8 @@ logback-core                = { module = "ch.qos.logback:logback-core"          
 maven-archeologist          = { module = "com.squareup.tools.build:maven-archeologist"      , version.ref = "maven-archeologist"}
 mockk                       = { module = "io.mockk:mockk"                                   , version.ref = "mockk"}
 
+profiler-ap-loader          = { module = "me.bechberger:ap-loader"                          , version.ref = "profiler-ap-loader"}
+
 os-appdirs                  = { module = "net.harawata:appdirs"                             , version.ref = "os-appdirs"}
 os-oshi                     = { module = "com.github.oshi:oshi-core"                        , version.ref = "os-oshi"}
 os-mac-jfa                  = { module = "de.jangassen:jfa"                                 , version.ref = "os-jfa"}
@@ -352,7 +366,7 @@ kotlin-dokka                = { id = "org.jetbrains.dokka"                      
 kotlin-kapt                 = { id = "org.jetbrains.kotlin.kapt"                             , version.ref = "kotlin" }
 kotlin-multiplatform        = { id = "org.jetbrains.kotlin.multiplatform"                    , version.ref = "kotlin" }
 kotlinx-serialization       = { id = "org.jetbrains.kotlin.plugin.serialization"             , version.ref = "kotlin" }
-ksp                         = { id = "com.google.devtools.ksp"                               , version.ref = "ksp"}
+ksp                         = { id = "com.google.devtools.ksp"                               , version.ref = "kotlin-ksp"}
 ksp-redacted                = { id = "dev.zacsweers.redacted"                                , version.ref = "ksp-redacted" }
 ksp-powerassert             = { id = "com.bnorm.power.kotlin-power-assert"                   , version.ref = "ksp-powerassert" }
 licenser                    = { id = "org.cadixdev.licenser"                                 , version.ref = "licenser" }

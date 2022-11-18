@@ -145,7 +145,11 @@ tasks {
                 .joinToString(System.lineSeparator())
         props["dependencies"] = dependencies
 
-        // props["versionCatalog"] = versionCatalog.
+        // Add info from Gradle version catalog
+        val versionCatalog = project.catalogs.named("libs")
+        props["javaVersion"] = versionCatalog.findVersion("java").get()
+        props["kotlinVersion"] = versionCatalog.findVersion("kotlin").get()
+        props["gradleVersion"] = versionCatalog.findVersion("gradle").get()
 
         if (debugEnabled) {
           props.forEach { (t, u) -> println("%1\$-42s --> %2\$s".format(t, u)) }

@@ -16,8 +16,15 @@ import org.gradle.jvm.toolchain.JavaToolchainService
 import org.gradle.kotlin.dsl.*
 import org.gradle.tooling.GradleConnector
 
+/** Returns version catalog of this project. */
 internal val Project.libs
   get() = the<LibrariesForLibs>()
+
+/**
+ * Returns version catalog extension of this project. Give access to all version catalogs available.
+ */
+internal val Project.catalogs
+  get() = the<VersionCatalogsExtension>()
 
 /** Quote for -Xlog file */
 val Project.xQuote
@@ -79,7 +86,6 @@ val Project.javaToolchainPath
  */
 fun Project.printVersionCatalog() {
   if (debugEnabled) {
-    val catalogs = the<VersionCatalogsExtension>()
     catalogs.catalogNames.map { cat ->
       println("=== Catalog $cat ===")
       val catalog = catalogs.named(cat)

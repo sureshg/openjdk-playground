@@ -566,7 +566,7 @@
   </build>
   <dependencies>
     <dependency>
-      <artifactId>kotlin-stdlib-jdk8</artifactId>
+      <artifactId>kotlin-stdlib</artifactId>
       <groupId>org.jetbrains.kotlin</groupId>
     </dependency>
     <dependency>

@@ -1,16 +1,6 @@
-import dev.suresh.gradle.sysProp
 import org.gradle.kotlin.dsl.*
 import org.gradle.plugin.use.*
 import org.slf4j.LoggerFactory
-
-/** Platform versions defined as System Properties. */
-val javaVersion by sysProp<Int>()
-val kotlinVersion by sysProp<String>()
-val kotlinJvmTarget by sysProp<String>()
-val kotlinApiVersion by sysProp<String>()
-val kotlinLangVersion by sysProp<String>()
-val jvmArguments by sysProp<List<String>>()
-val addModules by sysProp<String>()
 
 /** Build source logger */
 val logger = LoggerFactory.getLogger("build-logic")
@@ -19,8 +9,6 @@ val logger = LoggerFactory.getLogger("build-logic")
 object Deps {
 
   object Jdk {
-
-    object Jmc
 
     object Gc {
       const val toolkit = "com.microsoft.gctoolkit:api:2.0.1"
@@ -32,20 +20,6 @@ object Deps {
   }
 
   object Kotlin {
-    val bom = "org.jetbrains.kotlin:kotlin-bom:$kotlinVersion"
-    val stdlibJdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
-    val reflect = "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
-    val test = "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
-    val testJunit = "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
-    val compiler = "org.jetbrains.kotlin:kotlin-compiler-embeddable:$kotlinVersion"
-    val libsPubVersion = "0.0.60-dev-32"
-
-    object Script {
-      val runtime = "org.jetbrains.kotlin:kotlin-script-runtime:$kotlinVersion"
-      val util = "org.jetbrains.kotlin:kotlin-script-util:$kotlinVersion"
-      val jsr223 = "org.jetbrains.kotlin:kotlin-scripting-jsr223:$kotlinVersion"
-      val mainKts = "org.jetbrains.kotlin:kotlin-main-kts:$kotlinVersion"
-    }
 
     object Coroutines {
       const val version = "1.6.4"
@@ -89,7 +63,7 @@ object Deps {
   }
 
   object Kotlinx {
-    const val atomicfuVersion = "0.18.3"
+    const val atomicfuVersion = "0.18.5"
     const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
     const val reflectLite = "org.jetbrains.kotlinx:kotlinx.reflect.lite:1.0.0"
     const val atomicfu = "org.jetbrains.kotlinx:atomicfu:$atomicfuVersion"
@@ -303,7 +277,7 @@ object Deps {
   object Cli {
     const val clikt = "com.github.ajalt.clikt:clikt:3.5.0"
     const val textIO = "org.beryx:text-io:3.4.1"
-    const val mordant = "com.github.ajalt.mordant:mordant:2.0.0-beta7"
+    const val mordant = "com.github.ajalt.mordant:mordant:2.0.0-beta8"
     const val colormath = "com.github.ajalt.colormath:colormath:2.0.0"
     const val mosaic = "com.jakewharton.mosaic:1.0.0"
     const val picnic = "com.jakewharton.picnic:picnic:0.6.0"
@@ -354,7 +328,7 @@ object Deps {
   }
 
   object Security {
-    const val password4j = "com.password4j:password4j:1.6.0"
+    const val password4j = "com.password4j:password4j:1.6.2"
     const val otp = "com.github.bastiaanjansen:otp-java:1.3.2"
     const val totp = "dev.samstevens.totp:totp:1.7.1"
     const val jwtJava = "com.github.bastiaanjansen:jwt-java:1.2.0"
@@ -550,46 +524,27 @@ object Deps {
 }
 
 /** PluginId Extensions */
-inline val PluginDependenciesSpec.kotlinJvm
-  get() = kotlin("jvm") version kotlinVersion
-
-inline val PluginDependenciesSpec.kotlinSpring
-  get() = kotlin("plugin.spring") version kotlinVersion
-inline val PluginDependenciesSpec.kotlinAllOpen
-  get() = kotlin("plugin.allopen") version kotlinVersion
-inline val PluginDependenciesSpec.kotlinNoArg
-  get() = kotlin("plugin.noarg") version kotlinVersion
-inline val PluginDependenciesSpec.kotlinJpa
-  get() = kotlin("plugin.jpa") version kotlinVersion
-
-inline val PluginDependenciesSpec.kotlinScript
-  get() = kotlin("plugin.scripting") version kotlinVersion
-inline val PluginDependenciesSpec.kotlinLibsPublisher
-  get() = id("org.jetbrains.kotlin.libs.publisher") version Deps.Kotlin.libsPubVersion apply false
-inline val PluginDependenciesSpec.kotlinDocsPublisher
-  get() = id("org.jetbrains.kotlin.libs.doc") version Deps.Kotlin.libsPubVersion apply false
-
 inline val PluginDependenciesSpec.exposed
   get() = id("com.jetbrains.exposed.gradle.plugin") version "0.2.1"
 inline val PluginDependenciesSpec.kotlinxAtomicfu
   get() = id("kotlinx-atomicfu") version Deps.Kotlinx.atomicfuVersion
 inline val PluginDependenciesSpec.binCompatValidator
-  get() = id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.11.1"
+  get() = id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.12.1"
 inline val PluginDependenciesSpec.reflektPlugin
   get() = id("io.reflekt") version Deps.Kotlin.Reflekt.version
 
 inline val PluginDependenciesSpec.kover
-  get() = id("org.jetbrains.kotlinx.kover") version "0.6.0"
+  get() = id("org.jetbrains.kotlinx.kover") version "0.6.1"
 inline val PluginDependenciesSpec.sonarqube
-  get() = id("org.sonarqube") version "3.4.0.2513" apply true
+  get() = id("org.sonarqube") version "3.5.0.2730" apply true
 
 // Google Plugins
 inline val PluginDependenciesSpec.googleJib
-  get() = id("com.google.cloud.tools.jib") version "3.3.0"
+  get() = id("com.google.cloud.tools.jib") version "3.3.1"
 
 // Dependency Versions
 inline val PluginDependenciesSpec.versionCatalogUpdate
-  get() = id("nl.littlerobots.version-catalog-update") version "0.6.1"
+  get() = id("nl.littlerobots.version-catalog-update") version "0.7.0"
 inline val PluginDependenciesSpec.consistentVersions
   get() = id("com.palantir.consistent-versions") version "1.28.0"
 
@@ -603,9 +558,9 @@ inline val PluginDependenciesSpec.taskTree
 inline val PluginDependenciesSpec.forbiddenApis
   get() = id("de.thetaphi.forbiddenapis") version "3.1"
 inline val PluginDependenciesSpec.extraJavaModuleInfo
-  get() = id("org.gradlex.extra-java-module-info") version "1.0"
+  get() = id("org.gradlex.extra-java-module-info") version "1.1"
 inline val PluginDependenciesSpec.licensee
-  get() = id("app.cash.licensee") version "1.5.0" apply false
+  get() = id("app.cash.licensee") version "1.6.0" apply false
 
 inline val PluginDependenciesSpec.javafx
   get() = id("org.openjfx.javafxplugin") version "0.0.7"

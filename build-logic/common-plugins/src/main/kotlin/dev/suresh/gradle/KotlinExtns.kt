@@ -3,12 +3,13 @@ package dev.suresh.gradle
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.kotlin.dsl.kotlin
+import org.gradle.plugin.use.PluginDependenciesSpec
 
-/** Java/Kotlin versions. */
+/** Java/Kotlin version properties. */
 val Project.javaVersion
-  get() = libs.versions.java.asProvider().map { it.toInt() }
+  get() = libs.versions.java.asProvider().map { it.toInt() }.get()
 val Project.kotlinVersion
-  get() = libs.versions.kotlin.asProvider()
+  get() = libs.versions.kotlin.asProvider().get()
 val Project.kotlinJvmTarget
   get() = libs.versions.kotlin.jvm.target.get()
 val Project.kotlinApiVersion
@@ -23,20 +24,11 @@ val Project.addModules
 /** Dependency Extensions */
 val DependencyHandler.KotlinBom
   get() = kotlin("bom")
-val DependencyHandler.KotlinStdlibJdk8
-  get() = kotlin("stdlib-jdk8")
-val DependencyHandler.KotlinReflect
-  get() = kotlin("reflect")
-val DependencyHandler.KotlinTest
-  get() = kotlin("test")
-val DependencyHandler.KotlinTestJunit
-  get() = kotlin("test-junit")
-val DependencyHandler.KotlinScriptRuntime
-  get() = kotlin("script-runtime")
-val DependencyHandler.KotlinScripUtil
-  get() = kotlin("script-util")
-val DependencyHandler.KotlinScripJsr223
-  get() = kotlin("scripting-jsr223")
+
+val PluginDependenciesSpec.kotlinAllOpen
+  get() = kotlin("plugin.allopen")
+val PluginDependenciesSpec.kotlinNoArg
+  get() = kotlin("plugin.noarg")
 
 /** Kotlin Dependencies extension functions. */
 val Project.isKotlinMPP

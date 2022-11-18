@@ -4,4 +4,4 @@ group = "dev.suresh"
 
 version = libs.versions.ffm.api.get()
 
-dependencies { implementation(kotlin("stdlib-jdk8")) }
+dependencies { implementation(kotlin("stdlib")) }

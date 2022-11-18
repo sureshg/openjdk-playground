@@ -17,8 +17,7 @@ class MavenResolver {
   private val resolver = ArtifactResolver()
 
   fun run() {
-    val artifacts =
-        resolveTransitively("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${App.KOTLIN_VERSION}")
+    val artifacts = resolveTransitively("org.jetbrains.kotlin:kotlin-stdlib:${App.KOTLIN_VERSION}")
     println("\nResolved artifacts are,")
     artifacts.forEach { println(it) }
   }

@@ -15,7 +15,7 @@ java {
   withJavadocJar()
 
   toolchain {
-    languageVersion.set(JavaLanguageVersion.of(javaVersion.get()))
+    languageVersion.set(JavaLanguageVersion.of(javaVersion))
     vendor.set(JvmVendorSpec.ORACLE)
   }
 }
