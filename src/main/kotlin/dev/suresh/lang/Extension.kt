@@ -1,14 +1,11 @@
 package dev.suresh.lang
 
-import java.net.*
-import java.util.*
-
-/** Convert [Optional] to Kotlin's nullable type. */
-fun <T> Optional<T>.orNull(): T? = orElse(null)
+import java.net.URL
+import kotlin.jvm.optionals.getOrNull
 
 /** Returns the method name contains this call-site */
 inline val methodName
-  get() = StackWalker.getInstance().walk { it.findFirst().orNull()?.methodName }
+  get() = StackWalker.getInstance().walk { it.findFirst().getOrNull()?.methodName }
 
 /** Read the [Class] as [ByteArray] */
 fun <T : Class<*>> T.toBytes(): ByteArray? {

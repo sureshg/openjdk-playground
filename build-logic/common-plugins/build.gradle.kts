@@ -22,6 +22,7 @@ gradlePlugin {
     create("dev.suresh.gradle.settings") {
       id = "dev.suresh.gradle.settings"
       implementationClass = "plugins.SettingsPlugin"
+      description = "Gradle settings plugin with build scan TOS accepted"
     }
 
     // Re-exposure of plugin from dependency. Gradle doesn't expose the plugin itself.
@@ -29,7 +30,10 @@ gradlePlugin {
       id = "com.gradle.enterprise"
       implementationClass = "com.gradle.enterprise.gradleplugin.GradleEnterprisePlugin"
       dependencies { implementation(libs.build.gradle.enterprise) }
+      description = "Gradle enterprise settings plugin re-exposed from dependency"
     }
+
+    // val settingsPlugin by this.creating {}
   }
 }
 

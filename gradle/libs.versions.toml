@@ -6,7 +6,7 @@ kotlin-jvm-target              = "19"
 kotlin-api-version             = "1.9"
 kotlin-lang-version            = "1.9"
 kotlindsl-api-version          = "1.7"
-gradle                         = "8.0-20221116231019+0000"
+gradle                         = "8.0-20221126231700+0000"
 
 # Additional metadata
 githubProject                  = "https://github.com/sureshg/openjdk-playground"
@@ -15,7 +15,7 @@ java-addModules                = "jdk.incubator.concurrent,jdk.incubator.vector"
 
 # Gradle Dependencies Versions
 ajalt-clikt                    = "3.5.0"
-ajalt-mordant                  = "2.0.0-beta8"
+ajalt-mordant                  = "2.0.0-beta9"
 ajalt-colormath                = "3.2.0"
 assertj                        = "3.21.0"
 beryx-textio                   = "3.4.1"
@@ -47,7 +47,7 @@ http-common                    = "0.10.0"
 imageio-twelvemonkeys          = "3.8.1"
 jakewharton-picnic             = "0.4.0"
 jakewharton-crossword          = "0.1.2"
-jackson-databind               = "2.14.0"
+jackson-databind               = "2.14.1"
 jetbrains-markdown             = "0.2.4"
 jetty                          = "11.0.12"
 jetty-jakarta-servlet          = "5.0.2"
@@ -96,7 +96,7 @@ profiler-ap-loader             = "2.8.3"
 rsocket                        = "0.15.4"
 semver                         = "1.0.0"
 shapeshift                     = "0.5.0"
-slf4j                          = "2.0.3"
+slf4j                          = "2.0.5"
 testcontainers                 = "1.16.3"
 togglz                         = "3.1.1"
 versioncompare                 = "1.5.0"
@@ -111,6 +111,7 @@ champeau-includegit            = "0.1.5"
 champeau-japicmp               = "0.3.0"
 champeau-jmh                   = "0.6.6"
 champeau-mrjar                 = "0.1"
+foojay-toolchains              = "0.1"
 git-properties                 = "2.4.1"
 google-javaformat              = "1.15.0"
 graalvm-nativeimage            = "0.9.11"
@@ -125,11 +126,11 @@ nexus-publish                  = "1.1.0"
 osdetector                     = "1.7.0"
 protobuf-plugin                = "0.8.19"
 shadow                         = "7.1.2"
-spotless                       = "6.11.0"
+spotless                       = "6.12.0"
 taskinfo                       = "2.0.0"
 versioncatalog-update          = "0.5.1"
-dependency-analysis            = "1.14.1"
-best-practices-plugin          = "0.8"
+dependency-analysis            = "1.16.0"
+best-practices-plugin          = "0.9"
 
 # Composite build versions
 ffm-api                        = "1.0.0"
@@ -353,6 +354,7 @@ champeau-jmh                = { id = "me.champeau.jmh"                          
 champeau-mrjar              = { id = "me.champeau.mrjar"                                     , version.ref = "champeau-mrjar"}
 dependency-analysis         = { id = "com.autonomousapps.dependency-analysis"                , version.ref = "dependency-analysis" }
 dikt                        = { id = "io.github.sergeshustoff.dikt"                          , version.ref = "dikt"}
+foojay-toolchains           = { id = "org.gradle.disco-toolchains"                           , version.ref = "foojay-toolchains"}
 git-properties              = { id = "com.gorylenko.gradle-git-properties"                   , version.ref = "git-properties" }
 graalvm-nativeimage         = { id = "org.graalvm.buildtools.native"                         , version.ref = "graalvm-nativeimage"}
 gradle-checksum             = { id = "org.gradle.crypto.checksum"                            , version.ref = "gradle-checksum"}

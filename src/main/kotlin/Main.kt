@@ -36,5 +36,5 @@ sealed class Result<out T> {
     class NonRecException(val e: Exception) : Error(e)
   }
 
-  object InProgress : Result<Nothing>()
+  data object InProgress : Result<Nothing>()
 }

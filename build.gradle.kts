@@ -1,3 +1,4 @@
+import com.google.cloud.tools.jib.plugins.common.ContainerizingMode
 import dev.suresh.gradle.*
 import java.net.URL
 import kotlinx.kover.api.*
@@ -204,16 +205,32 @@ sonarqube {
 }
 
 jib {
-  from { image = "openjdk:$javaVersion-jdk-slim" }
+  from {
+    image = "openjdk:$javaVersion-slim"
+    platforms {
+      platform {
+        architecture = "arm64"
+        os = "linux"
+      }
+      platform {
+        architecture = "amd64"
+        os = "linux"
+      }
+    }
+  }
 
   to {
     image = "sureshg/${project.name}"
     tags = setOf(project.version.toString(), "latest")
   }
+
   container {
     mainClass = application.mainClass.get()
     jvmFlags = application.applicationDefaultJvmArgs.toList()
+    environment = mapOf("Author" to "Suresh")
   }
+
+  containerizingMode = ContainerizingMode.PACKAGED.toString()
 }
 
 // val branch_name: String  by extra

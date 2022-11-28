@@ -191,11 +191,21 @@ $ docker run \
 ### App Running on K8S/Docker
 
 ```bash
+# Check if running on docker container
 $ docker run \
      -it \
      --rm \
+     --pull always \
      openjdk:20-slim \
      sh -c "cat /proc/self/cgroup | grep -i '/docker'"
+
+# Check if running on Kubernets
+$  docker run \
+     -it \
+     --rm \
+     --pull always \
+     openjdk:20-slim \
+     sh -c "printenv | grep SERVICE"
 ```
 
 * [Check if the container is running inside K8S](https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/#environment-variables:~:text=printenv%20%7C%20grep%20SERVICE-,KUBERNETES_SERVICE_HOST,-%3D10.0.0.1%0AKUBERNETES_SERVICE_PORT%3D443)

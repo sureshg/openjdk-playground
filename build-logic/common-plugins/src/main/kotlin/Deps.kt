@@ -277,7 +277,7 @@ object Deps {
   object Cli {
     const val clikt = "com.github.ajalt.clikt:clikt:3.5.0"
     const val textIO = "org.beryx:text-io:3.4.1"
-    const val mordant = "com.github.ajalt.mordant:mordant:2.0.0-beta8"
+    const val mordant = "com.github.ajalt.mordant:mordant:2.0.0-beta9"
     const val colormath = "com.github.ajalt.colormath:colormath:2.0.0"
     const val mosaic = "com.jakewharton.mosaic:1.0.0"
     const val picnic = "com.jakewharton.picnic:picnic:0.6.0"
@@ -602,7 +602,7 @@ inline val PluginDependenciesSpec.springDepMgmt
 inline val PluginDependenciesSpec.spotless
   get() = id("com.diffplug.spotless") version "6.9.0"
 inline val PluginDependenciesSpec.spotlessChangelog
-  get() = id("com.diffplug.spotless-changelog") version "2.4.0"
+  get() = id("com.diffplug.spotless-changelog") version "2.4.1"
 inline val PluginDependenciesSpec.spotbugs
   get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint
