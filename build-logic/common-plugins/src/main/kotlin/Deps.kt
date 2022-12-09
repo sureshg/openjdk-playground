@@ -30,13 +30,6 @@ object Deps {
       const val debug = "org.jetbrains.kotlinx:kotlinx-coroutines-debug:$version"
     }
 
-    object Ksp {
-      const val version = "1.7.20-1.0.6"
-      const val api = "com.google.devtools.ksp:symbol-processing-api:$version"
-      const val ksp = "com.google.devtools.ksp:symbol-processing:$version"
-      const val testing = "com.github.tschuchortdev:kotlin-compile-testing-ksp:1.4.0"
-    }
-
     object Reflekt {
       const val version = "1.5.30"
       const val xx = "io.reflekt:reflekt-dsl:$version"
@@ -463,22 +456,6 @@ object Deps {
   object Apache {
     // Sql Parser
     const val calcite = "org.apache.calcite:calcite-core:1.26.0"
-  }
-
-  object Grid {
-    // Hazelcast, Ignite, Coherence, Infinispan
-    // https://search.maven.org/artifact/net.javacrumbs.shedlock/shedlock-parent/4.20.0/jar
-  }
-
-  object Web {
-
-    object TeamVM {
-      const val version = "0.6.1"
-      const val classlib = "org.teavm:teavm-classlib:$version"
-      const val jsoApis = "org.teavm:teavm-jso-apis:$version"
-    }
-
-    const val playwright = "com.microsoft.playwright:playwright:1.10.0"
   }
 
   const val threetenExtra = "org.threeten:threeten-extra:1.7.0"

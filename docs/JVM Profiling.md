@@ -19,10 +19,10 @@
 
 #### 1. Flight Recorder
 
-* [JFR Event Collections](https://sap.github.io/SapMachine/jfrevents/20.html)
+* [JFR Event Collections](https://sap.github.io/SapMachine/jfrevents/21.html)
 * [Java Flight Recorder Events](https://bestsolution-at.github.io/jfr-doc/index.html)
 * [OpenJDK - JFR EventNames](https://github.com/openjdk/jdk/blob/master/test/lib/jdk/test/lib/jfr/EventNames.java)
-* [JFR Events Explorer by Chris Newland](https://chriswhocodes.com/jfr_jdk20.html)
+* [JFR Events Explorer by Chris Newland](https://chriswhocodes.com/jfr_jdk21.html)
 * [OpenJDK - JFR Profile Configs](https://github.com/openjdk/jdk/tree/master/src/jdk.jfr/share/conf/jfr)
 
 #### 2. Java Mission Control

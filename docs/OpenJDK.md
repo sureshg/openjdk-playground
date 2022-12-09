@@ -85,7 +85,7 @@ $ mkdir -p src/{main,test}/{java,resources}
 ##### 2. Preview features
 
 ```bash
-$ javac --enable-preview -release 20 Foo.java
+$ javac --enable-preview -release 21 Foo.java
 $ java  --enable-preview Foo
 ```
 
@@ -190,10 +190,10 @@ $ jlink --suggest-providers java.security.Provider
 $ jdeps --generate-module-info ./  app.jar
 
 # List all deprecated APIs for a release
-$ jdeprscan --for-removal --release 20 --list
+$ jdeprscan --for-removal --release 21 --list
 
 # Scan deprecated APIs
-$ jdeprscan --for-removal --release 20 app.jar
+$ jdeprscan --for-removal --release 21 app.jar
 ```
 
 - [Java EE Maven artifacts](https://openjdk.java.net/jeps/320)
@@ -206,7 +206,7 @@ $ java -m jdk.httpserver -b 127.0.0.1
 
 # Compile all modules at once (Start from the main module)
 $ javac  --enable-preview \
-         --release 20 \
+         --release 21 \
          -parameters  \    // Optional, Generate metadata for reflection on method parameters
          --add-modules ALL-MODULE-PATH \  // Optional, Root modules to resolve in addition to the initial modules
          --module-path ... \           // Optional, where to find application modules
@@ -233,13 +233,13 @@ $ native-image \
     -p base-module.jar:main-module.jar \
     -m dev.suresh.Main
 
-# JavaFX 20 using jlink & jpackage
-$ jlink --output jdk-20+javafx-20 \
-        --module-path $JAVA_HOME/jmods:openjfx20-jmods \
+# JavaFX 21 using jlink & jpackage
+$ jlink --output jdk-21+javafx-21 \
+        --module-path $JAVA_HOME/jmods:openjfx21-jmods \
         --add-modules ALL-MODULE-PATH
 
 $ japckage --main-jar app.jar \
-           --runtime-image jdk-20+javafx-20 \
+           --runtime-image jdk-21+javafx-21 \
            --name app \
            -icon app.ico \
            --input app.dir \
@@ -364,9 +364,9 @@ $ java -Djdk.tracePinnedThreads=short|full
 
 ##### 2 . Debugging TLS
 
-- https://docs.oracle.com/en/java/javase/16/security/java-secure-socket-extension-jsse-reference-guide.html#GUID-4D421910-C36D-40A2-8BA2-7D42CCBED3C6
+- https://docs.oracle.com/en/java/javase/19/security/java-secure-socket-extension-jsse-reference-guide.html#GUID-4D421910-C36D-40A2-8BA2-7D42CCBED3C6
 
-- https://docs.oracle.com/en/java/javase/16/security/java-secure-socket-extension-jsse-reference-guide.html
+- https://docs.oracle.com/en/java/javase/19/security/java-secure-socket-extension-jsse-reference-guide.html
 
 - https://github.com/sureshg/InstallCerts/blob/master/src/main/kotlin/io/github/sureshg/extn/Certs.kt
 

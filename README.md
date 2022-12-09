@@ -16,7 +16,7 @@
 
 ```bash
 $ curl -s "https://get.sdkman.io" | bash
-$ sdk i java openjdk-ea-20
+$ sdk i java openjdk-ea-21
 ```
 
 #### Build
@@ -139,7 +139,7 @@ $ ./gradlew -q javaToolchains
 
 [java_url]: https://jdk.java.net/
 
-[java_img]: https://img.shields.io/badge/OpenJDK-20--ea-ea791d?logo=java&style=for-the-badge&logoColor=ea791d
+[java_img]: https://img.shields.io/badge/OpenJDK-21--ea-ea791d?logo=java&style=for-the-badge&logoColor=ea791d
 
 [kt_url]: https://github.com/JetBrains/kotlin/releases/latest
 

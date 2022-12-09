@@ -139,8 +139,8 @@ application {
   // https://docs.oracle.com/en/java/javase/19/docs/specs/man/java.html
   // https://docs.oracle.com/en/java/javase/19/core/java-networking.html#GUID-E6C82625-7C02-4AB3-B15D-0DF8A249CD73
   // https://cs.oswego.edu/dl/jsr166/dist/jsr166.jar
-  // https://chriswhocodes.com/hotspot_options_openjdk20.html
-  // https://sap.github.io/SapMachine/jfrevents/20.html
+  // https://chriswhocodes.com/hotspot_options_openjdk21.html
+  // https://sap.github.io/SapMachine/jfrevents/21.html
 }
 
 kotlin {
