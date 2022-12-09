@@ -19,8 +19,11 @@
 
 #### 1. Flight Recorder
 
+* [JFR Event Collections](https://sap.github.io/SapMachine/jfrevents/20.html)
 * [Java Flight Recorder Events](https://bestsolution-at.github.io/jfr-doc/index.html)
-* [JFR Profile Configs](https://github.com/openjdk/jdk/tree/master/src/jdk.jfr/share/conf/jfr)
+* [OpenJDK - JFR EventNames](https://github.com/openjdk/jdk/blob/master/test/lib/jdk/test/lib/jfr/EventNames.java)
+* [JFR Events Explorer by Chris Newland](https://chriswhocodes.com/jfr_jdk20.html)
+* [OpenJDK - JFR Profile Configs](https://github.com/openjdk/jdk/tree/master/src/jdk.jfr/share/conf/jfr)
 
 #### 2. Java Mission Control
 
@@ -87,12 +90,22 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
   ```bash
   $ jfr configure --interactive
   $ jfr summary openjdk-playground.jfr
+
+  # Concat multiple JFR files
   $ jfr assemble <repository> <file> // cat jfr_file_version_* >> combined.jfr
+
+  # Print specific event details
   $ jfr print --events 'jdk.*' --stack-depth 64 openjdk-playground.jfr
   $ jfr print --events CPULoad,GarbageCollection openjdk-playground.jfr
 
   # Pinned virtual threads
   $  jfr print --events jdk.VirtualThreadPinned openjdk-playground.jfr
+
+  # Remove passwords from JFR
+  $  jfr scrub --exclude-events InitialEnvironmentVariable recording.jfr no-psw.jfr
+
+  # Search for JFR metadata
+  $ jfr metadata | grep -i -e "tls" -e "x509" -e "security" | grep -i "@Name"
   ```
 
   Some config options are,

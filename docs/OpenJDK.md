@@ -110,6 +110,9 @@ $ java --upgrade-module-path $DIR
 
 ```bash
 $ javap -p -v <classfile>
+
+# Show the class version
+$ javap -p -v build.classes.kotlin.main.App | grep version
 ```
 
 - **[Javap Pastebin](https://javap.yawk.at/)**
@@ -187,10 +190,10 @@ $ jlink --suggest-providers java.security.Provider
 $ jdeps --generate-module-info ./  app.jar
 
 # List all deprecated APIs for a release
-$ jdeprscan --for-removal --release 19 --list
+$ jdeprscan --for-removal --release 20 --list
 
 # Scan deprecated APIs
-$ jdeprscan --for-removal --release 19 app.jar
+$ jdeprscan --for-removal --release 20 app.jar
 ```
 
 - [Java EE Maven artifacts](https://openjdk.java.net/jeps/320)
@@ -203,13 +206,13 @@ $ java -m jdk.httpserver -b 127.0.0.1
 
 # Compile all modules at once (Start from the main module)
 $ javac  --enable-preview \
-         --release 16 \
-         -parameters  \                    // Optional, Generate metadata for reflection on method parameters
-         --add-modules ALL-MODULE-PATH \   // Optional, Root modules to resolve in addition to the initial modules
-         --module-path ... \               // Optional, where to find application modules
-         --module-source-path "src" \      // Source files for multiple modules
+         --release 20 \
+         -parameters  \    // Optional, Generate metadata for reflection on method parameters
+         --add-modules ALL-MODULE-PATH \  // Optional, Root modules to resolve in addition to the initial modules
+         --module-path ... \           // Optional, where to find application modules
+         --module-source-path "src" \  // Source files for multiple modules
          -d classes  \
-         --module MainApp                  // Compile only the specified module(s)
+         --module MainApp              // Compile only the specified module(s)
 
 # Package all modules (Create for all modules)
 $ jar --create \
@@ -224,6 +227,23 @@ $ java  --enable-preview \
         --show-module-resolution \
         --module-path mods \
         --module app   // OR <module>/<mainclass>
+
+# Build native image from modular jars
+$ native-image \
+    -p base-module.jar:main-module.jar \
+    -m dev.suresh.Main
+
+# JavaFX 20 using jlink & jpackage
+$ jlink --output jdk-20+javafx-20 \
+        --module-path $JAVA_HOME/jmods:openjfx20-jmods \
+        --add-modules ALL-MODULE-PATH
+
+$ japckage --main-jar app.jar \
+           --runtime-image jdk-20+javafx-20 \
+           --name app \
+           -icon app.ico \
+           --input app.dir \
+           --dest app.outdir
 ```
 
 - [JPMS Quickstart](https://openjdk.java.net/projects/jigsaw/quick-start)
@@ -368,6 +388,7 @@ $ java -Djdk.tracePinnedThreads=short|full
 
 - http://htmlpreview.github.io/?https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/net/doc-files/net-properties.html
 - https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/net/doc-files/net-properties.html
+- [All Java Networking System Properties](https://docs.oracle.com/en/java/javase/19/core/java-networking.html#GUID-E6C82625-7C02-4AB3-B15D-0DF8A249CD73)
 - https://docs.oracle.com/javase/8/docs/technotes/guides/net/proxies.html
 
 | Config             | Description                                   |

@@ -481,16 +481,10 @@ object Deps {
     const val playwright = "com.microsoft.playwright:playwright:1.10.0"
   }
 
-  const val jspecify = "org.jspecify:jspecify:0.2.0"
-  const val jsr305 = "com.google.code.findbugs:jsr305:3.0.2"
-
   const val threetenExtra = "org.threeten:threeten-extra:1.7.0"
-  const val micronautBom = "io.micronaut:micronaut-bom:2.0.0"
-  const val mapstruct = "org.mapstruct:mapstruct:1.4.2.Final"
   const val ljv = "org.atp-fivt:ljv:1.02"
 
   const val streamex = "one.util:streamex:0.7.3"
-  const val turbine = "app.cash.turbine:turbine:0.1.1"
   const val typetools = "net.jodah:typetools:0.6.2"
   const val funcj = "org.typemeta:funcj:0.6.16"
 
@@ -549,8 +543,6 @@ inline val PluginDependenciesSpec.consistentVersions
   get() = id("com.palantir.consistent-versions") version "1.28.0"
 
 // Dependencies
-inline val PluginDependenciesSpec.shadow
-  get() = id("com.github.johnrengelman.shadow") version "7.1.2"
 inline val PluginDependenciesSpec.dependencyAnalyze
   get() = id("ca.cutterslade.analyze") version "1.9.0" apply true
 inline val PluginDependenciesSpec.taskTree
@@ -599,8 +591,6 @@ inline val PluginDependenciesSpec.springDepMgmt
   get() = id("io.spring.dependency-management") version "1.0.9.RELEASE"
 
 // Static Analysis and Linting
-inline val PluginDependenciesSpec.spotless
-  get() = id("com.diffplug.spotless") version "6.9.0"
 inline val PluginDependenciesSpec.spotlessChangelog
   get() = id("com.diffplug.spotless-changelog") version "2.4.1"
 inline val PluginDependenciesSpec.spotbugs
@@ -619,8 +609,6 @@ inline val PluginDependenciesSpec.nexusPublish
   get() = id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
 inline val PluginDependenciesSpec.simpleMavenPublish
   get() = id("net.mbonnin.sjmp") version "0.2"
-inline val PluginDependenciesSpec.jreleaser
-  get() = id("org.jreleaser") version "0.2.0"
 inline val PluginDependenciesSpec.mavenRepoAuth
   get() = id("org.hibernate.build.maven-repo-auth") version "3.0.4"
 inline val PluginDependenciesSpec.gradleRelease
@@ -668,14 +656,6 @@ inline val PluginDependenciesSpec.javapackager
 inline val PluginDependenciesSpec.jpackageplugin
   get() = id("org.panteleyev.jpackageplugin") version "0.0.2"
 
-// Parsers
-inline val PluginDependenciesSpec.jflex
-  get() = id("org.xbib.gradle.plugin.jflex") version "1.5.0"
-
-// GraalVM
-inline val PluginDependenciesSpec.nativeImage
-  get() = id("org.graalvm.plugin.native-image") version "0.1.0-alpha2"
-
 // JavaCpp
 inline val PluginDependenciesSpec.javacppBuild
   get() = id("org.bytedeco.gradle-javacpp-build") version Deps.JavaCpp.version
@@ -685,5 +665,3 @@ inline val PluginDependenciesSpec.javacppPlatform
 // Plugin development
 inline val PluginDependenciesSpec.intellijPlugin
   get() = id("org.jetbrains.intellij") version "0.7.3"
-inline val PluginDependenciesSpec.mavenPluginDev
-  get() = id("de.benediktritter.maven-plugin-development") version "0.3.1"

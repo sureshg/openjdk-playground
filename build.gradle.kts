@@ -19,7 +19,6 @@ plugins {
   alias(libs.plugins.ksp.powerassert)
   kover
   googleJib
-  shadow
   qodanaPlugin
   sonarqube
   spotlessChangelog
@@ -110,6 +109,7 @@ application {
           // "-XX:+DebugNonSafepoints",
           // "-XX:OnOutOfMemoryError="./restart.sh"",
           // "-XX:SelfDestructTimer=0.05",
+          // "-XX:NativeMemoryTracking=[off|summary|detail]",
           // "-Djava.security.properties=/path/to/custom/java.security", // == to override
           // "-Duser.timezone=\"PST8PDT\"",
           // "-Djava.net.preferIPv4Stack=true",
@@ -136,10 +136,11 @@ application {
           // "-agentlib:jdwp=transport=dt_socket,server=n,address=host:5005,suspend=y,onthrow=<FQ
           // exception class name>,onuncaught=<y/n>"
           )
-  // https://docs.oracle.com/en/java/javase/18/docs/specs/man/java.html
+  // https://docs.oracle.com/en/java/javase/19/docs/specs/man/java.html
+  // https://docs.oracle.com/en/java/javase/19/core/java-networking.html#GUID-E6C82625-7C02-4AB3-B15D-0DF8A249CD73
   // https://cs.oswego.edu/dl/jsr166/dist/jsr166.jar
   // https://chriswhocodes.com/hotspot_options_openjdk20.html
-  // https://chriswhocodes.com/jfr_jdk20.html
+  // https://sap.github.io/SapMachine/jfrevents/20.html
 }
 
 kotlin {
@@ -459,6 +460,9 @@ dependencies {
   implementation(Deps.Security.password4j) { exclude(group = "org.slf4j", module = "slf4j-nop") }
   implementation(Deps.Security.otp)
   implementation(libs.log4j.core)
+  implementation(libs.jspecify)
+  implementation(libs.reflect.typeparamresolver)
+
   compileOnly(libs.jte.kotlin)
   compileOnly(Deps.Kotlinx.atomicfu)
 
@@ -472,8 +476,9 @@ dependencies {
   implementation(libs.ffm.api)
   implementation(libs.maven.archeologist)
 
-  testImplementation(Deps.Kotlin.Coroutines.test)
   testImplementation(platform(libs.junit.bom))
+  testImplementation(libs.kotlinx.coroutines.test)
+  testImplementation(libs.kotlinx.lincheck)
   testImplementation(libs.junit.jupiter)
   testImplementation(libs.junit.pioneer)
   testImplementation(kotlin("test-junit5"))

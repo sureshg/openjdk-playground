@@ -128,6 +128,8 @@ $ docker run -it --rm gcr.io/distroless/java-debian11:base-nonroot openssl s_cli
 
 * [JDK Script Friendly URLs](https://www.oracle.com/java/technologies/jdk-script-friendly-urls/)
 
+
+
 ### Docker Commands
 
 ```bash
@@ -156,6 +158,9 @@ $ docker run -it --rm ,
     --volume ${pwd}/app:/app:rw ,
     --entrypoint="run" ,
     suresh/openjdk-playground:latest
+
+# Find container IPAddress
+$ docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' openjdk
 ```
 
 
@@ -341,6 +346,8 @@ RUN apt-get update && apt-get upgrade -y && \
 
 * https://github.com/rancher-sandbox/rancher-desktop
 
+* https://github.com/beringresearch/macpine (Lightweight Linux VMs on MacOS)
+
 * https://github.com/containerd/containerd
 
 * https://github.com/lima-vm/lima (Linux on Mac)
@@ -389,11 +396,15 @@ RUN apt-get update && apt-get upgrade -y && \
 
 * https://jpetazzo.github.io/2020/03/01/quest-minimal-docker-images-part-2/
 
+
+
 #### Distroless
 
 ------
 
 https://github.com/GoogleContainerTools/distroless/blob/master/base/README.md
+
+
 
 #### Documentation
 
@@ -417,19 +428,15 @@ https://www.morling.dev/blog/smaller-faster-starting-container-images-with-jlink
 
 https://blog.arkey.fr/2020/06/28/using-jdk-flight-recorder-and-jdk-mission-control/
 
+
+
 ## Kubernetes
 
 ------
 
 ##### https://github.com/kubernetes-client/java
 
-https://github.com/fabric8io/kubernetes-client
 
-https://kubernetes.io/blog/2019/11/26/develop-a-kubernetes-controller-in-java/
-
-https://github.com/ContainerSolutions/java-operator-sdk
-
-https://operatorhub.io/
 
 ## Git
 

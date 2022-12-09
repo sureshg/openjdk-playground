@@ -16,10 +16,15 @@ plugins {
   // id("gg.jte.gradle")
   id("com.diffplug.spotless")
   id("com.github.ben-manes.versions")
+  id("com.github.johnrengelman.shadow")
   id("io.github.gradle-nexus.publish-plugin")
   id("com.autonomousapps.dependency-analysis")
   id("com.autonomousapps.plugin-best-practices-plugin")
   id("org.jetbrains.dokka")
+
+  // id("org.openrewrite.rewrite")
+  // id("de.benediktritter.maven-plugin-development")
+  // id("io.fuchs.gradle.classpath-collision-detector")
   // id("org.barfuin.gradle.taskinfo").apply(false)
 }
 
