@@ -6,13 +6,12 @@ plugins {
 }
 
 kotlin {
-  sourceSets {
-    main {
-      languageSettings.apply {
-        progressiveMode = true
-        optIn("kotlin.RequiresOptIn")
-        optIn("kotlin.ExperimentalStdlibApi")
-      }
+  sourceSets.all {
+    languageSettings.apply {
+      progressiveMode = true
+      optIn("kotlin.ExperimentalStdlibApi")
+      optIn("kotlin.io.path.ExperimentalPathApi")
+      optIn("kotlin.time.ExperimentalTime")
     }
   }
 }

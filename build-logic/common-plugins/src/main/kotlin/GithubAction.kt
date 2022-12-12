@@ -1,7 +1,7 @@
 import GithubAction.MsgType.*
-import java.nio.file.*
 import java.nio.file.StandardOpenOption.*
-import java.util.UUID
+import java.util.*
+import kotlin.io.path.*
 
 /**
  * Workflow commands for GitHub Actions.
@@ -204,13 +204,13 @@ object GithubAction {
   fun getJobSummary(): String {
     val jonSummaryFile = System.getenv("GITHUB_STEP_SUMMARY")
     return when (jonSummaryFile != null) {
-      true -> Path.of(jonSummaryFile).toFile().readText()
+      true -> Path(jonSummaryFile).readText()
       else -> ""
     }
   }
 
   /** Completely remove a summary for the current step */
-  fun removeJobSummary() = Files.deleteIfExists(Path.of(System.getenv("GITHUB_STEP_SUMMARY")))
+  fun removeJobSummary() = Path(System.getenv("GITHUB_STEP_SUMMARY")).deleteIfExists()
 
   /** Append the [value] string with newline to file returned by the [env] variable. */
   private fun writeEnvFile(env: String, value: String, truncate: Boolean = false) {
@@ -218,13 +218,13 @@ object GithubAction {
       val ghActionEnv = System.getenv(env)
       if (ghActionEnv != null) {
         debug("Writing to Github Action '$env' file: $ghActionEnv, truncate: $truncate")
-        Files.writeString(
-            Path.of(ghActionEnv),
-            "$value${System.lineSeparator()}",
-            Charsets.UTF_8,
-            CREATE,
-            if (truncate) TRUNCATE_EXISTING else APPEND,
-            WRITE)
+        Path(ghActionEnv)
+            .writeText(
+                text = "$value${System.lineSeparator()}",
+                charset = Charsets.UTF_8,
+                CREATE,
+                if (truncate) TRUNCATE_EXISTING else APPEND,
+                WRITE)
       }
     }
   }

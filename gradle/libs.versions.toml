@@ -5,7 +5,7 @@ kotlin-ksp                     = "1.8.0-RC-1.0.8"
 kotlin-jvm-target              = "19"
 kotlin-api-version             = "1.9"
 kotlin-lang-version            = "1.9"
-gradle                         = "8.0-20221209010857+0000"
+gradle                         = "8.1-20221209231151+0000"
 
 # Additional metadata
 githubProject                  = "https://github.com/sureshg/openjdk-playground"

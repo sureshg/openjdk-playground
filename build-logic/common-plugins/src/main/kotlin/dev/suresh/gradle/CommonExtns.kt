@@ -18,11 +18,8 @@ internal val DEC_FORMAT = DecimalFormat("#.##")
 /**
  * Returns a human-readable version of the Byte size, where the input represents a specific number
  * of bytes.
- *
  * - [SI vs Binary](https://en.wikipedia.org/wiki/Template:Bit_and_byte_prefixes)
- *
  * - [SI](https://en.wikipedia.org/wiki/International_System_of_Units#Prefixes)
- *
  * - [Binary](https://en.wikipedia.org/wiki/Binary_prefix)
  */
 fun Long.byteDisplaySize(si: Boolean = true): String {

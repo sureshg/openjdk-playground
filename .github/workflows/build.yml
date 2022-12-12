@@ -97,7 +97,7 @@ jobs:
 
       - name: ⬇️ Download OpenJDK ${{ matrix.jdk }} build from ☁️jdk.java.net
         id: download-jdk
-        uses: oracle-actions/setup-java@v1
+        uses: oracle-actions/setup-java@main
         with:
           website: jdk.java.net
           release: ${{ matrix.jdk }}
@@ -264,7 +264,7 @@ jobs:
       - name: ☕ Run Java App on OpenJDK ${{ matrix.jdk }} container image
         if: always()
         run: |
-          java -ea --show-version src/main/java/JavaApp.java
+          java -ea --enable-preview --show-version src/main/java/JavaApp.java
         env:
           RUNNER_CONTEXT: ${{ toJson(runner) }}
 
