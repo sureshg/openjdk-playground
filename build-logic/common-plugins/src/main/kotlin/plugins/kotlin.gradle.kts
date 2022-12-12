@@ -44,7 +44,7 @@ tasks {
               // "java.base/sun.nio.ch=ALL-UNNAMED",
               // "--patch-module",
               // "$moduleName=${sourceSets.main.get().output.asPath}"
-              ),
+          ),
       )
     }
   }
@@ -81,7 +81,7 @@ tasks {
               // "-Xjavac-arguments=\"--add-exports java.base/sun.nio.ch=ALL-UNNAMED\"",
               // "-Xexplicit-api={strict|warning|disable}",
               // "-Xgenerate-strict-metadata-version",
-              )
+          )
     }
   }
 

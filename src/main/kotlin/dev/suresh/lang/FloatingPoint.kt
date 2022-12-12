@@ -6,8 +6,7 @@ import kotlin.math.*
 /**
  * 64-bit floating points can only represent numbers which are sums of powers of 2.
  *
- * [Floating Point in 60
- * Seconds](https://www.youtube.com/watch?v=Vs7LRqnZLaI)
+ * [Floating Point in 60 Seconds](https://www.youtube.com/watch?v=Vs7LRqnZLaI)
  */
 fun main() {
   // Double-precision 64-bit IEEE 754 floating point

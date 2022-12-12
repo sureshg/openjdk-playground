@@ -135,7 +135,7 @@ application {
           // "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005",
           // "-agentlib:jdwp=transport=dt_socket,server=n,address=host:5005,suspend=y,onthrow=<FQ
           // exception class name>,onuncaught=<y/n>"
-          )
+      )
   // https://docs.oracle.com/en/java/javase/19/docs/specs/man/java.html
   // https://docs.oracle.com/en/java/javase/19/core/java-networking.html#GUID-E6C82625-7C02-4AB3-B15D-0DF8A249CD73
   // https://cs.oswego.edu/dl/jsr166/dist/jsr166.jar
@@ -282,7 +282,7 @@ tasks {
               // "java.base/sun.nio.ch=ALL-UNNAMED",
               // "--patch-module",
               // "$moduleName=${sourceSets.main.get().output.asPath}"
-              ),
+          ),
       )
     }
   }
@@ -319,7 +319,7 @@ tasks {
               // "-Xjavac-arguments=\"--add-exports java.base/sun.nio.ch=ALL-UNNAMED\"",
               // "-Xexplicit-api={strict|warning|disable}",
               // "-Xgenerate-strict-metadata-version",
-              )
+          )
     }
   }
 
