@@ -53,7 +53,7 @@ jgit                           = "6.2.0.202206071550-r"
 jgitver                        = "0.10.0-rc03"
 jmdns                          = "3.5.8"
 jreleaser                      = "0.9.1"
-jspecify                       = "0.3.0-alpha-2"
+jspecify                       = "0.3.0"
 jte                            = "2.2.4"
 junit                          = "5.9.1"
 junit-pioneer                  = "1.9.1"
@@ -98,7 +98,7 @@ reflect-typetools              = "0.6.3"
 rsocket                        = "0.15.4"
 semver                         = "1.0.0"
 shapeshift                     = "0.5.0"
-slf4j                          = "2.0.5"
+slf4j                          = "2.0.6"
 testcontainers                 = "1.16.3"
 togglz                         = "3.1.1"
 versioncompare                 = "1.5.0"
@@ -350,6 +350,7 @@ build-bestpractices-plugin      = { module = "com.autonomousapps:plugin-best-pra
 build-openrewrite-plugin        = { module = "org.openrewrite:plugin"                                         , version.ref = "openrewrite" }
 build-maven-plugindev           = { module = "de.benediktritter:plugin"                                       , version.ref = "maven-plugindev" }
 build-cp-collisiondetector      = { module = "io.fuchs.gradle.classpath-collision-detector:classpath-collision-detector" , version.ref = "classpath-collisiondetector" }
+build-includegit-plugin         = { module = "me.champeau.gradle.includegit:plugin"                           , version.ref = "champeau-includegit" }
 
 # Gradle  Plugins
 [plugins]
