@@ -6,10 +6,18 @@
     <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
     <script>var pathToRoot = "../../../";</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-const savedDarkMode = storage ? JSON.parse(storage) : false
-if(savedDarkMode === true){
-    document.getElementsByTagName("html")[0].classList.add("theme-dark")
-}</script>
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
 <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
 <link href="../../../styles/style.css" rel="Stylesheet">
 <link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
@@ -21,6 +29,7 @@ if(savedDarkMode === true){
 <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
 <script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
 <script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
 <script type="text/javascript" src="../../../dokka-mermaid.js" async="async"></script>
 </head>
 <body>
@@ -32,7 +41,7 @@ if(savedDarkMode === true){
             </a>
     </div>
     <div>
-1.7.2-0    </div>
+1.8.0-0    </div>
     <div class="pull-right d-flex">
         <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
         <div id="searchBar"></div>
@@ -44,10 +53,10 @@ if(savedDarkMode === true){
     </div>
     <div id="main">
 <div class="main-content" id="content" pageIds="openjdk-playground::/App///PointingToDeclaration//1411724783">
-  <div class="breadcrumbs"><a href="../../../index.html">openjdk-playground</a><span class="delimiter">/</span><a href="../index.html">[root]</a><span class="delimiter">/</span><a href="index.html">App</a></div>
+  <div class="breadcrumbs"><a href="../../../index.html">openjdk-playground</a><span class="delimiter">/</span><a href="../index.html">[root]</a><span class="delimiter">/</span><span class="current">App</span></div>
   <div class="cover ">
     <h1 class="cover"><span><span>App</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="index.html">App</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Returns the app's runtime version. Releases follow <a href="https://semver.org">semantic versioning</a>. Versions with the <code class="lang-kotlin">-SNAPSHOT</code> qualifier are not unique and should only be used in development environments.</p><p class="paragraph">Note that app's runtime version may be different from the version specified in your project's build file due to the dependency resolution features of your build tool.</p></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="index.html">App</a></div><p class="paragraph">Application build config template. The gradle system property can be accessed using the <strong>&quot;💲{getProperty('systemProp.xxxx')}&quot;</strong> expression.</p></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Properties">Properties</button></div>
@@ -63,7 +72,22 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="1660836054%2FProperties%2F1411724783" anchor-label="BASE_VERSION" id="1660836054%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-b-a-s-e_-v-e-r-s-i-o-n.html">BASE_VERSION</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1660836054%2FProperties%2F1411724783" anchor-label="BASE_VERSION" id="1660836054%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><p class="paragraph">Application base version used for calculating the version.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="1660836054%2FProperties%2F1411724783" anchor-label="BASE_VERSION" id="1660836054%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-b-a-s-e_-v-e-r-s-i-o-n.html">BASE_VERSION</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><a data-name="1660836054%2FProperties%2F1411724783" anchor-label="BASE_VERSION" id="1660836054%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><p class="paragraph">Application base version used for calculating the version.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="91591127%2FProperties%2F1411724783" anchor-label="dependencies" id="91591127%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="dependencies.html"><span><span>dependencies</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="91591127%2FProperties%2F1411724783"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="91591127%2FProperties%2F1411724783" anchor-label="dependencies" id="91591127%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="dependencies.html">dependencies</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></div><div class="brief "><a data-name="91591127%2FProperties%2F1411724783" anchor-label="dependencies" id="91591127%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><p class="paragraph">Returns the list of runtime dependencies.</p></div></div></div>
               </div>
             </div>
           </div>
@@ -78,7 +102,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-1253954639%2FProperties%2F1411724783" anchor-label="GIT_BRANCH" id="-1253954639%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-g-i-t_-b-r-a-n-c-h.html">GIT_BRANCH</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-1253954639%2FProperties%2F1411724783" anchor-label="GIT_BRANCH" id="-1253954639%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-g-i-t_-b-r-a-n-c-h.html">GIT_BRANCH</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
               </div>
             </div>
           </div>
@@ -93,7 +117,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="1763149669%2FProperties%2F1411724783" anchor-label="GIT_COMMIT_TIMESTAMP" id="1763149669%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-g-i-t_-c-o-m-m-i-t_-t-i-m-e-s-t-a-m-p.html">GIT_COMMIT_TIMESTAMP</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="1763149669%2FProperties%2F1411724783" anchor-label="GIT_COMMIT_TIMESTAMP" id="1763149669%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-g-i-t_-c-o-m-m-i-t_-t-i-m-e-s-t-a-m-p.html">GIT_COMMIT_TIMESTAMP</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
               </div>
             </div>
           </div>
@@ -108,7 +132,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="1753365650%2FProperties%2F1411724783" anchor-label="GIT_COMMITER_EMAIL" id="1753365650%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-g-i-t_-c-o-m-m-i-t-e-r_-e-m-a-i-l.html">GIT_COMMITER_EMAIL</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="1753365650%2FProperties%2F1411724783" anchor-label="GIT_COMMITER_EMAIL" id="1753365650%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-g-i-t_-c-o-m-m-i-t-e-r_-e-m-a-i-l.html">GIT_COMMITER_EMAIL</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
               </div>
             </div>
           </div>
@@ -123,7 +147,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-1412469599%2FProperties%2F1411724783" anchor-label="GIT_COMMITER_NAME" id="-1412469599%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-g-i-t_-c-o-m-m-i-t-e-r_-n-a-m-e.html">GIT_COMMITER_NAME</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-1412469599%2FProperties%2F1411724783" anchor-label="GIT_COMMITER_NAME" id="-1412469599%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-g-i-t_-c-o-m-m-i-t-e-r_-n-a-m-e.html">GIT_COMMITER_NAME</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
               </div>
             </div>
           </div>
@@ -138,7 +162,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-241987275%2FProperties%2F1411724783" anchor-label="GIT_SHA1_8" id="-241987275%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-g-i-t_-s-h-a1_8.html">GIT_SHA1_8</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-241987275%2FProperties%2F1411724783" anchor-label="GIT_SHA1_8" id="-241987275%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><p class="paragraph">Git <a href="https://github.com/jgitver/jgitver/blob/master/src/main/java/fr/brouillard/oss/jgitver/metadata/Metadatas.java">Metadata</a>.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-241987275%2FProperties%2F1411724783" anchor-label="GIT_SHA1_8" id="-241987275%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-g-i-t_-s-h-a1_8.html">GIT_SHA1_8</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><a data-name="-241987275%2FProperties%2F1411724783" anchor-label="GIT_SHA1_8" id="-241987275%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><p class="paragraph">Git <a href="https://github.com/jgitver/jgitver/blob/master/src/main/java/fr/brouillard/oss/jgitver/metadata/Metadatas.java">Metadata</a> .</p></div></div></div>
               </div>
             </div>
           </div>
@@ -153,7 +177,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-1467303074%2FProperties%2F1411724783" anchor-label="GIT_SHA1_FULL" id="-1467303074%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-g-i-t_-s-h-a1_-f-u-l-l.html">GIT_SHA1_FULL</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-1467303074%2FProperties%2F1411724783" anchor-label="GIT_SHA1_FULL" id="-1467303074%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-g-i-t_-s-h-a1_-f-u-l-l.html">GIT_SHA1_FULL</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
               </div>
             </div>
           </div>
@@ -168,22 +192,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-1215519251%2FProperties%2F1411724783" anchor-label="GIT_TAG" id="-1215519251%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-g-i-t_-t-a-g.html">GIT_TAG</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-<a data-name="-1087847554%2FProperties%2F1411724783" anchor-label="GJF_VERSION" id="-1087847554%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-g-j-f_-v-e-r-s-i-o-n.html"><span><span>GJF_VERSION</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1087847554%2FProperties%2F1411724783"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-1087847554%2FProperties%2F1411724783" anchor-label="GJF_VERSION" id="-1087847554%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-g-j-f_-v-e-r-s-i-o-n.html">GJF_VERSION</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1087847554%2FProperties%2F1411724783" anchor-label="GJF_VERSION" id="-1087847554%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><p class="paragraph">Google Java Format version</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-1215519251%2FProperties%2F1411724783" anchor-label="GIT_TAG" id="-1215519251%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-g-i-t_-t-a-g.html">GIT_TAG</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
               </div>
             </div>
           </div>
@@ -198,7 +207,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-1949339296%2FProperties%2F1411724783" anchor-label="GRADLE_VERSION" id="-1949339296%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-g-r-a-d-l-e_-v-e-r-s-i-o-n.html">GRADLE_VERSION</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1949339296%2FProperties%2F1411724783" anchor-label="GRADLE_VERSION" id="-1949339296%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><p class="paragraph">Gradle version</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-1949339296%2FProperties%2F1411724783" anchor-label="GRADLE_VERSION" id="-1949339296%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-g-r-a-d-l-e_-v-e-r-s-i-o-n.html">GRADLE_VERSION</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><a data-name="-1949339296%2FProperties%2F1411724783" anchor-label="GRADLE_VERSION" id="-1949339296%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><p class="paragraph">Gradle version</p></div></div></div>
               </div>
             </div>
           </div>
@@ -213,7 +222,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="1078469541%2FProperties%2F1411724783" anchor-label="JAVA_VERSION" id="1078469541%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-j-a-v-a_-v-e-r-s-i-o-n.html">JAVA_VERSION</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1078469541%2FProperties%2F1411724783" anchor-label="JAVA_VERSION" id="1078469541%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><p class="paragraph">Java version used for building the app.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="1078469541%2FProperties%2F1411724783" anchor-label="JAVA_VERSION" id="1078469541%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-j-a-v-a_-v-e-r-s-i-o-n.html">JAVA_VERSION</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><a data-name="1078469541%2FProperties%2F1411724783" anchor-label="JAVA_VERSION" id="1078469541%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><p class="paragraph">Java version used for building the app.</p></div></div></div>
               </div>
             </div>
           </div>
@@ -228,22 +237,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-1797418010%2FProperties%2F1411724783" anchor-label="KOTLIN_VERSION" id="-1797418010%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-k-o-t-l-i-n_-v-e-r-s-i-o-n.html">KOTLIN_VERSION</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1797418010%2FProperties%2F1411724783" anchor-label="KOTLIN_VERSION" id="-1797418010%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><p class="paragraph">Kotlin library version.</p></div></div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-<a data-name="-226970277%2FProperties%2F1411724783" anchor-label="KTLINT_VERSION" id="-226970277%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a>
-        <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-k-t-l-i-n-t_-v-e-r-s-i-o-n.html"><span><span>KTLINT_VERSION</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-226970277%2FProperties%2F1411724783"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-226970277%2FProperties%2F1411724783" anchor-label="KTLINT_VERSION" id="-226970277%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-k-t-l-i-n-t_-v-e-r-s-i-o-n.html">KTLINT_VERSION</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-226970277%2FProperties%2F1411724783" anchor-label="KTLINT_VERSION" id="-226970277%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><p class="paragraph">Ktlint version</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="-1797418010%2FProperties%2F1411724783" anchor-label="KOTLIN_VERSION" id="-1797418010%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-k-o-t-l-i-n_-v-e-r-s-i-o-n.html">KOTLIN_VERSION</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><a data-name="-1797418010%2FProperties%2F1411724783" anchor-label="KOTLIN_VERSION" id="-1797418010%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><p class="paragraph">Kotlin library version.</p></div></div></div>
               </div>
             </div>
           </div>
@@ -258,7 +252,7 @@ if(savedDarkMode === true){
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="1141511426%2FProperties%2F1411724783" anchor-label="VERSION" id="1141511426%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-v-e-r-s-i-o-n.html">VERSION</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1141511426%2FProperties%2F1411724783" anchor-label="VERSION" id="1141511426%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><p class="paragraph">Application version.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><a data-name="1141511426%2FProperties%2F1411724783" anchor-label="VERSION" id="1141511426%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">const </span><span class="token keyword">val </span><a href="-v-e-r-s-i-o-n.html">VERSION</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><a data-name="1141511426%2FProperties%2F1411724783" anchor-label="VERSION" id="1141511426%2FProperties%2F1411724783" data-filterable-set=":dokkaHtml/main"></a><p class="paragraph">Application version.</p></div></div></div>
               </div>
             </div>
           </div>

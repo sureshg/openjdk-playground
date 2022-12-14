@@ -12,12 +12,11 @@ $dokka.location:/App/GIT_COMMIT_TIMESTAMP/#/PointingToDeclaration/openjdk-playg
 $dokka.location:/App/GIT_SHA1_8/#/PointingToDeclaration/openjdk-playground/[root]/-app/-g-i-t_-s-h-a1_8.html
 $dokka.location:/App/GIT_SHA1_FULL/#/PointingToDeclaration/openjdk-playground/[root]/-app/-g-i-t_-s-h-a1_-f-u-l-l.html
 $dokka.location:/App/GIT_TAG/#/PointingToDeclaration/openjdk-playground/[root]/-app/-g-i-t_-t-a-g.html
-$dokka.location:/App/GJF_VERSION/#/PointingToDeclaration/openjdk-playground/[root]/-app/-g-j-f_-v-e-r-s-i-o-n.html
 $dokka.location:/App/GRADLE_VERSION/#/PointingToDeclaration/openjdk-playground/[root]/-app/-g-r-a-d-l-e_-v-e-r-s-i-o-n.html
 $dokka.location:/App/JAVA_VERSION/#/PointingToDeclaration/openjdk-playground/[root]/-app/-j-a-v-a_-v-e-r-s-i-o-n.html
 $dokka.location:/App/KOTLIN_VERSION/#/PointingToDeclaration/openjdk-playground/[root]/-app/-k-o-t-l-i-n_-v-e-r-s-i-o-n.html
-$dokka.location:/App/KTLINT_VERSION/#/PointingToDeclaration/openjdk-playground/[root]/-app/-k-t-l-i-n-t_-v-e-r-s-i-o-n.html
 $dokka.location:/App/VERSION/#/PointingToDeclaration/openjdk-playground/[root]/-app/-v-e-r-s-i-o-n.html
+$dokka.location:/App/dependencies/#/PointingToDeclaration/openjdk-playground/[root]/-app/dependencies.html
 $dokka.location:/JavaApp///PointingToDeclaration/openjdk-playground/[root]/-java-app/index.html
 $dokka.location:/JavaApp/main/#java.lang.String[]/PointingToDeclaration/openjdk-playground/[root]/-java-app/main.html
 $dokka.location:/Result.Error.NonRecException///PointingToDeclaration/openjdk-playground/[root]/-result/-error/-non-rec-exception/index.html
@@ -86,17 +85,14 @@ $dokka.location:dev.suresh.jackson/PolymorphicSerialization/main/#java.lang.Stri
 $dokka.location:dev.suresh.json////PointingToDeclaration/openjdk-playground/dev.suresh.json/index.html
 $dokka.location:dev.suresh.json//deprecatedMethod/#/PointingToDeclaration/openjdk-playground/dev.suresh.json/deprecated-method.html
 $dokka.location:dev.suresh.json//json/#/PointingToDeclaration/openjdk-playground/dev.suresh.json/json.html
-$dokka.location:dev.suresh.json//main/#/PointingToDeclaration/openjdk-playground/dev.suresh.json/[-j-v-m]main.html
+$dokka.location:dev.suresh.json//main/#/PointingToDeclaration/openjdk-playground/dev.suresh.json/main.html
 $dokka.location:dev.suresh.json//previewMethod/#/PointingToDeclaration/openjdk-playground/dev.suresh.json/preview-method.html
 $dokka.location:dev.suresh.json/BleedingEdge///PointingToDeclaration/openjdk-playground/dev.suresh.json/-bleeding-edge/index.html
-$dokka.location:dev.suresh.json/BleedingEdge/BleedingEdge/#/PointingToDeclaration/openjdk-playground/dev.suresh.json/-bleeding-edge/-bleeding-edge.html
 $dokka.location:dev.suresh.json/FunInterface///PointingToDeclaration/openjdk-playground/dev.suresh.json/-fun-interface/index.html
 $dokka.location:dev.suresh.json/FunInterface/tt/#/PointingToDeclaration/openjdk-playground/dev.suresh.json/-fun-interface/tt.html
 $dokka.location:dev.suresh.json/SerialTest///PointingToDeclaration/openjdk-playground/dev.suresh.json/-serial-test/index.html
 $dokka.location:dev.suresh.json/SerialTest/SerialTest/#TypeParam(bounds=[kotlin.Any?])?/PointingToDeclaration/openjdk-playground/dev.suresh.json/-serial-test/-serial-test.html
 $dokka.location:dev.suresh.json/SerialTest/data/#/PointingToDeclaration/openjdk-playground/dev.suresh.json/-serial-test/data.html
-$dokka.location:dev.suresh.json/TestFn///PointingToDeclaration/openjdk-playground/dev.suresh.json/-test-fn/index.html
-$dokka.location:dev.suresh.json/TestFn/apply/#java.lang.String/PointingToDeclaration/openjdk-playground/dev.suresh.json/-test-fn/apply.html
 $dokka.location:dev.suresh.jte////PointingToDeclaration/openjdk-playground/dev.suresh.jte/index.html
 $dokka.location:dev.suresh.jte/KtConfig///PointingToDeclaration/openjdk-playground/dev.suresh.jte/-kt-config/index.html
 $dokka.location:dev.suresh.jte/KtConfig/KtConfig/#kotlin.String#kotlin.String#kotlin.String?/PointingToDeclaration/openjdk-playground/dev.suresh.jte/-kt-config/-kt-config.html
@@ -107,12 +103,14 @@ $dokka.location:dev.suresh.jte/RenderJte///PointingToDeclaration/openjdk-playgr
 $dokka.location:dev.suresh.jte/RenderJte/RenderJte/#/PointingToDeclaration/openjdk-playground/dev.suresh.jte/-render-jte/-render-jte.html
 $dokka.location:dev.suresh.jte/RenderJte/run/#/PointingToDeclaration/openjdk-playground/dev.suresh.jte/-render-jte/run.html
 $dokka.location:dev.suresh.lang////PointingToDeclaration/openjdk-playground/dev.suresh.lang/index.html
+$dokka.location:dev.suresh.lang//codePointsToString/kotlin.IntArray#/PointingToDeclaration/openjdk-playground/dev.suresh.lang/code-points-to-string.html
+$dokka.location:dev.suresh.lang//codePointsToString/kotlin.IntArray#kotlin.String/PointingToDeclaration/openjdk-playground/dev.suresh.lang/code-points-to-string.html
 $dokka.location:dev.suresh.lang//main/#/PointingToDeclaration/openjdk-playground/dev.suresh.lang/main.html
 $dokka.location:dev.suresh.lang//methodName/#/PointingToDeclaration/openjdk-playground/dev.suresh.lang/method-name.html
-$dokka.location:dev.suresh.lang//orNull/java.util.Optional[TypeParam(bounds=[kotlin.Any?])]#/PointingToDeclaration/openjdk-playground/dev.suresh.lang/or-null.html
 $dokka.location:dev.suresh.lang//reflections/#/PointingToDeclaration/openjdk-playground/dev.suresh.lang/reflections.html
 $dokka.location:dev.suresh.lang//resourcePath/TypeParam(bounds=[java.lang.Class[*]])#/PointingToDeclaration/openjdk-playground/dev.suresh.lang/resource-path.html
 $dokka.location:dev.suresh.lang//run/#/PointingToDeclaration/openjdk-playground/dev.suresh.lang/run.html
+$dokka.location:dev.suresh.lang//store/#kotlin.String/PointingToDeclaration/openjdk-playground/dev.suresh.lang/store.html
 $dokka.location:dev.suresh.lang//toBytes/TypeParam(bounds=[java.lang.Class[*]])#/PointingToDeclaration/openjdk-playground/dev.suresh.lang/to-bytes.html
 $dokka.location:dev.suresh.lang//using/java.lang.ClassLoader#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/openjdk-playground/dev.suresh.lang/using.html
 $dokka.location:dev.suresh.lang/Foo.Companion///PointingToDeclaration/openjdk-playground/dev.suresh.lang/-foo/-companion/index.html
@@ -121,6 +119,10 @@ $dokka.location:dev.suresh.lang/Foo///PointingToDeclaration/openjdk-playground/
 $dokka.location:dev.suresh.lang/HiddenData///PointingToDeclaration/openjdk-playground/dev.suresh.lang/-hidden-data/index.html
 $dokka.location:dev.suresh.lang/HiddenData/HiddenData/#kotlin.String/PointingToDeclaration/openjdk-playground/dev.suresh.lang/-hidden-data/-hidden-data.html
 $dokka.location:dev.suresh.lang/HiddenData/name/#/PointingToDeclaration/openjdk-playground/dev.suresh.lang/-hidden-data/name.html
+$dokka.location:dev.suresh.lang/Logger///PointingToDeclaration/openjdk-playground/dev.suresh.lang/-logger/index.html
+$dokka.location:dev.suresh.lang/Logger/Logger/#kotlin.String/PointingToDeclaration/openjdk-playground/dev.suresh.lang/-logger/-logger.html
+$dokka.location:dev.suresh.lang/Logger/log/#kotlin.String/PointingToDeclaration/openjdk-playground/dev.suresh.lang/-logger/log.html
+$dokka.location:dev.suresh.lang/Logger/name/#/PointingToDeclaration/openjdk-playground/dev.suresh.lang/-logger/name.html
 $dokka.location:dev.suresh.misc////PointingToDeclaration/openjdk-playground/dev.suresh.misc/index.html
 $dokka.location:dev.suresh.misc//depth/dev.suresh.misc.Node1[TypeParam(bounds=[kotlin.Any?])]?#/PointingToDeclaration/openjdk-playground/dev.suresh.misc/depth.html
 $dokka.location:dev.suresh.misc//depth/dev.suresh.misc.Tree[TypeParam(bounds=[kotlin.Any?])]#/PointingToDeclaration/openjdk-playground/dev.suresh.misc/depth.html
@@ -172,7 +174,6 @@ $dokka.location:dev.suresh.service/PrimeGen///PointingToDeclaration/openjdk-pla
 $dokka.location:dev.suresh.service/PrimeGen/primeSeq/#kotlin.Long#kotlin.Long/PointingToDeclaration/openjdk-playground/dev.suresh.service/-prime-gen/prime-seq.html
 $dokka.location:dev.suresh.service/PrimeGen/random/#kotlin.Int/PointingToDeclaration/openjdk-playground/dev.suresh.service/-prime-gen/random.html
 $dokka.location:dev.suresh.service/Redacted///PointingToDeclaration/openjdk-playground/dev.suresh.service/-redacted/index.html
-$dokka.location:dev.suresh.service/Redacted/Redacted/#/PointingToDeclaration/openjdk-playground/dev.suresh.service/-redacted/-redacted.html
 $dokka.location:dev.suresh.util////PointingToDeclaration/openjdk-playground/dev.suresh.util/index.html
 $dokka.location:dev.suresh.util/Hex///PointingToDeclaration/openjdk-playground/dev.suresh.util/-hex/index.html
 $dokka.location:dev.suresh.util/Hex/parseBytes/#kotlin.String/PointingToDeclaration/openjdk-playground/dev.suresh.util/-hex/parse-bytes.html
@@ -181,6 +182,18 @@ $dokka.location:dev.suresh.util/Hex/parseLong/#kotlin.String/PointingToDeclarati
 $dokka.location:dev.suresh.util/Hex/toHex/#kotlin.ByteArray#kotlin.CharArray/PointingToDeclaration/openjdk-playground/dev.suresh.util/-hex/to-hex.html
 $dokka.location:dev.suresh.util/Hex/toHex/#kotlin.Int#kotlin.CharArray/PointingToDeclaration/openjdk-playground/dev.suresh.util/-hex/to-hex.html
 $dokka.location:dev.suresh.util/Hex/toHex/#kotlin.Long#kotlin.CharArray/PointingToDeclaration/openjdk-playground/dev.suresh.util/-hex/to-hex.html
+$dokka.location:dev.suresh.vthread.echo////PointingToDeclaration/openjdk-playground/dev.suresh.vthread.echo/index.html
+$dokka.location:dev.suresh.vthread.echo//main/#/PointingToDeclaration/openjdk-playground/dev.suresh.vthread.echo/main.html
+$dokka.location:dev.suresh.vthread.echo/Client///PointingToDeclaration/openjdk-playground/dev.suresh.vthread.echo/-client/index.html
+$dokka.location:dev.suresh.vthread.echo/Client/connect/#kotlin.Int#kotlin.Int/PointingToDeclaration/openjdk-playground/dev.suresh.vthread.echo/-client/connect.html
+$dokka.location:dev.suresh.vthread.echo/Client/count/#/PointingToDeclaration/openjdk-playground/dev.suresh.vthread.echo/-client/count.html
+$dokka.location:dev.suresh.vthread.echo/Client/error/#/PointingToDeclaration/openjdk-playground/dev.suresh.vthread.echo/-client/error.html
+$dokka.location:dev.suresh.vthread.echo/Client/run/#/PointingToDeclaration/openjdk-playground/dev.suresh.vthread.echo/-client/run.html
+$dokka.location:dev.suresh.vthread.echo/Server///PointingToDeclaration/openjdk-playground/dev.suresh.vthread.echo/-server/index.html
+$dokka.location:dev.suresh.vthread.echo/Server/handle/#java.net.Socket/PointingToDeclaration/openjdk-playground/dev.suresh.vthread.echo/-server/handle.html
+$dokka.location:dev.suresh.vthread.echo/Server/ports/#/PointingToDeclaration/openjdk-playground/dev.suresh.vthread.echo/-server/ports.html
+$dokka.location:dev.suresh.vthread.echo/Server/run/#/PointingToDeclaration/openjdk-playground/dev.suresh.vthread.echo/-server/run.html
+$dokka.location:dev.suresh.vthread.echo/Server/serve/#kotlin.Int/PointingToDeclaration/openjdk-playground/dev.suresh.vthread.echo/-server/serve.html
 $dokka.location:dev.suresh.vthread.jetty////PointingToDeclaration/openjdk-playground/dev.suresh.vthread.jetty/index.html
 $dokka.location:dev.suresh.vthread.jetty//fullURL/jakarta.servlet.http.HttpServletRequest#/PointingToDeclaration/openjdk-playground/dev.suresh.vthread.jetty/full-u-r-l.html
 $dokka.location:dev.suresh.vthread.jetty//main/#/PointingToDeclaration/openjdk-playground/dev.suresh.vthread.jetty/main.html
@@ -208,19 +221,6 @@ $dokka.location:dev.suresh/Main/equals/#java.lang.Object/PointingToDeclaration/
 $dokka.location:dev.suresh/Main/hashCode/#/PointingToDeclaration/openjdk-playground/dev.suresh/-main/hash-code.html
 $dokka.location:dev.suresh/Main/main/#java.lang.String[]/PointingToDeclaration/openjdk-playground/dev.suresh/-main/main.html
 $dokka.location:dev.suresh/Main/topN/#java.util.List<dev.suresh.Person>#int/PointingToDeclaration/openjdk-playground/dev.suresh/-main/top-n.html
-$dokka.location:gg.jte.generated.precompiled////PointingToDeclaration/openjdk-playground/gg.jte.generated.precompiled/index.html
-$dokka.location:gg.jte.generated.precompiled/JtehelloGenerated///PointingToDeclaration/openjdk-playground/gg.jte.generated.precompiled/-jtehello-generated/index.html
-$dokka.location:gg.jte.generated.precompiled/JtehelloGenerated/JTE_LINE_INFO/#/PointingToDeclaration/openjdk-playground/gg.jte.generated.precompiled/-jtehello-generated/-j-t-e_-l-i-n-e_-i-n-f-o.html
-$dokka.location:gg.jte.generated.precompiled/JtehelloGenerated/JTE_NAME/#/PointingToDeclaration/openjdk-playground/gg.jte.generated.precompiled/-jtehello-generated/-j-t-e_-n-a-m-e.html
-$dokka.location:gg.jte.generated.precompiled/JtehelloGenerated/render/#gg.jte.TemplateOutput#gg.jte.html.HtmlInterceptor#dev.suresh.config.JConfig#dev.suresh.jte.KtConfig/PointingToDeclaration/openjdk-playground/gg.jte.generated.precompiled/-jtehello-generated/render.html
-$dokka.location:gg.jte.generated.precompiled/JtehelloGenerated/renderMap/#gg.jte.TemplateOutput#gg.jte.html.HtmlInterceptor#java.util.Map<java.lang.String,java.lang.Object>/PointingToDeclaration/openjdk-playground/gg.jte.generated.precompiled/-jtehello-generated/render-map.html
-$dokka.location:gg.jte.generated.precompiled/JtehelloktGenerated.Companion///PointingToDeclaration/openjdk-playground/gg.jte.generated.precompiled/-jtehellokt-generated/-companion/index.html
-$dokka.location:gg.jte.generated.precompiled/JtehelloktGenerated.Companion/JTE_LINE_INFO/#/PointingToDeclaration/openjdk-playground/gg.jte.generated.precompiled/-jtehellokt-generated/-companion/-j-t-e_-l-i-n-e_-i-n-f-o.html
-$dokka.location:gg.jte.generated.precompiled/JtehelloktGenerated.Companion/JTE_NAME/#/PointingToDeclaration/openjdk-playground/gg.jte.generated.precompiled/-jtehellokt-generated/-companion/-j-t-e_-n-a-m-e.html
-$dokka.location:gg.jte.generated.precompiled/JtehelloktGenerated.Companion/render/#gg.jte.TemplateOutput#gg.jte.html.HtmlInterceptor?#dev.suresh.config.JConfig#dev.suresh.jte.KtConfig/PointingToDeclaration/openjdk-playground/gg.jte.generated.precompiled/-jtehellokt-generated/-companion/render.html
-$dokka.location:gg.jte.generated.precompiled/JtehelloktGenerated.Companion/renderMap/#gg.jte.TemplateOutput#gg.jte.html.HtmlInterceptor?#kotlin.collections.Map[kotlin.String,kotlin.Any?]/PointingToDeclaration/openjdk-playground/gg.jte.generated.precompiled/-jtehellokt-generated/-companion/render-map.html
-$dokka.location:gg.jte.generated.precompiled/JtehelloktGenerated///PointingToDeclaration/openjdk-playground/gg.jte.generated.precompiled/-jtehellokt-generated/index.html
-$dokka.location:gg.jte.generated.precompiled/JtehelloktGenerated/JtehelloktGenerated/#/PointingToDeclaration/openjdk-playground/gg.jte.generated.precompiled/-jtehellokt-generated/-jtehellokt-generated.html
 dev.suresh
 dev.suresh.adt
 dev.suresh.atomic
@@ -241,6 +241,6 @@ dev.suresh.server
 dev.suresh.service
 dev.suresh.util
 dev.suresh.vthread
+dev.suresh.vthread.echo
 dev.suresh.vthread.jetty
-gg.jte.generated.precompiled
 
