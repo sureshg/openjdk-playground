@@ -1,0 +1,310 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > HelloServlet</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">dev.suresh.vthread.jetty</a>
+</div>
+
+<h1>Coverage Summary for Class: HelloServlet (dev.suresh.vthread.jetty)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">HelloServlet</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/50)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.vthread.jetty
+&nbsp;
+&nbsp;import io.mikael.urlbuilder.*
+&nbsp;import jakarta.servlet.http.*
+&nbsp;import java.net.http.*
+&nbsp;import java.net.http.HttpResponse.BodyHandlers
+&nbsp;import java.time.Duration
+&nbsp;import java.util.concurrent.*
+&nbsp;import kotlin.time.*
+&nbsp;import org.eclipse.jetty.http.*
+&nbsp;import org.eclipse.jetty.server.*
+&nbsp;import org.eclipse.jetty.server.handler.*
+&nbsp;import org.eclipse.jetty.servlet.*
+&nbsp;import org.eclipse.jetty.util.*
+&nbsp;import org.eclipse.jetty.util.component.*
+&nbsp;
+&nbsp;fun main() {
+&nbsp;  run()
+&nbsp;}
+&nbsp;
+&nbsp;fun run(args: Array&lt;String&gt;? = emptyArray()) {
+&nbsp;  val port = 8080
+&nbsp;  println(&quot;Starting the Jetty server on $port...&quot;)
+&nbsp;  val tp = VThreadThreadPool()
+&nbsp;  // val tp = QueuedThreadPool(200)
+&nbsp;  val server = Server(tp)
+&nbsp;
+&nbsp;  // NetworkTrafficServerConnector(server)
+&nbsp;  val connector =
+&nbsp;      ServerConnector(server).apply {
+&nbsp;        this.port = port
+&nbsp;        acceptQueueSize = 128
+&nbsp;      }
+&nbsp;  server.addConnector(connector)
+&nbsp;
+&nbsp;  val servletHandler = ServletHandler()
+&nbsp;  servletHandler.addServletWithMapping(HelloServlet::class.java, &quot;/&quot;)
+&nbsp;  server.handler = HandlerList(servletHandler, DefaultHandler())
+&nbsp;
+&nbsp;  HttpGenerator.setJettyVersion(&quot;Loom-${Jetty.VERSION}&quot;)
+&nbsp;  server.start()
+&nbsp;  println(&quot;Server started at ${server.uri}&quot;)
+&nbsp;
+&nbsp;  val took = measureTime { pumpRequests(server, 100) }
+&nbsp;  println(&quot;Took ${took.toDouble(DurationUnit.SECONDS)} seconds&quot;)
+&nbsp;
+&nbsp;  if (args.orEmpty().any { it.equals(&quot;--no-shutdown&quot;, true) }) {
+&nbsp;    server.join()
+&nbsp;  } else {
+&nbsp;    println(&quot;Shutting down the server!&quot;)
+&nbsp;    LifeCycle.stop(server)
+&nbsp;  }
+&nbsp;}
+&nbsp;
+&nbsp;fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
+&nbsp;  require(count &gt; 0)
+&nbsp;  println(
+&nbsp;      &quot;Sending $count concurrent requests to ${server.uri} and wait for $deadlineInSec seconds...&quot;)
+&nbsp;
+&nbsp;  val client =
+&nbsp;      HttpClient.newBuilder()
+&nbsp;          .version(HttpClient.Version.HTTP_1_1)
+&nbsp;          .followRedirects(HttpClient.Redirect.NORMAL)
+&nbsp;          .connectTimeout(Duration.ofSeconds(10))
+&nbsp;          .build()
+&nbsp;
+&nbsp;  val factory = Thread.ofVirtual().name(&quot;VirtualThreadPool-&quot;, 1).factory()
+&nbsp;  val execSvc = Executors.newThreadPerTaskExecutor(factory)
+&nbsp;
+&nbsp;  // val ecs = ExecutorCompletionService&lt;String&gt;(execSvc)
+&nbsp;
+&nbsp;  val results =
+&nbsp;      execSvc.use { exec -&gt;
+&nbsp;        val user = System.getProperty(&quot;user.name&quot;, &quot;user&quot;)
+&nbsp;
+&nbsp;        (1..count).map { idx -&gt;
+&nbsp;          exec.submit&lt;Result&lt;String&gt;&gt; {
+&nbsp;            try {
+&nbsp;              println(&quot;---&gt; $idx. Sending Request&quot;)
+&nbsp;              val uri =
+&nbsp;                  UrlBuilder.fromUri(server.uri)
+&nbsp;                      .addParameter(&quot;id&quot;, idx.toString())
+&nbsp;                      .addParameter(&quot;user&quot;, user)
+&nbsp;                      .toUri()
+&nbsp;
+&nbsp;              val req =
+&nbsp;                  HttpRequest.newBuilder()
+&nbsp;                      .uri(uri)
+&nbsp;                      .timeout(Duration.ofSeconds(2))
+&nbsp;                      .header(&quot;Content-Type&quot;, &quot;application/json&quot;)
+&nbsp;                      .GET()
+&nbsp;                      .build()
+&nbsp;              val res = client.send(req, BodyHandlers.ofString())
+&nbsp;
+&nbsp;              println(&quot;&lt;--- $idx. Response($threadInfo): ${res.statusCode()} - ${res.body()}&quot;)
+&nbsp;              Result.success(res.body())
+&nbsp;            } catch (t: Throwable) {
+&nbsp;              Result.failure(t)
+&nbsp;            }
+&nbsp;          }
+&nbsp;        }
+&nbsp;      }
+&nbsp;
+&nbsp;  // Clear the interrupt status
+&nbsp;  println(&quot;Checking if the current thread has been interrupted: ${Thread.interrupted()}&quot;)
+&nbsp;  val (ok, err) = results.map { it.get() }.partition { it.isSuccess }
+&nbsp;  ok.forEachIndexed { i, r -&gt; println(&quot;${i + 1} -&gt; ${r.getOrNull()}&quot;) }
+&nbsp;
+&nbsp;  err.forEachIndexed { i, r -&gt;
+&nbsp;    if (i == 0) println(&quot;=== ERRORS ===&quot;)
+&nbsp;    val msg =
+&nbsp;        when (val ex = r.exceptionOrNull()) {
+&nbsp;          is InterruptedException -&gt; &quot;Task interrupted/cancelled due to timeout!&quot;
+&nbsp;          else -&gt; ex?.cause?.message
+&nbsp;        }
+&nbsp;    println(&quot;ERROR ${i + 1} -&gt; $msg&quot;)
+&nbsp;  }
+&nbsp;
+&nbsp;  println(
+&nbsp;      &quot;&quot;&quot;
+&nbsp;    SUCCESS: ${ok.size} / ${results.size}
+&nbsp;    FAILURE: ${err.size} / ${results.size}
+&nbsp;
+&nbsp;    &quot;&quot;&quot;
+&nbsp;          .trimIndent())
+&nbsp;}
+&nbsp;
+<b class="nc">&nbsp;class HelloServlet : HttpServlet() {</b>
+&nbsp;  /** Scoped local variable holding the user info. */
+&nbsp;  //    private val ID = ExtentLocal.newInstance&lt;String&gt;()
+&nbsp;  //
+&nbsp;  //    private val USER = ExtentLocal.newInstance&lt;String&gt;()
+&nbsp;
+<b class="nc">&nbsp;  private val OS: String = System.getProperty(&quot;os.name&quot;)</b>
+&nbsp;
+<b class="nc">&nbsp;  init {</b>
+<b class="nc">&nbsp;    println(&quot;Initializing the Servlet &gt;&gt;&gt;&gt;&gt; &quot;)</b>
+<b class="nc">&nbsp;  }</b>
+&nbsp;
+&nbsp;  override fun doGet(req: HttpServletRequest?, resp: HttpServletResponse?) {
+<b class="nc">&nbsp;    val id = req?.getParameter(&quot;id&quot;)</b>
+<b class="nc">&nbsp;    val user = req?.getParameter(&quot;user&quot;)</b>
+&nbsp;
+&nbsp;    //        ExtentLocal
+&nbsp;    //            .where(ID, id)
+&nbsp;    //            .where(USER, user)
+&nbsp;    //            .run {
+&nbsp;    //                resp?.apply {
+&nbsp;    //                    contentType = &quot;application/json&quot;
+&nbsp;    //                    status = HttpServletResponse.SC_OK
+&nbsp;    //                    writer?.println(exec(req))
+&nbsp;    //                }
+&nbsp;    //            }
+&nbsp;  }
+&nbsp;
+&nbsp;  private fun exec(req: HttpServletRequest?): String {
+&nbsp;    // Simulate blocking
+<b class="nc">&nbsp;    Thread.sleep(Duration.ofSeconds(2))</b>
+&nbsp;    return &quot;&quot;&quot;
+&nbsp;          {
+&nbsp;
+<b class="nc">&nbsp;            &quot;server&quot; : Jetty-${Jetty.VERSION},</b>
+<b class="nc">&nbsp;            &quot;Java&quot;   : ${JavaVersion.VERSION},</b>
+<b class="nc">&nbsp;            &quot;OS&quot;     : $OS,</b>
+<b class="nc">&nbsp;            &quot;target&quot; : ${req?.fullURL},</b>
+<b class="nc">&nbsp;            &quot;Thread&quot; : ${Thread.currentThread()}</b>
+&nbsp;          }
+&nbsp;    &quot;&quot;&quot;
+<b class="nc">&nbsp;        .trimIndent()</b>
+&nbsp;    //        &quot;Id&quot;     : ${ID.orElse(&quot;n/a&quot;)},
+&nbsp;    //        &quot;User&quot;   : ${USER.orElse(&quot;n/a&quot;)},
+&nbsp;  }
+&nbsp;}
+&nbsp;
+&nbsp;val HttpServletRequest.fullURL: String
+&nbsp;  get() =
+&nbsp;      when (queryString.isNullOrBlank()) {
+&nbsp;        true -&gt; requestURL.toString()
+&nbsp;        else -&gt; requestURL.append(&#39;?&#39;).append(queryString).toString()
+&nbsp;      }
+&nbsp;
+&nbsp;val threadInfo
+&nbsp;  get() = Thread.currentThread().run { &quot;$name-${threadId()}-$isVirtual&quot; }
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-14 18:07</div>
+</div>
+</body>
+</html>

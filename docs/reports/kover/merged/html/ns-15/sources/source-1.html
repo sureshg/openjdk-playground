@@ -1,0 +1,173 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > TracePinnedThreadsKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">dev.suresh.vthread</a>
+</div>
+
+<h1>Coverage Summary for Class: TracePinnedThreadsKt (dev.suresh.vthread)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">TracePinnedThreadsKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/21)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/90)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.vthread
+&nbsp;
+&nbsp;import java.io.*
+&nbsp;import java.time.*
+&nbsp;import java.util.concurrent.locks.*
+&nbsp;
+&nbsp;/**
+&nbsp; * Run with -Djdk.tracePinnedThreads=short|full
+&nbsp; *
+&nbsp; * [TracePinnedThreads.java](https://github.com/openjdk/jdk/blob/master/test/jdk/java/lang/Thread/virtual/TracePinnedThreads.java)
+&nbsp; *
+&nbsp; * [VirtualThreadTests](https://github.com/openjdk/jdk/tree/master/test/jdk/java/lang/Thread/virtual)
+&nbsp; *
+&nbsp; * [LoomTroubleshootingGuide](https://wiki.openjdk.java.net/display/loom/Troubleshooting)
+&nbsp; */
+&nbsp;fun main() {
+<b class="nc">&nbsp;  System.setProperty(&quot;jdk.tracePinnedThreads&quot;, &quot;full&quot;)</b>
+<b class="nc">&nbsp;  tracePinnedThread()</b>
+&nbsp;}
+&nbsp;
+&nbsp;fun tracePinnedThread() {
+<b class="nc">&nbsp;  val lock = Object()</b>
+<b class="nc">&nbsp;  val out = System.out</b>
+<b class="nc">&nbsp;  val baos = ByteArrayOutputStream()</b>
+<b class="nc">&nbsp;  System.setOut(PrintStream(baos))</b>
+&nbsp;
+<b class="nc">&nbsp;  try {</b>
+<b class="nc">&nbsp;    Thread.ofVirtual()</b>
+<b class="nc">&nbsp;        .start {</b>
+<b class="nc">&nbsp;          synchronized(lock) {</b>
+<b class="nc">&nbsp;            val nanos: Long = Duration.ofSeconds(1).toNanos()</b>
+<b class="nc">&nbsp;            LockSupport.parkNanos(nanos)</b>
+&nbsp;            // OR lock.wait()
+<b class="nc">&nbsp;          }</b>
+&nbsp;        }
+<b class="nc">&nbsp;        .join()</b>
+<b class="nc">&nbsp;    System.out.flush()</b>
+&nbsp;  } finally {
+<b class="nc">&nbsp;    System.setOut(out)</b>
+<b class="nc">&nbsp;  }</b>
+&nbsp;
+<b class="nc">&nbsp;  val output = baos.toString() // default charset</b>
+<b class="nc">&nbsp;  println(output)</b>
+<b class="nc">&nbsp;  val expected = &quot;&lt;== monitors:1&quot;</b>
+<b class="nc">&nbsp;  check(expected in output) { &quot;&quot;&quot;expected:&quot;$expected&quot;&quot;&quot;&quot; }</b>
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-12-14 18:07</div>
+</div>
+</body>
+</html>
