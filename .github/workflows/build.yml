@@ -248,7 +248,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        jdk: [ "openjdk:20-slim", "openjdk:19-alpine" ]
+        jdk: [ "openjdk:21-slim" ]
 
     defaults:
       run:

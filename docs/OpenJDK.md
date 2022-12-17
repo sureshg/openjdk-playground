@@ -944,7 +944,7 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
 ### [OpenJDK Build](https://openjdk.java.net/groups/build/doc/building.html)
 
 ```bash
-$ sdk install java 20-open
+$ sdk install java 21-open
 $ git clone https://github.com/openjdk/jdk.git
 $ cd jdk
 # $ make clean

@@ -110,6 +110,7 @@ application {
           // "-XX:OnOutOfMemoryError="./restart.sh"",
           // "-XX:SelfDestructTimer=0.05",
           // "-XX:NativeMemoryTracking=[off|summary|detail]",
+          // "-XX:+PrintNMTStatistics",
           // "-Djava.security.properties=/path/to/custom/java.security", // == to override
           // "-Duser.timezone=\"PST8PDT\"",
           // "-Djava.net.preferIPv4Stack=true",
