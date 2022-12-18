@@ -73,3 +73,9 @@ dependencies {
   // implementation(libs.build.cp.collisiondetector)
   // implementation(libs.build.maven.plugindev)
 }
+
+/**
+ * The current Gradle Kotlin DSL API/Language version can be found in the KGP plugin config here
+ * https://github.com/gradle/gradle/blob/master/subprojects/kotlin-dsl-plugins/src/main/kotlin/org/gradle/kotlin/dsl/plugins/dsl/KotlinDslCompilerPlugins.kt#L53-L54
+ */
+// kotlinDslPluginOptions { jvmTarget.set(libs.versions.java.asProvider()) }

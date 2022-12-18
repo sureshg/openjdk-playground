@@ -155,7 +155,7 @@ $ ./gradlew -q javaToolchains
 
 [gha_img]: https://github.com/sureshg/openjdk-playground/actions/workflows/build.yml/badge.svg
 
-[gha_badge]: https://img.shields.io/github/workflow/status/sureshg/openjdk-playground/Build?color=green&label=Build&logo=Github-Actions&logoColor=green&style=for-the-badge
+[gha_badge]: https://img.shields.io/github/actions/workflow/status/sureshg/openjdk-playground/build.yml?branch=main&color=green&label=Build&logo=Github-Actions&logoColor=green&style=for-the-badge
 
 [gh_pkgs]: https://github.com/sureshg/openjdk-playground/packages
 
