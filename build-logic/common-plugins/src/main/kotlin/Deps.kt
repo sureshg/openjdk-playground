@@ -270,7 +270,7 @@ object Deps {
   object Cli {
     const val clikt = "com.github.ajalt.clikt:clikt:3.5.0"
     const val textIO = "org.beryx:text-io:3.4.1"
-    const val mordant = "com.github.ajalt.mordant:mordant:2.0.0-beta9"
+    const val mordant = "com.github.ajalt.mordant:mordant:2.0.0-beta10"
     const val colormath = "com.github.ajalt.colormath:colormath:2.0.0"
     const val mosaic = "com.jakewharton.mosaic:1.0.0"
     const val picnic = "com.jakewharton.picnic:picnic:0.6.0"
@@ -321,7 +321,7 @@ object Deps {
   }
 
   object Security {
-    const val password4j = "com.password4j:password4j:1.6.2"
+    const val password4j = "com.password4j:password4j:1.6.3"
     const val otp = "com.github.bastiaanjansen:otp-java:1.3.2"
     const val totp = "dev.samstevens.totp:totp:1.7.1"
     const val jwtJava = "com.github.bastiaanjansen:jwt-java:1.2.0"

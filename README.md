@@ -84,7 +84,7 @@ $ docker run -it --rm --name openjdk-playground sureshg/openjdk-playground
 #### Troubleshooting
 
 * [Test Report](https://suresh.dev/openjdk-playground/reports/tests/test/)
-* [Coverage Report](https://suresh.dev/openjdk-playground/reports/kover/html/)
+* [Coverage Report](https://suresh.dev/openjdk-playground/reports/kover/merged/html/)
 
 <details>
   <summary>Commands</summary>

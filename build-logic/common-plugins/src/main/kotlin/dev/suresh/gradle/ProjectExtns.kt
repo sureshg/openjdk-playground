@@ -136,8 +136,8 @@ fun Project.addFileToJavaComponent(file: File) {
         isCanBeResolved = false
         attributes {
           // See https://docs.gradle.org/current/userguide/variant_attributes.html
-          attribute(Category.CATEGORY_ATTRIBUTE, project.objects.named(Category.LIBRARY))
-          attribute(DocsType.DOCS_TYPE_ATTRIBUTE, project.objects.named("exe"))
+          attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.LIBRARY))
+          attribute(DocsType.DOCS_TYPE_ATTRIBUTE, objects.named("exe"))
         }
       }
 

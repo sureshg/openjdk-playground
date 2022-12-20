@@ -18,10 +18,10 @@ plugins {
   id("com.github.ben-manes.versions")
   id("com.github.johnrengelman.shadow")
   id("io.github.gradle-nexus.publish-plugin")
-  id("com.autonomousapps.dependency-analysis")
   id("com.autonomousapps.plugin-best-practices-plugin")
   id("org.jetbrains.dokka")
 
+  // id("com.autonomousapps.dependency-analysis")
   // id("org.openrewrite.rewrite")
   // id("de.benediktritter.maven-plugin-development")
   // id("io.fuchs.gradle.classpath-collision-detector")
@@ -72,7 +72,7 @@ spotless {
   // isEnforceCheck = false
 }
 
-dependencyAnalysis { issues { all { onAny { severity("warn") } } } }
+// dependencyAnalysis { issues { all { onAny { severity("warn") } } } }
 
 tasks {
   // Generate build config.
@@ -126,11 +126,11 @@ tasks {
     // rejectVersionIf { candidate.version.isNonStable && !currentVersion.isNonStable }
 
     // Run "dependencyUpdates" on all "build-logic" projects also.
-    gradle.includedBuild("build-logic").apply {
-      projectDir
+    gradle.includedBuild("build-logic").also { buildLogic ->
+      buildLogic.projectDir
           .listFiles()
           ?.filter { it.isDirectory && File(it, "build.gradle.kts").exists() }
-          ?.forEach { dir -> dependsOn(task(":${dir.name}:dependencyUpdates")) }
+          ?.forEach { dir -> dependsOn(buildLogic.task(":${dir.name}:dependencyUpdates")) }
     }
   }
 

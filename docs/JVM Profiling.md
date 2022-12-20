@@ -119,6 +119,23 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
   -XX:HeapDumpPath=$USER_HOME/java_error_in_app.hprof
   ```
 
+
+
+* Generate FlameGraph of java threads
+
+  ```bash
+  $ wget https://raw.githubusercontent.com/brendangregg/FlameGraph/master/flamegraph.pl
+  $ wget https://raw.githubusercontent.com/brendangregg/FlameGraph/master/stackcollapse-jstack.pl
+  $ chmod +x *.pl
+
+  # Run multiple times to get more samples
+  $ jcmd GradleDaemon Thread.print >> jcmd.tdump
+  $ stackcollapse-jstack.pl jcmd.tdump > jcmd.tdump.folded
+  $ flamegraph.pl --color=io --title "Thread Dump" --countname "Samples" --width 1080 jcmd.tdump.folded > jcmd.tdump.svg
+  ```
+
+
+
 * Find finalizable objects in your application
 
   ```bash
@@ -172,6 +189,9 @@ $ kill -3 "$(jcmd -l | grep "dev.suresh.Main" | cut -d " " -f1)"
 # OR
 # Prints additional info about thread (-e  extended listing) and locks (-l  long listing)
 $ jstack -l -e  <pid>
+
+# Show Native Memory
+$ jcmd GradleDaemon VM.native_memory
 ```
 
 #### 9. [Unified GC Logging](https://openjdk.java.net/jeps/158#Simple-Examples:)
