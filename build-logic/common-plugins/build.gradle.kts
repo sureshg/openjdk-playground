@@ -1,3 +1,6 @@
+import org.jetbrains.kotlin.gradle.dsl.*
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
   `kotlin-dsl`
@@ -43,6 +46,15 @@ jte {
   generate()
 }
 
+/*
+ * https://github.com/gradle/gradle/blob/master/subprojects/kotlin-dsl-plugins/src/main/kotlin/org/gradle/kotlin/dsl/plugins/dsl/KotlinDslCompilerPlugins.kt#L55-L56
+ */
+tasks {
+  withType<KotlinCompile>().configureEach {
+    compilerOptions { jvmTarget.set(JvmTarget.fromTarget(libs.versions.kotlin.jvm.target.get())) }
+  }
+}
+
 repositories {
   mavenCentral()
   gradlePluginPortal()
@@ -73,9 +85,3 @@ dependencies {
   // implementation(libs.build.cp.collisiondetector)
   // implementation(libs.build.maven.plugindev)
 }
-
-/**
- * The current Gradle Kotlin DSL API/Language version can be found in the KGP plugin config here
- * https://github.com/gradle/gradle/blob/master/subprojects/kotlin-dsl-plugins/src/main/kotlin/org/gradle/kotlin/dsl/plugins/dsl/KotlinDslCompilerPlugins.kt#L53-L54
- */
-// kotlinDslPluginOptions { jvmTarget.set(libs.versions.java.asProvider()) }

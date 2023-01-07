@@ -1,12 +1,19 @@
 @file:Suppress("UnstableApiUsage")
 
 pluginManagement {
+
   // Included plugin builds can contribute settings and project plugins
   includeBuild("build-logic")
 
+  // val gradleEnterprise: String by settings //OR
+  // val gradleEnterprise =
+  //      file("$rootDir/gradle/libs.versions.toml")
+  //          .readLines()
+  //          .first { it.contains("gradle-enterprise") }
+  //          .split("\"")[1]
+
   // https://docs.gradle.org/current/userguide/plugins.html#sec:plugin_version_management
   plugins {
-    // val gradleEnterprise: String by settings
     // id("com.gradle.enterprise") version gradleEnterprise
 
     // val kotlinVersion = extra["kotlin.version"] as String

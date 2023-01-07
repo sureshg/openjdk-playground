@@ -576,13 +576,13 @@ sourceSets.main.get().compileClasspath
 ##### 8. [Enabling Java preview feature](https://docs.gradle.org/current/userguide/building_java_projects.html#sec:feature_preview)
 
 ```kotlin
-tasks.withType<JavaCompile> {
+tasks.withType<JavaCompile>.configureEach  {
     options.compilerArgs.add("--enable-preview")
 }
-tasks.withType<Test> {
+tasks.withType<Test>.configureEach  {
     jvmArgs("--enable-preview")
 }
-tasks.withType<JavaExec> {
+tasks.withType<JavaExec>.configureEach  {
     jvmArgs("--enable-preview")
 }
 ```

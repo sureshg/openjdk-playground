@@ -1,10 +1,10 @@
 import com.google.cloud.tools.jib.plugins.common.ContainerizingMode
+import com.google.devtools.ksp.gradle.*
 import dev.suresh.gradle.*
 import java.net.URL
 import kotlinx.kover.api.*
 import org.gradle.api.tasks.testing.logging.*
 import org.jetbrains.dokka.gradle.DokkaTask
-import org.jetbrains.kotlin.config.LanguageFeature
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 @Suppress("DSL_SCOPE_VIOLATION")
@@ -47,7 +47,7 @@ application {
           "-XshowSettings:vm",
           "-XshowSettings:system",
           "-XshowSettings:properties",
-          "-Xmx128M",
+          "-Xmx96M",
           "-XX:+PrintCommandLineFlags",
           "-XX:+UseZGC",
           // os+thread,gc+heap=trace,
@@ -92,6 +92,7 @@ application {
           "-Djava.security.debug=properties",
           "-Djava.security.egd=file:/dev/./urandom",
           "-Djdk.includeInExceptions=hostInfo,jar",
+          "-Dkotlinx.coroutines.debug",
           "-ea",
           // "--show-module-resolution",
           // "-XX:+AutoCreateSharedArchive",
@@ -147,11 +148,8 @@ application {
 kotlin {
   sourceSets.all {
     languageSettings.apply {
-      apiVersion = kotlinApiVersion
-      languageVersion = kotlinLangVersion
       progressiveMode = true
-      enableLanguageFeature(LanguageFeature.JvmRecordSupport.name)
-      enableLanguageFeature(LanguageFeature.ContextReceivers.name)
+      enableLanguageFeature("DataObjects")
       optIn("kotlin.ExperimentalStdlibApi")
       optIn("kotlin.ExperimentalUnsignedTypes")
       optIn("kotlin.io.path.ExperimentalPathApi")
@@ -166,14 +164,9 @@ kotlin {
   }
 
   jvmToolchain {
-    languageVersion.set(java.toolchain.languageVersion.get())
-    vendor.set(java.toolchain.vendor.get())
+    languageVersion.set(toolchainVersion)
+    vendor.set(toolchainVendor)
   }
-  // jvmToolchain(javaVersion)
-
-  // sourceSets { main { ... } }
-  // kotlinDaemonJvmArgs = listOf("--show-version", "--enable-preview")
-  // explicitApi()
 }
 
 ksp {
@@ -265,71 +258,70 @@ tasks {
   withType<JavaCompile>().configureEach {
     options.apply {
       encoding = "UTF-8"
-      release.set(javaVersion)
+      release.set(javaRelease)
       isIncremental = true
       isFork = true
       debugOptions.debugLevel = "source,lines,vars"
       // For Gradle worker daemon.
       forkOptions.jvmArgs?.addAll(jvmArguments)
       compilerArgs.addAll(
-          listOf(
-              "--enable-preview",
-              "-Xlint:all",
-              "-parameters",
-              "--add-modules=$addModules",
-              // "-Xlint:-deprecation", // suppress deprecations
-              // "-XX:+IgnoreUnrecognizedVMOptions",
-              // "--add-exports",
-              // "java.base/sun.nio.ch=ALL-UNNAMED",
-              // "--patch-module",
-              // "$moduleName=${sourceSets.main.get().output.asPath}"
-          ),
+          jvmArguments +
+              listOf(
+                  "-Xlint:all",
+                  "-parameters",
+                  "--add-modules=$addModules",
+                  // "-Xlint:-deprecation", // suppress deprecations
+                  // "-XX:+IgnoreUnrecognizedVMOptions",
+                  // "--add-exports",
+                  // "java.base/sun.nio.ch=ALL-UNNAMED",
+                  // "--patch-module",
+                  // "$moduleName=${sourceSets.main.get().output.asPath}"
+              ),
       )
     }
   }
 
-  /* Configure "compileKotlin" and "compileTestKotlin" tasks.
-   * JVM backend compiler options can be found in,
-   * https://github.com/JetBrains/kotlin/blob/master/compiler/cli/cli-common/src/org/jetbrains/kotlin/cli/common/arguments/K2JVMCompilerArguments.kt
-   * https://github.com/JetBrains/kotlin/blob/master/compiler/config.jvm/src/org/jetbrains/kotlin/config/JvmTarget.kt
-   * https://github.com/JetBrains/kotlin/blob/master/compiler/util/src/org/jetbrains/kotlin/config/ApiVersion.kt#L35
-   */
   withType<KotlinCompile>().configureEach {
     usePreciseJavaTracking = true
-    kotlinOptions {
-      verbose = true
-      jvmTarget = kotlinJvmTarget
-      javaParameters = true
-      incremental = true
-      allWarningsAsErrors = false
-      freeCompilerArgs +=
-          listOf(
-              "-Xadd-modules=$addModules",
-              "-Xjsr305=strict",
-              "-Xjvm-default=all",
-              "-Xassertions=jvm",
-              "-Xallow-result-return-type",
-              "-Xemit-jvm-type-annotations",
-              "-Xjspecify-annotations=strict",
-              // "-Xjdk-release=$javaVersion",
-              // "-Xuse-k2",
-              // "-Xbackend-threads=4",
-              // "-Xadd-modules=ALL-MODULE-PATH",
-              // "-Xmodule-path=",
-              // "-Xjvm-enable-preview",
-              // "-Xjavac-arguments=\"--add-exports java.base/sun.nio.ch=ALL-UNNAMED\"",
-              // "-Xexplicit-api={strict|warning|disable}",
-              // "-Xgenerate-strict-metadata-version",
-          )
+    compilerOptions {
+      jvmTarget.set(kotlinJvmTarget)
+      apiVersion.set(kotlinApiVersion)
+      languageVersion.set(kotlinLangVersion)
+      useK2.set(k2Enabled)
+      verbose.set(true)
+      javaParameters.set(true)
+      allWarningsAsErrors.set(false)
+      suppressWarnings.set(false)
+      freeCompilerArgs.addAll(
+          "-Xadd-modules=$addModules",
+          "-Xjsr305=strict",
+          "-Xjvm-default=all",
+          "-Xassertions=jvm",
+          "-Xcontext-receivers",
+          "-Xallow-result-return-type",
+          "-Xemit-jvm-type-annotations",
+          "-Xjspecify-annotations=strict",
+          "-Xextended-compiler-checks",
+          "-Xuse-fir-extended-checkers",
+          // "-Xjdk-release=$javaVersion",
+          // "-Xadd-modules=ALL-MODULE-PATH",
+          // "-Xmodule-path=",
+          // "-Xjvm-enable-preview",
+          // "-Xjavac-arguments=\"--add-exports java.base/sun.nio.ch=ALL-UNNAMED\"",
+          // "-Xexplicit-api={strict|warning|disable}",
+          // "-Xgenerate-strict-metadata-version",
+      )
     }
   }
+
+  withType<KspTaskJvm>().configureEach { compilerOptions.useK2.set(k2Enabled) }
 
   run.invoke { args(true) }
 
   // JUnit5
   test {
     useJUnitPlatform()
-    jvmArgs("--enable-preview")
+    jvmArgs(jvmArguments)
     classpath += devOnly
 
     testLogging {
@@ -363,7 +355,8 @@ tasks {
     (options as CoreJavadocOptions).apply {
       encoding = "UTF-8"
       addBooleanOption("-enable-preview", true)
-      addStringOption("-release", javaVersion.toString())
+      addStringOption("-add-modules", addModules)
+      addStringOption("-release", javaRelease.get().toString())
       addStringOption("Xdoclint:none", "-quiet")
     }
   }
@@ -377,7 +370,7 @@ tasks {
       configureEach {
         displayName.set("JVM")
         includes.from("README.md")
-        jdkVersion.set(kotlinJvmTarget.toInt())
+        jdkVersion.set(kotlinJvmTarget.map { it.target.toInt() })
         noStdlibLink.set(false)
         noJdkLink.set(false)
         // sourceRoots.setFrom(file("src/main/kotlin"))

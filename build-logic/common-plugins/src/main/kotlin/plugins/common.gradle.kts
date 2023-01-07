@@ -54,8 +54,8 @@ java {
   withJavadocJar()
 
   toolchain {
-    languageVersion.set(JavaLanguageVersion.of(libs.versions.java.asProvider().get()))
-    vendor.set(JvmVendorSpec.ORACLE)
+    languageVersion.set(toolchainVersion)
+    vendor.set(toolchainVendor)
   }
   // modularity.inferModulePath.set(true)
 }
@@ -82,13 +82,22 @@ tasks {
           "-R",
           "--print-module-deps",
           "--ignore-missing-deps",
-          "--multi-release=${java.toolchain.languageVersion.get().asInt()}",
+          "--multi-release=${javaRelease.get()}",
           jarFile.absolutePath,
       )
 
       val modules = out.toString()
-      println(modules)
+      logger.quiet(
+          """
+          |Application modules for OpenJDK-${java.toolchain.languageVersion.get()} are,
+          |${modules.split(",")
+              .mapIndexed {i, module -> " ${(i+1).toString().padStart(2)}) $module" }
+              .joinToString(System.lineSeparator())
+             }
+          """
+              .trimMargin())
     }
+
     dependsOn("shadowJar")
   }
 
@@ -161,9 +170,6 @@ tasks {
         exclude { it.name.startsWith("jte") }
         expand(props)
 
-        // val configuredVersion =
-        // providers.gradleProperty("version").forUseAtConfigurationTime().get()
-        // expand("configuredVersion" to configuredVersion)
         // inputs.property("buildversions", props.hashCode())
       }
 

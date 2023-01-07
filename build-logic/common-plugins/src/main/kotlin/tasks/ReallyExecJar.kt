@@ -33,7 +33,7 @@ abstract class ReallyExecJar : DefaultTask() {
 
   @TaskAction
   fun execute() {
-    // project.objects.property<String>()
+    // Replace the tmp path with env variable for portability.
     val shellStub =
         javaClass
             .getResourceAsStream("/exec-jar-stub.sh")
@@ -41,8 +41,10 @@ abstract class ReallyExecJar : DefaultTask() {
             ?.decodeToString()
             ?.replace(
                 oldValue = """"${'$'}JAVA_OPTS"""", newValue = javaOpts.get().joinToString(" "))
+            ?.replace(tmp, "${'$'}TMPDIR/")
             ?: throw GradleException("Can't find executable shell stub!")
     logger.debug("Exec jar shell stub: $shellStub")
+    // project.objects.property<Int>()
 
     val binFile = execJarFile.get().asFile
     logger.debug("Executable binary: ${binFile.name}")

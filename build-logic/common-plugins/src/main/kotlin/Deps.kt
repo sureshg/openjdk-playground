@@ -56,7 +56,7 @@ object Deps {
   }
 
   object Kotlinx {
-    const val atomicfuVersion = "0.18.5"
+    const val atomicfuVersion = "0.19.0"
     const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
     const val reflectLite = "org.jetbrains.kotlinx:kotlinx.reflect.lite:1.0.0"
     const val atomicfu = "org.jetbrains.kotlinx:atomicfu:$atomicfuVersion"
@@ -121,7 +121,7 @@ object Deps {
   }
 
   object OkHttp {
-    const val version = "5.0.0-alpha.10"
+    const val version = "5.0.0-alpha.11"
     const val bom = "com.squareup.okhttp3:okhttp-bom:$version"
     const val okhttp = "com.squareup.okhttp3:okhttp:$version"
     const val mockWebServer = "com.squareup.okhttp3:mockwebserver:$version"
@@ -268,7 +268,7 @@ object Deps {
   }
 
   object Cli {
-    const val clikt = "com.github.ajalt.clikt:clikt:3.5.0"
+    const val clikt = "com.github.ajalt.clikt:clikt:3.5.1"
     const val textIO = "org.beryx:text-io:3.4.1"
     const val mordant = "com.github.ajalt.mordant:mordant:2.0.0-beta10"
     const val colormath = "com.github.ajalt.colormath:colormath:2.0.0"
@@ -527,7 +527,7 @@ inline val PluginDependenciesSpec.taskTree
 inline val PluginDependenciesSpec.forbiddenApis
   get() = id("de.thetaphi.forbiddenapis") version "3.1"
 inline val PluginDependenciesSpec.extraJavaModuleInfo
-  get() = id("org.gradlex.extra-java-module-info") version "1.1"
+  get() = id("org.gradlex.extra-java-module-info") version "1.2"
 inline val PluginDependenciesSpec.licensee
   get() = id("app.cash.licensee") version "1.6.0" apply false
 

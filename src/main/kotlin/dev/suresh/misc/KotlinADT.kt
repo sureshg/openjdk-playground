@@ -4,9 +4,7 @@ import kotlin.math.*
 
 sealed class Tree<out T>
 
-object Empty : Tree<Nothing>() {
-  override fun toString() = "Empty"
-}
+data object Empty : Tree<Nothing>()
 
 data class Node<T>(val value: T, val right: Tree<T> = Empty, val left: Tree<T> = Empty) : Tree<T>()
 

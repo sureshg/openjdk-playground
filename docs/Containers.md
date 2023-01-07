@@ -52,10 +52,10 @@ $ docker pull openjdk:19-jdk-oracle
 
 # Eclipse Temurin
 # https://github.com/adoptium/containers#supported-images
-$ docker pull eclipse-temurin:18-focal
-$ docker pull eclipse-temurin:18-alpine
-$ docker pull eclipse-temurin:17-jre-focal
-$ docker pull eclipse-temurin:17-jre-alpine
+$ docker pull eclipse-temurin:19-focal
+$ docker pull eclipse-temurin:19-alpine
+$ docker pull eclipse-temurin:19-jre-focal
+$ docker pull eclipse-temurin:19-jre-alpine
 
 # Oracle OpenJDK
 $ docker pull container-registry.oracle.com/java/openjdk:latest

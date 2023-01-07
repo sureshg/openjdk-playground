@@ -1,25 +1,46 @@
 package dev.suresh.gradle
 
-import org.gradle.api.Project
+import org.gradle.api.*
 import org.gradle.api.artifacts.dsl.DependencyHandler
+import org.gradle.jvm.toolchain.*
 import org.gradle.kotlin.dsl.kotlin
 import org.gradle.plugin.use.PluginDependenciesSpec
+import org.jetbrains.kotlin.gradle.dsl.*
 
-/** Java/Kotlin version properties. */
+/** Java version properties. */
 val Project.javaVersion
-  get() = libs.versions.java.asProvider().map { it.toInt() }.get()
-val Project.kotlinVersion
-  get() = libs.versions.kotlin.asProvider().get()
-val Project.kotlinJvmTarget
-  get() = libs.versions.kotlin.jvm.target.get()
-val Project.kotlinApiVersion
-  get() = libs.versions.kotlin.api.version.get()
-val Project.kotlinLangVersion
-  get() = libs.versions.kotlin.lang.version.get()
+  get() = libs.versions.java.asProvider().map { JavaVersion.toVersion(it) }
+
+val Project.javaRelease
+  get() = javaVersion.map { it.majorVersion.toInt() }
+
+val Project.toolchainVersion
+  get() = javaVersion.map { JavaLanguageVersion.of(it.majorVersion) }
+
+val Project.toolchainVendor
+  get() = libs.versions.java.vendor.map { JvmVendorSpec.matching(it) }
+
 val Project.jvmArguments
   get() = libs.versions.java.jvmArguments.get().split(",", " ").filter { it.isNotBlank() }
+
 val Project.addModules
   get() = libs.versions.java.addModules.get()
+
+/** Kotlin version properties. */
+val Project.kotlinVersion
+  get() = libs.versions.kotlin.asProvider().get()
+
+val Project.k2Enabled
+  get() = libs.versions.kotlin.k2.map { it.toBoolean() }
+
+val Project.kotlinJvmTarget
+  get() = libs.versions.kotlin.jvm.target.map { JvmTarget.fromTarget(it) }
+
+val Project.kotlinApiVersion
+  get() = libs.versions.kotlin.api.version.map { KotlinVersion.fromVersion(it) }
+
+val Project.kotlinLangVersion
+  get() = libs.versions.kotlin.lang.version.map { KotlinVersion.fromVersion(it) }
 
 /** Dependency Extensions */
 val DependencyHandler.KotlinBom
@@ -27,6 +48,7 @@ val DependencyHandler.KotlinBom
 
 val PluginDependenciesSpec.kotlinAllOpen
   get() = kotlin("plugin.allopen")
+
 val PluginDependenciesSpec.kotlinNoArg
   get() = kotlin("plugin.noarg")
 

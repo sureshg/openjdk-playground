@@ -11,5 +11,9 @@ DIR="$(cd -P "$(dirname "$SOURCE")" >/dev/null && pwd)"
 EXEC=$(basename "$0")
 SELF="$DIR/$EXEC"
 
+# Make sure TMPDIR is set
+TMPDIR=${TMPDIR:-"$(dirname "$(mktemp -u)")"}
+
+# Exec the java process
 exec java "$JAVA_OPTS" -jar "$SELF" "$@"
 exit 1

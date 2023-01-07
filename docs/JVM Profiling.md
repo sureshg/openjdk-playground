@@ -149,11 +149,15 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 
 * [Flight Recorder API Guide](https://docs.oracle.com/en/java/javase/18/jfapi/flight-recorder-configurations.html)
 
+
+
 #### 6.JFR Streaming
 
 - [RemoteRecordingStream](https://egahlin.github.io/2021/05/17/remote-recording-stream.html)
 
 - [Stream JFR files](https://github.com/microsoft/jfr-streaming)
+
+
 
 #### 7. HeapDump
 
@@ -166,6 +170,8 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 * [HPROF Parser](https://github.com/openjdk/jdk/blob/master/test/lib/jdk/test/lib/hprof/HprofParser.java)
 
 * [Capture Java Heap Dumps](https://www.baeldung.com/java-heap-dump-capture)
+
+
 
 #### 8. ThreadDump
 
@@ -194,6 +200,8 @@ $ jstack -l -e  <pid>
 $ jcmd GradleDaemon VM.native_memory
 ```
 
+
+
 #### 9. [Unified GC Logging](https://openjdk.java.net/jeps/158#Simple-Examples:)
 
 ```bash
@@ -214,7 +222,22 @@ $  java -Xlog:help
 -XX:GCLogFileSize=10M
 ```
 
-#### 10. System/Node Health
+
+
+#### 10. JVM Tools
+
+   * Java Object Layout (JOL)
+
+     ```bash
+     $ wget -q https://builds.shipilev.net/jol/jol-cli-latest.jar
+     $ java -jar jol-cli-latest.jar internals java.lang.String
+     ```
+
+
+
+
+
+#### 11. System/Node Health
 
 * [SAR](https://github.com/sysstat/sysstat) (System Activity Report)
 
@@ -244,7 +267,9 @@ $  java -Xlog:help
 
 * [Prometheus JFR Exporter](https://github.com/rh-jmc-team/prometheus-jfr-exporter)
 
-#### 11. Commands
+
+
+#### 12. Commands
 
 * Grabbing a file from a remote system with ssh
 
@@ -278,7 +303,9 @@ $  java -Xlog:help
   $ ss -s
   ```
 
-#### 12. Resources
+
+
+#### 13. Resources
 
 * [JDK Mission Control Docs](https://docs.oracle.com/en/java/java-components/jdk-mission-control/)
 * [Marcus Hirt's Blog](http://hirt.se/blog/?p=1312)

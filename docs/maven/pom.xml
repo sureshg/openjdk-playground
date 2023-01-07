@@ -47,7 +47,7 @@
     <jsr305.version>3.0.2</jsr305.version>
     <kotlin.code.style>official</kotlin.code.style>
     <kotlin.compiler.jvmTarget>${javac.target}</kotlin.compiler.jvmTarget>
-    <kotlin.version>1.7.22</kotlin.version>
+    <kotlin.version>1.8.0</kotlin.version>
     <maven.version>3.6</maven.version>
     <nexus-staging.plugin.version>1.6.8</nexus-staging.plugin.version>
     <project.build.outputTimestamp>2020-04-19T01:51:00Z</project.build.outputTimestamp>
