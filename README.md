@@ -1,7 +1,7 @@
 # Module OpenJDK PlayGround
 
 <a href="https://foojay.io/today/works-with-openjdk">
- <img align="right" src="https://github.com/foojayio/badges/raw/main/works_with_openjdk/WorksWithOpenJDK.svg" width="7%" alt="WorksWithOpenJDK">
+ <img align="right" src="https://raw.githubusercontent.com/foojayio/badges/5007c3a6fecf22875b4ddf1aacb085569aec6dd8/works_with_openjdk/WorksWithOpenJDK.svg" width="7%" alt="WorksWithOpenJDK">
 </a>
 
 [![GitHub Workflow Status][gha_badge]][gha_url]
@@ -25,7 +25,7 @@ $ sdk i java openjdk-ea-21
 $ ./gradlew build
 ```
 
-#### Run with `preview features` enabled
+#### Run the App
 
 ```bash
 $ java -jar \
@@ -43,9 +43,23 @@ $ jcmd dev.suresh.Main Thread.dump_to_file -format=json openjdk-playground-threa
 $ java --list-modules | grep -i incubator
 ```
 
-#### Run the application container
+#### Run using OpenJDK Image
 
 ```bash
+$ docker run \
+        -it \
+        --rm \
+        --pull always \
+        --volume "$(PWD)":/app \
+        --workdir /app \
+        --publish 8000:8000 \
+        --name openjdk-playground \
+        openjdk:21-slim /bin/bash -c "./build/openjdk-playground && printenv && jwebserver -b 0.0.0.0 -p 8000 -d /"
+
+# Download the JFR files
+$ wget http://localhost:8000/tmp/openjdk-playground.jfr
+
+# Build the container image
 $ ./gradlew jibDockerBuild
 $ docker run -it --rm --name openjdk-playground sureshg/openjdk-playground
 ```
@@ -116,7 +130,6 @@ $ ./gradlew -q javaToolchains
 
 ##### Resources
 
-* 🔌 [Intellij Platform Explorer](https://plugins.jetbrains.com/intellij-platform-explorer/6954)
 * 🌲 [Maven Deps Tree](https://github.com/SimonMarquis/Maven-Dependency-Tree)
 
  <!--
