@@ -539,7 +539,7 @@ sourceSets.main {
 val sourcesJar by tasks.registering(Jar::class) {
     // kotlin.sourceSets.main.get().kotlin
     from(sourceSets.main.get().allSource)
-    archiveClassifier.set("sources")
+    archiveClassifier = "sources"
 }
 ```
 

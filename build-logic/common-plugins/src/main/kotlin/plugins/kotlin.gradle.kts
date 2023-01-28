@@ -14,8 +14,8 @@ java {
   withJavadocJar()
 
   toolchain {
-    languageVersion.set(toolchainVersion)
-    vendor.set(toolchainVendor)
+    languageVersion = toolchainVersion
+    vendor = toolchainVendor
   }
 }
 
@@ -38,8 +38,8 @@ kotlin {
   }
 
   jvmToolchain {
-    languageVersion.set(toolchainVersion)
-    vendor.set(toolchainVendor)
+    languageVersion = toolchainVersion
+    vendor = toolchainVendor
   }
 
   // jvmToolchain(javaVersion.map { it.majorVersion.toInt() }.get())
@@ -54,7 +54,7 @@ tasks {
   withType<JavaCompile>().configureEach {
     options.apply {
       encoding = "UTF-8"
-      release.set(javaRelease)
+      release = javaRelease
       isIncremental = true
       isFork = true
       debugOptions.debugLevel = "source,lines,vars"
@@ -82,18 +82,21 @@ tasks {
    * https://github.com/JetBrains/kotlin/blob/master/compiler/cli/cli-common/src/org/jetbrains/kotlin/cli/common/arguments/K2JVMCompilerArguments.kt
    * https://github.com/JetBrains/kotlin/blob/master/compiler/config.jvm/src/org/jetbrains/kotlin/config/JvmTarget.kt
    * https://github.com/JetBrains/kotlin/blob/master/compiler/util/src/org/jetbrains/kotlin/config/ApiVersion.kt#L35
+   *
+   * Gradle Kotlin DSL Api/Lang versions,
+   * https://github.com/gradle/gradle/blob/master/subprojects/kotlin-dsl-plugins/src/main/kotlin/org/gradle/kotlin/dsl/plugins/dsl/KotlinDslCompilerPlugins.kt#L67-L68
    */
   withType<KotlinCompile>().configureEach {
     usePreciseJavaTracking = true
     compilerOptions {
-      jvmTarget.set(kotlinJvmTarget)
-      apiVersion.set(kotlinApiVersion)
-      languageVersion.set(kotlinLangVersion)
-      useK2.set(k2Enabled)
-      verbose.set(true)
-      javaParameters.set(true)
-      allWarningsAsErrors.set(false)
-      suppressWarnings.set(false)
+      jvmTarget = kotlinJvmTarget
+      apiVersion = kotlinApiVersion
+      languageVersion = kotlinLangVersion
+      useK2 = k2Enabled
+      verbose = true
+      javaParameters = true
+      allWarningsAsErrors = false
+      suppressWarnings = false
       freeCompilerArgs.addAll(
           "-Xadd-modules=$addModules",
           "-Xjsr305=strict",

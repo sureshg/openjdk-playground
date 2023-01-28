@@ -54,10 +54,10 @@ java {
   withJavadocJar()
 
   toolchain {
-    languageVersion.set(toolchainVersion)
-    vendor.set(toolchainVendor)
+    languageVersion = toolchainVersion
+    vendor = toolchainVendor
   }
-  // modularity.inferModulePath.set(true)
+  // modularity.inferModulePath = true
 }
 
 tasks {
@@ -126,8 +126,8 @@ tasks {
   val buildExecutable by
       registering(ReallyExecJar::class) {
         val shadowJar = named("shadowJar", Jar::class) // project.tasks.shadowJar
-        jarFile.set(shadowJar.flatMap { it.archiveFile })
-        javaOpts.set(application.applicationDefaultJvmArgs)
+        jarFile = shadowJar.flatMap { it.archiveFile }
+        javaOpts = application.applicationDefaultJvmArgs
         onlyIf { OperatingSystem.current().isUnix }
       }
 
@@ -181,7 +181,7 @@ tasks {
   val jdeprscan = register<Jdeprscan>("jdeprscan", jdepExtn)
   jdeprscan {
     val shadowJar by existing(Jar::class)
-    jarFile.set(shadowJar.flatMap { it.archiveFile })
+    jarFile = shadowJar.flatMap { it.archiveFile }
   }
 
   register("ciBuild") {
@@ -203,7 +203,7 @@ tasks {
 //      "--module-path", files(configurations.compileClasspath).asPath,
 //      "--add-modules", "ALL-MODULE-PATH"
 //    )
-//    javaLauncher.set(project.javaToolchains.launcherFor(java.toolchain))
+//    javaLauncher = project.javaToolchains.launcherFor(java.toolchain)
 //  }
 
 // Gradle dependency substitution

@@ -41,17 +41,14 @@ gradlePlugin {
 
 // Jte is used for generating build config.
 jte {
-  contentType.set(gg.jte.ContentType.Plain)
-  sourceDirectory.set(sourceSets.main.get().resources.srcDirs.firstOrNull()?.toPath())
+  contentType = gg.jte.ContentType.Plain
+  sourceDirectory = sourceSets.main.get().resources.srcDirs.firstOrNull()?.toPath()
   generate()
 }
 
-/*
- * https://github.com/gradle/gradle/blob/master/subprojects/kotlin-dsl-plugins/src/main/kotlin/org/gradle/kotlin/dsl/plugins/dsl/KotlinDslCompilerPlugins.kt#L55-L56
- */
 tasks {
   withType<KotlinCompile>().configureEach {
-    compilerOptions { jvmTarget.set(JvmTarget.fromTarget(libs.versions.kotlin.jvm.target.get())) }
+    compilerOptions { jvmTarget = JvmTarget.fromTarget(libs.versions.kotlin.dsl.jvmtarget.get()) }
   }
 }
 

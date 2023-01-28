@@ -71,7 +71,7 @@ val Project.javaToolchainPath
           true -> javaToolchainSvc?.launcherFor(defToolchain)
           else ->
               javaToolchainSvc?.launcherFor {
-                languageVersion.set(JavaLanguageVersion.of(javaVersion))
+                languageVersion = JavaLanguageVersion.of(javaVersion)
               }
         }?.orNull
 

@@ -1,5 +1,3 @@
-@file:Suppress("UnstableApiUsage")
-
 pluginManagement {
 
   // Included plugin builds can contribute settings and project plugins

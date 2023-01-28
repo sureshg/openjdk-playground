@@ -28,13 +28,13 @@ val Project.addModules
 
 /** Kotlin version properties. */
 val Project.kotlinVersion
-  get() = libs.versions.kotlin.asProvider().get()
+  get() = libs.versions.kotlin.asProvider()
 
 val Project.k2Enabled
   get() = libs.versions.kotlin.k2.map { it.toBoolean() }
 
 val Project.kotlinJvmTarget
-  get() = libs.versions.kotlin.jvm.target.map { JvmTarget.fromTarget(it) }
+  get() = libs.versions.kotlin.jvmtarget.map { JvmTarget.fromTarget(it) }
 
 val Project.kotlinApiVersion
   get() = libs.versions.kotlin.api.version.map { KotlinVersion.fromVersion(it) }

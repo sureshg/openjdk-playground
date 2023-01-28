@@ -32,8 +32,8 @@ val ktfmtVersion = libs.versions.ktfmt.get()
 val gjfVersion = libs.versions.google.javaformat.get()
 
 // jte {
-//   contentType.set(ContentType.Plain)
-//   generateNativeImageResources.set(true)
+//   contentType = ContentType.Plain
+//   generateNativeImageResources = true
 //   generate()
 // }
 
@@ -76,7 +76,7 @@ spotless {
 
 tasks {
   // Generate build config.
-  val buildConfig by registering(BuildConfig::class) { classFqName.set("BuildConfig") }
+  val buildConfig by registering(BuildConfig::class) { classFqName = "BuildConfig" }
   sourceSets { main { java.srcDirs(buildConfig) } }
 
   // Fix "Execution optimizations have been disabled" warning for JTE

@@ -28,11 +28,13 @@ class SettingsPlugin : Plugin<Settings> {
 
   /** Add build scan details to GitHub Job summary report! */
   private fun PublishedBuildScan.addJobSummary() {
-    GithubAction.setOutput("build_scan_uri", buildScanUri)
-    GithubAction.addJobSummary(
-        """
+    with(GithubAction) {
+      setOutput("build_scan_uri", buildScanUri)
+      addJobSummary(
+          """
         | ##### 🚀 Gradle BuildScan [URL](${buildScanUri.toASCIIString()})
         """
-            .trimMargin())
+              .trimMargin())
+    }
   }
 }

@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage", "DSL_SCOPE_VIOLATION")
+
 import com.google.cloud.tools.jib.plugins.common.ContainerizingMode
 import com.google.devtools.ksp.gradle.*
 import dev.suresh.gradle.*
@@ -7,7 +9,6 @@ import org.gradle.api.tasks.testing.logging.*
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
   id("plugins.common")
   id("plugins.misc")
@@ -36,8 +37,8 @@ val appMainModule: String by project
 val appMainClass: String by project
 
 application {
-  mainClass.set(appMainClass)
-  // mainModule.set(appMainModule)
+  mainClass = appMainClass
+  // mainModule = appMainModule
   applicationDefaultJvmArgs +=
       listOf(
           "--show-version",
@@ -164,8 +165,8 @@ kotlin {
   }
 
   jvmToolchain {
-    languageVersion.set(toolchainVersion)
-    vendor.set(toolchainVendor)
+    languageVersion = toolchainVersion
+    vendor = toolchainVendor
   }
 }
 
@@ -175,15 +176,15 @@ ksp {
   // arg(KspArgsProvider(project.layout.projectDirectory.file("config").asFile))
 }
 
-redacted { enabled.set(true) }
+redacted { enabled = true }
 
 apiValidation { validationDisabled = true }
 
-qodana { autoUpdate.set(true) }
+qodana { autoUpdate = true }
 
 kover {
-  isDisabled.set(false)
-  engine.set(DefaultIntellijEngine)
+  isDisabled = false
+  engine = DefaultIntellijEngine
   filters { classes { excludes += listOf("dev.suresh.example.*") } }
 }
 
@@ -228,13 +229,13 @@ jib {
   containerizingMode = ContainerizingMode.PACKAGED.toString()
 }
 
-// val branch_name: String  by extra
+// val branch_name: String by extra
 jgitver {
   useSnapshot = true
   nonQualifierBranches = "main"
 }
 
-jdeprscan { forRemoval.set(true) }
+jdeprscan { forRemoval = true }
 
 // Create ShadowJar specific runtimeClasspath.
 val shadowRuntime: Configuration by
@@ -258,7 +259,7 @@ tasks {
   withType<JavaCompile>().configureEach {
     options.apply {
       encoding = "UTF-8"
-      release.set(javaRelease)
+      release = javaRelease
       isIncremental = true
       isFork = true
       debugOptions.debugLevel = "source,lines,vars"
@@ -284,14 +285,14 @@ tasks {
   withType<KotlinCompile>().configureEach {
     usePreciseJavaTracking = true
     compilerOptions {
-      jvmTarget.set(kotlinJvmTarget)
-      apiVersion.set(kotlinApiVersion)
-      languageVersion.set(kotlinLangVersion)
-      useK2.set(k2Enabled)
-      verbose.set(true)
-      javaParameters.set(true)
-      allWarningsAsErrors.set(false)
-      suppressWarnings.set(false)
+      jvmTarget = kotlinJvmTarget
+      apiVersion = kotlinApiVersion
+      languageVersion = kotlinLangVersion
+      useK2 = k2Enabled
+      verbose = true
+      javaParameters = true
+      allWarningsAsErrors = false
+      suppressWarnings = false
       freeCompilerArgs.addAll(
           "-Xadd-modules=$addModules",
           "-Xjsr305=strict",
@@ -314,7 +315,7 @@ tasks {
     }
   }
 
-  withType<KspTaskJvm>().configureEach { compilerOptions.useK2.set(k2Enabled) }
+  withType<KspTaskJvm>().configureEach { compilerOptions.useK2 = k2Enabled }
 
   run.invoke { args(true) }
 
@@ -337,11 +338,11 @@ tasks {
       showStackTraces = true
       showStandardStreams = true
     }
-    reports.html.required.set(true)
+    reports.html.required = true
 
     // Configure coverage for test task.
     extensions.configure<KoverTaskExtension> {
-      isDisabled.set(false)
+      isDisabled = false
       // excludes.addAll(...)
     }
   }
@@ -351,7 +352,7 @@ tasks {
   // Javadoc
   javadoc {
     isFailOnError = true
-    // modularity.inferModulePath.set(true)
+    // modularity.inferModulePath = true
     (options as CoreJavadocOptions).apply {
       encoding = "UTF-8"
       addBooleanOption("-enable-preview", true)
@@ -363,33 +364,33 @@ tasks {
 
   // Dokka config
   withType<DokkaTask>().configureEach {
-    outputDirectory.set(buildDir.resolve("dokka"))
-    moduleName.set(project.name)
+    outputDirectory = buildDir.resolve("dokka")
+    moduleName = project.name
 
     dokkaSourceSets {
       configureEach {
-        displayName.set("JVM")
+        displayName = "JVM"
         includes.from("README.md")
-        jdkVersion.set(kotlinJvmTarget.map { it.target.toInt() })
-        noStdlibLink.set(false)
-        noJdkLink.set(false)
+        jdkVersion = kotlinJvmTarget.map { it.target.toInt() }
+        noStdlibLink = false
+        noJdkLink = false
         // sourceRoots.setFrom(file("src/main/kotlin"))
 
         sourceLink {
-          localDirectory.set(file("src/main/kotlin"))
-          remoteUrl.set(URL("${libs.versions.githubProject.get()}/tree/main/src/main/kotlin"))
-          remoteLineSuffix.set("#L")
+          localDirectory = file("src/main/kotlin")
+          remoteUrl = URL("${libs.versions.githubProject.get()}/tree/main/src/main/kotlin")
+          remoteLineSuffix = "#L"
         }
 
         externalDocumentationLink {
-          url.set(URL("https://kotlin.github.io/kotlinx.coroutines/package-list"))
+          url = URL("https://kotlin.github.io/kotlinx.coroutines/package-list")
         }
 
         perPackageOption {
-          matchingRegex.set("kotlin($|\\.).*")
-          skipDeprecated.set(false)
-          reportUndocumented.set(true) // Emit warnings about not documented members
-          includeNonPublic.set(false)
+          matchingRegex = "kotlin($|\\.).*"
+          skipDeprecated = false
+          reportUndocumented = true // Emit warnings about not documented members
+          includeNonPublic = false
         }
       }
     }
@@ -397,7 +398,7 @@ tasks {
 
   // Uber jar
   shadowJar {
-    archiveClassifier.set("uber")
+    archiveClassifier = "uber"
     description = "Create a fat JAR of $archiveFileName and runtime dependencies."
     mergeServiceFiles()
 
@@ -412,13 +413,13 @@ tasks {
 val dokkaHtmlJar by
     tasks.registering(Jar::class) {
       from(tasks.dokkaHtml)
-      archiveClassifier.set("htmldoc")
+      archiveClassifier = "htmldoc"
     }
 
 // For publishing a pure kotlin project
 val emptyJar by
     tasks.registering(Jar::class) {
-      archiveClassifier.set("javadoc")
+      archiveClassifier = "javadoc"
       // duplicatesStrategy = DuplicatesStrategy.EXCLUDE
       // manifest {
       //   attributes("Automatic-Module-Name" to appMainModule)

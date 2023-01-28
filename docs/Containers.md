@@ -44,6 +44,11 @@ $ docker pull gcr.io/distroless/java-debian11:latest
 $ docker pull gcr.io/distroless/static:latest
 $ docker pull gcr.io/distroless/base:latest
 
+# GraalVM native image base
+$ docker pull cgr.dev/chainguard/graalvm-native-image-base:latest
+$ docker pull cgr.dev/chainguard/static:latest
+$ docker pull cgr.dev/chainguard/jdk:latest
+
 # Openjdk
 # https://github.com/docker-library/openjdk
 $ docker pull openjdk:21-slim
@@ -54,8 +59,6 @@ $ docker pull openjdk:19-jdk-oracle
 # https://github.com/adoptium/containers#supported-images
 $ docker pull eclipse-temurin:19-focal
 $ docker pull eclipse-temurin:19-alpine
-$ docker pull eclipse-temurin:19-jre-focal
-$ docker pull eclipse-temurin:19-jre-alpine
 
 # Oracle OpenJDK
 $ docker pull container-registry.oracle.com/java/openjdk:latest
@@ -64,33 +67,27 @@ $ docker pull container-registry.oracle.com/java/openjdk:latest
 # https://github.com/oracle/docker-images/tree/main/OracleJava
 $ docker pull container-registry.oracle.com/java/jdk:latest
 
-# Microsoft OpenJDK
-# https://docs.microsoft.com/en-us/java/openjdk/containers
-$ docker pull mcr.microsoft.com/openjdk/jdk:17-ubuntu
-
 # Azul Zulu
 # https://github.com/zulu-openjdk/zulu-openjdk
-$ docker pull azul/zulu-openjdk-debian:17-jre
-$ docker pull azul/zulu-openjdk-alpine:17-jre
-
-# Azul Zulu OpenJDK & Mission Control (Homebrew on MacOS)
-# https://github.com/mdogan/homebrew-zulu
-$ brew tap mdogan/zulu
-$ brew install <name>
-
-# Azul Prime
+$ docker pull azul/zulu-openjdk-debian:19-jre
+$ docker pull azul/zulu-openjdk-alpine:19-jre
 $ docker pull azul/prime-debian:latest
+
+# Amazon Corretto
+# https://github.com/corretto/corretto-docker/tree/main/19/slim
+$ docker pull amazoncorretto:19
+$ docker pull amazoncorretto:19-alpine-jdk
+
+# Microsoft OpenJDK
+# https://learn.microsoft.com/en-us/java/openjdk/containers
+$ docker pull mcr.microsoft.com/openjdk/jdk:17-ubuntu
+$ docker pull mcr.microsoft.com/openjdk/jdk:17-distroless
 
 # Liberica
 # https://github.com/bell-sw/Liberica/tree/master/docker/repos/liberica-openjre-debian
 $ docker pull bellsoft/liberica-openjdk-debian:latest
 $ docker pull bellsoft/liberica-openjdk-alpine-musl:latest
 $ docker pull bellsoft/liberica-openjdk-alpine:latest (libc)
-
-# Amazon Corretto
-# https://github.com/corretto/corretto-docker
-$ docker pull amazoncorretto:18
-$ docker pull amazoncorretto:18-alpine
 
 # GraalVM CE & EE
 # https://github.com/orgs/graalvm/packages
@@ -110,6 +107,11 @@ https://github.com/gluonhq/graal/releases
 
 # Jetbrains Runtime (No docker images available)
 https://github.com/JetBrains/JetBrainsRuntime/releases
+
+# Azul Zulu OpenJDK & Mission Control (Homebrew on MacOS)
+# https://github.com/mdogan/homebrew-zulu
+$ brew tap mdogan/zulu
+$ brew install <name>
 
 # Examples
 $ docker run -it --rm gcr.io/distroless/java-debian11:base-nonroot openssl s_client --connect google.com:443
@@ -161,6 +163,38 @@ $ docker run -it --rm ,
 
 # Find container IPAddress
 $ docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' openjdk
+```
+
+
+
+### [Debug Container](https://github.com/iximiuz/cdebug)
+
+```bash
+# On M1 mac
+$ docker run \
+         --platform linux/amd64 \
+         --pull always \
+         -it \
+         --rm \
+         -p 8080:80 \
+         --name openjdk-playground \
+         ghcr.io/sureshg/containers:openjdk-latest
+
+# Default busybox image should work.
+$ brew install cdebug
+$ cdebug exec \
+         --privileged \
+         -it \
+         --rm \
+         --platform linux/amd64 \
+         docker://openjdk-playground
+
+# Extract a file from the Docker environment and store it locally
+$ docker run \
+         --rm \
+         --entrypoint cat \
+         busybox:latest \
+         '/bin/ls' > ls
 ```
 
 
