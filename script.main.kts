@@ -6,10 +6,10 @@
 @file:DependsOn("io.ktor:ktor-client-java:2.2.2")
 @file:DependsOn("io.ktor:ktor-client-auth:2.2.2")
 @file:DependsOn("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-@file:DependsOn("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
+@file:DependsOn("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0-RC")
 @file:DependsOn("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
 @file:DependsOn("org.slf4j:slf4j-simple:2.0.6")
-@file:DependsOn("com.microsoft.playwright:playwright:1.28.1")
+@file:DependsOn("com.microsoft.playwright:playwright:1.29.0")
 // @file:Import("common.main.kts")
 
 @file:CompilerOptions("-jvm-target", "1.8")

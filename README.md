@@ -37,10 +37,6 @@ $ java -jar \
 # Virtual thread debugging.
 $ jfr print --events jdk.VirtualThreadPinned openjdk-playground.jfr
 $ jcmd dev.suresh.Main Thread.dump_to_file -format=json openjdk-playground-threads.json
-
-
-# Check the incubator modules
-$ java --list-modules | grep -i incubator
 ```
 
 #### Run using OpenJDK Image
