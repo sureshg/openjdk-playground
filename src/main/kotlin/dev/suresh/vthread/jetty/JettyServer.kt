@@ -1,43 +1,36 @@
 package dev.suresh.vthread.jetty
 
-import io.mikael.urlbuilder.*
+import io.mikael.urlbuilder.UrlBuilder
 import jakarta.servlet.http.*
 import java.net.http.*
 import java.net.http.HttpResponse.BodyHandlers
 import java.time.Duration
-import java.util.concurrent.*
+import java.util.concurrent.Executors
+import jdk.incubator.concurrent.ScopedValue
 import kotlin.time.*
-import org.eclipse.jetty.http.*
+import org.eclipse.jetty.ee10.servlet.ServletContextHandler
 import org.eclipse.jetty.server.*
-import org.eclipse.jetty.server.handler.*
-import org.eclipse.jetty.servlet.*
 import org.eclipse.jetty.util.*
-import org.eclipse.jetty.util.component.*
 
 fun main() {
   run()
 }
 
 fun run(args: Array<String>? = emptyArray()) {
-  val port = 8080
-  println("Starting the Jetty server on $port...")
-  val tp = VThreadThreadPool()
-  // val tp = QueuedThreadPool(200)
-  val server = Server(tp)
+  val httpPort = 8080
+  println("Starting the Jetty server on $httpPort...")
+  val server = Server(VirtualThreadPool())
 
-  // NetworkTrafficServerConnector(server)
   val connector =
       ServerConnector(server).apply {
-        this.port = port
+        port = httpPort
         acceptQueueSize = 128
       }
-  server.addConnector(connector)
+  server.connectors = arrayOf(connector)
 
-  val servletHandler = ServletHandler()
-  servletHandler.addServletWithMapping(HelloServlet::class.java, "/")
-  server.handler = HandlerList(servletHandler, DefaultHandler())
-
-  HttpGenerator.setJettyVersion("Loom-${Jetty.VERSION}")
+  val context = ServletContextHandler()
+  context.addServlet(HelloServlet::class.java, "/")
+  server.handler = context
   server.start()
   println("Server started at ${server.uri}")
 
@@ -48,14 +41,15 @@ fun run(args: Array<String>? = emptyArray()) {
     server.join()
   } else {
     println("Shutting down the server!")
-    LifeCycle.stop(server)
+    server.stop()
   }
 }
 
 fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
   require(count > 0)
   println(
-      "Sending $count concurrent requests to ${server.uri} and wait for $deadlineInSec seconds...")
+      "Sending $count concurrent requests to ${server.uri} and wait for $deadlineInSec seconds...",
+  )
 
   val client =
       HttpClient.newBuilder()
@@ -66,17 +60,17 @@ fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
 
   val factory = Thread.ofVirtual().name("VirtualThreadPool-", 1).factory()
   val execSvc = Executors.newThreadPerTaskExecutor(factory)
-
   // val ecs = ExecutorCompletionService<String>(execSvc)
 
   val results =
       execSvc.use { exec ->
         val user = System.getProperty("user.name", "user")
 
+        println("--> Sending $count concurrent requests")
         (1..count).map { idx ->
           exec.submit<Result<String>> {
             try {
-              println("---> $idx. Sending Request")
+
               val uri =
                   UrlBuilder.fromUri(server.uri)
                       .addParameter("id", idx.toString())
@@ -120,55 +114,47 @@ fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
       """
     SUCCESS: ${ok.size} / ${results.size}
     FAILURE: ${err.size} / ${results.size}
-
     """
-          .trimIndent())
+          .trimIndent(),
+  )
 }
 
 class HelloServlet : HttpServlet() {
-  /** Scoped local variable holding the user info. */
-  //    private val ID = ExtentLocal.newInstance<String>()
-  //
-  //    private val USER = ExtentLocal.newInstance<String>()
-
+  private val ID = ScopedValue.newInstance<String>()
+  private val USER = ScopedValue.newInstance<String>()
   private val OS: String = System.getProperty("os.name")
 
   init {
-    println("Initializing the Servlet >>>>> ")
+    println("Initializing Jakarta Servlet >>>>> ")
   }
 
-  override fun doGet(req: HttpServletRequest?, resp: HttpServletResponse?) {
-    val id = req?.getParameter("id")
-    val user = req?.getParameter("user")
-
-    //        ExtentLocal
-    //            .where(ID, id)
-    //            .where(USER, user)
-    //            .run {
-    //                resp?.apply {
-    //                    contentType = "application/json"
-    //                    status = HttpServletResponse.SC_OK
-    //                    writer?.println(exec(req))
-    //                }
-    //            }
+  override fun doGet(req: HttpServletRequest, resp: HttpServletResponse) {
+    val id = req.getParameter("id")
+    val user = req.getParameter("user")
+    ScopedValue.where(ID, id).where(USER, user).run {
+      resp.apply {
+        contentType = "application/json"
+        status = HttpServletResponse.SC_OK
+        writer?.println(exec(req))
+      }
+    }
   }
 
-  private fun exec(req: HttpServletRequest?): String {
+  private fun exec(req: HttpServletRequest): String {
     // Simulate blocking
-    Thread.sleep(Duration.ofSeconds(2))
+    Thread.sleep(Duration.ofMillis(500))
     return """
           {
-
+            "Id"     : ${ID.orElse("n/a")},
+            "User"   : ${USER.orElse("n/a")},
             "server" : Jetty-${Jetty.VERSION},
             "Java"   : ${JavaVersion.VERSION},
             "OS"     : $OS,
-            "target" : ${req?.fullURL},
+            "target" : ${req.fullURL},
             "Thread" : ${Thread.currentThread()}
           }
-    """
+         """
         .trimIndent()
-    //        "Id"     : ${ID.orElse("n/a")},
-    //        "User"   : ${USER.orElse("n/a")},
   }
 }
 

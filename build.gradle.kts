@@ -435,8 +435,7 @@ dependencies {
   implementation(libs.kotlinx.serialization.json)
   implementation(libs.kotlinx.datetime)
   implementation(libs.jetty.server) { version { strictly(libs.versions.jetty.asProvider().get()) } }
-  implementation(libs.jetty.jakarta.servlet)
-  implementation(libs.jetty.servlet)
+  implementation(libs.jetty.ee10.servlet)
   implementation(Deps.Http.urlbuilder)
   implementation(Deps.OkHttp.okhttp)
   implementation(Deps.OkHttp.mockWebServer)

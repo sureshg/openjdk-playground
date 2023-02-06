@@ -1,7 +1,7 @@
 pluginManagement {
 
   // Included plugin builds can contribute settings and project plugins
-  includeBuild("build-logic")
+  includeBuild("gradle/build-logic")
 
   // val gradleEnterprise: String by settings //OR
   // val gradleEnterprise =

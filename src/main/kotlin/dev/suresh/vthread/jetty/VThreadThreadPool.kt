@@ -1,10 +1,9 @@
 package dev.suresh.vthread.jetty
 
-import java.util.concurrent.*
-import org.eclipse.jetty.util.component.*
-import org.eclipse.jetty.util.thread.*
+import java.util.concurrent.Executors
+import org.eclipse.jetty.util.thread.ThreadPool
 
-class VThreadThreadPool : AbstractLifeCycle(), ThreadPool {
+class VirtualThreadPool : ThreadPool {
 
   private val execSvc = Executors.newVirtualThreadPerTaskExecutor()
 
@@ -16,11 +15,6 @@ class VThreadThreadPool : AbstractLifeCycle(), ThreadPool {
     while (!execSvc.isTerminated) {
       Thread.onSpinWait()
     }
-  }
-
-  override fun doStop() {
-    super.doStop()
-    execSvc.shutdown()
   }
 
   override fun getThreads() = Int.MAX_VALUE

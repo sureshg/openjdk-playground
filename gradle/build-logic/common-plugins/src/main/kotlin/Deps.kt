@@ -527,7 +527,7 @@ inline val PluginDependenciesSpec.taskTree
 inline val PluginDependenciesSpec.forbiddenApis
   get() = id("de.thetaphi.forbiddenapis") version "3.1"
 inline val PluginDependenciesSpec.extraJavaModuleInfo
-  get() = id("org.gradlex.extra-java-module-info") version "1.2"
+  get() = id("org.gradlex.extra-java-module-info") version "1.3"
 inline val PluginDependenciesSpec.licensee
   get() = id("app.cash.licensee") version "1.6.0" apply false
 
@@ -569,7 +569,7 @@ inline val PluginDependenciesSpec.springDepMgmt
 
 // Static Analysis and Linting
 inline val PluginDependenciesSpec.spotlessChangelog
-  get() = id("com.diffplug.spotless-changelog") version "2.4.1"
+  get() = id("com.diffplug.spotless-changelog") version "3.0.1"
 inline val PluginDependenciesSpec.spotbugs
   get() = id("com.github.spotbugs") version "4.3.0"
 inline val PluginDependenciesSpec.ktlint

@@ -8,6 +8,8 @@ updates:
     labels:
       - "gradle"
       - "dependencies"
+    reviewers:
+      - sureshg
 
   - package-ecosystem: "gradle"
     directory: "/buildSrc"
@@ -21,9 +23,12 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    open-pull-requests-limit: 5
     labels:
       - "github-actions"
       - "dependencies"
+    reviewers:
+      - sureshg
 
   - package-ecosystem: "docker"
     directory: "/"

@@ -124,7 +124,7 @@ public class JavaApp {
       s.connect(new InetSocketAddress("localhost", 12345), 1_00);
     } catch (Exception e) {
       out.println(e.getMessage());
-      assert e.getMessage().contains("localhost:12345");
+      assert e.getMessage().contains("localhost/127.0.0.1:12345");
     }
 
     var currTime = System.currentTimeMillis();

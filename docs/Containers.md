@@ -195,20 +195,49 @@ $ docker run \
          --entrypoint cat \
          busybox:latest \
          '/bin/ls' > ls
+
+# OR copy files from a container
+$ docker cp <CONTAINER>:/app/app/jar .
 ```
 
 
 
-### Java Container logs
+### JVM Ergonomics and Container logs
 
 ```bash
+$ cat << EOF >App.java
+import static java.lang.System.out;
+public class App {
+  public static void main(String...args) {
+    var version = "• Java %s running on %s %s".formatted(
+                   System.getProperty("java.version"),
+                   System.getProperty("os.name"),
+                   System.getProperty("os.arch"));
+    out.println(version);
+    long unit = 1024*1024l;
+    long heapSize = Runtime.getRuntime().totalMemory();
+    long heapFreeSize = Runtime.getRuntime().freeMemory();
+    long heapUsedSize = heapSize-heapFreeSize;
+    long heapMaxSize = Runtime.getRuntime().maxMemory();
+
+    out.println("• [CPU] Active Processors: " + Runtime.getRuntime().availableProcessors());
+    out.println("• [Mem] Current Heap Size (Committed) : " + heapSize/unit + " MiB");
+    out.println("• [Mem] Current Free memeory in Heap  : " + heapFreeSize/unit + " MiB");
+    out.println("• [Mem] Currently used memory         : " + heapUsedSize/unit + " MiB");
+    out.println("• [Mem] Max Heap Size (-Xmx)          : " + heapMaxSize/unit + " MiB");
+  }
+}
+EOF
+
+# For container logs, add "-Xlog:gc\*,os=trace,os+container=trace" option.
+# Override the default container CPU quota detection "-XX:ActiveProcessorCount=<n>"
 $ docker run \
         -it \
         --rm \
         --cpus=2 \
-        --memory=256m \
+        --memory=512m \
         --pull always \
-        -v "$HOME":/app \
+        -v "$(PWD)":/app \
         -v /:/host \
         --name openjdk \
         openjdk:21-slim \
@@ -216,13 +245,10 @@ $ docker run \
         -XX:+UnlockExperimentalVMOptions \
         -XX:+UnlockDiagnosticVMOptions \
         -XX:+PrintFlagsFinal \
-        -XX:MaxRAMPercentage=0.8 \
         -XX:-MaxFDLimit \
-        -Xlog:gc\*,os=trace,os+container=trace --version \
-        | grep -e "Use.*GC" -e "Active" -e "Using" -e "Max.*Limit" -e "OpenJDK" -e "Container"
-
-# Override the default container CPU quota detection mechanism
-# -XX:ActiveProcessorCount=<n>
+        -XX:MaxRAMPercentage=0.8 \
+        /app/App.java \
+        | grep -e "Use.*GC" -e "Active" -e "Using" -e "Max.*Limit" -e "Container" -e "•"
 ```
 
 

@@ -1,13 +1,13 @@
 [versions]
 java                           = "21"
-kotlin                         = "1.8.0"
+kotlin                         = "1.8.10"
 kotlin-k2                      = "false"
-kotlin-ksp                     = "1.8.0-1.0.9"
+kotlin-ksp                     = "1.8.10-1.0.9"
 kotlin-jvmtarget               = "19"
 kotlin-api-version             = "1.9"
 kotlin-lang-version            = "1.9"
 kotlin-dsl-jvmtarget           = "11"
-gradle                         = "8.1-20230127072206+0000"
+gradle                         = "8.1-20230205231109+0000"
 java-vendor                    = "Oracle"
 java-jvmArguments              = "--enable-preview"
 java-addModules                = "jdk.incubator.concurrent,jdk.incubator.vector"
@@ -48,9 +48,9 @@ http-common                    = "0.10.0"
 imageio-twelvemonkeys          = "3.8.1"
 jakewharton-picnic             = "0.4.0"
 jakewharton-crossword          = "0.1.2"
-jackson-databind               = "2.14.1"
+jackson-databind               = "2.14.2"
 jetbrains-markdown             = "0.2.4"
-jetty                          = "11.0.13"
+jetty                          = "12.0.0.alpha3"
 jetty-jakarta-servlet          = "5.0.2"
 jgit                           = "6.2.0.202206071550-r"
 jgitver                        = "0.10.0-rc03"
@@ -59,7 +59,7 @@ jreleaser                      = "0.9.1"
 jspecify                       = "0.3.0"
 jte                            = "2.2.4"
 junit                          = "5.9.2"
-junit-pioneer                  = "2.0.0-RC1"
+junit-pioneer                  = "2.0.0"
 jqwik                          = "1.6.0"
 jSystemThemeDetector           = "3.6"
 kmath                          = "0.2.1"
@@ -79,7 +79,7 @@ kotlin-wrappers                = "1.0.0-pre.347"
 kodein                         = "7.10.0"
 koin                           = "3.1.5"
 kotlininject                   = "0.4.1"
-kotest                         = "5.5.4"
+kotest                         = "5.5.5"
 ksp-auto-service               = "1.0.0"
 ksp-redacted                   = "1.3.0"
 ksp-powerassert                = "0.12.0"
@@ -108,7 +108,7 @@ versioncompare                 = "1.5.0"
 violations                     = "1.149.2"
 
 # Plugin versions
-benmanes                       = "0.44.0"
+benmanes                       = "0.45.0"
 beryx-jlink                    = "2.24.4"
 beryx-runtime                  = "1.12.7"
 beryx-jar                      = "2.0.0"
@@ -122,7 +122,7 @@ git-properties                 = "2.4.1"
 google-javaformat              = "1.15.0"
 graalvm-nativeimage            = "0.9.11"
 gradle-checksum                = "1.3.0"
-gradle-enterprise              = "3.12.2"
+gradle-enterprise              = "3.12.3"
 gradlex-buildparameters        = "1.0"
 jetbrains-exposed              = "0.2.1"
 ktfmt                          = "0.42"
@@ -134,7 +134,7 @@ osdetector                     = "1.7.0"
 openrewrite                    = "5.32.0"
 protobuf-plugin                = "0.8.19"
 shadow                         = "7.1.2"
-spotless                       = "6.14.0"
+spotless                       = "6.14.1"
 taskinfo                       = "2.1.0"
 versioncatalog-update          = "0.5.1"
 dependency-analysis            = "1.18.0"
@@ -176,9 +176,11 @@ jakewharton-crossword   = { module = "com.jakewharton.crossword:crossword"      
 
 jetty-bom               = { module = "org.eclipse.jetty:jetty-bom"                            , version.ref = "jetty"}
 jetty-server            = { module = "org.eclipse.jetty:jetty-server"                         , version.ref = "jetty"}
-jetty-servlet           = { module = "org.eclipse.jetty:jetty-servlet"                        , version.ref = "jetty"}
+jetty-http2-server      = { module = "org.eclipse.jetty.http2:http2-server"                   , version.ref = "jetty"}
 jetty-util              = { module = "org.eclipse.jetty:jetty-util"                           , version.ref = "jetty"}
-jetty-jakarta-servlet   = { module = "org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api"  , version.ref = "jetty-jakarta-servlet"}
+jetty-ee10-servlet      = { module = "org.eclipse.jetty.ee10:jetty-ee10-servlet"              , version.ref = "jetty"}
+jetty-ee10-proxy        = { module = "org.eclipse.jetty.ee10:jetty-ee10-proxy"                , version.ref = "jetty"}
+jetty-ee10-annotations  = { module = "org.eclipse.jetty.ee10:jetty-ee10-annotations"          , version.ref = "jetty"}
 
 
 google-auto-annotations     = { module = "com.google.auto.service:auto-service-annotations" , version.ref = "google-auto-service"}
