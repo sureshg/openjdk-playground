@@ -12,6 +12,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
   id("plugins.common")
   id("plugins.misc")
+  id("plugins.publishing")
   jgitPlugin
   kotlin("jvm")
   alias(libs.plugins.ksp)
@@ -409,23 +410,6 @@ tasks {
   }
 }
 
-// Dokka html doc
-val dokkaHtmlJar by
-    tasks.registering(Jar::class) {
-      from(tasks.dokkaHtml)
-      archiveClassifier = "htmldoc"
-    }
-
-// For publishing a pure kotlin project
-val emptyJar by
-    tasks.registering(Jar::class) {
-      archiveClassifier = "javadoc"
-      // duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-      // manifest {
-      //   attributes("Automatic-Module-Name" to appMainModule)
-      // }
-    }
-
 dependencies {
   implementation(platform(libs.kotlin.bom))
   implementation(platform(Deps.OkHttp.bom))
@@ -497,39 +481,4 @@ dependencies {
   //      because("CVE-2021-44228 - Log4shell")
   //    }
   //  }
-}
-
-publishing {
-  repositories {
-    maven {
-      name = "local"
-      url = uri(layout.buildDirectory.dir("repo"))
-    }
-
-    maven {
-      name = "GitHubPackages"
-      url = uri("https://maven.pkg.github.com/sureshg/${project.name}")
-      credentials {
-        username = project.findProperty("gpr.user") as? String ?: System.getenv("USERNAME")
-        password = project.findProperty("gpr.key") as? String ?: System.getenv("TOKEN")
-      }
-    }
-  }
-
-  publications {
-    // Maven Central
-    register<MavenPublication>("maven") {
-      from(components["java"])
-      artifact(dokkaHtmlJar)
-      artifact(tasks.buildExecutable)
-      // artifact(tasks.shadowJar)
-      configurePom(project)
-    }
-
-    // GitHub Package Registry
-    register<MavenPublication>("gpr") {
-      from(components["java"])
-      configurePom(project)
-    }
-  }
 }

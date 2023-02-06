@@ -1,5 +1,6 @@
 package dev.suresh.gradle
 
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.nio.file.Path
 import java.util.concurrent.CompletableFuture
@@ -11,7 +12,6 @@ import org.gradle.api.attributes.DocsType
 import org.gradle.api.component.AdhocComponentWithVariants
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.internal.os.OperatingSystem
-import org.gradle.jvm.toolchain.JavaLanguageVersion
 import org.gradle.jvm.toolchain.JavaToolchainService
 import org.gradle.kotlin.dsl.*
 import org.gradle.tooling.GradleConnector
@@ -64,19 +64,34 @@ val Project.javaToolchainPath
   get(): Path {
     val defToolchain = extensions.findByType(JavaPluginExtension::class)?.toolchain
     val javaToolchainSvc = extensions.findByType(JavaToolchainService::class)
-    val javaVersion = libs.versions.java.asProvider().get()
 
     val jLauncher =
         when (defToolchain != null) {
           true -> javaToolchainSvc?.launcherFor(defToolchain)
-          else ->
-              javaToolchainSvc?.launcherFor {
-                languageVersion = JavaLanguageVersion.of(javaVersion)
-              }
+          else -> javaToolchainSvc?.launcherFor { languageVersion = toolchainVersion }
         }?.orNull
 
     return jLauncher?.metadata?.installationPath?.asFile?.toPath()
         ?: error("Requested JDK version ($javaVersion) is not available.")
+  }
+
+/** Return incubator modules of the tool chain JDK */
+val Project.incubatorModules
+  get(): String {
+    val javaCmd = project.javaToolchainPath.resolve("bin").resolve("java")
+    val bos = ByteArrayOutputStream()
+    val execResult = exec {
+      workingDir = layout.buildDirectory.get().asFile
+      commandLine = listOf(javaCmd.toString())
+      args = listOf("--list-modules")
+      standardOutput = bos
+      errorOutput = bos
+    }
+    execResult.assertNormalExitValue()
+    return bos.toString(Charsets.UTF_8)
+        .lines()
+        .filter { it.startsWith("jdk.incubator") }
+        .joinToString(",") { it.substringBefore("@").trim() }
   }
 
 /**

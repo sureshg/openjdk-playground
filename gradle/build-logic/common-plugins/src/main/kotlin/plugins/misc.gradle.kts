@@ -9,8 +9,6 @@ import tasks.BuildConfig
 
 plugins {
   java
-  signing
-  `maven-publish`
   wrapper
   // id("common")
   // id("gg.jte.gradle")
