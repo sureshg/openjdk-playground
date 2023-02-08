@@ -56,6 +56,9 @@ rootProject.name = "openjdk-playground"
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-// With composite builds, the module dependencies to 'preview-features' will always
-// be substituted with project dependencies.
+include("playground-bom")
+// project(":aaa:xxx").projectDir = file("aaa/bbb")
+
+// With composite builds, the module dependencies to 'preview-features'
+// will always be substituted with project dependencies.
 includeBuild("preview-features")

@@ -3,16 +3,9 @@ package plugins
 import dev.suresh.gradle.libs
 
 plugins {
-  signing
   `maven-publish`
+  signing
 }
-
-// Dokka html doc
-val dokkaHtmlJar by
-    tasks.registering(Jar::class) {
-      from(tasks.named("dokkaHtml"))
-      archiveClassifier = "htmldoc"
-    }
 
 // For publishing a pure kotlin project
 val emptyJar by
@@ -23,6 +16,8 @@ val emptyJar by
       //   attributes("Automatic-Module-Name" to appMainModule)
       // }
     }
+
+group = "dev.suresh"
 
 publishing {
   repositories {
@@ -42,35 +37,63 @@ publishing {
   }
 
   publications {
-    // Maven Central
-    register<MavenPublication>("maven") {
-      from(components["java"])
-      artifact(dokkaHtmlJar)
-      artifact(tasks.named("buildExecutable"))
-      // artifact(tasks.shadowJar)
-      configurePom()
+    plugins.withId("java-library") {
+
+      // Dokka html doc
+      val dokkaHtmlJar by
+          tasks.registering(Jar::class) {
+            from(tasks.named("dokkaHtml"))
+            archiveClassifier = "htmldoc"
+          }
+
+      // Maven Central
+      register<MavenPublication>("maven") {
+        from(components["java"])
+        artifact(dokkaHtmlJar)
+        artifact(tasks.named("buildExecutable"))
+        // artifact(tasks.shadowJar)
+        configurePom()
+      }
+
+      // GitHub Package Registry
+      register<MavenPublication>("gpr") {
+        from(components["java"])
+        configurePom()
+      }
     }
 
-    // GitHub Package Registry
-    register<MavenPublication>("gpr") {
-      from(components["java"])
-      configurePom()
+    plugins.withId("java-platform") {
+      create<MavenPublication>("maven") {
+        from(components["javaPlatform"])
+        configurePom()
+      }
     }
   }
 }
 
+// signing {
+//  setRequired {
+//    gradle.taskGraph.allTasks.any {
+//      it.name.startsWith("publish")
+//    }
+//  }
+//
+//  publishing.publications.configureEach {
+//    sign(this)
+//  }
+//  useGpgCmd()
+// }
+
 fun MavenPublication.configurePom() {
   val githubUrl = libs.versions.githubProject.getOrElse("")
   pom {
-    packaging = "jar"
-    name = project.name
-    description = project.description
+    name = provider { "${project.group}:${project.name}" }
+    description = provider { project.description }
     inceptionYear = "2021"
     url = githubUrl
 
     developers {
       developer {
-        id = "sureshg"
         name = "Suresh"
         email = "email@suresh.dev"
         organization = "Suresh"
@@ -82,20 +105,13 @@ fun MavenPublication.configurePom() {
       license {
         name = "The Apache Software License, Version 2.0"
         url = "https://www.apache.org/licenses/LICENSE-2.0.txt"
-        distribution = "repo"
       }
     }
 
     scm {
       url = githubUrl
-      tag = "HEAD"
       connection = "scm:git:$githubUrl.git"
       developerConnection = "scm:git:$githubUrl.git"
-    }
-
-    issueManagement {
-      system = "github"
-      url = "$githubUrl/issues"
     }
   }
 }

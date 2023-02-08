@@ -189,7 +189,16 @@ kover {
   filters { classes { excludes += listOf("dev.suresh.example.*") } }
 }
 
-koverMerged { enable() }
+koverMerged {
+  enable()
+  filters {
+    projects {
+      // Exclude platform (bom) project
+      excludes +=
+          allprojects.filter { it.buildFile.exists() && it.name.contains("-bom") }.map { it.name }
+    }
+  }
+}
 
 kotlinPowerAssert { functions = listOf("kotlin.assert", "kotlin.test.assertTrue") }
 

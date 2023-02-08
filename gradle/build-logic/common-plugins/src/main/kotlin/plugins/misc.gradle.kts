@@ -84,11 +84,11 @@ tasks {
 
   // Delegating tasks to composite build (./gradlew :preview-features:ffm-api:tasks --all)
   register("ffm-build") {
-    gradle.includedBuild("preview-features").apply {
-      projectDir
+    gradle.includedBuild("preview-features").also { incBuild ->
+      incBuild.projectDir
           .listFiles()
           ?.filter { it.isDirectory && File(it, "build.gradle.kts").exists() }
-          ?.forEach { dir -> dependsOn(task(":${dir.name}:build")) }
+          ?.forEach { dir -> dependsOn(incBuild.task(":${dir.name}:build")) }
     }
     // dependsOn(gradle.includedBuild("preview-features").task(":ffm-api:build"))
   }
