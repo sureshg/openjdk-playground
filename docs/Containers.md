@@ -245,8 +245,9 @@ $ docker run \
         -XX:+UnlockExperimentalVMOptions \
         -XX:+UnlockDiagnosticVMOptions \
         -XX:+PrintFlagsFinal \
-        -XX:-MaxFDLimit \
         -XX:MaxRAMPercentage=0.8 \
+        -XX:-MaxFDLimit \
+        -Xlog:gc \
         /app/App.java \
         | grep -e "Use.*GC" -e "Active" -e "Using" -e "Max.*Limit" -e "Container" -e "•"
 ```

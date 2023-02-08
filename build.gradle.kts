@@ -86,7 +86,7 @@ application {
           "-XX:+UnlockDiagnosticVMOptions",
           "-XX:+LogVMOutput",
           "-XX:LogFile=$tmp$name-jvm.log",
-          "-XX:NativeMemoryTracking=summary",
+          "-XX:NativeMemoryTracking=detail",
           "-XX:+ShowHiddenFrames",
           "-Djava.awt.headless=true",
           "-Djdk.attach.allowAttachSelf=true",
@@ -440,6 +440,7 @@ dependencies {
   implementation(libs.log4j.core)
   implementation(libs.jspecify)
   implementation(libs.reflect.typeparamresolver)
+  implementation(libs.sourceBuddy)
 
   compileOnly(libs.jte.kotlin)
   compileOnly(Deps.Kotlinx.atomicfu)

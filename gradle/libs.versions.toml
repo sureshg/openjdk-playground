@@ -102,6 +102,7 @@ rsocket                        = "0.15.4"
 semver                         = "1.0.0"
 shapeshift                     = "0.5.0"
 slf4j                          = "2.0.6"
+sourceBuddy                    = "2.1.0"
 testcontainers                 = "1.16.3"
 togglz                         = "3.1.1"
 versioncompare                 = "1.5.0"
@@ -309,6 +310,7 @@ profiler-ap-loader           = { module = "me.bechberger:ap-loader"             
 reflect-classgraph           = { module = "io.github.classgraph:classgraph"                  , version.ref = "reflect-classgraph"}
 reflect-typeparamresolver    = { module = "net.harawata.reflection:typeparameterresolver"    , version.ref = "reflect-typeparamresolver"}
 reflect-typetools            = { module = "net.jodah:typetools"                              , version.ref = "reflect-typetools"}
+sourceBuddy                  = { module = "com.javax0.sourcebuddy:SourceBuddy"               , version.ref = "sourceBuddy"}
 
 os-appdirs                  = { module = "net.harawata:appdirs"                             , version.ref = "os-appdirs"}
 os-oshi                     = { module = "com.github.oshi:oshi-core"                        , version.ref = "os-oshi"}

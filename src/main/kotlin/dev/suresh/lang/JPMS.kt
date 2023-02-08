@@ -1,5 +1,6 @@
 package dev.suresh.lang
 
+import com.javax0.sourcebuddy.Compiler
 import java.io.*
 import java.lang.invoke.*
 import java.lang.reflect.Modifier
@@ -35,6 +36,7 @@ fun run() {
   val version = out.toString()
   println("jdeps version: $version")
 
+  // compileJava()
   // showAllSecurityProperties()
 }
 
@@ -42,6 +44,24 @@ fun reflections() {
   println("String isFinal = ${Modifier.isFinal(String::class.java.modifiers)}")
 }
 
+fun compileJava() {
+  Compiler.java()
+      .from(
+          """
+      | package dev.suresh;
+      | public class TestApp implements Runnable {
+      |    @Override
+      |    public void run() {
+      |      System.out.println("Hello from TestApp!");
+      |    }
+      | }
+      """
+              .trimMargin())
+      .compile()
+      .load()
+      .newInstance(Runnable::class.java)
+      .run()
+}
 /** @see [VarHandles](https://www.baeldung.com/java-variable-handles) */
 private fun showAllSecurityProperties() {
   // Should add this VM args "--add-opens=java.base/java.security=ALL-UNNAMED"

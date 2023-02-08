@@ -11,7 +11,7 @@ object Deps {
   object Jdk {
 
     object Gc {
-      const val toolkit = "com.microsoft.gctoolkit:api:2.0.1"
+      const val toolkit = "com.microsoft.gctoolkit:api:3.0.1"
     }
 
     object Javadoc {
