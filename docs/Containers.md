@@ -24,27 +24,17 @@
 ### Offical Java Images
 
 ```bash
-# Distroless Java Base (For Jlink apps based on debian bullseye)
+# Distroless Java Images
 # https://console.cloud.google.com/gcr/images/distroless/GLOBAL
-$ docker pull gcr.io/distroless/java:base
-$ docker pull gcr.io/distroless/java:base-nonroot
-$ docker pull gcr.io/distroless/java-base:nonroot
-$ docker pull gcr.io/distroless/java-base-debian11:nonroot (For ARM64/AMD64)
-
-# OS specific
-$ docker pull gcr.io/distroless/java-debian11:base
-$ docker pull gcr.io/distroless/java-debian11:base-nonroot
-
-# Distroless OpenJDK
-# https://github.com/GoogleContainerTools/distroless/tree/main/java
-$ docker pull gcr.io/distroless/java:latest # OR
-$ docker pull gcr.io/distroless/java-debian11:latest
+# https://github.com/GoogleContainerTools/distroless#what-images-are-available
+$ docker pull gcr.io/distroless/java-base-debian11:latest
+$ docker pull gcr.io/distroless/java17-debian11:latest
 
 # Distroless Static & Base
-$ docker pull gcr.io/distroless/static:latest
-$ docker pull gcr.io/distroless/base:latest
+$ docker pull gcr.io/distroless/static-debian11:latest
+$ docker pull gcr.io/distroless/base-debian11:latest
 
-# GraalVM native image base
+# GraalVM native-image base
 $ docker pull cgr.dev/chainguard/graalvm-native-image-base:latest
 $ docker pull cgr.dev/chainguard/static:latest
 $ docker pull cgr.dev/chainguard/jdk:latest
@@ -214,7 +204,7 @@ public class App {
                    System.getProperty("os.name"),
                    System.getProperty("os.arch"));
     out.println(version);
-    long unit = 1024*1024l;
+    long unit = 1024 * 1024L;
     long heapSize = Runtime.getRuntime().totalMemory();
     long heapFreeSize = Runtime.getRuntime().freeMemory();
     long heapUsedSize = heapSize-heapFreeSize;
@@ -254,6 +244,20 @@ $ docker run \
 
 
 
+### JVM default GC
+
+```bash
+# https://github.com/openjdk/jdk/blob/master/src/hotspot/share/runtime/os.cpp#L1691
+# OpenJDK reverts to Serial GC when it detects < 2 CPUs or < 2GB RAM
+$ docker run -it --rm --cpus=1 --memory=1G openjdk:21-slim java -Xlog:gc --version
+  #[0.007s][info][gc] Using Serial
+```
+
+* https://github.com/brunoborges/jvm-ergonomics (https://vimeo.com/748031919)
+* https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+
+
 ### App Running on K8S/Docker
 
 ```bash
@@ -275,21 +279,6 @@ $  docker run \
 ```
 
 * [Check if the container is running inside K8S](https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/#environment-variables:~:text=printenv%20%7C%20grep%20SERVICE-,KUBERNETES_SERVICE_HOST,-%3D10.0.0.1%0AKUBERNETES_SERVICE_PORT%3D443)
-
-
-
-### JVM default GC
-
-```bash
-# https://github.com/openjdk/jdk/blob/master/src/hotspot/share/runtime/os.cpp#L1637
-# OpenJDK reverts to Serial GC when it detects < 2 CPUs or < 2GB RAM
-$ docker run -it --rm --cpus=1 --memory=1G openjdk:21-slim java -Xlog:gc --version
-  #[0.007s][info][gc] Using Serial
-```
-
-* https://github.com/openjdk/jdk/blob/master/src/hotspot/share/runtime/os.cpp#:~:text=is_server_class_machine
-* https://github.com/brunoborges/jvm-ergonomics (https://vimeo.com/748031919)
-* https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 
 
@@ -389,17 +378,14 @@ ENTRYPOINT ["../../myapp-entrypoint.sh"]
 **HTTP Proxy**
 
 ```bash
-FROM ubuntu:20.04
+FROM debian:stable-slim
 
 ENV HTTP_PROXY="http://proxy.test.com:8080"
 ENV HTTPS_PROXY="http://proxy.test.com:8080"
 ENV NO_PROXY="*.test1.com,*.test2.com,127.0.0.1,localhost"
-
-RUN apt-get update && apt-get upgrade -y && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    openjdk \
-    rm -rf /var/lib/apt/lists/*
 ```
+
+
 
 #### Container Tools
 

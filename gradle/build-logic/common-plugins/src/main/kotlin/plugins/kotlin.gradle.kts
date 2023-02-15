@@ -23,7 +23,8 @@ kotlin {
   sourceSets.all {
     languageSettings.apply {
       progressiveMode = true
-      enableLanguageFeature("DataObjects")
+      languageVersion = kotlinLangVersion.get().version
+      // enableLanguageFeature("DataObjects")
       optIn("kotlin.ExperimentalStdlibApi")
       optIn("kotlin.ExperimentalUnsignedTypes")
       optIn("kotlin.io.path.ExperimentalPathApi")
@@ -92,7 +93,6 @@ tasks {
       jvmTarget = kotlinJvmTarget
       apiVersion = kotlinApiVersion
       languageVersion = kotlinLangVersion
-      useK2 = k2Enabled
       verbose = true
       javaParameters = true
       allWarningsAsErrors = false

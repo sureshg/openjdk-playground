@@ -322,7 +322,7 @@ object Deps {
 
   object Security {
     const val password4j = "com.password4j:password4j:1.6.3"
-    const val otp = "com.github.bastiaanjansen:otp-java:1.3.2"
+    const val otp = "com.github.bastiaanjansen:otp-java:2.0.0"
     const val totp = "dev.samstevens.totp:totp:1.7.1"
     const val jwtJava = "com.github.bastiaanjansen:jwt-java:1.2.0"
     const val twoFactorAuth = "com.j256.two-factor-auth:two-factor-auth:1.3"

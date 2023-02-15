@@ -30,9 +30,6 @@ val Project.addModules
 val Project.kotlinVersion
   get() = libs.versions.kotlin.asProvider()
 
-val Project.k2Enabled
-  get() = libs.versions.kotlin.k2.map { it.toBoolean() }
-
 val Project.kotlinJvmTarget
   get() = libs.versions.kotlin.jvmtarget.map { JvmTarget.fromTarget(it) }
 

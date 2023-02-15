@@ -1,9 +1,8 @@
-@file:Suppress("UnstableApiUsage", "DSL_SCOPE_VIOLATION")
+@file:Suppress("UnstableApiUsage")
 
 import com.google.cloud.tools.jib.plugins.common.ContainerizingMode
-import com.google.devtools.ksp.gradle.*
 import dev.suresh.gradle.*
-import java.net.URL
+import java.net.URI
 import kotlinx.kover.api.*
 import org.gradle.api.tasks.testing.logging.*
 import org.jetbrains.dokka.gradle.DokkaTask
@@ -151,7 +150,6 @@ kotlin {
   sourceSets.all {
     languageSettings.apply {
       progressiveMode = true
-      enableLanguageFeature("DataObjects")
       optIn("kotlin.ExperimentalStdlibApi")
       optIn("kotlin.ExperimentalUnsignedTypes")
       optIn("kotlin.io.path.ExperimentalPathApi")
@@ -298,7 +296,6 @@ tasks {
       jvmTarget = kotlinJvmTarget
       apiVersion = kotlinApiVersion
       languageVersion = kotlinLangVersion
-      useK2 = k2Enabled
       verbose = true
       javaParameters = true
       allWarningsAsErrors = false
@@ -324,8 +321,6 @@ tasks {
       )
     }
   }
-
-  withType<KspTaskJvm>().configureEach { compilerOptions.useK2 = k2Enabled }
 
   run.invoke { args(true) }
 
@@ -388,12 +383,12 @@ tasks {
 
         sourceLink {
           localDirectory = file("src/main/kotlin")
-          remoteUrl = URL("${libs.versions.githubProject.get()}/tree/main/src/main/kotlin")
+          remoteUrl = URI("${libs.versions.githubProject.get()}/tree/main/src/main/kotlin").toURL()
           remoteLineSuffix = "#L"
         }
 
         externalDocumentationLink {
-          url = URL("https://kotlin.github.io/kotlinx.coroutines/package-list")
+          url = URI("https://kotlin.github.io/kotlinx.coroutines/package-list").toURL()
         }
 
         perPackageOption {
@@ -448,8 +443,8 @@ dependencies {
   implementation(Deps.Security.otp)
   implementation(libs.log4j.core)
   implementation(libs.jspecify)
-  implementation(libs.reflect.typeparamresolver)
   implementation(libs.sourceBuddy)
+  implementation(libs.reflect.typeparamresolver)
 
   compileOnly(libs.jte.kotlin)
   compileOnly(Deps.Kotlinx.atomicfu)

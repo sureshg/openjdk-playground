@@ -3,6 +3,7 @@ package plugins
 import dev.suresh.gradle.libs
 
 plugins {
+  id("org.cyclonedx.bom")
   `maven-publish`
   signing
 }
@@ -18,6 +19,16 @@ val emptyJar by
     }
 
 group = "dev.suresh"
+
+tasks {
+  cyclonedxBom {
+    includeConfigs = listOf("runtimeClasspath")
+    skipConfigs = listOf("compileClasspath", "testCompileClasspath")
+    destination = project.layout.buildDirectory.dir("sbom").map { it.asFile }
+    outputFormat = "json"
+    includeLicenseText = true
+  }
+}
 
 publishing {
   repositories {
@@ -37,7 +48,7 @@ publishing {
   }
 
   publications {
-    plugins.withId("java-library") {
+    plugins.withId("java") {
 
       // Dokka html doc
       val dokkaHtmlJar by

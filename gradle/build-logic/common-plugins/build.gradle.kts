@@ -1,7 +1,6 @@
 import org.jetbrains.kotlin.gradle.dsl.*
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
   `kotlin-dsl`
   alias(libs.plugins.jte)
@@ -67,6 +66,7 @@ dependencies {
   // compileOnly(libs.jte.kotlin)
 
   // External plugins deps to use in precompiled script plugins
+  // https://docs.gradle.org/current/userguide/custom_plugins.html#applying_external_plugins_in_precompiled_script_plugins
   implementation(libs.build.kotlin)
   implementation(libs.build.dokka)
   implementation(libs.build.nexus.plugin)
@@ -76,6 +76,7 @@ dependencies {
   implementation(libs.build.taskinfo)
   implementation(libs.build.dependencyanalysis)
   implementation(libs.build.bestpractices.plugin)
+  implementation(libs.build.cyclonedx.plugin)
 
   // implementation(libs.build.jte.plugin)
   // implementation(libs.build.openrewrite.plugin)
