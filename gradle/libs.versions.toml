@@ -5,13 +5,17 @@ kotlin-ksp                     = "1.8.20-Beta-1.0.9"
 kotlin-jvmtarget               = "19"
 kotlin-api-version             = "1.9"
 kotlin-lang-version            = "1.9"
+kotlin-dsl-version             = "4.0.9"
 kotlin-dsl-jvmtarget           = "11"
-gradle                         = "8.1-20230213232911+0000"
+gradle                         = "8.1-20230217231705+0000"
 java-vendor                    = "Oracle"
 java-jvmArguments              = "--enable-preview"
 java-addModules                = "jdk.incubator.concurrent,jdk.incubator.vector"
 
 # Additional metadata
+group                          = "dev.suresh"
+app-mainclass                  = "dev.suresh.Main"
+app-module                     = "dev.suresh.openjdkplayground"
 githubProject                  = "https://github.com/sureshg/openjdk-playground"
 
 # Gradle Dependencies Versions
@@ -381,6 +385,7 @@ jetbrains-exposed           = { id = "com.jetbrains.exposed.gradle.plugin"      
 jgitver                     = { id = "fr.brouillard.oss.gradle.jgitver"                      , version.ref = "jgitver" }
 jreleaser                   = { id = "org.jreleaser"                                         , version.ref = "jreleaser" }
 jte                         = { id = "gg.jte.gradle"                                         , version.ref = "jte" }
+kotlin-dsl                  = { id = "org.gradle.kotlin.kotlin-dsl"                          , version.ref = "kotlin-dsl-version" }
 kotlin-jvm                  = { id = "org.jetbrains.kotlin.jvm"                              , version.ref = "kotlin" }
 kotlin-dokka                = { id = "org.jetbrains.dokka"                                   , version.ref = "dokka" }
 kotlin-kapt                 = { id = "org.jetbrains.kotlin.kapt"                             , version.ref = "kotlin" }

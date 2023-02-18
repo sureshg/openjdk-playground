@@ -5,4 +5,9 @@ plugins {
 
 description = "A platform (BOM) used to align all module versions"
 
-dependencies { constraints { api(projects.openjdkPlayground) } }
+dependencies {
+  constraints {
+    api(projects.openjdkPlayground)
+    api(projects.sharedCatalog)
+  }
+}

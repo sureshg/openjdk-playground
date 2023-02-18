@@ -267,9 +267,13 @@ $ java -Dgraal.ShowConfiguration=info
 ```bash
 # JShell with preview feature enabled
 $ jshell --enable-preview
+$ jshell --show-version --enable-preview  --enable-native-access --startup JAVASE --feedback concise
 
 # Use custom startup script
 $ jshell --enable-preview --startup DEFAULT --startup ~/calc.repl
+
+# Query system properties/run java code
+$ fileEncoding="$(echo 'System.out.println(System.getProperty("file.encoding"))' | jshell -s -)"
 ```
 
 ##### 11. Virtual Thread config
@@ -290,6 +294,26 @@ $ java -Djdk.tracePinnedThreads=short|full
 
 - [GenericsFAQ](http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html)
 - [How we got Generics we have](https://cr.openjdk.java.net/~briangoetz/valhalla/erasure.html)
+
+12. ##### Java TEMP Config
+
+  ```bash
+  $ echo "-------- TMP PATH for $OSTYPE --------"
+  $ MKTEMP_PATH="$(dirname "$(mktemp -u)")/"
+  $ JAVA_TMP_DIR="$(java -XshowSettings:properties -version 2>&1 | awk 'tolower($0) ~ /java.io.tmpdir/{print $NF}')/"
+  $ JAVA_FILE_ENC="$(echo 'System.out.println(System.getProperty("file.encoding"))' | jshell -s -)"
+
+  $ echo "MKTEMP_PATH    = $MKTEMP_PATH"
+  $ echo "TMP            = $TMP"
+  $ echo "TEMP           = $TEMP"
+  $ echo "TMPDIR (Mac)   = $TMPDIR"
+  $ echo "RUNNER_TEMP    = $RUNNER_TEMP"
+  $ echo "JAVA_IO_TMPDIR = $JAVA_TMP_DIR"
+  $ echo "JAVA_FILE_ENC  = $JAVA_FILE_ENC"
+  $ echo "/TMP           = $(ls -l /tmp)"
+  ```
+
+
 
 
 

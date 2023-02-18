@@ -18,7 +18,7 @@ val emptyJar by
       // }
     }
 
-group = "dev.suresh"
+group = libs.versions.group.get()
 
 tasks {
   cyclonedxBom {
@@ -49,7 +49,6 @@ publishing {
 
   publications {
     plugins.withId("java") {
-
       // Dokka html doc
       val dokkaHtmlJar by
           tasks.registering(Jar::class) {
@@ -73,9 +72,18 @@ publishing {
       }
     }
 
+    // Maven Bom
     plugins.withId("java-platform") {
       create<MavenPublication>("maven") {
         from(components["javaPlatform"])
+        configurePom()
+      }
+    }
+
+    // Gradle version catalog
+    plugins.withId("version-catalog") {
+      create<MavenPublication>("maven") {
+        from(components["versionCatalog"])
         configurePom()
       }
     }

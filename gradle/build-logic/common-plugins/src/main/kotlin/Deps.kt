@@ -322,7 +322,7 @@ object Deps {
 
   object Security {
     const val password4j = "com.password4j:password4j:1.6.3"
-    const val otp = "com.github.bastiaanjansen:otp-java:2.0.0"
+    const val otp = "com.github.bastiaanjansen:otp-java:2.0.1"
     const val totp = "dev.samstevens.totp:totp:1.7.1"
     const val jwtJava = "com.github.bastiaanjansen:jwt-java:1.2.0"
     const val twoFactorAuth = "com.j256.two-factor-auth:two-factor-auth:1.3"
@@ -500,14 +500,14 @@ inline val PluginDependenciesSpec.exposed
 inline val PluginDependenciesSpec.kotlinxAtomicfu
   get() = id("kotlinx-atomicfu") version Deps.Kotlinx.atomicfuVersion
 inline val PluginDependenciesSpec.binCompatValidator
-  get() = id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.12.1"
+  get() = id("org.jetbrains.kotlinx.binary-compatibility-validator") version "0.13.0"
 inline val PluginDependenciesSpec.reflektPlugin
   get() = id("io.reflekt") version Deps.Kotlin.Reflekt.version
 
 inline val PluginDependenciesSpec.kover
   get() = id("org.jetbrains.kotlinx.kover") version "0.6.1"
 inline val PluginDependenciesSpec.sonarqube
-  get() = id("org.sonarqube") version "3.5.0.2730" apply true
+  get() = id("org.sonarqube") version "4.0.0.2929" apply true
 
 // Google Plugins
 inline val PluginDependenciesSpec.googleJib

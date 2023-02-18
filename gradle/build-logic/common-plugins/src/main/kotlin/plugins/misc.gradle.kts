@@ -115,6 +115,7 @@ tasks {
   // Dependency version updates
   dependencyUpdates {
     checkForGradleUpdate = true
+    checkConstraints = true
     outputFormatter =
         closureOf<Result> {
           outdated.dependencies.forEach { dep ->

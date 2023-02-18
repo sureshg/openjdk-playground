@@ -98,7 +98,6 @@ fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
   // Clear the interrupt status
   println("Checking if the current thread has been interrupted: ${Thread.interrupted()}")
   val (ok, err) = results.map { it.get() }.partition { it.isSuccess }
-  ok.forEachIndexed { i, r -> println("${i + 1} -> ${r.getOrNull()}") }
 
   err.forEachIndexed { i, r ->
     if (i == 0) println("=== ERRORS ===")

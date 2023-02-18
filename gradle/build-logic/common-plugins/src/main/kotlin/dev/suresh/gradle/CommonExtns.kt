@@ -57,6 +57,10 @@ fun Path.glob(pattern: String): List<Path> {
   return Files.walk(this).filter(matcher::matches).toList()
 }
 
+/** An extension function to join a multiline string for JVM arguments. */
+fun String.joinToConfigString(separator: CharSequence = "") =
+    trimMargin().lines().joinToString(separator) { it.trim() }
+
 /** System property delegate */
 @Suppress("IMPLICIT_CAST_TO_ANY")
 inline fun <reified T> sysProp(): ReadOnlyProperty<Any?, T> = ReadOnlyProperty { _, property ->

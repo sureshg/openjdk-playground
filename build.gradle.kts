@@ -33,12 +33,9 @@ plugins {
   // kotlinxAtomicfu
 }
 
-val appMainModule: String by project
-val appMainClass: String by project
-
 application {
-  mainClass = appMainClass
-  // mainModule = appMainModule
+  mainClass = libs.versions.app.mainclass
+  // mainModule = libs.versions.app.module
   applicationDefaultJvmArgs +=
       listOf(
           "--show-version",
@@ -57,14 +54,14 @@ application {
               |level,tags,time,uptime,pid,tid:
               |filecount=5,
               |filesize=10m"""
-              .trimMargin()
-              .lines()
-              .joinToString("") { it.trim() },
+              .joinToConfigString(),
           """-XX:StartFlightRecording=
               |settings=profile.jfc,
               |filename=$tmp$name.jfr,
               |name=$name,
               |maxsize=100M,
+              |maxage=1d,
+              |path-to-gc-roots=true,
               |dumponexit=true,
               |memory-leaks=gc-roots,
               |gc=detailed,
@@ -73,9 +70,7 @@ application {
               |jdk.TLSHandshake#enabled=true,
               |jdk.X509Certificate#enabled=true,
               |jdk.X509Validation#enabled=true"""
-              .trimMargin()
-              .lines()
-              .joinToString("") { it.trim() },
+              .joinToConfigString(),
           "-XX:FlightRecorderOptions:stackdepth=64",
           "-XX:+HeapDumpOnOutOfMemoryError",
           "-XX:HeapDumpPath=$tmp$name-%p.hprof",
@@ -193,7 +188,9 @@ koverMerged {
     projects {
       // Exclude platform (bom) project
       excludes +=
-          allprojects.filter { it.buildFile.exists() && it.name.contains("-bom") }.map { it.name }
+          allprojects
+              .filter { it.buildFile.exists() && it.name.contains("openjdk").not() }
+              .map { it.name }
     }
   }
 }

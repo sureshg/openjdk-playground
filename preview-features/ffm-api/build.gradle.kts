@@ -1,6 +1,6 @@
 plugins { id("plugins.kotlin") }
 
-group = "dev.suresh"
+group = libs.versions.group.get()
 
 version = libs.versions.ffm.api.get()
 

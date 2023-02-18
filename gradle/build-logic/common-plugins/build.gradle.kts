@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
   `kotlin-dsl`
+  // alias(libs.plugins.kotlin.dsl)
   alias(libs.plugins.jte)
   alias(libs.plugins.benmanes)
 }
@@ -77,6 +78,7 @@ dependencies {
   implementation(libs.build.dependencyanalysis)
   implementation(libs.build.bestpractices.plugin)
   implementation(libs.build.cyclonedx.plugin)
+  testImplementation(gradleTestKit())
 
   // implementation(libs.build.jte.plugin)
   // implementation(libs.build.openrewrite.plugin)

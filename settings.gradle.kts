@@ -1,4 +1,7 @@
 pluginManagement {
+  require(JavaVersion.current().isJava11Compatible) {
+    "This build requires Gradle to be run with at least Java 11"
+  }
 
   // Included plugin builds can contribute settings and project plugins
   includeBuild("gradle/build-logic")
@@ -50,13 +53,20 @@ dependencyResolutionManagement {
     mavenCentral()
     google()
   }
+
+  repositoriesMode = RepositoriesMode.FAIL_ON_PROJECT_REPOS
 }
 
 rootProject.name = "openjdk-playground"
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
+enableFeaturePreview("STABLE_CONFIGURATION_CACHE")
+
 include("playground-bom")
+
+include("shared-catalog")
+// project(":playground-bom").buildFileName = "bom-build.gradle.kts"
 // project(":aaa:xxx").projectDir = file("aaa/bbb")
 
 // With composite builds, the module dependencies to 'preview-features'
