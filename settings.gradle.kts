@@ -65,7 +65,7 @@ enableFeaturePreview("STABLE_CONFIGURATION_CACHE")
 
 include("playground-bom")
 
-include("shared-catalog")
+include("playground-catalog")
 // project(":playground-bom").buildFileName = "bom-build.gradle.kts"
 // project(":aaa:xxx").projectDir = file("aaa/bbb")
 
