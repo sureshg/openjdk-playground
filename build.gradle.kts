@@ -18,6 +18,7 @@ plugins {
   alias(libs.plugins.kotlinx.serialization)
   alias(libs.plugins.ksp.redacted)
   alias(libs.plugins.ksp.powerassert)
+  alias(libs.plugins.javaagent.application)
   kover
   googleJib
   qodanaPlugin
@@ -442,6 +443,7 @@ dependencies {
   implementation(libs.jspecify)
   implementation(libs.sourceBuddy)
   implementation(libs.reflect.typeparamresolver)
+  implementation(libs.maven.archeologist)
 
   compileOnly(libs.jte.kotlin)
   compileOnly(Deps.Kotlinx.atomicfu)
@@ -451,10 +453,11 @@ dependencies {
   implementation(libs.google.auto.annotations)
   // kapt("com.google.auto.service:auto-service:1.0.1")
 
-  // api(platform(projects.bom))
-  // api(project(":preview-features/ffm-api"))
-  implementation(libs.ffm.api)
-  implementation(libs.maven.archeologist)
+  // api(platform(projects.playgroundBom))
+  // api(projects.playgroundCatalog)
+  // api(project(":jdk-modules/ffm-api"))
+  implementation(libs.module.ffm.api)
+  javaagent(libs.module.jvm.agent)
 
   testImplementation(platform(libs.junit.bom))
   testImplementation(libs.kotlinx.coroutines.test)

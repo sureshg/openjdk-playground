@@ -82,15 +82,15 @@ tasks {
 
   jar { exclude("META-INF/*.RSA", "META-INF/*.SF", "META-INF/*.DSA") }
 
-  // Delegating tasks to composite build (./gradlew :preview-features:ffm-api:tasks --all)
+  // Delegating tasks to composite build (./gradlew :jdk-modules:ffm-api:tasks --all)
   register("ffm-build") {
-    gradle.includedBuild("preview-features").also { incBuild ->
+    gradle.includedBuild("jdk-modules").also { incBuild ->
       incBuild.projectDir
           .listFiles()
           ?.filter { it.isDirectory && File(it, "build.gradle.kts").exists() }
           ?.forEach { dir -> dependsOn(incBuild.task(":${dir.name}:build")) }
     }
-    // dependsOn(gradle.includedBuild("preview-features").task(":ffm-api:build"))
+    // dependsOn(gradle.includedBuild("jdk-modules").task(":ffm-api:build"))
   }
 
   // Clean all composite builds

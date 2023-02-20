@@ -15,6 +15,8 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 enableFeaturePreview("STABLE_CONFIGURATION_CACHE")
 
-rootProject.name = "preview-features"
+rootProject.name = "jdk-modules"
 
 include("ffm-api")
+
+include("jvm-agent")

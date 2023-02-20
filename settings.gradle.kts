@@ -69,6 +69,6 @@ include("playground-catalog")
 // project(":playground-bom").buildFileName = "bom-build.gradle.kts"
 // project(":aaa:xxx").projectDir = file("aaa/bbb")
 
-// With composite builds, the module dependencies to 'preview-features'
+// With composite builds, the module dependencies to 'jdk-modules'
 // will always be substituted with project dependencies.
-includeBuild("preview-features")
+includeBuild("jdk-modules")

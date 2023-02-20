@@ -134,3 +134,5 @@ tasks {
     description = "Builds universal macOS binary"
   }
 }
+
+dependencies { implementation(kotlin("stdlib")) }
