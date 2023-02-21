@@ -1,6 +1,6 @@
-### Java Agent Module
+## Java Agent Module
 
-#### Build & Run
+##### Build & Run
 
 ```bash
 $ ./gradlew :jdk-modules:jvm-agent:build

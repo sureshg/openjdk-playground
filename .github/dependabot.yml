@@ -12,12 +12,15 @@ updates:
       - sureshg
 
   - package-ecosystem: "gradle"
-    directory: "/buildSrc"
+    directory: "/gradle/build-logic"
     schedule:
       interval: "daily"
+    open-pull-requests-limit: 5
     labels:
       - "gradle"
       - "dependencies"
+    reviewers:
+      - sureshg
 
   - package-ecosystem: "github-actions"
     directory: "/"

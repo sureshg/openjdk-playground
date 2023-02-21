@@ -13,6 +13,16 @@ fun premain(agentArgs: String?, inst: Instrumentation?) {
   readJFRStream()
 }
 
+fun agentmain(agentArgs: String?, inst: Instrumentation?) {
+  logger.log(INFO) { "AgentMain [DynamicLoad]: Attaching the JFR Monitor..." }
+  readJFRStream()
+}
+
+fun main() {
+  logger.log(INFO) { "JFR Agent Sample..Enter to exit!" }
+  readln()
+}
+
 private fun readJFRStream() {
   try {
     thread {
@@ -27,14 +37,4 @@ private fun readJFRStream() {
   } catch (ex: Exception) {
     logger.log(ERROR, "Unable to attach the JFR monitor", ex)
   }
-}
-
-fun agentmain(agentArgs: String?, inst: Instrumentation?) {
-  logger.log(INFO) { "AgentMain [DynamicLoad]: Attaching the JFR Monitor..." }
-  readJFRStream()
-}
-
-fun main() {
-  logger.log(INFO) { "JFR Agent Sample..Enter to exit!" }
-  readln()
 }

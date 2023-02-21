@@ -10,7 +10,7 @@ import com.squareup.tools.maven.resolution.ArtifactResolver
  *
  * [shrinkwrap](https://github.com/shrinkwrap/resolver)
  *
- * [Maven Central Solr Search](https://blog.sonatype.com/2011/06/you-dont-need-a-browser-to-use-maven-central/)
+ * [MavenCentral-SolrSearch](https://blog.sonatype.com/2011/06/you-dont-need-a-browser-to-use-maven-central/)
  */
 class MavenResolver {
 

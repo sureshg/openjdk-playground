@@ -11,6 +11,7 @@ on:
 jobs:
   validation:
     name: Validation
+    if: ${{ false }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

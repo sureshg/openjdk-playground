@@ -82,15 +82,25 @@ tasks {
 
   jar { exclude("META-INF/*.RSA", "META-INF/*.SF", "META-INF/*.DSA") }
 
-  // Delegating tasks to composite build (./gradlew :jdk-modules:ffm-api:tasks --all)
-  register("ffm-build") {
-    gradle.includedBuild("jdk-modules").also { incBuild ->
-      incBuild.projectDir
-          .listFiles()
-          ?.filter { it.isDirectory && File(it, "build.gradle.kts").exists() }
-          ?.forEach { dir -> dependsOn(incBuild.task(":${dir.name}:build")) }
+  // Delegating tasks to composite build.
+  gradle.includedBuilds.forEach { incBuild ->
+    val task = "build"
+    val incBuildName = incBuild.name
+
+    val buildTasks =
+        incBuild.projectDir
+            .listFiles()
+            ?.filter { it.isDirectory && File(it, "build.gradle.kts").exists() }
+            ?.map { dir -> incBuild.task(":${dir.name}:$task") }
+            ?.toTypedArray()
+            .orEmpty()
+
+    register("${incBuildName.lowercase()}-$task") {
+      description = "Build all projects in $incBuildName"
+      group = BasePlugin.BUILD_GROUP
+      dependsOn(*buildTasks)
+      // dependsOn(gradle.includedBuild("jdk-modules").task(":ffm-api:build"))
     }
-    // dependsOn(gradle.includedBuild("jdk-modules").task(":ffm-api:build"))
   }
 
   // Clean all composite builds
