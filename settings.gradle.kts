@@ -63,7 +63,7 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 enableFeaturePreview("STABLE_CONFIGURATION_CACHE")
 
-include("playground-bom")
+include(":playground-bom")
 
 include("playground-catalog")
 // project(":playground-bom").buildFileName = "bom-build.gradle.kts"

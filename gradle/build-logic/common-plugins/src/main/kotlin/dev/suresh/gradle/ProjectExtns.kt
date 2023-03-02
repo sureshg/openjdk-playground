@@ -6,9 +6,9 @@ import java.nio.file.Path
 import java.util.concurrent.CompletableFuture
 import org.gradle.accessors.dm.LibrariesForLibs
 import org.gradle.api.Project
+import org.gradle.api.artifacts.ExternalDependency
 import org.gradle.api.artifacts.VersionCatalogsExtension
-import org.gradle.api.attributes.Category
-import org.gradle.api.attributes.DocsType
+import org.gradle.api.attributes.*
 import org.gradle.api.component.AdhocComponentWithVariants
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.internal.os.OperatingSystem
@@ -93,6 +93,18 @@ val Project.incubatorModules
         .filter { it.startsWith("jdk.incubator") }
         .joinToString(",") { it.substringBefore("@").trim() }
   }
+
+/** Returns the path of the dependency jar in runtime classpath. */
+fun Project.dependencyPath(dep: ExternalDependency) =
+    configurations
+        .named("runtimeClasspath")
+        .get()
+        .resolvedConfiguration
+        .resolvedArtifacts
+        .find { it.moduleVersion.id.module == dep.module }
+        ?.file
+        ?.path
+        ?: error("Could not find ${dep.name} in runtime classpath")
 
 /**
  * Print all the catalog version strings and it's values.

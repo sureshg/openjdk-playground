@@ -34,8 +34,13 @@ $ java -jar \
        -XX:+UseZGC \
        build/libs/openjdk-playground-*-uber.jar
 
-# Virtual thread debugging.
+# Show all pinned virtual threads
 $ jfr print --events jdk.VirtualThreadPinned openjdk-playground.jfr
+
+# Show all socket events
+$ jfr print --stack-depth 100 --events jdk.Socket\* openjdk-playground.jfr
+
+# Virtual thread dump
 $ jcmd dev.suresh.Main Thread.dump_to_file -format=json openjdk-playground-threads.json
 ```
 

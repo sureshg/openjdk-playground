@@ -56,7 +56,7 @@ object Deps {
   }
 
   object Kotlinx {
-    const val atomicfuVersion = "0.19.0"
+    const val atomicfuVersion = "0.20.0"
     const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
     const val reflectLite = "org.jetbrains.kotlinx:kotlinx.reflect.lite:1.0.0"
     const val atomicfu = "org.jetbrains.kotlinx:atomicfu:$atomicfuVersion"
@@ -268,7 +268,7 @@ object Deps {
   }
 
   object Cli {
-    const val clikt = "com.github.ajalt.clikt:clikt:3.5.1"
+    const val clikt = "com.github.ajalt.clikt:clikt:3.5.2"
     const val textIO = "org.beryx:text-io:3.4.1"
     const val mordant = "com.github.ajalt.mordant:mordant:2.0.0-beta11"
     const val colormath = "com.github.ajalt.colormath:colormath:2.0.0"
@@ -583,7 +583,7 @@ inline val PluginDependenciesSpec.qodanaPlugin
 
 // Artifact Publish
 inline val PluginDependenciesSpec.nexusPublish
-  get() = id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
+  get() = id("io.github.gradle-nexus.publish-plugin") version "1.2.0"
 inline val PluginDependenciesSpec.simpleMavenPublish
   get() = id("net.mbonnin.sjmp") version "0.2"
 inline val PluginDependenciesSpec.mavenRepoAuth

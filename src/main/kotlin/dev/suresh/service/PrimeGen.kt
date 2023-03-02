@@ -1,11 +1,12 @@
 package dev.suresh.service
 
+import java.security.SecureRandom
 import kotlin.math.*
 import kotlin.random.*
 
 object PrimeGen {
 
-  private val rand = Random(41)
+  private val rand = SecureRandom().asKotlinRandom()
 
   fun random(upperbound: Int): List<Long> {
     val to = rand.nextInt(upperbound - 2) + 2

@@ -3,8 +3,8 @@ package dev.suresh.agent
 import java.lang.System.Logger.Level.*
 import java.lang.instrument.Instrumentation
 import java.time.Duration
+import jdk.jfr.Configuration
 import jdk.jfr.consumer.RecordingStream
-import kotlin.concurrent.thread
 
 val logger: System.Logger = System.getLogger("JFRAgent")
 
@@ -25,13 +25,27 @@ fun main() {
 
 private fun readJFRStream() {
   try {
-    thread {
-      RecordingStream().use {
-        it.enable("jdk.CPULoad").withPeriod(Duration.ofSeconds(1))
+    Thread.startVirtualThread {
+      val config = Configuration.getConfiguration("profile")
+      RecordingStream(config).use {
+        it.enable("jdk.CPULoad").withPeriod(Duration.ofSeconds(5))
+        it.enable("jdk.JavaMonitorEnter").withThreshold(Duration.ofMillis(10))
+        it.enable("jdk.GarbageCollection")
+        it.enable("jdk.JVMInformation")
+
         it.onEvent("jdk.CPULoad") { event ->
           val cpuLoad = event.getDouble("machineTotal")
           logger.log(INFO) { "CPU Load: $cpuLoad" }
         }
+        it.onEvent("jdk.JVMInformation") { event ->
+          val jvmName = event.getString("jvmName")
+          val jvmVersion = event.getString("jvmVersion")
+          logger.log(INFO) { "JVM: $jvmName, Version: $jvmVersion" }
+        }
+        it.onEvent("jdk.JavaMonitorEnter") { event ->
+          logger.log(INFO) { "Long held Monitor: $event" }
+        }
+        it.start()
       }
     }
   } catch (ex: Exception) {

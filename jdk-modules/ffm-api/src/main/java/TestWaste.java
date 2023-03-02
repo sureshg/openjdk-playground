@@ -1,5 +1,6 @@
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.security.SecureRandom;
 import java.util.*;
 import jdk.jfr.Configuration;
 import jdk.jfr.Recording;
@@ -7,7 +8,7 @@ import jdk.jfr.consumer.RecordingFile;
 
 public class TestWaste {
   static List<Object> list = new LinkedList<>();
-  static Random random = new Random();
+  static Random random = new SecureRandom();
 
   public static void main(String... args) throws Exception {
     Configuration c = Configuration.getConfiguration("profile");
