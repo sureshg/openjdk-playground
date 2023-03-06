@@ -20,18 +20,19 @@ kotlin {
 
 gradlePlugin {
   plugins {
-    create("dev.suresh.gradle.settings") {
-      id = "dev.suresh.gradle.settings"
-      implementationClass = "plugins.SettingsPlugin"
-      description = "Gradle settings plugin with build scan TOS accepted"
-    }
-
     // Re-exposure of plugin from dependency. Gradle doesn't expose the plugin itself.
     create("com.gradle.enterprise") {
       id = "com.gradle.enterprise"
       implementationClass = "com.gradle.enterprise.gradleplugin.GradleEnterprisePlugin"
       dependencies { implementation(libs.build.gradle.enterprise) }
       description = "Gradle enterprise settings plugin re-exposed from dependency"
+    }
+
+    // A sample settings plugin to configure build scan TOS
+    create("dev.suresh.gradle.settings") {
+      id = "dev.suresh.gradle.settings"
+      implementationClass = "plugins.SettingsPlugin"
+      description = "Gradle settings plugin with build scan TOS accepted"
     }
 
     // val settingsPlugin by this.creating {}
@@ -63,6 +64,7 @@ dependencies {
   // External plugins deps to use in precompiled script plugins
   // https://docs.gradle.org/current/userguide/custom_plugins.html#applying_external_plugins_in_precompiled_script_plugins
   implementation(libs.build.kotlin)
+  // OR implementation(kotlin("gradle-plugin"))
   implementation(libs.build.dokka)
   implementation(libs.build.nexus.plugin)
   implementation(libs.build.spotless.plugin)

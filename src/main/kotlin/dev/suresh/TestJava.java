@@ -8,7 +8,7 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.ThreadFactory;
 import jdk.incubator.concurrent.StructuredTaskScope;
 
-// ToDo: Change this to kotlin
+// Change this to kotlin
 // https://github.com/jamesward/easyracer/blob/main/java-loom/src/main/java/Main.java#L67-L90
 // https://twitter.com/pressron/status/1608550618846617602
 public class TestJava {

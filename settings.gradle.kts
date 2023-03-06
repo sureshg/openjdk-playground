@@ -40,22 +40,8 @@ pluginManagement {
   }
 }
 
-// Apply the plugins to all projects
-plugins {
-  id("com.gradle.enterprise")
-  id("dev.suresh.gradle.settings")
-  // id("plugins.common")
-}
-
-// Centralizing repositories declaration
-dependencyResolutionManagement {
-  repositories {
-    mavenCentral()
-    google()
-  }
-
-  repositoriesMode = RepositoriesMode.FAIL_ON_PROJECT_REPOS
-}
+// Apply common settings plugins to all projects
+plugins { id("settings.repos") }
 
 rootProject.name = "openjdk-playground"
 

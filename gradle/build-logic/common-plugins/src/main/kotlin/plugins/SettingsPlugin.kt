@@ -6,7 +6,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.initialization.Settings
 import org.gradle.kotlin.dsl.gradleEnterprise
 
-/** Gradle enterprise settings plugin with TOS accepted. */
+/** Gradle Enterprise settings plugin with TOS accepted. */
 class SettingsPlugin : Plugin<Settings> {
   override fun apply(settings: Settings) {
     settings.plugins.withId("com.gradle.enterprise") {
