@@ -24,16 +24,16 @@ kotlin {
     languageSettings.apply {
       progressiveMode = true
       languageVersion = kotlinLangVersion.get().version
-      // enableLanguageFeature("DataObjects")
       optIn("kotlin.ExperimentalStdlibApi")
       optIn("kotlin.ExperimentalUnsignedTypes")
       optIn("kotlin.io.path.ExperimentalPathApi")
       optIn("kotlin.time.ExperimentalTime")
       optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
-      optIn("kotlinx.coroutines.FlowPreview")
       optIn("kotlinx.serialization.ExperimentalSerializationApi")
       optIn("kotlin.ExperimentalMultiplatform")
       optIn("kotlin.js.ExperimentalJsExport")
+      // enableLanguageFeature("DataObjects")
+      // optIn("kotlinx.coroutines.FlowPreview")
     }
     // kotlin.setSrcDirs(listOf("src/kotlin"))
   }

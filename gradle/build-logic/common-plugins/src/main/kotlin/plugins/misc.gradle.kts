@@ -1,6 +1,5 @@
 package plugins
 
-import com.github.benmanes.gradle.versions.reporter.result.Result
 import dev.suresh.gradle.forkTask
 import dev.suresh.gradle.libs
 import java.util.concurrent.CompletableFuture
@@ -126,20 +125,13 @@ tasks {
   dependencyUpdates {
     checkForGradleUpdate = true
     checkConstraints = true
-    outputFormatter =
-        closureOf<Result> {
-          outdated.dependencies.forEach { dep ->
-            println("${dep.group}:${dep.name} -> ${dep.available.release}")
-          }
-        }
-    // rejectVersionIf { candidate.version.isNonStable && !currentVersion.isNonStable }
 
-    // Run "dependencyUpdates" on all "build-logic" projects also.
-    gradle.includedBuild("build-logic").also { buildLogic ->
-      buildLogic.projectDir
-          .listFiles()
-          ?.filter { it.isDirectory && File(it, "build.gradle.kts").exists() }
-          ?.forEach { dir -> dependsOn(buildLogic.task(":${dir.name}:dependencyUpdates")) }
+    // Run "dependencyUpdates" on included projects with a top level build file.
+    gradle.includedBuilds.forEach { incBuild ->
+      incBuild.projectDir
+          .resolve("build.gradle.kts")
+          .takeIf { it.exists() }
+          ?.let { dependsOn(incBuild.task(":dependencyUpdates")) }
     }
   }
 

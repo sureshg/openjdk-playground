@@ -5,7 +5,6 @@ plugins {
   `kotlin-dsl`
   // alias(libs.plugins.kotlin.dsl)
   alias(libs.plugins.jte)
-  alias(libs.plugins.benmanes)
 }
 
 kotlin {
@@ -50,11 +49,6 @@ tasks {
   withType<KotlinCompile>().configureEach {
     compilerOptions { jvmTarget = JvmTarget.fromTarget(libs.versions.kotlin.dsl.jvmtarget.get()) }
   }
-}
-
-repositories {
-  mavenCentral()
-  gradlePluginPortal()
 }
 
 dependencies {

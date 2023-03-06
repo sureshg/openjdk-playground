@@ -443,12 +443,6 @@ object Deps {
     const val genAnnprocess = "org.openjdk.jmh:jmh-generator-annprocess:$version"
   }
 
-  object K8S {
-    const val javaClient = "io.kubernetes:client-java:11.0.0"
-    const val fabric8 = "io.fabric8:kubernetes-client:5.0.0"
-    const val operatorFramework = "io.javaoperatorsdk:operator-framework:1.7.1"
-  }
-
   object Search {
     const val esKotlinClient = "com.github.jillesvangurp:es-kotlin-client:1.0.2"
   }
