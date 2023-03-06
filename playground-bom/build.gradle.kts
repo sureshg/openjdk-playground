@@ -9,5 +9,6 @@ dependencies {
   constraints {
     api(projects.openjdkPlayground)
     api(projects.playgroundCatalog)
+    api(projects.playgroundK8s)
   }
 }
