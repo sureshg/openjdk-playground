@@ -1,4 +1,7 @@
-plugins { id("plugins.kotlin") }
+plugins {
+  id("plugins.kotlin")
+  id("plugins.publishing")
+}
 
 group = libs.versions.group.get()
 

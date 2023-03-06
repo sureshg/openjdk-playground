@@ -8,16 +8,6 @@ plugins {
   signing
 }
 
-// For publishing a pure kotlin project
-val emptyJar by
-    tasks.registering(Jar::class) {
-      archiveClassifier = "javadoc"
-      // duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-      // manifest {
-      //   attributes("Automatic-Module-Name" to appMainModule)
-      // }
-    }
-
 group = libs.versions.group.get()
 
 tasks {
@@ -49,32 +39,18 @@ publishing {
 
   publications {
     plugins.withId("java") {
-      // Dokka html doc
-      val dokkaHtmlJar by
-          tasks.registering(Jar::class) {
-            from(tasks.named("dokkaHtml"))
-            archiveClassifier = "htmldoc"
-          }
-
-      // Maven Central
-      register<MavenPublication>("maven") {
-        from(components["java"])
-        artifact(dokkaHtmlJar)
-        artifact(tasks.named("buildExecutable"))
-        // artifact(tasks.shadowJar)
-        configurePom()
-      }
-
-      // GitHub Package Registry
-      register<MavenPublication>("gpr") {
-        from(components["java"])
-        configurePom()
+      // Maven and GitHub Package Registry publications
+      listOf("maven", "gpr").forEach { name ->
+        register<MavenPublication>(name) {
+          from(components["java"])
+          configurePom()
+        }
       }
     }
 
     // Maven Bom
     plugins.withId("java-platform") {
-      create<MavenPublication>("maven") {
+      register<MavenPublication>("maven") {
         from(components["javaPlatform"])
         configurePom()
       }
@@ -82,9 +58,44 @@ publishing {
 
     // Gradle version catalog
     plugins.withId("version-catalog") {
-      create<MavenPublication>("maven") {
+      register<MavenPublication>("maven") {
         from(components["versionCatalog"])
         configurePom()
+      }
+    }
+
+    // Dokka html doc jar
+    plugins.withId("org.jetbrains.dokka") {
+      // Dokka html doc
+      val dokkaHtmlJar by
+          tasks.registering(Jar::class) {
+            from(tasks.named("dokkaHtml"))
+            archiveClassifier = "htmldoc"
+          }
+
+      // For publishing a pure kotlin project
+      val emptyJar by
+          tasks.registering(Jar::class) {
+            archiveClassifier = "javadoc"
+            duplicatesStrategy = DuplicatesStrategy.WARN
+            // manifest {
+            //   attributes("Automatic-Module-Name" to appMainModule)
+            // }
+          }
+
+      withType<MavenPublication>().configureEach {
+        // add dokka html jar as an artifact
+        artifact(dokkaHtmlJar)
+      }
+    }
+
+    // Executable jar
+    plugins.withId("java") {
+      if (project == rootProject) {
+        withType<MavenPublication>().configureEach {
+          artifact(tasks.named("buildExecutable"))
+          // artifact(tasks.shadowJar)
+        }
       }
     }
   }
