@@ -37,7 +37,7 @@ tasks {
       if (agentEnabled) {
         println("Adding allocation agent to jvm args...")
         val agentJar = dependencyPath(libs.javaagent.allocation.get())
-        application.applicationDefaultJvmArgs += listOf("-javaagent:${agentJar}")
+        application.applicationDefaultJvmArgs += listOf("-javaagent:$agentJar")
       }
     }
   }
