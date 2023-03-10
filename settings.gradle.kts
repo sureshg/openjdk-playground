@@ -45,10 +45,6 @@ plugins { id("settings.repos") }
 
 rootProject.name = "openjdk-playground"
 
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-
-enableFeaturePreview("STABLE_CONFIGURATION_CACHE")
-
 include(":playground-bom")
 
 include("playground-catalog")

@@ -135,4 +135,9 @@ tasks {
   }
 }
 
-dependencies { implementation(kotlin("stdlib")) }
+dependencies {
+  implementation(platform(libs.kotlin.bom))
+  implementation(kotlin("stdlib"))
+  // implementation(libs.kotlin.stdlib)
+  implementation(libs.kotlinx.coroutines.jdk8)
+}

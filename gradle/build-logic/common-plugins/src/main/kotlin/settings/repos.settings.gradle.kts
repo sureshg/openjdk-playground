@@ -13,6 +13,7 @@ plugins {
 }
 
 // Centralizing repositories declaration
+@Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
   repositories {
     mavenCentral()
@@ -47,3 +48,7 @@ fun PublishedBuildScan.addJobSummary() {
             .trimMargin())
   }
 }
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
+enableFeaturePreview("STABLE_CONFIGURATION_CACHE")

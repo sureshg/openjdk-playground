@@ -3,9 +3,14 @@ package plugins
 import dev.suresh.gradle.libs
 
 plugins {
-  id("org.cyclonedx.bom")
   `maven-publish`
   signing
+  id("org.cyclonedx.bom")
+}
+
+// Nexus plugin needs to apply to the root project only
+if (project == rootProject) {
+  apply(plugin = "io.github.gradle-nexus.publish-plugin")
 }
 
 group = libs.versions.group.get()
@@ -71,16 +76,6 @@ publishing {
           tasks.registering(Jar::class) {
             from(tasks.named("dokkaHtml"))
             archiveClassifier = "htmldoc"
-          }
-
-      // For publishing a pure kotlin project
-      val emptyJar by
-          tasks.registering(Jar::class) {
-            archiveClassifier = "javadoc"
-            duplicatesStrategy = DuplicatesStrategy.WARN
-            // manifest {
-            //   attributes("Automatic-Module-Name" to appMainModule)
-            // }
           }
 
       withType<MavenPublication>().configureEach {

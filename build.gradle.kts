@@ -1,19 +1,20 @@
-@file:Suppress("UnstableApiUsage")
-
 import com.google.cloud.tools.jib.plugins.common.ContainerizingMode
-import dev.suresh.gradle.*
+import dev.suresh.gradle.addModules
+import dev.suresh.gradle.javaRelease
+import dev.suresh.gradle.javaVersion
+import dev.suresh.gradle.joinToConfigString
+import dev.suresh.gradle.kotlinJvmTarget
+import dev.suresh.gradle.tmp
 import java.net.URI
-import kotlinx.kover.api.*
-import org.gradle.api.tasks.testing.logging.*
+import kotlinx.kover.api.DefaultIntellijEngine
 import org.jetbrains.dokka.gradle.DokkaTask
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
   id("plugins.common")
   id("plugins.misc")
   id("plugins.publishing")
-  jgitPlugin
-  kotlin("jvm")
+  id("plugins.kotlin")
+  id("com.javiersc.semver.gradle.plugin")
   alias(libs.plugins.ksp)
   alias(libs.plugins.kotlinx.serialization)
   alias(libs.plugins.ksp.redacted)
@@ -24,12 +25,12 @@ plugins {
   qodanaPlugin
   sonarqube
   spotlessChangelog
-  versionCatalogUpdate
   checksum
   binCompatValidator
   extraJavaModuleInfo
   licensee
   buildkonfig
+  // versionCatalogUpdate
   // gradleRelease
   // kotlinxAtomicfu
 }
@@ -121,7 +122,6 @@ application {
           // "-Dfile.encoding=COMPAT", // uses '-Dnative.encoding'
           // "-Djava.io.tmpdir=/var/data/tmp",
           // "-Djava.locale.providers=COMPAT,CLDR",
-          // "-Djgitver.skip=true",
           // "-Djdk.lang.Process.launchMechanism=vfork",
           // "-Djdk.tls.maxCertificateChainLength=10",
           // "-Djdk.tls.maxHandshakeMessageSize=32768",
@@ -142,27 +142,7 @@ application {
   // https://sap.github.io/SapMachine/jfrevents/21.html
 }
 
-kotlin {
-  sourceSets.all {
-    languageSettings.apply {
-      progressiveMode = true
-      optIn("kotlin.ExperimentalStdlibApi")
-      optIn("kotlin.ExperimentalUnsignedTypes")
-      optIn("kotlin.io.path.ExperimentalPathApi")
-      optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
-      optIn("kotlinx.serialization.ExperimentalSerializationApi")
-      optIn("kotlin.time.ExperimentalTime")
-      optIn("kotlin.ExperimentalMultiplatform")
-      optIn("kotlin.js.ExperimentalJsExport")
-    }
-    // kotlin.setSrcDirs(listOf("src/kotlin"))
-  }
-
-  jvmToolchain {
-    languageVersion = toolchainVersion
-    vendor = toolchainVendor
-  }
-}
+semver { tagPrefix = "v" }
 
 ksp {
   arg("autoserviceKsp.verify", "true")
@@ -234,12 +214,6 @@ jib {
   containerizingMode = ContainerizingMode.PACKAGED.toString()
 }
 
-// val branch_name: String by extra
-jgitver {
-  useSnapshot = true
-  nonQualifierBranches = "main"
-}
-
 jdeprscan { forRemoval = true }
 
 // Create ShadowJar specific runtimeClasspath.
@@ -250,9 +224,6 @@ val shadowRuntime: Configuration by
       attributes { attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME)) }
     }
 
-// For dependencies that are needed for development only.
-val devOnly: Configuration by configurations.creating
-
 // Deactivate java-module-info plugin for all configs
 configurations {
   // runtimeClasspath...etc
@@ -260,103 +231,15 @@ configurations {
 }
 
 tasks {
-  // Configure "compileJava" and "compileTestJava" tasks.
-  withType<JavaCompile>().configureEach {
-    options.apply {
-      encoding = "UTF-8"
-      release = javaRelease
-      isIncremental = true
-      isFork = true
-      debugOptions.debugLevel = "source,lines,vars"
-      // For Gradle worker daemon.
-      forkOptions.jvmArgs?.addAll(jvmArguments)
-      compilerArgs.addAll(
-          jvmArguments +
-              listOf(
-                  "-Xlint:all",
-                  "-parameters",
-                  "--add-modules=$addModules",
-                  // "-Xlint:-deprecation", // suppress deprecations
-                  // "-XX:+IgnoreUnrecognizedVMOptions",
-                  // "--add-exports",
-                  // "java.base/sun.nio.ch=ALL-UNNAMED",
-                  // "--patch-module",
-                  // "$moduleName=${sourceSets.main.get().output.asPath}"
-              ),
-      )
-    }
-  }
-
-  withType<KotlinCompile>().configureEach {
-    usePreciseJavaTracking = true
-    compilerOptions {
-      jvmTarget = kotlinJvmTarget
-      apiVersion = kotlinApiVersion
-      languageVersion = kotlinLangVersion
-      verbose = true
-      javaParameters = true
-      allWarningsAsErrors = false
-      suppressWarnings = false
-      freeCompilerArgs.addAll(
-          "-Xadd-modules=$addModules",
-          "-Xjsr305=strict",
-          "-Xjvm-default=all",
-          "-Xassertions=jvm",
-          "-Xcontext-receivers",
-          "-Xallow-result-return-type",
-          "-Xemit-jvm-type-annotations",
-          "-Xjspecify-annotations=strict",
-          "-Xextended-compiler-checks",
-          "-Xuse-fir-extended-checkers",
-          // "-Xjdk-release=$javaVersion",
-          // "-Xadd-modules=ALL-MODULE-PATH",
-          // "-Xmodule-path=",
-          // "-Xjvm-enable-preview",
-          // "-Xjavac-arguments=\"--add-exports java.base/sun.nio.ch=ALL-UNNAMED\"",
-          // "-Xexplicit-api={strict|warning|disable}",
-          // "-Xgenerate-strict-metadata-version",
-      )
-    }
-  }
-
   run.invoke { args(true) }
-
-  // JUnit5
-  test {
-    useJUnitPlatform()
-    jvmArgs(jvmArguments)
-    classpath += devOnly
-
-    testLogging {
-      events =
-          setOf(
-              TestLogEvent.PASSED,
-              TestLogEvent.FAILED,
-              TestLogEvent.SKIPPED,
-          )
-      exceptionFormat = TestExceptionFormat.FULL
-      showExceptions = true
-      showCauses = true
-      showStackTraces = true
-      showStandardStreams = true
-    }
-    reports.html.required = true
-
-    // Configure coverage for test task.
-    extensions.configure<KoverTaskExtension> {
-      isDisabled = false
-      // excludes.addAll(...)
-    }
-  }
-
-  testing { suites.getByName<JvmTestSuite>("test").useJUnitJupiter() }
 
   // Javadoc
   javadoc {
     isFailOnError = true
-    // modularity.inferModulePath = true
-    (options as CoreJavadocOptions).apply {
+    modularity.inferModulePath = true
+    (options as StandardJavadocDocletOptions).apply {
       encoding = "UTF-8"
+      linkSource(true)
       addBooleanOption("-enable-preview", true)
       addStringOption("-add-modules", addModules)
       addStringOption("-release", javaRelease.get().toString())
@@ -412,11 +295,8 @@ tasks {
 }
 
 dependencies {
-  implementation(platform(libs.kotlin.bom))
   implementation(platform(Deps.OkHttp.bom))
-  implementation(libs.kotlin.stdlib)
   implementation(libs.kotlin.reflect)
-  implementation(libs.kotlinx.coroutines.jdk8)
   implementation(libs.kotlinx.serialization.json)
   implementation(libs.kotlinx.datetime)
   implementation(libs.jetty.server) { version { strictly(libs.versions.jetty.asProvider().get()) } }

@@ -142,7 +142,7 @@ $ ./gradlew -q javaToolchains
 
 ##### Resources
 
-* 🌲 [Maven Deps Tree](https://github.com/SimonMarquis/Maven-Dependency-Tree)
+* [Maven Deps Tree](https://github.com/SimonMarquis/Maven-Dependency-Tree)
 
  <!--
  Idiomatic Gradle  - https://github.com/jjohannes/idiomatic-gradle

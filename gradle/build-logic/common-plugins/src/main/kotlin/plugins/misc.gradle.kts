@@ -14,10 +14,8 @@ plugins {
   id("com.diffplug.spotless")
   id("com.github.ben-manes.versions")
   id("com.github.johnrengelman.shadow")
-  id("io.github.gradle-nexus.publish-plugin")
   id("com.autonomousapps.plugin-best-practices-plugin")
   id("org.jetbrains.dokka")
-
   // id("com.autonomousapps.dependency-analysis")
   // id("org.openrewrite.rewrite")
   // id("de.benediktritter.maven-plugin-development")

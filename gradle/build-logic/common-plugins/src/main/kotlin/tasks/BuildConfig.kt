@@ -10,6 +10,7 @@ import org.gradle.api.provider.Property
 import org.gradle.api.tasks.*
 import org.gradle.language.base.plugins.LifecycleBasePlugin
 
+@CacheableTask
 abstract class BuildConfig : DefaultTask() {
 
   @get:[Input Optional]

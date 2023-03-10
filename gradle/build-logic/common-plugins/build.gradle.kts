@@ -69,6 +69,7 @@ dependencies {
   implementation(libs.build.nexus.plugin)
   implementation(libs.build.spotless.plugin)
   implementation(libs.build.shadow.plugin)
+  implementation(libs.build.semver.plugin)
   implementation(libs.build.benmanesversions)
   implementation(libs.build.taskinfo)
   implementation(libs.build.dependencyanalysis)

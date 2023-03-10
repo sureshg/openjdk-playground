@@ -5,6 +5,7 @@ import dev.suresh.gradle.*
 import java.io.PrintWriter
 import java.io.StringWriter
 import java.util.spi.*
+import org.gradle.api.tasks.testing.logging.*
 import org.gradle.internal.os.OperatingSystem
 import org.gradle.kotlin.dsl.*
 import tasks.*
@@ -58,6 +59,40 @@ java {
     vendor = toolchainVendor
   }
   // modularity.inferModulePath = true
+}
+
+// For dependencies that are needed for development only.
+val devOnly: Configuration by configurations.creating
+
+testing {
+  suites {
+    val test by getting(JvmTestSuite::class) { useJUnitJupiter(libs.versions.junit.asProvider()) }
+
+    // Configure all test suites
+    withType(JvmTestSuite::class) {
+      targets.configureEach {
+        testTask {
+          jvmArgs(jvmArguments)
+          classpath += devOnly
+          reports.html.required = true
+
+          testLogging {
+            events =
+                setOf(
+                    TestLogEvent.STANDARD_ERROR,
+                    TestLogEvent.FAILED,
+                    TestLogEvent.SKIPPED,
+                )
+            exceptionFormat = TestExceptionFormat.FULL
+            showExceptions = true
+            showCauses = true
+            showStackTraces = true
+            showStandardStreams = true
+          }
+        }
+      }
+    }
+  }
 }
 
 tasks {
@@ -192,6 +227,9 @@ tasks {
   }
 
   build { finalizedBy(printModuleDeps, buildExecutable, githubActionOutput) }
+
+  // Task to print the project version
+  register("v") { doLast { println(project.version.toString()) } }
 }
 
 // Set additional jvm args

@@ -1,9 +1,9 @@
 import dev.suresh.gradle.dependencyPath
 
 plugins {
-  id("plugins.kotlin")
   application
-  alias(libs.plugins.shadow)
+  id("plugins.kotlin")
+  id(libs.plugins.shadow.get().pluginId)
 }
 
 group = libs.versions.group.get()

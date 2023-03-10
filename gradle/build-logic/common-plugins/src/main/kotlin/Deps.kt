@@ -22,7 +22,7 @@ object Deps {
   object Kotlin {
 
     object Coroutines {
-      const val version = "1.6.4"
+      const val version = "1.7.0-Beta"
       const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
       const val jdk8 = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$version"
       const val reactor = "org.jetbrains.kotlinx:coroutines-reactor:$version"
