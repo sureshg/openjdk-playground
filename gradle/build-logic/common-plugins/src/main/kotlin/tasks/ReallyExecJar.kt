@@ -1,11 +1,13 @@
 package tasks
 
+import com.github.ajalt.mordant.rendering.TextColors
 import dev.suresh.gradle.*
-import java.io.*
-import java.nio.file.*
+import java.nio.file.attribute.PosixFilePermissions
+import kotlin.io.path.*
+import net.e175.klaus.zip.ZipPrefixer
 import org.gradle.api.*
-import org.gradle.api.file.*
-import org.gradle.api.provider.*
+import org.gradle.api.file.RegularFileProperty
+import org.gradle.api.provider.ListProperty
 import org.gradle.api.tasks.*
 import org.gradle.language.base.plugins.*
 
@@ -44,16 +46,17 @@ abstract class ReallyExecJar : DefaultTask() {
             ?.replace(tmp, "${'$'}TMPDIR/")
             ?: throw GradleException("Can't find executable shell stub!")
     logger.debug("Exec jar shell stub: $shellStub")
-    // project.objects.property<Int>()
 
-    val binFile = execJarFile.get().asFile
-    logger.debug("Executable binary: ${binFile.name}")
+    // Make a copy of jar file
+    val binFile =
+        Path(jarFile.get().asFile.path).copyTo(execJarFile.get().asFile.toPath(), overwrite = true)
 
-    FileOutputStream(binFile).buffered().use { bos ->
-      bos.write(shellStub.encodeToByteArray())
-      Files.copy(jarFile.get().asFile.toPath(), bos)
-    }
-    binFile.setExecutable(true)
-    logger.quiet("Executable Binary: ${binFile.path} ${binFile.displaySize}")
+    // Add shell preamble and validate the executable jar
+    ZipPrefixer.applyPrefixBytesToZip(binFile, shellStub.encodeToByteArray())
+    ZipPrefixer.validateZipOffsets(binFile)
+    binFile.setPosixFilePermissions(PosixFilePermissions.fromString("rwxr-xr-x"))
+    logger.quiet(
+        TextColors.green(
+            "Executable Binary: ${binFile.pathString} ${binFile.fileSize().byteDisplaySize()}"))
   }
 }

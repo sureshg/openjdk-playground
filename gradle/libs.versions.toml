@@ -113,6 +113,7 @@ tcp-javanioproxy               = "1.6"
 togglz                         = "3.1.1"
 versioncompare                 = "1.5.0"
 violations                     = "1.149.2"
+zip-prefixer                   = "0.3.1"
 
 # Plugin versions
 benmanes                       = "0.46.0"
@@ -376,7 +377,7 @@ build-includegit-plugin         = { module = "me.champeau.gradle.includegit:plug
 build-cyclonedx-plugin          = { module = "org.cyclonedx:cyclonedx-gradle-plugin"                          , version.ref = "cyclonedx-plugin" }
 build-javaagent-plugin          = { module = "com.ryandens:plugin"                                            , version.ref = "javaagent-application" }
 build-semver-plugin             = { module = "com.javiersc.semver:semver-gradle-plugin"                       , version.ref = "semver-plugin" }
-
+build-zip-prefixer              = { module = "net.e175.klaus:zip-prefixer"                                    , version.ref = "zip-prefixer" }
 
 # Gradle  Plugins
 [plugins]

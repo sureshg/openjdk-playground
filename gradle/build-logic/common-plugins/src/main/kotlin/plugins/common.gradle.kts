@@ -1,6 +1,7 @@
 package plugins
 
 import GithubAction
+import com.github.ajalt.mordant.rendering.TextColors
 import dev.suresh.gradle.*
 import java.io.PrintWriter
 import java.io.StringWriter
@@ -21,13 +22,14 @@ plugins {
 
 if (hasCleanTask) {
   logger.warn(
-      """
+      TextColors.yellow(
+              """
       | CLEANING ALMOST NEVER FIXES YOUR BUILD!
       | Cleaning is often a last-ditch effort to fix perceived build problems that aren't going to
       | actually be fixed by cleaning. What cleaning will do though is make your next few builds
       | significantly slower because all the incremental compilation data has to be regenerated,
       | so you're really just making your day worse.
-      """
+      """)
           .trimMargin(),
   )
 }

@@ -59,6 +59,7 @@ dependencies {
   implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
   implementation(libs.ajalt.mordant)
   implementation(libs.jte.runtime)
+  implementation(libs.build.zip.prefixer)
   // compileOnly(libs.jte.kotlin)
 
   // External plugins deps to use in precompiled script plugins
