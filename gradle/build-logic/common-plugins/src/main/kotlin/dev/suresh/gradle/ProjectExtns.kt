@@ -6,11 +6,13 @@ import java.nio.file.Path
 import java.util.concurrent.CompletableFuture
 import org.gradle.accessors.dm.LibrariesForLibs
 import org.gradle.api.Project
+import org.gradle.api.Task
 import org.gradle.api.artifacts.ExternalDependency
 import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.attributes.*
 import org.gradle.api.component.AdhocComponentWithVariants
 import org.gradle.api.plugins.JavaPluginExtension
+import org.gradle.api.tasks.TaskContainer
 import org.gradle.internal.os.OperatingSystem
 import org.gradle.jvm.toolchain.JavaToolchainService
 import org.gradle.kotlin.dsl.*
@@ -203,3 +205,17 @@ fun Project.forkTask(task: String, vararg args: String): CompletableFuture<Unit>
             .run()
       }
     }
+
+/** Lazy version of [TaskContainer.maybeCreate] */
+fun <T : Task> TaskContainer.maybeRegister(
+    taskName: String,
+    type: Class<T>,
+    configAction: T.() -> Unit
+) =
+    if (taskName in names) named(taskName, type)
+    else register(taskName, type).also { it.configure(configAction) }
+
+inline fun <reified T : Task> TaskContainer.maybeRegister(
+    taskName: String,
+    noinline configAction: T.() -> Unit
+) = maybeRegister(taskName, T::class.java, configAction)

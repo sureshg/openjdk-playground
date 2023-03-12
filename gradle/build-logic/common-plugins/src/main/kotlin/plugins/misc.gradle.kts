@@ -2,6 +2,7 @@ package plugins
 
 import dev.suresh.gradle.forkTask
 import dev.suresh.gradle.libs
+import dev.suresh.gradle.maybeRegister
 import java.util.concurrent.CompletableFuture
 import org.gradle.kotlin.dsl.*
 import tasks.BuildConfig
@@ -70,9 +71,11 @@ spotless {
 // dependencyAnalysis { issues { all { onAny { severity("warn") } } } }
 
 tasks {
-  // Generate build config.
+  // Generate build config, add it to the main source-set and
+  // run automatically on Gradle Sync (https://twitter.com/Sellmair/status/1619308362881187840)
   val buildConfig by registering(BuildConfig::class) { classFqName = "BuildConfig" }
   sourceSets { main { java.srcDirs(buildConfig) } }
+  maybeRegister<BuildConfig>("prepareKotlinIdeaImport") { dependsOn(buildConfig) }
 
   // Fix "Execution optimizations have been disabled" warning for JTE
   // tasks.named("dokkaHtml") { dependsOn(tasks.generateJte) }
