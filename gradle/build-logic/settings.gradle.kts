@@ -1,5 +1,4 @@
-@file:Suppress("UnstableApiUsage")
-
+@Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
   repositories {
     mavenCentral()
@@ -7,8 +6,13 @@ dependencyResolutionManagement {
   }
   repositoriesMode = RepositoriesMode.FAIL_ON_PROJECT_REPOS
 
-  versionCatalogs { create("libs") { from(files("../libs.versions.toml")) } }
+  versionCatalogs {
+    // Use the main version catalog
+    create("libs") { from(files("../libs.versions.toml")) }
+  }
 }
+
+// apply(from = "path/to/repos.settings.gradle.kts")
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 

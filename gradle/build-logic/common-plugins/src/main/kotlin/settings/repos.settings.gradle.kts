@@ -4,6 +4,23 @@ import GithubAction
 import com.gradle.scan.plugin.PublishedBuildScan
 import org.gradle.kotlin.dsl.*
 
+pluginManagement {
+  require(JavaVersion.current().isJava11Compatible) {
+    "This build requires Gradle to be run with at least Java 11"
+  }
+
+  resolutionStrategy {
+    eachPlugin {
+      when (requested.id.id) {
+        "kotlinx-atomicfu" ->
+            useModule("org.jetbrains.kotlinx:atomicfu-gradle-plugin:${requested.version}")
+        "app.cash.licensee" ->
+            useModule("app.cash.licensee:licensee-gradle-plugin:${requested.version}")
+      }
+    }
+  }
+}
+
 // Apply the plugins to all projects
 plugins {
   id("com.gradle.enterprise")
@@ -19,7 +36,6 @@ dependencyResolutionManagement {
     mavenCentral()
     google()
   }
-
   repositoriesMode = RepositoriesMode.FAIL_ON_PROJECT_REPOS
 }
 

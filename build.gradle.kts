@@ -14,7 +14,6 @@ plugins {
   id("plugins.misc")
   id("plugins.publishing")
   id("plugins.kotlin")
-  id("com.javiersc.semver.gradle.plugin")
   alias(libs.plugins.ksp)
   alias(libs.plugins.kotlinx.serialization)
   alias(libs.plugins.ksp.redacted)
@@ -141,8 +140,6 @@ application {
   // https://chriswhocodes.com/hotspot_options_openjdk21.html
   // https://sap.github.io/SapMachine/jfrevents/21.html
 }
-
-semver { tagPrefix = "v" }
 
 ksp {
   arg("autoserviceKsp.verify", "true")

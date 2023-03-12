@@ -56,7 +56,7 @@ abstract class ReallyExecJar : DefaultTask() {
     ZipPrefixer.validateZipOffsets(binFile)
     binFile.setPosixFilePermissions(PosixFilePermissions.fromString("rwxr-xr-x"))
     logger.quiet(
-        TextColors.green(
+        TextColors.magenta(
             "Executable Binary: ${binFile.pathString} ${binFile.fileSize().byteDisplaySize()}"))
   }
 }

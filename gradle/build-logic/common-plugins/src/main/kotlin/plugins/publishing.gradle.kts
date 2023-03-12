@@ -5,6 +5,7 @@ import dev.suresh.gradle.libs
 plugins {
   `maven-publish`
   signing
+  id("com.javiersc.semver")
   id("org.cyclonedx.bom")
 }
 
@@ -24,6 +25,8 @@ tasks {
     includeLicenseText = true
   }
 }
+
+semver { tagPrefix = "v" }
 
 publishing {
   repositories {
@@ -76,6 +79,14 @@ publishing {
           tasks.registering(Jar::class) {
             from(tasks.named("dokkaHtml"))
             archiveClassifier = "htmldoc"
+          }
+
+      // For publishing a pure kotlin project
+      val emptyJar by
+          tasks.registering(Jar::class) {
+            archiveClassifier = "javadoc"
+            archiveAppendix = "empty"
+            duplicatesStrategy = DuplicatesStrategy.WARN
           }
 
       withType<MavenPublication>().configureEach {
