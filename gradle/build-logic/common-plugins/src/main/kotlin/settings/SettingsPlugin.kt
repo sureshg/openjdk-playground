@@ -1,4 +1,4 @@
-package plugins
+package settings
 
 import GithubAction
 import com.gradle.scan.plugin.PublishedBuildScan

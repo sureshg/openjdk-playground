@@ -31,7 +31,7 @@ gradlePlugin {
     // A sample settings plugin to configure build scan TOS
     create("dev.suresh.gradle.settings") {
       id = "dev.suresh.gradle.settings"
-      implementationClass = "plugins.SettingsPlugin"
+      implementationClass = "settings.SettingsPlugin"
       description = "Gradle settings plugin with build scan TOS accepted"
     }
 
