@@ -35,6 +35,13 @@ gradlePlugin {
       description = "Gradle settings plugin with build scan TOS accepted"
     }
 
+    // A generic plugin for both project and settings
+    create("plugins.generic") {
+      id = "plugins.generic"
+      implementationClass = "plugins.GenericPlugin"
+      description = "A plugin-aware generic plugin"
+    }
+
     // val settingsPlugin by this.creating {}
   }
 }

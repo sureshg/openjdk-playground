@@ -5,7 +5,6 @@ import dev.suresh.gradle.libs
 plugins {
   `maven-publish`
   signing
-  id("com.javiersc.semver")
   id("org.cyclonedx.bom")
 }
 
@@ -25,8 +24,6 @@ tasks {
     includeLicenseText = true
   }
 }
-
-semver { tagPrefix = "v" }
 
 publishing {
   repositories {

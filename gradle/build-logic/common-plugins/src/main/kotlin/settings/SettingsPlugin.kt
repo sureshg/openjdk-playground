@@ -8,23 +8,24 @@ import org.gradle.kotlin.dsl.gradleEnterprise
 
 /** Gradle Enterprise settings plugin with TOS accepted. */
 class SettingsPlugin : Plugin<Settings> {
-  override fun apply(settings: Settings) {
-    settings.plugins.withId("com.gradle.enterprise") {
-      settings.gradleEnterprise {
-        buildScan {
-          termsOfServiceUrl = "https://gradle.com/terms-of-service"
-          termsOfServiceAgree = "yes"
-          capture.isTaskInputFiles = true
-          if (GithubAction.isEnabled) {
-            publishAlways()
-            isUploadInBackground = false
-            tag("GITHUB_ACTION")
-            buildScanPublished { addJobSummary() }
+  override fun apply(target: Settings) =
+      with(target) {
+        plugins.withId("com.gradle.enterprise") {
+          gradleEnterprise {
+            buildScan {
+              termsOfServiceUrl = "https://gradle.com/terms-of-service"
+              termsOfServiceAgree = "yes"
+              capture.isTaskInputFiles = true
+              if (GithubAction.isEnabled) {
+                publishAlways()
+                isUploadInBackground = false
+                tag("GITHUB_ACTION")
+                buildScanPublished { addJobSummary() }
+              }
+            }
           }
         }
       }
-    }
-  }
 
   /** Add build scan details to GitHub Job summary report! */
   private fun PublishedBuildScan.addJobSummary() {

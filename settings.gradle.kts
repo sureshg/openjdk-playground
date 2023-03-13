@@ -2,6 +2,13 @@ pluginManagement {
   // Included plugin builds can contribute settings and project plugins
   includeBuild("gradle/build-logic")
 
+  // Plugin repositories to use
+  repositories {
+    gradlePluginPortal()
+    mavenCentral()
+    google()
+  }
+
   // val gradleEnterprise: String by settings //OR
   // val gradleEnterprise =
   //      file("$rootDir/gradle/libs.versions.toml")
@@ -10,19 +17,11 @@ pluginManagement {
   //          .split("\"")[1]
 
   // https://docs.gradle.org/current/userguide/plugins.html#sec:plugin_version_management
-  plugins {
-    // id("com.gradle.enterprise") version gradleEnterprise
-
-    // val kotlinVersion = extra["kotlin.version"] as String
-    // kotlin("jvm") version kotlinVersion
-  }
-
-  // Plugin repositories to use
-  repositories {
-    gradlePluginPortal()
-    mavenCentral()
-    google()
-  }
+  // plugins {
+  //    id("com.gradle.enterprise") version gradleEnterprise
+  //    val kotlinVersion = extra["kotlin.version"] as String
+  //    kotlin("jvm") version kotlinVersion
+  // }
 }
 
 // Apply common settings plugins to all projects

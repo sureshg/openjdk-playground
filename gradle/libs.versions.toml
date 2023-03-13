@@ -127,6 +127,7 @@ champeau-mrjar                 = "0.1"
 classpath-collisiondetector    = "0.3"
 cyclonedx-plugin               = "1.7.4"
 foojay-toolchains              = "0.1"
+idea-ext                       = "1.1.7"
 git-properties                 = "2.4.1"
 google-javaformat              = "1.16.0"
 graalvm-nativeimage            = "0.9.11"
@@ -372,12 +373,14 @@ build-dependencyanalysis        = { module = "com.autonomousapps:dependency-anal
 build-bestpractices-plugin      = { module = "com.autonomousapps:plugin-best-practices-plugin"                , version.ref = "best-practices-plugin" }
 build-openrewrite-plugin        = { module = "org.openrewrite:plugin"                                         , version.ref = "openrewrite" }
 build-maven-plugindev           = { module = "de.benediktritter:plugin"                                       , version.ref = "maven-plugindev" }
-build-cp-collisiondetector      = { module = "io.fuchs.gradle.classpath-collision-detector:classpath-collision-detector" , version.ref = "classpath-collisiondetector" }
 build-includegit-plugin         = { module = "me.champeau.gradle.includegit:plugin"                           , version.ref = "champeau-includegit" }
 build-cyclonedx-plugin          = { module = "org.cyclonedx:cyclonedx-gradle-plugin"                          , version.ref = "cyclonedx-plugin" }
 build-javaagent-plugin          = { module = "com.ryandens:plugin"                                            , version.ref = "javaagent-application" }
 build-semver-plugin             = { module = "com.javiersc.semver:semver-gradle-plugin"                       , version.ref = "semver-plugin" }
 build-zip-prefixer              = { module = "net.e175.klaus:zip-prefixer"                                    , version.ref = "zip-prefixer" }
+build-idea-ext                  = { module = "gradle.plugin.org.jetbrains.gradle.plugin.idea-ext:gradle-idea-ext"        , version.ref = "idea-ext" }
+build-cp-collisiondetector      = { module = "io.fuchs.gradle.classpath-collision-detector:classpath-collision-detector" , version.ref = "classpath-collisiondetector" }
+
 
 # Gradle  Plugins
 [plugins]

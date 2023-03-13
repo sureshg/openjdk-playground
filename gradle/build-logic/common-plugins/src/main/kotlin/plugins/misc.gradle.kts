@@ -75,7 +75,7 @@ tasks {
   // run automatically on Gradle Sync (https://twitter.com/Sellmair/status/1619308362881187840)
   val buildConfig by registering(BuildConfig::class) { classFqName = "BuildConfig" }
   sourceSets { main { java.srcDirs(buildConfig) } }
-  maybeRegister<BuildConfig>("prepareKotlinIdeaImport") { dependsOn(buildConfig) }
+  maybeRegister("prepareKotlinIdeaImport") { dependsOn(buildConfig) }
 
   // Fix "Execution optimizations have been disabled" warning for JTE
   // tasks.named("dokkaHtml") { dependsOn(tasks.generateJte) }

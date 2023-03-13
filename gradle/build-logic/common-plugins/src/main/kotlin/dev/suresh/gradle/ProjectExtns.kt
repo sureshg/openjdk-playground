@@ -212,10 +212,10 @@ fun <T : Task> TaskContainer.maybeRegister(
     type: Class<T>,
     configAction: T.() -> Unit
 ) =
-    if (taskName in names) named(taskName, type)
-    else register(taskName, type).also { it.configure(configAction) }
+    when (taskName) {
+      in names -> named(taskName, type)
+      else -> register(taskName, type)
+    }.also { it.configure(configAction) }
 
-inline fun <reified T : Task> TaskContainer.maybeRegister(
-    taskName: String,
-    noinline configAction: T.() -> Unit
-) = maybeRegister(taskName, T::class.java, configAction)
+fun TaskContainer.maybeRegister(taskName: String, configAction: Task.() -> Unit) =
+    maybeRegister(taskName, Task::class.java, configAction)

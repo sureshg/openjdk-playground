@@ -23,9 +23,14 @@ pluginManagement {
 
 // Apply the plugins to all projects
 plugins {
+  // Gradle scan
   id("com.gradle.enterprise")
+  // Use semver on all projects
+  id("com.javiersc.semver")
   // Include another setting plugin
   id("settings.include")
+  // Include plugin-aware generic plugin
+  id("plugins.generic")
   // id("dev.suresh.gradle.settings")
 }
 

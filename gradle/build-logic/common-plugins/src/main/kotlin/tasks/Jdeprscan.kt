@@ -7,6 +7,7 @@ import org.gradle.api.*
 import org.gradle.api.file.*
 import org.gradle.api.model.*
 import org.gradle.api.plugins.*
+import org.gradle.api.provider.*
 import org.gradle.api.tasks.*
 import org.gradle.kotlin.dsl.*
 import org.gradle.process.*
@@ -17,6 +18,7 @@ abstract class Jdeprscan
 constructor(
     private val layout: ProjectLayout,
     private val objects: ObjectFactory,
+    private val providers: ProviderFactory,
     private val execOps: ExecOperations,
     private val extension: JdeprscanExtension
 ) : DefaultTask() {
@@ -132,7 +134,7 @@ open class JdeprscanExtension(@Inject val project: Project) {
         set(javaVersion.map { it.toInt() })
       }
 
-  @get:Input val forRemoval = project.objects.property<Boolean>().apply { set(false) }
+  @get:Input val forRemoval = project.objects.property<Boolean>().convention(false)
 
-  @get:Input val verbose = project.objects.property<Boolean>().apply { set(false) }
+  @get:Input val verbose = project.objects.property<Boolean>().convention(false)
 }
