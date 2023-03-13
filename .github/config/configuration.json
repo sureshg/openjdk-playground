@@ -42,7 +42,8 @@
     {
       "title": "## 💬 Other",
       "labels": [
-        "other"
+        "other",
+        "misc"
       ]
     }
   ],
