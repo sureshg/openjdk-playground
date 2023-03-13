@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > ContextReceiversKt</title>
+  <title>Coverage Report > KtConfig</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -18,10 +18,10 @@
 <div class="breadCrumbs">
 Current scope:     <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">dev.suresh.lang</a>
+    <a href="../index.html">dev.suresh.jte</a>
 </div>
 
-<h1>Coverage Summary for Class: ContextReceiversKt (dev.suresh.lang)</h1>
+<h1>Coverage Summary for Class: KtConfig (dev.suresh.jte)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -48,7 +48,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">ContextReceiversKt</td>
+  <td class="name">KtConfig</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -62,7 +62,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/2)
+    (0/1)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -71,7 +71,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/3)
+    (0/1)
   </span>
 </td>
 <td class="coverageStat">
@@ -79,7 +79,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/15)
+    (0/28)
   </span>
 </td>
 </tr>
@@ -91,21 +91,33 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.lang
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.jte
 &nbsp;
-&nbsp;class Logger(val name: String) {
-&nbsp;  fun log(message: String) = println(&quot;$name: $message&quot;)
-&nbsp;}
+&nbsp;import App
+&nbsp;import BuildConfig
+&nbsp;import dev.suresh.config.*
+&nbsp;import gg.jte.*
+&nbsp;import gg.jte.output.*
 &nbsp;
-&nbsp;context(Logger)
+<b class="nc">&nbsp;data class KtConfig(val language: String = &quot;Kotlin&quot;, val version: String, val appVersion: String?)</b>
 &nbsp;
-&nbsp;fun store(msg: String) {
-<b class="nc">&nbsp;  log(&quot;Stored $msg in the file&quot;)</b>
-&nbsp;}
+&nbsp;class RenderJte {
+&nbsp;  fun run() {
+&nbsp;    val tmplEngine =
+&nbsp;        TemplateEngine.createPrecompiled(ContentType.Plain).apply { setTrimControlStructures(true) }
 &nbsp;
-&nbsp;fun main() {
-<b class="nc">&nbsp;  val logger = Logger(&quot;main&quot;)</b>
-<b class="nc">&nbsp;  with(logger) { store(&quot;Hello&quot;) }</b>
+&nbsp;    val params =
+&nbsp;        mapOf(
+&nbsp;            &quot;config&quot; to JConfig(),
+&nbsp;            &quot;ktConfig&quot; to KtConfig(version = App.KOTLIN_VERSION, appVersion = App.VERSION))
+&nbsp;
+&nbsp;    listOf(&quot;hello.jte&quot;, &quot;hello-kt.kte&quot;).forEach {
+&nbsp;      val output = StringOutput()
+&nbsp;      // tmplEngine.render(it, params, output)
+&nbsp;      output.write(BuildConfig.time)
+&nbsp;      println(&quot;$it -&gt; $output&quot;)
+&nbsp;    }
+&nbsp;  }
 &nbsp;}
 </code>
 </pre>
@@ -130,7 +142,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-12-14 18:07</div>
+    <div style="float:right;">generated on 2023-03-13 09:07</div>
 </div>
 </body>
 </html>

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > Node1</title>
+  <title>Coverage Report > HiddenData</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -18,10 +18,10 @@
 <div class="breadCrumbs">
 Current scope:     <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">dev.suresh.misc</a>
+    <a href="../index.html">dev.suresh.lang</a>
 </div>
 
-<h1>Coverage Summary for Class: Node1 (dev.suresh.misc)</h1>
+<h1>Coverage Summary for Class: HiddenData (dev.suresh.lang)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -48,7 +48,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">Node1</td>
+  <td class="name">HiddenData</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -79,7 +79,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/34)
+    (0/7)
   </span>
 </td>
 </tr>
@@ -91,28 +91,58 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.misc
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.lang
 &nbsp;
-&nbsp;fun main2() {
-&nbsp;  val root =
-&nbsp;      generateSequence(Node1(1)) { prev -&gt;
-&nbsp;            // Repeatedly generate parent nodes that link to the previous node as their left
-&nbsp;            // children
-&nbsp;            Node1(prev.data + 1, prev, null)
-&nbsp;          }
-&nbsp;          .take(100_000)
-&nbsp;          .last()
-&nbsp;  println(root.depth)
+&nbsp;import java.lang.invoke.*
+&nbsp;import java.util.*
+&nbsp;
+&nbsp;/**
+&nbsp; * Run with &quot;-XX:+UnlockDiagnosticVMOptions -XX:+ShowHiddenFrames&quot; to see the hidden classes.
+&nbsp; *
+&nbsp; * --add-opens java.base/java.util=ALL-UNNAMED
+&nbsp; *
+&nbsp; * @since JDK15
+&nbsp; */
+&nbsp;fun main() {
+&nbsp;  println(&quot;Reading Foo bytes...&quot;)
+&nbsp;  val clBytes = Foo::class.java.toBytes() ?: error(&quot;Can&#39;t load Foo!&quot;)
+&nbsp;
+&nbsp;  println(HiddenData::class.java.toBytes()?.decodeToString())
+&nbsp;  println(&quot;-------------------------&quot;)
+&nbsp;  val t = HiddenData(&quot;kotlin&quot;)
+&nbsp;  println(t.javaClass.toBytes()?.decodeToString())
+&nbsp;
+&nbsp;  val lookup = MethodHandles.lookup().defineHiddenClass(clBytes, true)
+&nbsp;  val run = lookup.findStatic(lookup.lookupClass(), &quot;run&quot;, MethodType.methodType(Void.TYPE))
+&nbsp;  // run.invokeExact()
+&nbsp;
+&nbsp;  val mh = MethodHandles.privateLookupIn(Formatter::class.java, MethodHandles.lookup())
+&nbsp;  println(MethodHandles.lookup())
+&nbsp;  println(mh.lookupClass())
+&nbsp;
+&nbsp;  println(mh.lookupModes())
+&nbsp;  val m =
+&nbsp;      mh.findVirtual(
+&nbsp;          mh.lookupClass(),
+&nbsp;          &quot;parse&quot;,
+&nbsp;          MethodType.methodType(java.util.List::class.java, java.lang.String::class.java))
+&nbsp;
+&nbsp;  println(m.invoke(Formatter(), &quot;%s&quot;))
+&nbsp;  // Concurrent
 &nbsp;}
 &nbsp;
-<b class="nc">&nbsp;data class Node1&lt;T&gt;(val data: T, val left: Node1&lt;T&gt;? = null, val right: Node1&lt;T&gt;? = null)</b>
+&nbsp;interface Foo {
+&nbsp;  companion object {
 &nbsp;
-&nbsp;val &lt;T&gt; Node1&lt;T&gt;?.depth: Int
-&nbsp;  get() =
-&nbsp;      when (this) {
-&nbsp;        null -&gt; 0
-&nbsp;        else -&gt; maxOf(left.depth, right.depth) + 1
-&nbsp;      }
+&nbsp;    @JvmStatic
+&nbsp;    fun run() {
+&nbsp;      println(&quot;Inside Foo&quot;)
+&nbsp;      error(&quot;Error from $methodName&quot;)
+&nbsp;    }
+&nbsp;  }
+&nbsp;}
+&nbsp;
+<b class="nc">&nbsp;data class HiddenData(val name: String)</b>
 </code>
 </pre>
 </div>
@@ -136,7 +166,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-12-14 18:07</div>
+    <div style="float:right;">generated on 2023-03-13 09:07</div>
 </div>
 </body>
 </html>

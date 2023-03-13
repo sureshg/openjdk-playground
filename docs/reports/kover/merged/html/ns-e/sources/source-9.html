@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > TreeTestKt</title>
+  <title>Coverage Report > TextKt</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -18,10 +18,10 @@
 <div class="breadCrumbs">
 Current scope:     <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">dev.suresh.misc</a>
+    <a href="../index.html">dev.suresh.lang</a>
 </div>
 
-<h1>Coverage Summary for Class: TreeTestKt (dev.suresh.misc)</h1>
+<h1>Coverage Summary for Class: TextKt (dev.suresh.lang)</h1>
 
 <table class="coverageStats">
 
@@ -45,13 +45,13 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">TreeTestKt</td>
+  <td class="name">TextKt</td>
 <td class="coverageStat">
   <span class="percent">
     0%
   </span>
   <span class="absValue">
-    (0/2)
+    (0/3)
   </span>
 </td>
 <td class="coverageStat">
@@ -59,7 +59,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/2)
+    (0/4)
   </span>
 </td>
 <td class="coverageStat">
@@ -67,7 +67,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/8)
+    (0/21)
   </span>
 </td>
 <td class="coverageStat">
@@ -75,12 +75,12 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/36)
+    (0/131)
   </span>
 </td>
 </tr>
   <tr>
-    <td class="name">TreeTestKt$main2$root$1</td>
+    <td class="name">TextKt$codePointsToString$2</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -103,7 +103,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/12)
+    (0/6)
   </span>
 </td>
   </tr>
@@ -114,7 +114,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/3)
+    (0/4)
   </span>
 </td>
 <td class="coverageStat">
@@ -122,7 +122,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/2)
+    (0/4)
   </span>
 </td>
 <td class="coverageStat">
@@ -130,7 +130,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/9)
+    (0/22)
   </span>
 </td>
 <td class="coverageStat">
@@ -138,7 +138,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/48)
+    (0/137)
   </span>
 </td>
 </tr>
@@ -149,28 +149,63 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.misc
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.lang
 &nbsp;
-&nbsp;fun main2() {
-<b class="nc">&nbsp;  val root =</b>
-<b class="nc">&nbsp;      generateSequence(Node1(1)) { prev -&gt;</b>
-&nbsp;            // Repeatedly generate parent nodes that link to the previous node as their left
-&nbsp;            // children
-<b class="nc">&nbsp;            Node1(prev.data + 1, prev, null)</b>
-&nbsp;          }
-<b class="nc">&nbsp;          .take(100_000)</b>
-<b class="nc">&nbsp;          .last()</b>
-<b class="nc">&nbsp;  println(root.depth)</b>
+&nbsp;import java.util.*
+&nbsp;
+&nbsp;/**
+&nbsp; * https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Character.html#unicode
+&nbsp; * https://www.unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries
+&nbsp; * https://docs.oracle.com/javase/tutorial/i18n/text/char.html
+&nbsp; */
+&nbsp;fun main() {
+&nbsp;
+&nbsp;  // String that contains the US flag and a grapheme for a 4-member-family.
+<b class="nc">&nbsp;  val text = &quot;🇺🇸👨‍👩‍👧‍👦&quot;</b>
+&nbsp;
+<b class="nc">&nbsp;  println(</b>
+&nbsp;      &quot;&quot;&quot;
+<b class="nc">&nbsp;      String : $text</b>
+<b class="nc">&nbsp;      String Length : ${text.length}  (Number of Unicode code units, characters as fixed-width 16-bit entities)</b>
+<b class="nc">&nbsp;      Code Point Size : ${text.codePoints().count()} (Any surrogate pairs encountered in the sequence are combined)</b>
+<b class="nc">&nbsp;      UTF-8 ByteArray Size : ${text.encodeToByteArray().size}</b>
+&nbsp;      &quot;&quot;&quot;
+<b class="nc">&nbsp;          .trimIndent())</b>
+&nbsp;
+<b class="nc">&nbsp;  val codePoints = text.codePoints().toArray()</b>
+<b class="nc">&nbsp;  for (i in codePoints.indices) {</b>
+<b class="nc">&nbsp;    println(HexFormat.of().withPrefix(&quot;0x&quot;).toHexDigits(codePoints[i]))</b>
+<b class="nc">&nbsp;    println(String(codePoints, 0, i + 1))</b>
+&nbsp;  }
+&nbsp;
+<b class="nc">&nbsp;  println(&quot;---CodePoint to String---&quot;)</b>
+<b class="nc">&nbsp;  println(codePoints.codePointsToString())</b>
+<b class="nc">&nbsp;  println(codePoints.codePointsToString(&quot;,&quot;))</b>
+<b class="nc">&nbsp;  println(&quot;--------------------------&quot;)</b>
+&nbsp;
+&nbsp;  // val fmt =
+&nbsp;
+&nbsp;  //  val bit = BreakIterator.getCharacterInstance()
+&nbsp;  //  // bb.set
+&nbsp;  //  while (bb.next() != BreakIterator.DONE) {
+&nbsp;  //    println(Character.toString(bb.current()))
+&nbsp;  //  }
+&nbsp;  //
+&nbsp;  //  println(&quot;----&quot;)
+&nbsp;  //  &quot;🇺🇸👨‍👩‍👧‍👦&quot;.codePoints().forEach { String(IntArray(it), 0, 1) }
+&nbsp;  //  println(&quot;----&quot;)
+&nbsp;  //
+&nbsp;  //  &quot;🇺🇸👨‍👩‍👧‍👦&quot;.codePoints().mapToObj(Character::toString).forEach { println(it) }
 &nbsp;}
 &nbsp;
-&nbsp;data class Node1&lt;T&gt;(val data: T, val left: Node1&lt;T&gt;? = null, val right: Node1&lt;T&gt;? = null)
+<b class="nc">&nbsp;fun IntArray.codePointsToString(): String = buildString {</b>
+<b class="nc">&nbsp;  for (cp in this@codePointsToString) {</b>
+<b class="nc">&nbsp;    appendCodePoint(cp)</b>
+&nbsp;  }
+<b class="nc">&nbsp;}</b>
 &nbsp;
-&nbsp;val &lt;T&gt; Node1&lt;T&gt;?.depth: Int
-&nbsp;  get() =
-<b class="nc">&nbsp;      when (this) {</b>
-<b class="nc">&nbsp;        null -&gt; 0</b>
-<b class="nc">&nbsp;        else -&gt; maxOf(left.depth, right.depth) + 1</b>
-&nbsp;      }
+<b class="nc">&nbsp;fun IntArray.codePointsToString(separator: String = &quot;&quot;) =</b>
+<b class="nc">&nbsp;    joinToString(separator) { Character.toString(it) }</b>
 </code>
 </pre>
 </div>
@@ -194,7 +229,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-12-14 18:07</div>
+    <div style="float:right;">generated on 2023-03-13 09:07</div>
 </div>
 </body>
 </html>

@@ -100,12 +100,13 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.service
 &nbsp;
+&nbsp;import java.security.SecureRandom
 &nbsp;import kotlin.math.*
 &nbsp;import kotlin.random.*
 &nbsp;
 &nbsp;object PrimeGen {
 &nbsp;
-&nbsp;  private val rand = Random(41)
+&nbsp;  private val rand = SecureRandom().asKotlinRandom()
 &nbsp;
 &nbsp;  fun random(upperbound: Int): List&lt;Long&gt; {
 &nbsp;    val to = rand.nextInt(upperbound - 2) + 2
@@ -141,7 +142,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-12-14 18:07</div>
+    <div style="float:right;">generated on 2023-03-13 09:07</div>
 </div>
 </body>
 </html>

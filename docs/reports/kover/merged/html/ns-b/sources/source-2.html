@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > SerializationKt</title>
+  <title>Coverage Report > JfrEvent</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -18,15 +18,18 @@
 <div class="breadCrumbs">
 Current scope:     <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">dev.suresh.json</a>
+    <a href="../index.html">dev.suresh.jfr</a>
 </div>
 
-<h1>Coverage Summary for Class: SerializationKt (dev.suresh.json)</h1>
+<h1>Coverage Summary for Class: JfrEvent (dev.suresh.jfr)</h1>
 
 <table class="coverageStats">
-
 <tr>
   <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
 <th class="coverageStat 
 ">
   Method, %
@@ -45,35 +48,15 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">SerializationKt</td>
+  <td class="name">JfrEvent</td>
 <td class="coverageStat">
   <span class="percent">
     0%
   </span>
   <span class="absValue">
-    (0/2)
+    (0/1)
   </span>
 </td>
-    <td class="coverageStat"/>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/2)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/8)
-  </span>
-</td>
-</tr>
-  <tr>
-    <td class="name">SerializationKt$json$1</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -88,46 +71,19 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
     (0/2)
   </span>
 </td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/6)
-  </span>
-</td>
-  </tr>
-<tr>
-  <td class="name"><strong>Total</strong></td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/3)
-  </span>
-</td>
-    <td class="coverageStat"/>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/4)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/14)
-  </span>
-</td>
 </tr>
+
 </table>
 
 <br/>
@@ -135,16 +91,19 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.json
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.jfr
 &nbsp;
-&nbsp;import kotlinx.serialization.json.*
+&nbsp;import java.awt.Desktop
+&nbsp;import java.net.URI
+&nbsp;import jdk.jfr.Category
+&nbsp;import jdk.jfr.Event
+&nbsp;import jdk.jfr.Name
 &nbsp;
-<b class="nc">&nbsp;val json = Json {</b>
-<b class="nc">&nbsp;  explicitNulls = true</b>
-<b class="nc">&nbsp;  encodeDefaults = true</b>
+<b class="nc">&nbsp;@Name(&quot;example.Tiger&quot;) @Category(&quot;Mammal&quot;) class JfrEvent : Event()</b>
+&nbsp;
+&nbsp;fun main() {
+&nbsp;  Desktop.getDesktop().browse(URI(&quot;&quot;))
 &nbsp;}
-&nbsp;
-<b class="nc">&nbsp;fun main() {}</b>
 </code>
 </pre>
 </div>
@@ -168,7 +127,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-12-14 18:07</div>
+    <div style="float:right;">generated on 2023-03-13 09:07</div>
 </div>
 </body>
 </html>

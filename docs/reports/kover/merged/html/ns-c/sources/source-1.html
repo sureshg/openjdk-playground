@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > KtConfig</title>
+  <title>Coverage Report > SerialTest</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -18,18 +18,15 @@
 <div class="breadCrumbs">
 Current scope:     <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">dev.suresh.jte</a>
+    <a href="../index.html">dev.suresh.json</a>
 </div>
 
-<h1>Coverage Summary for Class: KtConfig (dev.suresh.jte)</h1>
+<h1>Coverage Summary for Class: SerialTest (dev.suresh.json)</h1>
 
 <table class="coverageStats">
+
 <tr>
   <th class="name">Class</th>
-<th class="coverageStat 
-">
-  Class, %
-</th>
 <th class="coverageStat 
 ">
   Method, %
@@ -48,7 +45,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">KtConfig</td>
+  <td class="name">SerialTest</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -57,6 +54,37 @@ Current scope:     <a href="../../index.html">all classes</a>
     (0/1)
   </span>
 </td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/73)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">SerialTest$$serializer</td>
+    <td class="coverageStat"/>
+  </tr>
+  <tr>
+    <td class="name">SerialTest$Companion</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -79,11 +107,45 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/28)
+    (0/7)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/80)
   </span>
 </td>
 </tr>
-
 </table>
 
 <br/>
@@ -91,33 +153,74 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.jte
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.json
 &nbsp;
-&nbsp;import App
-&nbsp;import BuildConfig
-&nbsp;import dev.suresh.config.*
-&nbsp;import gg.jte.*
-&nbsp;import gg.jte.output.*
+&nbsp;import java.time.*
+&nbsp;import java.time.Duration
+&nbsp;import kotlin.RequiresOptIn.Level.ERROR
+&nbsp;import kotlin.reflect.*
+&nbsp;import kotlin.time.*
+&nbsp;import kotlinx.serialization.*
+&nbsp;import kotlinx.serialization.builtins.*
 &nbsp;
-<b class="nc">&nbsp;data class KtConfig(val language: String = &quot;Kotlin&quot;, val version: String, val appVersion: String?)</b>
+&nbsp;@OptIn(BleedingEdge::class)
+&nbsp;fun main() {
+&nbsp;  val data = SerialTest&lt;List&lt;Map&lt;String, Int&gt;&gt;&gt;()
+&nbsp;  val j = data::class
+&nbsp;  val type = typeOf&lt;SerialTest&lt;List&lt;Map&lt;String, Int&gt;&gt;&gt;&gt;()
+&nbsp;  println(type)
 &nbsp;
-&nbsp;class RenderJte {
-&nbsp;  fun run() {
-&nbsp;    val tmplEngine =
-&nbsp;        TemplateEngine.createPrecompiled(ContentType.Plain).apply { setTrimControlStructures(true) }
+&nbsp;  val stringListSerializer = ListSerializer(String.serializer().nullable)
+&nbsp;  println(stringListSerializer.descriptor)
 &nbsp;
-&nbsp;    val params =
-&nbsp;        mapOf(
-&nbsp;            &quot;config&quot; to JConfig(),
-&nbsp;            &quot;ktConfig&quot; to KtConfig(version = App.KOTLIN_VERSION, appVersion = App.VERSION))
+&nbsp;  val s = serializer&lt;SerialTest&lt;List&lt;Map&lt;String, String&gt;&gt;&gt;&gt;()
+&nbsp;  println(SerialTest.serializer(stringListSerializer))
+&nbsp;  println(s)
 &nbsp;
-&nbsp;    listOf(&quot;hello.jte&quot;, &quot;hello-kt.kte&quot;).forEach {
-&nbsp;      val output = StringOutput()
-&nbsp;      // tmplEngine.render(it, params, output)
-&nbsp;      output.write(BuildConfig.time)
-&nbsp;      println(&quot;$it -&gt; $output&quot;)
+&nbsp;  val b = &quot;1000010&quot;.toIntOrNull(2)
+&nbsp;  println(b)
+&nbsp;  println(b?.toString(2))
+&nbsp;
+&nbsp;  previewMethod()
+&nbsp;  val clock = TimeSource.Monotonic
+&nbsp;  val d = measureTimedValue {
+&nbsp;    val mark = clock.markNow()
+&nbsp;    val list = buildList {
+&nbsp;      add(&quot;Hello&quot;)
+&nbsp;      add(&quot;Kotlin&quot;)
 &nbsp;    }
+&nbsp;    println(list)
+&nbsp;    mark.elapsedNow()
 &nbsp;  }
+&nbsp;  println(d.value.toDouble(DurationUnit.SECONDS))
+&nbsp;  deprecatedMethod()
+&nbsp;
+&nbsp;  // LocalDate     --&gt; Period
+&nbsp;  // LocalDateTime --&gt; Duration
+&nbsp;
+&nbsp;  val today = LocalDateTime.now()
+&nbsp;  println(today.plus(Duration.ofDays(1)))
+&nbsp;  println(
+&nbsp;      runCatching { println(LocalDate.now().minus(Duration.ofDays(10))) }
+&nbsp;          .exceptionOrNull()
+&nbsp;          ?.message)
+&nbsp;  println(LocalDate.now().minus(Period.ofDays(10)))
+&nbsp;}
+&nbsp;
+<b class="nc">&nbsp;@Serializable class SerialTest&lt;T&gt;(val data: T? = null)</b>
+&nbsp;
+&nbsp;@RequiresOptIn(level = ERROR, message = &quot;This is a Bleeding edge API&quot;)
+&nbsp;annotation class BleedingEdge
+&nbsp;
+&nbsp;@BleedingEdge
+&nbsp;fun previewMethod() {
+&nbsp;  println(&quot;Called Bleeding edge method!&quot;)
+&nbsp;}
+&nbsp;
+&nbsp;@Deprecated(&quot;test&quot;, replaceWith = ReplaceWith(&quot;previewMethod()&quot;)) fun deprecatedMethod() {}
+&nbsp;
+&nbsp;fun interface FunInterface {
+&nbsp;  fun tt()
 &nbsp;}
 </code>
 </pre>
@@ -142,7 +245,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-12-14 18:07</div>
+    <div style="float:right;">generated on 2023-03-13 09:07</div>
 </div>
 </body>
 </html>

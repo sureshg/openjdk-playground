@@ -155,101 +155,103 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp; */
 &nbsp;object App {
 &nbsp;  /** Application version. */
-&nbsp;  const val VERSION = &quot;1.8.0-0&quot;
+&nbsp;  const val VERSION = &quot;1.9.1&quot;
 &nbsp;
 &nbsp;  /** Application base version used for calculating the version. */
-&nbsp;  const val BASE_VERSION = &quot;1.8.0&quot;
+&nbsp;  const val BASE_VERSION = &quot;base_version&quot;
 &nbsp;
 &nbsp;  /** Java version used for building the app. */
-&nbsp;  const val JAVA_VERSION = &quot;21&quot;
+&nbsp;  const val JAVA_VERSION = &quot;javaVersion&quot;
 &nbsp;
 &nbsp;  /** Kotlin library version. */
-&nbsp;  const val KOTLIN_VERSION = &quot;1.8.0-RC&quot;
+&nbsp;  const val KOTLIN_VERSION = &quot;1.8.20-RC&quot;
 &nbsp;
 &nbsp;  /** Gradle version */
-&nbsp;  const val GRADLE_VERSION = &quot;8.1-20221209231151+0000&quot;
+&nbsp;  const val GRADLE_VERSION = &quot;8.2-20230309232428+0000&quot;
 &nbsp;
 &nbsp;  /**
 &nbsp;   * Git
 &nbsp;   * [Metadata](https://github.com/jgitver/jgitver/blob/master/src/main/java/fr/brouillard/oss/jgitver/metadata/Metadatas.java)
 &nbsp;   * .
 &nbsp;   */
-&nbsp;  const val GIT_SHA1_8 = &quot;50a7048c&quot;
+&nbsp;  const val GIT_SHA1_8 = &quot;git_sha1_8&quot;
 &nbsp;
-&nbsp;  const val GIT_SHA1_FULL = &quot;50a7048c9cbf1bc716a71b7445499f6393365584&quot;
+&nbsp;  const val GIT_SHA1_FULL = &quot;git_sha1_full&quot;
 &nbsp;
-&nbsp;  const val GIT_BRANCH = &quot;null&quot;
+&nbsp;  const val GIT_BRANCH = &quot;git_branch&quot;
 &nbsp;
-&nbsp;  const val GIT_TAG = &quot;v1.8.0&quot;
+&nbsp;  const val GIT_TAG = &quot;git_tag&quot;
 &nbsp;
-&nbsp;  const val GIT_COMMIT_TIMESTAMP = &quot;20221214044308&quot;
+&nbsp;  const val GIT_COMMIT_TIMESTAMP = &quot;commit_timestamp&quot;
 &nbsp;
-&nbsp;  const val GIT_COMMITER_NAME = &quot;Suresh G&quot;
+&nbsp;  const val GIT_COMMITER_NAME = &quot;head_committer_name&quot;
 &nbsp;
-&nbsp;  const val GIT_COMMITER_EMAIL = &quot;sureshg.g@gmail.com&quot;
+&nbsp;  const val GIT_COMMITER_EMAIL = &quot;head_commiter_email&quot;
 &nbsp;
 &nbsp;  /** Returns the list of runtime dependencies. */
 <b class="nc">&nbsp;  val dependencies: List&lt;String&gt; by lazy {</b>
 &nbsp;    &quot;&quot;&quot;app.cash.certifikit:certifikit:0.2.0
-&nbsp;com.fasterxml.jackson.core:jackson-annotations:2.14.1
-&nbsp;com.fasterxml.jackson.core:jackson-core:2.14.1
-&nbsp;com.fasterxml.jackson.core:jackson-databind:2.14.1
-&nbsp;com.github.ajalt.clikt:clikt-jvm:3.5.0
+&nbsp;com.fasterxml.jackson.core:jackson-annotations:2.14.2
+&nbsp;com.fasterxml.jackson.core:jackson-core:2.14.2
+&nbsp;com.fasterxml.jackson.core:jackson-databind:2.14.2
+&nbsp;com.github.ajalt.clikt:clikt-jvm:3.5.2
 &nbsp;com.github.ajalt.colormath:colormath-jvm:3.2.1
-&nbsp;com.github.ajalt.mordant:mordant-jvm:2.0.0-beta9
-&nbsp;com.github.bastiaanjansen:otp-java:1.3.2
+&nbsp;com.github.ajalt.mordant:mordant-jvm:2.0.0-beta11
+&nbsp;com.github.bastiaanjansen:otp-java:2.0.1
 &nbsp;com.google.auto.service:auto-service-annotations:1.0.1
 &nbsp;com.jakewharton.crossword:crossword-jvm:0.2.0
+&nbsp;com.javax0.sourcebuddy:SourceBuddy:2.2.0
 &nbsp;com.michael-bull.kotlin-result:kotlin-result-jvm:1.1.10
 &nbsp;com.michael-bull.kotlin-retry:kotlin-retry:1.0.9
-&nbsp;com.password4j:password4j:1.6.2
+&nbsp;com.password4j:password4j:1.7.0
 &nbsp;com.squareup.moshi:moshi-kotlin:1.9.3
 &nbsp;com.squareup.moshi:moshi:1.9.3
-&nbsp;com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.10
-&nbsp;com.squareup.okhttp3:mockwebserver3:5.0.0-alpha.10
-&nbsp;com.squareup.okhttp3:mockwebserver:5.0.0-alpha.10
-&nbsp;com.squareup.okhttp3:okhttp-jvm:5.0.0-alpha.10
-&nbsp;com.squareup.okhttp3:okhttp-tls:5.0.0-alpha.10
+&nbsp;com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11
+&nbsp;com.squareup.okhttp3:mockwebserver3:5.0.0-alpha.11
+&nbsp;com.squareup.okhttp3:mockwebserver:5.0.0-alpha.11
+&nbsp;com.squareup.okhttp3:okhttp-jvm:5.0.0-alpha.11
+&nbsp;com.squareup.okhttp3:okhttp-tls:5.0.0-alpha.11
 &nbsp;com.squareup.okio:okio-jvm:3.2.0
 &nbsp;com.squareup.tools.build:maven-archeologist:0.0.10
 &nbsp;commons-codec:commons-codec:1.15
 &nbsp;dev.suresh:ffm-api:1.0.0
-&nbsp;dev.zacsweers.redacted:redacted-compiler-plugin-annotations-jvm:1.2.1-1.8.0-Beta01
-&nbsp;gg.jte:jte-runtime:2.2.4
+&nbsp;dev.zacsweers.redacted:redacted-compiler-plugin-annotations-jvm:1.3.0-1.8.20-Beta
+&nbsp;gg.jte:jte-runtime:2.3.0
 &nbsp;io.mikael:urlbuilder:2.0.9
+&nbsp;jakarta.servlet:jakarta.servlet-api:6.0.0
 &nbsp;javax.inject:javax.inject:1
 &nbsp;junit:junit:4.13.2
-&nbsp;net.harawata.reflection:typeparameterresolver:1.0.0
+&nbsp;net.harawata.reflection:typeparameterresolver:1.0.2
+&nbsp;net.java.dev.jna:jna:5.12.1
 &nbsp;org.apache.commons:commons-lang3:3.8.1
-&nbsp;org.apache.logging.log4j:log4j-api:2.19.0
-&nbsp;org.apache.logging.log4j:log4j-core:2.19.0
+&nbsp;org.apache.logging.log4j:log4j-api:2.20.0
+&nbsp;org.apache.logging.log4j:log4j-core:2.20.0
 &nbsp;org.apache.maven:maven-artifact:3.6.3
 &nbsp;org.apache.maven:maven-builder-support:3.6.3
 &nbsp;org.apache.maven:maven-model-builder:3.6.3
 &nbsp;org.apache.maven:maven-model:3.6.3
 &nbsp;org.codehaus.plexus:plexus-interpolation:1.25
 &nbsp;org.codehaus.plexus:plexus-utils:3.2.1
-&nbsp;org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api:5.0.2
-&nbsp;org.eclipse.jetty:jetty-http:11.0.12
-&nbsp;org.eclipse.jetty:jetty-io:11.0.12
-&nbsp;org.eclipse.jetty:jetty-security:11.0.12
-&nbsp;org.eclipse.jetty:jetty-server:11.0.12
-&nbsp;org.eclipse.jetty:jetty-servlet:11.0.12
-&nbsp;org.eclipse.jetty:jetty-util:11.0.12
+&nbsp;org.eclipse.jetty.ee10:jetty-ee10-servlet:12.0.0.beta0
+&nbsp;org.eclipse.jetty:jetty-http:12.0.0.beta0
+&nbsp;org.eclipse.jetty:jetty-io:12.0.0.beta0
+&nbsp;org.eclipse.jetty:jetty-server:12.0.0.beta0
+&nbsp;org.eclipse.jetty:jetty-session:12.0.0.beta0
+&nbsp;org.eclipse.jetty:jetty-util:12.0.0.beta0
 &nbsp;org.eclipse.sisu:org.eclipse.sisu.inject:0.3.4
 &nbsp;org.hamcrest:hamcrest-core:1.3
-&nbsp;org.jetbrains.kotlin:kotlin-reflect:1.8.0-RC
-&nbsp;org.jetbrains.kotlin:kotlin-stdlib-common:1.8.0-RC
-&nbsp;org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0-RC
-&nbsp;org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0-RC
-&nbsp;org.jetbrains.kotlin:kotlin-stdlib:1.8.0-RC
-&nbsp;org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.4
-&nbsp;org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.6.4
+&nbsp;org.jetbrains.kotlin:kotlin-reflect:1.8.20-RC
+&nbsp;org.jetbrains.kotlin:kotlin-stdlib-common:1.8.20-RC
+&nbsp;org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.20-RC
+&nbsp;org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.20-RC
+&nbsp;org.jetbrains.kotlin:kotlin-stdlib:1.8.20-RC
+&nbsp;org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.7.0-Beta
+&nbsp;org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.0-Beta
 &nbsp;org.jetbrains.kotlinx:kotlinx-datetime-jvm:0.4.0
-&nbsp;org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.4.1
-&nbsp;org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.4.1
-&nbsp;org.jetbrains:annotations:13.0
-&nbsp;org.jetbrains:markdown-jvm:0.3.1
+&nbsp;org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.5.0
+&nbsp;org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.5.0
+&nbsp;org.jetbrains:annotations:23.0.0
+&nbsp;org.jetbrains:markdown-jvm:0.3.6
 &nbsp;org.jmdns:jmdns:3.5.8
 &nbsp;org.jspecify:jspecify:0.3.0
 &nbsp;org.owasp.encoder:encoder:1.2.3
@@ -280,7 +282,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-12-14 18:07</div>
+    <div style="float:right;">generated on 2023-03-13 09:07</div>
 </div>
 </body>
 </html>

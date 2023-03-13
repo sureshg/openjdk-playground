@@ -224,7 +224,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc">&nbsp;      s.connect(new InetSocketAddress(&quot;localhost&quot;, 12345), 1_00);</b>
 <b class="nc">&nbsp;    } catch (Exception e) {</b>
 <b class="nc">&nbsp;      out.println(e.getMessage());</b>
-<b class="nc">&nbsp;      assert e.getMessage().contains(&quot;localhost:12345&quot;);</b>
+<b class="nc">&nbsp;      assert e.getMessage().contains(&quot;localhost/127.0.0.1:12345&quot;);</b>
 <b class="nc">&nbsp;    }</b>
 &nbsp;
 <b class="nc">&nbsp;    var currTime = System.currentTimeMillis();</b>
@@ -324,7 +324,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-12-14 18:07</div>
+    <div style="float:right;">generated on 2023-03-13 09:07</div>
 </div>
 </body>
 </html>
