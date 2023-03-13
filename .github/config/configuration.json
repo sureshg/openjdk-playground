@@ -38,6 +38,12 @@
         "dependencies",
         "chore(deps)"
       ]
+    },
+    {
+      "title": "## 💬 Other",
+      "labels": [
+        "other"
+      ]
     }
   ],
   "sort": "ASC",
