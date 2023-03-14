@@ -118,7 +118,7 @@ zip-prefixer                   = "0.3.1"
 # Plugin versions
 benmanes                       = "0.46.0"
 beryx-jlink                    = "2.24.4"
-beryx-runtime                  = "1.12.7"
+beryx-runtime                  = "1.13.0"
 beryx-jar                      = "2.0.0"
 champeau-includegit            = "0.1.6"
 champeau-japicmp               = "0.3.0"
