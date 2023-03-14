@@ -11,6 +11,7 @@ import jdk.incubator.concurrent.StructuredTaskScope;
 // Change this to kotlin
 // https://github.com/jamesward/easyracer/blob/main/java-loom/src/main/java/Main.java#L67-L90
 // https://twitter.com/pressron/status/1608550618846617602
+// Happy eyeball kotlin - https://publicobject.com/2022/03/14/uncertainty-in-tests/
 public class TestJava {
 
   //
