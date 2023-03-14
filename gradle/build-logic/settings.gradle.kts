@@ -12,7 +12,7 @@ dependencyResolutionManagement {
   }
 }
 
-// apply(from = "path/to/repos.settings.gradle.kts")
+// apply(from = "common-plugins/src/main/kotlin/settings/repos.settings.gradle.kts")
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 

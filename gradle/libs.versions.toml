@@ -5,7 +5,6 @@ kotlin-ksp                     = "1.8.20-RC-1.0.9"
 kotlin-jvmtarget               = "19"
 kotlin-api-version             = "1.9"
 kotlin-lang-version            = "1.9"
-kotlin-dsl-version             = "4.0.9"
 kotlin-dsl-jvmtarget           = "11"
 gradle                         = "8.2-20230309232428+0000"
 java-vendor                    = "Oracle"
@@ -80,6 +79,7 @@ kotlinx-serialization-yaml     = "0.17.0"
 kotlinx-serialization-csv      = "2.0.0"
 kotlinx-html                   = "0.7.5"
 kotlin-wrappers                = "1.0.0-pre.347"
+kotlin-dsl-version             = "4.0.9"
 kodein                         = "7.10.0"
 koin                           = "3.1.5"
 kotlininject                   = "0.4.1"
@@ -120,7 +120,7 @@ benmanes                       = "0.46.0"
 beryx-jlink                    = "2.24.4"
 beryx-runtime                  = "1.12.7"
 beryx-jar                      = "2.0.0"
-champeau-includegit            = "0.1.5"
+champeau-includegit            = "0.1.6"
 champeau-japicmp               = "0.3.0"
 champeau-jmh                   = "0.6.6"
 champeau-mrjar                 = "0.1"
@@ -380,7 +380,7 @@ build-semver-plugin             = { module = "com.javiersc.semver:semver-gradle-
 build-zip-prefixer              = { module = "net.e175.klaus:zip-prefixer"                                    , version.ref = "zip-prefixer" }
 build-idea-ext                  = { module = "gradle.plugin.org.jetbrains.gradle.plugin.idea-ext:gradle-idea-ext"        , version.ref = "idea-ext" }
 build-cp-collisiondetector      = { module = "io.fuchs.gradle.classpath-collision-detector:classpath-collision-detector" , version.ref = "classpath-collisiondetector" }
-
+build-includegit                = { module = "me.champeau.gradle.includegit:plugin"                           , version.ref = "champeau-includegit" }
 
 # Gradle  Plugins
 [plugins]

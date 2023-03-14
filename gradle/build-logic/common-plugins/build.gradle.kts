@@ -89,4 +89,5 @@ dependencies {
   // implementation(libs.build.openrewrite.plugin)
   // implementation(libs.build.cp.collisiondetector)
   // implementation(libs.build.maven.plugindev)
+  // implementation(libs.build.includegit.plugin)
 }
