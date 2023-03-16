@@ -23,15 +23,17 @@ pluginManagement {
 
 // Apply the plugins to all projects
 plugins {
-  // Gradle scan
+  // Gradle build scan
   id("com.gradle.enterprise")
+
   // Use semver on all projects
   id("com.javiersc.semver")
-  // Include another setting plugin
-  id("settings.include")
+
   // Include plugin-aware generic plugin
-  id("plugins.generic")
-  // id("dev.suresh.gradle.settings")
+  id("dev.suresh.gradle.plugins.generic")
+
+  // Include another pre-compiled settings plugin
+  id("settings.include")
 }
 
 // Centralizing repositories declaration
@@ -59,16 +61,15 @@ gradleEnterprise {
 }
 
 /** Add build scan details to GitHub Job summary report! */
-fun PublishedBuildScan.addJobSummary() {
-  with(GithubAction) {
-    setOutput("build_scan_uri", buildScanUri)
-    addJobSummary(
-        """
-        | ##### 🚀 Gradle BuildScan [URL](${buildScanUri.toASCIIString()})
-        """
-            .trimMargin())
-  }
-}
+fun PublishedBuildScan.addJobSummary() =
+    with(GithubAction) {
+      setOutput("build_scan_uri", buildScanUri)
+      addJobSummary(
+          """
+      | ##### 🚀 Gradle BuildScan [URL](${buildScanUri.toASCIIString()})
+      """
+              .trimMargin())
+    }
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 

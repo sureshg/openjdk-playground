@@ -27,8 +27,10 @@ class GenericProjectPlugin : Plugin<Project> {
 class GenericSettingsPlugin : Plugin<Settings> {
   override fun apply(target: Settings) =
       with(target) {
-        // println( TextColors.brightCyan("Applied the generic settings plugin for
-        // ${rootProject.name}"))
+        // println("Applied the generic settings plugin for ${rootProject.name}")
         gradle.beforeProject { pluginManager.apply(GenericProjectPlugin::class) }
+
+        // Configure an extension when a plugin is applied.
+        plugins.withId("com.gradle.enterprise") {}
       }
 }

@@ -40,7 +40,7 @@ val Project.isJavaLibraryProject
 
 // val debug: String? by project
 val Project.debugEnabled
-  get() = properties["debug"]?.toString()?.toBoolean() ?: false
+  get() = properties["debug"]?.toString().toBoolean()
 
 val Project.hasCleanTask
   get() = gradle.startParameter.taskNames.any { it == "clean" }

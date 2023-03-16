@@ -20,29 +20,33 @@ kotlin {
 
 gradlePlugin {
   plugins {
+
     // Re-exposure of plugin from dependency. Gradle doesn't expose the plugin itself.
     create("com.gradle.enterprise") {
       id = "com.gradle.enterprise"
       implementationClass = "com.gradle.enterprise.gradleplugin.GradleEnterprisePlugin"
-      dependencies { implementation(libs.build.gradle.enterprise) }
+      displayName = "Gradle Enterprise"
       description = "Gradle enterprise settings plugin re-exposed from dependency"
     }
 
-    // A sample settings plugin to configure build scan TOS
-    create("dev.suresh.gradle.settings") {
-      id = "dev.suresh.gradle.settings"
-      implementationClass = "settings.SettingsPlugin"
-      description = "Gradle settings plugin with build scan TOS accepted"
-    }
-
     // A generic plugin for both project and settings
-    create("plugins.generic") {
-      id = "plugins.generic"
+    create("Generic Plugin") {
+      id = "dev.suresh.gradle.plugins.generic"
       implementationClass = "plugins.GenericPlugin"
+      displayName = "Generic plugin"
       description = "A plugin-aware generic plugin"
+      tags = listOf("Generic Plugin")
     }
 
-    // val settingsPlugin by this.creating {}
+    // Uncomment the id to change plugin id for this pre-compiled plugin
+    named("plugins.common") {
+      // id = "dev.suresh.gradle.plugins.common"
+      displayName = "Common plugin"
+      description = "Common pre-compiled script plugin"
+      tags = listOf("Common Plugin")
+    }
+
+    // val settingsPlugin by creating {}
   }
 }
 
@@ -74,6 +78,7 @@ dependencies {
   implementation(libs.build.kotlin)
   // OR implementation(kotlin("gradle-plugin"))
   implementation(libs.build.dokka)
+  implementation(libs.build.gradle.enterprise)
   implementation(libs.build.nexus.plugin)
   implementation(libs.build.spotless.plugin)
   implementation(libs.build.shadow.plugin)

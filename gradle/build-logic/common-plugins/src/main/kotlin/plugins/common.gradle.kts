@@ -66,6 +66,7 @@ java {
 // For dependencies that are needed for development only.
 val devOnly: Configuration by configurations.creating
 
+@Suppress("UnstableApiUsage")
 testing {
   suites {
     val test by getting(JvmTestSuite::class) { useJUnitJupiter(libs.versions.junit.asProvider()) }

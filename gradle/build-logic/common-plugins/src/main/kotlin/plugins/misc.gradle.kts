@@ -124,7 +124,6 @@ tasks {
 
   // Dependency version updates
   dependencyUpdates {
-    checkForGradleUpdate = true
     checkConstraints = true
 
     // Run "dependencyUpdates" on included projects with a top level build file.
