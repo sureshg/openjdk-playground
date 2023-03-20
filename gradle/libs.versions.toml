@@ -20,7 +20,7 @@ githubProject                  = "https://github.com/sureshg/openjdk-playground"
 # Gradle Dependencies Versions
 ajalt-clikt                    = "3.5.2"
 ajalt-mordant                  = "2.0.0-beta11"
-ajalt-colormath                = "3.2.0"
+ajalt-colormath                = "3.2.1"
 assertj                        = "3.21.0"
 beryx-textio                   = "3.4.1"
 bucket4j                       = "7.1.0"
