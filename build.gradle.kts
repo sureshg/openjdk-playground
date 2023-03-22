@@ -331,7 +331,9 @@ dependencies {
 
   // api(platform(projects.playgroundBom))
   // api(projects.playgroundCatalog)
-  // api(project(":jdk-modules/ffm-api"))
+  // api(project(":jdk-modules:ffm-api"))
+
+  // Included builds
   implementation(libs.module.ffm.api)
   javaagent(libs.module.jvm.agent)
 

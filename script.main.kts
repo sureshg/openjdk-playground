@@ -8,7 +8,7 @@
 @file:DependsOn("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.0-Beta")
 @file:DependsOn("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
 @file:DependsOn("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
-@file:DependsOn("org.slf4j:slf4j-simple:2.0.6")
+@file:DependsOn("org.slf4j:slf4j-simple:2.0.7")
 @file:DependsOn("com.microsoft.playwright:playwright:1.31.0")
 // @file:Import("common.main.kts")
 

@@ -39,4 +39,9 @@ include("playground-k8s")
 
 // With composite builds, the module dependencies to 'jdk-modules'
 // will always be substituted with project dependencies.
-includeBuild("jdk-modules")
+includeBuild("jdk-modules") {
+  dependencySubstitution {
+    // substitute(module("dev.suresh:ffm-api")).using(project(":ffm-api"))
+    // substitute(module("dev.suresh:jvm-agent")).using(project(":jvm-agent"))
+  }
+}
