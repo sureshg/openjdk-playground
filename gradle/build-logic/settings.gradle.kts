@@ -6,13 +6,10 @@ dependencyResolutionManagement {
   }
   repositoriesMode = RepositoriesMode.FAIL_ON_PROJECT_REPOS
 
-  versionCatalogs {
-    // Use the main version catalog
-    create("libs") { from(files("../libs.versions.toml")) }
-  }
+  versionCatalogs { create("libs") { from(files("../libs.versions.toml")) } }
 }
 
-// apply(from = "common-plugins/src/main/kotlin/settings/repos.settings.gradle.kts")
+// apply(from = "common-plugins/.../repos.settings.gradle.kts")
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 

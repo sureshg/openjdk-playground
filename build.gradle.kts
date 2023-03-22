@@ -79,6 +79,7 @@ application {
           "-XX:OnOutOfMemoryError='kill -9 %p'",
           "-XX:+ExitOnOutOfMemoryError",
           "-XX:+UnlockDiagnosticVMOptions",
+          "-XX:+EnableDynamicAgentLoading",
           "-XX:+LogVMOutput",
           "-XX:LogFile=$tmp$name-jvm.log",
           "-XX:NativeMemoryTracking=detail",
