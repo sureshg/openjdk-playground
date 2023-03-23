@@ -1,16 +1,16 @@
 package dev.suresh.adt;
 
-import static java.lang.System.out;
-import static java.util.Objects.requireNonNull;
+import org.jspecify.annotations.NullMarked;
 
 import java.io.*;
-import java.lang.invoke.VarHandle;
 import java.lang.reflect.RecordComponent;
 import java.nio.file.Files;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-import org.jspecify.annotations.NullMarked;
+import static java.lang.System.out;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Data Oriented Programming (DOP) in Java
@@ -45,29 +45,6 @@ public class DOP {
 
         amberReflections();
         serializeRecord();
-    }
-
-    static void results(String[] args) {
-        printResult(getResult(5));
-        printResult(getResult(25));
-    }
-
-    static Result<Integer> getResult(int i) {
-        return i > 10
-                ? Result.success(i)
-                : Result.failure(new IllegalArgumentException(String.valueOf(i)));
-    }
-
-    static <T> void printResult(Result<T> r) {
-        System.out.println("""
-                ToString  -> %1$s
-                Result    -> %2$s
-                Success   -> %3$s
-                Failure   -> %4$s
-                Exception -> %5$s
-                """
-                .formatted(
-                        r.toString(), r.getOrNull(), r.isSuccess(), r.isFailure(), r.exceptionOrNull()));
     }
 
     private static void amberReflections() {
@@ -130,6 +107,28 @@ public class DOP {
                 out.println("Deserialized record: " + rec);
                 out.println(result);
             }
+
+            results().forEach(r -> {
+                var result = switch (r) {
+                    case null -> "n/a";
+                    case Result.Success<?> s -> s.toString();
+                    case Result.Failure<?> f -> f.toString();
+                };
+                out.println("Result (Sealed Type): " + result);
+            });
         }
+    }
+
+    static List<Result<?>> results() {
+        return Arrays.asList(getResult(5), getResult(25), getResult(-1));
+    }
+
+    static Result<Number> getResult(long l) {
+        // Unnecessary boxing required for boolean check in switch expression
+        return switch (Long.valueOf(l)) {
+            case Long s when s > 0 && s < 10 -> Result.success(s);
+            case Long s when s > 10 -> Result.failure(new IllegalArgumentException(String.valueOf(s)));
+            default -> null;
+        };
     }
 }

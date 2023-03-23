@@ -1,6 +1,6 @@
 [versions]
 java                           = "21"
-kotlin                         = "1.8.20-RC"
+kotlin                         = "1.8.20-RC2"
 kotlin-ksp                     = "1.8.20-RC-1.0.9"
 kotlin-jvmtarget               = "19"
 kotlin-api-version             = "1.9"

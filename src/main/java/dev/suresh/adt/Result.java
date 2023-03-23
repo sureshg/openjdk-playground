@@ -34,6 +34,17 @@ sealed interface Result<T> extends Serializable {
         return this instanceof Failure<T> t ? t.error() : null;
     }
 
+    default String fString() {
+        return """
+                ToString  -> %1$s
+                Result    -> %2$s
+                Success   -> %3$s
+                Failure   -> %4$s
+                Exception -> %5$s
+                """
+                .formatted(toString(), getOrNull(), isSuccess(), isFailure(), exceptionOrNull());
+    }
+
     record Success<T>(T value) implements Result<T> {
     }
 
