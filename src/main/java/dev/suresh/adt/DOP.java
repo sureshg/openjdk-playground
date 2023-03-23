@@ -107,16 +107,16 @@ public class DOP {
                 out.println("Deserialized record: " + rec);
                 out.println(result);
             }
-
-            results().forEach(r -> {
-                var result = switch (r) {
-                    case null -> "n/a";
-                    case Result.Success<?> s -> s.toString();
-                    case Result.Failure<?> f -> f.toString();
-                };
-                out.println("Result (Sealed Type): " + result);
-            });
         }
+
+        results().forEach(r -> {
+            var result = switch (r) {
+                case null -> "n/a";
+                case Result.Success<?> s -> s.toString();
+                case Result.Failure<?> f -> f.toString();
+            };
+            out.println("Result (Sealed Type): " + result);
+        });
     }
 
     static List<Result<?>> results() {
