@@ -78,6 +78,7 @@ testing {
           jvmArgs(jvmArguments)
           classpath += devOnly
           reports.html.required = true
+          maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).takeIf { it > 0 } ?: 1
 
           testLogging {
             events =

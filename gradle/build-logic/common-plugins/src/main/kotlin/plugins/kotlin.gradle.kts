@@ -25,6 +25,7 @@ kotlin {
       progressiveMode = true
       languageVersion = kotlinLangVersion.get().version
       optIn("kotlin.ExperimentalStdlibApi")
+      optIn("kotlin.contracts.ExperimentalContracts")
       optIn("kotlin.ExperimentalUnsignedTypes")
       optIn("kotlin.io.path.ExperimentalPathApi")
       optIn("kotlin.time.ExperimentalTime")

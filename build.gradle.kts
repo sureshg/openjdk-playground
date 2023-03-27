@@ -19,19 +19,16 @@ plugins {
   alias(libs.plugins.ksp.redacted)
   alias(libs.plugins.ksp.powerassert)
   alias(libs.plugins.javaagent.application)
-  kover
-  googleJib
-  qodanaPlugin
-  sonarqube
-  spotlessChangelog
-  checksum
-  binCompatValidator
-  extraJavaModuleInfo
-  licensee
-  buildkonfig
-  // versionCatalogUpdate
-  // gradleRelease
-  // kotlinxAtomicfu
+  alias(libs.plugins.kotlinx.kover)
+  alias(libs.plugins.google.jib)
+  alias(libs.plugins.jetbrains.qodana)
+  alias(libs.plugins.sonarqube)
+  alias(libs.plugins.spotless.changelog)
+  alias(libs.plugins.gradle.checksum)
+  alias(libs.plugins.kotlinx.bincompat)
+  alias(libs.plugins.gradlex.javamoduleinfo)
+  alias(libs.plugins.buildkonfig) apply false
+  alias(libs.plugins.licensee) apply false
 }
 
 application {
@@ -293,29 +290,29 @@ tasks {
 }
 
 dependencies {
-  implementation(platform(Deps.OkHttp.bom))
+  implementation(platform(libs.okhttp.bom))
   implementation(libs.kotlin.reflect)
   implementation(libs.kotlinx.serialization.json)
   implementation(libs.kotlinx.datetime)
   implementation(libs.jetty.server) { version { strictly(libs.versions.jetty.asProvider().get()) } }
   implementation(libs.jetty.ee10.servlet)
-  implementation(Deps.Http.urlbuilder)
-  implementation(Deps.OkHttp.okhttp)
-  implementation(Deps.OkHttp.mockWebServer)
-  implementation(Deps.OkHttp.tls)
-  implementation(Deps.OkHttp.loggingInterceptor)
-  implementation(Deps.Retry.kotlinRetry)
-  implementation(Deps.Cli.clikt)
-  implementation(Deps.Cli.mordant)
-  implementation(Deps.Cli.crossword)
   implementation(libs.slf4j.api)
   implementation(libs.slf4j.simple)
-  implementation(Deps.TLS.certifikit)
   implementation(libs.jackson.databind)
   implementation(libs.jte.runtime)
-  implementation(Deps.Network.jmdns)
-  implementation(Deps.Security.password4j) { exclude(group = "org.slf4j", module = "slf4j-nop") }
-  implementation(Deps.Security.otp)
+  implementation(libs.jmdns)
+  implementation(libs.password4j) { exclude(group = "org.slf4j", module = "slf4j-nop") }
+  implementation(libs.certifikit)
+  implementation(libs.otp.java)
+  implementation(libs.urlbuilder)
+  implementation(libs.okhttp)
+  implementation(libs.okhttp.mockwebserver)
+  implementation(libs.okhttp.tls)
+  implementation(libs.okhttp.logginginterceptor)
+  implementation(libs.kotlinRetry)
+  implementation(libs.jakewharton.crossword)
+  implementation(libs.ajalt.clikt)
+  implementation(libs.ajalt.mordant)
   implementation(libs.log4j.core)
   implementation(libs.jspecify)
   implementation(libs.sourceBuddy)
@@ -323,7 +320,7 @@ dependencies {
   implementation(libs.maven.archeologist)
 
   compileOnly(libs.jte.kotlin)
-  compileOnly(Deps.Kotlinx.atomicfu)
+  compileOnly(libs.kotlinx.atomicfu)
 
   // Auto-service
   ksp(libs.ksp.auto.service)

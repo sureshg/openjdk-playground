@@ -28,6 +28,8 @@ internal val Project.libs
 internal val Project.catalogs
   get() = the<VersionCatalogsExtension>()
 
+// val logger = LoggerFactory.getLogger("build-logic")
+
 /** Quote for -Xlog file */
 val Project.xQuote
   get() = if (OperatingSystem.current().isWindows) """\"""" else """""""

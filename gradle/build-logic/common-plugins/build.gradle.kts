@@ -64,6 +64,7 @@ tasks {
 }
 
 dependencies {
+  implementation(platform(libs.kotlin.bom))
   implementation(kotlin("stdlib"))
   // Hack to access version catalog from pre-compiled script plugins.
   // https://github.com/gradle/gradle/issues/15383#issuecomment-779893192
