@@ -12,9 +12,10 @@
       * [7. HeapDump](#7-heapdump)
       * [8. ThreadDump](#8-threaddump)
       * [9. Unified GC Logging](#9-unified-gc-logging)
-      * [10. System/Node Health](#10-systemnode-health)
-      * [11. Commands](#11-commands)
-      * [12. Resources](#12-resources)
+      * [10. JVM Tools](#10-jvm-tools)
+      * [11. System/Node Health](#11-systemnode-health)
+      * [12. Commands](#12-commands)
+      * [13. Resources](#13-resources)
 <!-- TOC -->
 
 #### 1. Flight Recorder

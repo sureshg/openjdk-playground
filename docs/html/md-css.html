@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+    <title>GitHub Markdown CSS demo</title>
+    <meta name="color-scheme" content="light dark">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown.min.css"
+          integrity="sha512-Ya9H+OPj8NgcQk34nCrbehaA0atbzGdZCI2uCbqVRELgnlrh8vQ2INMnkadVMSniC54HChLIh5htabVuKJww8g=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"/>
+
+    <style>
+        .markdown-body {
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 45px;
+        }
+
+        @media (max-width: 767px) {
+            .markdown-body {
+                padding: 15px;
+            }
+        }
+    </style>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css">
+    <style>
+        .github-fork-ribbon:before {
+            background-color: #121612;
+        }
+    </style>
+</head>
+
+<body>
+<article class="markdown-body">
+    <h1>OpenJDK</h1>
+    <p>Java/Kotlin Playground</p>
+    <p><code>fun main() {} </code></p>
+</article>
+
+<a class="github-fork-ribbon" href="https://github.com/sureshg/openjdk-playground" data-ribbon="Fork me on GitHub"
+   title="Fork me on GitHub">Fork me on GitHub</a>
+</body>
+</html>
