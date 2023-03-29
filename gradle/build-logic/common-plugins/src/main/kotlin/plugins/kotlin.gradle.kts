@@ -69,6 +69,7 @@ tasks {
                   "-parameters",
                   "--add-modules=$addModules",
                   // "-Xlint:-deprecation", // suppress deprecations
+                  // "-Xlint:lossy-conversions", // suppress lossy conversions
                   // "-XX:+IgnoreUnrecognizedVMOptions",
                   // "--add-exports",
                   // "java.base/sun.nio.ch=ALL-UNNAMED",

@@ -54,7 +54,6 @@ application {
               |filesize=10m"""
               .joinToConfigString(),
           """-XX:StartFlightRecording=
-              |settings=profile.jfc,
               |filename=$tmp$name.jfr,
               |name=$name,
               |maxsize=100M,
@@ -63,11 +62,14 @@ application {
               |dumponexit=true,
               |memory-leaks=gc-roots,
               |gc=detailed,
+              |+jdk.VirtualThreadStart#enabled=true,
+              |+jdk.VirtualThreadEnd#enabled=true,
               |jdk.ObjectCount#enabled=true,
               |jdk.SecurityPropertyModification#enabled=true,
               |jdk.TLSHandshake#enabled=true,
               |jdk.X509Certificate#enabled=true,
-              |jdk.X509Validation#enabled=true"""
+              |jdk.X509Validation#enabled=true,
+              |settings=profile"""
               .joinToConfigString(),
           "-XX:FlightRecorderOptions:stackdepth=64",
           "-XX:+HeapDumpOnOutOfMemoryError",
@@ -83,6 +85,7 @@ application {
           "-XX:+ShowHiddenFrames",
           "-Djava.awt.headless=true",
           "-Djdk.attach.allowAttachSelf=true",
+          "-Djdk.traceVirtualThreadLocals=true",
           "-Djdk.tracePinnedThreads=full",
           "-Djava.security.debug=properties",
           "-Djava.security.egd=file:/dev/./urandom",
@@ -107,6 +110,7 @@ application {
           // "-XX:SelfDestructTimer=0.05",
           // "-XX:NativeMemoryTracking=[off|summary|detail]",
           // "-XX:+PrintNMTStatistics",
+          // "-XX:OnError=\"gdb - %p\"", // Attach gdb on segfault
           // "-Djava.security.properties=/path/to/custom/java.security", // == to override
           // "-Duser.timezone=\"PST8PDT\"",
           // "-Djava.net.preferIPv4Stack=true",

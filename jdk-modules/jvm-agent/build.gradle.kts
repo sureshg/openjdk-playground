@@ -10,7 +10,16 @@ group = libs.versions.group.get()
 
 version = libs.versions.module.jdk.get()
 
-application { mainClass = "$group.agent.JFRAgentKt" }
+application {
+  mainClass = "$group.agent.JFRAgentKt"
+  applicationDefaultJvmArgs +=
+      listOf(
+          "--show-version",
+          "--enable-preview",
+          "--enable-native-access=ALL-UNNAMED",
+          "-XX:+EnableDynamicAgentLoading",
+      )
+}
 
 tasks {
   jar {

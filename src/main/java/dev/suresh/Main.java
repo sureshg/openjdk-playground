@@ -54,6 +54,10 @@ public class Main {
         out.println(textBlock.translateEscapes());
         out.println("Record Test: " + new Person("Hello Kotlin", 8));
 
+        // Lossy conversion in compound assignments. Warning should be thrown if lint is enabled.
+        var i = 100;
+        i += 0.2;
+
         securityProperties();
         new MockServer().run();
         new MavenResolver().run();
