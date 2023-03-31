@@ -1,6 +1,6 @@
 [versions]
 java                           = "21"
-kotlin                         = "1.8.20-RC2"
+kotlin                         = "1.8.20"
 kotlin-ksp                     = "1.8.20-RC2-1.0.9"
 kotlin-jvmtarget               = "19"
 kotlin-dsl-jvmtarget           = "17"
@@ -120,6 +120,7 @@ togglz                         = "3.1.1"
 urlbuilder                     = "2.0.9"
 versioncompare                 = "1.5.0"
 violations                     = "1.149.2"
+wasm-bytecoder                 = "2023-03-28"
 zip-prefixer                   = "0.3.1"
 
 # Plugin versions
@@ -381,6 +382,7 @@ tcp-javanioproxy            = { module = "com.github.terma:javaniotcpproxy"     
 togglz-core                 = { module = "org.togglz:togglz-core"                          , version.ref = "togglz"}
 urlbuilder                  = { module = "io.mikael:urlbuilder"                            , version.ref = "urlbuilder" }
 violations                  = { module = "se.bjurr.violations:violations-lib"              , version.ref = "violations" }
+wasm-bytecoder              = { module = "de.mirkosertic.bytecoder:bytecoder-cli"          , version.ref = "wasm-bytecoder" }
 
 module-ffm-api              = { module = "dev.suresh:ffm-api"                              , version.ref = "module-jdk" }
 module-jvm-agent            = { module = "dev.suresh:jvm-agent"                            , version.ref = "module-jdk" }

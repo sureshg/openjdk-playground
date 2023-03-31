@@ -17,3 +17,5 @@ rootProject.name = "jdk-modules"
 include("ffm-api")
 
 include("jvm-agent")
+
+include("jvm-wasm")
