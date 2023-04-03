@@ -43,13 +43,13 @@ $ docker pull cgr.dev/chainguard/jdk:latest
 # Openjdk
 # https://github.com/docker-library/openjdk
 $ docker pull openjdk:21-slim
+$ docker pull openjdk:21-jdk-oracle
 $ docker pull openjdk:19-alpine
-$ docker pull openjdk:19-jdk-oracle
 
 # Eclipse Temurin
 # https://github.com/adoptium/containers#supported-images
-$ docker pull eclipse-temurin:19-focal
-$ docker pull eclipse-temurin:19-alpine
+$ docker pull eclipse-temurin:20-jdk
+$ docker pull eclipse-temurin:20-alpine
 
 # Oracle OpenJDK
 $ docker pull container-registry.oracle.com/java/openjdk:latest
@@ -60,14 +60,14 @@ $ docker pull container-registry.oracle.com/java/jdk:latest
 
 # Azul Zulu
 # https://github.com/zulu-openjdk/zulu-openjdk
-$ docker pull azul/zulu-openjdk-debian:19-jre
-$ docker pull azul/zulu-openjdk-alpine:19-jre
+$ docker pull azul/zulu-openjdk-debian:20-jre
+$ docker pull azul/zulu-openjdk-alpine:20-jre
 $ docker pull azul/prime-debian:latest
 
 # Amazon Corretto
 # https://github.com/corretto/corretto-docker/tree/main/19/slim
-$ docker pull amazoncorretto:19
-$ docker pull amazoncorretto:19-alpine-jdk
+$ docker pull amazoncorretto:20
+$ docker pull amazoncorretto:20-alpine-jdk
 
 # Microsoft OpenJDK
 # https://learn.microsoft.com/en-us/java/openjdk/containers
@@ -86,9 +86,6 @@ $ docker pull ghcr.io/graalvm/graalvm-ce:latest
 $ docker pull ghcr.io/graalvm/native-image:latest
 $ docker pull ghcr.io/graalvm/native-image:muslib
 $ docker pull container-registry.oracle.com/graalvm/enterprise:latest
-
-# Eclipse OpenJ9
-$ docker pull ibm-semeru-runtimes:open-17-jre
 
 # GraalVM CE Dev Builds (No docker images available)
 https://github.com/graalvm/graalvm-ce-dev-builds/releases/

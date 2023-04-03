@@ -44,7 +44,48 @@ public class DOP {
         out.println(future.get());
 
         amberReflections();
+        recordPatterns();
+        genericRecordPattern();
         serializeRecord();
+    }
+
+    private static void recordPatterns() {
+        record Point(int x, int y) {
+        }
+        var points = List.of(new Point(1, 2), new Point(3, 4), new Point(5, 6));
+        // Record pattern in enhanced for loop
+        for (Point(var x, var y) : points) {
+            out.println("Point: (" + x + ", " + y + ")");
+        }
+    }
+
+    interface Name<T> {
+    }
+
+    record FullName<T>(T firstName, T lastName) implements Name<T> {
+    }
+
+    private static void print(Name name) {
+        var result = switch (name) {
+            case FullName(var first, var last) -> first + ", " + last;
+            default -> "Invalid name";
+        };
+        out.println(result);
+
+        if (name instanceof FullName<?> f) {
+            // out.println(f.firstName() + ", " + f.lastName());
+        }
+
+        // Named record pattern is not supported
+        if (name instanceof FullName(var first, var last)) {
+            // out.println(first + ", " + last);
+        }
+    }
+
+    private static void genericRecordPattern() {
+        print(new FullName<>("Foo", "Bar"));
+        print(new FullName<>(1, 2));
+        print(new FullName<>(10L, 20L));
     }
 
     private static void amberReflections() {
