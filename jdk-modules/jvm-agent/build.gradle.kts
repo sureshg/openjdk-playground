@@ -3,7 +3,7 @@ import dev.suresh.gradle.dependencyPath
 plugins {
   application
   id("plugins.kotlin")
-  // id(libs.plugins.shadow.get().pluginId)
+  id(libs.plugins.shadow.get().pluginId)
 }
 
 group = libs.versions.group.get()
