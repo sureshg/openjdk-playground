@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+    <title>JVM WebAssembly Demo!</title>
+    <script src="app-runtime.js"></script>
+    <script>
+        bytecoder.instantiate('app-wasmclasses.wasm').then(function () {
+            console.log("Bootstrapped");
+            bytecoder.instance.exports.main(null, bytecoder.instance.exports.newObjectArray(null, 0));
+            console.log("WebAssembly app is ready!");
+        });
+    </script>
+</head>
+<body>
+<h1>WebAssembly Demo</h1>
+<button id="button" value="Click me">Click Me</button>
+<div id="text"></div>
+<p>Open the browser console to see the output.</p>
+</body>
+</html>

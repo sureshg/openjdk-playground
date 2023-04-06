@@ -13,11 +13,16 @@ tasks {
     }
   }
 
+  val wasmOutDir = layout.buildDirectory.dir("wasm")
+  val htmlCopy by
+      registering(Copy::class) {
+        from(layout.projectDirectory.file("src/main/resources/index.html"))
+        into(wasmOutDir)
+      }
+
   val wasmBuild by
       registering(JavaExec::class) {
-        val wasmDir = project.layout.buildDirectory.map { it.dir("wasm") }
-        doFirst { mkdir(wasmDir) }
-
+        doFirst { mkdir(wasmOutDir) }
         group = "build"
         description = "Builds the WASM module"
         mainClass = "de.mirkosertic.bytecoder.cli.BytecoderCLI"
@@ -26,35 +31,23 @@ tasks {
             listOf(
                 "compile",
                 "wasm",
-                "-builddirectory=${wasmDir.get().asFile.absolutePath}",
+                "-builddirectory=${wasmOutDir.get().asFile.absolutePath}",
                 "-classpath=${sourceSets.main.get().runtimeClasspath.asPath}",
                 "-mainclass=Main",
                 "-filenameprefix=app-",
                 "-optimizationlevel=ALL")
 
         doLast {
-          wasmDir
-              .get()
-              .file("index.html")
-              .asFile
-              .writeText(
-                  """
-                  | <html>
-                  | <meta charset="UTF-8">
-                  | <script src="app-runtime.js"></script>
-                  | <script>
-                  |     bytecoder.instantiate('app-wasmclasses.wasm').then(function() {
-                  |         console.log("Bootstrapped");
-                  |         bytecoder.instance.exports.main(null, bytecoder.instance.exports.newObjectArray(null, 0));
-                  |         console.log("WebAssembly app is ready!");
-                  |     });
-                  | </script>
-                  | </html>
-                  """
-                      .trimMargin())
-          println("WebAssembly app built at: ${wasmDir.get().asFile.path}")
+          // wasmDir.get().file("index.html").asFile.writeText("")
+          println("WebAssembly app built at: ${wasmOutDir.get().asFile.path}")
         }
+
+        outputs.dir(wasmOutDir)
+        finalizedBy(htmlCopy)
       }
 }
 
-dependencies { implementation(libs.wasm.bytecoder) }
+dependencies {
+  implementation(libs.wasm.bytecoder)
+  implementation(libs.slf4j.simple)
+}
