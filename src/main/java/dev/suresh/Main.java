@@ -82,8 +82,15 @@ public class Main {
         out.println(disabledAlgorithms + " -> " + Security.getProperty(disabledAlgorithms));
 
         Security.setProperty(dnsCacheTTL, "30");
-        Security.setProperty(dnsCacheNegTTL, "10");
+        // Large value for the cache for negative responses is problematic.
+        // Caching the negative response means that for that much seconds
+        // the application will not be able to connect to the server.
+        Security.setProperty(dnsCacheNegTTL, "1");
         // showAllSecurityProperties();
+
+        // The length of time after a record expires that it should be retained in the cache.
+        // It means that the overall timeout now is ttl+stale (Since Java 21)
+        // networkaddress.cache.stale.ttl=10000
     }
 
     @Override

@@ -42,6 +42,6 @@ include("playground-k8s")
 includeBuild("jdk-modules") {
   dependencySubstitution {
     // substitute(module("dev.suresh:ffm-api")).using(project(":ffm-api"))
-    // substitute(module("dev.suresh:jvm-agent")).using(project(":jvm-agent"))
+    // substitute(module("dev.suresh:jvm-agent")).using(project(":"))
   }
 }
