@@ -93,6 +93,8 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.lang
 &nbsp;
+&nbsp;import kotlin.contracts.contract
+&nbsp;
 <b class="nc">&nbsp;class Logger(val name: String) {</b>
 <b class="nc">&nbsp;  fun log(message: String) = println(&quot;$name: $message&quot;)</b>
 &nbsp;}
@@ -106,6 +108,37 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;fun main() {
 &nbsp;  val logger = Logger(&quot;main&quot;)
 &nbsp;  with(logger) { store(&quot;Hello&quot;) }
+&nbsp;
+&nbsp;  val anon = User.Anonymous
+&nbsp;  val auth = User.Authenticated(&quot;Suresh&quot;)
+&nbsp;
+&nbsp;  smartCast(anon)
+&nbsp;  smartCast(auth)
+&nbsp;}
+&nbsp;
+&nbsp;fun smartCast(user: User) =
+&nbsp;    when (user.isAuthenticated()) {
+&nbsp;      true -&gt; user.signOut()
+&nbsp;      false -&gt; user.signIn()
+&nbsp;    }
+&nbsp;
+&nbsp;sealed class User {
+&nbsp;
+&nbsp;  fun isAuthenticated(): Boolean {
+&nbsp;    contract {
+&nbsp;      returns(true) implies (this@User is Authenticated)
+&nbsp;      returns(false) implies (this@User is Anonymous)
+&nbsp;    }
+&nbsp;    return this is Authenticated
+&nbsp;  }
+&nbsp;
+&nbsp;  data object Anonymous : User() {
+&nbsp;    fun signIn() = println(&quot;Please sign in&quot;)
+&nbsp;  }
+&nbsp;
+&nbsp;  data class Authenticated(val name: String) : User() {
+&nbsp;    fun signOut() = println(&quot;Signing out $name&quot;)
+&nbsp;  }
 &nbsp;}
 </code>
 </pre>
@@ -130,7 +163,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-03-13 09:07</div>
+    <div style="float:right;">generated on 2023-04-07 15:43</div>
 </div>
 </body>
 </html>

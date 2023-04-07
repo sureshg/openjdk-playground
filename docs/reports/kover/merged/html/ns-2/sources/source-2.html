@@ -93,9 +93,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh;
 &nbsp;
-&nbsp;import static java.lang.System.out;
-&nbsp;
-&nbsp;import dev.suresh.adt.Records;
+&nbsp;import dev.suresh.adt.DOP;
 &nbsp;import dev.suresh.ffm.FFMApi;
 &nbsp;import dev.suresh.jte.RenderJte;
 &nbsp;import dev.suresh.lang.JPMSKt;
@@ -103,87 +101,100 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;import dev.suresh.npe.HelpfulNPE;
 &nbsp;import dev.suresh.server.MockServer;
 &nbsp;import dev.suresh.vthread.jetty.JettyServerKt;
+&nbsp;
 &nbsp;import java.security.Security;
 &nbsp;import java.util.Comparator;
 &nbsp;import java.util.List;
 &nbsp;import java.util.Objects;
 &nbsp;
-<b class="nc">&nbsp;record Person(String name, int age) {}</b>
+&nbsp;import static java.lang.System.out;
+&nbsp;
+<b class="nc">&nbsp;record Person(String name, int age) {</b>
+&nbsp;}
 &nbsp;
 &nbsp;public class Main {
 &nbsp;
-&nbsp;  private final String name = &quot;Java&quot;;
-&nbsp;  private final int age = 25;
+&nbsp;    private final String name = &quot;Java&quot;;
+&nbsp;    private final int age = 25;
 &nbsp;
-&nbsp;  public static int computeScore(Person p) {
-&nbsp;    return 1;
-&nbsp;  }
+&nbsp;    public static int computeScore(Person p) {
+&nbsp;        return 1;
+&nbsp;    }
 &nbsp;
-&nbsp;  public static List&lt;Person&gt; topN(List&lt;Person&gt; persons, int count) {
-&nbsp;    record PersonX(Person p, int score) {}
+&nbsp;    public static List&lt;Person&gt; topN(List&lt;Person&gt; persons, int count) {
+&nbsp;        record PersonX(Person p, int score) {
+&nbsp;        }
 &nbsp;
-&nbsp;    var list =
-&nbsp;        persons.stream()
-&nbsp;            .sorted(Comparator.comparing(Main::computeScore))
-&nbsp;            .map(p -&gt; new PersonX(p, computeScore(p)))
-&nbsp;            .limit(count)
-&nbsp;            .map(PersonX::p)
-&nbsp;            .toList();
-&nbsp;    return list;
-&nbsp;  }
+&nbsp;        return persons.stream()
+&nbsp;                .sorted(Comparator.comparing(Main::computeScore))
+&nbsp;                .map(p -&gt; new PersonX(p, computeScore(p)))
+&nbsp;                .limit(count)
+&nbsp;                .map(PersonX::p)
+&nbsp;                .toList();
+&nbsp;    }
 &nbsp;
-&nbsp;  public static void main(String[] args) throws Exception {
-&nbsp;    var textBlock =
-&nbsp;        &quot;&quot;&quot;
-&nbsp;                This is a textBlock
-&nbsp;                example \t introduced \\n in
-&nbsp;                \s Java 15. \\n It \\
-&nbsp;                avoids the
-&nbsp;                need for most escape sequences.
-&nbsp;                \u2022
-&nbsp;                &quot;&quot;&quot;;
-&nbsp;    out.println(textBlock);
-&nbsp;    out.println(textBlock.translateEscapes());
-&nbsp;    out.println(&quot;Record Test: &quot; + new Person(&quot;Hello Kotlin&quot;, 8));
+&nbsp;    public static void main(String[] args) throws Exception {
+&nbsp;        var textBlock =
+&nbsp;                &quot;&quot;&quot;
+&nbsp;                        This is a textBlock
+&nbsp;                        example \t introduced \\n in
+&nbsp;                        \s Java 15. \\n It \\
+&nbsp;                        avoids the
+&nbsp;                        need for most escape sequences.
+&nbsp;                        \u2022
+&nbsp;                        &quot;&quot;&quot;;
+&nbsp;        out.println(textBlock);
+&nbsp;        out.println(textBlock.translateEscapes());
+&nbsp;        out.println(&quot;Record Test: &quot; + new Person(&quot;Hello Kotlin&quot;, 8));
 &nbsp;
-&nbsp;    securityProperties();
-&nbsp;    new MockServer().run();
-&nbsp;    new MavenResolver().run();
-&nbsp;    new RenderJte().run();
-&nbsp;    Records.run();
-&nbsp;    JettyServerKt.run(args);
-&nbsp;    JPMSKt.run();
-&nbsp;    HelpfulNPE.run();
-&nbsp;    FFMApi.run();
-&nbsp;  }
+&nbsp;        // Lossy conversion in compound assignments. Warning should be thrown if lint is enabled.
+&nbsp;        var i = 100;
+&nbsp;        i += 0.2;
 &nbsp;
-&nbsp;  private static void securityProperties() {
-&nbsp;    var secMgr = System.getSecurityManager();
-&nbsp;    out.println(&quot;Security Manager: &quot; + secMgr);
+&nbsp;        securityProperties();
+&nbsp;        new MockServer().run();
+&nbsp;        new MavenResolver().run();
+&nbsp;        new RenderJte().run();
+&nbsp;        DOP.run();
+&nbsp;        JettyServerKt.run(args);
+&nbsp;        JPMSKt.run();
+&nbsp;        HelpfulNPE.run();
+&nbsp;        FFMApi.run();
+&nbsp;    }
 &nbsp;
-&nbsp;    final String dnsCacheTTL = &quot;networkaddress.cache.ttl&quot;;
-&nbsp;    final String dnsCacheNegTTL = &quot;networkaddress.cache.negative.ttl&quot;;
-&nbsp;    final String disabledAlgorithms = &quot;jdk.tls.disabledAlgorithms&quot;;
+&nbsp;    private static void securityProperties() {
+&nbsp;        var secMgr = System.getSecurityManager();
+&nbsp;        out.println(&quot;Security Manager: &quot; + secMgr);
 &nbsp;
-&nbsp;    out.println(dnsCacheTTL + &quot; -&gt; &quot; + Security.getProperty(dnsCacheTTL));
-&nbsp;    out.println(dnsCacheNegTTL + &quot; -&gt; &quot; + Security.getProperty(dnsCacheNegTTL));
-&nbsp;    out.println(disabledAlgorithms + &quot; -&gt; &quot; + Security.getProperty(disabledAlgorithms));
+&nbsp;        final String dnsCacheTTL = &quot;networkaddress.cache.ttl&quot;;
+&nbsp;        final String dnsCacheNegTTL = &quot;networkaddress.cache.negative.ttl&quot;;
+&nbsp;        final String disabledAlgorithms = &quot;jdk.tls.disabledAlgorithms&quot;;
 &nbsp;
-&nbsp;    Security.setProperty(dnsCacheTTL, &quot;30&quot;);
-&nbsp;    Security.setProperty(dnsCacheNegTTL, &quot;10&quot;);
-&nbsp;    // showAllSecurityProperties();
-&nbsp;  }
+&nbsp;        out.println(dnsCacheTTL + &quot; -&gt; &quot; + Security.getProperty(dnsCacheTTL));
+&nbsp;        out.println(dnsCacheNegTTL + &quot; -&gt; &quot; + Security.getProperty(dnsCacheNegTTL));
+&nbsp;        out.println(disabledAlgorithms + &quot; -&gt; &quot; + Security.getProperty(disabledAlgorithms));
 &nbsp;
-&nbsp;  @Override
-&nbsp;  public boolean equals(Object o) {
-&nbsp;    return (this == o)
-&nbsp;        || (o instanceof Main x) &amp;&amp; this.age == x.age &amp;&amp; Objects.equals(this.name, x.name);
-&nbsp;  }
+&nbsp;        Security.setProperty(dnsCacheTTL, &quot;30&quot;);
+&nbsp;        // Large value for the cache for negative responses is problematic.
+&nbsp;        // Caching the negative response means that for that much seconds
+&nbsp;        // the application will not be able to connect to the server.
+&nbsp;        Security.setProperty(dnsCacheNegTTL, &quot;1&quot;);
+&nbsp;        // showAllSecurityProperties();
 &nbsp;
-&nbsp;  @Override
-&nbsp;  public int hashCode() {
-&nbsp;    return Objects.hash(name, age);
-&nbsp;  }
+&nbsp;        // The length of time after a record expires that it should be retained in the cache.
+&nbsp;        // It means that the overall timeout now is ttl+stale (Since Java 21)
+&nbsp;        // networkaddress.cache.stale.ttl=10000
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean equals(Object o) {
+&nbsp;        return (this == o) || (o instanceof Main x) &amp;&amp; age == x.age &amp;&amp; Objects.equals(name, x.name);
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public int hashCode() {
+&nbsp;        return Objects.hash(name, age);
+&nbsp;    }
 &nbsp;}
 </code>
 </pre>
@@ -208,7 +219,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-03-13 09:07</div>
+    <div style="float:right;">generated on 2023-04-07 15:43</div>
 </div>
 </body>
 </html>
