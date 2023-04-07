@@ -41,6 +41,7 @@ jobs:
     permissions:
       contents: write
       packages: write
+      discussions: write
 
     strategy:
       fail-fast: true
@@ -122,9 +123,9 @@ jobs:
           VERSION="$(echo "$PROPERTIES" | grep "^version:" | cut -f2- -d ' ')"
           NAME="$(echo "$PROPERTIES" | grep "^name:" | cut -f2- -d ' ')"
           ARTIFACT="${NAME}-${VERSION}.jar"
-          echo "::set-output name=version::$VERSION"
-          echo "::set-output name=name::$NAME"
-          echo "::set-output name=artifact::$ARTIFACT"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "name=$NAME" >> $GITHUB_OUTPUT
+          echo "artifact=$ARTIFACT" >> $GITHUB_OUTPUT
           echo "Runner Tool Cache: ${RUNNER_TOOL_CACHE}"
 
       - name: 📦 Publish to GitHub Packages (Linux)
@@ -230,10 +231,11 @@ jobs:
       - name: ✨Github Release (version = ${{ needs.build.outputs.version }})
         uses: softprops/action-gh-release@v1
         with:
+          # body_path: ${{ github.workspace }}-CHANGELOG.txt
           body: ${{ steps.github_release.outputs.changelog }}
-          prerelease: ${{ contains(github.event.inputs.version, '-rc') || contains(github.event.inputs.version, '-b') || contains(github.event.inputs.version, '-a') }}
           files: |
             ${{ github.workspace }}/release-artifacts/**
+          generate_release_notes: true
           fail_on_unmatched_files: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

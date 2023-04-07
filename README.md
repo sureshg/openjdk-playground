@@ -23,6 +23,10 @@ $ sdk i java openjdk-ea-21
 
 ```bash
 $ ./gradlew build
+
+# Lint Github Actions
+$ brew install actionlint
+$ actionlint
 ```
 
 #### Run the App
@@ -65,7 +69,6 @@ $ ./gradlew jibDockerBuild
 $ docker run -it --rm --name openjdk-playground sureshg/openjdk-playground
 ```
 
-
 #### SBOM and [Vulnerability Scan](https://github.com/google/osv-scanner/releases/latest)
 
 ```bash
@@ -74,7 +77,6 @@ $ ./gradlew cyclonedxBom
 $ osv-scanner --sbom=build/sbom/bom.json
 # OR use https://bomdoctor.sonatype.com/
 ```
-
 
 #### Load testing the Web Server
 
