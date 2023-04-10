@@ -3,6 +3,7 @@ package settings
 import GithubAction
 import com.gradle.scan.plugin.PublishedBuildScan
 import org.gradle.kotlin.dsl.*
+import org.gradle.toolchains.foojay.FoojayToolchainResolver
 
 pluginManagement {
   require(JavaVersion.current().isJava11Compatible) {
@@ -25,13 +26,12 @@ pluginManagement {
 plugins {
   // Gradle build scan
   id("com.gradle.enterprise")
-
+  // Toolchains resolver using the Foojay Disco API.
+  id("org.gradle.toolchains.foojay-resolver")
   // Use semver on all projects
   id("com.javiersc.semver")
-
   // Include plugin-aware generic plugin
   id("dev.suresh.gradle.plugins.generic")
-
   // Include another pre-compiled settings plugin
   id("settings.include")
 }
@@ -60,14 +60,23 @@ gradleEnterprise {
   }
 }
 
+@Suppress("UnstableApiUsage")
+toolchainManagement {
+  jvm {
+    javaRepositories {
+      repository("foojay") { resolverClass = FoojayToolchainResolver::class.java }
+    }
+  }
+}
+
 /** Add build scan details to GitHub Job summary report! */
 fun PublishedBuildScan.addJobSummary() =
     with(GithubAction) {
       setOutput("build_scan_uri", buildScanUri)
       addJobSummary(
           """
-      | ##### 🚀 Gradle BuildScan [URL](${buildScanUri.toASCIIString()})
-      """
+          | ##### 🚀 Gradle BuildScan [URL](${buildScanUri.toASCIIString()})
+          """
               .trimMargin())
     }
 

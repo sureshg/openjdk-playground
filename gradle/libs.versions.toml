@@ -19,7 +19,7 @@ githubProject                  = "https://github.com/sureshg/openjdk-playground"
 
 # Gradle Dependencies Versions
 ajalt-clikt                    = "3.5.2"
-ajalt-mordant                  = "2.0.0-beta12"
+ajalt-mordant                  = "2.0.0-beta13"
 ajalt-colormath                = "3.2.1"
 assertj                        = "3.21.0"
 beryx-textio                   = "3.4.1"
@@ -89,7 +89,7 @@ kotlininject                   = "0.6.1"
 kotest                         = "5.5.5"
 ksp-auto-service               = "1.0.0"
 ksp-redacted                   = "1.4.0"
-ksp-powerassert                = "0.12.0"
+ksp-powerassert                = "0.12.1"
 ktor                           = "2.1.0"
 kubernetes-client              = "18.0.0"
 lwjgl                          = "3.3.0"
@@ -136,6 +136,7 @@ champeau-mrjar                 = "0.1"
 classpath-collisiondetector    = "0.3"
 cyclonedx-plugin               = "1.7.4"
 foojay-toolchains              = "0.1"
+foojay-resolver                = "0.4.0"
 idea-ext                       = "1.1.7"
 gradle-checksum                = "1.4.0"
 google-jib                     = "3.3.1"
@@ -411,6 +412,7 @@ build-zip-prefixer              = { module = "net.e175.klaus:zip-prefixer"      
 build-idea-ext                  = { module = "gradle.plugin.org.jetbrains.gradle.plugin.idea-ext:gradle-idea-ext"        , version.ref = "idea-ext" }
 build-cp-collisiondetector      = { module = "io.fuchs.gradle.classpath-collision-detector:classpath-collision-detector" , version.ref = "classpath-collisiondetector" }
 build-includegit                = { module = "me.champeau.gradle.includegit:plugin"                           , version.ref = "champeau-includegit" }
+build-foojay-resolver           = { module = "org.gradle.toolchains:foojay-resolver"                          , version.ref = "foojay-resolver" }
 
 # Gradle  Plugins
 [plugins]

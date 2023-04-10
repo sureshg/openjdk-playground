@@ -7,7 +7,7 @@ import org.gradle.api.plugins.PluginAware
 import org.gradle.kotlin.dsl.apply
 
 /** A sample Gradle plugin shows how to use as a [Project] and [Settings] plugin. */
-public class GenericPlugin : Plugin<PluginAware> {
+class GenericPlugin : Plugin<PluginAware> {
   override fun apply(target: PluginAware) {
     when (target) {
       is Project -> target.pluginManager.apply(GenericProjectPlugin::class)

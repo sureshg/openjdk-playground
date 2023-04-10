@@ -89,6 +89,7 @@ dependencies {
   implementation(libs.build.dependencyanalysis)
   implementation(libs.build.bestpractices.plugin)
   implementation(libs.build.cyclonedx.plugin)
+  implementation(libs.build.foojay.resolver)
   testImplementation(gradleTestKit())
 
   // implementation(libs.build.jte.plugin)

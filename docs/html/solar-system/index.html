@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <title>Solar System Demo!</title>
+
+<!--    <style>-->
+<!--        body {-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--            background-color: #1c1c1c;-->
+<!--            overflow: hidden;-->
+<!--        }-->
+
+<!--        #banner {-->
+<!--            position: relative;-->
+<!--            top: 0;-->
+<!--            left: 0;-->
+<!--            width: 100%;-->
+<!--            height: 200px;-->
+<!--            background-image: url("shadow.png");-->
+<!--            background-size: 100%;-->
+<!--            background-position: center;-->
+<!--            background-attachment: fixed;-->
+<!--        }-->
+
+<!--        #blogtitle {-->
+<!--            position: relative;-->
+<!--            top: 2%;-->
+<!--            left: 45%;-->
+<!--            color: rgba(255, 255, 255, 0.78);-->
+<!--            font-size: 40px;-->
+<!--            font-family: Roboto, sans-serif;-->
+<!--            font-weight: normal;-->
+<!--            text-shadow: 0 0 10px #f7dc6f;-->
+<!--        }-->
+
+
+<!--        #sun {-->
+<!--            position: absolute;-->
+<!--            top: 40%;-->
+<!--            left: 50%;-->
+<!--            width: 100px;-->
+<!--            height: 100px;-->
+<!--            border-radius: 50%;-->
+<!--            transform: translate(-50%, -50%);-->
+<!--            background-image: url("sun.png");-->
+<!--            background-repeat: no-repeat;-->
+<!--            background-size: 100%;-->
+<!--            /*box-shadow: 0 0 100px #f7dc6f;*/-->
+<!--            animation: rotate-sun 10s linear infinite;-->
+<!--        }-->
+
+<!--        #mercury {-->
+<!--            position: absolute;-->
+<!--            top: 50%;-->
+<!--            left: 50%;-->
+<!--            transform: translate(-50%, -50%);-->
+<!--            background-color: #f5f5f5;-->
+<!--            width: 30px;-->
+<!--            height: 30px;-->
+<!--            border-radius: 50%;-->
+<!--            background-image: url("mercury.png");-->
+<!--            animation-name: rotate-mercury;-->
+<!--            animation-delay: 0.5s;-->
+<!--            animation-duration: 10s;-->
+<!--            animation-iteration-count: infinite;-->
+<!--            animation-timing-function: linear;-->
+<!--        }-->
+
+<!--        @keyframes rotate-mercury {-->
+<!--            0% {-->
+<!--                transform: translate(-50%, -50%) rotate(0deg) translateY(150px) translateX(200px) rotate(0deg);-->
+<!--            }-->
+<!--            100% {-->
+<!--                transform: translate(-50%, -50%) rotate(360deg) translateY(150px) translateX(200px) rotate(360deg);-->
+<!--            }-->
+<!--        }-->
+
+<!--        @keyframes rotate-earth {-->
+<!--            from {-->
+<!--                transform: rotate(0);-->
+<!--            }-->
+<!--            to {-->
+<!--                transform: rotate(360deg);-->
+<!--            }-->
+<!--        }-->
+
+<!--        @keyframes rotate-sun {-->
+<!--            from {-->
+<!--                transform: rotate(0);-->
+<!--            }-->
+<!--            to {-->
+<!--                transform: rotate(360deg);-->
+<!--            }-->
+<!--        }-->
+<!--    </style>-->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            height: 500px;
+            position: relative;
+            /*perspective: 800px;*/
+        }
+
+        #sun {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 200px;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background-image: url('sun.png');
+            animation: rotate-sun 20s linear infinite;
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+
+        .planet {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border-radius: 50%;
+            /*transform-style: preserve-3d;*/
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        #mercury {
+            width: 30px;
+            height: 30px;
+            background-image: url('mercury.png');
+            background-size: cover;
+            animation-name: rotate-mercury;
+            animation-delay: 0.5s;
+            animation-duration: 10s;
+        }
+
+        #venus {
+            width: 60px;
+            height: 60px;
+            background-image: url('venus.png');
+            background-size: cover;
+            animation-name: rotate-venus;
+            animation-delay: 1s;
+            animation-duration: 20s;
+        }
+
+        #earth {
+            width: 60px;
+            height: 60px;
+            background-image: url('earth.png');
+            background-size: cover;
+            animation-name: rotate-earth;
+            animation-delay: 1.5s;
+            animation-duration: 30s;
+        }
+
+        #mars {
+            width: 40px;
+            height: 40px;
+            background-image: url('mars.png');
+            background-size: cover;
+            animation-name: rotate-mars;
+            animation-delay: 2s;
+            animation-duration: 40s;
+        }
+
+        #jupiter {
+            width: 150px;
+            height: 150px;
+            background-image: url('jupiter.png');
+            background-size: cover;
+            animation-name: rotate-jupiter;
+            animation-delay: 2.5s;
+            animation-duration: 50s;
+        }
+
+        #saturn {
+            width: 120px;
+            height: 120px;
+            background-image: url('saturn.png');
+            background-size: cover;
+            animation-name: rotate-saturn;
+            animation-delay: 3s;
+            animation-duration: 60s;
+        }
+
+        #uranus {
+            width: 80px;
+            height: 80px;
+            background-image: url('uranus.png');
+            background-size: cover;
+            animation-name: rotate-uranus;
+            animation-delay: 3.5s;
+            animation-duration: 70s;
+        }
+
+        #neptune {
+            width: 70px;
+            height: 70px;
+            background-image: url('neptune.png');
+            background-size: cover;
+            animation-name: rotate-neptune;
+            animation-delay: 4s;
+            animation-duration: 80s;
+        }
+
+        @keyframes rotate-sun {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes rotate-mercury {
+            from {
+                transform: rotate(0deg) translateZ(50px);
+            }
+            to {
+                transform: rotate(360deg) translateZ(50px);
+            }
+        }
+
+        @keyframes rotate-venus {
+            from {
+                transform: rotateY(0deg) translateZ(80px);
+            }
+            to {
+                transform: rotateY(360deg) translateZ(80px);
+            }
+        }
+
+        @keyframes rotate-earth {
+            from {
+                transform: rotateY(0deg) translateZ(100px);
+            }
+            to {
+                transform: rotateY(360deg) translateZ(100px);
+            }
+        }
+
+        @keyframes rotate-mars {
+            from {
+                transform: rotateY(0deg) translateZ(130px);
+            }
+            to {
+                transform: rotateY(360deg) translateZ(130px);
+            }
+        }
+
+        @keyframes rotate-jupiter {
+            from {
+                transform: rotateY(0deg) translateZ(180px);
+            }
+            to {
+                transform: rotateY(360deg) translateZ(180px);
+            }
+        }
+
+        @keyframes rotate-saturn {
+            from {
+                transform: rotateY(0deg) translateZ(220px);
+            }
+            to {
+                transform: rotateY(360deg) translateZ(220px);
+            }
+        }
+
+        @keyframes rotate-uranus {
+            from {
+                transform: rotateY(0deg) translateZ(260px);
+            }
+            to {
+                transform: rotateY(360deg) translateZ(260px);
+            }
+        }
+
+        @keyframes rotate-neptune {
+            from {
+                transform: rotateY(0deg) translateZ(300px);
+            }
+            to {
+                transform: rotateY(360deg) translateZ(300px);
+            }
+        }
+    </style>
+
+
+</head>
+
+<body>
+<!--<div id="banner">-->
+<!--    <div id="blogtitle">Suresh&#39;s Blog</div>-->
+<!--    <div id="sun"></div>-->
+<!--    <div id="mercury"></div>-->
+<!--    <div id="venus"></div>-->
+<!--    <div id="earth"></div>-->
+<!--    <div id="mars"></div>-->
+<!--    <div id="jupiter"></div>-->
+<!--    <div id="saturn"></div>-->
+<!--    <div id="uranus"></div>-->
+<!--    <div id="neptune"></div>-->
+<!--</div>-->
+
+<header>
+    <div id="sun"></div>
+    <div id="mercury" class="planet"></div>
+    <div id="venus" class="planet"></div>
+    <div id="earth" class="planet" ></div>
+    <div id="mars" class="planet" ></div>
+    <div id="jupiter" class="planet" ></div>
+    <div id="saturn" class="planet" ></div>
+    <div id="uranus" class="planet" ></div>
+    <div id="neptune" class="planet" ></div>
+</header>
+
+</body>
+</html>

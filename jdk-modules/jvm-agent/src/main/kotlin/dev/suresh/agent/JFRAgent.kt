@@ -1,6 +1,7 @@
 package dev.suresh.agent
 
-import java.lang.System.Logger.Level.*
+import java.lang.System.Logger.Level.ERROR
+import java.lang.System.Logger.Level.INFO
 import java.lang.instrument.Instrumentation
 import java.time.Duration
 import jdk.jfr.Configuration

@@ -18,7 +18,7 @@ val Project.toolchainVersion
   get() = javaVersion.map { JavaLanguageVersion.of(it.majorVersion) }
 
 val Project.toolchainVendor
-  get() = libs.versions.java.vendor.map { JvmVendorSpec.matching(it) }
+  get() = libs.versions.java.vendor.map(JvmVendorSpec::matching)
 
 val Project.jvmArguments
   get() = libs.versions.java.jvmArguments.get().split(",", " ").filter { it.isNotBlank() }
