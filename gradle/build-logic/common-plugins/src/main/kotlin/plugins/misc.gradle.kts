@@ -15,7 +15,6 @@ plugins {
   id("com.diffplug.spotless")
   id("com.github.ben-manes.versions")
   id("com.github.johnrengelman.shadow")
-  id("com.autonomousapps.plugin-best-practices-plugin")
   id("org.jetbrains.dokka")
   // id("com.autonomousapps.dependency-analysis")
   // id("org.openrewrite.rewrite")
@@ -65,7 +64,6 @@ spotless {
     indentWithSpaces(2)
     endWithNewline()
   }
-  // isEnforceCheck = false
 }
 
 // dependencyAnalysis { issues { all { onAny { severity("warn") } } } }
@@ -133,6 +131,13 @@ tasks {
           .takeIf { it.exists() }
           ?.let { dependsOn(incBuild.task(":dependencyUpdates")) }
     }
+  }
+
+  // Run the checkBestPractices check for build-logic included builds.
+  register("checkBuildLogicBestPractices") {
+    description = "Run the checkBestPractices check for build-logic included builds!"
+    group = BasePlugin.BUILD_GROUP
+    dependsOn(gradle.includedBuild("build-logic").task(":common-plugins:checkBestPractices"))
   }
 
   // Reproducible builds

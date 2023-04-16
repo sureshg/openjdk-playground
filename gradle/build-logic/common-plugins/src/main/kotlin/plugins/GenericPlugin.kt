@@ -32,5 +32,7 @@ class GenericSettingsPlugin : Plugin<Settings> {
 
         // Configure an extension when a plugin is applied.
         plugins.withId("com.gradle.enterprise") {}
+
+        // OR pluginManager.withPlugin("com.gradle.enterprise") {}
       }
 }

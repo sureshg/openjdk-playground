@@ -70,6 +70,7 @@ val devOnly: Configuration by configurations.creating
 testing {
   suites {
     val test by getting(JvmTestSuite::class) { useJUnitJupiter(libs.versions.junit.asProvider()) }
+    // OR "test"(JvmTestSuite::class) {}
 
     // Configure all test suites
     withType(JvmTestSuite::class) {
@@ -233,7 +234,10 @@ tasks {
   build { finalizedBy(printModuleDeps, buildExecutable, githubActionOutput) }
 
   // Task to print the project version
-  register("v") { doLast { println(project.version.toString()) } }
+  register("v") {
+    description = "Print the ${project.name} version!"
+    doLast { println(project.version.toString()) }
+  }
 }
 
 // Set additional jvm args

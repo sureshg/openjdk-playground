@@ -3,8 +3,23 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
   `kotlin-dsl`
-  // alias(libs.plugins.kotlin.dsl)
   alias(libs.plugins.jte)
+  alias(libs.plugins.bestpractices)
+  // alias(libs.plugins.kotlin.dsl)
+}
+
+/**
+ * Java version used in Java toolchains and Kotlin compile JVM target for Gradle precompiled script
+ * plugins.
+ */
+val dslJavaVersion = libs.versions.kotlin.dsl.jvmtarget
+
+java { toolchain { languageVersion = dslJavaVersion.map(JavaLanguageVersion::of) } }
+
+tasks {
+  withType<KotlinCompile>().configureEach {
+    compilerOptions { jvmTarget = dslJavaVersion.map(JvmTarget::fromTarget) }
+  }
 }
 
 kotlin {
@@ -57,12 +72,6 @@ jte {
   generate()
 }
 
-tasks {
-  withType<KotlinCompile>().configureEach {
-    compilerOptions { jvmTarget = JvmTarget.fromTarget(libs.versions.kotlin.dsl.jvmtarget.get()) }
-  }
-}
-
 dependencies {
   implementation(platform(libs.kotlin.bom))
   implementation(kotlin("stdlib"))
@@ -87,7 +96,6 @@ dependencies {
   implementation(libs.build.benmanesversions)
   implementation(libs.build.taskinfo)
   implementation(libs.build.dependencyanalysis)
-  implementation(libs.build.bestpractices.plugin)
   implementation(libs.build.cyclonedx.plugin)
   implementation(libs.build.foojay.resolver)
   testImplementation(gradleTestKit())
