@@ -14,7 +14,7 @@ plugins {
  */
 val dslJavaVersion = libs.versions.kotlin.dsl.jvmtarget
 
-java { toolchain { languageVersion = dslJavaVersion.map(JavaLanguageVersion::of) } }
+// java { toolchain { languageVersion = dslJavaVersion.map(JavaLanguageVersion::of) } }
 
 tasks {
   withType<KotlinCompile>().configureEach {
