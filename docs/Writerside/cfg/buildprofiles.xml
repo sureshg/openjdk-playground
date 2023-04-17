@@ -7,7 +7,6 @@
         <primary-color>aqua</primary-color>
         <sideblocks>true</sideblocks>
         <header-logo>header-logo.png</header-logo>
-        <web-root>https://suresh.dev/openjdk-playground/lp</web-root>
     </variables>
     <build-profile instance="openjdk-playground">
         <variables>
