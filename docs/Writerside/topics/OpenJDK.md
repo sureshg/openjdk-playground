@@ -1,14 +1,11 @@
 # OpenJDK
 
-This document contains list of [Java/JDK](http://jdk.java.net/) commands which i find useful for my
-day to day work.
-
 <!-- TOC -->
 * [OpenJDK](#openjdk)
     * [Java Commands](#java-commands)
         * [1. Create Source Code Structure](#1-create-source-code-structure)
         * [2. Preview features](#2-preview-features)
-        * [3. Java Platform Module Systems (JPMS)](#3-java-platform-module-systems--jpms-)
+        * [3. Java Platform Module Systems (JPMS)](#3-java-platform-module-systems-jpms)
         * [4. Disassembles a class](#4-disassembles-a-class)
         * [5. App/Dynamic CDS](#5-appdynamic-cds)
         * [6. Show Java VM/Property Settings](#6-show-java-vmproperty-settings)
@@ -18,9 +15,9 @@ day to day work.
         * [10. JShell](#10-jshell)
         * [11. Virtual Thread config](#11-virtual-thread-config)
         * [12. Generics](#12-generics)
+        * [13. Java TEMP Config](#13-java-temp-config)
     * [IDEs and Tools](#ides-and-tools)
     * [Networking & Security](#networking--security)
-        * [🚨 Security Developer’s Guide](#-security-developers-guide)
         * [1. Allow Unsafe Server Cert Change](#1-allow-unsafe-server-cert-change)
         * [2 . Debugging TLS](#2--debugging-tls)
         * [2. Java Networking Properties](#2-java-networking-properties)
@@ -53,11 +50,6 @@ day to day work.
         * [3. Gradle Initializr](#3-gradle-initializr)
         * [4. Maven Archetype Quickstart](#4-maven-archetype-quickstart)
     * [Misc](#misc)
-        * [1. SDKMAN](#1-sdkman)
-        * [2. jEnv](#2-jenv)
-        * [3. Codelabs](#3-codelabs)
-        * [4. Typora](#4-typora)
-        * [5. Github Actions](#5-github-actions)
     * [Mac OS](#mac-os)
     * [OpenJDK Build](#openjdk-build)
     * [Oracle A1 Flex](#oracle-a1-flex)
@@ -70,11 +62,9 @@ day to day work.
         * [Emojis](#emojis)
         * [Awesome List](#awesome-list)
         * [Tools](#tools)
-        <!-- TOC -->
+<!-- TOC -->
 
 ### Java Commands
-
-------
 
 ##### 1. Create Source Code Structure
 
@@ -90,7 +80,7 @@ $ java  --enable-preview Foo
 ```
 
 - [JEP12](https://openjdk.java.net/jeps/12)
-- [Preview Features](https://docs.oracle.com/en/java/javase/19/language/preview-language-and-vm-features.html)
+- [Preview Features](https://docs.oracle.com/en/java/javase/20/language/preview-language-and-vm-features.html)
 - [Gradle - Enabling Java preview features](https://docs.gradle.org/current/userguide/building_java_projects.html#sec:feature_preview)
 
 ##### 3. Java Platform Module Systems (JPMS)
@@ -104,7 +94,7 @@ $ java --show-module-resolution java.base
 $ java --upgrade-module-path $DIR
 ```
 
-- [Java Compiler Upgradeable module]( https://docs.oracle.com/en/java/javase/15/docs/api/java.compiler/module-summary.html)
+- [Java Compiler Upgradeable module]( https://docs.oracle.com/en/java/javase/20/docs/api/java.compiler/module-summary.html)
 
 ##### 4. Disassembles a class
 
@@ -163,13 +153,9 @@ $ java -Xint             interpreted mode execution only (fast startup)
 $ java -Xmixed           mixed mode execution (default)
 ```
 
-- [Java Command Options*](https://docs.oracle.com/en/java/javase/19/docs/specs/man/java.html)
-
+- [Java Command Options*](https://docs.oracle.com/en/java/javase/20/docs/specs/man/java.html)
 - [VM Options](https://www.oracle.com/java/technologies/javase/vmoptions-jsp.html)
-
-- [`class` file format major versions](https://docs.oracle.com/javase/specs/jvms/se19/html/jvms-4.html#jvms-4.1-200-B.2)
-
-
+- [`class` file format major versions](https://docs.oracle.com/javase/specs/jvms/se20/html/jvms-4.html#jvms-4.1-200-B.2)
 
 ##### 7. Scan deprecated APIs
 
@@ -248,7 +234,7 @@ $ japckage --main-jar app.jar \
 
 - [JPMS Quickstart](https://openjdk.java.net/projects/jigsaw/quick-start)
 - [Docs and Resources](https://openjdk.java.net/projects/jigsaw/)
-- **[Java Modules Cheat Sheet](https://nipafx.dev/build-modules/)**
+- [**Java Modules Cheat Sheet**](https://nipafx.dev/build-modules/)
 - [JPackage Scripts](https://github.com/dlemmermann/JPackageScriptFX)
 
 ##### 9. [JVMCI (Graal) Compiler](https://openjdk.java.net/jeps/317)
@@ -295,7 +281,7 @@ $ java -Djdk.tracePinnedThreads=short|full
 - [GenericsFAQ](http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html)
 - [How we got Generics we have](https://cr.openjdk.java.net/~briangoetz/valhalla/erasure.html)
 
-12. ##### Java TEMP Config
+##### 13. Java TEMP Config
 
   ```bash
   $ echo "-------- TMP PATH for $OSTYPE --------"
@@ -313,32 +299,23 @@ $ java -Djdk.tracePinnedThreads=short|full
   $ echo "/TMP           = $(ls -l /tmp)"
   ```
 
-
-
-
-
 ### IDEs and Tools
-
-----
-
-
 
 - IntelliJ Selection Modes
 
-  - All Actions - <kbd>CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>A</kbd>
+    - All Actions - <kbd>CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>A</kbd>
 
-  - Select all occurrences - <kbd>CMD</kbd> + <kbd>CTRL</kbd> + <kbd>G</kbd>
+    - Select all occurrences - <kbd>CMD</kbd> + <kbd>CTRL</kbd> + <kbd>G</kbd>
 
-  - Column selection mode - <kbd>CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>8</kbd>
+    - Column selection mode - <kbd>CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>8</kbd>
 
-  - Multiple Cursors - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + <kbd>Left Click</kbd>
+    - Multiple Cursors - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + <kbd>Left Click</kbd>
 
-  - Multi Selection - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + Select as usual
+    - Multi Selection - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + Select as usual
 
-  - Caret Cloning - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + Middle click on end line
+    - Caret Cloning - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + Middle click on end line
 
-  - Move line - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + <kbd>Arrow UP/DOWN</kbd>
-
+    - Move line - <kbd>SHIFT</kbd> + <kbd>ALT</kbd> + <kbd>Arrow UP/DOWN</kbd>
 
 
 - Plugin Version Update
@@ -362,21 +339,14 @@ $ java -Djdk.tracePinnedThreads=short|full
   ```
 
 
+* IntelliJ Plugin Channels
 
-   * IntelliJ Plugin Channels
-
-     * https://plugins.jetbrains.com/plugins/beta/list
-     * https://plugins.jetbrains.com/plugins/snapshots/org.jetbrains.compose.desktop.ide
-
-
-
-
+    * https://plugins.jetbrains.com/plugins/beta/list
+    * https://plugins.jetbrains.com/plugins/snapshots/org.jetbrains.compose.desktop.ide
 
 ### Networking & Security
 
-------
-
-##### 🚨 [Security Developer’s Guide](https://docs.oracle.com/en/java/javase/16/security/index.html)
+[🚨Security Developer’s Guide](https://docs.oracle.com/en/java/javase/20/security/index.html)
 
 ##### 1. [Allow Unsafe Server Cert Change](https://github.com/openjdk/jdk/blob/6a905b6546e288e86322ae978a1f594266aa368a/src/java.base/share/classes/sun/security/ssl/ClientHandshakeContext.java#L35-L76)
 
@@ -388,10 +358,8 @@ $ java -Djdk.tracePinnedThreads=short|full
 
 ##### 2 . Debugging TLS
 
-- https://docs.oracle.com/en/java/javase/19/security/java-secure-socket-extension-jsse-reference-guide.html#GUID-4D421910-C36D-40A2-8BA2-7D42CCBED3C6
-
-- https://docs.oracle.com/en/java/javase/19/security/java-secure-socket-extension-jsse-reference-guide.html
-
+- https://docs.oracle.com/en/java/javase/20/security/java-secure-socket-extension-jsse-reference-guide.html#GUID-4D421910-C36D-40A2-8BA2-7D42CCBED3C6
+- https://docs.oracle.com/en/java/javase/20/security/java-secure-socket-extension-jsse-reference-guide.html
 - https://github.com/sureshg/InstallCerts/blob/master/src/main/kotlin/io/github/sureshg/extn/Certs.kt
 
   ```bash
@@ -411,12 +379,12 @@ $ java -Djdk.tracePinnedThreads=short|full
 ##### 2. Java Networking Properties
 
 - http://htmlpreview.github.io/?https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/net/doc-files/net-properties.html
-- https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/net/doc-files/net-properties.html
-- [All Java Networking System Properties](https://docs.oracle.com/en/java/javase/19/core/java-networking.html#GUID-E6C82625-7C02-4AB3-B15D-0DF8A249CD73)
+- https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/net/doc-files/net-properties.html
+- [All Java Networking System Properties](https://docs.oracle.com/en/java/javase/20/core/java-networking.html#GUID-E6C82625-7C02-4AB3-B15D-0DF8A249CD73)
 - https://docs.oracle.com/javase/8/docs/technotes/guides/net/proxies.html
 
 | Config             | Description                                   |
-| :----------------- | :-------------------------------------------- |
+|:-------------------|:----------------------------------------------|
 | http.proxyHost     | The host name of the proxy server             |
 | http.proxyPort     | The port number, the default value being `80` |
 | http.nonProxyHosts |                                               |
@@ -456,21 +424,14 @@ $ java -Djdk.tracePinnedThreads=short|full
 -Djdk.tls.client.protocols="TLSv1.2"
 ```
 
-
-
 ### Gradle Kotlin DSL
-
-------
 
 ##### 1. Docs
 
-- ##### [Gradle Kotlin DSL Samples](https://github.com/gradle/kotlin-dsl-samples/tree/master/samples)
-
-- ##### [Gradle Kotlin DSL Primer](https://docs.gradle.org/current/userguide/kotlin_dsl.html)
-
-- ##### [Migrating Guide to Kotlin DSL](https://guides.gradle.org/migrating-build-logic-from-groovy-to-kotlin/)
-
-- ##### [Building Kotlin JVM Libraries](https://guides.gradle.org/building-kotlin-jvm-libraries/)
+- [Gradle Kotlin DSL Samples](https://github.com/gradle/kotlin-dsl-samples/tree/master/samples)
+- [Gradle Kotlin DSL Primer](https://docs.gradle.org/current/userguide/kotlin_dsl.html)
+- [Migrating Guide to Kotlin DSL](https://guides.gradle.org/migrating-build-logic-from-groovy-to-kotlin/)
+- [Building Kotlin JVM Libraries](https://guides.gradle.org/building-kotlin-jvm-libraries/)
 
 ##### 2. [Name Abbrevation](https://docs.gradle.org/6.8/userguide/command_line_interface.html#sec:name_abbreviation)
 
@@ -600,13 +561,13 @@ sourceSets.main.get().compileClasspath
 ##### 8. [Enabling Java preview feature](https://docs.gradle.org/current/userguide/building_java_projects.html#sec:feature_preview)
 
 ```kotlin
-tasks.withType<JavaCompile>.configureEach  {
+tasks.withType<JavaCompile>.configureEach {
     options.compilerArgs.add("--enable-preview")
 }
-tasks.withType<Test>.configureEach  {
+tasks.withType<Test>.configureEach {
     jvmArgs("--enable-preview")
 }
-tasks.withType<JavaExec>.configureEach  {
+tasks.withType<JavaExec>.configureEach {
     jvmArgs("--enable-preview")
 }
 ```
@@ -620,7 +581,7 @@ withType<AbstractArchiveTask>().configureEach {
 }
 ```
 
-- **[reproducible-builds.org](https://reproducible-builds.org/docs/jvm/)**
+- [reproducible-builds.org](https://reproducible-builds.org/docs/jvm/)
 - https://github.com/jvm-repo-rebuild/reproducible-central
 
 ##### 10. [Multi Release Jar](https://blog.gradle.org/mrjars)
@@ -715,7 +676,7 @@ val allDepUpdates by
 ```
 
 - [Debugging Dependencies](https://docs.gradle.org/current/userguide/viewing_debugging_dependencies.html)
-- **[Gradle Conflict Resolution](https://docs.gradle.org/current/userguide/dependency_resolution.html#sec:conflict-resolution)**
+- [Gradle Conflict Resolution](https://docs.gradle.org/current/userguide/dependency_resolution.html#sec:conflict-resolution)
 
 ##### 12. Update Wrapper and others
 
@@ -736,11 +697,7 @@ $ ./gradlew run --args="<JFR_FILE>"
 
 - https://services.gradle.org/versions
 
-
-
 ### [Maven](https://search.maven.org/search?q=org.jetbrains.kotlin)
-
-------
 
 ##### 1. [Public Maven Repositories](https://www.deps.co/guides/public-maven-repositories/)
 
@@ -756,43 +713,45 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
 ##### 3. [Enabling Java preview feature](https://blog.codefx.org/java/enable-preview-language-features/#Enabling-Previews-In-Tools)
 
 ```xml
+
 <build>
-  <plugins>
-    <plugin>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-compiler-plugin</artifactId>
-      <version>3.6.2</version>
-      <configuration>
-        <release>15</release>
-        <compilerArg>--enable-preview</compilerArg>
-      </configuration>
-    </plugin>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.6.2</version>
+            <configuration>
+                <release>15</release>
+                <compilerArg>--enable-preview</compilerArg>
+            </configuration>
+        </plugin>
 
-    <plugin>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-surefire-plugin</artifactId>
-      <configuration>
-        <argLine>--enable-preview</argLine>
-      </configuration>
-    </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+                <argLine>--enable-preview</argLine>
+            </configuration>
+        </plugin>
 
-    <plugin>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-failsafe-plugin</artifactId>
-      <configuration>
-        <argLine>--enable-preview</argLine>
-      </configuration>
-    </plugin>
-  </plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <configuration>
+                <argLine>--enable-preview</argLine>
+            </configuration>
+        </plugin>
+    </plugins>
 </build>
 ```
 
 ##### 4. [Reproducible Builds](https://maven.apache.org/guides/mini/guide-reproducible-builds.html)
 
 ```xml
+
 <properties>
-  <project.build.outputTimestamp>2020-04-02T08:04:00Z</project.build.outputTimestamp>
-  <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.build.outputTimestamp>2020-04-02T08:04:00Z</project.build.outputTimestamp>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 </properties>
 ```
 
@@ -827,8 +786,6 @@ https://search.maven.org/search?q=fc:kotlin.text.Regex
 ```
 
 ### Microservices Starters
-
-------
 
 ##### 1. [Micronaut](https://micronaut.io/launch/)
 
@@ -879,33 +836,7 @@ $ gradle init --type <java-library|java-application|...> --dsl kotlin
 $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
 ```
 
-
-
 ### Misc
-
-------
-
-##### 1. [SDKMAN](https://sdkman.io/install)
-
-##### 2. [jEnv](https://www.jenv.be/)
-
-##### 3. [Codelabs](https://github.com/googlecodelabs/tools/tree/master/codelab-elements)
-
-##### 4. [Typora](https://typora.io/)
-
-##### 5. Github Actions
-
-- [Push a commit](https://github.com/actions/checkout#push-a-commit-using-the-built-in-token)
-- [Env context Limitation](https://git.io/JGYV4)
-- [Github Composite Build Using Bashscript🍓](https://github.com/dart-lang/setup-dart)
-- [Github Maven Package](https://help.github.com/en/packages/using-github-packages-with-your-projects-ecosystem)
-- [Share Data Between Jobs](https://help.github.com/en/actions/configuring-and-managing-workflows/persisting-workflow-data-using-artifacts)
-- [Encrypted Secrets](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets)
-- [Docker Action](https://github.com/actions/hello-world-docker-action)
-- [GITHUB_TOKEN](https://help.github.com/en/actions/configuring-and-managing-workflows/authenticating-with-the-github_token)
-- [Awesome Actions](https://github.com/sdras/awesome-actions)
-
-- Docker hub push - https://github.com/marketplace/actions/build-and-push-docker-images
 
 - [Github Registry](https://help.github.com/en/packages/using-github-packages-with-your-projects-ecosystem/configuring-docker-for-use-with-github-packages)
 
@@ -932,8 +863,6 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
    jobs.services.postgres.ports[5432]
   ```
 
-
-
 ### Mac OS
 
 - ###### Remove Quarantine Attributes
@@ -949,7 +878,8 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
 
   Xcode uses Java env returned by `/usr/libexec/java_home`
 
-  Set `JAVA_HOME` in `XCode` -> `Preferences` -> `Locations` -> `Custom Paths` to `/Users/<user>/.sdkman/candidates/java/current`
+  Set `JAVA_HOME` in `XCode` -> `Preferences` -> `Locations` -> `Custom Paths`
+  to `/Users/<user>/.sdkman/candidates/java/current`
 
 - Install Rosetta
 
@@ -963,8 +893,6 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
   $ xcode-select --install
   ```
 
-
-
 ### [OpenJDK Build](https://openjdk.java.net/groups/build/doc/building.html)
 
 ```bash
@@ -976,8 +904,6 @@ $ bash configure
 $ make images
 $ build/*/images/jdk/bin/java --version
 ```
-
-
 
 ### [Oracle A1 Flex](https://cloud.oracle.com/?region=us-sanjose-1)
 
@@ -1006,16 +932,15 @@ export JAVA_HOME_11_X64=/home/opc/.sdkman/candidates/java/11.0.11.hs-adpt
 $ sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 ```
 
-
-
 ### Native-Image
 
 ```xml
+
 <dependency>
-  <groupId>org.graalvm.nativeimage</groupId>
-  <artifactId>svm</artifactId>
-  <version>${graalvm.version}</version>
-  <scope>provided</scope>
+    <groupId>org.graalvm.nativeimage</groupId>
+    <artifactId>svm</artifactId>
+    <version>${graalvm.version}</version>
+    <scope>provided</scope>
 </dependency>
 ```
 
@@ -1030,16 +955,10 @@ $ git commit --allow-empty -m "empty commit"
 ```
 
 - https://github.com/oracle/graalvm-reachability-metadata/tree/master/metadata
-
 - https://www.graalvm.org/dev/reference-manual/native-image/StaticImages/
-
 - Github Action: https://github.com/helpermethod/graalvm-native-image-toolchain
-
 - https://github.com/graalvm/graalvm-ce-dev-builds/releases/
-
 - https://search.maven.org/artifact/org.graalvm.nativeimage/svm/20.0.0/jar
-
-
 
 ### Blogs
 
@@ -1048,18 +967,14 @@ $ git commit --allow-empty -m "empty commit"
 - https://vladmihalcea.com/jdbc-driver-maven-dependency/
 - https://vladmihalcea.com/jdbc-driver-connection-url-strings/
 - Tools
-  - https://utteranc.es/ - Comments Widgets
-  - https://orchid.run/wiki/learn/tutorials/how-to-document-kotlin
-  - http://casual-effects.com/markdeep/
-  - https://www.mkdocs.org/ (eg: https://github.com/hexagonkt/hexagon/tree/master/hexagon_site)
-  - Github publish example
-    - https://github.com/hexagonkt/hexagon/blob/master/.github/workflows/main.yml
-
-
+    - https://utteranc.es/ - Comments Widgets
+    - https://orchid.run/wiki/learn/tutorials/how-to-document-kotlin
+    - http://casual-effects.com/markdeep/
+    - https://www.mkdocs.org/ (eg: https://github.com/hexagonkt/hexagon/tree/master/hexagon_site)
+    - Github publish example
+        - https://github.com/hexagonkt/hexagon/blob/master/.github/workflows/main.yml
 
 ### Awesome Svgs
-
-------
 
 ##### Illustrations
 

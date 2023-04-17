@@ -1,24 +1,23 @@
-### JVM Monitoring & Profiling
+# JVM Profiling
 
-------
 <!-- TOC -->
-    * [JVM Monitoring & Profiling](#jvm-monitoring--profiling)
-      * [1. Flight Recorder](#1-flight-recorder)
-      * [2. Java Mission Control](#2-java-mission-control)
-      * [3. Visualization](#3-visualization)
-      * [4. Profilers & Tools](#4-profilers--tools)
-      * [5. Commands](#5-commands)
-      * [6.JFR Streaming](#6jfr-streaming)
-      * [7. HeapDump](#7-heapdump)
-      * [8. ThreadDump](#8-threaddump)
-      * [9. Unified GC Logging](#9-unified-gc-logging)
-      * [10. JVM Tools](#10-jvm-tools)
-      * [11. System/Node Health](#11-systemnode-health)
-      * [12. Commands](#12-commands)
-      * [13. Resources](#13-resources)
+* [JVM Profiling](#jvm-profiling)
+    * [1. Flight Recorder](#1-flight-recorder)
+    * [2. Java Mission Control](#2-java-mission-control)
+    * [3. Visualization](#3-visualization)
+    * [4. Profilers & Tools](#4-profilers--tools)
+    * [5. Commands](#5-commands)
+    * [6.JFR Streaming](#6jfr-streaming)
+    * [7. HeapDump](#7-heapdump)
+    * [8. ThreadDump](#8-threaddump)
+    * [9. Unified GC Logging](#9-unified-gc-logging)
+    * [10. JVM Tools](#10-jvm-tools)
+    * [11. System/Node Health](#11-systemnode-health)
+    * [12. Commands](#12-commands)
+    * [13. Resources](#13-resources)
 <!-- TOC -->
 
-#### 1. Flight Recorder
+### 1. Flight Recorder
 
 * [JFR Event Collections](https://sap.github.io/SapMachine/jfrevents/21.html)
 * [Java Flight Recorder Events](https://bestsolution-at.github.io/jfr-doc/index.html)
@@ -26,7 +25,7 @@
 * [JFR Events Explorer by Chris Newland](https://chriswhocodes.com/jfr_jdk21.html)
 * [OpenJDK - JFR Profile Configs](https://github.com/openjdk/jdk/tree/master/src/jdk.jfr/share/conf/jfr)
 
-#### 2. Java Mission Control
+### 2. Java Mission Control
 
 ```bash
 # https://jdk.java.net/jmc/
@@ -48,43 +47,43 @@ $ ./jmc -vm %JAVA_HOME%\bin
 $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 ```
 
-#### 3. Visualization
+### 3. Visualization
 
 * [Jfr2Flame Converter](https://github.com/jvm-profiling-tools/async-profiler/releases/latest/download/converter.jar)
 * [D3 Flame Graph ](https://github.com/spiermar/d3-flame-graph)
 
-#### 4. Profilers & Tools
+### 4. Profilers & Tools
 
 - [OpenJDK Mission Control](https://github.com/openjdk/jmc)
 
 - [VisualVM](https://visualvm.github.io/)
 
--  [JVM-Profiling-Tools](https://github.com/jvm-profiling-tools)
+- [JVM-Profiling-Tools](https://github.com/jvm-profiling-tools)
 
-  * [Async Profiler](https://github.com/jvm-profiling-tools/async-profiler)
+* [Async Profiler](https://github.com/jvm-profiling-tools/async-profiler)
 
-  * [Perf-map Agent](https://github.com/jvm-profiling-tools/perf-map-agent)
+* [Perf-map Agent](https://github.com/jvm-profiling-tools/perf-map-agent)
 
-  * [JFR to Flame Graph Converter](https://github.com/jvm-profiling-tools/async-profiler/tree/master/src/converter)
+* [JFR to Flame Graph Converter](https://github.com/jvm-profiling-tools/async-profiler/tree/master/src/converter)
 
-    ```bash
-    # Download the latest release from Github
-    $ LOCATION=$(curl -s https://api.github.com/repos/jvm-profiling-tools/async-profiler/releases/latest \
-        | grep -i "browser_download_url" \
-        | grep -i "converter.jar" \
-        | awk '{ print $2 }' \
-        | sed 's/,$//'       \
-        | sed 's/"//g' )     \
-        ; curl --progress-bar -L -o ${HOME}/install/tools/converter.jar ${LOCATION}
-    ```
+  ```bash
+  # Download the latest release from Github
+  $ LOCATION=$(curl -s https://api.github.com/repos/jvm-profiling-tools/async-profiler/releases/latest \
+      | grep -i "browser_download_url" \
+      | grep -i "converter.jar" \
+      | awk '{ print $2 }' \
+      | sed 's/,$//'       \
+      | sed 's/"//g' )     \
+      ; curl --progress-bar -L -o ${HOME}/install/tools/converter.jar ${LOCATION}
+  ```
 
 * [FlameGraph](http://www.brendangregg.com/flamegraphs.html)
 * [jconsole](https://github.com/openjdk/jdk/tree/master/src/jdk.jconsole)
 * [jmxviewer](https://github.com/ivanyu/jmxviewer)
 * [Cryostat](https://github.com/cryostatio/cryostat)
-* [Linux Perf -  JVMTI](https://github.com/torvalds/linux/tree/master/tools/perf/jvmti)
+* [Linux Perf - JVMTI](https://github.com/torvalds/linux/tree/master/tools/perf/jvmti)
 
-#### 5. Commands
+### 5. Commands
 
 - Wizard to create configuration files (.jfc)
 
@@ -121,7 +120,6 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
   ```
 
 
-
 * Generate FlameGraph of java threads
 
   ```bash
@@ -136,7 +134,6 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
   ```
 
 
-
 * Find finalizable objects in your application
 
   ```bash
@@ -145,36 +142,23 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
   ```
 
 * [Troubleshoot Perf Issues Using JFR](https://docs.oracle.com/en/java/javase/18/troubleshoot/troubleshoot-performance-issues-using-jfr.html)
-
 * [Flight Recorder Tool](https://docs.oracle.com/en/java/javase/18/troubleshoot/diagnostic-tools.html#GUID-D38849B6-61C7-4ED6-A395-EA4BC32A9FD6)
-
 * [Flight Recorder API Guide](https://docs.oracle.com/en/java/javase/18/jfapi/flight-recorder-configurations.html)
 
-
-
-#### 6.JFR Streaming
+### 6.JFR Streaming
 
 - [RemoteRecordingStream](https://egahlin.github.io/2021/05/17/remote-recording-stream.html)
-
 - [Stream JFR files](https://github.com/microsoft/jfr-streaming)
 
-
-
-#### 7. HeapDump
+### 7. HeapDump
 
 * [Solving Memory Leaks without Heap Dumps](http://hirt.se/blog/?p=1055)
-
 * [Graal Heapdump Builder](https://www.graalvm.org/tools/javadoc/org/graalvm/tools/insight/heap/HeapDump.html)
-
 * [Java Profiler Heap Dump Format](http://hg.openjdk.java.net/jdk6/jdk6/jdk/raw-file/tip/src/share/demo/jvmti/hprof/manual.html)
-
 * [HPROF Parser](https://github.com/openjdk/jdk/blob/master/test/lib/jdk/test/lib/hprof/HprofParser.java)
-
 * [Capture Java Heap Dumps](https://www.baeldung.com/java-heap-dump-capture)
 
-
-
-#### 8. ThreadDump
+### 8. ThreadDump
 
 ```bash
 # Get all java processes
@@ -201,9 +185,7 @@ $ jstack -l -e  <pid>
 $ jcmd GradleDaemon VM.native_memory
 ```
 
-
-
-#### 9. [Unified GC Logging](https://openjdk.java.net/jeps/158#Simple-Examples:)
+### 9. [Unified GC Logging](https://openjdk.java.net/jeps/158#Simple-Examples:)
 
 ```bash
 $  java -Xlog:help
@@ -223,22 +205,16 @@ $  java -Xlog:help
 -XX:GCLogFileSize=10M
 ```
 
+### 10. JVM Tools
 
+* Java Object Layout (JOL)
 
-#### 10. JVM Tools
+  ```bash
+  $ wget -q https://builds.shipilev.net/jol/jol-cli-latest.jar
+  $ java -jar jol-cli-latest.jar internals java.lang.String
+  ```
 
-   * Java Object Layout (JOL)
-
-     ```bash
-     $ wget -q https://builds.shipilev.net/jol/jol-cli-latest.jar
-     $ java -jar jol-cli-latest.jar internals java.lang.String
-     ```
-
-
-
-
-
-#### 11. System/Node Health
+### 11. System/Node Health
 
 * [SAR](https://github.com/sysstat/sysstat) (System Activity Report)
 
@@ -268,9 +244,7 @@ $  java -Xlog:help
 
 * [Prometheus JFR Exporter](https://github.com/rh-jmc-team/prometheus-jfr-exporter)
 
-
-
-#### 12. Commands
+### 12. Commands
 
 * Grabbing a file from a remote system with ssh
 
@@ -304,9 +278,7 @@ $  java -Xlog:help
   $ ss -s
   ```
 
-
-
-#### 13. Resources
+### 13. Resources
 
 * [JDK Mission Control Docs](https://docs.oracle.com/en/java/java-components/jdk-mission-control/)
 * [Marcus Hirt's Blog](http://hirt.se/blog/?p=1312)

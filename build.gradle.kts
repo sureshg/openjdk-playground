@@ -85,7 +85,7 @@ application {
           "-XX:+ShowHiddenFrames",
           "-Djava.awt.headless=true",
           "-Djdk.attach.allowAttachSelf=true",
-          "-Djdk.traceVirtualThreadLocals=true",
+          "-Djdk.traceVirtualThreadLocals=false",
           "-Djdk.tracePinnedThreads=full",
           "-Djava.security.debug=properties",
           "-Djava.security.egd=file:/dev/./urandom",

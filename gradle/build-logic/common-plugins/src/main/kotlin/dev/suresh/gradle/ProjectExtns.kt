@@ -68,6 +68,7 @@ val Project.javaToolchainPath
   get(): Path {
     val defToolchain = extensions.findByType(JavaPluginExtension::class)?.toolchain
     val javaToolchainSvc = extensions.findByType(JavaToolchainService::class)
+    // val jvm: JavaVersion? = org.gradle.internal.jvm.Jvm.current().javaVersion
 
     val jLauncher =
         when (defToolchain != null) {

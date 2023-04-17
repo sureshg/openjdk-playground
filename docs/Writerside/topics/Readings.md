@@ -1,9 +1,7 @@
-## Readings
-
-------
+# Readings
 
 <!-- TOC -->
-  * [Readings](#readings)
+* [Readings](#readings)
     * [Java](#java)
     * [Happy eyeballs](#happy-eyeballs)
     * [Database](#database)
@@ -36,9 +34,7 @@
 ### Happy eyeballs
 
 * https://mail.openjdk.java.net/pipermail/loom-dev/2022-May/004613.html
-
 * https://mail.openjdk.java.net/pipermail/loom-dev/2022-May/004615.html
-
 * https://publicobject.com/2022/03/14/uncertainty-in-tests/
 
 ### Database

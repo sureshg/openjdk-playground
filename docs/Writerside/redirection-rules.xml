@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rules SYSTEM "https://helpserver.labs.jb.gg/help/schemas/mvp/redirection-rules.dtd">
+<rules>
+    <rule id="${ID}">
+        <accepts>page.html</accepts>
+    </rule>
+    <rule id="28dec4c2">
+        <description>Created after removal of "Welcome to Writerside!" from openjdk</description>
+        <accepts>starter-topic.html</accepts>
+    </rule>
+    <rule id="510b422b">
+        <description>Created after removal of "Tutorial" from openjdk</description>
+        <accepts>Tutorial.html</accepts>
+    </rule>
+    <rule id="20efd4c8">
+        <description>Created after removal of "How to" from openjdk-playground</description>
+        <accepts>How-to.html</accepts>
+    </rule>
+    <rule id="761613e6">
+        <description>Created after removal of "How to" from openjdk-playground</description>
+        <accepts>How-to.html</accepts>
+    </rule>
+</rules>

@@ -1,8 +1,7 @@
 # Linux
 
--------------------------
-
 <!-- TOC -->
+
 * [Linux](#linux)
     * [Command Line Tools](#command-line-tools)
     * [Proc FileSystem](#proc-filesystem)
@@ -78,14 +77,14 @@
     - [**Java Virtual Threads - c5m**](https://github.com/ebarlas/project-loom-c5m#experiments)
 
     -
-    See [2M websocket connections](http://www.phoenixframework.org/blog/the-road-to-2-million-websocket-connections)
+  See [2M websocket connections](http://www.phoenixframework.org/blog/the-road-to-2-million-websocket-connections)
 
     - See [Tuning HA Proxy for 300K connections](https://www.linangran.com/?p=547)
 
     - See [Kernel Tuning params](https://tweaked.io/guide/kernel/)
 
     -
-    See [How TCP backlog works in Linux](http://veithen.github.io/2014/01/01/how-tcp-backlog-works-in-linux.html)
+  See [How TCP backlog works in Linux](http://veithen.github.io/2014/01/01/how-tcp-backlog-works-in-linux.html)
 
     - See [TCP TIME_WAIT config](http://www.fromdual.com/huge-amount-of-time-wait-connections)
 
@@ -163,8 +162,6 @@
   ```
 
 
-
-
 * Download latest release from Github
 
   ```bash
@@ -177,7 +174,6 @@
       | sed 's/"//g' )     \
       ; curl --progress-bar -L -o ${HOME}/install/tools/converter.jar ${LOCATION}
   ```
-
 
 
 * Download a file with retry
@@ -200,24 +196,20 @@
   https://search.maven.org/remotecontent?filepath=org/jetbrains/kotlin/kotlin-stdlib/1.7.0/kotlin-stdlib-1.7.0.jar
   ```
 
-
-
 ### DIG
 
-   * Commands
+* Commands
 
-     ```bash
-     # Find all nameserver IPs for a TLD
-     $ for i in $(dig ns suresh.dev +short); do echo -n "$i " && dig $i +short; done
+  ```bash
+  # Find all nameserver IPs for a TLD
+  $ for i in $(dig ns suresh.dev +short); do echo -n "$i " && dig $i +short; done
 
-     # Trace DNS requests
-     $ dig +trace compute.suresh.dev
+  # Trace DNS requests
+  $ dig +trace compute.suresh.dev
 
-     # Trace using specific resolver
-     $ dig @a.root-servers.net +trace compute.suresh.dev
-     ```
-
-
+  # Trace using specific resolver
+  $ dig @a.root-servers.net +trace compute.suresh.dev
+  ```
 
 ### SSH
 
@@ -232,8 +224,6 @@
   ssh -v  -R  :8091:localip:remoteport  user@remoteip
   # ssh -v  -R  :8091:172.28.170.95:3000  app@10.242.182.199
   ```
-
-
 
 ### Wireshark
 
@@ -253,10 +243,8 @@
   $ ssh user@remote-host "sudo /usr/sbin/tcpdump -s0 -w - 'port 8080'" | wireshark -k -i -
   ```
 
-  * See [Wireshark Over SSH](https://kaischroed.wordpress.com/2013/01/28/howto-use-wireshark-over-ssh/)
-  * See [Using Unix Named Pipe](https://serverfault.com/a/530020/184962)
-
-
+    * See [Wireshark Over SSH](https://kaischroed.wordpress.com/2013/01/28/howto-use-wireshark-over-ssh/)
+    * See [Using Unix Named Pipe](https://serverfault.com/a/530020/184962)
 
 ### [TCPDump](https://www.tcpdump.org/)
 

@@ -1,9 +1,8 @@
-## Containers
+# Containers & K8S
 
-------
 <!-- TOC -->
-  * [Containers](#containers)
-    * [Offical Java Images](#offical-java-images)
+* [Containers & K8S](#containers--k8s)
+    * [OpenJDK Container Images](#openjdk-container-images)
         * [Oracle JDK (NFTC)](#oracle-jdk-nftc)
     * [Docker Commands](#docker-commands)
     * [Debug Container](#debug-container)
@@ -12,17 +11,14 @@
     * [App Running on K8S/Docker](#app-running-on-k8sdocker)
     * [Access Docker desktop LinuxKit VM on MacOS](#access-docker-desktop-linuxkit-vm-on-macos)
     * [Multi Architecture Support](#multi-architecture-support)
-        * [Netcat Webserver](#netcat-webserver)
-      * [Container Tools](#container-tools)
-      * [Jlink](#jlink)
-      * [Distroless](#distroless)
-      * [Documentation](#documentation)
-  * [Kubernetes](#kubernetes)
-        * [https://github.com/kubernetes-client/java](#httpsgithubcomkubernetes-clientjava)
-  * [Git](#git)
+    * [Netcat Webserver](#netcat-webserver)
+    * [Container Tools {collapsible="true"}](#container-tools-collapsibletrue)
+    * [Jlink {collapsible="true"}](#jlink-collapsibletrue)
+    * [Documentation {collapsible="true"}](#documentation-collapsibletrue)
+  * [Git {collapsible="true"}](#git-collapsibletrue)
 <!-- TOC -->
 
-### Offical Java Images
+### OpenJDK Container Images
 
 ```bash
 # Distroless Java Images
@@ -113,12 +109,8 @@ $ docker run -it --rm gcr.io/distroless/java-debian11:base-nonroot openssl s_cli
 ##### Oracle JDK (NFTC)
 
 * [Oracle Java SE Downloads](https://www.oracle.com/javadownload)
-
 * [Oracle Java Archive](https://www.oracle.com/java/technologies/java-archive.html)
-
 * [JDK Script Friendly URLs](https://www.oracle.com/java/technologies/jdk-script-friendly-urls/)
-
-
 
 ### Docker Commands
 
@@ -153,8 +145,6 @@ $ docker run -it --rm ,
 $ docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' openjdk
 ```
 
-
-
 ### [Debug Container](https://github.com/iximiuz/cdebug)
 
 ```bash
@@ -186,9 +176,12 @@ $ docker run \
 
 # OR copy files from a container
 $ docker cp <CONTAINER>:/app/app/jar .
+
+# OR
+$ id=$(docker create ghcr.io/sureshg/containers:openjdk-latest)
+$ docker cp $id:/app/app.jar - > app.tar
+$ docker rm -v $id
 ```
-
-
 
 ### JVM Ergonomics and Container logs
 
@@ -217,8 +210,6 @@ public class App {
 }
 EOF
 
-# For container logs, add "-Xlog:gc\*,os=trace,os+container=trace" option.
-# Override the default container CPU quota detection "-XX:ActiveProcessorCount=<n>"
 $ docker run \
         -it \
         --rm \
@@ -240,7 +231,10 @@ $ docker run \
         | grep -e "Use.*GC" -e "Active" -e "Using" -e "Max.*Limit" -e "Container" -e "•"
 ```
 
+> For container logs, add **-Xlog:gc\*,os=trace,os+container=trace** option.
+> Override the default container CPU quota detection **-XX:ActiveProcessorCount=<n>**
 
+{title="GC Logs & ActiveProcessorCount" style="note"}
 
 ### JVM default GC
 
@@ -253,8 +247,6 @@ $ docker run -it --rm --cpus=1 --memory=1G openjdk:21-slim java -Xlog:gc --versi
 
 * https://github.com/brunoborges/jvm-ergonomics (https://vimeo.com/748031919)
 * https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
-
-
 
 ### App Running on K8S/Docker
 
@@ -278,8 +270,6 @@ $  docker run \
 
 * [Check if the container is running inside K8S](https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/#environment-variables:~:text=printenv%20%7C%20grep%20SERVICE-,KUBERNETES_SERVICE_HOST,-%3D10.0.0.1%0AKUBERNETES_SERVICE_PORT%3D443)
 
-
-
 ### Access Docker desktop LinuxKit VM on MacOS
 
 ```bash
@@ -287,8 +277,6 @@ $ docker run -it --rm --memory=256m --cpus=1 -v /:/host --name alpine alpine
  /# chroot /host
   # docker version
 ```
-
-
 
 ### [Multi Architecture Support](https://docs.docker.com/desktop/multi-arch/)
 
@@ -305,7 +293,6 @@ $ docker run -it --rm --memory=256m --cpus=1 -v /:/host --name alpine alpine
   ```
 
 * [Supported Targets - qemu-binfmt-conf.sh](https://github.com/qemu/qemu/blob/master/scripts/qemu-binfmt-conf.sh)
-
 * [Dockerhub Supported Archs](https://github.com/docker-library/official-images#architectures-other-than-amd64)
 
 * Examples
@@ -323,7 +310,7 @@ $ docker run -it --rm --memory=256m --cpus=1 -v /:/host --name alpine alpine
   $ docker run --rm tonistiigi/debian:riscv uname -a
   ```
 
-##### Netcat Webserver
+### Netcat Webserver
 
 ```bash
 FROM alpine
@@ -371,7 +358,7 @@ exec my-app
 ENTRYPOINT ["../../myapp-entrypoint.sh"]
 ```
 
-- ##### [Docker stats GraalVM app](https://github.com/vasilmkd/docker-stats-monitor/blob/master/Dockerfile)
+- [Docker stats GraalVM app](https://github.com/vasilmkd/docker-stats-monitor/blob/master/Dockerfile)
 
 **HTTP Proxy**
 
@@ -383,108 +370,48 @@ ENV HTTPS_PROXY="http://proxy.test.com:8080"
 ENV NO_PROXY="*.test1.com,*.test2.com,127.0.0.1,localhost"
 ```
 
-
-
-#### Container Tools
-
-------
+### Container Tools {collapsible="true"}
 
 * https://github.com/rancher-sandbox/rancher-desktop
-
 * https://github.com/beringresearch/macpine (Lightweight Linux VMs on MacOS)
-
 * https://github.com/containerd/containerd
-
 * https://github.com/lima-vm/lima (Linux on Mac)
-
 * https://github.com/containerd/nerdctl
-
 * https://github.com/k3s-io/k3s
-
 * https://github.com/rancher/k3d/
-
 * https://kind.sigs.k8s.io/
-
 * https://github.com/k0sproject/k0s
-
 * https://github.com/canonical/multipass (Running Ubuntu VM)
-
 * https://podman.io/blogs/2021/09/06/podman-on-macs.html
-
 * https://github.com/wagoodman/dive
-
 * https://github.com/google/cadvisor
-
 * https://github.com/google/go-containerregistry/tree/main/cmd/crane
-
 * [Trivy - Container Scanning](https://github.com/aquasecurity/trivy)
-
 * [CoSign - Container Signing](https://github.com/sigstore/cosign)
-
 * [Kaniko - Build Images In Kubernetes](https://github.com/GoogleContainerTools/kaniko)
-
 * [Colima - Container runtimes on MacOS ](https://github.com/abiosoft/colima)
 
-#### Jlink
-
-------
+### Jlink {collapsible="true"}
 
 * https://www.morling.dev/blog/smaller-faster-starting-container-images-with-jlink-and-appcds/
-
 * https://blog.adoptium.net/2021/08/using-jlink-in-dockerfiles/
-
 * https://docs.microsoft.com/en-us/java/openjdk/java-jlink-runtimes
-
-    * https://github.com/dsyer/sample-docker-microservice/
-
+* https://github.com/dsyer/sample-docker-microservice/
 * https://mbien.dev/blog/entry/custom-java-runtimes-with-jlink
-
 * https://jpetazzo.github.io/2020/03/01/quest-minimal-docker-images-part-2/
 
+### Documentation {collapsible="true"}
 
+* https://spring-gcp.saturnism.me/deployment/docker/container-awareness
+* https://spring-gcp.saturnism.me/deployment/docker
+* https://www.infoq.com/presentations/openjdk-containers/
+* https://www.youtube.com/watch?v=Yj0sx1dvEdo
+* https://www.youtube.com/watch?v=2IpJABPzpvw
+* https://developers.redhat.com/devnation/tech-talks/containerjfr
+* http://blog.gilliard.lol/2019/12/04/Clojure-Containers.html
+* https://www.morling.dev/blog/smaller-faster-starting-container-images-with-jlink-and-appcds/
+* https://blog.arkey.fr/2020/06/28/using-jdk-flight-recorder-and-jdk-mission-control/
 
-#### Distroless
-
-------
-
-https://github.com/GoogleContainerTools/distroless/blob/master/base/README.md
-
-
-
-#### Documentation
-
-------
-
-https://spring-gcp.saturnism.me/deployment/docker/container-awareness
-
-https://spring-gcp.saturnism.me/deployment/docker
-
-https://www.infoq.com/presentations/openjdk-containers/
-
-https://www.youtube.com/watch?v=Yj0sx1dvEdo
-
-https://www.youtube.com/watch?v=2IpJABPzpvw
-
-https://developers.redhat.com/devnation/tech-talks/containerjfr
-
-http://blog.gilliard.lol/2019/12/04/Clojure-Containers.html
-
-https://www.morling.dev/blog/smaller-faster-starting-container-images-with-jlink-and-appcds/
-
-https://blog.arkey.fr/2020/06/28/using-jdk-flight-recorder-and-jdk-mission-control/
-
-
-
-## Kubernetes
-
-------
-
-##### https://github.com/kubernetes-client/java
-
-
-
-## Git
-
-------
+## Git {collapsible="true"}
 
 * https://github.com/newren/git-filter-repo

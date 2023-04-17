@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE instance-profile
+        SYSTEM "https://helpserver.labs.jb.gg/help/schemas/mvp/product-profile.dtd">
+
+<instance-profile id="openjdk-playground"
+                  name="openjdk-playground"
+                  start-page="Containers.md">
+    <toc-element topic="OpenJDK.md"/>
+    <toc-element topic="Security-Certificates.md"/>
+    <toc-element topic="Containers.md"/>
+    <toc-element topic="JVM-Profiling.md"/>
+    <toc-element topic="Linux.md"/>
+    <toc-element topic="Kotlin.md"/>
+    <toc-element topic="Publishing.md"/>
+    <toc-element topic="Readings.md"/>
+</instance-profile>

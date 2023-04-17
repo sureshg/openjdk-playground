@@ -1,13 +1,12 @@
-Security & Certificates
--------------------------
+# Security & Certificates
 
 <!-- TOC -->
-  * [Security & Certificates](#security--certificates)
+* [Security & Certificates](#security--certificates)
     * [CA Certs and Certificate Transparency Logs](#ca-certs-and-certificate-transparency-logs)
     * [OpenSSL & Keytool](#openssl--keytool)
     * [OpenJDK](#openjdk)
     * [Self Signed Certs](#self-signed-certs)
-    * [cURL: Auth/Mutual TLS](#curl--authmutual-tls)
+    * [cURL: Auth/Mutual TLS](#curl-authmutual-tls)
     * [Add CACerts](#add-cacerts)
     * [GPG/OpenPGP](#gpgopenpgp)
     * [Tools](#tools)
@@ -15,23 +14,17 @@ Security & Certificates
     * [Misc](#misc)
     * [TrustStore](#truststore)
     * [Cryptography](#cryptography)
-    <!-- TOC -->
+<!-- TOC -->
 
 ### CA Certs and Certificate Transparency Logs
 
 * [Certificate Search - crt.sh](https://crt.sh/)
-
 * https://crt.sh/test-websites?trustedBy=Java
-
 * [LintCert](https://crt.sh/lintcert)
-
 * [Cert Lint Library](https://github.com/amazon-archives/certlint)
-
 * [CT Logs](https://certificate.transparency.dev/logs/)
 
 ### OpenSSL & Keytool
-
-----------------------
 
 * **Extract Certificate from Server**
 
@@ -53,8 +46,6 @@ $ openssl s_client -connect 'dns.google.com:443' 2>&1 < /dev/null | sed -n '/---
 
 $ curl -vvI https://google.com 2>&1 | grep -i date
 ```
-
-
 
 * **Create `PKCS#12` trust-store from pem**
 
@@ -92,8 +83,6 @@ $ openssl x509 -noout -modulus -in cert.pem | openssl md5
 $ openssl rsa  -noout -modulus -in cert.key | openssl md5
 ```
 
-
-
 * **Extract certs from `PKCS#12`**
 
 ```bash
@@ -118,8 +107,6 @@ $ openssl pkcs12 -in keystore.p12 -nodes -nokeys -cacerts -passin pass:<password
 $ openssl pkcs8 -topk8 -inform PEM -outform DER -in cert.pem -out out.pem -nocrypt
 ```
 
-
-
 * **Show all certs from System truststore**
 
 ```bash
@@ -132,8 +119,6 @@ $ keytool -printcert -file /etc/ssl/certs/ca-bundle.crt | grep -i issuer
 # Using some awk trick
 $ awk -v cmd='openssl x509 -noout -subject -dates ' '/BEGIN/{close(cmd)};{print | cmd}' < /etc/ssl/certs/ca-bundle.crt
 ```
-
-
 
 ### OpenJDK
 
@@ -173,10 +158,8 @@ $ awk -v cmd='openssl x509 -noout -subject -dates ' '/BEGIN/{close(cmd)};{print 
         -keystore "${JDK_CACERT}"
   ```
 
-     * [OpenJDK CACerts](https://github.com/openjdk/jdk/tree/master/src/java.base/share/data/cacerts)
-     * [Android CACerts](https://android.googlesource.com/platform/system/ca-certificates/+/master/files)
-
-
+    * [OpenJDK CACerts](https://github.com/openjdk/jdk/tree/master/src/java.base/share/data/cacerts)
+    * [Android CACerts](https://android.googlesource.com/platform/system/ca-certificates/+/master/files)
 
 ### Self Signed Certs
 
@@ -222,8 +205,6 @@ $ openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes \
 
 ```
 
-
-
 ### cURL: Auth/Mutual TLS
 
 ```bash
@@ -243,11 +224,9 @@ $ curl -v \
        -X GET "https://my-server:443/api"
 ```
 
-
-
 ### Add CACerts
 
--  To JDK Truststore
+- To JDK Truststore
 
   ```bash
   #!/usr/bin/env bash
@@ -280,8 +259,6 @@ $ curl -v \
   popd >/dev/null || exit 1
   ```
 
-
-
 - IntelliJ Truststore
 
   ```bash
@@ -296,8 +273,6 @@ $ curl -v \
             -file "$HOME/Desktop/RootCA-SHA256.crt"
   $ keytool -list -keystore "$cacerts" -storetype pkcs12 -storepass changeit
   ```
-
-
 
 ### GPG/OpenPGP
 
@@ -357,8 +332,6 @@ $ curl -v \
   $ https://github.com/settings/gpg/new
   ```
 
-
-
 ### Tools
 
 * [BadSSL](https://badssl.com/)
@@ -378,8 +351,6 @@ $ curl -v \
 * https://github.com/scop/portecle
 
 * https://github.com/mitmproxy/mitmproxy
-
-
 
 ### TLS Debugging
 
@@ -418,8 +389,6 @@ The following can be used with ssl:
   plaintext    hex dump of record plaintext
   packet       print raw SSL/TLS packets
 ```
-
-
 
 ### Misc
 
