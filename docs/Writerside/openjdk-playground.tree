@@ -5,12 +5,14 @@
 <instance-profile id="openjdk-playground"
                   name="openjdk-playground"
                   start-page="Containers.md">
-    <toc-element topic="OpenJDK.md"/>
-    <toc-element topic="Security-Certificates.md"/>
-    <toc-element topic="Containers.md"/>
-    <toc-element topic="JVM-Profiling.md"/>
-    <toc-element topic="Linux.md"/>
-    <toc-element topic="Kotlin.md"/>
-    <toc-element topic="Publishing.md"/>
-    <toc-element topic="Readings.md"/>
+    <toc-element toc-title="1. API Doc"
+                 target-for-accept-web-file-names="https://suresh.dev/openjdk-playground/apidoc"/>
+    <toc-element toc-title="2. OpenJDK" topic="OpenJDK.md"/>
+    <toc-element toc-title="3. Containers" topic="Containers.md"/>
+    <toc-element toc-title="4. Security Certificates" topic="Security-Certificates.md"/>
+    <toc-element toc-title="5. JVM Profiling" topic="JVM-Profiling.md"/>
+    <toc-element toc-title="6. Linux" topic="Linux.md"/>
+    <toc-element toc-title="7. Kotlin" topic="Kotlin.md"/>
+    <toc-element toc-title="8. Publishing" topic="Publishing.md"/>
+    <toc-element toc-title="9. Readings" topic="Readings.md"/>
 </instance-profile>

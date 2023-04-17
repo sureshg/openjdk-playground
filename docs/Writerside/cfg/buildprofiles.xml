@@ -2,16 +2,25 @@
 <buildprofiles xsi:noNamespaceSchemaLocation="https://helpserver.labs.jb.gg/help/schemas/mvp/build-profiles.xsd"
                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-    <variables></variables>
-    <build-profile instance="openjdk">
-        <variables>
-            <noindex-content>false</noindex-content>
-        </variables>
-    </build-profile>
+    <variables>
+        <color-preset>vivid</color-preset>
+        <primary-color>aqua</primary-color>
+        <sideblocks>true</sideblocks>
+        <header-logo>header-logo.png</header-logo>
+        <web-root>https://suresh.dev/openjdk-playground</web-root>
+        <download-page/>
+        <showDownloadButton>true</showDownloadButton>
+    </variables>
     <build-profile instance="openjdk-playground">
         <variables>
             <noindex-content>false</noindex-content>
         </variables>
     </build-profile>
 
+    <footer>
+        <copyright>Suresh 2023</copyright>
+        <social type="blog" href="https://suresh.dev/openjdk-playground/lp"/>
+        <social type="twitter" href="https://twitter.com/sur3shg"/>
+        <link href="https://github.com/sureshg">Github</link>
+    </footer>
 </buildprofiles>

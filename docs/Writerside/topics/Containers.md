@@ -12,6 +12,7 @@
     * [Access Docker desktop LinuxKit VM on MacOS](#access-docker-desktop-linuxkit-vm-on-macos)
     * [Multi Architecture Support](#multi-architecture-support)
     * [Netcat Webserver](#netcat-webserver)
+    * [Container Runtime Interface](#container-runtime-interface)
     * [Container Tools {collapsible="true"}](#container-tools-collapsibletrue)
     * [Jlink {collapsible="true"}](#jlink-collapsibletrue)
     * [Documentation {collapsible="true"}](#documentation-collapsibletrue)
@@ -369,6 +370,10 @@ ENV HTTP_PROXY="http://proxy.test.com:8080"
 ENV HTTPS_PROXY="http://proxy.test.com:8080"
 ENV NO_PROXY="*.test1.com,*.test2.com,127.0.0.1,localhost"
 ```
+### Container Runtime Interface
+
+![Container Runtimes](containers.svg){ width="450px" border-effect="none" style="block" thumbnail="true" }
+
 
 ### Container Tools {collapsible="true"}
 
