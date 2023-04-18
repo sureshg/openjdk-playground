@@ -4,7 +4,7 @@
 <ihp version="2.0">
     <topics dir="topics"/>
     <images dir="images" web-path="img"/>
-    <resources src="resources"/>
+    <snippets dir="code-snippets"/>
     <!-- <categories src="c.list"/>-->
     <instance id="openjdk-playground" src="openjdk-playground.tree" web-path="openjdk-playground/lp"/>
 </ihp>

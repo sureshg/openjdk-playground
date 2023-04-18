@@ -5,7 +5,7 @@
     * [Kotlin Compiler Options](#kotlin-compiler-options)
     * [Native Image](#native-image)
     * [Videos](#videos)
-    * [Resources Sample](#resources-sample)
+    * [Samples](#samples)
 <!-- TOC -->
 
 ### Kotlin Compiler Options
@@ -60,6 +60,11 @@ $ strings -a app | grep -i com.oracle.svm.core.VM
 
 * https://www.youtube.com/watch?v=SEKsvHYZz8s (crypto 101)
 
-### Resources Sample
+### Samples
 
-<res resource-id="movie-data"></res>
+```kotlin
+```
+
+{src="kotlin/App.kt" lang="kotlin" validate="true" }
+
+Download <res resource-id="movie-data" instance="openjdk-playground">
