@@ -220,16 +220,25 @@ $ native-image \
     -m dev.suresh.Main
 
 # JavaFX 21 using jlink & jpackage
-$ jlink --output jdk-21+javafx-21 \
-        --module-path $JAVA_HOME/jmods:openjfx21-jmods \
-        --add-modules ALL-MODULE-PATH
+$ wget "https://download.java.net/java/early_access/.../openjfx-xxx_macos-aarch64_bin-jmods.tar.gz"
+$ tar -xvzf openjfx-xxx_macos-aarch64_bin-jmods.tar.gz
 
-$ japckage --main-jar app.jar \
-           --runtime-image jdk-21+javafx-21 \
+$ jlink --output javafx-jdk \
+        --module-path $JAVA_HOME/jmods:javafx-jmods-21 \
+        --add-modules javafx.controls,java.desktop,java.logging
+#       --add-modules ALL-MODULE-PATH
+
+$ javafx-jdk/bin/java --list-modules
+
+$ jpackage --main-jar app.jar \
+           --runtime-image javafx-jdk \
+           --type app-image \
            --name app \
-           -icon app.ico \
-           --input app.dir \
-           --dest app.outdir
+           --java-options "-Xmx64m" \
+           --arguments "arg" \
+           --icon app.ico \
+           --input app \
+           --dest bin
 ```
 
 - [JPMS Quickstart](https://openjdk.java.net/projects/jigsaw/quick-start)

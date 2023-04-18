@@ -5,6 +5,7 @@
     * [Kotlin Compiler Options](#kotlin-compiler-options)
     * [Native Image](#native-image)
     * [Videos](#videos)
+    * [Resources Sample](#resources-sample)
 <!-- TOC -->
 
 ### Kotlin Compiler Options
@@ -58,3 +59,7 @@ $ strings -a app | grep -i com.oracle.svm.core.VM
 ### Videos
 
 * https://www.youtube.com/watch?v=SEKsvHYZz8s (crypto 101)
+
+### Resources Sample
+
+<res resource-id="movie-data"></res>
