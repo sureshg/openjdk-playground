@@ -6,7 +6,8 @@
         <color-preset>vivid</color-preset>
         <primary-color>aqua</primary-color>
         <sideblocks>true</sideblocks>
-        <header-logo>openjdk-playground/lp/header-logo.png</header-logo>
+        <web-root>https://suresh.dev</web-root>
+        <header-logo>header-logo.png</header-logo>
     </variables>
     <build-profile instance="openjdk-playground">
         <variables>

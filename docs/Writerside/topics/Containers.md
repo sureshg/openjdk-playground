@@ -372,7 +372,7 @@ ENV NO_PROXY="*.test1.com,*.test2.com,127.0.0.1,localhost"
 ```
 ### Container Runtime Interface
 
-![Container Runtimes](openjdk-playground/lp/containers.svg){ width="450px" border-effect="none" style="block" thumbnail="true" }
+![Container Runtimes](containers.svg){ width="450px" border-effect="none" style="block" thumbnail="true" }
 
 
 ### Container Tools {collapsible="true"}
