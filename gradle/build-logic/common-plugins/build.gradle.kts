@@ -2,8 +2,6 @@ import org.jetbrains.kotlin.gradle.dsl.*
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  // kotlin-dsl plugin applies `java-gradle-plugin`, `kotlin-dsl.base` and
-  // `kotlin-dsl.precompiled-script-plugins`
   `kotlin-dsl`
   alias(libs.plugins.jte)
   alias(libs.plugins.bestpractices)
