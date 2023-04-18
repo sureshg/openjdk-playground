@@ -2,7 +2,7 @@
 <!DOCTYPE ihp SYSTEM "https://helpserver.labs.jb.gg/help/schemas/mvp/ihp.dtd">
 
 <ihp version="2.0">
-    <topics dir="topics" web-path="openjdk-playground/lp"/>
-    <images dir="images" web-path="openjdk-playground/lp"/>
-    <instance src="openjdk-playground.tree" web-path="openjdk-playground/lp"/>
+    <topics dir="topics" web-path="/openjdk-playground/lp"/>
+    <images dir="images" web-path="/openjdk-playground/lp"/>
+    <instance src="openjdk-playground.tree" web-path="/openjdk-playground/lp"/>
 </ihp>
