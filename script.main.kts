@@ -1,11 +1,11 @@
 #!/usr/bin/env -S kotlin -Xplugin=/opt/homebrew/opt/kotlin/libexec/lib/kotlinx-serialization-compiler-plugin.jar
 
 // @file:Repository("https://maven.google.com")
-@file:DependsOn("io.ktor:ktor-client-core:2.2.4")
-@file:DependsOn("io.ktor:ktor-client-cio:2.2.4")
-@file:DependsOn("io.ktor:ktor-client-java:2.2.4")
-@file:DependsOn("io.ktor:ktor-client-auth:2.2.4")
-@file:DependsOn("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.0-Beta")
+@file:DependsOn("io.ktor:ktor-client-core:2.3.0")
+@file:DependsOn("io.ktor:ktor-client-cio:2.3.0")
+@file:DependsOn("io.ktor:ktor-client-java:2.3.0")
+@file:DependsOn("io.ktor:ktor-client-auth:2.3.0")
+@file:DependsOn("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.0-RC")
 @file:DependsOn("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
 @file:DependsOn("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
 @file:DependsOn("org.slf4j:slf4j-simple:2.0.7")
