@@ -120,7 +120,7 @@ togglz                         = "3.1.1"
 urlbuilder                     = "2.0.9"
 versioncompare                 = "1.5.0"
 violations                     = "1.149.2"
-wasm-bytecoder                 = "2023-04-05"
+wasm-bytecoder                 = "2023-04-24"
 zip-prefixer                   = "0.3.1"
 
 # Plugin versions
