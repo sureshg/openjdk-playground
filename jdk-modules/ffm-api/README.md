@@ -2,7 +2,16 @@
 
 Execute this [script](../../scripts/jextract.sh)
 
-## Generate Java Bindings
+### Generate Java Bindings
+
+#### LibC
+
+```bash
+$ ./gradlew build -PenableJextract
+# Copy the generated sources from "build/generated/sources/jextract" to "src/main/java"
+```
+
+#### Thrid-Party Libraries
 
 ```bash
 # Shows an example of generating java bindings of https://github.com/WebAssembly/binaryen
@@ -34,5 +43,6 @@ dev
 
 * [Jextract Samples](https://github.com/openjdk/jextract/tree/master/samples)
 * [Project Panama](https://github.com/openjdk/panama-foreign)
+* [Linux syscall tables](https://syscalls.mebeim.net/)
 
 [Jextract]:  https://github.com/openjdk/jextract

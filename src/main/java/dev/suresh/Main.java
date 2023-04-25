@@ -21,8 +21,8 @@ record Person(String name, int age) {
 
 public class Main {
 
-    private final String name = "Java";
-    private final int age = 25;
+    private String name = "Java";
+    private int age = 25;
 
     public static int computeScore(Person p) {
         return 1;
@@ -41,15 +41,14 @@ public class Main {
     }
 
     public static void main(String[] args) throws Exception {
-        var textBlock =
-                """
-                        This is a textBlock
-                        example \t introduced \\n in
-                        \s Java 15. \\n It \\
-                        avoids the
-                        need for most escape sequences.
-                        \u2022
-                        """;
+        var textBlock = """
+                This is a textBlock
+                example \t introduced \\n in
+                \s Java 15. \\n It \\
+                avoids the
+                need for most escape sequences.
+                \u2022
+                """;
         out.println(textBlock);
         out.println(textBlock.translateEscapes());
         out.println("Record Test: " + new Person("Hello Kotlin", 8));
@@ -71,7 +70,7 @@ public class Main {
 
     private static void securityProperties() {
         var secMgr = System.getSecurityManager();
-        out.println("Security Manager: " + secMgr);
+        out.println("Security Manager (Deprecated): " + secMgr);
 
         final String dnsCacheTTL = "networkaddress.cache.ttl";
         final String dnsCacheNegTTL = "networkaddress.cache.negative.ttl";
@@ -95,7 +94,7 @@ public class Main {
 
     @Override
     public boolean equals(Object o) {
-        return (this == o) || (o instanceof Main x) && age == x.age && Objects.equals(name, x.name);
+        return o instanceof Main m && age == m.age && Objects.equals(name, m.name);
     }
 
     @Override
