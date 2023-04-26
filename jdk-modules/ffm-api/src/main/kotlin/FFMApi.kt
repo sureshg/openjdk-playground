@@ -33,7 +33,7 @@ object FFMApi {
     downCalls()
     stdLibC()
     heapAlloc()
-    terminal()
+    // terminal()
   }
 
   private fun downCalls() {
@@ -43,7 +43,7 @@ object FFMApi {
   }
 
   private fun terminal() {
-    if (System.getProperty("os.name").contains("linux", ignoreCase = true)) {
+    if (System.getProperty("os.name").contains("win", ignoreCase = true).not()) {
       Arena.openConfined().use { arena ->
         val winAddr = winsize.allocate(arena)
         val ttyAddr = ttysize.allocate(arena)
