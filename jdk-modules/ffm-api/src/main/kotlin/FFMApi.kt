@@ -5,8 +5,6 @@ import java.lang.foreign.FunctionDescriptor
 import java.lang.foreign.Linker
 import java.lang.foreign.MemoryLayout
 import java.lang.foreign.MemoryLayout.PathElement
-import java.lang.foreign.MemorySegment
-import java.lang.foreign.SegmentScope
 import java.lang.foreign.SymbolLookup
 import java.lang.foreign.ValueLayout
 import kotlin.jvm.optionals.getOrNull
@@ -32,7 +30,6 @@ object FFMApi {
     memoryAPIs()
     downCalls()
     stdLibC()
-    heapAlloc()
     // terminal()
   }
 
@@ -96,13 +93,6 @@ object FFMApi {
     val pid = getpid.invokeExact() as Int
     assert(pid.toLong() == ProcessHandle.current().pid())
     println("getpid() = $pid")
-  }
-
-  private fun heapAlloc() {
-    val onHeap = MemorySegment.ofArray("test".encodeToByteArray())
-    val offHeap = MemorySegment.allocateNative(8, SegmentScope.auto())
-    assert(onHeap.isNative.not())
-    assert(offHeap.isNative)
   }
 
   /**
