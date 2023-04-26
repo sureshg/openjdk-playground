@@ -29,7 +29,7 @@ object FFMApi {
     println("----- Project Panama -----")
     memoryAPIs()
     downCalls()
-    stdLibC()
+    // stdLibC()
     // terminal()
   }
 

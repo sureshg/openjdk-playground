@@ -24,7 +24,7 @@ fun run(args: Array<String>? = emptyArray()) {
   val connector =
       ServerConnector(server).apply {
         port = httpPort
-        acceptQueueSize = 128
+        acceptQueueSize = 64
       }
   server.connectors = arrayOf(connector)
 
@@ -34,7 +34,7 @@ fun run(args: Array<String>? = emptyArray()) {
   server.start()
   println("Server started at ${server.uri}")
 
-  val took = measureTime { pumpRequests(server, 100) }
+  val took = measureTime { pumpRequests(server, 50) }
   println("Took ${took.toDouble(DurationUnit.SECONDS)} seconds")
 
   if (args.orEmpty().any { it.equals("--no-shutdown", true) }) {
@@ -45,7 +45,7 @@ fun run(args: Array<String>? = emptyArray()) {
   }
 }
 
-fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
+fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 5L) {
   require(count > 0)
   println(
       "Sending $count concurrent requests to ${server.uri} and wait for $deadlineInSec seconds...",
@@ -55,7 +55,7 @@ fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 10L) {
       HttpClient.newBuilder()
           .version(HttpClient.Version.HTTP_1_1)
           .followRedirects(HttpClient.Redirect.NORMAL)
-          .connectTimeout(Duration.ofSeconds(10))
+          .connectTimeout(Duration.ofSeconds(5))
           .build()
 
   val factory = Thread.ofVirtual().name("VirtualThreadPool-", 1).factory()
