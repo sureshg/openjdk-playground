@@ -7,6 +7,7 @@ Execute this [script](../../scripts/jextract.sh)
 #### LibC
 
 ```bash
+$ export PATH=$PATH:~/install/openjdk/jextract/bin/
 $ ./gradlew build -PenableJextract
 # Copy the generated sources from "build/generated/sources/jextract" to "src/main/java"
 ```

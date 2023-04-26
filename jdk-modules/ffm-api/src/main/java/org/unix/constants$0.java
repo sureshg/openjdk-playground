@@ -17,60 +17,6 @@ final class constants$0 {
         "ioctl",
         constants$0.ioctl$FUNC
     );
-    static final FunctionDescriptor getattrlistbulk$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle getattrlistbulk$MH = RuntimeHelper.downcallHandle(
-        "getattrlistbulk",
-        constants$0.getattrlistbulk$FUNC
-    );
-    static final FunctionDescriptor getattrlistat$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle getattrlistat$MH = RuntimeHelper.downcallHandle(
-        "getattrlistat",
-        constants$0.getattrlistat$FUNC
-    );
-    static final FunctionDescriptor setattrlistat$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle setattrlistat$MH = RuntimeHelper.downcallHandle(
-        "setattrlistat",
-        constants$0.setattrlistat$FUNC
-    );
-    static final FunctionDescriptor freadlink$FUNC = FunctionDescriptor.of(Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle freadlink$MH = RuntimeHelper.downcallHandle(
-        "freadlink",
-        constants$0.freadlink$FUNC
-    );
-    static final FunctionDescriptor faccessat$FUNC = FunctionDescriptor.of(Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_INT$LAYOUT,
-        Constants$root.C_INT$LAYOUT
-    );
-    static final MethodHandle faccessat$MH = RuntimeHelper.downcallHandle(
-        "faccessat",
-        constants$0.faccessat$FUNC
-    );
 }
 
 

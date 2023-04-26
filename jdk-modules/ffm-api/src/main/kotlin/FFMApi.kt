@@ -14,21 +14,25 @@ import org.unix.Linux
 import org.unix.ttysize
 import org.unix.winsize
 
-val symbolLookup by lazy {
-  val linkerLookup = Linker.nativeLinker().defaultLookup()
-  val clLinkerLookup = SymbolLookup.loaderLookup()
-  SymbolLookup { name -> clLinkerLookup.find(name).or { linkerLookup.find(name) } }
+val LINKER: Linker = Linker.nativeLinker()
+
+val SYMBOL_LOOKUP by lazy {
+  val stdlib = LINKER.defaultLookup()
+  val loaderLookup = SymbolLookup.loaderLookup()
+  SymbolLookup { name -> loaderLookup.find(name).or { stdlib.find(name) } }
 }
+
+fun SymbolLookup.findOrNull(name: String) = find(name).getOrNull()
 
 object FFMApi {
 
   @JvmStatic
   fun run() {
     println("----- Project Panama -----")
-    //    memoryAPIs()
-    //    downCalls()
-    //    stdLibC()
-    //    heapAlloc()
+    memoryAPIs()
+    downCalls()
+    stdLibC()
+    heapAlloc()
     terminal()
   }
 
@@ -39,66 +43,56 @@ object FFMApi {
   }
 
   private fun terminal() {
-    // check if running on linux or mac
-    if (System.getProperty("os.name").contains("Mac")) {
+    if (System.getProperty("os.name").contains("linux", ignoreCase = true)) {
       Arena.openConfined().use { arena ->
         val winAddr = winsize.allocate(arena)
         val ttyAddr = ttysize.allocate(arena)
         Linux.ioctl(Linux.STDIN_FILENO(), Linux.TIOCGWINSZ(), winAddr.address())
         Linux.ioctl(Linux.STDIN_FILENO(), Linux.TIOCGWINSZ(), ttyAddr.address())
-        println(winsize.`ws_row$get`(winAddr))
-        println("WinSize")
-        println(winsize.`ws_col$get`(winAddr))
-        println(ttysize.`ts_lines$get`(ttyAddr))
-        println(ttysize.`ts_cols$get`(ttyAddr))
+        println(
+            """WinSize {
+               | ws_col: ${winsize.`ws_col$get`(winAddr)},
+               | ws_row: ${winsize.`ws_row$get`(winAddr)}
+               |}"""
+                .trimMargin(),
+        )
+        println(
+            """TtySize {
+               | ts_lines: ${ttysize.`ts_lines$get`(ttyAddr)},
+               | ts_cols: ${ttysize.`ts_cols$get`(ttyAddr)}
+               |}"""
+                .trimMargin(),
+        )
       }
-
-      //      val ttySizeAddr = symbolLookup.find("ioctl").getOrNull()
-      //      val ttySizeDesc = FunctionDescriptor.of(
-      //        ValueLayout.JAVA_INT,
-      //        ValueLayout.JAVA_INT,
-      //        ValueLayout.JAVA_LONG
-      //      )
-      //      val ttySize = Linker.nativeLinker().downcallHandle(ttySizeAddr, ttySizeDesc)
-      //      val fd = 0 // stdin
-      //      val buf = MemorySegment.allocateNative(8, SegmentScope.auto())
-      //      buf.setI64(0, 0)
-      //      val result = ttySize.invokeExact(fd, 0x40087468, buf.address())
-      //      println("ioctl($fd, TIOCGWINSZ, $buf) = $result")
-      //      println("ioctl($fd, TIOCGWINSZ, $buf) = ${buf.getI32(0)}")
-      //      println("ioctl($fd, TIOCGWINSZ, $buf) = ${buf.getI32(4)}")
     }
   }
 
   private fun strlen(str: String) {
     Arena.openConfined().use { offHeap ->
       // Function pointer with zero size.
-      val strlenAddr = symbolLookup.find("strlen").getOrNull()
+      val strlenAddr = SYMBOL_LOOKUP.findOrNull("strlen")
       val strlenDescriptor = FunctionDescriptor.of(ValueLayout.JAVA_LONG, ValueLayout.JAVA_LONG)
-      val strlen = Linker.nativeLinker().downcallHandle(strlenAddr, strlenDescriptor)
+      val strlen = LINKER.downcallHandle(strlenAddr, strlenDescriptor)
 
-      val data = offHeap.allocateUtf8String(str)
-      val data1 = MemorySegment.allocateNative(str.length.toLong() + 1, offHeap.scope())
-      data1.setUtf8String(0, str)
-
-      val strlenResult = strlen.invokeExact(data.address()) as Long
+      val cString = offHeap.allocateUtf8String(str)
+      val strlenResult = strlen.invokeExact(cString.address()) as Long
       println("""strlen("$str") = $strlenResult""")
     }
   }
 
   private fun currTime() {
     // Print the current time.
-    val timeAddr = symbolLookup.find("time").getOrNull()
+    val timeAddr = SYMBOL_LOOKUP.findOrNull("time")
     val timeDesc = FunctionDescriptor.of(ValueLayout.JAVA_LONG)
-    val time = Linker.nativeLinker().downcallHandle(timeAddr, timeDesc)
+    val time = LINKER.downcallHandle(timeAddr, timeDesc)
     val timeResult = time.invokeExact() as Long
     println("time() = $timeResult epochSecond")
   }
 
   private fun getPid() {
-    val getpidAddr = symbolLookup.find("getpid").getOrNull()
+    val getpidAddr = SYMBOL_LOOKUP.findOrNull("getpid")
     val getpidDesc = FunctionDescriptor.of(ValueLayout.JAVA_INT)
-    val getpid = Linker.nativeLinker().downcallHandle(getpidAddr, getpidDesc)
+    val getpid = LINKER.downcallHandle(getpidAddr, getpidDesc)
     val pid = getpid.invokeExact() as Int
     assert(pid.toLong() == ProcessHandle.current().pid())
     println("getpid() = $pid")
@@ -109,6 +103,69 @@ object FFMApi {
     val offHeap = MemorySegment.allocateNative(8, SegmentScope.auto())
     assert(onHeap.isNative.not())
     assert(offHeap.isNative)
+  }
+
+  /**
+   * Allocate memory for two doubles and initialize it.
+   *
+   * ```c
+   *  Struct Point2D {
+   *    double x;
+   *    double y;
+   *  } point = { 1.0, 2.0 };
+   * ```
+   */
+  private fun memoryAPIs() {
+    Arena.openConfined().use { arena ->
+      val point = arena.allocate(8 * 2)
+      point.set(ValueLayout.JAVA_DOUBLE, 0, 1.0)
+      point.set(ValueLayout.JAVA_DOUBLE, 8, 2.0)
+      println("Point Struct = $point")
+      println(
+          """Struct {
+          |  x = ${point.get(ValueLayout.JAVA_DOUBLE, 0)} ,
+          |  y = ${point.get(ValueLayout.JAVA_DOUBLE, 8)}
+          |}
+         """
+              .trimMargin(),
+      )
+    }
+
+    val point2D =
+        MemoryLayout.structLayout(
+                ValueLayout.JAVA_DOUBLE.withName("x"),
+                ValueLayout.JAVA_DOUBLE.withName("y"),
+            )
+            .withName("Point2D")
+
+    // VarHandle accessors for the struct fields
+    val x = point2D.varHandle(PathElement.groupElement("x"))
+    val y = point2D.varHandle(PathElement.groupElement("y"))
+
+    Arena.openConfined().use { arena ->
+      // val seg = MemorySegment.allocateNative(8,arena.scope())
+      val point = arena.allocate(point2D)
+      x.set(point, 1.0)
+      y.set(point, 2.0)
+      println("Point2D segment = $point")
+      println(
+          """Point2D {
+          |  x = ${x.get(point)} ,
+          |  y = ${y.get(point)}
+          |}"""
+              .trimMargin(),
+      )
+    }
+
+    // Allocate an off-heap region of memory big enough to hold 10 values of the primitive type int,
+    // and fill it with values ranging from 0 to 9
+    Arena.openConfined().use { arena ->
+      val count = 10
+      val segment = arena.allocate(count * ValueLayout.JAVA_INT.byteSize())
+      for (i in 0..count - 1) {
+        segment.setAtIndex(ValueLayout.JAVA_INT, i.toLong(), i)
+      }
+    }
   }
 
   private fun stdLibC() {
@@ -254,64 +311,12 @@ object FFMApi {
             "vprintf",
             "vsprintf",
             "wcstombs",
-            "wctomb")
+            "wctomb",
+        )
         .forEachIndexed { idx, func ->
-          val addr = symbolLookup.find(func).getOrNull()
+          val addr = SYMBOL_LOOKUP.findOrNull(func)
           println("${idx + 1}) $func address = ${addr?.address()}")
         }
-  }
-
-  /**
-   * Allocate memory for two doubles and initialize it.
-   *
-   * ```c
-   *  Struct Point2D {
-   *    double x;
-   *    double y;
-   *  } point = { 1.0, 2.0 };
-   * ```
-   */
-  private fun memoryAPIs() {
-    Arena.openConfined().use { arena ->
-      val point = arena.allocate(8 * 2)
-      point.set(ValueLayout.JAVA_DOUBLE, 0, 1.0)
-      point.set(ValueLayout.JAVA_DOUBLE, 8, 2.0)
-      println("Point Struct = $point")
-      println(
-          """Struct {
-          |  x = ${point.get(ValueLayout.JAVA_DOUBLE, 0)} ,
-          |  y = ${point.get(ValueLayout.JAVA_DOUBLE, 8)}
-          |}
-         """
-              .trimMargin(),
-      )
-    }
-
-    val point2D =
-        MemoryLayout.structLayout(
-                ValueLayout.JAVA_DOUBLE.withName("x"),
-                ValueLayout.JAVA_DOUBLE.withName("y"),
-            )
-            .withName("Point2D")
-
-    // VarHandle accessors for the struct fields
-    val x = point2D.varHandle(PathElement.groupElement("x"))
-    val y = point2D.varHandle(PathElement.groupElement("y"))
-
-    Arena.openConfined().use { arena ->
-      // val seg = MemorySegment.allocateNative(8,arena.scope())
-      val point = arena.allocate(point2D)
-      x.set(point, 1.0)
-      y.set(point, 2.0)
-      println("Point2D segment = $point")
-      println(
-          """Point2D {
-          |  x = ${x.get(point)} ,
-          |  y = ${y.get(point)}
-          |}"""
-              .trimMargin(),
-      )
-    }
   }
 }
 
