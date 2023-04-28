@@ -5,6 +5,10 @@
     * [1. Flight Recorder](#1-flight-recorder)
     * [2. Java Mission Control](#2-java-mission-control)
     * [3. Visualization](#3-visualization)
+      * [Generate FlameGraph of java threads](#generate-flamegraph-of-java-threads)
+      * [JFR to FlameGraph](#jfr-to-flamegraph)
+      * [CPU/Memory usage of a process](#cpumemory-usage-of-a-process)
+      * [Using Gnuplot](#using-gnuplot)
     * [4. Profilers & Tools](#4-profilers--tools)
     * [5. Commands](#5-commands)
     * [6.JFR Streaming](#6jfr-streaming)
@@ -49,34 +53,65 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 
 ### 3. Visualization
 
-* [Jfr2Flame Converter](https://github.com/jvm-profiling-tools/async-profiler/releases/latest/download/converter.jar)
-* [D3 Flame Graph ](https://github.com/spiermar/d3-flame-graph)
+#### Generate FlameGraph of java threads
 
-### 4. Profilers & Tools
+  ```bash
+  $ wget https://raw.githubusercontent.com/brendangregg/FlameGraph/master/flamegraph.pl
+  $ wget https://raw.githubusercontent.com/brendangregg/FlameGraph/master/stackcollapse-jstack.pl
+  $ chmod +x *.pl
 
-- [OpenJDK Mission Control](https://github.com/openjdk/jmc)
+  # Run multiple times to get more samples
+  $ jcmd GradleDaemon Thread.print >> jcmd.tdump
+  $ stackcollapse-jstack.pl jcmd.tdump > jcmd.tdump.folded
+  $ flamegraph.pl --color=io --title "Thread Dump" --countname "Samples" --width 1080 jcmd.tdump.folded > jcmd.tdump.svg
+  ```
 
-- [VisualVM](https://visualvm.github.io/)
-
-- [JVM-Profiling-Tools](https://github.com/jvm-profiling-tools)
-
-* [Async Profiler](https://github.com/jvm-profiling-tools/async-profiler)
-
-* [Perf-map Agent](https://github.com/jvm-profiling-tools/perf-map-agent)
-
-* [JFR to Flame Graph Converter](https://github.com/jvm-profiling-tools/async-profiler/tree/master/src/converter)
+#### JFR to FlameGraph
 
   ```bash
   # Download the latest release from Github
-  $ LOCATION=$(curl -s https://api.github.com/repos/jvm-profiling-tools/async-profiler/releases/latest \
+  $ LOCATION=$(curl -sL https://api.github.com/repos/jvm-profiling-tools/async-profiler/releases/latest \
       | grep -i "browser_download_url" \
       | grep -i "converter.jar" \
       | awk '{ print $2 }' \
       | sed 's/,$//'       \
       | sed 's/"//g' )     \
       ; curl --progress-bar -L -o ${HOME}/install/tools/converter.jar ${LOCATION}
+
+  $ java -cp ${HOME}/install/tools/converter.jar \
+         jfr2flame --total --dot --lines  \
+         openjdk-playground.jfr flame.html
+  $ open flame.html
   ```
 
+#### CPU/Memory usage of a process
+
+   ```bash
+   # Using vega lite
+   $ sudo npm install -g vega-lite vega-cli
+   # Record CPU/Memory usage of a process
+   $ ./scripts/cpu-mem-viz.sh --pid <pid>
+   # Generate visualization
+   $ ./scripts/cpu-mem-viz.sh --pid <pid> -a vega
+   $ ./scripts/cpu-mem-viz.sh --pid <pid> -a gnuplot
+   $ open -a "Google Chrome" vega-lite-<pid>.svg
+   ```
+
+#### [Using Gnuplot](https://blog.jakubholy.net/2018/10/17/monitoring-process-memory-cpu-usage-with-top-and-plotting-it-with-gnuplot/)
+
+- [Jfr2Flame Converter](https://github.com/jvm-profiling-tools/async-profiler/releases/latest/download/converter.jar)
+- [Flame Graph for JFR](https://github.com/mirkosertic/flight-recorder-starter/tree/master#visiting-the-interactive-flamegraph)
+- [D3 Flame Graph ](https://github.com/spiermar/d3-flame-graph)
+
+### 4. Profilers & Tools
+
+- [OpenJDK Mission Control](https://github.com/openjdk/jmc)
+- [VisualVM](https://visualvm.github.io/)
+- [JVM-Profiling-Tools](https://github.com/jvm-profiling-tools)
+
+* [Async Profiler](https://github.com/jvm-profiling-tools/async-profiler)
+* [Perf-map Agent](https://github.com/jvm-profiling-tools/perf-map-agent)
+* [JFR to Flame Graph Converter](https://github.com/jvm-profiling-tools/async-profiler/tree/master/src/converter)
 * [FlameGraph](http://www.brendangregg.com/flamegraphs.html)
 * [jconsole](https://github.com/openjdk/jdk/tree/master/src/jdk.jconsole)
 * [jmxviewer](https://github.com/ivanyu/jmxviewer)
@@ -118,21 +153,6 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
   -XX:ErrorFile=$USER_HOME/java_error_in_app_%p.log
   -XX:HeapDumpPath=$USER_HOME/java_error_in_app.hprof
   ```
-
-
-* Generate FlameGraph of java threads
-
-  ```bash
-  $ wget https://raw.githubusercontent.com/brendangregg/FlameGraph/master/flamegraph.pl
-  $ wget https://raw.githubusercontent.com/brendangregg/FlameGraph/master/stackcollapse-jstack.pl
-  $ chmod +x *.pl
-
-  # Run multiple times to get more samples
-  $ jcmd GradleDaemon Thread.print >> jcmd.tdump
-  $ stackcollapse-jstack.pl jcmd.tdump > jcmd.tdump.folded
-  $ flamegraph.pl --color=io --title "Thread Dump" --countname "Samples" --width 1080 jcmd.tdump.folded > jcmd.tdump.svg
-  ```
-
 
 * Find finalizable objects in your application
 
@@ -188,12 +208,10 @@ $ jcmd GradleDaemon VM.native_memory
 ### 9. [Unified GC Logging](https://openjdk.java.net/jeps/158#Simple-Examples:)
 
 ```bash
-$  java -Xlog:help
-```
+$ java -Xlog:help
 
-```bash
 # For G1GC
--XX:+UseG1GC
+$ java -XX:+UseG1GC
 -XX:MaxGCPauseMillis=200
 -XX:InitiatingHeapOccupancyPercent=70
 -XX:+PrintGC
@@ -202,7 +220,7 @@ $  java -Xlog:help
 -Xloggc:/log/gclogs/app-gc.log
 -XX:+UseGCLogFileRotation
 -XX:NumberOfGCLogFiles=15
--XX:GCLogFileSize=10M
+-XX:GCLogFileSize=10M ...
 ```
 
 ### 10. JVM Tools
@@ -236,12 +254,7 @@ $  java -Xlog:help
     - https://sarcharts.tuxfamily.org/
     - https://www.cyberciti.biz/tips/top-linux-monitoring-tools.html
 
-
 * [Node Exporter](https://prometheus.io/docs/guides/node-exporter/)
-
-    - https://github.com/prometheus/node_exporter#docker
-
-
 * [Prometheus JFR Exporter](https://github.com/rh-jmc-team/prometheus-jfr-exporter)
 
 ### 12. Commands
@@ -260,14 +273,12 @@ $  java -Xlog:help
   $ rsync -Pavze ssh remote-system:path/to/src path/to/dst
   ```
 
-
 * Strace
 
   ```bash
   # Syscall trace
   $ strace -tttTf -p <pid>
   ```
-
 
 * Netstat
 
