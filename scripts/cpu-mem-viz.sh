@@ -104,7 +104,12 @@ function vega_lite() {
     "x": {
       "field": "time",
       "type": "temporal",
-      "axis": {"title": "Time (seconds)", "format": "%H:%M:%S"}
+      "axis": {
+         "title": "Time (seconds)",
+         "format": "%H:%M:%S",
+         "grid": true,
+         "gridDash": [2, 2]
+      }
     },
     "color": {
       "field": "process",
@@ -124,7 +129,9 @@ function vega_lite() {
           "type": "quantitative",
           "title": "CPU Usage (%)",
           "axis": {
-            "titleColor": "#6fbf98"
+            "titleColor": "#6fbf98",
+            "grid": true,
+            "gridDash": [2, 2]
           }
         }
       }
@@ -141,7 +148,9 @@ function vega_lite() {
           "field": "memory",
           "title": "Memory (MB)",
           "axis": {
-            "titleColor": "#ae29bd"
+            "titleColor": "#ae29bd",
+            "grid": true,
+            "gridDash": [2, 2]
           }
         }
       }
@@ -192,9 +201,12 @@ function vega_lite() {
 }
 END
   )
+
   echo "${vega_lite_spec}" >vega-lite-spec.json
   # sudo npm install -g vega-lite vega-cli
-  vl2svg -s 1.2 -l debug vega-lite-spec.json "vega-lite-${pid}.svg"
+  viz_file="vega-lite-${pid}.svg"
+  vl2svg -s 1.2 -l debug vega-lite-spec.json "$viz_file"
+  echo "Vega-lite visualization file: $viz_file"
 }
 
 function gnuplot_viz() {
@@ -222,8 +234,6 @@ set y2label "Memory Usage (MB)"
 set y2range [0:*]
 # Set the y2-axis ticks to be on the right side
 set y2tics nomirror
-# Set the y2-axis format to display values in MB
-set y2format "%.0fMB"
 
 set key outside right top
 set grid
@@ -239,10 +249,9 @@ END
   )
 
   echo "$gnuplot_commands" | gnuplot
-  echo "Done!"
+  echo "Gnuplot visualization file: gnuplot-${pid}.svg"
 }
 
-# record
 case "$action" in
 vega*)
   vega_lite

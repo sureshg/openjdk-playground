@@ -8,7 +8,6 @@
       * [Generate FlameGraph of java threads](#generate-flamegraph-of-java-threads)
       * [JFR to FlameGraph](#jfr-to-flamegraph)
       * [CPU/Memory usage of a process](#cpumemory-usage-of-a-process)
-      * [Using Gnuplot](#using-gnuplot)
     * [4. Profilers & Tools](#4-profilers--tools)
     * [5. Commands](#5-commands)
     * [6.JFR Streaming](#6jfr-streaming)
@@ -86,22 +85,28 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 
 #### CPU/Memory usage of a process
 
+[Script](https://github.com/sureshg/openjdk-playground/blob/main/scripts/cpu-mem-viz.sh)
+
    ```bash
-   # Using vega lite
-   $ sudo npm install -g vega-lite vega-cli
+   # Download the script
+   $ wget https://github.com/sureshg/openjdk-playground/raw/main/scripts/cpu-mem-viz.sh
    # Record CPU/Memory usage of a process
    $ ./scripts/cpu-mem-viz.sh --pid <pid>
-   # Generate visualization
-   $ ./scripts/cpu-mem-viz.sh --pid <pid> -a vega
+
+   # Generate visualization using gunplot
    $ ./scripts/cpu-mem-viz.sh --pid <pid> -a gnuplot
+   $ open -a "Google Chrome" gnuplot-<pid>.svg
+
+   # Generate visualization using vega-lite
+   $ sudo npm install -g vega-lite vega-cli
+   $ ./scripts/cpu-mem-viz.sh --pid <pid> -a vega
    $ open -a "Google Chrome" vega-lite-<pid>.svg
    ```
-
-#### [Using Gnuplot](https://blog.jakubholy.net/2018/10/17/monitoring-process-memory-cpu-usage-with-top-and-plotting-it-with-gnuplot/)
 
 - [Jfr2Flame Converter](https://github.com/jvm-profiling-tools/async-profiler/releases/latest/download/converter.jar)
 - [Flame Graph for JFR](https://github.com/mirkosertic/flight-recorder-starter/tree/master#visiting-the-interactive-flamegraph)
 - [D3 Flame Graph ](https://github.com/spiermar/d3-flame-graph)
+- [Using Gnuplot](https://blog.jakubholy.net/2018/10/17/monitoring-process-memory-cpu-usage-with-top-and-plotting-it-with-gnuplot/)
 
 ### 4. Profilers & Tools
 
