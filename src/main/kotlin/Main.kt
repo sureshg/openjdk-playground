@@ -31,8 +31,10 @@ fun String.hmacSha256(secret: String): String {
  */
 sealed class Result<out T> {
   data class Success<T : Any>(val data: T) : Result<T>()
+
   sealed class Error(val exec: Exception) : Result<Nothing>() {
     class RecException(val e: Exception) : Error(e)
+
     class NonRecException(val e: Exception) : Error(e)
   }
 

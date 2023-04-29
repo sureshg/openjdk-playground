@@ -5,9 +5,10 @@
     * [1. Flight Recorder](#1-flight-recorder)
     * [2. Java Mission Control](#2-java-mission-control)
     * [3. Visualization](#3-visualization)
-      * [Generate FlameGraph of java threads](#generate-flamegraph-of-java-threads)
+      * [FlameGraph of java threads](#flamegraph-of-java-threads)
       * [JFR to FlameGraph](#jfr-to-flamegraph)
-      * [CPU/Memory usage of a process](#cpumemory-usage-of-a-process)
+      * [CPU/Memory Viz of a process](#cpumemory-viz-of-a-process)
+      * [Misc Tools](#misc-tools)
     * [4. Profilers & Tools](#4-profilers--tools)
     * [5. Commands](#5-commands)
     * [6.JFR Streaming](#6jfr-streaming)
@@ -52,11 +53,11 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 
 ### 3. Visualization
 
-#### Generate FlameGraph of java threads
+#### FlameGraph of java threads
 
   ```bash
-  $ wget https://raw.githubusercontent.com/brendangregg/FlameGraph/master/flamegraph.pl
-  $ wget https://raw.githubusercontent.com/brendangregg/FlameGraph/master/stackcollapse-jstack.pl
+  $ wget https://github.com/brendangregg/FlameGraph/raw/master/flamegraph.pl
+  $ wget https://github.com/brendangregg/FlameGraph/raw/master/stackcollapse-jstack.pl
   $ chmod +x *.pl
 
   # Run multiple times to get more samples
@@ -83,7 +84,7 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
   $ open flame.html
   ```
 
-#### CPU/Memory usage of a process
+#### CPU/Memory Viz of a process
 
 [Script](https://github.com/sureshg/openjdk-playground/blob/main/scripts/cpu-mem-viz.sh)
 
@@ -101,6 +102,18 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
    $ sudo npm install -g vega-lite vega-cli
    $ ./scripts/cpu-mem-viz.sh --pid <pid> -a vega
    $ open -a "Google Chrome" vega-lite-<pid>.svg
+   ```
+
+#### Misc Tools
+
+   ```bash
+   # Using htop
+   $  htop -p $(pgrep -f idea)
+
+   # Using psrecord
+   $ pip install matplotlib psrecord
+   $ psrecord $(pgrep -f idea) --plot plot.png --log activity.txt --include-children --duration 5
+   $ open plot.png
    ```
 
 - [Jfr2Flame Converter](https://github.com/jvm-profiling-tools/async-profiler/releases/latest/download/converter.jar)

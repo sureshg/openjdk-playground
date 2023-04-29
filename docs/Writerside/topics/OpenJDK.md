@@ -941,6 +941,15 @@ export JAVA_HOME_11_X64=/home/opc/.sdkman/candidates/java/11.0.11.hs-adpt
 $ sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 ```
 
+* Open Ports
+
+  ```bash
+    # Networking > Virtual cloud networks > Security List > Add Ingress Rules (open tcp/8080)
+   $ firewall-cmd  --permanent --zone=public --add-port=8080/tcp
+   $ firewall-cmd  --reload
+   $ http://ip:8080
+  ```
+
 ### Native-Image
 
 ```xml

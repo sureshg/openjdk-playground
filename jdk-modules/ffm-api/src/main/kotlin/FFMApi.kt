@@ -28,7 +28,7 @@ object FFMApi {
   fun run() {
     println("----- Project Panama -----")
     memoryAPIs()
-    downCalls()
+    // downCalls()
     // stdLibC()
     // terminal()
   }

@@ -18,6 +18,8 @@ class VirtualThreadPool : ThreadPool {
   }
 
   override fun getThreads() = Int.MAX_VALUE
+
   override fun getIdleThreads() = Int.MAX_VALUE
+
   override fun isLowOnThreads() = false
 }
