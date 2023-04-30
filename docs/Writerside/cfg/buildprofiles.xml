@@ -8,10 +8,14 @@
         <sideblocks>true</sideblocks>
         <web-root>https://suresh.dev/openjdk-playground/lp</web-root>
         <header-logo>header-logo.png</header-logo>
-        <download-page/>
+        <search-scope/>
+        <download-title>suresh.dev</download-title>
+        <download-page>https://suresh.dev</download-page>
+        <showDownloadButton>true</showDownloadButton>
         <feedback-widget>true</feedback-widget>
         <feedback-support>null</feedback-support>
         <generate-sitemap-url-prefix>https://suresh.dev/openjdk-playground/lp</generate-sitemap-url-prefix>
+        <og-twitter>@sur3shg</og-twitter>
     </variables>
 
     <build-profile instance="openjdk-playground">
