@@ -23,7 +23,7 @@ echo "Using OS: $os"
 download_url=$(curl -sSL "https://jdk.java.net/jextract/" | grep -m1 -Eioh "https:.*$os-.*.(tar.gz|zip)")
 download_file="${download_url##*/}"
 
-install_dir="$HOME/install/openjdk"
+install_dir=${1:-"$HOME/install/openjdk"}
 jextract_dir="jextract"
 
 # Download the jextract EA build

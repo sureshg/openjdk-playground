@@ -115,6 +115,12 @@ jobs:
           cache: 'gradle'
           # settings-path: ${{ github.workspace }} # OR $GITHUB_WORKSPACE
 
+      - name: ⛵️Install jextract tool
+        if: ${{ false }}
+        run: |
+          ./scripts/jextract.sh /tmp
+          echo "/tmp/jextract/bin" >> $GITHUB_PATH
+
       - name: 🧰 Export Gradle Properties
         if: ${{ false }}
         id: gradle-properties
