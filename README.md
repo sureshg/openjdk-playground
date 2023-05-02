@@ -142,6 +142,18 @@ $ ./gradlew -q javaToolchains
 
 </details>
 
+### Dependency Diagram
+```mermaid
+%%{
+  init: {
+    'theme': 'neutral'
+  }
+}%%
+
+graph LR
+
+
+```
 ##### Resources
 
 * [Maven Deps Tree](https://github.com/SimonMarquis/Maven-Dependency-Tree)

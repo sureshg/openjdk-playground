@@ -16,6 +16,7 @@ plugins {
   id("com.github.ben-manes.versions")
   id("com.github.johnrengelman.shadow")
   id("org.jetbrains.dokka")
+  id("dev.iurysouza.modulegraph")
   // id("com.autonomousapps.dependency-analysis")
   // id("org.openrewrite.rewrite")
   // id("de.benediktritter.maven-plugin-development")
@@ -64,6 +65,11 @@ spotless {
     indentWithSpaces(2)
     endWithNewline()
   }
+}
+
+moduleGraphConfig {
+  readmePath = "$projectDir/README.md"
+  heading = "### Dependency Diagram"
 }
 
 // dependencyAnalysis { issues { all { onAny { severity("warn") } } } }
