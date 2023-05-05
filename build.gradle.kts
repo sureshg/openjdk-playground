@@ -46,6 +46,7 @@ application {
           "-Xmx96M",
           "-XX:+PrintCommandLineFlags",
           "-XX:+UseZGC",
+          // "-XX:+ZGenerational",
           // os+thread,gc+heap=trace,
           """-Xlog:cds,safepoint,gc*:
               |file="$tmp$name-gc-%p-%t.log":
@@ -121,6 +122,7 @@ application {
           // "-Dhttp.maxConnections=5",
           // "-Djava.security.manager=allow",
           // "-Dfile.encoding=COMPAT", // uses '-Dnative.encoding'
+          // "-Djdbc.drivers=org.postgresql.Driver",
           // "-Djava.io.tmpdir=/var/data/tmp",
           // "-Djava.locale.providers=COMPAT,CLDR",
           // "-Djdk.lang.Process.launchMechanism=vfork",

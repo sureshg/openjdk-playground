@@ -35,7 +35,7 @@ $ actionlint
 $ java -jar \
        --enable-preview \
        --add-modules=jdk.incubator.concurrent \
-       -XX:+UseZGC \
+       -XX:+UseZGC -XX:+ZGenerational \
        build/libs/openjdk-playground-*-uber.jar
 
 # Show all pinned virtual threads
@@ -55,10 +55,10 @@ $ docker run \
         -it \
         --rm \
         --pull always \
-        --volume "$(PWD)":/app \
         --workdir /app \
         --publish 8000:8000 \
         --name openjdk-playground \
+        --mount type=bind,source=$(pwd),destination=/app,readonly \
         openjdk:21-slim /bin/bash -c "./build/openjdk-playground && printenv && jwebserver -b 0.0.0.0 -p 8000 -d /"
 
 # Download the JFR files

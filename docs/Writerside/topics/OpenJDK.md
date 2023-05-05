@@ -172,6 +172,9 @@ $ jdeps --ignore-missing-deps --print-module-deps  app.jar
 # List all service providers
 $ jlink --suggest-providers java.security.Provider
 
+# List all jlink plugins
+$ jlink --list-plugins
+
 # Generate module-info
 $ jdeps --generate-module-info ./  app.jar
 
