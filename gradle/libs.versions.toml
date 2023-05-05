@@ -10,6 +10,7 @@ gradle                         = "8.1.1"
 java-vendor                    = "Oracle"
 java-jvmArguments              = "--enable-preview"
 java-addModules                = "jdk.incubator.concurrent,jdk.incubator.vector"
+# java-addModules              = "ALL-DEFAULT, ALL-SYSTEM or ALL-MODULE-PATH"
 
 # Additional metadata
 group                          = "dev.suresh"

@@ -82,7 +82,6 @@ application {
           "-XX:+EnableDynamicAgentLoading",
           "-XX:+LogVMOutput",
           "-XX:LogFile=$tmp$name-jvm.log",
-          "-XX:NativeMemoryTracking=detail",
           "-XX:+ShowHiddenFrames",
           "-Djava.awt.headless=true",
           "-Djdk.attach.allowAttachSelf=true",
@@ -93,6 +92,7 @@ application {
           "-Djdk.includeInExceptions=hostInfo,jar",
           "-Dkotlinx.coroutines.debug",
           "-ea",
+          // "-XX:NativeMemoryTracking=detail",
           // "--show-module-resolution",
           // "-XX:+AutoCreateSharedArchive",
           // "-XX:SharedArchiveFile=$tmp/$name.jsa"
