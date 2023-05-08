@@ -2,6 +2,20 @@
 
 Execute this [script](../../scripts/jextract.sh)
 
+### Build Jextract
+
+```bash
+$ git clone https://github.com/openjdk/jextract.git
+$ cd jextract
+$ git checkout panama
+$ sdk u java 20.0.1-zulu
+$ chmod +x gradlew
+$ ./gradlew -Pjdk21_home="/Users/sgopal1/.sdkman/candidates/java/openjdk-ea-21" \
+            -Pllvm_home="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr" \
+            clean verify
+$ mv build/jextract ~/install/openjdk
+```
+
 ### Generate Java Bindings
 
 #### LibC
@@ -27,19 +41,6 @@ $ jextract --library libbinaryen \
            --header-class-name Binaryen \
            --source \
            binaryen/include/binaryen-c.h
-
-$ tree dev | more
-dev
-└── suresh
-    └── binaryen
-        ├── Binaryen.java
-        ├── BinaryenBufferSizes.java
-        ├── BinaryenLiteral.java
-        ├── BinaryenModuleAllocateAndWriteResult.java
-        ├── Binaryen_1.java
-        ├── Constants$root.java
-        ├── RuntimeHelper.java
-        ...
 ```
 
 * [Jextract Samples](https://github.com/openjdk/jextract/tree/master/samples)

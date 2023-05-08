@@ -11,6 +11,7 @@ import java.lang.foreign.SymbolLookup
 import java.lang.foreign.ValueLayout
 import java.time.Instant
 import kotlin.jvm.optionals.getOrNull
+import org.unix.Linux
 
 val LINKER: Linker = Linker.nativeLinker()
 
@@ -29,7 +30,7 @@ object FFMApi {
     println("----- Project Panama -----")
     memoryAPIs()
     downCalls()
-    // terminal()
+    terminal()
   }
 
   private fun downCalls() {
@@ -146,30 +147,46 @@ object FFMApi {
     }
   }
 
-  //  private fun terminal() {
-  //    if (System.getProperty("os.name").contains("win", ignoreCase = true).not()) {
-  //      Arena.ofConfined().use { arena ->
-  //        val winAddr = winsize.allocate(arena)
-  //        val ttyAddr = ttysize.allocate(arena)
-  //        Linux.ioctl(Linux.STDIN_FILENO(), Linux.TIOCGWINSZ(), winAddr.address())
-  //        Linux.ioctl(Linux.STDIN_FILENO(), Linux.TIOCGWINSZ(), ttyAddr.address())
-  //        println(
-  //            """WinSize {
-  //               | ws_col: ${winsize.`ws_col$get`(winAddr)},
-  //               | ws_row: ${winsize.`ws_row$get`(winAddr)}
-  //               |}"""
-  //                .trimMargin(),
-  //        )
-  //        println(
-  //            """TtySize {
-  //               | ts_lines: ${ttysize.`ts_lines$get`(ttyAddr)},
-  //               | ts_cols: ${ttysize.`ts_cols$get`(ttyAddr)}
-  //               |}"""
-  //                .trimMargin(),
-  //        )
-  //      }
-  //    }
-  //  }
+  private fun terminal() {
+    if (System.getProperty("os.name").contains("win", ignoreCase = true).not()) {
+
+      val w =
+          MemoryLayout.structLayout(
+                  ValueLayout.JAVA_SHORT.withName("ws_row"),
+                  ValueLayout.JAVA_SHORT.withName("ws_col"),
+                  ValueLayout.JAVA_SHORT.withName("ws_xpixel"),
+                  ValueLayout.JAVA_SHORT.withName("ws_ypixel"),
+              )
+              .withName("winsize")
+      Arena.ofConfined().use { arena ->
+        val winSeg = arena.allocate(w)
+        // val ttySeg = ttysize.allocate(arena)
+        println(Linux.isatty(Linux.STDOUT_FILENO()))
+        println(Linux.isatty(Linux.STDIN_FILENO()))
+        println(Linux.isatty(Linux.STDERR_FILENO()))
+        //        val ttyRet = Linux.ioctl(Linux.STDOUT_FILENO(), Linux.TIOCGSIZE(),
+        // ttySeg.address())
+        //        println(Linux.strerror(Linux.__error().get(Linux.errno_t, 0)).getUtf8String(0))
+        val winRet = Linux.ioctl(Linux.STDOUT_FILENO(), Linux.TIOCGWINSZ(), winSeg.address())
+        println(Linux.strerror(Linux.__error().get(Linux.errno_t, 0)).getUtf8String(0))
+        // println("ioctl() winRet=$winRet, ttyRet=$ttyRet")
+        //        println(
+        //            """WinSize {
+        //                   | ws_col: ${winsize.`ws_col$get`(winSeg)},
+        //                   | ws_row: ${winsize.`ws_row$get`(ttySeg)}
+        //                   |}"""
+        //                .trimMargin(),
+        //        )
+        //        println(
+        //            """TtySize {
+        //                   | ts_lines: ${ttysize.`ts_lines$get`(winSeg)},
+        //                   | ts_cols: ${ttysize.`ts_cols$get`(ttySeg)}
+        //                   |}"""
+        //                .trimMargin(),
+        //        )
+      }
+    }
+  }
 }
 
 fun main() {

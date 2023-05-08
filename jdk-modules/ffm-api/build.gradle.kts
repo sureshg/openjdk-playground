@@ -18,8 +18,17 @@ tasks.withType(JextractTask::class) {
         listOf(
             "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include",
             "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/ioctl.h")
-    functions = listOf("ioctl")
-    constants = listOf("TIOCGWINSZ", "STDOUT_FILENO", "STDIN_FILENO", "STDERR_FILENO")
+    //    functions = listOf("ioctl", "strerror")
+    //    variables = listOf("errno")
+    //    structs = listOf("winsize", "ttysize")
+    //    constants =
+    //        listOf(
+    //            "TIOCGWINSZ",
+    //            "TIOCGSIZE",
+    //            "STDOUT_FILENO",
+    //            "STDIN_FILENO",
+    //            "STDERR_FILENO",
+    //        )
   }
 
   enabled = project.hasProperty("enableJextract")

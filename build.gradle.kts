@@ -340,6 +340,7 @@ dependencies {
   // Included builds
   implementation(libs.module.ffm.api)
   javaagent(libs.module.jvm.agent)
+  javaagent(libs.glowroot.agent)
 
   testImplementation(platform(libs.junit.bom))
   testImplementation(libs.junit.jupiter)
