@@ -13,22 +13,22 @@ version = libs.versions.module.jdk.get()
 tasks.withType(JextractTask::class) {
   header("${project.projectDir}/src/main/c/ioctl.h") {
     targetPackage = "org.unix.gen"
-    className = "Linux"
+    className = "LibC"
     includes =
         listOf(
             "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include",
             "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/ioctl.h")
-    //    functions = listOf("ioctl", "strerror")
-    //    variables = listOf("errno")
-    //    structs = listOf("winsize", "ttysize")
-    //    constants =
-    //        listOf(
-    //            "TIOCGWINSZ",
-    //            "TIOCGSIZE",
-    //            "STDOUT_FILENO",
-    //            "STDIN_FILENO",
-    //            "STDERR_FILENO",
-    //        )
+    functions = listOf("ioctl", "strerror")
+    variables = listOf("errno", "stdin", "stdout", "stderr")
+    structs = listOf("winsize", "ttysize")
+    constants =
+        listOf(
+            "TIOCGWINSZ",
+            "TIOCGSIZE",
+            "STDOUT_FILENO",
+            "STDIN_FILENO",
+            "STDERR_FILENO",
+        )
   }
 
   enabled = project.hasProperty("enableJextract")

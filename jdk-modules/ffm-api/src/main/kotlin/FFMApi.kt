@@ -11,7 +11,6 @@ import java.lang.foreign.SymbolLookup
 import java.lang.foreign.ValueLayout
 import java.time.Instant
 import kotlin.jvm.optionals.getOrNull
-import org.unix.Linux
 
 val LINKER: Linker = Linker.nativeLinker()
 
@@ -30,7 +29,7 @@ object FFMApi {
     println("----- Project Panama -----")
     memoryAPIs()
     downCalls()
-    terminal()
+    // terminal()
   }
 
   private fun downCalls() {
@@ -149,8 +148,7 @@ object FFMApi {
 
   private fun terminal() {
     if (System.getProperty("os.name").contains("win", ignoreCase = true).not()) {
-
-      val w =
+      val winsize =
           MemoryLayout.structLayout(
                   ValueLayout.JAVA_SHORT.withName("ws_row"),
                   ValueLayout.JAVA_SHORT.withName("ws_col"),
@@ -158,32 +156,35 @@ object FFMApi {
                   ValueLayout.JAVA_SHORT.withName("ws_ypixel"),
               )
               .withName("winsize")
+
+      val wsRow = winsize.varHandle(PathElement.groupElement("ws_row"))
+      val wsCol = winsize.varHandle(PathElement.groupElement("ws_col"))
+
+      val ioctlDesc =
+          FunctionDescriptor.of(
+              ValueLayout.JAVA_INT,
+              ValueLayout.JAVA_INT,
+              ValueLayout.JAVA_LONG,
+              ValueLayout.ADDRESS.withTargetLayout(winsize))
+      val isAttyDesc = FunctionDescriptor.of(ValueLayout.JAVA_INT, ValueLayout.JAVA_INT)
+
+      val ioctlAddr = SYMBOL_LOOKUP.findOrNull("ioctl")
+      val isAttyAddr = SYMBOL_LOOKUP.findOrNull("isatty")
+      val ioctl = LINKER.downcallHandle(ioctlAddr, ioctlDesc)
+      val isAtty = LINKER.downcallHandle(isAttyAddr, isAttyDesc)
+
       Arena.ofConfined().use { arena ->
-        val winSeg = arena.allocate(w)
-        // val ttySeg = ttysize.allocate(arena)
-        println(Linux.isatty(Linux.STDOUT_FILENO()))
-        println(Linux.isatty(Linux.STDIN_FILENO()))
-        println(Linux.isatty(Linux.STDERR_FILENO()))
-        //        val ttyRet = Linux.ioctl(Linux.STDOUT_FILENO(), Linux.TIOCGSIZE(),
-        // ttySeg.address())
-        //        println(Linux.strerror(Linux.__error().get(Linux.errno_t, 0)).getUtf8String(0))
-        val winRet = Linux.ioctl(Linux.STDOUT_FILENO(), Linux.TIOCGWINSZ(), winSeg.address())
-        println(Linux.strerror(Linux.__error().get(Linux.errno_t, 0)).getUtf8String(0))
-        // println("ioctl() winRet=$winRet, ttyRet=$ttyRet")
-        //        println(
-        //            """WinSize {
-        //                   | ws_col: ${winsize.`ws_col$get`(winSeg)},
-        //                   | ws_row: ${winsize.`ws_row$get`(ttySeg)}
-        //                   |}"""
-        //                .trimMargin(),
-        //        )
-        //        println(
-        //            """TtySize {
-        //                   | ts_lines: ${ttysize.`ts_lines$get`(winSeg)},
-        //                   | ts_cols: ${ttysize.`ts_cols$get`(ttySeg)}
-        //                   |}"""
-        //                .trimMargin(),
-        //        )
+        val isTty = isAtty.invokeExact(1) as Int != 0
+        if (isTty) {
+          val winSeg = arena.allocate(winsize)
+          val winRet = ioctl.invokeExact(1, 0x40087468L, winSeg) as Int
+          println("ioctl() winRet=$winRet")
+          println(wsRow.get(winSeg))
+          println(wsCol.get(winSeg))
+          // println(Linux.strerror(Linux.__error().get(Linux.errno_t, 0)).getUtf8String(0))
+        } else {
+          println("Not a TTY")
+        }
       }
     }
   }

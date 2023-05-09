@@ -148,7 +148,7 @@ tasks {
     doLast {
       val uberJar = named("shadowJar", Jar::class).get().archiveFile.get().asFile
       println("Uber Jar : ${uberJar.path} ${uberJar.displaySize}")
-      println(appRunCmd(uberJar, application.applicationDefaultJvmArgs.toList()))
+      println(appRunCmd(uberJar, run.get().jvmArgs))
 
       GithubAction.setOutput("version", project.version)
       GithubAction.setOutput("uberjar_name", uberJar.name)
@@ -167,7 +167,8 @@ tasks {
       registering(ReallyExecJar::class) {
         val shadowJar = named("shadowJar", Jar::class) // project.tasks.shadowJar
         jarFile = shadowJar.flatMap { it.archiveFile }
-        javaOpts = application.applicationDefaultJvmArgs
+        // javaOpts = application.applicationDefaultJvmArgs
+        javaOpts = run.get().jvmArgs
         onlyIf { OperatingSystem.current().isUnix }
       }
 
