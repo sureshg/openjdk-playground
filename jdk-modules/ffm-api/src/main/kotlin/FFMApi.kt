@@ -168,34 +168,36 @@ object FFMApi {
       val isAttyFun = FunctionDescriptor.of(JAVA_INT, JAVA_INT)
 
       // For capturing the errno value
-      val ccs = Linker.Option.captureCallState("errno")
-      val csLayout = Linker.Option.captureStateLayout()
-      val errnoHandle = csLayout.varHandle(PathElement.groupElement("errno"))
+      // val ccs = Linker.Option.captureCallState("errno")
+      // val csLayout = Linker.Option.captureStateLayout()
+      // val errnoHandle = csLayout.varHandle(PathElement.groupElement("errno"))
+      // val ioctl = downcallHandle("ioctl", ioctlFun, ccs, Linker.Option.firstVariadicArg(2))
 
-      val ioctl = downcallHandle("ioctl", ioctlFun, ccs, Linker.Option.firstVariadicArg(2))
+      val ioctl = downcallHandle("ioctl", ioctlFun, Linker.Option.firstVariadicArg(2))
       val isAtty = downcallHandle("isatty", isAttyFun)
 
       Arena.ofConfined().use { arena ->
         val isTerminal = isAtty.invokeExact(1) as Int != 0
         if (isTerminal) {
           val winSeg = arena.allocate(winsize)
-          val capturedState = arena.allocate(csLayout)
-          val winRet = ioctl.invokeExact(capturedState, 1, 0x40087468L, winSeg) as Int
+          val winRet = ioctl.invokeExact(1, 0x40087468L, winSeg) as Int
+          // val capturedState = arena.allocate(csLayout)
+          // val winRet = ioctl.invokeExact(capturedState, 1, 0x40087468L, winSeg) as Int
 
           if (winRet == -1) {
-            val errno = errnoHandle.get(capturedState) as Int
-            println("ioctl() errno: $errno")
+            // val errno = errnoHandle.get(capturedState) as Int
+            println("ioctl() error: $winRet")
           } else {
             println(
                 """
-              winsize {
-                ws_row = ${wsRow.get(winSeg)}
-                ws_col = ${wsCol.get(winSeg)}
-                ws_xpixel = ${wsXpixel.get(winSeg)}
-                ws_ypixel = ${wsYpixel.get(winSeg)}
-              }
-            """
-                    .trimIndent())
+                |winsize {
+                |  ws_row = ${wsRow.get(winSeg)}
+                |  ws_col = ${wsCol.get(winSeg)}
+                |  ws_xpixel = ${wsXpixel.get(winSeg)}
+                |  ws_ypixel = ${wsYpixel.get(winSeg)}
+                |}
+                """
+                    .trimMargin())
           }
         } else {
           println("Not a TTY")
