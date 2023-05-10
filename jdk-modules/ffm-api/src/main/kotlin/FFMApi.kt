@@ -1,6 +1,6 @@
 package dev.suresh.ffm
 
-import java.lang.foreign.AddressLayout
+import java.lang.foreign.AddressLayout.ADDRESS
 import java.lang.foreign.Arena
 import java.lang.foreign.FunctionDescriptor
 import java.lang.foreign.Linker
@@ -8,7 +8,10 @@ import java.lang.foreign.MemoryLayout
 import java.lang.foreign.MemoryLayout.PathElement
 import java.lang.foreign.MemorySegment
 import java.lang.foreign.SymbolLookup
-import java.lang.foreign.ValueLayout
+import java.lang.foreign.ValueLayout.JAVA_DOUBLE
+import java.lang.foreign.ValueLayout.JAVA_INT
+import java.lang.foreign.ValueLayout.JAVA_LONG
+import java.lang.foreign.ValueLayout.JAVA_SHORT
 import java.time.Instant
 import kotlin.jvm.optionals.getOrNull
 
@@ -29,7 +32,7 @@ object FFMApi {
     println("----- Project Panama -----")
     memoryAPIs()
     downCalls()
-    // terminal()
+    terminal()
   }
 
   private fun downCalls() {
@@ -41,7 +44,7 @@ object FFMApi {
 
   private fun strlen(str: String) {
     val strlenAddr = SYMBOL_LOOKUP.findOrNull("strlen")
-    val strlenDescriptor = FunctionDescriptor.of(ValueLayout.JAVA_INT, AddressLayout.ADDRESS)
+    val strlenDescriptor = FunctionDescriptor.of(JAVA_INT, ADDRESS)
     val strlen = LINKER.downcallHandle(strlenAddr, strlenDescriptor)
     Arena.ofConfined().use { arena ->
       val cString = arena.allocateUtf8String(str)
@@ -53,7 +56,7 @@ object FFMApi {
   private fun currTime() {
     // Print the current time.
     val timeAddr = SYMBOL_LOOKUP.findOrNull("time")
-    val timeDesc = FunctionDescriptor.of(ValueLayout.JAVA_LONG)
+    val timeDesc = FunctionDescriptor.of(JAVA_LONG)
     val time = LINKER.downcallHandle(timeAddr, timeDesc)
     val timeResult = time.invokeExact() as Long
     println("time() = $timeResult epochSecond")
@@ -61,14 +64,12 @@ object FFMApi {
 
   private fun gmtime() {
     val gmtAddr = SYMBOL_LOOKUP.findOrNull("gmtime")
-    val gmtDesc =
-        FunctionDescriptor.of(
-            AddressLayout.ADDRESS.withTargetLayout(TM.LAYOUT), ValueLayout.ADDRESS)
+    val gmtDesc = FunctionDescriptor.of(ADDRESS.withTargetLayout(TM.LAYOUT), ADDRESS)
     val gmtime = LINKER.downcallHandle(gmtAddr, gmtDesc)
 
     Arena.ofConfined().use { arena ->
-      val time = arena.allocate(ValueLayout.JAVA_LONG.bitSize())
-      time.set(ValueLayout.JAVA_LONG, 0, Instant.now().epochSecond)
+      val time = arena.allocate(JAVA_LONG.bitSize())
+      time.set(JAVA_LONG, 0, Instant.now().epochSecond)
       val tmSegment = gmtime.invokeExact(time) as MemorySegment
       println("gmtime() = ${TM(tmSegment)}")
     }
@@ -76,7 +77,7 @@ object FFMApi {
 
   private fun getPid() {
     val getpidAddr = SYMBOL_LOOKUP.findOrNull("getpid")
-    val getpidDesc = FunctionDescriptor.of(ValueLayout.JAVA_INT)
+    val getpidDesc = FunctionDescriptor.of(JAVA_INT)
     val getpid = LINKER.downcallHandle(getpidAddr, getpidDesc)
     val pid = getpid.invokeExact() as Int
     assert(pid.toLong() == ProcessHandle.current().pid())
@@ -95,14 +96,14 @@ object FFMApi {
    */
   private fun memoryAPIs() {
     Arena.ofConfined().use { arena ->
-      val point = arena.allocate(ValueLayout.JAVA_DOUBLE.bitSize() * 2)
-      point.set(ValueLayout.JAVA_DOUBLE, 0, 1.0)
-      point.set(ValueLayout.JAVA_DOUBLE, 8, 2.0)
+      val point = arena.allocate(JAVA_DOUBLE.bitSize() * 2)
+      point.set(JAVA_DOUBLE, 0, 1.0)
+      point.set(JAVA_DOUBLE, 8, 2.0)
       println("Point Struct = $point")
       println(
           """Struct {
-          |  x = ${point.get(ValueLayout.JAVA_DOUBLE, 0)} ,
-          |  y = ${point.get(ValueLayout.JAVA_DOUBLE, 8)}
+          |  x = ${point.get(JAVA_DOUBLE, 0)} ,
+          |  y = ${point.get(JAVA_DOUBLE, 8)}
           |}
          """
               .trimMargin(),
@@ -111,8 +112,8 @@ object FFMApi {
 
     val point2D =
         MemoryLayout.structLayout(
-                ValueLayout.JAVA_DOUBLE.withName("x"),
-                ValueLayout.JAVA_DOUBLE.withName("y"),
+                JAVA_DOUBLE.withName("x"),
+                JAVA_DOUBLE.withName("y"),
             )
             .withName("Point2D")
 
@@ -139,9 +140,9 @@ object FFMApi {
     // and fill it with values ranging from 0 to 9
     Arena.ofConfined().use { arena ->
       val count = 10
-      val segment = arena.allocate(count * ValueLayout.JAVA_INT.byteSize())
+      val segment = arena.allocate(count * JAVA_INT.byteSize())
       for (i in 0..count - 1) {
-        segment.setAtIndex(ValueLayout.JAVA_INT, i.toLong(), i)
+        segment.setAtIndex(JAVA_INT, i.toLong(), i)
       }
     }
   }
@@ -150,44 +151,64 @@ object FFMApi {
     if (System.getProperty("os.name").contains("win", ignoreCase = true).not()) {
       val winsize =
           MemoryLayout.structLayout(
-                  ValueLayout.JAVA_SHORT.withName("ws_row"),
-                  ValueLayout.JAVA_SHORT.withName("ws_col"),
-                  ValueLayout.JAVA_SHORT.withName("ws_xpixel"),
-                  ValueLayout.JAVA_SHORT.withName("ws_ypixel"),
+                  JAVA_SHORT.withName("ws_row"),
+                  JAVA_SHORT.withName("ws_col"),
+                  JAVA_SHORT.withName("ws_xpixel"),
+                  JAVA_SHORT.withName("ws_ypixel"),
               )
               .withName("winsize")
 
       val wsRow = winsize.varHandle(PathElement.groupElement("ws_row"))
       val wsCol = winsize.varHandle(PathElement.groupElement("ws_col"))
+      val wsXpixel = winsize.varHandle(PathElement.groupElement("ws_xpixel"))
+      val wsYpixel = winsize.varHandle(PathElement.groupElement("ws_ypixel"))
 
-      val ioctlDesc =
-          FunctionDescriptor.of(
-              ValueLayout.JAVA_INT,
-              ValueLayout.JAVA_INT,
-              ValueLayout.JAVA_LONG,
-              ValueLayout.ADDRESS.withTargetLayout(winsize))
-      val isAttyDesc = FunctionDescriptor.of(ValueLayout.JAVA_INT, ValueLayout.JAVA_INT)
+      val ioctlFun =
+          FunctionDescriptor.of(JAVA_INT, JAVA_INT, JAVA_LONG, ADDRESS.withTargetLayout(winsize))
+      val isAttyFun = FunctionDescriptor.of(JAVA_INT, JAVA_INT)
 
-      val ioctlAddr = SYMBOL_LOOKUP.findOrNull("ioctl")
-      val isAttyAddr = SYMBOL_LOOKUP.findOrNull("isatty")
-      val ioctl = LINKER.downcallHandle(ioctlAddr, ioctlDesc)
-      val isAtty = LINKER.downcallHandle(isAttyAddr, isAttyDesc)
+      // For capturing the errno value
+      val ccs = Linker.Option.captureCallState("errno")
+      val csLayout = Linker.Option.captureStateLayout()
+      val errnoHandle = csLayout.varHandle(PathElement.groupElement("errno"))
+
+      val ioctl = downcallHandle("ioctl", ioctlFun, ccs, Linker.Option.firstVariadicArg(2))
+      val isAtty = downcallHandle("isatty", isAttyFun)
 
       Arena.ofConfined().use { arena ->
-        val isTty = isAtty.invokeExact(1) as Int != 0
-        if (isTty) {
+        val isTerminal = isAtty.invokeExact(1) as Int != 0
+        if (isTerminal) {
           val winSeg = arena.allocate(winsize)
-          val winRet = ioctl.invokeExact(1, 0x40087468L, winSeg) as Int
-          println("ioctl() winRet=$winRet")
-          println(wsRow.get(winSeg))
-          println(wsCol.get(winSeg))
-          // println(Linux.strerror(Linux.__error().get(Linux.errno_t, 0)).getUtf8String(0))
+          val capturedState = arena.allocate(csLayout)
+          val winRet = ioctl.invokeExact(capturedState, 1, 0x40087468L, winSeg) as Int
+
+          if (winRet == -1) {
+            val errno = errnoHandle.get(capturedState) as Int
+            println("ioctl() errno: $errno")
+          } else {
+            println(
+                """
+              winsize {
+                ws_row = ${wsRow.get(winSeg)}
+                ws_col = ${wsCol.get(winSeg)}
+                ws_xpixel = ${wsXpixel.get(winSeg)}
+                ws_ypixel = ${wsYpixel.get(winSeg)}
+              }
+            """
+                    .trimIndent())
+          }
         } else {
           println("Not a TTY")
         }
       }
     }
   }
+
+  private fun downcallHandle(
+      symbol: String,
+      fdesc: FunctionDescriptor,
+      vararg options: Linker.Option
+  ) = SYMBOL_LOOKUP.find(symbol).map { LINKER.downcallHandle(it, fdesc, *options) }.orElseThrow()
 }
 
 fun main() {
