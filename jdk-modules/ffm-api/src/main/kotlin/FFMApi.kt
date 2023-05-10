@@ -31,8 +31,10 @@ object FFMApi {
   fun run() {
     println("----- Project Panama -----")
     memoryAPIs()
-    downCalls()
-    terminal()
+    if (System.getProperty("os.name").contains("mac", ignoreCase = true)) {
+      downCalls()
+      terminal()
+    }
   }
 
   private fun downCalls() {
@@ -148,46 +150,45 @@ object FFMApi {
   }
 
   private fun terminal() {
-    if (System.getProperty("os.name").contains("mac", ignoreCase = true)) {
-      val winsize =
-          MemoryLayout.structLayout(
-                  JAVA_SHORT.withName("ws_row"),
-                  JAVA_SHORT.withName("ws_col"),
-                  JAVA_SHORT.withName("ws_xpixel"),
-                  JAVA_SHORT.withName("ws_ypixel"),
-              )
-              .withName("winsize")
+    val winsize =
+        MemoryLayout.structLayout(
+                JAVA_SHORT.withName("ws_row"),
+                JAVA_SHORT.withName("ws_col"),
+                JAVA_SHORT.withName("ws_xpixel"),
+                JAVA_SHORT.withName("ws_ypixel"),
+            )
+            .withName("winsize")
 
-      val wsRow = winsize.varHandle(PathElement.groupElement("ws_row"))
-      val wsCol = winsize.varHandle(PathElement.groupElement("ws_col"))
-      val wsXpixel = winsize.varHandle(PathElement.groupElement("ws_xpixel"))
-      val wsYpixel = winsize.varHandle(PathElement.groupElement("ws_ypixel"))
+    val wsRow = winsize.varHandle(PathElement.groupElement("ws_row"))
+    val wsCol = winsize.varHandle(PathElement.groupElement("ws_col"))
+    val wsXpixel = winsize.varHandle(PathElement.groupElement("ws_xpixel"))
+    val wsYpixel = winsize.varHandle(PathElement.groupElement("ws_ypixel"))
 
-      val ioctlFun =
-          FunctionDescriptor.of(JAVA_INT, JAVA_INT, JAVA_LONG, ADDRESS.withTargetLayout(winsize))
-      val isAttyFun = FunctionDescriptor.of(JAVA_INT, JAVA_INT)
+    val ioctlFun =
+        FunctionDescriptor.of(JAVA_INT, JAVA_INT, JAVA_LONG, ADDRESS.withTargetLayout(winsize))
+    val isAttyFun = FunctionDescriptor.of(JAVA_INT, JAVA_INT)
 
-      // For capturing the errno value
-      val ccs = Linker.Option.captureCallState("errno")
-      val csLayout = Linker.Option.captureStateLayout()
-      val errnoHandle = csLayout.varHandle(PathElement.groupElement("errno"))
+    // For capturing the errno value
+    val ccs = Linker.Option.captureCallState("errno")
+    val csLayout = Linker.Option.captureStateLayout()
+    val errnoHandle = csLayout.varHandle(PathElement.groupElement("errno"))
 
-      val ioctl = downcallHandle("ioctl", ioctlFun, ccs, Linker.Option.firstVariadicArg(2))
-      val isAtty = downcallHandle("isatty", isAttyFun)
+    val ioctl = downcallHandle("ioctl", ioctlFun, ccs, Linker.Option.firstVariadicArg(2))
+    val isAtty = downcallHandle("isatty", isAttyFun)
 
-      Arena.ofConfined().use { arena ->
-        val isTerminal = isAtty.invokeExact(1) as Int != 0
-        if (isTerminal) {
-          val winSeg = arena.allocate(winsize)
-          val capturedState = arena.allocate(csLayout)
-          val winRet = ioctl.invokeExact(capturedState, 1, 0x40087468L, winSeg) as Int
+    Arena.ofConfined().use { arena ->
+      val isTerminal = isAtty.invokeExact(1) as Int != 0
+      if (isTerminal) {
+        val winSeg = arena.allocate(winsize)
+        val capturedState = arena.allocate(csLayout)
+        val winRet = ioctl.invokeExact(capturedState, 1, 0x40087468L, winSeg) as Int
 
-          if (winRet == -1) {
-            val errno = errnoHandle.get(capturedState) as Int
-            println("ioctl() errno: $errno")
-          } else {
-            println(
-                """
+        if (winRet == -1) {
+          val errno = errnoHandle.get(capturedState) as Int
+          println("ioctl() errno: $errno")
+        } else {
+          println(
+              """
                 |winsize {
                 |  ws_row = ${wsRow.get(winSeg)}
                 |  ws_col = ${wsCol.get(winSeg)}
@@ -195,11 +196,10 @@ object FFMApi {
                 |  ws_ypixel = ${wsYpixel.get(winSeg)}
                 |}
                 """
-                    .trimMargin())
-          }
-        } else {
-          println("Not a TTY")
+                  .trimMargin())
         }
+      } else {
+        println("Not a TTY")
       }
     }
   }
