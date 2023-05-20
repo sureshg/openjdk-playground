@@ -143,6 +143,7 @@ $ ./gradlew -q javaToolchains
 </details>
 
 ### Dependency Diagram
+
 ```mermaid
 %%{
   init: {

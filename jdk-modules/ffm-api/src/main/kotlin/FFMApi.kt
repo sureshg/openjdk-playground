@@ -12,6 +12,9 @@ import java.lang.foreign.ValueLayout.JAVA_DOUBLE
 import java.lang.foreign.ValueLayout.JAVA_INT
 import java.lang.foreign.ValueLayout.JAVA_LONG
 import java.lang.foreign.ValueLayout.JAVA_SHORT
+import java.lang.invoke.MethodHandle
+import java.lang.invoke.MethodHandles
+import java.lang.invoke.MethodType
 import java.time.Instant
 import kotlin.jvm.optionals.getOrNull
 
@@ -25,6 +28,13 @@ val SYMBOL_LOOKUP by lazy {
 
 fun SymbolLookup.findOrNull(name: String) = find(name).getOrNull()
 
+fun downcallHandle(symbol: String, fdesc: FunctionDescriptor, vararg options: Linker.Option) =
+    SYMBOL_LOOKUP.find(symbol).map { LINKER.downcallHandle(it, fdesc, *options) }.orElseThrow()
+
+fun main() {
+  FFMApi.run()
+}
+
 object FFMApi {
 
   @JvmStatic
@@ -35,6 +45,7 @@ object FFMApi {
       downCalls()
       terminal()
     }
+    dhReflection()
   }
 
   private fun downCalls() {
@@ -196,7 +207,8 @@ object FFMApi {
                 |  ws_ypixel = ${wsYpixel.get(winSeg)}
                 |}
                 """
-                  .trimMargin())
+                  .trimMargin(),
+          )
         }
       } else {
         println("Not a TTY")
@@ -204,13 +216,22 @@ object FFMApi {
     }
   }
 
-  private fun downcallHandle(
-      symbol: String,
-      fdesc: FunctionDescriptor,
-      vararg options: Linker.Option
-  ) = SYMBOL_LOOKUP.find(symbol).map { LINKER.downcallHandle(it, fdesc, *options) }.orElseThrow()
-}
-
-fun main() {
-  FFMApi.run()
+  /** Reflectively invoke the downcallHandle method on the Linker class. */
+  private fun dhReflection() {
+    val mh =
+        MethodHandles.lookup()
+            .findVirtual(
+                Linker::class.java,
+                "downcallHandle",
+                MethodType.methodType(
+                    MethodHandle::class.java,
+                    FunctionDescriptor::class.java,
+                    Array<Linker.Option>::class.java,
+                ),
+            )
+    val handle =
+        mh.invokeExact(LINKER, FunctionDescriptor.ofVoid(), arrayOf<Linker.Option>())
+            as MethodHandle
+    println("Got downcall handle: $handle")
+  }
 }

@@ -44,4 +44,6 @@
 * https://www.2ndquadrant.com/en/blog/what-is-select-skip-locked-for-in-postgresql-9-5/
 * https://blogg.bekk.no/high-performance-persistent-queue-using-db-scheduler-b0e9764d41ba
 * https://github.com/kagkarlsson/db-scheduler
+* [Sakila DB](https://github.com/jOOQ/sakila/tree/main/postgres-sakila-db)
+* [Chinook PostgreSql](https://github.com/lerocha/chinook-database/blob/master/ChinookDatabase/DataSources/Chinook_PostgreSql.sql)
 * [Audit Table Schema](https://gist.github.com/ooredroxoo/b92baba03c30ed87e46227fd08a25c6c)

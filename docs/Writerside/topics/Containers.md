@@ -62,7 +62,7 @@ $ docker pull azul/zulu-openjdk-alpine:20-jre
 $ docker pull azul/prime-debian:latest
 
 # Amazon Corretto
-# https://github.com/corretto/corretto-docker/tree/main/19/slim
+# https://github.com/corretto/corretto-docker/tree/main/20/slim
 $ docker pull amazoncorretto:20
 $ docker pull amazoncorretto:20-alpine-jdk
 
@@ -246,7 +246,8 @@ $ docker run -it --rm --cpus=1 --memory=1G openjdk:21-slim java -Xlog:gc --versi
   #[0.007s][info][gc] Using Serial
 ```
 
-* https://github.com/brunoborges/jvm-ergonomics (https://vimeo.com/748031919)
+* [**Stop using CPU limits on Kubernetes**](https://home.robusta.dev/blog/stop-using-cpu-limits)
+* [JVM ergonomics](https://www.youtube.com/watch?v=wApqCjHWF8Q)
 * https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 
 ### App Running on K8S/Docker

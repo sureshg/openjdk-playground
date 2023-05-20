@@ -179,9 +179,9 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
   $ jfr print --events FinalizerStatistics dump.jfr
   ```
 
-* [Troubleshoot Perf Issues Using JFR](https://docs.oracle.com/en/java/javase/18/troubleshoot/troubleshoot-performance-issues-using-jfr.html)
-* [Flight Recorder Tool](https://docs.oracle.com/en/java/javase/18/troubleshoot/diagnostic-tools.html#GUID-D38849B6-61C7-4ED6-A395-EA4BC32A9FD6)
-* [Flight Recorder API Guide](https://docs.oracle.com/en/java/javase/18/jfapi/flight-recorder-configurations.html)
+* [Troubleshoot Perf Issues Using JFR](https://docs.oracle.com/en/java/javase/20/troubleshoot/troubleshoot-performance-issues-using-jfr.html)
+* [Flight Recorder Tool](https://docs.oracle.com/en/java/javase/20/troubleshoot/diagnostic-tools.html#GUID-D38849B6-61C7-4ED6-A395-EA4BC32A9FD6)
+* [Flight Recorder API Guide](https://docs.oracle.com/en/java/javase/20/jfapi/flight-recorder-configurations.html)
 
 ### 6.JFR Streaming
 

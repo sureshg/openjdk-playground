@@ -3,7 +3,7 @@ package dev.suresh.lang
 import java.util.*
 
 /**
- * https://docs.oracle.com/en/java/javase/18/docs/api/java.base/java/lang/Character.html#unicode
+ * https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Character.html#unicode
  * https://www.unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries
  * https://docs.oracle.com/javase/tutorial/i18n/text/char.html
  */

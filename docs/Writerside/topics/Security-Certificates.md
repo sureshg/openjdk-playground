@@ -354,9 +354,9 @@ $ curl -v \
 
 ### TLS Debugging
 
-* [Debugging TLS Connection in Java](https://docs.oracle.com/en/java/javase/19/security/java-secure-socket-extension-jsse-reference-guide.html#GUID-31B7E142-B874-46E9-8DD0-4E18EC0EB2CF)
+* [Debugging TLS Connection in Java](https://docs.oracle.com/en/java/javase/20/security/java-secure-socket-extension-jsse-reference-guide.html#GUID-31B7E142-B874-46E9-8DD0-4E18EC0EB2CF)
 
-* [Java Security Guide](https://docs.oracle.com/en/java/javase/19/security/java-security-overview1.html)
+* [Java Security Guide](https://docs.oracle.com/en/java/javase/20/security/java-security-overview1.html)
 
 ```bash
 $ java -Djavax.net.debug=help MyApp

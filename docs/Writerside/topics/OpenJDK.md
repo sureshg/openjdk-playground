@@ -121,7 +121,7 @@ fi
 $ java -XX:+AutoCreateSharedArchive -XX:SharedArchiveFile=app.jsa -jar app.jar
 
 # Create default CDS archive
-$ jlink-runtime/java -Xshare:dump
+$ jlink-runtime/java -Xshare:dump [-XX:-UseCompressedOops]
 # Check if it worked, this will fail if it can't map the archive (lib/server/classes.jsa)
 $ jlink-runtime/java -Xshare:on --version
 ```
@@ -333,8 +333,8 @@ $ java -Djdk.tracePinnedThreads=short|full
 - Plugin Version Update
 
   ```bash
-  $ PLUGIN_VERSION="1.1.32.1956"
-  $ wget https://plugins.jetbrains.com/plugin/download?rel=true&updateId=228139
+  $ PLUGIN_VERSION="1.2.6.2594"
+  $ wget --content-disposition "https://plugins.jetbrains.com/plugin/download?rel=true&updateId=331908"
   $ unzip github-copilot-intellij-${PLUGIN_VERSION}.zip
   $ cd github-copilot-intellij/lib
   $ jar -tvf github-copilot-intellij-${PLUGIN_VERSION}.jar | grep plugin.xml

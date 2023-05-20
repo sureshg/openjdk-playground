@@ -46,7 +46,10 @@ application {
           "-Xmx96M",
           "-XX:+PrintCommandLineFlags",
           "-XX:+UseZGC",
-          // "-XX:+ZGenerational",
+          "-XX:+ZGenerational",
+          "-XX:+UnlockExperimentalVMOptions",
+          "-XX:LockingMode=2", // New experimental lightweight locking
+          // "-XX:+UseCompactObjectHeaders",
           // os+thread,gc+heap=trace,
           """-Xlog:cds,safepoint,gc*:
               |file="$tmp$name-gc-%p-%t.log":
@@ -79,6 +82,7 @@ application {
           "-XX:OnOutOfMemoryError='kill -9 %p'",
           "-XX:+ExitOnOutOfMemoryError",
           "-XX:+UnlockDiagnosticVMOptions",
+          "-XX:NativeMemoryTracking=detail",
           "-XX:+EnableDynamicAgentLoading",
           "-XX:+LogVMOutput",
           "-XX:LogFile=$tmp$name-jvm.log",
@@ -92,7 +96,6 @@ application {
           "-Djdk.includeInExceptions=hostInfo,jar",
           "-Dkotlinx.coroutines.debug",
           "-ea",
-          // "-XX:NativeMemoryTracking=detail",
           // "--show-module-resolution",
           // "-XX:+AutoCreateSharedArchive",
           // "-XX:SharedArchiveFile=$tmp/$name.jsa"
@@ -138,8 +141,10 @@ application {
           // "-agentlib:jdwp=transport=dt_socket,server=n,address=host:5005,suspend=y,onthrow=<FQ
           // exception class name>,onuncaught=<y/n>"
       )
-  // https://docs.oracle.com/en/java/javase/19/docs/specs/man/java.html
-  // https://docs.oracle.com/en/java/javase/19/core/java-networking.html#GUID-E6C82625-7C02-4AB3-B15D-0DF8A249CD73
+  // $ java -XX:+UnlockExperimentalVMOptions -XX:+UnlockDiagnosticVMOptions -XX:+PrintFlagsFinal
+  // --version
+  // https://docs.oracle.com/en/java/javase/21/docs/specs/man/java.html
+  // https://docs.oracle.com/en/java/javase/21/core/java-networking.html#GUID-E6C82625-7C02-4AB3-B15D-0DF8A249CD73
   // https://cs.oswego.edu/dl/jsr166/dist/jsr166.jar
   // https://chriswhocodes.com/hotspot_options_openjdk21.html
   // https://sap.github.io/SapMachine/jfrevents/21.html
