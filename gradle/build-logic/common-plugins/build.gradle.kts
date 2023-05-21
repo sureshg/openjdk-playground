@@ -87,7 +87,13 @@ dependencies {
   // https://docs.gradle.org/current/userguide/custom_plugins.html#applying_external_plugins_in_precompiled_script_plugins
   implementation(libs.build.kotlin)
   // OR implementation(kotlin("gradle-plugin"))
+  implementation(libs.build.kotlin.ksp)
+  implementation(libs.build.kotlinx.atomicfu)
+  implementation(libs.build.kotlinx.serialization)
+  implementation(libs.build.kotlinx.bincompat)
+  implementation(libs.build.kotlinx.kover)
   implementation(libs.build.dokka)
+  implementation(libs.build.ksp.redacted)
   implementation(libs.build.gradle.enterprise)
   implementation(libs.build.nexus.plugin)
   implementation(libs.build.spotless.plugin)
@@ -99,7 +105,6 @@ dependencies {
   implementation(libs.build.cyclonedx.plugin)
   implementation(libs.build.foojay.resolver)
   implementation(libs.build.modulegraph)
-  implementation(libs.build.kotlinx.kover)
   testImplementation(gradleTestKit())
 
   // implementation(libs.build.jte.plugin)

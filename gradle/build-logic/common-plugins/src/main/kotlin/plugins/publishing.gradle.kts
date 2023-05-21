@@ -44,11 +44,20 @@ publishing {
 
   publications {
     plugins.withId("java") {
-      // Maven and GitHub Package Registry publications
+      // 1. Maven and GitHub Package Registry publications
       listOf("maven", "gpr").forEach { name ->
         register<MavenPublication>(name) {
           from(components["java"])
           configurePom()
+        }
+      }
+
+      // 2. Add executable jar as an artifact
+      if (project == rootProject) {
+        withType<MavenPublication>().configureEach {
+          val buildExecutable by tasks.existing
+          artifact(buildExecutable)
+          // artifact(tasks.shadowJar)
         }
       }
     }
@@ -69,7 +78,7 @@ publishing {
       }
     }
 
-    // Dokka html doc jar
+    // Dokka htmldoc jar
     plugins.withId("org.jetbrains.dokka") {
       // Dokka html doc
       val dokkaHtmlJar by
@@ -89,16 +98,6 @@ publishing {
       withType<MavenPublication>().configureEach {
         // add dokka html jar as an artifact
         artifact(dokkaHtmlJar)
-      }
-    }
-
-    // Executable jar
-    plugins.withId("java") {
-      if (project == rootProject) {
-        withType<MavenPublication>().configureEach {
-          artifact(tasks.named("buildExecutable"))
-          // artifact(tasks.shadowJar)
-        }
       }
     }
   }

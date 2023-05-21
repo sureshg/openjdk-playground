@@ -210,15 +210,11 @@ fun Project.forkTask(task: String, vararg args: String): CompletableFuture<Unit>
     }
 
 /** Lazy version of [TaskContainer.maybeCreate] */
-fun <T : Task> TaskContainer.maybeRegister(
+inline fun <reified T : Task> TaskContainer.maybeRegister(
     taskName: String,
-    type: Class<T>,
-    configAction: T.() -> Unit
+    noinline configAction: T.() -> Unit
 ) =
     when (taskName) {
-      in names -> named(taskName, type)
-      else -> register(taskName, type)
+      in names -> named(taskName, T::class)
+      else -> register(taskName, T::class)
     }.also { it.configure(configAction) }
-
-fun TaskContainer.maybeRegister(taskName: String, configAction: Task.() -> Unit) =
-    maybeRegister(taskName, Task::class.java, configAction)

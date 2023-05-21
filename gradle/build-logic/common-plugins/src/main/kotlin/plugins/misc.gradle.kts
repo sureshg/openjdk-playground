@@ -15,7 +15,6 @@ plugins {
   id("com.diffplug.spotless")
   id("com.github.ben-manes.versions")
   id("com.github.johnrengelman.shadow")
-  id("org.jetbrains.dokka")
   id("dev.iurysouza.modulegraph")
   // id("com.autonomousapps.dependency-analysis")
   // id("org.openrewrite.rewrite")
@@ -79,11 +78,9 @@ tasks {
   // run automatically on Gradle Sync (https://twitter.com/Sellmair/status/1619308362881187840)
   val buildConfig by registering(BuildConfig::class) { classFqName = "BuildConfig" }
   sourceSets { main { java.srcDirs(buildConfig) } }
-  maybeRegister("prepareKotlinIdeaImport") { dependsOn(buildConfig) }
+  maybeRegister<Task>("prepareKotlinIdeaImport") { dependsOn(buildConfig) }
 
-  // Fix "Execution optimizations have been disabled" warning for JTE
-  // tasks.named("dokkaHtml") { dependsOn(tasks.generateJte) }
-
+  // Exclude some files from the jar
   jar { exclude("META-INF/*.RSA", "META-INF/*.SF", "META-INF/*.DSA") }
 
   // Delegating tasks to composite build.

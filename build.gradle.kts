@@ -13,17 +13,12 @@ plugins {
   id("plugins.misc")
   id("plugins.publishing")
   id("plugins.kotlin")
-  alias(libs.plugins.ksp)
-  alias(libs.plugins.kotlinx.serialization)
-  alias(libs.plugins.ksp.redacted)
-  alias(libs.plugins.ksp.powerassert)
   alias(libs.plugins.javaagent.application)
   alias(libs.plugins.google.jib)
   alias(libs.plugins.jetbrains.qodana)
   alias(libs.plugins.sonarqube)
   alias(libs.plugins.spotless.changelog)
   alias(libs.plugins.gradle.checksum)
-  alias(libs.plugins.kotlinx.bincompat)
   alias(libs.plugins.gradlex.javamoduleinfo)
   alias(libs.plugins.buildkonfig) apply false
   alias(libs.plugins.licensee) apply false
@@ -148,19 +143,7 @@ application {
   // https://sap.github.io/SapMachine/jfrevents/21.html
 }
 
-ksp {
-  arg("autoserviceKsp.verify", "true")
-  arg("autoserviceKsp.verbose", "true")
-  // arg(KspArgsProvider(project.layout.projectDirectory.file("config").asFile))
-}
-
-redacted { enabled = true }
-
-apiValidation { validationDisabled = true }
-
 qodana { autoUpdate = true }
-
-kotlinPowerAssert { functions = listOf("kotlin.assert", "kotlin.test.assertTrue") }
 
 sonarqube {
   properties {
@@ -211,7 +194,6 @@ val shadowRuntime: Configuration by
 
 // Deactivate java-module-info plugin for all configs
 configurations {
-  // runtimeClasspath...etc
   all { attributes { attribute(Attribute.of("javaModule", Boolean::class.javaObjectType), false) } }
 }
 
@@ -281,9 +263,6 @@ tasks {
 
 dependencies {
   implementation(platform(libs.okhttp.bom))
-  implementation(libs.kotlin.reflect)
-  implementation(libs.kotlinx.serialization.json)
-  implementation(libs.kotlinx.datetime)
   implementation(libs.jetty.server) { version { strictly(libs.versions.jetty.asProvider().get()) } }
   implementation(libs.jetty.ee10.servlet)
   implementation(libs.slf4j.api)
@@ -310,12 +289,6 @@ dependencies {
   implementation(libs.maven.archeologist)
 
   compileOnly(libs.jte.kotlin)
-  compileOnly(libs.kotlinx.atomicfu)
-
-  // Auto-service
-  ksp(libs.ksp.auto.service)
-  implementation(libs.google.auto.annotations)
-  // kapt("com.google.auto.service:auto-service:1.0.1")
 
   // api(platform(projects.playgroundBom))
   // api(projects.playgroundCatalog)
@@ -326,20 +299,13 @@ dependencies {
   javaagent(libs.module.jvm.agent)
   // javaagent(libs.glowroot.agent)
 
-  testImplementation(platform(libs.junit.bom))
   testImplementation(libs.junit.jupiter)
   testImplementation(libs.junit.pioneer)
-  testImplementation(kotlin("test-junit5"))
-  testImplementation(libs.kotlinx.coroutines.test)
-  testImplementation(libs.kotlinx.lincheck)
-  testImplementation(libs.kotest.core)
-  testImplementation(libs.kotest.junit5)
-  testImplementation(libs.slf4j.simple)
-  testImplementation(libs.mockk)
 
   // Dokka Plugins (dokkaHtmlPlugin, dokkaGfmPlugin)
   dokkaPlugin(libs.dokka.mermaid)
 
+  // Enable code coverage
   subprojects.forEach { kover(it) }
 
   // implementation(fileTree("lib") { include("*.jar") })

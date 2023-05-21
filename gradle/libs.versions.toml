@@ -82,6 +82,7 @@ kotlinx-collections-immutable  = "0.3.5"
 kotlinx-cli                    = "0.3.5"
 kotlinx-datetime               = "0.4.0"
 kotlinx-lincheck               = "2.17"
+kotlinx-benchmark              = "0.4.8"
 kotlinx-reflect-lite           = "1.0.0"
 kotlinx-io-jvm                 = "0.1.16"
 kotlinx-serialization          = "1.5.1"
@@ -180,11 +181,17 @@ modulegraph                    = "0.4.0"
 # Composite build versions
 module-jdk                     = "1.0.0"
 
-# Gradle Dependencies
 [libraries]
 # External plugins for precompiled script plugins
-build-kotlin                    = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin"                      , version.ref = "kotlin"}
-build-dokka                     = { module = "org.jetbrains.dokka:dokka-gradle-plugin"                        , version.ref = "dokka"}
+build-kotlin                    = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin"                       , version.ref = "kotlin"}
+build-kotlin-noarg              = { module = "org.jetbrains.kotlin:kotlin-noarg"                               , version.ref = "kotlin"}
+build-kotlinx-serialization     = { module = "org.jetbrains.kotlin:kotlin-serialization"                       , version.ref = "kotlin"}
+build-kotlinx-atomicfu          = { module = "org.jetbrains.kotlinx:atomicfu-gradle-plugin"                    , version.ref = "kotlinx-atomicfu"}
+build-kotlinx-benchmark         = { module = "org.jetbrains.kotlinx:kotlinx-benchmark-plugin"                  , version.ref = "kotlinx-benchmark"}
+build-kotlinx-bincompat         = { module = "org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin" , version.ref = "kotlinx-bincompat"}
+build-dokka                     = { module = "org.jetbrains.dokka:dokka-gradle-plugin"                         , version.ref = "dokka"}
+build-kotlin-ksp                = { module = "com.google.devtools.ksp:symbol-processing-gradle-plugin"         , version.ref = "kotlin-ksp"}
+build-ksp-redacted              = { module = "dev.zacsweers.redacted:redacted-compiler-plugin-gradle"          , version.ref = "ksp-redacted"}
 build-benmanesversions          = { module = "com.github.ben-manes:gradle-versions-plugin"                    , version.ref = "benmanes"}
 build-gradlex-buildparameters   = { module = "org.gradlex:build-parameters"                                   , version.ref = "gradlex-buildparameters"}
 build-gradle-enterprise         = { module = "com.gradle.enterprise:com.gradle.enterprise.gradle.plugin"      , version.ref = "gradle-enterprise" }
@@ -209,6 +216,7 @@ build-kotlinx-kover             = { module = "org.jetbrains.kotlinx:kover-gradle
 build-idea-ext                  = { module = "gradle.plugin.org.jetbrains.gradle.plugin.idea-ext:gradle-idea-ext"        , version.ref = "idea-ext" }
 build-cp-collisiondetector      = { module = "io.fuchs.gradle.classpath-collision-detector:classpath-collision-detector" , version.ref = "classpath-collisiondetector" }
 
+# Gradle Dependencies
 ajalt-clikt             = { module = "com.github.ajalt.clikt:clikt"                    , version.ref = "ajalt-clikt"}
 ajalt-mordant           = { module = "com.github.ajalt.mordant:mordant"                , version.ref = "ajalt-mordant"}
 ajalt-colormath         = { module = "com.github.ajalt.colormath:colormath"            , version.ref = "ajalt-colormath"}
@@ -304,7 +312,6 @@ kotlin-script-jsr223       = { module = "org.jetbrains.kotlin:kotlin-scripting-j
 kotlin-script-mainkts      = { module = "org.jetbrains.kotlin:kotlin-main-kts"               , version.ref = "kotlin"}
 
 kotlinx-coroutines-core    = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core"      , version.ref = "kotlinx-coroutines"}
-kotlinx-coroutines-jdk8    = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8"      , version.ref = "kotlinx-coroutines"}
 kotlinx-coroutines-slf4j   = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-slf4j"     , version.ref = "kotlinx-coroutines"}
 kotlinx-coroutines-test    = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test"      , version.ref = "kotlinx-coroutines"}
 kotlinx-coroutines-debug   = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-debug"     , version.ref = "kotlinx-coroutines"}

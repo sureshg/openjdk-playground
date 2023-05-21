@@ -9,7 +9,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+import static java.lang.StringTemplate.STR;
 import static java.lang.System.out;
+import static java.util.FormatProcessor.FMT;
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -43,10 +45,21 @@ public class DOP {
         future.complete(textBlock);
         out.println(future.get());
 
+        stringTemplates();
         amberReflections();
         recordPatterns();
         genericRecordPattern();
         serializeRecord();
+    }
+
+    private static void stringTemplates() {
+        int x = 10;
+        int y = 20;
+        out.println(STR."\{x} + \{y} = \{x + y}");
+        out.println(FMT. """
+                0x%04x\{x} + 0x%04x\{y} = 0x%04x\{x + y}
+                %04d\{x} + %04d\{y} = %04d\{x + y}
+                """);
     }
 
     private static void recordPatterns() {

@@ -112,7 +112,7 @@ $ osv-scanner --sbom=build/sbom/bom.json
 #### Troubleshooting
 
 * [Test Report](https://suresh.dev/openjdk-playground/reports/tests/test/)
-* [Coverage Report](https://suresh.dev/openjdk-playground/reports/kover/merged/html/)
+* [Coverage Report](https://suresh.dev/openjdk-playground/reports/kover/html/)
 
 <details>
   <summary>Commands</summary>

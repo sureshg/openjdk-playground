@@ -1,13 +1,24 @@
 package plugins
 
 import dev.suresh.gradle.*
+import kotlinx.validation.ApiValidationExtension
 import org.gradle.kotlin.dsl.*
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
   `java-library`
+  id("com.google.devtools.ksp")
   kotlin("jvm")
+  kotlin("plugin.serialization")
+  id("kotlinx-atomicfu")
+  id("dev.zacsweers.redacted")
+  id("org.jetbrains.dokka")
   id("org.jetbrains.kotlinx.kover")
+}
+
+// Apply bincompat validation only to the root project.
+if (project == rootProject) {
+  apply(plugin = "org.jetbrains.kotlinx.binary-compatibility-validator")
 }
 
 java {
@@ -50,6 +61,25 @@ kotlin {
 
   // explicitApi()
   // sourceSets { main { ... } }
+}
+
+atomicfu {
+  jvmVariant = "VH"
+  transformJvm = true
+  verbose = true
+}
+
+ksp {
+  arg("autoserviceKsp.verify", "true")
+  arg("autoserviceKsp.verbose", "true")
+  // arg(KspArgsProvider(project.layout.projectDirectory.file("config").asFile))
+}
+
+redacted { enabled = true }
+
+// Configure bincompat validation only if the plugin is applied to the root project.
+plugins.withId("org.jetbrains.kotlinx.binary-compatibility-validator") {
+  extensions.configure<ApiValidationExtension>("apiValidation") { validationDisabled = true }
 }
 
 kover {
@@ -153,5 +183,23 @@ dependencies {
   implementation(platform(libs.kotlin.bom))
   implementation(kotlin("stdlib"))
   // implementation(libs.kotlin.stdlib)
-  implementation(libs.kotlinx.coroutines.jdk8)
+  implementation(libs.kotlinx.coroutines.core)
+  implementation(libs.kotlin.reflect)
+  implementation(libs.kotlinx.serialization.json)
+  implementation(libs.kotlinx.datetime)
+  // compileOnly(libs.kotlinx.atomicfu)
+
+  // Auto-service
+  ksp(libs.ksp.auto.service)
+  implementation(libs.google.auto.annotations)
+  // kapt("com.google.auto.service:auto-service:1.0.1")
+
+  testImplementation(platform(libs.junit.bom))
+  testImplementation(kotlin("test-junit5"))
+  testImplementation(libs.kotlinx.coroutines.test)
+  testImplementation(libs.kotlinx.lincheck)
+  testImplementation(libs.kotest.core)
+  testImplementation(libs.kotest.junit5)
+  testImplementation(libs.slf4j.simple)
+  testImplementation(libs.mockk)
 }

@@ -8,13 +8,12 @@ import org.gradle.kotlin.dsl.apply
 
 /** A sample Gradle plugin shows how to use as a [Project] and [Settings] plugin. */
 class GenericPlugin : Plugin<PluginAware> {
-  override fun apply(target: PluginAware) {
-    when (target) {
-      is Project -> target.pluginManager.apply(GenericProjectPlugin::class)
-      is Settings -> target.pluginManager.apply(GenericSettingsPlugin::class)
-      else -> error("GenericPlugin cannot be applied to ${target::class}")
-    }
-  }
+  override fun apply(target: PluginAware) =
+      when (target) {
+        is Project -> target.pluginManager.apply(GenericProjectPlugin::class)
+        is Settings -> target.pluginManager.apply(GenericSettingsPlugin::class)
+        else -> error("GenericPlugin cannot be applied to ${target::class}")
+      }
 }
 
 class GenericProjectPlugin : Plugin<Project> {
