@@ -227,8 +227,8 @@ tasks {
 
   register("ciBuild") {
     description = "Custom task for GitHub action CI build"
-    dependsOn(tasks.run, tasks.build, "koverMergedHtmlReport", "dokkaHtml")
-    named("koverMergedHtmlReport").map { it.mustRunAfter(tasks.build) }
+    dependsOn(tasks.run, tasks.build, "koverHtmlReport", "dokkaHtml")
+    named("koverHtmlReport").map { it.mustRunAfter(tasks.build) }
     named("dokkaHtml").map { it.mustRunAfter(tasks.build) }
   }
 

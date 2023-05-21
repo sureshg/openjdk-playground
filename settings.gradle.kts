@@ -9,7 +9,8 @@ pluginManagement {
     google()
   }
 
-  // val gradleEnterprise: String by settings //OR
+  // val gradleEnterprise: String by settings
+  // OR
   // val gradleEnterprise =
   //      file("$rootDir/gradle/libs.versions.toml")
   //          .readLines()

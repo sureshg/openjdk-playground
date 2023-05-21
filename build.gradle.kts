@@ -6,7 +6,6 @@ import dev.suresh.gradle.joinToConfigString
 import dev.suresh.gradle.kotlinJvmTarget
 import dev.suresh.gradle.tmp
 import java.net.URI
-import kotlinx.kover.api.DefaultIntellijEngine
 import org.jetbrains.dokka.gradle.DokkaTask
 
 plugins {
@@ -19,7 +18,6 @@ plugins {
   alias(libs.plugins.ksp.redacted)
   alias(libs.plugins.ksp.powerassert)
   alias(libs.plugins.javaagent.application)
-  alias(libs.plugins.kotlinx.kover)
   alias(libs.plugins.google.jib)
   alias(libs.plugins.jetbrains.qodana)
   alias(libs.plugins.sonarqube)
@@ -161,25 +159,6 @@ redacted { enabled = true }
 apiValidation { validationDisabled = true }
 
 qodana { autoUpdate = true }
-
-kover {
-  isDisabled = false
-  engine = DefaultIntellijEngine
-  filters { classes { excludes += listOf("dev.suresh.example.*") } }
-}
-
-koverMerged {
-  enable()
-  filters {
-    projects {
-      // Exclude platform (bom) project
-      excludes +=
-          allprojects
-              .filter { it.buildFile.exists() && it.name.contains("openjdk").not() }
-              .map { it.name }
-    }
-  }
-}
 
 kotlinPowerAssert { functions = listOf("kotlin.assert", "kotlin.test.assertTrue") }
 
@@ -360,6 +339,8 @@ dependencies {
 
   // Dokka Plugins (dokkaHtmlPlugin, dokkaGfmPlugin)
   dokkaPlugin(libs.dokka.mermaid)
+
+  subprojects.forEach { kover(it) }
 
   // implementation(fileTree("lib") { include("*.jar") })
   // implementation(platform("org.apache.maven.resolver:maven-resolver:1.4.1"))

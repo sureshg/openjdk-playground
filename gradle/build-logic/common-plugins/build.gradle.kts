@@ -99,6 +99,7 @@ dependencies {
   implementation(libs.build.cyclonedx.plugin)
   implementation(libs.build.foojay.resolver)
   implementation(libs.build.modulegraph)
+  implementation(libs.build.kotlinx.kover)
   testImplementation(gradleTestKit())
 
   // implementation(libs.build.jte.plugin)

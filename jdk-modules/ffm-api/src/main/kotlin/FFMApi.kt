@@ -26,10 +26,10 @@ val SYMBOL_LOOKUP by lazy {
   SymbolLookup { name -> loaderLookup.find(name).or { stdlib.find(name) } }
 }
 
-fun SymbolLookup.findOrNull(name: String) = find(name).getOrNull()
-
 fun downcallHandle(symbol: String, fdesc: FunctionDescriptor, vararg options: Linker.Option) =
     SYMBOL_LOOKUP.find(symbol).map { LINKER.downcallHandle(it, fdesc, *options) }.orElseThrow()
+
+fun SymbolLookup.findOrNull(name: String) = find(name).getOrNull()
 
 fun main() {
   FFMApi.run()

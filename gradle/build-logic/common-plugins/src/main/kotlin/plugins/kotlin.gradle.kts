@@ -7,6 +7,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
   `java-library`
   kotlin("jvm")
+  id("org.jetbrains.kotlinx.kover")
 }
 
 java {
@@ -49,6 +50,17 @@ kotlin {
 
   // explicitApi()
   // sourceSets { main { ... } }
+}
+
+kover {
+  // useJacoco()
+}
+
+koverReport {
+  defaults {
+    filters { excludes { classes("dev.suresh.example.*") } }
+    html { title = "${project.name} code coverage report" }
+  }
 }
 
 tasks {
