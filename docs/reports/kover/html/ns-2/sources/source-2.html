@@ -1,0 +1,223 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>openjdk-playground code coverage report Coverage Report > Person</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: openjdk-playground code coverage report<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">dev.suresh</a>
+</div>
+
+<h1>Coverage Summary for Class: Person (dev.suresh)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">Person</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/19)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh;
+&nbsp;
+&nbsp;import dev.suresh.adt.DOP;
+&nbsp;import dev.suresh.ffm.FFMApi;
+&nbsp;import dev.suresh.jte.RenderJte;
+&nbsp;import dev.suresh.lang.JPMSKt;
+&nbsp;import dev.suresh.mvn.MavenResolver;
+&nbsp;import dev.suresh.npe.HelpfulNPE;
+&nbsp;import dev.suresh.server.MockServer;
+&nbsp;import dev.suresh.vthread.jetty.JettyServerKt;
+&nbsp;
+&nbsp;import java.security.Security;
+&nbsp;import java.util.*;
+&nbsp;
+&nbsp;import static java.lang.System.out;
+&nbsp;
+<b class="nc">&nbsp;record Person(String name, int age) {</b>
+&nbsp;}
+&nbsp;
+&nbsp;public class Main {
+&nbsp;
+&nbsp;    private String name = &quot;Java&quot;;
+&nbsp;    private int age = 25;
+&nbsp;
+&nbsp;    public static int computeScore(Person p) {
+&nbsp;        return 1;
+&nbsp;    }
+&nbsp;
+&nbsp;    public static List&lt;Person&gt; topN(List&lt;Person&gt; persons, int count) {
+&nbsp;        record PersonX(Person p, int score) {
+&nbsp;        }
+&nbsp;
+&nbsp;        return persons.stream()
+&nbsp;                .sorted(Comparator.comparing(Main::computeScore))
+&nbsp;                .map(p -&gt; new PersonX(p, computeScore(p)))
+&nbsp;                .limit(count)
+&nbsp;                .map(PersonX::p)
+&nbsp;                .toList();
+&nbsp;    }
+&nbsp;
+&nbsp;    void main(String[] args) throws Exception {
+&nbsp;        var textBlock = &quot;&quot;&quot;
+&nbsp;                This is a textBlock
+&nbsp;                example \t introduced \\n in
+&nbsp;                \s Java 15. \\n It \\
+&nbsp;                avoids the
+&nbsp;                need for most escape sequences.
+&nbsp;                \u2022
+&nbsp;                &quot;&quot;&quot;;
+&nbsp;        out.println(textBlock);
+&nbsp;        out.println(textBlock.translateEscapes());
+&nbsp;        out.println(&quot;Record Test: &quot; + new Person(&quot;Hello Kotlin&quot;, 8));
+&nbsp;
+&nbsp;        // Lossy conversion in compound assignments. Warning should be thrown if lint is enabled.
+&nbsp;        var i = 100;
+&nbsp;        i += 0.2;
+&nbsp;
+&nbsp;        securityProperties();
+&nbsp;        new MockServer().run();
+&nbsp;        new MavenResolver().run();
+&nbsp;        new RenderJte().run();
+&nbsp;        DOP.run();
+&nbsp;        JettyServerKt.run(args);
+&nbsp;        JPMSKt.run();
+&nbsp;        HelpfulNPE.run();
+&nbsp;        FFMApi.run();
+&nbsp;    }
+&nbsp;
+&nbsp;    private void securityProperties() {
+&nbsp;        var secMgr = System.getSecurityManager();
+&nbsp;        out.println(&quot;Security Manager (Deprecated): &quot; + secMgr);
+&nbsp;
+&nbsp;        final String dnsCacheTTL = &quot;networkaddress.cache.ttl&quot;;
+&nbsp;        final String dnsCacheNegTTL = &quot;networkaddress.cache.negative.ttl&quot;;
+&nbsp;        final String disabledAlgorithms = &quot;jdk.tls.disabledAlgorithms&quot;;
+&nbsp;
+&nbsp;        out.println(dnsCacheTTL + &quot; -&gt; &quot; + Security.getProperty(dnsCacheTTL));
+&nbsp;        out.println(dnsCacheNegTTL + &quot; -&gt; &quot; + Security.getProperty(dnsCacheNegTTL));
+&nbsp;        out.println(disabledAlgorithms + &quot; -&gt; &quot; + Security.getProperty(disabledAlgorithms));
+&nbsp;
+&nbsp;        Security.setProperty(dnsCacheTTL, &quot;30&quot;);
+&nbsp;        // Large value for the cache for negative responses is problematic.
+&nbsp;        // Caching the negative response means that for that much seconds
+&nbsp;        // the application will not be able to connect to the server.
+&nbsp;        Security.setProperty(dnsCacheNegTTL, &quot;1&quot;);
+&nbsp;        // showAllSecurityProperties();
+&nbsp;
+&nbsp;        // The length of time after a record expires that it should be retained in the cache.
+&nbsp;        // It means that the overall timeout now is ttl+stale (Since Java 22)
+&nbsp;        // networkaddress.cache.stale.ttl=10000
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean equals(Object o) {
+&nbsp;        return o instanceof Main m &amp;&amp; age == m.age &amp;&amp; Objects.equals(name, m.name);
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public int hashCode() {
+&nbsp;        return Objects.hash(name, age);
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-25 14:04</div>
+</div>
+</body>
+</html>

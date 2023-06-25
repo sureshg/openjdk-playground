@@ -1,0 +1,197 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>openjdk-playground code coverage report Coverage Report > SerializersKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: openjdk-playground code coverage report<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">dev.suresh.json</a>
+</div>
+
+<h1>Coverage Summary for Class: SerializersKt (dev.suresh.json)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">SerializersKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/33)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/188)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.json
+&nbsp;
+&nbsp;import java.time.*
+&nbsp;import java.time.Duration
+&nbsp;import kotlin.RequiresOptIn.Level.ERROR
+&nbsp;import kotlin.reflect.*
+&nbsp;import kotlin.time.*
+&nbsp;import kotlinx.serialization.*
+&nbsp;import kotlinx.serialization.builtins.*
+&nbsp;
+&nbsp;@OptIn(BleedingEdge::class)
+&nbsp;fun main() {
+<b class="nc">&nbsp;  val data = SerialTest&lt;List&lt;Map&lt;String, Int&gt;&gt;&gt;()</b>
+<b class="nc">&nbsp;  val j = data::class</b>
+<b class="nc">&nbsp;  val type = typeOf&lt;SerialTest&lt;List&lt;Map&lt;String, Int&gt;&gt;&gt;&gt;()</b>
+<b class="nc">&nbsp;  println(type)</b>
+&nbsp;
+<b class="nc">&nbsp;  val stringListSerializer = ListSerializer(String.serializer().nullable)</b>
+<b class="nc">&nbsp;  println(stringListSerializer.descriptor)</b>
+&nbsp;
+<b class="nc">&nbsp;  val s = serializer&lt;SerialTest&lt;List&lt;Map&lt;String, String&gt;&gt;&gt;&gt;()</b>
+<b class="nc">&nbsp;  println(SerialTest.serializer(stringListSerializer))</b>
+<b class="nc">&nbsp;  println(s)</b>
+&nbsp;
+<b class="nc">&nbsp;  val b = &quot;1000010&quot;.toIntOrNull(2)</b>
+<b class="nc">&nbsp;  println(b)</b>
+<b class="nc">&nbsp;  println(b?.toString(2))</b>
+&nbsp;
+<b class="nc">&nbsp;  previewMethod()</b>
+<b class="nc">&nbsp;  val clock = TimeSource.Monotonic</b>
+<b class="nc">&nbsp;  val d = measureTimedValue {</b>
+<b class="nc">&nbsp;    val mark = clock.markNow()</b>
+<b class="nc">&nbsp;    val list = buildList {</b>
+<b class="nc">&nbsp;      add(&quot;Hello&quot;)</b>
+<b class="nc">&nbsp;      add(&quot;Kotlin&quot;)</b>
+<b class="nc">&nbsp;    }</b>
+<b class="nc">&nbsp;    println(list)</b>
+<b class="nc">&nbsp;    mark.elapsedNow()</b>
+&nbsp;  }
+<b class="nc">&nbsp;  println(d.value.toDouble(DurationUnit.SECONDS))</b>
+<b class="nc">&nbsp;  deprecatedMethod()</b>
+&nbsp;
+&nbsp;  // LocalDate     --&gt; Period
+&nbsp;  // LocalDateTime --&gt; Duration
+&nbsp;
+<b class="nc">&nbsp;  val today = LocalDateTime.now()</b>
+<b class="nc">&nbsp;  println(today.plus(Duration.ofDays(1)))</b>
+<b class="nc">&nbsp;  println(</b>
+<b class="nc">&nbsp;      runCatching { println(LocalDate.now().minus(Duration.ofDays(10))) }</b>
+<b class="nc">&nbsp;          .exceptionOrNull()</b>
+<b class="nc">&nbsp;          ?.message)</b>
+<b class="nc">&nbsp;  println(LocalDate.now().minus(Period.ofDays(10)))</b>
+&nbsp;}
+&nbsp;
+&nbsp;@Serializable class SerialTest&lt;T&gt;(val data: T? = null)
+&nbsp;
+&nbsp;@RequiresOptIn(level = ERROR, message = &quot;This is a Bleeding edge API&quot;)
+&nbsp;annotation class BleedingEdge
+&nbsp;
+&nbsp;@BleedingEdge
+&nbsp;fun previewMethod() {
+<b class="nc">&nbsp;  println(&quot;Called Bleeding edge method!&quot;)</b>
+&nbsp;}
+&nbsp;
+<b class="nc">&nbsp;@Deprecated(&quot;test&quot;, replaceWith = ReplaceWith(&quot;previewMethod()&quot;)) fun deprecatedMethod() {}</b>
+&nbsp;
+&nbsp;fun interface FunInterface {
+&nbsp;  fun tt()
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-25 14:04</div>
+</div>
+</body>
+</html>

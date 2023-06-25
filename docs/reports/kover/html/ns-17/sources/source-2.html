@@ -1,0 +1,179 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>openjdk-playground code coverage report Coverage Report > ClientKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: openjdk-playground code coverage report<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">dev.suresh.vthread.echo</a>
+</div>
+
+<h1>Coverage Summary for Class: ClientKt (dev.suresh.vthread.echo)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">ClientKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.vthread.echo
+&nbsp;
+&nbsp;import java.net.InetSocketAddress
+&nbsp;import java.net.Socket
+&nbsp;import java.time.*
+&nbsp;import java.util.concurrent.atomic.*
+&nbsp;import kotlinx.datetime.*
+&nbsp;import kotlinx.datetime.Clock
+&nbsp;
+&nbsp;object Client {
+&nbsp;
+&nbsp;  const val count = 10
+&nbsp;  private val conns = LongAdder()
+&nbsp;  private val msgs = LongAdder()
+&nbsp;  val error = AtomicReference&lt;Throwable?&gt;(null)
+&nbsp;
+&nbsp;  fun run() {
+&nbsp;    println(&quot;Connecting to server on ports range: ${Server.ports}&quot;)
+&nbsp;    Server.ports.forEach { port -&gt;
+&nbsp;      (1..count).forEach { id -&gt; Thread.startVirtualThread { connect(id, port) } }
+&nbsp;    }
+&nbsp;
+&nbsp;    while (true) {
+&nbsp;      Thread.sleep(Duration.ofSeconds(2))
+&nbsp;      val currDateTime = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
+&nbsp;      println(&quot;$currDateTime - Connections: ${conns.sum()}, Messages: ${msgs.sum()}&quot;)
+&nbsp;    }
+&nbsp;  }
+&nbsp;
+&nbsp;  fun connect(id: Int, port: Int) {
+&nbsp;    val cid = &quot;client $id-$port&quot;
+&nbsp;    try {
+&nbsp;      Socket().use { sock -&gt;
+&nbsp;        sock.connect(InetSocketAddress(&quot;localhost&quot;, port), 5_000)
+&nbsp;        sock.soTimeout = 10_000
+&nbsp;        conns.increment()
+&nbsp;
+&nbsp;        val inr = sock.inputStream.bufferedReader()
+&nbsp;        val out = sock.outputStream.bufferedWriter()
+&nbsp;
+&nbsp;        val msg = &quot;Hello from $cid&quot;
+&nbsp;        out.write(msg)
+&nbsp;        out.newLine()
+&nbsp;        println(&quot;Wrote: $msg and reading response&quot;)
+&nbsp;        inr.forEachLine {
+&nbsp;          msgs.increment()
+&nbsp;          println(it)
+&nbsp;        }
+&nbsp;      }
+&nbsp;    } catch (e: Throwable) {
+&nbsp;      println(&quot;$cid : ${e.message}&quot;)
+&nbsp;    }
+&nbsp;  }
+&nbsp;}
+&nbsp;
+&nbsp;fun main() {
+<b class="nc">&nbsp;  Client.run()</b>
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-25 14:04</div>
+</div>
+</body>
+</html>

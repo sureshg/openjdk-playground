@@ -1,0 +1,246 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>openjdk-playground code coverage report Coverage Report > MDnsKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: openjdk-playground code coverage report<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">dev.suresh.network</a>
+</div>
+
+<h1>Coverage Summary for Class: MDnsKt (dev.suresh.network)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">MDnsKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/46)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">MDnsKt$main$1$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/41)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">MDnsKt$main$1$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/24)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/15)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/111)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.network
+&nbsp;
+&nbsp;import java.net.*
+&nbsp;import java.time.*
+&nbsp;import javax.jmdns.*
+&nbsp;
+&nbsp;/** On Mac : &quot;$ dns-sd -B _services._dns-sd._udp .&quot; */
+&nbsp;fun main() {
+<b class="nc">&nbsp;  JmDNS.create(InetAddress.getLocalHost()).use {</b>
+<b class="nc">&nbsp;    it.addServiceListener(</b>
+<b class="nc">&nbsp;        &quot;_googlecast._tcp.local.&quot;,</b>
+<b class="nc">&nbsp;        object : ServiceListener {</b>
+&nbsp;          override fun serviceAdded(event: ServiceEvent?) =
+<b class="nc">&nbsp;              println(&quot;--&gt; ${event?.info?.name} added&quot;)</b>
+&nbsp;
+&nbsp;          override fun serviceRemoved(event: ServiceEvent?) =
+<b class="nc">&nbsp;              println(&quot;&lt;-- ${event?.info?.name} Removed&quot;)</b>
+&nbsp;
+<b class="nc">&nbsp;          override fun serviceResolved(event: ServiceEvent?) = println(&quot;${event?.info} resolved&quot;)</b>
+&nbsp;        })
+&nbsp;
+<b class="nc">&nbsp;    it.addServiceTypeListener(</b>
+<b class="nc">&nbsp;        object : ServiceTypeListener {</b>
+&nbsp;          override fun serviceTypeAdded(event: ServiceEvent?) =
+<b class="nc">&nbsp;              println(&quot;==&gt;${event?.type} service added&quot;)</b>
+&nbsp;
+&nbsp;          override fun subTypeForServiceTypeAdded(event: ServiceEvent?) =
+<b class="nc">&nbsp;              println(&quot;==&gt;${event?.type} service sub type added&quot;)</b>
+&nbsp;        })
+<b class="nc">&nbsp;    Thread.sleep(Duration.ofSeconds(5))</b>
+<b class="nc">&nbsp;  }</b>
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-25 14:04</div>
+</div>
+</body>
+</html>

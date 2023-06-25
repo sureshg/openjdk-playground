@@ -1,0 +1,170 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>openjdk-playground code coverage report Coverage Report > Logger</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: openjdk-playground code coverage report<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">dev.suresh.lang</a>
+</div>
+
+<h1>Coverage Summary for Class: Logger (dev.suresh.lang)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">Logger</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/14)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.lang
+&nbsp;
+&nbsp;import kotlin.contracts.contract
+&nbsp;
+<b class="nc">&nbsp;class Logger(val name: String) {</b>
+<b class="nc">&nbsp;  fun log(message: String) = println(&quot;$name: $message&quot;)</b>
+&nbsp;}
+&nbsp;
+&nbsp;context(Logger)
+&nbsp;
+&nbsp;fun store(msg: String) {
+&nbsp;  log(&quot;Stored $msg in the file&quot;)
+&nbsp;}
+&nbsp;
+&nbsp;fun main() {
+&nbsp;  val logger = Logger(&quot;main&quot;)
+&nbsp;  with(logger) { store(&quot;Hello&quot;) }
+&nbsp;
+&nbsp;  val anon = User.Anonymous
+&nbsp;  val auth = User.Authenticated(&quot;Suresh&quot;)
+&nbsp;
+&nbsp;  smartCast(anon)
+&nbsp;  smartCast(auth)
+&nbsp;}
+&nbsp;
+&nbsp;fun smartCast(user: User) =
+&nbsp;    when (user.isAuthenticated()) {
+&nbsp;      true -&gt; user.signOut()
+&nbsp;      false -&gt; user.signIn()
+&nbsp;    }
+&nbsp;
+&nbsp;sealed class User {
+&nbsp;
+&nbsp;  fun isAuthenticated(): Boolean {
+&nbsp;    contract {
+&nbsp;      returns(true) implies (this@User is Authenticated)
+&nbsp;      returns(false) implies (this@User is Anonymous)
+&nbsp;    }
+&nbsp;    return this is Authenticated
+&nbsp;  }
+&nbsp;
+&nbsp;  data object Anonymous : User() {
+&nbsp;    fun signIn() = println(&quot;Please sign in&quot;)
+&nbsp;  }
+&nbsp;
+&nbsp;  data class Authenticated(val name: String) : User() {
+&nbsp;    fun signOut() = println(&quot;Signing out $name&quot;)
+&nbsp;  }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-25 14:04</div>
+</div>
+</body>
+</html>
