@@ -41,10 +41,8 @@ object FFMApi {
   fun run() {
     println("----- Project Panama -----")
     memoryAPIs()
-    if (System.getProperty("os.name").contains("mac", ignoreCase = true)) {
-      downCalls()
-      terminal()
-    }
+    // downCalls()
+    // terminal()
     dhReflection()
   }
 
