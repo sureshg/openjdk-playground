@@ -19,7 +19,6 @@ $dokka.location:/App/VERSION/#/PointingToDeclaration/openjdk-playground/[root]/
 $dokka.location:/App/dependencies/#/PointingToDeclaration/openjdk-playground/[root]/-app/dependencies.html
 $dokka.location:/JavaApp///PointingToDeclaration/openjdk-playground/[root]/-java-app/index.html
 $dokka.location:/JavaApp/JavaApp/#/PointingToDeclaration/openjdk-playground/[root]/-java-app/-java-app.html
-$dokka.location:/JavaApp/main/#java.lang.String[]/PointingToDeclaration/openjdk-playground/[root]/-java-app/main.html
 $dokka.location:/Result.Error.NonRecException///PointingToDeclaration/openjdk-playground/[root]/-result/-error/-non-rec-exception/index.html
 $dokka.location:/Result.Error.NonRecException/NonRecException/#java.lang.Exception/PointingToDeclaration/openjdk-playground/[root]/-result/-error/-non-rec-exception/-non-rec-exception.html
 $dokka.location:/Result.Error.NonRecException/e/#/PointingToDeclaration/openjdk-playground/[root]/-result/-error/-non-rec-exception/e.html
@@ -36,7 +35,6 @@ $dokka.location:/Result///PointingToDeclaration/openjdk-playground/[root]/-resu
 $dokka.location:dev.suresh.adt////PointingToDeclaration/openjdk-playground/dev.suresh.adt/index.html
 $dokka.location:dev.suresh.adt/DOP///PointingToDeclaration/openjdk-playground/dev.suresh.adt/-d-o-p/index.html
 $dokka.location:dev.suresh.adt/DOP/DOP/#/PointingToDeclaration/openjdk-playground/dev.suresh.adt/-d-o-p/-d-o-p.html
-$dokka.location:dev.suresh.adt/DOP/main/#java.lang.String[]/PointingToDeclaration/openjdk-playground/dev.suresh.adt/-d-o-p/main.html
 $dokka.location:dev.suresh.adt/DOP/run/#/PointingToDeclaration/openjdk-playground/dev.suresh.adt/-d-o-p/run.html
 $dokka.location:dev.suresh.atomic////PointingToDeclaration/openjdk-playground/dev.suresh.atomic/index.html
 $dokka.location:dev.suresh.atomic//main/#/PointingToDeclaration/openjdk-playground/dev.suresh.atomic/main.html
@@ -49,7 +47,6 @@ $dokka.location:dev.suresh.cli//main/#/PointingToDeclaration/openjdk-playground
 $dokka.location:dev.suresh.collection////PointingToDeclaration/openjdk-playground/dev.suresh.collection/index.html
 $dokka.location:dev.suresh.collection/CollectionTest///PointingToDeclaration/openjdk-playground/dev.suresh.collection/-collection-test/index.html
 $dokka.location:dev.suresh.collection/CollectionTest/CollectionTest/#/PointingToDeclaration/openjdk-playground/dev.suresh.collection/-collection-test/-collection-test.html
-$dokka.location:dev.suresh.collection/CollectionTest/main/#java.lang.String[]/PointingToDeclaration/openjdk-playground/dev.suresh.collection/-collection-test/main.html
 $dokka.location:dev.suresh.collection/CollectionTest/teeing/#/PointingToDeclaration/openjdk-playground/dev.suresh.collection/-collection-test/teeing.html
 $dokka.location:dev.suresh.concurrent////PointingToDeclaration/openjdk-playground/dev.suresh.concurrent/index.html
 $dokka.location:dev.suresh.concurrent//factorial/#kotlin.Int/PointingToDeclaration/openjdk-playground/dev.suresh.concurrent/factorial.html
@@ -72,7 +69,6 @@ $dokka.location:dev.suresh.generics/Employee/toString/#/PointingToDeclaration/o
 $dokka.location:dev.suresh.generics/Generics///PointingToDeclaration/openjdk-playground/dev.suresh.generics/-generics/index.html
 $dokka.location:dev.suresh.generics/Generics/Generics/#/PointingToDeclaration/openjdk-playground/dev.suresh.generics/-generics/-generics.html
 $dokka.location:dev.suresh.generics/Generics/m/#java.lang.Iterable<T>#T.../PointingToDeclaration/openjdk-playground/dev.suresh.generics/-generics/m.html
-$dokka.location:dev.suresh.generics/Generics/main/#java.lang.String[]/PointingToDeclaration/openjdk-playground/dev.suresh.generics/-generics/main.html
 $dokka.location:dev.suresh.generics/Manager///PointingToDeclaration/openjdk-playground/dev.suresh.generics/-manager/index.html
 $dokka.location:dev.suresh.generics/Manager/Manager/#java.lang.String/PointingToDeclaration/openjdk-playground/dev.suresh.generics/-manager/-manager.html
 $dokka.location:dev.suresh.generics/Manager/toString/#/PointingToDeclaration/openjdk-playground/dev.suresh.generics/-manager/to-string.html
@@ -82,7 +78,6 @@ $dokka.location:dev.suresh.jackson/Animal/Animal/#java.lang.String/PointingToDec
 $dokka.location:dev.suresh.jackson/Animal/name/#/PointingToDeclaration/openjdk-playground/dev.suresh.jackson/-animal/name.html
 $dokka.location:dev.suresh.jackson/PolymorphicSerialization///PointingToDeclaration/openjdk-playground/dev.suresh.jackson/-polymorphic-serialization/index.html
 $dokka.location:dev.suresh.jackson/PolymorphicSerialization/PolymorphicSerialization/#/PointingToDeclaration/openjdk-playground/dev.suresh.jackson/-polymorphic-serialization/-polymorphic-serialization.html
-$dokka.location:dev.suresh.jackson/PolymorphicSerialization/main/#java.lang.String[]/PointingToDeclaration/openjdk-playground/dev.suresh.jackson/-polymorphic-serialization/main.html
 $dokka.location:dev.suresh.jfr////PointingToDeclaration/openjdk-playground/dev.suresh.jfr/index.html
 $dokka.location:dev.suresh.jfr//main/#/PointingToDeclaration/openjdk-playground/dev.suresh.jfr/main.html
 $dokka.location:dev.suresh.jfr/JfrEvent///PointingToDeclaration/openjdk-playground/dev.suresh.jfr/-jfr-event/index.html
@@ -234,7 +229,6 @@ $dokka.location:dev.suresh/Main/Main/#/PointingToDeclaration/openjdk-playground
 $dokka.location:dev.suresh/Main/computeScore/#dev.suresh.Person/PointingToDeclaration/openjdk-playground/dev.suresh/-main/compute-score.html
 $dokka.location:dev.suresh/Main/equals/#java.lang.Object/PointingToDeclaration/openjdk-playground/dev.suresh/-main/equals.html
 $dokka.location:dev.suresh/Main/hashCode/#/PointingToDeclaration/openjdk-playground/dev.suresh/-main/hash-code.html
-$dokka.location:dev.suresh/Main/main/#java.lang.String[]/PointingToDeclaration/openjdk-playground/dev.suresh/-main/main.html
 $dokka.location:dev.suresh/Main/topN/#java.util.List<dev.suresh.Person>#int/PointingToDeclaration/openjdk-playground/dev.suresh/-main/top-n.html
 $dokka.location:dev.suresh/TestJava///PointingToDeclaration/openjdk-playground/dev.suresh/-test-java/index.html
 $dokka.location:dev.suresh/TestJava/TestJava/#/PointingToDeclaration/openjdk-playground/dev.suresh/-test-java/-test-java.html
