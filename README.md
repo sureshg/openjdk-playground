@@ -16,7 +16,7 @@
 
 ```bash
 $ curl -s "https://get.sdkman.io" | bash
-$ sdk i java openjdk-ea-21
+$ sdk i java openjdk-ea-22
 ```
 
 #### Build
@@ -34,7 +34,7 @@ $ actionlint
 ```bash
 $ java -jar \
        --enable-preview \
-       --add-modules=jdk.incubator.concurrent \
+       --add-modules=ALL-SYSTEM \
        -XX:+UseZGC -XX:+ZGenerational \
        build/libs/openjdk-playground-*-uber.jar
 
@@ -59,7 +59,7 @@ $ docker run \
         --publish 8000:8000 \
         --name openjdk-playground \
         --mount type=bind,source=$(pwd),destination=/app,readonly \
-        openjdk:21-slim /bin/bash -c "./build/openjdk-playground && printenv && jwebserver -b 0.0.0.0 -p 8000 -d /"
+        openjdk:22-slim /bin/bash -c "./build/openjdk-playground && printenv && jwebserver -b 0.0.0.0 -p 8000 -d /"
 
 # Download the JFR files
 $ wget http://localhost:8000/tmp/openjdk-playground.jfr
@@ -179,7 +179,7 @@ graph LR
 
 [java_url]: https://jdk.java.net/
 
-[java_img]: https://img.shields.io/badge/OpenJDK-21--ea-ea791d?logo=java&style=for-the-badge&logoColor=ea791d
+[java_img]: https://img.shields.io/badge/OpenJDK-22--ea-ea791d?logo=java&style=for-the-badge&logoColor=ea791d
 
 [kt_url]: https://github.com/JetBrains/kotlin/releases/latest
 
@@ -224,5 +224,3 @@ graph LR
 [ktfmt_url]: https://github.com/facebookincubator/ktfmt#ktfmt
 
 [ktfmt_img]: https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg?logo=kotlin&style=for-the-badge&logoColor=FF4081
-
-[native_images_actions]: https://github.com/micronaut-projects/micronaut-starter/tree/2.5.x/.github

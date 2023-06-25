@@ -23,7 +23,7 @@ import javax.net.ssl.X509TrustManager;
 
 public class JavaApp {
 
-  public static void main(String[] args) throws Exception {
+  void main(String[] args) throws Exception {
     var start = System.currentTimeMillis();
     final var lineSep = System.lineSeparator();
 

@@ -39,8 +39,8 @@ $ docker pull cgr.dev/chainguard/jdk:latest
 
 # Openjdk
 # https://github.com/docker-library/openjdk
-$ docker pull openjdk:21-slim
-$ docker pull openjdk:21-jdk-oracle
+$ docker pull openjdk:22-slim
+$ docker pull openjdk:22-jdk-oracle
 $ docker pull openjdk:19-alpine
 
 # Eclipse Temurin
@@ -190,7 +190,7 @@ $ docker rm -v $id
 $ cat << EOF >App.java
 import static java.lang.System.out;
 public class App {
-  public static void main(String...args) {
+  void main() {
     var version = "• Java %s running on %s %s".formatted(
                    System.getProperty("java.version"),
                    System.getProperty("os.name"),
@@ -220,8 +220,9 @@ $ docker run \
         -v "$(PWD)":/app \
         -v /:/host \
         --name openjdk \
-        openjdk:21-slim \
+        openjdk:22-slim \
         java \
+        --source 22 --enable-preview \
         -XX:+UnlockExperimentalVMOptions \
         -XX:+UnlockDiagnosticVMOptions \
         -XX:+PrintFlagsFinal \
@@ -242,7 +243,7 @@ $ docker run \
 ```bash
 # https://github.com/openjdk/jdk/blob/master/src/hotspot/share/runtime/os.cpp#L1691
 # OpenJDK reverts to Serial GC when it detects < 2 CPUs or < 2GB RAM
-$ docker run -it --rm --cpus=1 --memory=1G openjdk:21-slim java -Xlog:gc --version
+$ docker run -it --rm --cpus=1 --memory=1G openjdk:22-slim java -Xlog:gc --version
   #[0.007s][info][gc] Using Serial
 ```
 
@@ -258,7 +259,7 @@ $ docker run \
      -it \
      --rm \
      --pull always \
-     openjdk:21-slim \
+     openjdk:22-slim \
      sh -c "cat /proc/self/cgroup | grep -i '/docker'"
 
 # Check if running on Kubernets
@@ -266,7 +267,7 @@ $  docker run \
      -it \
      --rm \
      --pull always \
-     openjdk:21-slim \
+     openjdk:22-slim \
      sh -c "printenv | grep SERVICE"
 ```
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env java --enable-preview --source 21
+#!/usr/bin/env java --enable-preview --source 22
 
 import com.sun.net.httpserver.SimpleFileServer;
 import com.sun.net.httpserver.SimpleFileServer.OutputLevel;
@@ -8,7 +8,7 @@ import java.nio.file.FileSystems;
 
 public class Main {
 
-  public static void main(String[] args) {
+  void main() {
     var jrtFS = FileSystems.getFileSystem(URI.create("jrt:/"));
     // Paths.get(URI.create("jrt:/"))
     var modules = jrtFS.getPath("/modules");

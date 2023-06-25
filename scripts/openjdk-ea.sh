@@ -3,7 +3,7 @@
 # set -u won't work for sdkman
 set -e
 
-jdk_version=${1:-21}
+jdk_version=${1:-22}
 
 # Find OS type
 case "$OSTYPE" in
@@ -55,7 +55,7 @@ if [ "$os" == "darwin" ]; then
 fi
 
 # Install OpenJDK using sdkman
-sdkman_id="openjdk-ea-$jdk_version"
+sdkman_id="openjdk-ea"
 echo "Installing $jdk_dir ..."
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 sdk rm java "$sdkman_id"

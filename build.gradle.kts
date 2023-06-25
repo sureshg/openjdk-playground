@@ -17,11 +17,11 @@ plugins {
   alias(libs.plugins.google.jib)
   alias(libs.plugins.jetbrains.qodana)
   alias(libs.plugins.sonarqube)
-  alias(libs.plugins.spotless.changelog)
   alias(libs.plugins.gradle.checksum)
   alias(libs.plugins.gradlex.javamoduleinfo)
   alias(libs.plugins.buildkonfig) apply false
   alias(libs.plugins.licensee) apply false
+  alias(libs.plugins.spotless.changelog) apply false
 }
 
 application {
@@ -140,7 +140,7 @@ application {
   // https://docs.oracle.com/en/java/javase/21/core/java-networking.html#GUID-E6C82625-7C02-4AB3-B15D-0DF8A249CD73
   // https://cs.oswego.edu/dl/jsr166/dist/jsr166.jar
   // https://chriswhocodes.com/hotspot_options_openjdk21.html
-  // https://sap.github.io/SapMachine/jfrevents/21.html
+  // https://sap.github.io/SapMachine/jfrevents
 }
 
 qodana { autoUpdate = true }

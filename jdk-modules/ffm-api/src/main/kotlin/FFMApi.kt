@@ -81,7 +81,7 @@ object FFMApi {
     val gmtime = LINKER.downcallHandle(gmtAddr, gmtDesc)
 
     Arena.ofConfined().use { arena ->
-      val time = arena.allocate(JAVA_LONG.bitSize())
+      val time = arena.allocate(JAVA_LONG.byteSize())
       time.set(JAVA_LONG, 0, Instant.now().epochSecond)
       val tmSegment = gmtime.invokeExact(time) as MemorySegment
       println("gmtime() = ${TM(tmSegment)}")
@@ -109,7 +109,7 @@ object FFMApi {
    */
   private fun memoryAPIs() {
     Arena.ofConfined().use { arena ->
-      val point = arena.allocate(JAVA_DOUBLE.bitSize() * 2)
+      val point = arena.allocate(JAVA_DOUBLE.byteSize() * 2)
       point.set(JAVA_DOUBLE, 0, 1.0)
       point.set(JAVA_DOUBLE, 8, 2.0)
       println("Point Struct = $point")

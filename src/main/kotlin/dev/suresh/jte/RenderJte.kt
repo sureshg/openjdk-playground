@@ -21,7 +21,7 @@ class RenderJte {
     listOf("hello.jte", "hello-kt.kte").forEach {
       val output = StringOutput()
       // tmplEngine.render(it, params, output)
-      output.write(BuildConfig.time)
+      output.writeContent(BuildConfig.time)
       println("$it -> $output")
     }
   }

@@ -17,7 +17,7 @@
 //
 // public class LoomTest {
 //
-//  public static void main(String[] args) throws Exception {
+//  void main() throws Exception {
 //    var tf = Thread.ofVirtual().name("task-", 1).factory();
 //    try (var execSvc = Executors.newThreadPerTaskExecutor(tf)) {
 //

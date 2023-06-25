@@ -8,7 +8,7 @@ import static java.lang.System.out;
 
 public class Main {
 
-    public static void main(String[] args) {
+    void main() {
         out.println("Hello JVM Wasm");
         var window = Window.window();
         var document = window.document();

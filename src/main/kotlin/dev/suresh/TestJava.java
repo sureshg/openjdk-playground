@@ -2,12 +2,7 @@ package dev.suresh;
 
 import java.time.Instant;
 import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.Future;
-import java.util.concurrent.Semaphore;
-import java.util.concurrent.ThreadFactory;
-
-import jdk.incubator.concurrent.StructuredTaskScope;
+import java.util.concurrent.*;
 
 // Change this to kotlin
 // https://github.com/jamesward/easyracer/blob/main/java-loom/src/main/java/Main.java#L67-L90
@@ -20,10 +15,10 @@ public class TestJava {
         var vtf = Thread.ofVirtual().factory();
         var stf = semaphoreThreadFactory(new Semaphore(concurrency), vtf);
         try (var scope = new StructuredTaskScope.ShutdownOnFailure("http-requests", stf)) {
-            List<Future<T>> futures = tasks.stream().map(scope::fork).toList();
+            var futures = tasks.stream().map(scope::fork).toList();
             scope.joinUntil(deadline);
             scope.throwIfFailed(e -> e); // Propagate exception
-            return futures.stream().map(Future::resultNow).toList();
+            return futures.stream().map(StructuredTaskScope.Subtask::get).toList();
         }
     }
 
@@ -31,14 +26,13 @@ public class TestJava {
         return r -> {
             try {
                 s.acquire();
-                return tf.newThread(
-                        () -> {
-                            try {
-                                r.run();
-                            } finally {
-                                s.release();
-                            }
-                        });
+                return tf.newThread(() -> {
+                    try {
+                        r.run();
+                    } finally {
+                        s.release();
+                    }
+                });
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 throw new RuntimeException(e);

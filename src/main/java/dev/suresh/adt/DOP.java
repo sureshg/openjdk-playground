@@ -19,7 +19,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class DOP {
 
-    public static void main(String[] args) throws Exception {
+    void main() throws Exception {
         run();
     }
 
@@ -47,7 +47,6 @@ public class DOP {
 
         stringTemplates();
         amberReflections();
-        recordPatterns();
         genericRecordPattern();
         serializeRecord();
     }
@@ -60,16 +59,6 @@ public class DOP {
                 0x%04x\{x} + 0x%04x\{y} = 0x%04x\{x + y}
                 %04d\{x} + %04d\{y} = %04d\{x + y}
                 """);
-    }
-
-    private static void recordPatterns() {
-        record Point(int x, int y) {
-        }
-        var points = List.of(new Point(1, 2), new Point(3, 4), new Point(5, 6));
-        // Record pattern in enhanced for loop
-        for (Point(var x, var y) : points) {
-            out.println("Point: (" + x + ", " + y + ")");
-        }
     }
 
     interface Name<T> {

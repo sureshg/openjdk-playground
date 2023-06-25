@@ -38,7 +38,7 @@ public class Main {
                 .toList();
     }
 
-    public static void main(String[] args) throws Exception {
+    void main(String[] args) throws Exception {
         var textBlock = """
                 This is a textBlock
                 example \t introduced \\n in
@@ -66,7 +66,7 @@ public class Main {
         FFMApi.run();
     }
 
-    private static void securityProperties() {
+    private void securityProperties() {
         var secMgr = System.getSecurityManager();
         out.println("Security Manager (Deprecated): " + secMgr);
 
@@ -86,7 +86,7 @@ public class Main {
         // showAllSecurityProperties();
 
         // The length of time after a record expires that it should be retained in the cache.
-        // It means that the overall timeout now is ttl+stale (Since Java 21)
+        // It means that the overall timeout now is ttl+stale (Since Java 22)
         // networkaddress.cache.stale.ttl=10000
     }
 

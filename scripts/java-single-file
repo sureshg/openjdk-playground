@@ -1,6 +1,8 @@
-#!java --source 21
+#!java --source 22 --enable-preview
+
 public class Main {
-  public static void main(String[] args){
-    System.out.println("Hello Java " + System.getProperty("java.version"));
-  }
+    void main() {
+        System.out.println("Hello Java " + System.getProperty("java.version"));
+    }
 }
+

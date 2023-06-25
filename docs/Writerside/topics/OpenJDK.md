@@ -75,7 +75,7 @@ $ mkdir -p src/{main,test}/{java,resources}
 ##### 2. Preview features
 
 ```bash
-$ javac --enable-preview -release 21 Foo.java
+$ javac --enable-preview -release 22 Foo.java
 $ java  --enable-preview Foo
 ```
 
@@ -179,10 +179,10 @@ $ jlink --list-plugins
 $ jdeps --generate-module-info ./  app.jar
 
 # List all deprecated APIs for a release
-$ jdeprscan --for-removal --release 21 --list
+$ jdeprscan --for-removal --release 22 --list
 
 # Scan deprecated APIs
-$ jdeprscan --for-removal --release 21 app.jar
+$ jdeprscan --for-removal --release 22 app.jar
 ```
 
 - [Java EE Maven artifacts](https://openjdk.java.net/jeps/320)
@@ -195,7 +195,7 @@ $ java -m jdk.httpserver -b 127.0.0.1
 
 # Compile all modules at once (Start from the main module)
 $ javac  --enable-preview \
-         --release 21 \
+         --release 22 \
          -parameters  \    // Optional, Generate metadata for reflection on method parameters
          --add-modules ALL-MODULE-PATH \  // Optional, Root modules to resolve in addition to the initial modules
          --module-path ... \           // Optional, where to find application modules
@@ -222,12 +222,12 @@ $ native-image \
     -p base-module.jar:main-module.jar \
     -m dev.suresh.Main
 
-# JavaFX 21 using jlink & jpackage
+# JavaFX 22 using jlink & jpackage
 $ wget "https://download.java.net/java/early_access/.../openjfx-xxx_macos-aarch64_bin-jmods.tar.gz"
 $ tar -xvzf openjfx-xxx_macos-aarch64_bin-jmods.tar.gz
 
 $ jlink --output javafx-jdk \
-        --module-path $JAVA_HOME/jmods:javafx-jmods-21 \
+        --module-path $JAVA_HOME/jmods:javafx-jmods-22 \
         --add-modules javafx.controls,java.desktop,java.logging
 #       --add-modules ALL-MODULE-PATH
 
@@ -908,7 +908,7 @@ $ mvn archetype:generate -DgroupId=dev.suresh -DartifactId=my-app -DarchetypeArt
 ### [OpenJDK Build](https://openjdk.java.net/groups/build/doc/building.html)
 
 ```bash
-$ sdk install java 21-open
+$ sdk install java 22-open
 $ git clone https://github.com/openjdk/jdk.git
 $ cd jdk
 # $ make clean
@@ -932,8 +932,7 @@ $ sudo yum upgrade -y
 $ sudo yum install curl wget tree docker git zsh -y
 $ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 $ curl -s "https://get.sdkman.io" | bash
-$ sdk i java 18.ea.14-open
-$ sdk i java 21.2.0.r16-grl
+$ sdk i java 22.ea-open
 
 # For Github self hosted runners on Aarch64
 export LD_LIBRARY_PATH=/opt/oracle/oracle-armtoolset-8/root/usr/lib64:/usr/local/lib:/usr/lib:/usr/local/lib64:/usr/lib64

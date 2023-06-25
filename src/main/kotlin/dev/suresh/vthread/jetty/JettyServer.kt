@@ -1,16 +1,21 @@
 package dev.suresh.vthread.jetty
 
 import io.mikael.urlbuilder.UrlBuilder
-import jakarta.servlet.http.*
-import java.net.http.*
+import jakarta.servlet.http.HttpServlet
+import jakarta.servlet.http.HttpServletRequest
+import jakarta.servlet.http.HttpServletResponse
+import java.net.http.HttpClient
+import java.net.http.HttpRequest
 import java.net.http.HttpResponse.BodyHandlers
 import java.time.Duration
 import java.util.concurrent.Executors
-import jdk.incubator.concurrent.ScopedValue
-import kotlin.time.*
+import kotlin.time.DurationUnit
+import kotlin.time.measureTime
 import org.eclipse.jetty.ee10.servlet.ServletContextHandler
-import org.eclipse.jetty.server.*
-import org.eclipse.jetty.util.*
+import org.eclipse.jetty.server.Server
+import org.eclipse.jetty.server.ServerConnector
+import org.eclipse.jetty.util.JavaVersion
+import org.eclipse.jetty.util.Jetty
 
 fun main() {
   run()

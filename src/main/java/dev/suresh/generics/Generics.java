@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Generics {
 
-  public static void main(String[] args) {
+  void main() {
 
     var emp = new Employee("Employee-1");
     out.println(emp);
