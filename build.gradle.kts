@@ -40,6 +40,7 @@ application {
           "-XX:+PrintCommandLineFlags",
           "-XX:+UseZGC",
           "-XX:+ZGenerational",
+          "-XX:+UseCompressedOops",
           "-XX:+UnlockExperimentalVMOptions",
           "-XX:LockingMode=2", // New experimental lightweight locking
           // "-XX:+UseCompactObjectHeaders",
@@ -75,11 +76,10 @@ application {
           "-XX:OnOutOfMemoryError='kill -9 %p'",
           "-XX:+ExitOnOutOfMemoryError",
           "-XX:+UnlockDiagnosticVMOptions",
-          // "-XX:NativeMemoryTracking=detail",
+          "-XX:NativeMemoryTracking=detail",
           "-XX:+EnableDynamicAgentLoading",
           "-XX:+LogVMOutput",
           "-XX:LogFile=$tmp$name-jvm.log",
-          "-XX:+ShowHiddenFrames",
           "-Djava.awt.headless=true",
           "-Djdk.attach.allowAttachSelf=true",
           "-Djdk.traceVirtualThreadLocals=false",
@@ -90,6 +90,7 @@ application {
           "-Dkotlinx.coroutines.debug",
           "-ea",
           // "--show-module-resolution",
+          // "-XX:+ShowHiddenFrames",
           // "-XX:+AutoCreateSharedArchive",
           // "-XX:SharedArchiveFile=$tmp/$name.jsa"
           // "-verbose:module",
