@@ -79,10 +79,10 @@ $ docker pull bellsoft/liberica-openjdk-alpine:latest (libc)
 
 # GraalVM CE & EE
 # https://github.com/orgs/graalvm/packages
-$ docker pull ghcr.io/graalvm/graalvm-ce:latest
-$ docker pull ghcr.io/graalvm/native-image:latest
-$ docker pull ghcr.io/graalvm/native-image:muslib
-$ docker pull container-registry.oracle.com/graalvm/enterprise:latest
+$ docker pull ghcr.io/graalvm/graalvm-community:latest
+$ docker pull ghcr.io/graalvm/native-image-community:latest
+$ docker pull ghcr.io/graalvm/native-image-community:muslib
+$ docker pull container-registry.oracle.com/graalvm/native-image:latest
 
 # GraalVM CE Dev Builds (No docker images available)
 https://github.com/graalvm/graalvm-ce-dev-builds/releases/
