@@ -10,7 +10,7 @@ $ cd jextract
 $ git checkout panama
 $ sdk u java 20.0.1-zulu
 $ chmod +x gradlew
-$ ./gradlew -Pjdk21_home="/Users/sgopal1/.sdkman/candidates/java/openjdk-ea" \
+$ ./gradlew -Pjdk22_home="/Users/sgopal1/.sdkman/candidates/java/openjdk-ea" \
             -Pllvm_home="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr" \
             clean verify
 $ mv build/jextract ~/install/openjdk
