@@ -41,7 +41,8 @@ class MockServer {
       server.enqueue(
           MockResponse()
               .setResponseCode(HTTP_MOVED_TEMP)
-              .setHeader("Location", "https://www.google.com/robots.txt"))
+              .setHeader("Location", "https://www.google.com/robots.txt"),
+      )
 
       val url = server.url("/")
       println("\nConnecting to $url")
@@ -63,7 +64,7 @@ class MockServer {
               println(cert.subjectX500Principal)
             }
           }
-          else -> throw error("Unexpected code $res")
+          else -> error("Unexpected code $res")
         }
       }
     }
