@@ -121,26 +121,19 @@ $ docker system prune -af
 
 # Docker Run
 $ docker run -it --rm \
-      --volume /var/run/docker.sock:/var/run/docker.sock \
-      --volume "$HOME/app.yaml":"$HOME/app.yaml" \
-      --volume  "$(pwd)":"$(pwd)":rw \
+      -v /var/run/docker.sock:/var/run/docker.sock \
+      -v "$HOME/app.yaml":"$HOME/app.yaml" \
+      -v  "$(pwd)":"$(pwd)":rw \
       --workdir "$(pwd)" \
       --entrypoint="run" \
-      suresh/openjdk-playground:latest
+      ghcr.io/sureshg/containers:openjdk-latest
 
 # CMD (windows)
 $ docker run -it --rm ^
-    --volume /var/run/docker.sock:/var/run/docker.sock ^
-    --volume "%cd%"/app:/app:rw ^
+    -v /var/run/docker.sock:/var/run/docker.sock ^
+    -v "%cd%"/app:/app:rw ^
     --entrypoint="run" ^
-    suresh/openjdk-playground:latest
-
-# POWERSHELL
-$ docker run -it --rm ,
-    --volume /var/run/docker.sock:/var/run/docker.sock ,
-    --volume ${pwd}/app:/app:rw ,
-    --entrypoint="run" ,
-    suresh/openjdk-playground:latest
+    ghcr.io/sureshg/containers:openjdk-latest
 
 # Find container IPAddress
 $ docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' openjdk
@@ -217,8 +210,8 @@ $ docker run \
         --cpus=2 \
         --memory=512m \
         --pull always \
-        -v "$(PWD)":/app \
-        -v /:/host \
+        --mount type=bind,source=$(pwd),destination=/app,readonly \
+        --mount type=bind,source=/,destination=/host,readonly \
         --name openjdk \
         openjdk:22-slim \
         java \
@@ -276,7 +269,7 @@ $  docker run \
 ### Access Docker desktop LinuxKit VM on MacOS
 
 ```bash
-$ docker run -it --rm --memory=256m --cpus=1 -v /:/host --name alpine alpine
+$ docker run -it --rm --memory=256m --cpus=1 --mount type=bind,source=/,destination=/host --name alpine alpine
  /# chroot /host
   # docker version
 ```
