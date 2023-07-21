@@ -173,7 +173,7 @@ tasks {
         "build/${rootProject.name}",
         "build/macosX64/${rootProject.name}",
         "build/macosArm64/${rootProject.name}")
-    workingDir = buildDir
+    workingDir = layout.buildDirectory.asFile.get()
     group = LifecycleBasePlugin.BUILD_GROUP
     description = "Builds universal macOS binary"
   }

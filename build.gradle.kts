@@ -217,7 +217,7 @@ tasks {
 
   // Dokka config
   withType<DokkaTask>().configureEach {
-    outputDirectory = buildDir.resolve("dokka")
+    outputDirectory = layout.buildDirectory.dir("dokka")
     moduleName = project.name
 
     dokkaSourceSets {

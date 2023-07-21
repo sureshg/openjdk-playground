@@ -155,7 +155,7 @@ tasks {
       GithubAction.setOutput("uberjar_path", uberJar.absolutePath)
 
       if (OperatingSystem.current().isUnix) {
-        val execJar = File(project.buildDir, project.name)
+        val execJar = project.layout.buildDirectory.file(project.name).get().asFile
         GithubAction.setOutput("execjar_name", execJar.name)
         GithubAction.setOutput("execjar_path", execJar.absolutePath)
       }
@@ -207,7 +207,7 @@ tasks {
 
         filteringCharset = "UTF-8"
         from(project.projectDir.resolve("src/main/templates"))
-        into(project.buildDir.resolve("generated-sources/templates/kotlin/main"))
+        into(project.layout.buildDirectory.dir("generated-sources/templates/kotlin/main"))
         exclude { it.name.startsWith("jte") }
         expand(props)
 
