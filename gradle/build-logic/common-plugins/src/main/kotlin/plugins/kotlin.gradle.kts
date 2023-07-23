@@ -177,6 +177,8 @@ tasks {
     group = LifecycleBasePlugin.BUILD_GROUP
     description = "Builds universal macOS binary"
   }
+
+  withType<Jar>().configureEach { duplicatesStrategy = DuplicatesStrategy.WARN }
 }
 
 dependencies {
