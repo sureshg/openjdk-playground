@@ -10,7 +10,7 @@
 [![Docker Image][docker_img]][docker_url]
 [![Style guide][ktfmt_img]][ktfmt_url]
 [![SonarCloud][sonar_img]][sonar_url]
-<a href="https://deploy.cloud.run"><img src="https://deploy.cloud.run/button.svg" alt="CloudRun" title="CloudRun" width="18%"></a>
+<a href="https://deploy.cloud.run"><img src="https://deploy.cloud.run/button.svg" alt="CloudRun" title="CloudRun" width="12%"></a>
 
 #### Install OpenJDK
 
@@ -179,43 +179,43 @@ graph LR
 
 [java_url]: https://jdk.java.net/
 
-[java_img]: https://img.shields.io/badge/OpenJDK-22--ea-ea791d?logo=java&style=for-the-badge&logoColor=ea791d
+[java_img]: https://img.shields.io/badge/OpenJDK-22--ea-ea791d?logo=java&logoColor=ea791d
 
 [kt_url]: https://github.com/JetBrains/kotlin/releases/latest
 
-[kt_img]: https://img.shields.io/github/v/release/Jetbrains/kotlin?include_prereleases&color=7f53ff&label=Kotlin&logo=kotlin&logoColor=7f53ff&style=for-the-badge
+[kt_img]: https://img.shields.io/github/v/release/Jetbrains/kotlin?include_prereleases&color=7f53ff&label=Kotlin&logo=kotlin&logoColor=7f53ff
 
 [mvn_search]: https://search.maven.org/search?q=g:io.micronaut
 
 [mvn_jar]: https://search.maven.org/remote_content?g=io.micronaut&a=micronaut-http-server-netty&v=LATEST
 
-[mvn_jar_img]: https://img.shields.io/maven-central/v/io.micronaut/micronaut-runtime?color=orange&label=micronaut&logo=apache-rocketmq&logoColor=orange&style=for-the-badge
+[mvn_jar_img]: https://img.shields.io/maven-central/v/io.micronaut/micronaut-runtime?color=orange&label=micronaut&logo=apache-rocketmq&logoColor=orange
 
 [gha_url]: https://github.com/sureshg/openjdk-playground/actions/workflows/build.yml
 
 [gha_img]: https://github.com/sureshg/openjdk-playground/actions/workflows/build.yml/badge.svg
 
-[gha_badge]: https://img.shields.io/github/actions/workflow/status/sureshg/openjdk-playground/build.yml?branch=main&color=green&label=Build&logo=Github-Actions&logoColor=green&style=for-the-badge
+[gha_badge]: https://img.shields.io/github/actions/workflow/status/sureshg/openjdk-playground/build.yml?branch=main&color=green&label=Build&logo=Github-Actions&logoColor=green
 
 [gh_pkgs]: https://github.com/sureshg/openjdk-playground/packages
 
-[docker_img]: https://img.shields.io/docker/v/sureshg/openjdk-latest?color=dodgerblue&label=DockerHub&logo=docker&logoColor=dodgerblue&style=for-the-badge
+[docker_img]: https://img.shields.io/docker/v/sureshg/openjdk-latest?color=dodgerblue&label=DockerHub&logo=docker&logoColor=dodgerblue
 
 [docker_url]: https://hub.docker.com/r/sureshg/openjdk-playground
 
-[sonar_img]: https://img.shields.io/badge/Sonar%20Cloud-Status-e46a2a.svg?logo=sonarcloud&style=for-the-badge&logoColor=e46a2a
+[sonar_img]: https://img.shields.io/badge/Sonar%20Cloud-Status-e46a2a.svg?logo=sonarcloud&logoColor=e46a2a
 
 [sonar_url]: https://sonarcloud.io/summary/new_code?id=sureshg_openjdk-playground
 
 [jmh_url]: https://openjdk.java.net/projects/code-tools/jmh/
 
-[jmh_img]: https://img.shields.io/maven-central/v/org.openjdk.jmh/jmh-core?color=magenta&label=Jmh-Core&logo=apache%20maven&logoColor=magenta&style=for-the-badge
+[jmh_img]: https://img.shields.io/maven-central/v/org.openjdk.jmh/jmh-core?color=magenta&label=Jmh-Core&logo=apache%20maven&logoColor=magenta
 
 [jmh-archetypes]: https://github.com/openjdk/jmh/tree/master/jmh-archetypes
 
 [javadoc_url]: https://javadoc.io/doc/org.jetbrains.kotlin/kotlin-stdlib
 
-[javadoc_img]: https://javadoc.io/badge2/org.jetbrains.kotlin/kotlin-stdlib/javadoc.svg?logo=kotlin&style=for-the-badge
+[javadoc_img]: https://javadoc.io/badge2/org.jetbrains.kotlin/kotlin-stdlib/javadoc.svg?logo=kotlin
 
 [sty_url]: https://kotlinlang.org/docs/coding-conventions.html
 
@@ -223,4 +223,4 @@ graph LR
 
 [ktfmt_url]: https://github.com/facebookincubator/ktfmt#ktfmt
 
-[ktfmt_img]: https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg?logo=kotlin&style=for-the-badge&logoColor=FF4081
+[ktfmt_img]: https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg?logo=kotlin&logoColor=FF4081
