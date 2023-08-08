@@ -142,7 +142,8 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 <b class="nc">&nbsp;      server.enqueue(</b>
 <b class="nc">&nbsp;          MockResponse()</b>
 <b class="nc">&nbsp;              .setResponseCode(HTTP_MOVED_TEMP)</b>
-<b class="nc">&nbsp;              .setHeader(&quot;Location&quot;, &quot;https://www.google.com/robots.txt&quot;))</b>
+<b class="nc">&nbsp;              .setHeader(&quot;Location&quot;, &quot;https://www.google.com/robots.txt&quot;),</b>
+&nbsp;      )
 &nbsp;
 <b class="nc">&nbsp;      val url = server.url(&quot;/&quot;)</b>
 <b class="nc">&nbsp;      println(&quot;\nConnecting to $url&quot;)</b>
@@ -164,7 +165,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 <b class="nc">&nbsp;              println(cert.subjectX500Principal)</b>
 <b class="nc">&nbsp;            }</b>
 &nbsp;          }
-<b class="nc">&nbsp;          else -&gt; throw error(&quot;Unexpected code $res&quot;)</b>
+<b class="nc">&nbsp;          else -&gt; error(&quot;Unexpected code $res&quot;)</b>
 <b class="nc">&nbsp;        }</b>
 <b class="nc">&nbsp;      }</b>
 &nbsp;    }
@@ -193,7 +194,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-06-25 14:04</div>
+    <div style="float:right;">generated on 2023-08-08 08:07</div>
 </div>
 </body>
 </html>
