@@ -23,6 +23,7 @@ kotlinx-kover                  = "0.7.3"
 kover-intellij                 = "1.0.720"
 kotlinx-bincompat              = "0.13.2"
 zip-prefixer                   = "0.3.1"
+intellij-coverage              = "1.0.733"
 
 ajalt-clikt                    = "4.2.0"
 ajalt-mordant                  = "2.1.0"
@@ -63,7 +64,7 @@ jakewharton-crossword          = "0.2.0"
 jackson-databind               = "2.15.2"
 javaagent-allocation           = "3.3.3"
 jetbrains-markdown             = "0.2.4"
-jetty                          = "12.0.0.beta4"
+jetty                          = "12.0.0"
 jetty-jakarta-servlet          = "5.0.2"
 jgit                           = "6.6.0.202305301015-r"
 jgitver                        = "0.10.0-rc03"
@@ -81,7 +82,7 @@ kotlinx-coroutines             = "1.7.3"
 kotlinx-collections-immutable  = "0.3.5"
 kotlinx-cli                    = "0.3.5"
 kotlinx-datetime               = "0.4.0"
-kotlinx-lincheck               = "2.23-IDEA-PLUGIN"
+kotlinx-lincheck               = "2.23"
 kotlinx-benchmark              = "0.4.8"
 kotlinx-reflect-lite           = "1.1.0"
 kotlinx-io-jvm                 = "0.1.16"
@@ -215,6 +216,7 @@ build-modulegraph               = { module = "dev.iurysouza:modulegraph"        
 build-kotlinx-kover             = { module = "org.jetbrains.kotlinx:kover-gradle-plugin"                      , version.ref = "kotlinx-kover" }
 build-idea-ext                  = { module = "gradle.plugin.org.jetbrains.gradle.plugin.idea-ext:gradle-idea-ext"        , version.ref = "idea-ext" }
 build-cp-collisiondetector      = { module = "io.fuchs.gradle.classpath-collision-detector:classpath-collision-detector" , version.ref = "classpath-collisiondetector" }
+build-intellij-coverage         = { module = "org.jetbrains.intellij.deps:intellij-coverage-reporter"                    , version.ref = "intellij-coverage" }
 
 # Gradle Dependencies
 ajalt-clikt             = { module = "com.github.ajalt.clikt:clikt"                    , version.ref = "ajalt-clikt"}

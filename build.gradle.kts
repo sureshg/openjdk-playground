@@ -9,10 +9,10 @@ import java.net.URI
 import org.jetbrains.dokka.gradle.DokkaTask
 
 plugins {
-  id("plugins.common")
-  id("plugins.misc")
-  id("plugins.publishing")
-  id("plugins.kotlin")
+  plugins.common
+  plugins.misc
+  plugins.publishing
+  plugins.kotlin
   alias(libs.plugins.javaagent.application)
   alias(libs.plugins.google.jib)
   alias(libs.plugins.jetbrains.qodana)
@@ -42,7 +42,6 @@ application {
           "-XX:+ZGenerational",
           "-XX:+UseCompressedOops",
           "-XX:+UnlockExperimentalVMOptions",
-          "-XX:LockingMode=2", // New experimental lightweight locking
           // "-XX:+UseCompactObjectHeaders",
           // os+thread,gc+heap=trace,
           """-Xlog:cds,safepoint,gc*:

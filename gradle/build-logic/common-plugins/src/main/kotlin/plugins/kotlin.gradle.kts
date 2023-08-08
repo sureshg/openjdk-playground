@@ -205,3 +205,13 @@ dependencies {
   testImplementation(libs.slf4j.simple)
   testImplementation(libs.mockk)
 }
+
+allprojects {
+  configurations.all {
+    resolutionStrategy.eachDependency {
+      if (requested.name.contains("intellij-coverage")) {
+        // useVersion(libs.versions.intellij.coverage.get())
+      }
+    }
+  }
+}

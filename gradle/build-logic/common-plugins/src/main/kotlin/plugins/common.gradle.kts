@@ -229,26 +229,17 @@ tasks {
   }
 }
 
-// Set additional jvm args
-// -----------------------
-//  tasks.withType<JavaExec>().matching {  }.configureEach {
-//    jvmArgs(
-//      "--enable-native-access=ALL-UNNAMED",
-//      "--add-modules=jdk.incubator.foreign",
-//      "--module-path", files(configurations.compileClasspath).asPath,
-//      "--add-modules", "ALL-MODULE-PATH"
-//    )
-//    javaLauncher = project.javaToolchains.launcherFor(java.toolchain)
-//  }
-
-// Gradle dependency substitution
-// ------------------------------
 // allprojects {
-//    configurations.all {
-//        resolutionStrategy.dependencySubstitution {
-//          substitute(module("org.jetbrains.compose.compiler:compiler"))
-//              .using(module("androidx.compose.compiler:compiler:$composeCompilerVersion"))
-//              .because("using the compose prerelease compiler")
-//        }
+//  configurations.all {
+//    resolutionStrategy.eachDependency {
+//      if (requested.name.contains("intellij-coverage")) {
+//        useVersion(libs.versions.intellij.coverage.get())
+//      }
 //    }
+//     resolutionStrategy.dependencySubstitution {
+//       substitute(module("org.jetbrains.compose.compiler:compiler"))
+//           .using(module("androidx.compose.compiler:compiler:$composeCompilerVersion"))
+//           .because("using the compose prerelease compiler")
+//     }
+//  }
 // }
