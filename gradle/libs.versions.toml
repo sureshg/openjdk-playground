@@ -112,7 +112,7 @@ okhttp                         = "5.0.0-alpha.11"
 os-appdirs                     = "1.2.1"
 os-oshi                        = "6.4.4"
 os-jfa                         = "1.2.0"
-otp                            = "2.0.1"
+otp                            = "2.0.2"
 password4j                     = "1.7.1"
 protobuf                       = "3.23.4"
 profiler-ap-loader             = "2.9-2-macos"
@@ -360,34 +360,34 @@ ktor-client-logging         = { module = "io.ktor:ktor-client-logging"          
 rsocket-ktor-client         = { module = "io.rsocket.kotlin:rsocket-ktor-client"            , version.ref = "rsocket"}
 rsocket-ktor-server         = { module = "io.rsocket.kotlin:rsocket-ktor-server"            , version.ref = "rsocket"}
 
-jgit                        = { module = "org.eclipse.jgit:org.eclipse.jgit"          , version.ref = "jgit" }
-jte                         = { module = "gg.jte:jte"                                 , version.ref = "jte" }
-jte-runtime                 = { module = "gg.jte:jte-runtime"                         , version.ref = "jte" }
-jte-kotlin                  = { module = "gg.jte:jte-kotlin"                          , version.ref = "jte" }
-junit-bom                   = { module = "org.junit:junit-bom"                        , version.ref = "junit"}
-junit-jupiter               = { module = "org.junit.jupiter:junit-jupiter"            , version.ref = "junit"}
-junit-jupiter-api           = { module = "org.junit.jupiter:junit-jupiter-api"        , version.ref = "junit"}
-junit-jupiter-engine        = { module = "org.junit.jupiter:junit-jupiter-engine"     , version.ref = "junit"}
-junit-jupiter-params        = { module = "org.junit.jupiter:junit-jupiter-params"     , version.ref = "junit"}
-junit-pioneer               = { module = "org.junit-pioneer:junit-pioneer"            , version.ref = "junit-pioneer"}
-jqwik                       = { module = "net.jqwik:jqwik"                            , version.ref = "jqwik"}
+jgit                        = { module = "org.eclipse.jgit:org.eclipse.jgit"                , version.ref = "jgit" }
+jte                         = { module = "gg.jte:jte"                                       , version.ref = "jte" }
+jte-runtime                 = { module = "gg.jte:jte-runtime"                               , version.ref = "jte" }
+jte-kotlin                  = { module = "gg.jte:jte-kotlin"                                , version.ref = "jte" }
+junit-bom                   = { module = "org.junit:junit-bom"                              , version.ref = "junit"}
+junit-jupiter               = { module = "org.junit.jupiter:junit-jupiter"                  , version.ref = "junit"}
+junit-jupiter-api           = { module = "org.junit.jupiter:junit-jupiter-api"              , version.ref = "junit"}
+junit-jupiter-engine        = { module = "org.junit.jupiter:junit-jupiter-engine"           , version.ref = "junit"}
+junit-jupiter-params        = { module = "org.junit.jupiter:junit-jupiter-params"           , version.ref = "junit"}
+junit-pioneer               = { module = "org.junit-pioneer:junit-pioneer"                  , version.ref = "junit-pioneer"}
+jqwik                       = { module = "net.jqwik:jqwik"                                  , version.ref = "jqwik"}
 
-ksp-auto-service            = { module = "dev.zacsweers.autoservice:auto-service-ksp" , version.ref = "ksp-auto-service"}
+ksp-auto-service            = { module = "dev.zacsweers.autoservice:auto-service-ksp"       , version.ref = "ksp-auto-service"}
 
-koin-core                   = { module = "io.insert-koin:koin-core"                         , version.ref = "koin"}
-koin-ktor                   = { module = "io.insert-koin:koin-ktor"                         , version.ref = "koin"}
-koin-slf4j                  = { module = "io.insert-koin:koin-logger-slf4j"                 , version.ref = "koin"}
-koin-test                   = { module = "io.insert-koin:koin-test"                         , version.ref = "koin"}
-koin-test-junit5            = { module = "io.insert-koin:koin-test-junit5"                  , version.ref = "koin"}
-kodein                      = { module = "org.kodein.di:kodein-di"                          , version.ref = "kodein"}
-kotlininject-kspcompiler    = { module = "me.tatarka.inject:kotlin-inject-compiler-ksp"     , version.ref = "kotlininject"}
-kotlininject-runtime        = { module = "me.tatarka.inject:kotlin-inject-runtime"          , version.ref = "kotlininject"}
+koin-core                   = { module = "io.insert-koin:koin-core"                          , version.ref = "koin"}
+koin-ktor                   = { module = "io.insert-koin:koin-ktor"                          , version.ref = "koin"}
+koin-slf4j                  = { module = "io.insert-koin:koin-logger-slf4j"                  , version.ref = "koin"}
+koin-test                   = { module = "io.insert-koin:koin-test"                          , version.ref = "koin"}
+koin-test-junit5            = { module = "io.insert-koin:koin-test-junit5"                   , version.ref = "koin"}
+kodein                      = { module = "org.kodein.di:kodein-di"                           , version.ref = "kodein"}
+kotlininject-kspcompiler    = { module = "me.tatarka.inject:kotlin-inject-compiler-ksp"      , version.ref = "kotlininject"}
+kotlininject-runtime        = { module = "me.tatarka.inject:kotlin-inject-runtime"           , version.ref = "kotlininject"}
 
-kmath-core                  = { module = "space.kscience:kmath-core"                        , version.ref = "kmath"}
-game-lwjgl-bom              = { module = "org.lwjgl:lwjgl-bom"                              , version.ref = "lwjgl"}
-game-libgdx                 = { module = "com.badlogicgames.gdx:gdx"                        , version.ref = "libgdx"}
-maven-archeologist          = { module = "com.squareup.tools.build:maven-archeologist"      , version.ref = "maven-archeologist"}
-mockk                       = { module = "io.mockk:mockk"                                   , version.ref = "mockk"}
+kmath-core                  = { module = "space.kscience:kmath-core"                         , version.ref = "kmath"}
+game-lwjgl-bom              = { module = "org.lwjgl:lwjgl-bom"                               , version.ref = "lwjgl"}
+game-libgdx                 = { module = "com.badlogicgames.gdx:gdx"                         , version.ref = "libgdx"}
+maven-archeologist          = { module = "com.squareup.tools.build:maven-archeologist"       , version.ref = "maven-archeologist"}
+mockk                       = { module = "io.mockk:mockk"                                    , version.ref = "mockk"}
 
 profiler-ap-loader           = { module = "me.bechberger:ap-loader"                          , version.ref = "profiler-ap-loader"}
 reflect-classgraph           = { module = "io.github.classgraph:classgraph"                  , version.ref = "reflect-classgraph"}
@@ -401,42 +401,42 @@ okhttp-tls                   = { module = "com.squareup.okhttp3:okhttp-tls"     
 okhttp-mockwebserver         = { module = "com.squareup.okhttp3:mockwebserver"               , version.ref = "okhttp" }
 okhttp-logginginterceptor    = { module = "com.squareup.okhttp3:logging-interceptor"         , version.ref = "okhttp" }
 
-glowroot-agent              = { module = "org.glowroot:glowroot-agent"                      , version.ref = "glowroot" }
-os-appdirs                  = { module = "net.harawata:appdirs"                             , version.ref = "os-appdirs"}
-os-oshi                     = { module = "com.github.oshi:oshi-core"                        , version.ref = "os-oshi"}
-os-mac-jfa                  = { module = "de.jangassen:jfa"                                 , version.ref = "os-jfa"}
+glowroot-agent               = { module = "org.glowroot:glowroot-agent"                      , version.ref = "glowroot" }
+os-appdirs                   = { module = "net.harawata:appdirs"                             , version.ref = "os-appdirs"}
+os-oshi                      = { module = "com.github.oshi:oshi-core"                        , version.ref = "os-oshi"}
+os-mac-jfa                   = { module = "de.jangassen:jfa"                                 , version.ref = "os-jfa"}
 
-slf4j-api                   = { module = "org.slf4j:slf4j-api"                              , version.ref = "slf4j"}
-slf4j-simple                = { module = "org.slf4j:slf4j-simple"                           , version.ref = "slf4j"}
-slf4j-log4j12               = { module = "org.slf4j:slf4j-log4j12"                          , version.ref = "slf4j"}
-slf4j-nop                   = { module = "org.slf4j:slf4j-nop"                              , version.ref = "slf4j"}
-slf4j-jul                   = { module = "org.slf4j:slf4j-jul"                              , version.ref = "slf4j"}
-log4j-core                  = { module = "org.apache.logging.log4j:log4j-core"             , version.ref = "log4j"}
-log4j-bom                   = { module = "org.apache.logging.log4j:log4j-bom"              , version.ref = "log4j"}
-logback-classic             = { module = "ch.qos.logback:logback-classic"                   , version.ref = "logback"}
-logback-core                = { module = "ch.qos.logback:logback-core"                      , version.ref = "logback"}
+slf4j-api                    = { module = "org.slf4j:slf4j-api"                              , version.ref = "slf4j"}
+slf4j-simple                 = { module = "org.slf4j:slf4j-simple"                           , version.ref = "slf4j"}
+slf4j-log4j12                = { module = "org.slf4j:slf4j-log4j12"                          , version.ref = "slf4j"}
+slf4j-nop                    = { module = "org.slf4j:slf4j-nop"                              , version.ref = "slf4j"}
+slf4j-jul                    = { module = "org.slf4j:slf4j-jul"                              , version.ref = "slf4j"}
+log4j-core                   = { module = "org.apache.logging.log4j:log4j-core"              , version.ref = "log4j"}
+log4j-bom                    = { module = "org.apache.logging.log4j:log4j-bom"               , version.ref = "log4j"}
+logback-classic              = { module = "ch.qos.logback:logback-classic"                   , version.ref = "logback"}
+logback-core                 = { module = "ch.qos.logback:logback-core"                      , version.ref = "logback"}
 
-semver                      = { module = "io.github.z4kn4fein:semver"                       , version.ref = "semver"}
-shapeshift                  = { module = "dev.krud:shapeshift"                              , version.ref = "shapeshift"}
-versioncompare              = { module = "io.github.g00fy2:versioncompare"                  , version.ref = "versioncompare"}
+semver                       = { module = "io.github.z4kn4fein:semver"                       , version.ref = "semver"}
+shapeshift                   = { module = "dev.krud:shapeshift"                              , version.ref = "shapeshift"}
+versioncompare               = { module = "io.github.g00fy2:versioncompare"                  , version.ref = "versioncompare"}
 
-testcontainers-bom          = { module = "org.testcontainers:testcontainers-bom"           , version.ref = "testcontainers"}
-testcontainers-core         = { module = "org.testcontainers:testcontainers" }
-testcontainers-postgresql   = { module = "org.testcontainers:postgresql" }
-testcontainers-cassandra    = { module = "org.testcontainers:cassandra" }
-testcontainers-k3s          = { module = "org.testcontainers:k3s" }
-testcontainers-clickhouse   = { module = "org.testcontainers:clickhouse" }
-testcontainers-junit        = { module = "org.testcontainers:junit-jupiter" }
-kubernetes-client           = { module = "io.kubernetes:client-java"                       , version.ref = "kubernetes-client"}
-tcp-javanioproxy            = { module = "com.github.terma:javaniotcpproxy"                , version.ref = "tcp-javanioproxy"}
-togglz-core                 = { module = "org.togglz:togglz-core"                          , version.ref = "togglz"}
-urlbuilder                  = { module = "io.mikael:urlbuilder"                            , version.ref = "urlbuilder" }
-violations                  = { module = "se.bjurr.violations:violations-lib"              , version.ref = "violations" }
-wasm-bytecoder              = { module = "de.mirkosertic.bytecoder:bytecoder-cli"          , version.ref = "wasm-bytecoder" }
+testcontainers-bom           = { module = "org.testcontainers:testcontainers-bom"            , version.ref = "testcontainers"}
+testcontainers-core          = { module = "org.testcontainers:testcontainers" }
+testcontainers-postgresql    = { module = "org.testcontainers:postgresql" }
+testcontainers-cassandra     = { module = "org.testcontainers:cassandra" }
+testcontainers-k3s           = { module = "org.testcontainers:k3s" }
+testcontainers-clickhouse    = { module = "org.testcontainers:clickhouse" }
+testcontainers-junit         = { module = "org.testcontainers:junit-jupiter" }
+kubernetes-client            = { module = "io.kubernetes:client-java"                        , version.ref = "kubernetes-client"}
+tcp-javanioproxy             = { module = "com.github.terma:javaniotcpproxy"                 , version.ref = "tcp-javanioproxy"}
+togglz-core                  = { module = "org.togglz:togglz-core"                           , version.ref = "togglz"}
+urlbuilder                   = { module = "io.mikael:urlbuilder"                             , version.ref = "urlbuilder" }
+violations                   = { module = "se.bjurr.violations:violations-lib"               , version.ref = "violations" }
+wasm-bytecoder               = { module = "de.mirkosertic.bytecoder:bytecoder-cli"           , version.ref = "wasm-bytecoder" }
 
-module-ffm-api              = { module = "dev.suresh:ffm-api"                              , version.ref = "module-jdk" }
-module-jvm-agent            = { module = "dev.suresh:jvm-agent"                            , version.ref = "module-jdk" }
-module-jvm-wasm             = { module = "dev.suresh:jvm-wasm"                             , version.ref = "module-jdk" }
+module-ffm-api               = { module = "dev.suresh:ffm-api"                               , version.ref = "module-jdk" }
+module-jvm-agent             = { module = "dev.suresh:jvm-agent"                             , version.ref = "module-jdk" }
+module-jvm-wasm              = { module = "dev.suresh:jvm-wasm"                              , version.ref = "module-jdk" }
 
 # Gradle  Plugins
 [plugins]

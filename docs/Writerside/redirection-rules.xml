@@ -20,4 +20,8 @@
         <description>Created after removal of "How to" from openjdk-playground</description>
         <accepts>How-to.html</accepts>
     </rule>
+    <rule id="693451c7">
+        <description>Created after removal of "How to1" from openjdk-playground</description>
+        <accepts>how-to1.html</accepts>
+    </rule>
 </rules>

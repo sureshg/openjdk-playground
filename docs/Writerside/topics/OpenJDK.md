@@ -7,8 +7,8 @@
         * [2. Preview features](#2-preview-features)
         * [3. Java Platform Module Systems (JPMS)](#3-java-platform-module-systems-jpms)
         * [4. Disassembles a class](#4-disassembles-a-class)
-        * [5. App/Dynamic CDS](#5-appdynamic-cds)
-        * [6. Show Java VM/Property Settings](#6-show-java-vmproperty-settings)
+        * [5. App CDS](#5-app-cds)
+        * [6. Show Java VMProperty Settings](#6-show-java-vmproperty-settings)
         * [7. Scan deprecated APIs](#7-scan-deprecated-apis)
         * [8. JPMS](#8-jpms)
         * [9. JVMCI (Graal) Compiler](#9-jvmci--graal--compiler)
@@ -19,16 +19,16 @@
     * [IDEs and Tools](#ides-and-tools)
     * [Networking & Security](#networking--security)
         * [1. Allow Unsafe Server Cert Change](#1-allow-unsafe-server-cert-change)
-        * [2 . Debugging TLS](#2--debugging-tls)
-        * [2. Java Networking Properties](#2-java-networking-properties)
-        * [3. HTTP Client Properties](#3-http-client-properties)
+        * [2. Debugging TLS](#2-debugging-tls)
+        * [3. Java Networking Properties](#3-java-networking-properties)
+        * [4. HTTP Client Properties](#4-http-client-properties)
     * [Gradle Kotlin DSL](#gradle-kotlin-dsl)
         * [1. Docs](#1-docs)
         * [2. Name Abbrevation](#2-name-abbrevation)
         * [3. Create new Java `SourceSet`](#3-create-new-java-sourceset)
         * [4. Custom SourceSet directories](#4-custom-sourceset-directories)
         * [5. Kotlin SourceSets](#5-kotlin-sourcesets)
-        * [6. Compile class path](#6-compile-class-path)
+        * [6. Compile classpath](#6-compile-classpath)
         * [7. Configure/Create Tasks](#7-configurecreate-tasks)
         * [8. Enabling Java preview feature](#8-enabling-java-preview-feature)
         * [9. Reproducible builds](#9-reproducible-builds)
@@ -107,7 +107,7 @@ $ javap -p -v build.classes.kotlin.main.App | grep version
 
 - **[Javap Pastebin](https://javap.yawk.at/)**
 
-##### 5. App/Dynamic CDS
+##### 5. App CDS
 
 ```bash
 # Before JDK 18
@@ -130,7 +130,7 @@ $ jlink-runtime/java -Xshare:on --version
 - https://dev.java/learn/class-data-sharing-and-application-class-data-sharing-in-hotspot
 - https://mbien.dev/blog/entry/custom-java-runtimes-with-jlink
 
-##### 6. Show Java VM/Property Settings
+##### 6. Show Java VMProperty Settings
 
 ```bash
 $ java --version
@@ -368,7 +368,7 @@ $ java -Djdk.tracePinnedThreads=short|full
 -Dsun.security.ssl.allowUnsafeRenegotiation=true
 ```
 
-##### 2 . Debugging TLS
+##### 2. Debugging TLS
 
 - https://docs.oracle.com/en/java/javase/20/security/java-secure-socket-extension-jsse-reference-guide.html#GUID-4D421910-C36D-40A2-8BA2-7D42CCBED3C6
 - https://docs.oracle.com/en/java/javase/20/security/java-secure-socket-extension-jsse-reference-guide.html
@@ -388,7 +388,7 @@ $ java -Djdk.tracePinnedThreads=short|full
   $ java -Djava.security.egd=file:/dev/./urandom
   ```
 
-##### 2. Java Networking Properties
+##### 3. Java Networking Properties
 
 - http://htmlpreview.github.io/?https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/net/doc-files/net-properties.html
 - https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/net/doc-files/net-properties.html
@@ -427,7 +427,7 @@ $ java -Djdk.tracePinnedThreads=short|full
   export NO_PROXY=master.hostname.example.com
   ```
 
-##### 3. [HTTP Client](https://openjdk.java.net/groups/net/httpclient/#incubatingAPI) Properties
+##### 4. [HTTP Client](https://openjdk.java.net/groups/net/httpclient/#incubatingAPI) Properties
 
 ```bash
 -Djdk.internal.httpclient.disableHostnameVerification
@@ -540,7 +540,7 @@ val sourcesJar by tasks.registering(Jar::class) {
 }
 ```
 
-##### 6. Compile class path
+##### 6. Compile classpath
 
 ```kotlin
 sourceSets.main.get().compileClasspath
@@ -558,7 +558,7 @@ sourceSets.main.get().compileClasspath
   val s: Copy by creating(Copy::class) {}  // Create task using property delegate
   ```
 
-- ###### Lazy ([Confiuration Avoidance API](https://docs.gradle.org/current/userguide/task_configuration_avoidance.html))
+- ###### Lazy ([Configuration Avoidance API](https://docs.gradle.org/current/userguide/task_configuration_avoidance.html))
 
   ```kotlin
   val t: TaskProvider<Jar> = named<Jar>("jar"){}        // Get existing task
