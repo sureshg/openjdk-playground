@@ -27,7 +27,7 @@ intellij-coverage              = "1.0.733"
 
 ajalt-clikt                    = "4.2.0"
 ajalt-mordant                  = "2.1.0"
-ajalt-colormath                = "3.2.1"
+ajalt-colormath                = "3.3.1"
 assertj                        = "3.21.0"
 beryx-textio                   = "3.4.1"
 bucket4j                       = "7.1.0"
