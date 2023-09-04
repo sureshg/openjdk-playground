@@ -41,6 +41,7 @@ application {
           "-XX:+UseZGC",
           "-XX:+ZGenerational",
           "-XX:+UseCompressedOops",
+          "-XX:+UseStringDeduplication",
           "-XX:+UnlockExperimentalVMOptions",
           // "-XX:+UseCompactObjectHeaders",
           // os+thread,gc+heap=trace,
