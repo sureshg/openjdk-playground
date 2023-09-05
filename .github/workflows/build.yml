@@ -88,7 +88,7 @@ jobs:
       #     access_token: ${{ github.token }}
 
       - name: 🛎️ Check out the source code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           # repository: sureshg/openjdk-playground
@@ -215,7 +215,7 @@ jobs:
 
     steps:
       - name: 🛎️Check out the source code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           submodules: recursive
@@ -267,7 +267,7 @@ jobs:
 
     steps:
       - name: 🛎️Check out the source code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: ☕ Run Java App on OpenJDK ${{ matrix.jdk }} container image
         if: always()
