@@ -133,7 +133,7 @@ violations                     = "1.156.5"
 wasm-bytecoder                 = "2023-06-15"
 
 # Plugin versions
-benmanes                       = "0.47.0"
+benmanes                       = "0.48.0"
 beryx-jlink                    = "2.24.4"
 beryx-runtime                  = "1.13.0"
 beryx-jar                      = "2.0.0"
