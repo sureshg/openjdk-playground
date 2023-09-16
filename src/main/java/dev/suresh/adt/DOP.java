@@ -40,8 +40,7 @@ public class DOP {
                 \\d+
                 Escape char: \u0020 \u00A0 \u2000 \u3000 \uFEFF \u200B \u200C \u200D \u2028 \u2029
                 END
-                """
-                .formatted(new Person("Foo", 40));
+                """.formatted(new Person("Foo", 40));
         future.complete(textBlock);
         out.println(future.get());
 
@@ -54,11 +53,11 @@ public class DOP {
     private static void stringTemplates() {
         int x = 10;
         int y = 20;
-        out.println(STR."\{x} + \{y} = \{x + y}");
+        out.println(STR. "\{ x } + \{ y } = \{ x + y }" );
         out.println(FMT. """
-                0x%04x\{x} + 0x%04x\{y} = 0x%04x\{x + y}
-                %04d\{x} + %04d\{y} = %04d\{x + y}
-                """);
+                0x%04x\{ x } + 0x%04x\{ y } = 0x%04x\{ x + y }
+                %04d\{ x } + %04d\{ y } = %04d\{ x + y }
+                """ );
     }
 
     interface Name<T> {
@@ -67,7 +66,7 @@ public class DOP {
     record FullName<T>(T firstName, T lastName) implements Name<T> {
     }
 
-    private static void print(Name name) {
+    private static <T> void print(Name<T> name) {
         var result = switch (name) {
             case FullName(var first, var last) -> first + ", " + last;
             default -> "Invalid name";
@@ -75,12 +74,12 @@ public class DOP {
         out.println(result);
 
         if (name instanceof FullName<?> f) {
-            // out.println(f.firstName() + ", " + f.lastName());
+            out.println(f.firstName() + ", " + f.lastName());
         }
 
         // Named record pattern is not supported
         if (name instanceof FullName(var first, var last)) {
-            // out.println(first + ", " + last);
+            out.println(first + ", " + last);
         }
     }
 
@@ -110,7 +109,6 @@ public class DOP {
     private static void serializeRecord() throws Exception {
         // Local record
         record Lang(String name, int year) implements Serializable {
-
             Lang {
                 requireNonNull(name);
                 if (year <= 0) {
@@ -123,11 +121,7 @@ public class DOP {
         serialFile.deleteOnExit();
 
         try (var oos = new ObjectOutputStream(new FileOutputStream(serialFile))) {
-            List<Record> recs = List.of(
-                    new Lang("Java", 25),
-                    new Lang("Kotlin", 10),
-                    (Record) Result.success(100)
-            );
+            List<Record> recs = List.of(new Lang("Java", 25), new Lang("Kotlin", 10), (Record) Result.success(100));
 
             for (Record rec : recs) {
                 out.println("Serializing record: " + rec);
@@ -163,12 +157,11 @@ public class DOP {
     }
 
     static List<Result<?>> results() {
-        return Arrays.asList(getResult(5), getResult(25), getResult(-1));
+        return Arrays.asList(getResult(5L), getResult(25L), getResult(-1L));
     }
 
-    static Result<Number> getResult(long l) {
-        // Unnecessary boxing required for boolean check in switch expression
-        return switch (Long.valueOf(l)) {
+    static Result<Number> getResult(Object obj) {
+        return switch (obj) {
             case Long s when s > 0 && s < 10 -> Result.success(s);
             case Long s when s > 10 -> Result.failure(new IllegalArgumentException(String.valueOf(s)));
             default -> null;
