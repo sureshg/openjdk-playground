@@ -129,7 +129,7 @@ tcp-javanioproxy               = "1.6"
 togglz                         = "3.3.3"
 urlbuilder                     = "2.0.9"
 versioncompare                 = "1.5.0"
-violations                     = "1.156.5"
+violations                     = "1.156.6"
 wasm-bytecoder                 = "2023-06-15"
 
 # Plugin versions
