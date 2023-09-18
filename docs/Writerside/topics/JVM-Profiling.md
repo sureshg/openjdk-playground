@@ -14,11 +14,12 @@
     * [6.JFR Streaming](#6jfr-streaming)
     * [7. HeapDump](#7-heapdump)
     * [8. ThreadDump](#8-threaddump)
-    * [9. Unified GC Logging](#9-unified-gc-logging)
-    * [10. JVM Tools](#10-jvm-tools)
-    * [11. System/Node Health](#11-systemnode-health)
-    * [12. Commands](#12-commands)
-    * [13. Resources](#13-resources)
+    * [9. Load Testing](#9-load-testing)
+    * [10. Unified GC Logging](#10-unified-gc-logging)
+    * [11. JVM Tools](#11-jvm-tools)
+    * [12. System/Node Health](#12-systemnode-health)
+    * [13. Commands](#13-commands)
+    * [14. Resources](#14-resources)
 <!-- TOC -->
 
 ### 1. Flight Recorder
@@ -223,7 +224,29 @@ $ jstack -l -e  <pid>
 $ jcmd GradleDaemon VM.native_memory
 ```
 
-### 9. [Unified GC Logging](https://openjdk.java.net/jeps/158#Simple-Examples:)
+### 9. Load Testing
+
+```Bash
+# Run Gataling Recorder and select listening port as 9999
+$ ~/install/gatling/bin/recorder.sh
+
+$ Confiure it as system proxy
+GATALING_PROXY_PORT=9999
+NETWORK_SERVICE="Wi-Fi"
+networksetup -getwebproxy $NETWORK_SERVICE
+networksetup -getsecurewebproxy $NETWORK_SERVICE
+networksetup -setwebproxy $NETWORK_SERVICE localhost $GATALING_PROXY_PORT
+networksetup -setsecurewebproxy $NETWORK_SERVICE localhost $GATALING_PROXY_PORT
+
+# Browse the application URLs, Stop recording & Switch off the proxy
+networksetup -setwebproxystate $NETWORK_SERVICE off
+networksetup -setsecurewebproxystate $NETWORK_SERVICE off
+
+# Run simulation
+$ ~/install/gatling/bin/gatling.sh --run-mode local --simulation dev.suresh.LoadTest
+```
+
+### 10. [Unified GC Logging](https://openjdk.java.net/jeps/158#Simple-Examples:)
 
 ```bash
 $ java -Xlog:help
@@ -241,7 +264,7 @@ $ java -XX:+UseG1GC
 -XX:GCLogFileSize=10M ...
 ```
 
-### 10. JVM Tools
+### 11. JVM Tools
 
 * Java Object Layout (JOL)
 
@@ -250,7 +273,7 @@ $ java -XX:+UseG1GC
   $ java -jar jol-cli-latest.jar internals java.lang.String
   ```
 
-### 11. System/Node Health
+### 12. System/Node Health
 
 * [SAR](https://github.com/sysstat/sysstat) (System Activity Report)
 
@@ -275,7 +298,7 @@ $ java -XX:+UseG1GC
 * [Node Exporter](https://prometheus.io/docs/guides/node-exporter/)
 * [Prometheus JFR Exporter](https://github.com/rh-jmc-team/prometheus-jfr-exporter)
 
-### 12. Commands
+### 13. Commands
 
 * Grabbing a file from a remote system with ssh
 
@@ -307,7 +330,7 @@ $ java -XX:+UseG1GC
   $ ss -s
   ```
 
-### 13. Resources
+### 14. Resources
 
 * [JDK Mission Control Docs](https://docs.oracle.com/en/java/java-components/jdk-mission-control/)
 * [Marcus Hirt's Blog](http://hirt.se/blog/?p=1312)
