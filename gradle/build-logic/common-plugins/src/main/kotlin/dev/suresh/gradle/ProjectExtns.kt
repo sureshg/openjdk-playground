@@ -108,8 +108,7 @@ fun Project.dependencyPath(dep: ExternalDependency) =
         .resolvedArtifacts
         .find { it.moduleVersion.id.module == dep.module }
         ?.file
-        ?.path
-        ?: error("Could not find ${dep.name} in runtime classpath")
+        ?.path ?: error("Could not find ${dep.name} in runtime classpath")
 
 /**
  * Print all the catalog version strings and it's values.

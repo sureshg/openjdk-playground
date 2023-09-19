@@ -7,7 +7,6 @@ class Logger(val name: String) {
 }
 
 context(Logger)
-
 fun store(msg: String) {
   log("Stored $msg in the file")
 }
