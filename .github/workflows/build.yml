@@ -155,18 +155,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      - name: 💥 Uploading jvm error logs
-        if: steps.gradle-build.outcome == 'failure' && always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ matrix.os }}-jvm-error-logs
-          path: |
-            hs_err*
-            ${{ github.workspace }}/hs_err*
-            ${{ env.MKTEMP_PATH }}/*hs-err*
-          if-no-files-found: warn
-          retention-days: 30
-
       - name: 📤 Uploading ${{ matrix.os }} executable jar
         if: steps.gradle-build.outcome == 'success' && runner.os == 'Linux'
         uses: actions/upload-artifact@v3
@@ -216,6 +204,18 @@ jobs:
             git push
             # git push origin HEAD:${{ github.event.repository.default_branch }}
           fi
+
+      - name: 💥 Uploading JVM error logs
+        if: steps.gradle-build.outcome == 'failure' && always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.os }}-jvm-error-logs
+          path: |
+            hs_err*
+            ${{ github.workspace }}/hs_err*
+            ${{ env.MKTEMP_PATH }}/*hs-err*
+          if-no-files-found: warn
+          retention-days: 30
 
   # GitHub Release Action on tag push
   release:

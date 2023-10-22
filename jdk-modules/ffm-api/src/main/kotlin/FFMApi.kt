@@ -41,9 +41,9 @@ object FFMApi {
   fun run() {
     println("----- Project Panama -----")
     memoryAPIs()
-    downCalls()
-    terminal()
-    dhReflection()
+    // downCalls()
+    // terminal()
+    // dhReflection()
   }
 
   private fun downCalls() {
