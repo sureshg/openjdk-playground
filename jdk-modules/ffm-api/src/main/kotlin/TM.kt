@@ -32,22 +32,22 @@ class TM(private val segment: MemorySegment) {
   }
 
   val year: Int
-    get() = yearVH.get(segment) as Int + 1900
+    get() = yearVH.get(segment, 0L) as Int + 1900
 
   val month: Int
-    get() = monthVH.get(segment) as Int + 1
+    get() = monthVH.get(segment, 0L) as Int + 1
 
   val day: Int
-    get() = dayVH.get(segment) as Int
+    get() = dayVH.get(segment, 0L) as Int
 
   val hour: Int
-    get() = hourVH.get(segment) as Int
+    get() = hourVH.get(segment, 0L) as Int
 
   val min: Int
-    get() = minVH.get(segment) as Int
+    get() = minVH.get(segment, 0L) as Int
 
   val sec: Int
-    get() = secVH.get(segment) as Int
+    get() = secVH.get(segment, 0L) as Int
 
   override fun toString(): String {
     return "TM(year=$year, month=$month, day=$day, hour=$hour, min=$min, sec=$sec)"

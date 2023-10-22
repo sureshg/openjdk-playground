@@ -4,6 +4,7 @@ import kotlin.test.Test
 import kotlin.test.assertTrue
 import org.junit.jupiter.api.Disabled
 import org.slf4j.LoggerFactory
+import org.testcontainers.DockerClientFactory
 import org.testcontainers.containers.output.Slf4jLogConsumer
 import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
@@ -20,9 +21,13 @@ class K8STests {
 
     @Container
     val k3s =
-        K3sContainer(DockerImageName.parse("rancher/k3s:v1.24.10-k3s1"))
+        K3sContainer(DockerImageName.parse("rancher/k3s:latest"))
             .withLogConsumer(Slf4jLogConsumer(logger))
             .withReuse(true)
+            .withCommand(
+                "server",
+                "--disable=traefik",
+                "--tls-san=${DockerClientFactory.instance().dockerHostIpAddress()}")
   }
 
   @Test
@@ -43,6 +48,7 @@ class K8STests {
             /* limit = */ null,
             /* resourceVersion = */ null,
             /* resourceVersionMatch = */ null,
+            /* sendInitialEvents = */ null,
             /* timeoutSeconds = */ null,
             /* watch = */ null)
         .items

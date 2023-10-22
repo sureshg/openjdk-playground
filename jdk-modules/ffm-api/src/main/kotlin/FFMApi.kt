@@ -41,8 +41,8 @@ object FFMApi {
   fun run() {
     println("----- Project Panama -----")
     memoryAPIs()
-    // downCalls()
-    // terminal()
+    downCalls()
+    terminal()
     dhReflection()
   }
 
@@ -58,7 +58,7 @@ object FFMApi {
     val strlenDescriptor = FunctionDescriptor.of(JAVA_INT, ADDRESS)
     val strlen = LINKER.downcallHandle(strlenAddr, strlenDescriptor)
     Arena.ofConfined().use { arena ->
-      val cString = arena.allocateUtf8String(str)
+      val cString = arena.allocateFrom(str)
       val strlenResult = strlen.invokeExact(cString) as Int
       println("""strlen("$str") = $strlenResult""")
     }
@@ -135,13 +135,13 @@ object FFMApi {
     Arena.ofConfined().use { arena ->
       // val seg = MemorySegment.allocateNative(8,arena.scope())
       val point = arena.allocate(point2D)
-      x.set(point, 1.0)
-      y.set(point, 2.0)
+      x.set(point, 0L, 1.0)
+      y.set(point, 0L, 2.0)
       println("Point2D segment = $point")
       println(
           """Point2D {
-          |  x = ${x.get(point)} ,
-          |  y = ${y.get(point)}
+          |  x = ${x.get(point,0L)} ,
+          |  y = ${y.get(point,0L)}
           |}"""
               .trimMargin(),
       )
@@ -152,7 +152,7 @@ object FFMApi {
     Arena.ofConfined().use { arena ->
       val count = 10
       val segment = arena.allocate(count * JAVA_INT.byteSize())
-      for (i in 0..count - 1) {
+      for (i in 0 ..< count) {
         segment.setAtIndex(JAVA_INT, i.toLong(), i)
       }
     }
@@ -199,10 +199,10 @@ object FFMApi {
           println(
               """
                 |winsize {
-                |  ws_row = ${wsRow.get(winSeg)}
-                |  ws_col = ${wsCol.get(winSeg)}
-                |  ws_xpixel = ${wsXpixel.get(winSeg)}
-                |  ws_ypixel = ${wsYpixel.get(winSeg)}
+                |  ws_row = ${wsRow.get(winSeg, 0L)}
+                |  ws_col = ${wsCol.get(winSeg, 0L)}
+                |  ws_xpixel = ${wsXpixel.get(winSeg, 0L)}
+                |  ws_ypixel = ${wsYpixel.get(winSeg,0L)}
                 |}
                 """
                   .trimMargin(),
