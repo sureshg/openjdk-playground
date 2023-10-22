@@ -193,7 +193,7 @@ object FFMApi {
         val winRet = ioctl.invokeExact(capturedState, 1, 0x40087468L, winSeg) as Int
 
         if (winRet == -1) {
-          val errno = errnoHandle.get(capturedState) as Int
+          val errno = errnoHandle.get(capturedState, 0L) as Int
           println("ioctl() errno: $errno")
         } else {
           println(
