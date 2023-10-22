@@ -144,7 +144,7 @@ application {
   // https://sap.github.io/SapMachine/jfrevents
 }
 
-qodana { autoUpdate = true }
+qodana {}
 
 sonarqube {
   properties {
