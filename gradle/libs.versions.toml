@@ -134,7 +134,7 @@ wasm-bytecoder                 = "2023-06-15"
 
 # Plugin versions
 benmanes                       = "0.49.0"
-beryx-jlink                    = "2.24.4"
+beryx-jlink                    = "3.0.1"
 beryx-runtime                  = "1.13.0"
 beryx-jar                      = "2.0.0"
 buildkonfig                    = "0.14.0"
