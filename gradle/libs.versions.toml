@@ -19,7 +19,7 @@ app-module                     = "dev.suresh.openjdkplayground"
 githubProject                  = "https://github.com/sureshg/openjdk-playground"
 
 # Gradle Dependencies Versions
-kotlinx-kover                  = "0.7.3"
+kotlinx-kover                  = "0.7.4"
 kover-intellij                 = "1.0.720"
 kotlinx-bincompat              = "0.13.2"
 zip-prefixer                   = "0.3.1"
