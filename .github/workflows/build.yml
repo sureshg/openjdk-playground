@@ -178,7 +178,7 @@ jobs:
       # Can also use "peaceiris/actions-gh-pages@v3.8.0
       - name: 🚀 Deploy html docs to 🕸️website
         if: startsWith(github.ref, 'refs/tags/') && runner.os == 'Linux'
-        uses: JamesIves/github-pages-deploy-action@v4.4.3
+        uses: JamesIves/github-pages-deploy-action@v4.5.0
         with:
           branch: main
           folder: build/dokka
@@ -188,7 +188,7 @@ jobs:
 
       - name: 🏖️ Deploy coverage report to website
         if: startsWith(github.ref, 'refs/tags/') && runner.os == 'Linux'
-        uses: JamesIves/github-pages-deploy-action@v4.4.3
+        uses: JamesIves/github-pages-deploy-action@v4.5.0
         with:
           branch: main
           folder: build/reports
