@@ -175,7 +175,7 @@ public class JavaApp {
     server.createContext(
         "/",
         t -> {
-          out.println("GET: " + t.getRequestURI());
+          out.println(STR."GET: \{t.getRequestURI()}");
           var res =
               "Java %s running on %s %s"
                   .formatted(
@@ -195,7 +195,7 @@ public class JavaApp {
     // The timestamp returned by the call to getRuntimeMXBean().getStartTime()
     // returns the value *after* basic JVM initialization.
     var vmTime = ManagementFactory.getRuntimeMXBean().getStartTime();
-    out.println("Starting Http Server on port " + server.getAddress().getPort() + "...");
+    out.println(STR."Starting Http Server on port \{server.getAddress().getPort()}...");
     out.printf(
         "Started in %d millis! (JVM: %dms, Server: %dms)%n",
         (currTime - vmTime), (start - vmTime), (currTime - start));
