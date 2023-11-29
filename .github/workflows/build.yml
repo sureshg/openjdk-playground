@@ -29,6 +29,7 @@ concurrency:
 
 env:
   GITHUB_PUBLISH: 'false'
+  SEGMENT_DOWNLOAD_TIMEOUT_MINS: '5'
   releaseBuild: ${{ github.event_name == 'push' && contains(github.ref, 'refs/tags/') }}
 
 jobs:
