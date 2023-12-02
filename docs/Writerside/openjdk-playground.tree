@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE instance-profile
-        SYSTEM "https://helpserver.labs.jb.gg/help/schemas/mvp/product-profile.dtd">
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
 
 <instance-profile id="openjdk-playground"
                   name="openjdk-playground"
                   start-page="Containers.md">
+
     <toc-element toc-title="1. API Doc"
                  target-for-accept-web-file-names="https://suresh.dev/openjdk-playground/apidoc"/>
     <toc-element toc-title="2. OpenJDK" topic="OpenJDK.md"/>

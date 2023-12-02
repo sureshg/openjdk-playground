@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<buildprofiles xsi:noNamespaceSchemaLocation="https://helpserver.labs.jb.gg/help/schemas/mvp/build-profiles.xsd"
+<buildprofiles xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/build-profiles.xsd"
                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
     <variables>
         <color-preset>vivid</color-preset>
         <primary-color>aqua</primary-color>
-        <sideblocks>true</sideblocks>
-        <web-root>https://suresh.dev/openjdk-playground/lp</web-root>
+        <web-root>https://suresh.dev/</web-root>
+        <!--<analytics-body-html-file>script.html</analytics-body-html-file>-->
         <header-logo>header-logo.png</header-logo>
         <search-scope/>
         <download-title>suresh.dev</download-title>
         <download-page>https://suresh.dev</download-page>
         <showDownloadButton>true</showDownloadButton>
-        <feedback-widget>true</feedback-widget>
-        <feedback-support>null</feedback-support>
-        <generate-sitemap-url-prefix>https://suresh.dev/openjdk-playground/lp</generate-sitemap-url-prefix>
         <og-twitter>@sur3shg</og-twitter>
     </variables>
 

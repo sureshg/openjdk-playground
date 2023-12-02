@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE rules SYSTEM "https://helpserver.labs.jb.gg/help/schemas/mvp/redirection-rules.dtd">
+<!DOCTYPE rules SYSTEM "https://resources.jetbrains.com/writerside/1.0/redirection-rules.dtd">
 <rules>
-    <rule id="${ID}">
+    <!-- format is as follows
+    <rule id="<unique id>">
         <accepts>page.html</accepts>
     </rule>
-    <rule id="28dec4c2">
-        <description>Created after removal of "Welcome to Writerside!" from openjdk</description>
-        <accepts>starter-topic.html</accepts>
+    -->
+    <rule id="6ffc6d14">
+        <description>Created after removal of "Overview" from API Docs</description>
+        <accepts>Overview.html</accepts>
     </rule>
-    <rule id="510b422b">
-        <description>Created after removal of "Tutorial" from openjdk</description>
-        <accepts>Tutorial.html</accepts>
+    <rule id="673d4d69">
+        <description>Created after removal of "Authentification" from API Docs</description>
+        <accepts>Authentification.html</accepts>
     </rule>
-    <rule id="20efd4c8">
-        <description>Created after removal of "How to" from openjdk-playground</description>
-        <accepts>How-to.html</accepts>
+    <rule id="4078eb73">
+        <description>Created after removal of "API Quickstart" from API Docs</description>
+        <accepts>API-quickstart-XML.html</accepts>
     </rule>
-    <rule id="761613e6">
-        <description>Created after removal of "How to" from openjdk-playground</description>
-        <accepts>How-to.html</accepts>
+    <rule id="20d17971">
+        <description>Created after removal of "API Overview" from API Docs</description>
+        <accepts>API-Overview.html</accepts>
     </rule>
-    <rule id="693451c7">
-        <description>Created after removal of "How to1" from openjdk-playground</description>
-        <accepts>how-to1.html</accepts>
+    <rule id="8146e1e">
+        <description>Created after removal of "Changes" from API Docs</description>
+        <accepts>Changes-XML.html</accepts>
     </rule>
 </rules>
