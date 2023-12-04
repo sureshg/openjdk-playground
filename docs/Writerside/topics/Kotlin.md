@@ -6,7 +6,18 @@
     * [Native Image](#native-image)
     * [Videos](#videos)
     * [Samples](#samples)
+    * [Misc](#misc)
+    * [OpenAPI Doc](#openapi-doc)
 <!-- TOC -->
+
+<tldr>
+ <p>
+   Shortcut: <shortcut>CMD + SPACE</shortcut>
+</p>
+ <p>
+  Configure: <ui-path>Settings | View | Edit</ui-path>
+</p>
+</tldr>
 
 ### Kotlin Compiler Options
 
@@ -68,3 +79,40 @@ $ strings -a app | grep -i com.oracle.svm.core.VM
 {src="kotlin/App.kt" lang="kotlin" validate="true" }
 
 Download <res resource-id="movie-data" id="movie-data" instance="openjdk-playground"/>
+
+### Misc
+
+```mermaid
+classDiagram
+    Animal <|-- Duck
+    Animal <|-- Fish
+    Animal <|-- Zebra
+    Animal: +int age
+    Animal: +String gender
+    Animal: +isMammal()
+    Animal: +mate()
+    class Duck {
+        +String beakColor
+        +swim()
+        +quack()
+    }
+    class Fish {
+        -int sizeInFeet
+        -canEat()
+    }
+    class Zebra {
+        +bool is_wild
+        +run()
+    }
+```
+
+```tex
+\begin{equation}
+ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+\end{equation}
+```
+
+### OpenAPI Doc
+
+<api-doc openapi-path="../resources/documentation.yaml"/>
+
