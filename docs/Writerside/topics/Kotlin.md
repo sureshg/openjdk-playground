@@ -115,4 +115,3 @@ classDiagram
 ### OpenAPI Doc
 
 <api-doc openapi-path="../resources/documentation.yaml"/>
-
