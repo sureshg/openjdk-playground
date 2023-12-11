@@ -87,7 +87,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/677)
+    (0/674)
   </span>
 </td>
 </tr>
@@ -276,7 +276,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 <b class="nc">&nbsp;    server.createContext(</b>
 &nbsp;        &quot;/&quot;,
 &nbsp;        t -&gt; {
-<b class="nc">&nbsp;          out.println(&quot;GET: &quot; + t.getRequestURI());</b>
+<b class="nc">&nbsp;          out.println(STR.&quot;GET: \{t.getRequestURI()}&quot;);</b>
 <b class="nc">&nbsp;          var res =</b>
 &nbsp;              &quot;Java %s running on %s %s&quot;
 <b class="nc">&nbsp;                  .formatted(</b>
@@ -296,7 +296,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 &nbsp;    // The timestamp returned by the call to getRuntimeMXBean().getStartTime()
 &nbsp;    // returns the value *after* basic JVM initialization.
 <b class="nc">&nbsp;    var vmTime = ManagementFactory.getRuntimeMXBean().getStartTime();</b>
-<b class="nc">&nbsp;    out.println(&quot;Starting Http Server on port &quot; + server.getAddress().getPort() + &quot;...&quot;);</b>
+<b class="nc">&nbsp;    out.println(STR.&quot;Starting Http Server on port \{server.getAddress().getPort()}...&quot;);</b>
 <b class="nc">&nbsp;    out.printf(</b>
 &nbsp;        &quot;Started in %d millis! (JVM: %dms, Server: %dms)%n&quot;,
 <b class="nc">&nbsp;        (currTime - vmTime), (start - vmTime), (currTime - start));</b>
@@ -325,7 +325,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-11-06 22:27</div>
+    <div style="float:right;">generated on 2023-12-11 03:35</div>
 </div>
 </body>
 </html>
