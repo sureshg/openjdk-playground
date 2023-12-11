@@ -3,7 +3,7 @@
 # set -u won't work for sdkman
 set -e
 
-jdk_version=${1:-22}
+jdk_version=${1:-23}
 
 # Find OS type
 case "$OSTYPE" in

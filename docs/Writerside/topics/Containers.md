@@ -39,8 +39,8 @@ $ docker pull cgr.dev/chainguard/jdk:latest
 
 # Openjdk
 # https://github.com/docker-library/openjdk
-$ docker pull openjdk:22-slim
-$ docker pull openjdk:22-jdk-oracle
+$ docker pull openjdk:23-slim
+$ docker pull openjdk:23-jdk-oracle
 $ docker pull openjdk:19-alpine
 
 # Eclipse Temurin
