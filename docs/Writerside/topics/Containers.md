@@ -213,9 +213,9 @@ $ docker run \
         --mount type=bind,source=$(pwd),destination=/app,readonly \
         --mount type=bind,source=/,destination=/host,readonly \
         --name openjdk \
-        openjdk:22-slim \
+        openjdk:23-slim \
         java \
-        --source 22 --enable-preview \
+        --source 23 --enable-preview \
         -XX:+UnlockExperimentalVMOptions \
         -XX:+UnlockDiagnosticVMOptions \
         -XX:+PrintFlagsFinal \
@@ -236,7 +236,7 @@ $ docker run \
 ```bash
 # https://github.com/openjdk/jdk/blob/master/src/hotspot/share/runtime/os.cpp#L1691
 # OpenJDK reverts to Serial GC when it detects < 2 CPUs or < 2GB RAM
-$ docker run -it --rm --cpus=1 --memory=1G openjdk:22-slim java -Xlog:gc --version
+$ docker run -it --rm --cpus=1 --memory=1G openjdk:23-slim java -Xlog:gc --version
   #[0.007s][info][gc] Using Serial
 ```
 
@@ -252,7 +252,7 @@ $ docker run \
      -it \
      --rm \
      --pull always \
-     openjdk:22-slim \
+     openjdk:23-slim \
      sh -c "cat /proc/self/cgroup | grep -i '/docker'"
 
 # Check if running on Kubernets
@@ -260,7 +260,7 @@ $  docker run \
      -it \
      --rm \
      --pull always \
-     openjdk:22-slim \
+     openjdk:23-slim \
      sh -c "printenv | grep SERVICE"
 ```
 

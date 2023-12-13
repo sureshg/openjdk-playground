@@ -281,7 +281,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        jdk: [ "openjdk:22-slim" ]
+        jdk: [ "openjdk:23-slim" ]
 
     defaults:
       run:
@@ -297,7 +297,7 @@ jobs:
       - name: ☕ Run Java App on OpenJDK ${{ matrix.jdk }} container image
         if: always()
         run: |
-          java -ea --source 22 --enable-preview --show-version src/main/java/JavaApp.java
+          java -ea --source 23 --enable-preview --show-version src/main/java/JavaApp.java
         env:
           RUNNER_CONTEXT: ${{ toJson(runner) }}
 
