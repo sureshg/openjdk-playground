@@ -7,6 +7,7 @@
     * [Videos](#videos)
     * [Samples](#samples)
     * [Misc](#misc)
+        * [Math](#math)
     * [OpenAPI Doc](#openapi-doc)
 <!-- TOC -->
 
@@ -105,6 +106,8 @@ classDiagram
         +run()
     }
 ```
+
+##### Math
 
 ```tex
 \begin{equation}
