@@ -30,12 +30,7 @@ public class Main {
         record PersonX(Person p, int score) {
         }
 
-        return persons.stream()
-                .sorted(Comparator.comparing(Main::computeScore))
-                .map(p -> new PersonX(p, computeScore(p)))
-                .limit(count)
-                .map(PersonX::p)
-                .toList();
+        return persons.stream().sorted(Comparator.comparing(Main::computeScore)).map(p -> new PersonX(p, computeScore(p))).limit(count).map(PersonX::p).toList();
     }
 
     void main(String[] args) throws Exception {
@@ -49,7 +44,7 @@ public class Main {
                 """;
         out.println(textBlock);
         out.println(textBlock.translateEscapes());
-        out.println("Record Test: " + new Person("Hello Kotlin", 8));
+        out.println(STR."Record Test: \{new Person("Hello Kotlin", 8)}");
 
         // Lossy conversion in compound assignments. Warning should be thrown if lint is enabled.
         var i = 100;
@@ -68,15 +63,15 @@ public class Main {
 
     private void securityProperties() {
         var secMgr = System.getSecurityManager();
-        out.println("Security Manager (Deprecated): " + secMgr);
+        out.println(STR."Security Manager (Deprecated): \{secMgr}");
 
         final String dnsCacheTTL = "networkaddress.cache.ttl";
         final String dnsCacheNegTTL = "networkaddress.cache.negative.ttl";
         final String disabledAlgorithms = "jdk.tls.disabledAlgorithms";
 
-        out.println(dnsCacheTTL + " -> " + Security.getProperty(dnsCacheTTL));
-        out.println(dnsCacheNegTTL + " -> " + Security.getProperty(dnsCacheNegTTL));
-        out.println(disabledAlgorithms + " -> " + Security.getProperty(disabledAlgorithms));
+        out.println(STR."\{dnsCacheTTL} -> \{Security.getProperty(dnsCacheTTL)}");
+        out.println(STR."\{dnsCacheNegTTL} -> \{Security.getProperty(dnsCacheNegTTL)}");
+        out.println(STR."\{disabledAlgorithms} -> \{Security.getProperty(disabledAlgorithms)}");
 
         Security.setProperty(dnsCacheTTL, "30");
         // Large value for the cache for negative responses is problematic.

@@ -72,6 +72,7 @@ atomicfu {
 ksp {
   arg("autoserviceKsp.verify", "true")
   arg("autoserviceKsp.verbose", "true")
+  // allWarningsAsErrors = false
   // arg(KspArgsProvider(project.layout.projectDirectory.file("config").asFile))
 }
 

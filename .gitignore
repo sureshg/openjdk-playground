@@ -19,6 +19,8 @@ classes.lst
 *.jsa
 jre/
 
+# Kotlin
+**/.kotlin
+
 # Gradle release
 cx.json
-/.profileconfig.json

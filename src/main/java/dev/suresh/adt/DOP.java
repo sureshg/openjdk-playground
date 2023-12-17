@@ -53,11 +53,11 @@ public class DOP {
     private static void stringTemplates() {
         int x = 10;
         int y = 20;
-        out.println(STR. "\{ x } + \{ y } = \{ x + y }" );
-        out.println(FMT. """
-                0x%04x\{ x } + 0x%04x\{ y } = 0x%04x\{ x + y }
-                %04d\{ x } + %04d\{ y } = %04d\{ x + y }
-                """ );
+        out.println(STR."\{x} + \{y} = \{x + y}");
+        out.println(FMT."""
+                0x%04x\{x} + 0x%04x\{y} = 0x%04x\{x + y}
+                %04d\{x} + %04d\{y} = %04d\{x + y}
+                """);
     }
 
     interface Name<T> {
@@ -68,18 +68,18 @@ public class DOP {
 
     private static <T> void print(Name<T> name) {
         var result = switch (name) {
-            case FullName(var first, var last) -> first + ", " + last;
+            case FullName(var first, var last) -> STR."\{first}, \{last}";
             default -> "Invalid name";
         };
         out.println(result);
 
         if (name instanceof FullName<?> f) {
-            out.println(f.firstName() + ", " + f.lastName());
+            out.println(STR."\{f.firstName()}, \{f.lastName()}");
         }
 
         // Named record pattern is not supported
         if (name instanceof FullName(var first, var last)) {
-            out.println(first + ", " + last);
+            out.println(STR."\{first}, \{last}");
         }
     }
 
@@ -91,13 +91,13 @@ public class DOP {
 
     private static void amberReflections() {
         var sealedClazz = Result.class;
-        out.println("Result (Interface)  -> " + sealedClazz.isInterface());
-        out.println("Result (Sealed Class) -> " + sealedClazz.isSealed());
+        out.println(STR."Result (Interface) -> \{sealedClazz.isInterface()}");
+        out.println(STR."Result (Sealed Class) -> \{sealedClazz.isSealed()}");
 
         for (Class<?> permittedSubclass : sealedClazz.getPermittedSubclasses()) {
-            out.println("\nPermitted Subclass : " + permittedSubclass.getName());
+            out.println(STR."\nPermitted Subclass : \{permittedSubclass.getName()}");
             if (permittedSubclass.isRecord()) {
-                out.println(permittedSubclass.getSimpleName() + " record components are,");
+                out.println(STR."\{permittedSubclass.getSimpleName()} record components are,");
                 for (RecordComponent rc : permittedSubclass.getRecordComponents()) {
                     out.println(rc);
                 }
@@ -112,7 +112,7 @@ public class DOP {
             Lang {
                 requireNonNull(name);
                 if (year <= 0) {
-                    throw new IllegalArgumentException("Invalid year " + year);
+                    throw new IllegalArgumentException(STR."Invalid year \{year}");
                 }
             }
         }
@@ -124,7 +124,7 @@ public class DOP {
             List<Record> recs = List.of(new Lang("Java", 25), new Lang("Kotlin", 10), (Record) Result.success(100));
 
             for (Record rec : recs) {
-                out.println("Serializing record: " + rec);
+                out.println(STR."Serializing record: \{rec}");
                 oos.writeObject(rec);
             }
             oos.writeObject(null); // EOF
@@ -134,14 +134,13 @@ public class DOP {
             Object rec;
             while ((rec = ois.readObject()) != null) {
                 var result = switch (rec) {
-                    case null -> "n/a";
                     case Lang l when l.year >= 20 -> l.toString();
                     case Lang(var name, var year) -> name;
-                    case Result<?> r -> "Result value: " + r.getOrNull();
-                    default -> "Invalid serialized data. Expected Result, but found " + rec;
+                    case Result<?> r -> STR."Result value: \{r.getOrNull()}";
+                    default -> STR."Invalid serialized data. Expected Result, but found \{rec}";
                 };
 
-                out.println("Deserialized record: " + rec);
+                out.println(STR."Deserialized record: \{rec}");
                 out.println(result);
             }
         }
@@ -152,19 +151,20 @@ public class DOP {
                 case Result.Success<?> s -> s.toString();
                 case Result.Failure<?> f -> f.toString();
             };
-            out.println("Result (Sealed Type): " + result);
+            out.println(STR."Result (Sealed Type): \{result}");
         });
     }
 
     static List<Result<?>> results() {
-        return Arrays.asList(getResult(5L), getResult(25L), getResult(-1L));
+        return Arrays.asList(getResult(5L), getResult(25L), getResult(-1L), getResult("test"), getResult(null));
     }
 
     static Result<Number> getResult(Object obj) {
         return switch (obj) {
             case Long s when s > 0 && s < 10 -> Result.success(s);
             case Long s when s > 10 -> Result.failure(new IllegalArgumentException(String.valueOf(s)));
-            default -> null;
+            case null -> Result.failure(new NullPointerException());
+            default -> Result.failure(new IllegalArgumentException(obj.toString()));
         };
     }
 }
