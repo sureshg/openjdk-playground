@@ -36,8 +36,8 @@ val gjfVersion = libs.versions.google.javaformat.get()
 spotless {
   java {
     googleJavaFormat(gjfVersion)
-    target("**/*.java.fix")
-    targetExclude("**/build/**", "**/.gradle/**")
+    target("**/*.java")
+    targetExclude("**/build/**", "**/.gradle/**", "**/DOP.java")
   }
   // if(plugins.hasPlugin(JavaPlugin::class.java)){ }
 
