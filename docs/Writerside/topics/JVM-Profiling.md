@@ -13,6 +13,7 @@
     * [5. Commands](#5-commands)
     * [6.JFR Streaming](#6jfr-streaming)
     * [7. HeapDump](#7-heapdump)
+      * [Analyze using JOL](#analyze-using-jol)
     * [8. ThreadDump](#8-threaddump)
     * [9. Load Testing](#9-load-testing)
     * [10. Unified GC Logging](#10-unified-gc-logging)
@@ -190,6 +191,13 @@ $ open '/Applications/JDK Mission Control.app' --args -vm $JAVA_HOME/bin
 - [Stream JFR files](https://github.com/microsoft/jfr-streaming)
 
 ### 7. HeapDump
+
+#### Analyze using JOL
+
+```Bash
+ $ curl -sL https://builds.shipilev.net/jol/jol-cli-latest.jar > jol-cli.jar
+ $ java -jar jol-cli.jar heapdump-stats heapdump.hprof
+```
 
 * [Solving Memory Leaks without Heap Dumps](http://hirt.se/blog/?p=1055)
 * [Graal Heapdump Builder](https://www.graalvm.org/tools/javadoc/org/graalvm/tools/insight/heap/HeapDump.html)
