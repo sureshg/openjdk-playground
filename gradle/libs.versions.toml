@@ -23,7 +23,7 @@ kotlinx-kover                  = "0.7.5"
 kover-intellij                 = "1.0.720"
 kotlinx-bincompat              = "0.14.0"
 zip-prefixer                   = "0.3.1"
-intellij-coverage              = "1.0.744"
+intellij-coverage              = "1.0.746"
 
 ajalt-clikt                    = "4.2.2"
 ajalt-mordant                  = "2.3.0"
