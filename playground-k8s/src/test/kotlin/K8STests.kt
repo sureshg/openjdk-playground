@@ -39,19 +39,6 @@ class K8STests {
   fun testK8SClient() {
     val client = Config.fromConfig(k3s.kubeConfigYaml.reader())
     val api = CoreV1Api(client)
-    api.listNode(
-            /* pretty = */ null,
-            /* allowWatchBookmarks = */ null,
-            /* _continue = */ null,
-            /* fieldSelector = */ null,
-            /* labelSelector = */ null,
-            /* limit = */ null,
-            /* resourceVersion = */ null,
-            /* resourceVersionMatch = */ null,
-            /* sendInitialEvents = */ null,
-            /* timeoutSeconds = */ null,
-            /* watch = */ null)
-        .items
-        .forEach { println("K8S Node: ${it.metadata?.name}") }
+    api.listNode().execute().items.forEach { println("K8S Node: ${it.metadata?.name}") }
   }
 }
