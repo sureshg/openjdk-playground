@@ -148,7 +148,6 @@ tasks {
           "-Xjvm-default=all",
           "-Xassertions=jvm",
           "-Xcontext-receivers",
-          "-Xallow-result-return-type",
           "-Xemit-jvm-type-annotations",
           "-Xjspecify-annotations=strict",
           "-Xextended-compiler-checks",
