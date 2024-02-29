@@ -85,12 +85,19 @@ plugins.withId("org.jetbrains.kotlinx.binary-compatibility-validator") {
 
 kover {
   // useJacoco()
-}
-
-koverReport {
-  defaults {
-    filters { excludes { classes("dev.suresh.example.*") } }
-    html { title = "${project.name} code coverage report" }
+  reports {
+    total {
+      filters { excludes { classes("dev.suresh.example.*") } }
+      html { title = "${project.name} code coverage report" }
+      verify {
+        rule {
+          bound {
+            minValue = 0
+            maxValue = 75
+          }
+        }
+      }
+    }
   }
 }
 
