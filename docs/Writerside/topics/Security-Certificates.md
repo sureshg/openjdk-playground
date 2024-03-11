@@ -173,6 +173,10 @@ $ openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes \
           -keyout example.key -out example.pem \
           -subj "/C=US/ST=CA/L=SanJose/O=Company Name/OU=Org/CN=www.example.com" \
           -addext "subjectAltName=DNS:example.com,DNS:www.example.net,IP:10.0.0.1"
+# For ECC
+$ openssl req -x509 -newkey ec -pkeyopt ec_paramgen_curve:secp384r1 -days 3650 \
+          -nodes -keyout example.key -out example.pem -subj "/CN=localhost" \
+          -addext "subjectAltName=DNS:example.com,DNS:*.example.com,IP:127.0.0.1"
 
 # See certificate details (in text format, no cert output)
 $ openssl x509 -in example.pem -text -noout
