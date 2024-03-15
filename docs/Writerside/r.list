@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE resources SYSTEM "https://helpserver.labs.jb.gg/help/schemas/mvp/resources.dtd">
-<resources>
-    <resource id="movie-data" file="movies.csv" tags="csv"/>
-</resources>
