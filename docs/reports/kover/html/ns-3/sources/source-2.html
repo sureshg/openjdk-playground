@@ -190,46 +190,44 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 &nbsp; */
 &nbsp;sealed interface Result&lt;T&gt; extends Serializable {
 &nbsp;
-&nbsp;    static &lt;T&gt; Result&lt;T&gt; success(T value) {
-<b class="nc">&nbsp;        return new Success&lt;&gt;(value);</b>
-&nbsp;    }
+&nbsp;  static &lt;T&gt; Result&lt;T&gt; success(T value) {
+<b class="nc">&nbsp;    return new Success&lt;&gt;(value);</b>
+&nbsp;  }
 &nbsp;
-&nbsp;    static &lt;T&gt; Result&lt;T&gt; failure(Throwable error) {
-<b class="nc">&nbsp;        return new Failure&lt;&gt;(error);</b>
-&nbsp;    }
+&nbsp;  static &lt;T&gt; Result&lt;T&gt; failure(Throwable error) {
+<b class="nc">&nbsp;    return new Failure&lt;&gt;(error);</b>
+&nbsp;  }
 &nbsp;
-&nbsp;    default boolean isSuccess() {
-<b class="nc">&nbsp;        return this instanceof Success&lt;T&gt;;</b>
-&nbsp;    }
+&nbsp;  default boolean isSuccess() {
+<b class="nc">&nbsp;    return this instanceof Success&lt;T&gt;;</b>
+&nbsp;  }
 &nbsp;
-&nbsp;    default boolean isFailure() {
-<b class="nc">&nbsp;        return this instanceof Failure&lt;T&gt;;</b>
-&nbsp;    }
+&nbsp;  default boolean isFailure() {
+<b class="nc">&nbsp;    return this instanceof Failure&lt;T&gt;;</b>
+&nbsp;  }
 &nbsp;
-&nbsp;    default T getOrNull() {
-<b class="nc">&nbsp;        return this instanceof Success&lt;T&gt; s ? s.value() : null;</b>
-&nbsp;    }
+&nbsp;  default T getOrNull() {
+<b class="nc">&nbsp;    return this instanceof Success&lt;T&gt; s ? s.value() : null;</b>
+&nbsp;  }
 &nbsp;
-&nbsp;    default Throwable exceptionOrNull() {
-<b class="nc">&nbsp;        return this instanceof Failure&lt;T&gt; t ? t.error() : null;</b>
-&nbsp;    }
+&nbsp;  default Throwable exceptionOrNull() {
+<b class="nc">&nbsp;    return this instanceof Failure&lt;T&gt; t ? t.error() : null;</b>
+&nbsp;  }
 &nbsp;
-&nbsp;    default String fString() {
-<b class="nc">&nbsp;        return &quot;&quot;&quot;</b>
+&nbsp;  default String fString() {
+<b class="nc">&nbsp;    return &quot;&quot;&quot;</b>
 &nbsp;                ToString  -&gt; %1$s
 &nbsp;                Result    -&gt; %2$s
 &nbsp;                Success   -&gt; %3$s
 &nbsp;                Failure   -&gt; %4$s
 &nbsp;                Exception -&gt; %5$s
 &nbsp;                &quot;&quot;&quot;
-<b class="nc">&nbsp;                .formatted(toString(), getOrNull(), isSuccess(), isFailure(), exceptionOrNull());</b>
-&nbsp;    }
+<b class="nc">&nbsp;        .formatted(toString(), getOrNull(), isSuccess(), isFailure(), exceptionOrNull());</b>
+&nbsp;  }
 &nbsp;
-<b class="nc">&nbsp;    record Success&lt;T&gt;(T value) implements Result&lt;T&gt; {</b>
-&nbsp;    }
+<b class="nc">&nbsp;  record Success&lt;T&gt;(T value) implements Result&lt;T&gt; {}</b>
 &nbsp;
-<b class="nc">&nbsp;    record Failure&lt;T&gt;(Throwable error) implements Result&lt;T&gt; {</b>
-&nbsp;    }
+<b class="nc">&nbsp;  record Failure&lt;T&gt;(Throwable error) implements Result&lt;T&gt; {}</b>
 &nbsp;}
 </code>
 </pre>
@@ -254,7 +252,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-12-11 03:35</div>
+    <div style="float:right;">generated on 2024-03-30 20:05</div>
 </div>
 </body>
 </html>

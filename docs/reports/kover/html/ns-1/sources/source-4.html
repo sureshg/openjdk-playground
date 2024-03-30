@@ -5,7 +5,7 @@
 <html id="htmlId">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-  <title>openjdk-playground code coverage report Coverage Report > Main</title>
+  <title>openjdk-playground code coverage report Coverage Report > MainKt</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -22,7 +22,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     <a href="../index.html">&lt;empty package name&gt;</a>
 </div>
 
-<h1>Coverage Summary for Class: Main (&lt;empty package name&gt;)</h1>
+<h1>Coverage Summary for Class: MainKt (&lt;empty package name&gt;)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -49,24 +49,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 </th>
 </tr>
 <tr>
-  <td class="name">Main</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-    <td class="coverageStat"/>
+  <td class="name">MainKt</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -83,6 +66,23 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     (0/2)
   </span>
 </td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/49)
+  </span>
+</td>
 </tr>
 
 </table>
@@ -92,24 +92,24 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 
 <pre>
-<code class="sourceCode" id="sourceCode"><b class="nc">&nbsp;import java.util.*</b>
+<code class="sourceCode" id="sourceCode">&nbsp;import java.util.*
 &nbsp;import javax.crypto.Mac
 &nbsp;import javax.crypto.spec.SecretKeySpec
 &nbsp;
 &nbsp;fun main() {
-&nbsp;  println(&quot;Hello Kotlin! ${App.KOTLIN_VERSION}&quot;)
-&nbsp;  println(&quot;Security Manager Allowed: ${System.getProperty(&quot;java.security.manager&quot;)}&quot;)
-&nbsp;  println(&quot;Security Manager: ${System.getSecurityManager()}&quot;)
+<b class="nc">&nbsp;  println(&quot;Hello Kotlin! ${App.KOTLIN_VERSION}&quot;)</b>
+<b class="nc">&nbsp;  println(&quot;Security Manager Allowed: ${System.getProperty(&quot;java.security.manager&quot;)}&quot;)</b>
+<b class="nc">&nbsp;  println(&quot;Security Manager: ${System.getSecurityManager()}&quot;)</b>
 &nbsp;  // echo -n &quot;test&quot; | openssl dgst -sha256 -hmac 1234 -binary | base64
-&nbsp;  println(&quot;test&quot;.hmacSha256(&quot;1234&quot;))
+<b class="nc">&nbsp;  println(&quot;test&quot;.hmacSha256(&quot;1234&quot;))</b>
 &nbsp;}
 &nbsp;
 &nbsp;fun String.hmacSha256(secret: String): String {
-&nbsp;  val key = SecretKeySpec(secret.encodeToByteArray(), &quot;HmacSHA256&quot;)
-&nbsp;  val mac: Mac = Mac.getInstance(&quot;HmacSHA256&quot;)
-&nbsp;  mac.init(key)
-&nbsp;  val out = mac.doFinal(encodeToByteArray())
-&nbsp;  return Base64.getEncoder().encodeToString(out)
+<b class="nc">&nbsp;  val key = SecretKeySpec(secret.encodeToByteArray(), &quot;HmacSHA256&quot;)</b>
+<b class="nc">&nbsp;  val mac: Mac = Mac.getInstance(&quot;HmacSHA256&quot;)</b>
+<b class="nc">&nbsp;  mac.init(key)</b>
+<b class="nc">&nbsp;  val out = mac.doFinal(encodeToByteArray())</b>
+<b class="nc">&nbsp;  return Base64.getEncoder().encodeToString(out)</b>
 &nbsp;}
 &nbsp;
 &nbsp;/**
@@ -157,7 +157,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-12-11 03:35</div>
+    <div style="float:right;">generated on 2024-03-30 20:05</div>
 </div>
 </body>
 </html>

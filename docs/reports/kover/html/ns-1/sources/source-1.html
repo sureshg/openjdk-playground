@@ -25,9 +25,12 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 <h1>Coverage Summary for Class: App (&lt;empty package name&gt;)</h1>
 
 <table class="coverageStats">
-
 <tr>
   <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
 <th class="coverageStat 
 ">
   Method, %
@@ -55,54 +58,6 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     (0/1)
   </span>
 </td>
-    <td class="coverageStat"/>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/9)
-  </span>
-</td>
-</tr>
-  <tr>
-    <td class="name">App$dependencies$2</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-    <td class="coverageStat"/>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/12)
-  </span>
-</td>
-  </tr>
-<tr>
-  <td class="name"><strong>Total</strong></td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -125,10 +80,11 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/21)
+    (0/20)
   </span>
 </td>
 </tr>
+
 </table>
 
 <br/>
@@ -142,7 +98,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 &nbsp; */
 &nbsp;object App {
 &nbsp;  /** Application version. */
-&nbsp;  const val VERSION = &quot;2.3.0&quot;
+&nbsp;  const val VERSION = &quot;2.4.0&quot;
 &nbsp;
 &nbsp;  /** Application base version used for calculating the version. */
 &nbsp;  const val BASE_VERSION = &quot;base_version&quot;
@@ -151,10 +107,10 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 &nbsp;  const val JAVA_VERSION = &quot;javaVersion&quot;
 &nbsp;
 &nbsp;  /** Kotlin library version. */
-&nbsp;  const val KOTLIN_VERSION = &quot;2.0.0-Beta1&quot;
+&nbsp;  const val KOTLIN_VERSION = &quot;2.0.0-Beta5&quot;
 &nbsp;
 &nbsp;  /** Gradle version */
-&nbsp;  const val GRADLE_VERSION = &quot;8.5&quot;
+&nbsp;  const val GRADLE_VERSION = &quot;8.7&quot;
 &nbsp;
 &nbsp;  /**
 &nbsp;   * Git
@@ -177,7 +133,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 &nbsp;
 &nbsp;  /** Returns the list of runtime dependencies. */
 <b class="nc">&nbsp;  val dependencies: List&lt;String&gt; by lazy {</b>
-<b class="nc">&nbsp;    &quot;&quot;&quot;org.gradle.api.internal.artifacts.dsl.dependencies.DefaultDependencyHandler_Decorated@4540e862&quot;&quot;&quot;.trimIndent().lines().filter { it.isNotBlank() }</b>
+<b class="nc">&nbsp;    &quot;&quot;&quot;org.gradle.api.internal.artifacts.dsl.dependencies.DefaultDependencyHandler_Decorated@1da11571&quot;&quot;&quot;.trimIndent().lines().filter { it.isNotBlank() }</b>
 &nbsp;  }
 &nbsp;}
 </code>
@@ -203,7 +159,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-12-11 03:35</div>
+    <div style="float:right;">generated on 2024-03-30 20:05</div>
 </div>
 </body>
 </html>

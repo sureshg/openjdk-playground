@@ -25,9 +25,12 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 <h1>Coverage Summary for Class: VThreadServer (dev.suresh.vthread)</h1>
 
 <table class="coverageStats">
-
 <tr>
   <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
 <th class="coverageStat 
 ">
   Method, %
@@ -52,143 +55,18 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/7)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/4)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/71)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/326)
-  </span>
-</td>
-</tr>
-  <tr>
-    <td class="name">VThreadServer$exec$1</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
     (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/12)
   </span>
 </td>
     <td class="coverageStat"/>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/3)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/19)
-  </span>
-</td>
-  </tr>
-  <tr>
-    <td class="name">VThreadServer$exec$2</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-    <td class="coverageStat"/>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/10)
-  </span>
-</td>
-  </tr>
-  <tr>
-    <td class="name">VThreadServer$top$res$1</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/4)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/6)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/49)
-  </span>
-</td>
-  </tr>
-<tr>
-  <td class="name"><strong>Total</strong></td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/10)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/8)
-  </span>
-</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -202,10 +80,11 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/404)
+    (0/378)
   </span>
 </td>
 </tr>
+
 </table>
 
 <br/>
@@ -267,7 +146,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 <b class="nc">&nbsp;    val futures =</b>
 <b class="nc">&nbsp;        (1..500).map {</b>
 <b class="nc">&nbsp;          CompletableFuture.supplyAsync(</b>
-&nbsp;                  {
+<b class="nc">&nbsp;                  {</b>
 <b class="nc">&nbsp;                    val res =</b>
 <b class="nc">&nbsp;                        client.send(</b>
 <b class="nc">&nbsp;                            HttpRequest.newBuilder().uri(URI.create(url)).build(),</b>
@@ -372,7 +251,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-12-11 03:35</div>
+    <div style="float:right;">generated on 2024-03-30 20:05</div>
 </div>
 </body>
 </html>

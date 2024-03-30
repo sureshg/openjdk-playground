@@ -166,14 +166,14 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 &nbsp;
 <b class="nc">&nbsp;    var end = System.currentTimeMillis();</b>
 &nbsp;
-<b class="nc">&nbsp;    out.println(&quot;Processing took &quot; + (end - start) + &quot; ms.&quot;);</b>
-<b class="nc">&nbsp;    out.println(&quot;Final list size &quot; + list.size());</b>
+<b class="nc">&nbsp;    out.println(STR.&quot;Processing took \{end - start} ms.&quot;);</b>
+<b class="nc">&nbsp;    out.println(STR.&quot;Final list size \{list.size()}&quot;);</b>
 &nbsp;
 <b class="nc">&nbsp;    start = System.currentTimeMillis();</b>
 <b class="nc">&nbsp;    var longList = LongStream.rangeClosed(1, 100_000).parallel().map(a -&gt; a * 5).boxed().toList();</b>
 <b class="nc">&nbsp;    end = System.currentTimeMillis();</b>
-<b class="nc">&nbsp;    out.println(&quot;Processing took &quot; + (end - start) + &quot; ms.&quot;);</b>
-<b class="nc">&nbsp;    out.println(&quot;Final list size &quot; + longList.size());</b>
+<b class="nc">&nbsp;    out.println(STR.&quot;Processing took \{end - start} ms.&quot;);</b>
+<b class="nc">&nbsp;    out.println(STR.&quot;Final list size \{longList.size()}&quot;);</b>
 &nbsp;
 &nbsp;    // new BitSet(64).set(1,true);
 &nbsp;    // Stream.generate()
@@ -225,7 +225,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-12-11 03:35</div>
+    <div style="float:right;">generated on 2024-03-30 20:05</div>
 </div>
 </body>
 </html>

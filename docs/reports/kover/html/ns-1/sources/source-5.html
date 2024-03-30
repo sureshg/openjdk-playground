@@ -5,7 +5,7 @@
 <html id="htmlId">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-  <title>openjdk-playground code coverage report Coverage Report > MainKt</title>
+  <title>openjdk-playground code coverage report Coverage Report > Result</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -22,15 +22,12 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     <a href="../index.html">&lt;empty package name&gt;</a>
 </div>
 
-<h1>Coverage Summary for Class: MainKt (&lt;empty package name&gt;)</h1>
+<h1>Coverage Summary for Class: Result (&lt;empty package name&gt;)</h1>
 
 <table class="coverageStats">
+
 <tr>
   <th class="name">Class</th>
-<th class="coverageStat 
-">
-  Class, %
-</th>
 <th class="coverageStat 
 ">
   Method, %
@@ -49,7 +46,16 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 </th>
 </tr>
 <tr>
-  <td class="name">MainKt</td>
+  <td class="name">Result</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -66,7 +72,54 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     (0/2)
   </span>
 </td>
+</tr>
+  <tr>
+    <td class="name">Result$Error</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
     <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">Result$Error$NonRecException</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -75,16 +128,119 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     (0/9)
   </span>
 </td>
+  </tr>
+  <tr>
+    <td class="name">Result$Error$RecException</td>
 <td class="coverageStat">
   <span class="percent">
     0%
   </span>
   <span class="absValue">
-    (0/49)
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">Result$InProgress</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">Result$Success</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/39)
   </span>
 </td>
 </tr>
-
 </table>
 
 <br/>
@@ -97,19 +253,19 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 &nbsp;import javax.crypto.spec.SecretKeySpec
 &nbsp;
 &nbsp;fun main() {
-<b class="nc">&nbsp;  println(&quot;Hello Kotlin! ${App.KOTLIN_VERSION}&quot;)</b>
-<b class="nc">&nbsp;  println(&quot;Security Manager Allowed: ${System.getProperty(&quot;java.security.manager&quot;)}&quot;)</b>
-<b class="nc">&nbsp;  println(&quot;Security Manager: ${System.getSecurityManager()}&quot;)</b>
+&nbsp;  println(&quot;Hello Kotlin! ${App.KOTLIN_VERSION}&quot;)
+&nbsp;  println(&quot;Security Manager Allowed: ${System.getProperty(&quot;java.security.manager&quot;)}&quot;)
+&nbsp;  println(&quot;Security Manager: ${System.getSecurityManager()}&quot;)
 &nbsp;  // echo -n &quot;test&quot; | openssl dgst -sha256 -hmac 1234 -binary | base64
-<b class="nc">&nbsp;  println(&quot;test&quot;.hmacSha256(&quot;1234&quot;))</b>
+&nbsp;  println(&quot;test&quot;.hmacSha256(&quot;1234&quot;))
 &nbsp;}
 &nbsp;
 &nbsp;fun String.hmacSha256(secret: String): String {
-<b class="nc">&nbsp;  val key = SecretKeySpec(secret.encodeToByteArray(), &quot;HmacSHA256&quot;)</b>
-<b class="nc">&nbsp;  val mac: Mac = Mac.getInstance(&quot;HmacSHA256&quot;)</b>
-<b class="nc">&nbsp;  mac.init(key)</b>
-<b class="nc">&nbsp;  val out = mac.doFinal(encodeToByteArray())</b>
-<b class="nc">&nbsp;  return Base64.getEncoder().encodeToString(out)</b>
+&nbsp;  val key = SecretKeySpec(secret.encodeToByteArray(), &quot;HmacSHA256&quot;)
+&nbsp;  val mac: Mac = Mac.getInstance(&quot;HmacSHA256&quot;)
+&nbsp;  mac.init(key)
+&nbsp;  val out = mac.doFinal(encodeToByteArray())
+&nbsp;  return Base64.getEncoder().encodeToString(out)
 &nbsp;}
 &nbsp;
 &nbsp;/**
@@ -123,16 +279,16 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 &nbsp; *   C --&gt;|Three| F[fa:fa-car Car]
 &nbsp; * ```
 &nbsp; */
-&nbsp;sealed class Result&lt;out T&gt; {
-&nbsp;  data class Success&lt;T : Any&gt;(val data: T) : Result&lt;T&gt;()
+<b class="nc">&nbsp;sealed class Result&lt;out T&gt; {</b>
+<b class="nc">&nbsp;  data class Success&lt;T : Any&gt;(val data: T) : Result&lt;T&gt;()</b>
 &nbsp;
-&nbsp;  sealed class Error(val exec: Exception) : Result&lt;Nothing&gt;() {
-&nbsp;    class RecException(val e: Exception) : Error(e)
+<b class="nc">&nbsp;  sealed class Error(val exec: Exception) : Result&lt;Nothing&gt;() {</b>
+<b class="nc">&nbsp;    class RecException(val e: Exception) : Error(e)</b>
 &nbsp;
-&nbsp;    class NonRecException(val e: Exception) : Error(e)
+<b class="nc">&nbsp;    class NonRecException(val e: Exception) : Error(e)</b>
 &nbsp;  }
 &nbsp;
-&nbsp;  data object InProgress : Result&lt;Nothing&gt;()
+<b class="nc">&nbsp;  data object InProgress : Result&lt;Nothing&gt;()</b>
 &nbsp;}
 </code>
 </pre>
@@ -157,7 +313,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2023-12-11 03:35</div>
+    <div style="float:right;">generated on 2024-03-30 20:05</div>
 </div>
 </body>
 </html>
