@@ -46,7 +46,7 @@
                     </a>
             </div>
             <div class="library-version">
-2.3.0            </div>
+2.4.0            </div>
         </div>
         <div class="filter-section" id="filter-section">
                 <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":dokkaHtml/main">JVM</button>
@@ -66,7 +66,7 @@
   <div class="breadcrumbs"><a href="../../../index.html">openjdk-playground</a><span class="delimiter">/</span><a href="../index.html">[root]</a><span class="delimiter">/</span><span class="current">Result</span></div>
   <div class="cover ">
     <h1 class="cover"><span><span>Result</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">sealed </span><span class="token keyword">class </span><a href="index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="index.html">T</a><span class="token operator">&gt;</span><span class="clearfix"><span class="floating-right">(<a href="https://github.com/sureshg/openjdk-playground/tree/main/src/main/kotlin/Main.kt#L32">source</a>)</span></span></div><p class="paragraph">See the graph for more details,</p><div class="sample-container"><div id="mermaid-container-5tl8bfhru07b5"></div></div><script>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">sealed </span><span class="token keyword">class </span><a href="index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="index.html">T</a><span class="token operator">&gt;</span><span class="clearfix"><span class="floating-right">(<a href="https://github.com/sureshg/openjdk-playground/tree/main/src/main/kotlin/Main.kt#L32">source</a>)</span></span></div><p class="paragraph">See the graph for more details,</p><div class="sample-container"><div id="mermaid-container-73i4u99msibil"></div></div><script>
 window.addEventListener('load', function() {
   var graphDef =  `graph LR
   A[Christmas] -->|Get money| B(Go shopping)
@@ -74,14 +74,9 @@ window.addEventListener('load', function() {
   C -->|One| D[Laptop]
   C -->|Two| E[iPhone]
   C -->|Three| F[fa:fa-car Car]`;
-  var container = document.getElementById('mermaid-container-5tl8bfhru07b5');
-  container.innerHTML = '<div id="mermaid-target-5tl8bfhru07b5"></div>';
-  var cb5tl8bfhru07b5 = function(svgGraph) {
-    container.innerHTML = svgGraph;
-    // Trick to make the graph takes only the required height.
-    document.getElementById('mermaid-target-5tl8bfhru07b5').removeAttribute('height')
-  };
-  var updateGraph5tl8bfhru07b5 = function() {
+  var container = document.getElementById('mermaid-container-73i4u99msibil');
+  container.innerHTML = '<div id="mermaid-target-73i4u99msibil"></div>';
+  var updateGraph73i4u99msibil = function() {
     // setTimeout required or else the 1st render could be done before mermaid.initialize() has applied the theme.
     // Also required because we can't listen to localStorage events reliably, and it's changed on the same click event...
     setTimeout(() => {
@@ -92,15 +87,19 @@ window.addEventListener('load', function() {
         theme = 'dark';
       }
       mermaid.initialize({'theme': theme});
-      mermaid.mermaidAPI.render('mermaid-target-5tl8bfhru07b5', graphDef, cb5tl8bfhru07b5);
+      mermaid.render('mermaid-target-73i4u99msibil', graphDef).then(({ svg, bindFunctions }) => {
+          container.innerHTML = svg;
+          // Trick to make the graph takes only the required height.
+          document.getElementById('mermaid-target-73i4u99msibil').removeAttribute('height')
+          bindFunctions?.(element);
+      });
     }, 0);
   }
-  updateGraph5tl8bfhru07b5();
+  updateGraph73i4u99msibil();
   
   var themeToggleButton = document.getElementById('theme-toggle-button');
   themeToggleButton.addEventListener('click', () => {
-    // This detection mechanism is shitty, please tell me if you know better.
-    updateGraph5tl8bfhru07b5();
+    updateGraph73i4u99msibil();
   });
 });</script><h4 class="">Inheritors</h4><div class="table"><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-success/index.html">Success</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-error/index.html">Error</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-in-progress/index.html">InProgress</a></div></span></div><div></div></div></div></div></div></div>
   </div>
@@ -119,7 +118,7 @@ window.addEventListener('load', function() {
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">sealed </span><span class="token keyword">class </span><a href="-error/index.html">Error</a> : <a href="index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-nothing/index.html">Nothing</a><span class="token operator">&gt; </span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">sealed </span><span class="token keyword">class </span><a href="-error/index.html">Error</a> : <a href="index.html">Result</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-nothing/index.html">Nothing</a><span class="token operator">&gt; </span></div></div></div>
                 </div>
               </div>
             </div>
@@ -134,7 +133,7 @@ window.addEventListener('load', function() {
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-in-progress/index.html">InProgress</a> : <a href="index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-nothing/index.html">Nothing</a><span class="token operator">&gt; </span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">object </span><a href="-in-progress/index.html">InProgress</a> : <a href="index.html">Result</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-nothing/index.html">Nothing</a><span class="token operator">&gt; </span></div></div></div>
                 </div>
               </div>
             </div>
@@ -149,7 +148,7 @@ window.addEventListener('load', function() {
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-success/index.html">Success</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-success/index.html">T</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>data<span class="token operator">: </span><a href="-success/index.html">T</a></span></span><span class="token punctuation">)</span> : <a href="index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-success/index.html">T</a><span class="token operator">&gt; </span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-success/index.html">Success</a><span class="token operator">&lt;</span><a href="-success/index.html">T</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>data<span class="token operator">: </span><a href="-success/index.html">T</a></span></span><span class="token punctuation">)</span> : <a href="index.html">Result</a><span class="token operator">&lt;</span><a href="-success/index.html">T</a><span class="token operator">&gt; </span></div></div></div>
                 </div>
               </div>
             </div>
@@ -160,7 +159,7 @@ window.addEventListener('load', function() {
   </div>
 </div>
       <div class="footer">
-        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span
                 class="pull-right"><span>Generated by </span><a
                 href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
       </div>
