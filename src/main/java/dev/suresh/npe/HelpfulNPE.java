@@ -9,7 +9,8 @@ public class HelpfulNPE {
     } catch (NullPointerException npe) {
       System.out.println(STR."Helpful NPE: \{npe.getMessage()}");
       assert npe.getMessage()
-          .equals("""
+          .equals(
+              """
               Cannot read field "name" because "address.country" is null""");
     }
   }

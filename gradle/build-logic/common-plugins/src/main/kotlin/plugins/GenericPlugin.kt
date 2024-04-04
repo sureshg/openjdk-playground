@@ -30,8 +30,8 @@ class GenericSettingsPlugin : Plugin<Settings> {
         gradle.beforeProject { pluginManager.apply(GenericProjectPlugin::class) }
 
         // Configure an extension when a plugin is applied.
-        plugins.withId("com.gradle.enterprise") {}
+        plugins.withId("com.gradle.develocity") {}
 
-        // OR pluginManager.withPlugin("com.gradle.enterprise") {}
+        // OR pluginManager.withPlugin("com.gradle.develocity") {}
       }
 }

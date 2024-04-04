@@ -9,17 +9,17 @@ pluginManagement {
     google()
   }
 
-  // val gradleEnterprise: String by settings
+  // val develocityPlugin: String by settings
   // OR
-  // val gradleEnterprise =
+  // val develocityPlugin =
   //      file("$rootDir/gradle/libs.versions.toml")
   //          .readLines()
-  //          .first { it.contains("gradle-enterprise") }
+  //          .first { it.contains("develocity-plugin") }
   //          .split("\"")[1]
 
   // https://docs.gradle.org/current/userguide/plugins.html#sec:plugin_version_management
   // plugins {
-  //    id("com.gradle.enterprise") version gradleEnterprise
+  //    id("com.gradle.develocity") version develocityPlugin
   //    val kotlinVersion = extra["kotlin.version"] as String
   //    kotlin("jvm") version kotlinVersion
   // }

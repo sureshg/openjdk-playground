@@ -1,7 +1,7 @@
 package settings
 
 import GithubAction
-import com.gradle.scan.plugin.PublishedBuildScan
+import com.gradle.develocity.agent.gradle.scan.PublishedBuildScan
 import org.gradle.kotlin.dsl.*
 import org.gradle.toolchains.foojay.FoojayToolchainResolver
 
@@ -25,7 +25,7 @@ pluginManagement {
 // Apply the plugins to all projects
 plugins {
   // Gradle build scan
-  id("com.gradle.enterprise")
+  id("com.gradle.develocity")
   // Toolchains resolver using the Foojay Disco API.
   id("org.gradle.toolchains.foojay-resolver")
   // Use semver on all projects
@@ -46,26 +46,35 @@ dependencyResolutionManagement {
   repositoriesMode = RepositoriesMode.FAIL_ON_PROJECT_REPOS
 }
 
-gradleEnterprise {
-  buildScan {
-    termsOfServiceUrl = "https://gradle.com/terms-of-service"
-    termsOfServiceAgree = "yes"
-    capture.isTaskInputFiles = true
-    if (GithubAction.isEnabled) {
-      publishAlways()
-      isUploadInBackground = false
-      tag("GITHUB_ACTION")
-      buildScanPublished { addJobSummary() }
-    }
-  }
-}
-
 @Suppress("UnstableApiUsage")
 toolchainManagement {
   jvm {
     javaRepositories {
       repository("foojay") { resolverClass = FoojayToolchainResolver::class.java }
     }
+  }
+}
+
+develocity {
+  buildScan {
+    termsOfUseUrl = "https://gradle.com/terms-of-service"
+    termsOfUseAgree = "yes"
+
+    capture {
+      buildLogging = false
+      testLogging = false
+    }
+
+    obfuscation {
+      ipAddresses { it.map { _ -> "0.0.0.0" } }
+      hostname { "*******" }
+      username { name -> name.reversed() }
+    }
+
+    publishing.onlyIf { GithubAction.isEnabled }
+    uploadInBackground = false
+    tag("GITHUB_ACTION")
+    buildScanPublished { addJobSummary() }
   }
 }
 

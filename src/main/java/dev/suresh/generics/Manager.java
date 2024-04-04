@@ -12,6 +12,7 @@ public class Manager extends Employee {
         Manager {
           name='%s'
         }
-        """.formatted(getName());
+        """
+        .formatted(getName());
   }
 }

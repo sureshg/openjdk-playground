@@ -18,6 +18,7 @@ public class Employee {
         Employee {
           name='%s'
         }
-        """.formatted(name);
+        """
+        .formatted(name);
   }
 }

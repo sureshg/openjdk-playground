@@ -12,6 +12,7 @@ public class Director extends Manager {
         Director {
           name='%s'
         }
-        """.formatted(getName());
+        """
+        .formatted(getName());
   }
 }

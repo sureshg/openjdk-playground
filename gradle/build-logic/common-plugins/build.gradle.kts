@@ -36,11 +36,11 @@ gradlePlugin {
   plugins {
 
     // Re-exposure of plugin from dependency. Gradle doesn't expose the plugin itself.
-    create("com.gradle.enterprise") {
-      id = "com.gradle.enterprise"
-      implementationClass = "com.gradle.enterprise.gradleplugin.GradleEnterprisePlugin"
-      displayName = "Gradle Enterprise"
-      description = "Gradle enterprise settings plugin re-exposed from dependency"
+    create("com.gradle.develocity") {
+      id = "com.gradle.develocity"
+      implementationClass = "com.gradle.develocity.agent.gradle.DevelocityPlugin"
+      displayName = "Develocity Gradle Plugin"
+      description = "Develocity gradle settings plugin re-exposed from dependency"
     }
 
     // A generic plugin for both project and settings
@@ -93,7 +93,7 @@ dependencies {
   implementation(libs.build.kotlinx.kover)
   implementation(libs.build.dokka)
   implementation(libs.build.ksp.redacted)
-  implementation(libs.build.gradle.enterprise)
+  implementation(libs.build.gradle.develocity)
   implementation(libs.build.nexus.plugin)
   implementation(libs.build.spotless.plugin)
   implementation(libs.build.shadow.plugin)
