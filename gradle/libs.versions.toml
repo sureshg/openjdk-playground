@@ -177,7 +177,7 @@ taskinfo                       = "2.2.0"
 versioncatalog-update          = "0.8.4"
 dependency-analysis            = "1.31.0"
 best-practices-plugin          = "0.10"
-modulegraph                    = "0.6.1"
+modulegraph                    = "0.7.0"
 
 # Composite build versions
 module-jdk                     = "1.0.0"
