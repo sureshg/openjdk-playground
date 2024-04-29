@@ -25,7 +25,7 @@ kotlinx-bincompat              = "0.15.0-Beta.2"
 zip-prefixer                   = "0.3.1"
 intellij-coverage              = "1.0.750"
 
-ajalt-clikt                    = "4.3.0"
+ajalt-clikt                    = "4.4.0"
 ajalt-mordant                  = "2.5.0"
 ajalt-colormath                = "3.5.0"
 assertj                        = "3.21.0"
