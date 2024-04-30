@@ -35,6 +35,7 @@ include(":playground-bom")
 include("playground-catalog")
 
 include("playground-k8s")
+
 // project(":playground-bom").buildFileName = "bom-build.gradle.kts"
 // project(":aaa:xxx").projectDir = file("aaa/bbb")
 

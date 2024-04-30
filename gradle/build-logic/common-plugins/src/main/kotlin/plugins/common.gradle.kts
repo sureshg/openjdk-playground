@@ -42,6 +42,7 @@ printVersionCatalog()
 
 // After the project configure
 afterEvaluate { println("=== Project Configuration Completed ===") }
+
 // apply(from ="")
 
 idea {

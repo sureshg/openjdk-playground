@@ -152,7 +152,7 @@ object FFMApi {
     Arena.ofConfined().use { arena ->
       val count = 10
       val segment = arena.allocate(count * JAVA_INT.byteSize())
-      for (i in 0 ..< count) {
+      for (i in 0..<count) {
         segment.setAtIndex(JAVA_INT, i.toLong(), i)
       }
     }

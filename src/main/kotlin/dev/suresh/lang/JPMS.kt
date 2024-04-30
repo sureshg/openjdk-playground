@@ -62,6 +62,7 @@ fun compileJava() {
       .newInstance(Runnable::class.java)
       .run()
 }
+
 /** @see [VarHandles](https://www.baeldung.com/java-variable-handles) */
 private fun showAllSecurityProperties() {
   // Should add this VM args "--add-opens=java.base/java.security=ALL-UNNAMED"
