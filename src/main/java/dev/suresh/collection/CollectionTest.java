@@ -28,21 +28,14 @@ public class CollectionTest {
 
     var end = System.currentTimeMillis();
 
-    out.println(STR."Processing took \{end - start} ms.");
-    out.println(STR."Final list size \{list.size()}");
+    out.printf("Processing took %d ms.%n", end - start);
+    out.printf("Final list size %d%n", list.size());
 
     start = System.currentTimeMillis();
     var longList = LongStream.rangeClosed(1, 100_000).parallel().map(a -> a * 5).boxed().toList();
     end = System.currentTimeMillis();
-    out.println(STR."Processing took \{end - start} ms.");
-    out.println(STR."Final list size \{longList.size()}");
-
-    // new BitSet(64).set(1,true);
-    // Stream.generate()
-    // Objects
-    // Arrays
-    // Collections.
-    // Threads.virtualThreads().count()
+    out.printf("Processing took %d ms.%n", end - start);
+    out.printf("Final list size %d%n", longList.size());
   }
 
   public static void teeing() {

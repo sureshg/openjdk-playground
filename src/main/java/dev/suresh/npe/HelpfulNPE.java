@@ -7,11 +7,11 @@ public class HelpfulNPE {
       String name = new Customer(new Address(null)).address.country.name;
       System.out.println(name);
     } catch (NullPointerException npe) {
-      System.out.println(STR."Helpful NPE: \{npe.getMessage()}");
+      System.out.printf("Helpful NPE: %s%n", npe.getMessage());
       assert npe.getMessage()
           .equals(
               """
-              Cannot read field "name" because "address.country" is null""");
+                    Cannot read field "name" because "address.country" is null""");
     }
   }
 

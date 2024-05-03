@@ -2,6 +2,7 @@
 
 import com.sun.net.httpserver.SimpleFileServer;
 import com.sun.net.httpserver.SimpleFileServer.OutputLevel;
+
 import java.net.InetSocketAddress;
 import java.net.URI;
 import java.nio.file.FileSystems;
@@ -14,6 +15,6 @@ void main() {
             new InetSocketAddress(8080),
             modules,
             OutputLevel.VERBOSE);
-    System.out.println(STR."Visit http://localhost:\{fileServer.getAddress().getPort()}/ to see the file server!");
+    System.out.printf("Visit http://localhost:%d/ to see the file server!%n", fileServer.getAddress().getPort());
     fileServer.start();
 }

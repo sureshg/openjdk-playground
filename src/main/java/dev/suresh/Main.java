@@ -2,7 +2,6 @@ package dev.suresh;
 
 import static java.lang.System.out;
 
-import dev.suresh.adt.DOP;
 import dev.suresh.ffm.FFMApi;
 import dev.suresh.jte.RenderJte;
 import dev.suresh.lang.JPMSKt;
@@ -47,7 +46,6 @@ public class Main {
                 """;
     out.println(textBlock);
     out.println(textBlock.translateEscapes());
-    out.println(STR."Record Test: \{new Person("Hello Kotlin", 8)}");
 
     // Lossy conversion in compound assignments. Warning should be thrown if lint is enabled.
     var i = 100;
@@ -57,7 +55,7 @@ public class Main {
     new MockServer().run();
     new MavenResolver().run();
     new RenderJte().run();
-    DOP.run();
+
     JettyServerKt.run(args);
     JPMSKt.run();
     HelpfulNPE.run();
@@ -66,15 +64,15 @@ public class Main {
 
   private void securityProperties() {
     var secMgr = System.getSecurityManager();
-    out.println(STR."Security Manager (Deprecated): \{secMgr}");
+    out.printf("Security Manager (Deprecated): %s%n", secMgr);
 
     final String dnsCacheTTL = "networkaddress.cache.ttl";
     final String dnsCacheNegTTL = "networkaddress.cache.negative.ttl";
     final String disabledAlgorithms = "jdk.tls.disabledAlgorithms";
 
-    out.println(STR."\{dnsCacheTTL} -> \{Security.getProperty(dnsCacheTTL)}");
-    out.println(STR."\{dnsCacheNegTTL} -> \{Security.getProperty(dnsCacheNegTTL)}");
-    out.println(STR."\{disabledAlgorithms} -> \{Security.getProperty(disabledAlgorithms)}");
+    out.printf("%1s -> %2s%n", dnsCacheTTL, Security.getProperty(dnsCacheTTL));
+    out.printf("%1s -> %2s%n", dnsCacheNegTTL, Security.getProperty(dnsCacheNegTTL));
+    out.printf("%1s -> %2s%n", disabledAlgorithms, Security.getProperty(disabledAlgorithms));
 
     Security.setProperty(dnsCacheTTL, "30");
     // Large value for the cache for negative responses is problematic.

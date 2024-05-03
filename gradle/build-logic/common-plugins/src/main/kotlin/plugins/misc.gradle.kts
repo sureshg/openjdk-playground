@@ -37,7 +37,7 @@ spotless {
   java {
     googleJavaFormat(gjfVersion)
     target("**/*.java")
-    targetExclude("**/build/**", "**/.gradle/**", "**/DOP.java")
+    targetExclude("**/build/**", "**/.gradle/**", "**/JavaApp.java")
   }
   // if(plugins.hasPlugin(JavaPlugin::class.java)){ }
 
