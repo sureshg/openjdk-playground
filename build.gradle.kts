@@ -39,7 +39,6 @@ application {
           "-Xmx96M",
           "-XX:+PrintCommandLineFlags",
           "-XX:+UseZGC",
-          "-XX:+ZGenerational",
           "-XX:+UseCompressedOops",
           "-XX:+UseStringDeduplication",
           "-XX:+UnlockExperimentalVMOptions",
