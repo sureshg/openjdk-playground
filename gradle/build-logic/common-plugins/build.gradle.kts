@@ -78,10 +78,9 @@ dependencies {
   // https://github.com/gradle/gradle/issues/15383#issuecomment-779893192
   implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
   implementation(libs.ajalt.mordant)
+  implementation(libs.ajalt.mordant.coroutines)
   implementation(libs.jte.runtime)
   implementation(libs.build.zip.prefixer)
-  // compileOnly(libs.jte.kotlin)
-
   // External plugins deps to use in precompiled script plugins
   // https://docs.gradle.org/current/userguide/custom_plugins.html#applying_external_plugins_in_precompiled_script_plugins
   implementation(libs.build.kotlin)

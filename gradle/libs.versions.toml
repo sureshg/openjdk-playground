@@ -26,7 +26,7 @@ zip-prefixer                   = "0.3.1"
 intellij-coverage              = "1.0.754"
 
 ajalt-clikt                    = "4.4.0"
-ajalt-mordant                  = "2.5.0"
+ajalt-mordant                  = "2.6.0"
 ajalt-colormath                = "3.5.0"
 assertj                        = "3.21.0"
 beryx-textio                   = "3.4.1"
@@ -72,7 +72,7 @@ jmdns                          = "3.5.9"
 jreleaser                      = "1.12.0"
 jspecify                       = "0.3.0"
 jte                            = "3.1.11"
-junit                          = "5.11.0-M1"
+junit                          = "5.11.0-M2"
 junit-pioneer                  = "2.2.0"
 jqwik                          = "1.8.4"
 jSystemThemeDetector           = "3.6"
@@ -151,7 +151,7 @@ gradle-checksum                = "1.4.0"
 google-jib                     = "3.4.2"
 google-javaformat              = "1.22.0"
 graalvm-nativeimage            = "0.10.1"
-gradle-develocity              = "3.17.3"
+gradle-develocity              = "3.17.4"
 gradlex-javamoduleinfo         = "1.8"
 gradlex-buildparameters        = "1.0"
 git-properties                 = "2.4.2"
@@ -177,7 +177,7 @@ taskinfo                       = "2.2.0"
 versioncatalog-update          = "0.8.4"
 dependency-analysis            = "1.31.0"
 best-practices-plugin          = "0.10"
-modulegraph                    = "0.9.0"
+modulegraph                    = "0.10.0"
 
 # Composite build versions
 module-jdk                     = "1.0.0"
@@ -219,12 +219,13 @@ build-cp-collisiondetector      = { module = "io.fuchs.gradle.classpath-collisio
 build-intellij-coverage         = { module = "org.jetbrains.intellij.deps:intellij-coverage-reporter"                    , version.ref = "intellij-coverage" }
 
 # Gradle Dependencies
-ajalt-clikt             = { module = "com.github.ajalt.clikt:clikt"                    , version.ref = "ajalt-clikt"}
-ajalt-mordant           = { module = "com.github.ajalt.mordant:mordant"                , version.ref = "ajalt-mordant"}
-ajalt-colormath         = { module = "com.github.ajalt.colormath:colormath"            , version.ref = "ajalt-colormath"}
-beryx-textio            = { module = "org.beryx:text-io"                               , version.ref = "beryx-textio"}
-bucket4j-core           = { module = "com.github.vladimir-bukhtoyarov:bucket4j-core"   , version.ref = "bucket4j"}
-compose-theme-detect    = { module = "com.github.Dansoftowner:jSystemThemeDetector"     , version.ref = "jSystemThemeDetector"}
+ajalt-clikt                     = { module = "com.github.ajalt.clikt:clikt"                    , version.ref = "ajalt-clikt"}
+ajalt-mordant                   = { module = "com.github.ajalt.mordant:mordant"                , version.ref = "ajalt-mordant"}
+ajalt-mordant-coroutines        = { module = "com.github.ajalt.mordant:mordant-coroutines"     , version.ref = "ajalt-mordant"}
+ajalt-colormath                 = { module = "com.github.ajalt.colormath:colormath"            , version.ref = "ajalt-colormath"}
+beryx-textio                    = { module = "org.beryx:text-io"                               , version.ref = "beryx-textio"}
+bucket4j-core                   = { module = "com.github.vladimir-bukhtoyarov:bucket4j-core"   , version.ref = "bucket4j"}
+compose-theme-detect            = { module = "com.github.Dansoftowner:jSystemThemeDetector"     , version.ref = "jSystemThemeDetector"}
 
 certifikit              = { module = "app.cash.certifikit:certifikit"                   , version.ref = "certifikit" }
 concurrent-jctools      = { module = "org.jctools:jctools-core"                         , version.ref = "concurrent-jctools"}
