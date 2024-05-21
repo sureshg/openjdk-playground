@@ -157,8 +157,6 @@ tasks {
           "-Xcontext-receivers",
           "-Xemit-jvm-type-annotations",
           "-Xjspecify-annotations=strict",
-          "-Xextended-compiler-checks",
-          "-Xuse-fir-extended-checkers",
           // "-Xjdk-release=$javaVersion",
           // "-Xadd-modules=ALL-MODULE-PATH",
           // "-Xmodule-path=",
