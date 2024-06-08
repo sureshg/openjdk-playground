@@ -16,7 +16,7 @@
 
 ```bash
 $ curl -s "https://get.sdkman.io" | bash
-$ sdk i java openjdk-ea-23
+$ sdk i java openjdk-ea-24
 ```
 
 #### Build
@@ -59,7 +59,7 @@ $ docker run \
         --publish 8000:8000 \
         --name openjdk-playground \
         --mount type=bind,source=$(pwd),destination=/app,readonly \
-        openjdk:23-slim /bin/bash -c "./build/openjdk-playground && printenv && jwebserver -b 0.0.0.0 -p 8000 -d /"
+        openjdk:24-slim /bin/bash -c "./build/openjdk-playground && printenv && jwebserver -b 0.0.0.0 -p 8000 -d /"
 
 # Download the JFR files
 $ wget http://localhost:8000/tmp/openjdk-playground.jfr
@@ -167,7 +167,7 @@ $ ./gradlew -q javaToolchains
 
 [java_url]: https://jdk.java.net/
 
-[java_img]: https://img.shields.io/badge/OpenJDK-23--ea-ea791d?logo=java&logoColor=ea791d
+[java_img]: https://img.shields.io/badge/OpenJDK-24--ea-ea791d?logo=java&logoColor=ea791d
 
 [kt_url]: https://github.com/JetBrains/kotlin/releases/latest
 
