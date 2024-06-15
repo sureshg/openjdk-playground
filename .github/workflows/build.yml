@@ -295,7 +295,7 @@ jobs:
       - name: ☕ Run Java App on OpenJDK ${{ matrix.jdk }} container image
         if: always()
         run: |
-          java -ea --source 23 --enable-preview --show-version src/main/java/JavaApp.java
+          java --enable-preview --show-version src/main/java/JavaApp.java
         env:
           RUNNER_CONTEXT: ${{ toJson(runner) }}
 
