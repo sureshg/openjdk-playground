@@ -279,7 +279,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        jdk: [ "openjdk:23-slim" ]
+        jdk: [ "openjdk:24-slim" ]
 
     defaults:
       run:
