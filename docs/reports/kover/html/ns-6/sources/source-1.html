@@ -5,7 +5,7 @@
 <html id="htmlId">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-  <title>openjdk-playground code coverage report Coverage Report > CollectionTest</title>
+  <title>openjdk-playground code coverage report Coverage Report > CoError</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -19,15 +19,18 @@
 <div class="breadCrumbs">
 Current scope: openjdk-playground code coverage report<span class="separator">|</span>    <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">dev.suresh.collection</a>
+    <a href="../index.html">dev.suresh.concurrent</a>
 </div>
 
-<h1>Coverage Summary for Class: CollectionTest (dev.suresh.collection)</h1>
+<h1>Coverage Summary for Class: CoError (dev.suresh.concurrent)</h1>
 
 <table class="coverageStats">
-
 <tr>
   <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
 <th class="coverageStat 
 ">
   Method, %
@@ -46,7 +49,32 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 </th>
 </tr>
 <tr>
-  <td class="name">CollectionTest</td>
+  <td class="name">CoError</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -55,80 +83,8 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     (0/3)
   </span>
 </td>
-    <td class="coverageStat"/>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/22)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/184)
-  </span>
-</td>
 </tr>
-  <tr>
-    <td class="name">CollectionTest$1Employee</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-    <td class="coverageStat"/>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/19)
-  </span>
-</td>
-  </tr>
-<tr>
-  <td class="name"><strong>Total</strong></td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/4)
-  </span>
-</td>
-    <td class="coverageStat"/>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/23)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/203)
-  </span>
-</td>
-</tr>
+
 </table>
 
 <br/>
@@ -136,71 +92,55 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.collection;
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.concurrent
 &nbsp;
-&nbsp;import static java.lang.System.out;
+&nbsp;import java.math.BigInteger
+&nbsp;import kotlin.time.Duration.Companion.milliseconds
+&nbsp;import kotlinx.coroutines.*
 &nbsp;
-&nbsp;import java.util.ArrayList;
-&nbsp;import java.util.Arrays;
-&nbsp;import java.util.function.BiFunction;
-&nbsp;import java.util.function.Supplier;
-&nbsp;import java.util.stream.IntStream;
-&nbsp;import java.util.stream.LongStream;
-&nbsp;import java.util.stream.Stream;
+<b class="nc">&nbsp;object CoError : Throwable(&quot;error&quot;)</b>
 &nbsp;
-<b class="nc">&nbsp;public class CollectionTest {</b>
-&nbsp;
-&nbsp;  void main() {
-&nbsp;
-&nbsp;    // MethodHandles.lookup().
-<b class="nc">&nbsp;    var arr = new Integer[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};</b>
-<b class="nc">&nbsp;    Arrays.parallelSetAll(arr, i -&gt; arr[i] * 5);</b>
-&nbsp;
-<b class="nc">&nbsp;    var start = System.currentTimeMillis();</b>
-<b class="nc">&nbsp;    var list =</b>
-<b class="nc">&nbsp;        IntStream.range(1, 100_000)</b>
-<b class="nc">&nbsp;            .parallel()</b>
-<b class="nc">&nbsp;            .map(i -&gt; i * 2)</b>
-<b class="nc">&nbsp;            .collect(</b>
-&nbsp;                (Supplier&lt;ArrayList&lt;Integer&gt;&gt;) ArrayList::new, ArrayList::add, ArrayList::addAll);
-&nbsp;
-<b class="nc">&nbsp;    var end = System.currentTimeMillis();</b>
-&nbsp;
-<b class="nc">&nbsp;    out.println(STR.&quot;Processing took \{end - start} ms.&quot;);</b>
-<b class="nc">&nbsp;    out.println(STR.&quot;Final list size \{list.size()}&quot;);</b>
-&nbsp;
-<b class="nc">&nbsp;    start = System.currentTimeMillis();</b>
-<b class="nc">&nbsp;    var longList = LongStream.rangeClosed(1, 100_000).parallel().map(a -&gt; a * 5).boxed().toList();</b>
-<b class="nc">&nbsp;    end = System.currentTimeMillis();</b>
-<b class="nc">&nbsp;    out.println(STR.&quot;Processing took \{end - start} ms.&quot;);</b>
-<b class="nc">&nbsp;    out.println(STR.&quot;Final list size \{longList.size()}&quot;);</b>
-&nbsp;
-&nbsp;    // new BitSet(64).set(1,true);
-&nbsp;    // Stream.generate()
-&nbsp;    // Objects
-&nbsp;    // Arrays
-&nbsp;    // Collections.
-&nbsp;    // Threads.virtualThreads().count()
+&nbsp;suspend fun main() {
+&nbsp;  val num = suspendCancellableCoroutine { cont -&gt;
+&nbsp;    cont.resume(100) {}
+&nbsp;    // cont.resumeWithException(CoError)
+&nbsp;    cont.invokeOnCancellation {}
 &nbsp;  }
 &nbsp;
-&nbsp;  public static void teeing() {
-<b class="nc">&nbsp;    record Employee(String name, int age) {}</b>
+&nbsp;  // For suspending lambda, make it inline.
+&nbsp;  printFiveTimes { getString() }
 &nbsp;
-<b class="nc">&nbsp;    BiFunction&lt;String, Integer, Employee&gt; empRef = Employee::new;</b>
-<b class="nc">&nbsp;    var emp = empRef.apply(&quot;name&quot;, 10);</b>
-<b class="nc">&nbsp;    out.println(emp);</b>
-&nbsp;
-<b class="nc">&nbsp;    var employees =</b>
-<b class="nc">&nbsp;        Stream.of(</b>
-&nbsp;            new Employee(&quot;Employee-1&quot;, 30),
-&nbsp;            new Employee(&quot;Employee-2&quot;, 40),
-&nbsp;            new Employee(&quot;Employee-3&quot;, 34),
-&nbsp;            new Employee(&quot;Employee-4&quot;, 45),
-&nbsp;            new Employee(&quot;Employee-5&quot;, 50));
-&nbsp;
-&nbsp;    // employees.collect(Collectors.teeing()
-&nbsp;
+&nbsp;  runBlocking {
+&nbsp;    val job = launch {
+&nbsp;      factorial(200)
+&nbsp;      println(&quot;Factorial Job reached end!&quot;)
+&nbsp;    }
+&nbsp;    // Give a delay to give the job time to start.
+&nbsp;    delay(1.milliseconds)
+&nbsp;    job.cancel()
+&nbsp;    println(&quot;Job cancelled!&quot;)
 &nbsp;  }
+&nbsp;}
+&nbsp;
+&nbsp;// Support cooperative cancellation
+&nbsp;suspend fun factorial(n: Int): BigInteger =
+&nbsp;    withContext(Dispatchers.Default) {
+&nbsp;      var fact = BigInteger.ONE
+&nbsp;      for (i in 1..n) {
+&nbsp;        ensureActive() // or yield()
+&nbsp;        fact *= i.toBigInteger()
+&nbsp;      }
+&nbsp;      println(&quot;factorial($n) = $fact&quot;)
+&nbsp;      fact
+&nbsp;    }
+&nbsp;
+&nbsp;suspend fun getString(): String {
+&nbsp;  delay(10.milliseconds)
+&nbsp;  return &quot;Hello&quot;
+&nbsp;}
+&nbsp;
+&nbsp;inline fun printFiveTimes(gen: () -&gt; String) {
+&nbsp;  repeat(2) { println(gen()) }
 &nbsp;}
 </code>
 </pre>
@@ -225,7 +165,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-03-30 20:05</div>
+    <div style="float:right;">generated on 2024-06-15 20:20</div>
 </div>
 </body>
 </html>

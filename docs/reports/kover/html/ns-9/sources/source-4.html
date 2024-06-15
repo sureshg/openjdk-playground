@@ -5,7 +5,7 @@
 <html id="htmlId">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-  <title>openjdk-playground code coverage report Coverage Report > Manager</title>
+  <title>openjdk-playground code coverage report Coverage Report > Dog</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -19,10 +19,10 @@
 <div class="breadCrumbs">
 Current scope: openjdk-playground code coverage report<span class="separator">|</span>    <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">dev.suresh.generics</a>
+    <a href="../index.html">dev.suresh.jackson</a>
 </div>
 
-<h1>Coverage Summary for Class: Manager (dev.suresh.generics)</h1>
+<h1>Coverage Summary for Class: Dog (dev.suresh.jackson)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -49,7 +49,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 </th>
 </tr>
 <tr>
-  <td class="name">Manager</td>
+  <td class="name">Dog</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -63,7 +63,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/2)
+    (0/3)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -72,7 +72,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/3)
+    (0/5)
   </span>
 </td>
 <td class="coverageStat">
@@ -80,7 +80,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/12)
+    (0/23)
   </span>
 </td>
 </tr>
@@ -92,23 +92,76 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.generics;
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.jackson;
 &nbsp;
-&nbsp;public class Manager extends Employee {
+&nbsp;import java.util.List;
 &nbsp;
-&nbsp;  public Manager(String name) {
+&nbsp;public abstract class Animal {
+&nbsp;
+&nbsp;  private final String name;
+&nbsp;
+&nbsp;  // protected Animal() {}
+&nbsp;
+&nbsp;  public Animal(String name) {
+&nbsp;    this.name = name;
+&nbsp;  }
+&nbsp;
+&nbsp;  public String name() {
+&nbsp;    return name;
+&nbsp;  }
+&nbsp;}
+&nbsp;
+&nbsp;class Cat extends Animal {
+&nbsp;
+&nbsp;  private final boolean canMeow;
+&nbsp;
+&nbsp;  public Cat(String name) {
+&nbsp;    super(name);
+&nbsp;    canMeow = true;
+&nbsp;  }
+&nbsp;
+&nbsp;  public boolean isCanMeow() {
+&nbsp;    return canMeow;
+&nbsp;  }
+&nbsp;
+&nbsp;  @Override
+&nbsp;  public String toString() {
+&nbsp;    return &quot;&quot;&quot;
+&nbsp;        Cat{
+&nbsp;          name = %s
+&nbsp;          canMeow = %s
+&nbsp;        }
+&nbsp;        &quot;&quot;&quot;
+&nbsp;        .formatted(name(), canMeow);
+&nbsp;  }
+&nbsp;}
+&nbsp;
+&nbsp;class Dog extends Animal {
+&nbsp;
+&nbsp;  private final boolean canBark;
+&nbsp;
+&nbsp;  public Dog(String name) {
 <b class="nc">&nbsp;    super(name);</b>
+<b class="nc">&nbsp;    canBark = true;</b>
+&nbsp;  }
+&nbsp;
+&nbsp;  public boolean isCanBark() {
+<b class="nc">&nbsp;    return canBark;</b>
 &nbsp;  }
 &nbsp;
 &nbsp;  @Override
 &nbsp;  public String toString() {
 <b class="nc">&nbsp;    return &quot;&quot;&quot;</b>
-&nbsp;        Manager {
-&nbsp;          name=&#39;%s&#39;
+&nbsp;        Dog{
+&nbsp;          name = %s
+&nbsp;          canBark = %s
 &nbsp;        }
-<b class="nc">&nbsp;        &quot;&quot;&quot;.formatted(getName());</b>
+&nbsp;        &quot;&quot;&quot;
+<b class="nc">&nbsp;        .formatted(name(), canBark);</b>
 &nbsp;  }
 &nbsp;}
+&nbsp;
+&nbsp;record Animals(List&lt;Animal&gt; animals) {}
 </code>
 </pre>
 </div>
@@ -132,7 +185,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-03-30 20:05</div>
+    <div style="float:right;">generated on 2024-06-15 20:20</div>
 </div>
 </body>
 </html>

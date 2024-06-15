@@ -5,7 +5,7 @@
 <html id="htmlId">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-  <title>openjdk-playground code coverage report Coverage Report > Logger</title>
+  <title>openjdk-playground code coverage report Coverage Report > Tree</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -19,10 +19,10 @@
 <div class="breadCrumbs">
 Current scope: openjdk-playground code coverage report<span class="separator">|</span>    <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">dev.suresh.lang</a>
+    <a href="../index.html">dev.suresh.misc</a>
 </div>
 
-<h1>Coverage Summary for Class: Logger (dev.suresh.lang)</h1>
+<h1>Coverage Summary for Class: Tree (dev.suresh.misc)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -49,7 +49,24 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 </th>
 </tr>
 <tr>
-  <td class="name">Logger</td>
+  <td class="name">Tree</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+    <td class="coverageStat"/>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -66,23 +83,6 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     (0/2)
   </span>
 </td>
-    <td class="coverageStat"/>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/2)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/14)
-  </span>
-</td>
 </tr>
 
 </table>
@@ -92,54 +92,39 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.lang
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.misc
 &nbsp;
-&nbsp;import kotlin.contracts.contract
+&nbsp;import kotlin.math.*
 &nbsp;
-<b class="nc">&nbsp;class Logger(val name: String) {</b>
-<b class="nc">&nbsp;  fun log(message: String) = println(&quot;$name: $message&quot;)</b>
-&nbsp;}
+<b class="nc">&nbsp;sealed class Tree&lt;out T&gt;</b>
 &nbsp;
-&nbsp;context(Logger)
-&nbsp;fun store(msg: String) {
-&nbsp;  log(&quot;Stored $msg in the file&quot;)
-&nbsp;}
+&nbsp;data object Empty : Tree&lt;Nothing&gt;()
 &nbsp;
-&nbsp;fun main() {
-&nbsp;  val logger = Logger(&quot;main&quot;)
-&nbsp;  with(logger) { store(&quot;Hello&quot;) }
+&nbsp;data class Node&lt;T&gt;(val value: T, val right: Tree&lt;T&gt; = Empty, val left: Tree&lt;T&gt; = Empty) : Tree&lt;T&gt;()
 &nbsp;
-&nbsp;  val anon = User.Anonymous
-&nbsp;  val auth = User.Authenticated(&quot;Suresh&quot;)
-&nbsp;
-&nbsp;  smartCast(anon)
-&nbsp;  smartCast(auth)
-&nbsp;}
-&nbsp;
-&nbsp;fun smartCast(user: User) =
-&nbsp;    when (user.isAuthenticated()) {
-&nbsp;      true -&gt; user.signOut()
-&nbsp;      false -&gt; user.signIn()
+&nbsp;fun &lt;T : Number&gt; Tree&lt;T&gt;.sum(): Long =
+&nbsp;    when (this) {
+&nbsp;      Empty -&gt; 0
+&nbsp;      is Node -&gt; value.toLong() + left.sum() + right.sum()
 &nbsp;    }
 &nbsp;
-&nbsp;sealed class User {
-&nbsp;
-&nbsp;  fun isAuthenticated(): Boolean {
-&nbsp;    contract {
-&nbsp;      returns(true) implies (this@User is Authenticated)
-&nbsp;      returns(false) implies (this@User is Anonymous)
+&nbsp;fun &lt;T&gt; Tree&lt;T&gt;.depth(): Int =
+&nbsp;    when (this) {
+&nbsp;      Empty -&gt; 0
+&nbsp;      is Node -&gt; max(left.depth(), right.depth()) + 1
 &nbsp;    }
-&nbsp;    return this is Authenticated
-&nbsp;  }
 &nbsp;
-&nbsp;  data object Anonymous : User() {
-&nbsp;    fun signIn() = println(&quot;Please sign in&quot;)
-&nbsp;  }
-&nbsp;
-&nbsp;  data class Authenticated(val name: String) : User() {
-&nbsp;    fun signOut() = println(&quot;Signing out $name&quot;)
-&nbsp;  }
-&nbsp;}
+&nbsp;// fun &lt;T&gt; Tree&lt;T&gt;.printTree(depth: Int = 0) {
+&nbsp;//    val indent = &quot; &quot;.repeat(depth)
+&nbsp;//    when (this) {
+&nbsp;//        Empty -&gt; return
+&nbsp;//        is Node -&gt; {
+&nbsp;//            println(&quot;$indent $value&quot;)
+&nbsp;//            println(&quot;$indent ${left.}&quot;)
+&nbsp;//            value.toLong() + left.sum() + right.sum()
+&nbsp;//        }
+&nbsp;//    }
+&nbsp;// }
 </code>
 </pre>
 </div>
@@ -163,7 +148,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-03-30 20:05</div>
+    <div style="float:right;">generated on 2024-06-15 20:20</div>
 </div>
 </body>
 </html>

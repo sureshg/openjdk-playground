@@ -5,7 +5,7 @@
 <html id="htmlId">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-  <title>openjdk-playground code coverage report Coverage Report > HelpfulNPE</title>
+  <title>openjdk-playground code coverage report Coverage Report > MockServer</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -19,15 +19,18 @@
 <div class="breadCrumbs">
 Current scope: openjdk-playground code coverage report<span class="separator">|</span>    <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">dev.suresh.npe</a>
+    <a href="../index.html">dev.suresh.server</a>
 </div>
 
-<h1>Coverage Summary for Class: HelpfulNPE (dev.suresh.npe)</h1>
+<h1>Coverage Summary for Class: MockServer (dev.suresh.server)</h1>
 
 <table class="coverageStats">
-
 <tr>
   <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
 <th class="coverageStat 
 ">
   Method, %
@@ -46,13 +49,13 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 </th>
 </tr>
 <tr>
-  <td class="name">HelpfulNPE</td>
+  <td class="name">MockServer</td>
 <td class="coverageStat">
   <span class="percent">
     0%
   </span>
   <span class="absValue">
-    (0/2)
+    (0/1)
   </span>
 </td>
 <td class="coverageStat">
@@ -60,7 +63,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/2)
+    (0/4)
   </span>
 </td>
 <td class="coverageStat">
@@ -68,7 +71,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/7)
+    (0/6)
   </span>
 </td>
 <td class="coverageStat">
@@ -76,129 +79,19 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/37)
+    (0/38)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/233)
   </span>
 </td>
 </tr>
-  <tr>
-    <td class="name">HelpfulNPE$Address</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-    <td class="coverageStat"/>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/14)
-  </span>
-</td>
-  </tr>
-  <tr>
-    <td class="name">HelpfulNPE$Country</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-    <td class="coverageStat"/>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/14)
-  </span>
-</td>
-  </tr>
-  <tr>
-    <td class="name">HelpfulNPE$Customer</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-    <td class="coverageStat"/>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/14)
-  </span>
-</td>
-  </tr>
-<tr>
-  <td class="name"><strong>Total</strong></td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/5)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/2)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/10)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/79)
-  </span>
-</td>
-</tr>
+
 </table>
 
 <br/>
@@ -206,27 +99,77 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.npe;
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.server
 &nbsp;
-<b class="nc">&nbsp;public class HelpfulNPE {</b>
+&nbsp;import java.net.HttpURLConnection.HTTP_MOVED_TEMP
+&nbsp;import java.security.cert.*
+&nbsp;import java.time.*
+&nbsp;import okhttp3.*
+&nbsp;import okhttp3.mockwebserver.*
+&nbsp;import okhttp3.tls.*
+&nbsp;import okhttp3.tls.internal.*
 &nbsp;
-&nbsp;  public static void run() {
-&nbsp;    try {
-<b class="nc">&nbsp;      String name = new Customer(new Address(null)).address.country.name;</b>
-<b class="nc">&nbsp;      System.out.println(name);</b>
-<b class="nc">&nbsp;    } catch (NullPointerException npe) {</b>
-<b class="nc">&nbsp;      System.out.println(STR.&quot;Helpful NPE: \{npe.getMessage()}&quot;);</b>
-<b class="nc">&nbsp;      assert npe.getMessage()</b>
-<b class="nc">&nbsp;          .equals(&quot;&quot;&quot;</b>
-&nbsp;              Cannot read field &quot;name&quot; because &quot;address.country&quot; is null&quot;&quot;&quot;);
+&nbsp;/**
+&nbsp; * More OKHttp samples can found in this
+&nbsp; * [repo](https://github.com/square/okhttp/tree/master/samples/guide/src/main/java/okhttp3/recipes/kt)
+&nbsp; */
+<b class="nc">&nbsp;class MockServer {</b>
+&nbsp;  /** Generate a self-signed cert for the server to serve and the client to trust. */
+<b class="nc">&nbsp;  val selfSignedCert = TlsUtil.localhost()</b>
+&nbsp;
+&nbsp;  /** Start the HTTPS server with a self signed cert. */
+<b class="nc">&nbsp;  val server = MockWebServer().apply { useHttps(selfSignedCert.sslSocketFactory(), false) }</b>
+&nbsp;
+&nbsp;  /** For accessing server and google.com */
+<b class="nc">&nbsp;  val clientCerts =</b>
+<b class="nc">&nbsp;      HandshakeCertificates.Builder()</b>
+<b class="nc">&nbsp;          .addTrustedCertificate(selfSignedCert.trustManager.acceptedIssuers[0])</b>
+<b class="nc">&nbsp;          .addInsecureHost(server.hostName)</b>
+<b class="nc">&nbsp;          .addPlatformTrustedCertificates()</b>
+<b class="nc">&nbsp;          .build()</b>
+&nbsp;
+<b class="nc">&nbsp;  val client =</b>
+<b class="nc">&nbsp;      OkHttpClient.Builder()</b>
+<b class="nc">&nbsp;          .sslSocketFactory(clientCerts.sslSocketFactory(), clientCerts.trustManager)</b>
+<b class="nc">&nbsp;          .callTimeout(Duration.ofSeconds(5))</b>
+<b class="nc">&nbsp;          .fastFallback(true)</b>
+<b class="nc">&nbsp;          .build()</b>
+&nbsp;
+&nbsp;  /** Enqueue a request, run a client and shutdown the server. */
+&nbsp;  fun run() {
+<b class="nc">&nbsp;    server.use { server -&gt;</b>
+&nbsp;      // Enqueue the request
+<b class="nc">&nbsp;      server.enqueue(</b>
+<b class="nc">&nbsp;          MockResponse()</b>
+<b class="nc">&nbsp;              .setResponseCode(HTTP_MOVED_TEMP)</b>
+<b class="nc">&nbsp;              .setHeader(&quot;Location&quot;, &quot;https://www.google.com/robots.txt&quot;),</b>
+&nbsp;      )
+&nbsp;
+<b class="nc">&nbsp;      val url = server.url(&quot;/&quot;)</b>
+<b class="nc">&nbsp;      println(&quot;\nConnecting to $url&quot;)</b>
+&nbsp;
+<b class="nc">&nbsp;      val req = Request.Builder().header(&quot;User-Agent&quot;, OkHttp.VERSION).url(url).build()</b>
+&nbsp;
+<b class="nc">&nbsp;      client.newCall(req).execute().use { res -&gt;</b>
+<b class="nc">&nbsp;        when (res.isSuccessful) {</b>
+<b class="nc">&nbsp;          true -&gt; {</b>
+<b class="nc">&nbsp;            println(&quot;Got response from server: ${res.request.url}&quot;)</b>
+<b class="nc">&nbsp;            val resHeaders = res.headers</b>
+&nbsp;
+<b class="nc">&nbsp;            println(&quot;Response headers are,&quot;)</b>
+<b class="nc">&nbsp;            resHeaders.forEach { println(&quot;${it.first} : ${it.second}&quot;) }</b>
+&nbsp;
+<b class="nc">&nbsp;            println(&quot;${res.protocol} Peer certificates are,&quot;)</b>
+<b class="nc">&nbsp;            res.handshake?.peerCertificates?.forEach {</b>
+<b class="nc">&nbsp;              val cert = it as X509Certificate</b>
+<b class="nc">&nbsp;              println(cert.subjectX500Principal)</b>
+<b class="nc">&nbsp;            }</b>
+&nbsp;          }
+<b class="nc">&nbsp;          else -&gt; error(&quot;Unexpected code $res&quot;)</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;      }</b>
 &nbsp;    }
 &nbsp;  }
-&nbsp;
-<b class="nc">&nbsp;  record Customer(Address address) {}</b>
-&nbsp;
-<b class="nc">&nbsp;  record Address(Country country) {}</b>
-&nbsp;
-<b class="nc">&nbsp;  record Country(String name) {}</b>
 &nbsp;}
 </code>
 </pre>
@@ -251,7 +194,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-03-30 20:05</div>
+    <div style="float:right;">generated on 2024-06-15 20:20</div>
 </div>
 </body>
 </html>

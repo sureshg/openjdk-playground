@@ -5,7 +5,7 @@
 <html id="htmlId">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-  <title>openjdk-playground code coverage report Coverage Report > SerialTest</title>
+  <title>openjdk-playground code coverage report Coverage Report > KtConfig</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -19,15 +19,18 @@
 <div class="breadCrumbs">
 Current scope: openjdk-playground code coverage report<span class="separator">|</span>    <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">dev.suresh.json</a>
+    <a href="../index.html">dev.suresh.jte</a>
 </div>
 
-<h1>Coverage Summary for Class: SerialTest (dev.suresh.json)</h1>
+<h1>Coverage Summary for Class: KtConfig (dev.suresh.jte)</h1>
 
 <table class="coverageStats">
-
 <tr>
   <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
 <th class="coverageStat 
 ">
   Method, %
@@ -46,7 +49,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 </th>
 </tr>
 <tr>
-  <td class="name">SerialTest</td>
+  <td class="name">KtConfig</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -55,33 +58,6 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     (0/1)
   </span>
 </td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/10)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/73)
-  </span>
-</td>
-</tr>
-  <tr>
-    <td class="name">SerialTest$Companion</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -104,45 +80,11 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/5)
-  </span>
-</td>
-  </tr>
-<tr>
-  <td class="name"><strong>Total</strong></td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/2)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/10)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/2)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/78)
+    (0/28)
   </span>
 </td>
 </tr>
+
 </table>
 
 <br/>
@@ -150,74 +92,33 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.json
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.jte
 &nbsp;
-&nbsp;import java.time.*
-&nbsp;import java.time.Duration
-&nbsp;import kotlin.RequiresOptIn.Level.ERROR
-&nbsp;import kotlin.reflect.*
-&nbsp;import kotlin.time.*
-&nbsp;import kotlinx.serialization.*
-&nbsp;import kotlinx.serialization.builtins.*
+&nbsp;import App
+&nbsp;import BuildConfig
+&nbsp;import dev.suresh.config.*
+&nbsp;import gg.jte.*
+&nbsp;import gg.jte.output.*
 &nbsp;
-&nbsp;@OptIn(BleedingEdge::class)
-&nbsp;fun main() {
-&nbsp;  val data = SerialTest&lt;List&lt;Map&lt;String, Int&gt;&gt;&gt;()
-&nbsp;  val j = data::class
-&nbsp;  val type = typeOf&lt;SerialTest&lt;List&lt;Map&lt;String, Int&gt;&gt;&gt;&gt;()
-&nbsp;  println(type)
+<b class="nc">&nbsp;data class KtConfig(val language: String = &quot;Kotlin&quot;, val version: String, val appVersion: String?)</b>
 &nbsp;
-&nbsp;  val stringListSerializer = ListSerializer(String.serializer().nullable)
-&nbsp;  println(stringListSerializer.descriptor)
+&nbsp;class RenderJte {
+&nbsp;  fun run() {
+&nbsp;    val tmplEngine =
+&nbsp;        TemplateEngine.createPrecompiled(ContentType.Plain).apply { setTrimControlStructures(true) }
 &nbsp;
-&nbsp;  val s = serializer&lt;SerialTest&lt;List&lt;Map&lt;String, String&gt;&gt;&gt;&gt;()
-&nbsp;  println(SerialTest.serializer(stringListSerializer))
-&nbsp;  println(s)
+&nbsp;    val params =
+&nbsp;        mapOf(
+&nbsp;            &quot;config&quot; to JConfig(),
+&nbsp;            &quot;ktConfig&quot; to KtConfig(version = App.KOTLIN_VERSION, appVersion = App.VERSION))
 &nbsp;
-&nbsp;  val b = &quot;1000010&quot;.toIntOrNull(2)
-&nbsp;  println(b)
-&nbsp;  println(b?.toString(2))
-&nbsp;
-&nbsp;  previewMethod()
-&nbsp;  val clock = TimeSource.Monotonic
-&nbsp;  val d = measureTimedValue {
-&nbsp;    val mark = clock.markNow()
-&nbsp;    val list = buildList {
-&nbsp;      add(&quot;Hello&quot;)
-&nbsp;      add(&quot;Kotlin&quot;)
+&nbsp;    listOf(&quot;hello.jte&quot;, &quot;hello-kt.kte&quot;).forEach {
+&nbsp;      val output = StringOutput()
+&nbsp;      // tmplEngine.render(it, params, output)
+&nbsp;      output.writeContent(BuildConfig.time)
+&nbsp;      println(&quot;$it -&gt; $output&quot;)
 &nbsp;    }
-&nbsp;    println(list)
-&nbsp;    mark.elapsedNow()
 &nbsp;  }
-&nbsp;  println(d.value.toDouble(DurationUnit.SECONDS))
-&nbsp;  deprecatedMethod()
-&nbsp;
-&nbsp;  // LocalDate     --&gt; Period
-&nbsp;  // LocalDateTime --&gt; Duration
-&nbsp;
-&nbsp;  val today = LocalDateTime.now()
-&nbsp;  println(today.plus(Duration.ofDays(1)))
-&nbsp;  println(
-&nbsp;      runCatching { println(LocalDate.now().minus(Duration.ofDays(10))) }
-&nbsp;          .exceptionOrNull()
-&nbsp;          ?.message)
-&nbsp;  println(LocalDate.now().minus(Period.ofDays(10)))
-&nbsp;}
-&nbsp;
-<b class="nc">&nbsp;@Serializable class SerialTest&lt;T&gt;(val data: T? = null)</b>
-&nbsp;
-&nbsp;@RequiresOptIn(level = ERROR, message = &quot;This is a Bleeding edge API&quot;)
-&nbsp;annotation class BleedingEdge
-&nbsp;
-&nbsp;@BleedingEdge
-&nbsp;fun previewMethod() {
-&nbsp;  println(&quot;Called Bleeding edge method!&quot;)
-&nbsp;}
-&nbsp;
-&nbsp;@Deprecated(&quot;test&quot;, replaceWith = ReplaceWith(&quot;previewMethod()&quot;)) fun deprecatedMethod() {}
-&nbsp;
-&nbsp;fun interface FunInterface {
-&nbsp;  fun tt()
 &nbsp;}
 </code>
 </pre>
@@ -242,7 +143,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-03-30 20:05</div>
+    <div style="float:right;">generated on 2024-06-15 20:20</div>
 </div>
 </body>
 </html>

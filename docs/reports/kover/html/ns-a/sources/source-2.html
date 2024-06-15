@@ -5,7 +5,7 @@
 <html id="htmlId">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-  <title>openjdk-playground code coverage report Coverage Report > Animals</title>
+  <title>openjdk-playground code coverage report Coverage Report > JfrEvent</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -19,10 +19,10 @@
 <div class="breadCrumbs">
 Current scope: openjdk-playground code coverage report<span class="separator">|</span>    <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">dev.suresh.jackson</a>
+    <a href="../index.html">dev.suresh.jfr</a>
 </div>
 
-<h1>Coverage Summary for Class: Animals (dev.suresh.jackson)</h1>
+<h1>Coverage Summary for Class: JfrEvent (dev.suresh.jfr)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -49,7 +49,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 </th>
 </tr>
 <tr>
-  <td class="name">Animals</td>
+  <td class="name">JfrEvent</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -80,7 +80,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/14)
+    (0/2)
   </span>
 </td>
 </tr>
@@ -92,76 +92,19 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.jackson;
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.jfr
 &nbsp;
-&nbsp;import java.util.List;
+&nbsp;import java.awt.Desktop
+&nbsp;import java.net.URI
+&nbsp;import jdk.jfr.Category
+&nbsp;import jdk.jfr.Event
+&nbsp;import jdk.jfr.Name
 &nbsp;
-&nbsp;public abstract class Animal {
+<b class="nc">&nbsp;@Name(&quot;example.Tiger&quot;) @Category(&quot;Mammal&quot;) class JfrEvent : Event()</b>
 &nbsp;
-&nbsp;  private final String name;
-&nbsp;
-&nbsp;  // protected Animal() {}
-&nbsp;
-&nbsp;  public Animal(String name) {
-&nbsp;    this.name = name;
-&nbsp;  }
-&nbsp;
-&nbsp;  public String name() {
-&nbsp;    return name;
-&nbsp;  }
+&nbsp;fun main() {
+&nbsp;  Desktop.getDesktop().browse(URI(&quot;&quot;))
 &nbsp;}
-&nbsp;
-&nbsp;class Cat extends Animal {
-&nbsp;
-&nbsp;  private final boolean canMeow;
-&nbsp;
-&nbsp;  public Cat(String name) {
-&nbsp;    super(name);
-&nbsp;    canMeow = true;
-&nbsp;  }
-&nbsp;
-&nbsp;  public boolean isCanMeow() {
-&nbsp;    return canMeow;
-&nbsp;  }
-&nbsp;
-&nbsp;  @Override
-&nbsp;  public String toString() {
-&nbsp;    return &quot;&quot;&quot;
-&nbsp;        Cat{
-&nbsp;          name = %s
-&nbsp;          canMeow = %s
-&nbsp;        }
-&nbsp;        &quot;&quot;&quot;
-&nbsp;        .formatted(name(), canMeow);
-&nbsp;  }
-&nbsp;}
-&nbsp;
-&nbsp;class Dog extends Animal {
-&nbsp;
-&nbsp;  private final boolean canBark;
-&nbsp;
-&nbsp;  public Dog(String name) {
-&nbsp;    super(name);
-&nbsp;    canBark = true;
-&nbsp;  }
-&nbsp;
-&nbsp;  public boolean isCanBark() {
-&nbsp;    return canBark;
-&nbsp;  }
-&nbsp;
-&nbsp;  @Override
-&nbsp;  public String toString() {
-&nbsp;    return &quot;&quot;&quot;
-&nbsp;        Dog{
-&nbsp;          name = %s
-&nbsp;          canBark = %s
-&nbsp;        }
-&nbsp;        &quot;&quot;&quot;
-&nbsp;        .formatted(name(), canBark);
-&nbsp;  }
-&nbsp;}
-&nbsp;
-<b class="nc">&nbsp;record Animals(List&lt;Animal&gt; animals) {}</b>
 </code>
 </pre>
 </div>
@@ -185,7 +128,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-03-30 20:05</div>
+    <div style="float:right;">generated on 2024-06-15 20:20</div>
 </div>
 </body>
 </html>

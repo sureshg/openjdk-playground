@@ -5,7 +5,7 @@
 <html id="htmlId">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-  <title>openjdk-playground code coverage report Coverage Report > Client</title>
+  <title>openjdk-playground code coverage report Coverage Report > HelloServlet</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -19,10 +19,10 @@
 <div class="breadCrumbs">
 Current scope: openjdk-playground code coverage report<span class="separator">|</span>    <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">dev.suresh.vthread.echo</a>
+    <a href="../index.html">dev.suresh.vthread.jetty</a>
 </div>
 
-<h1>Coverage Summary for Class: Client (dev.suresh.vthread.echo)</h1>
+<h1>Coverage Summary for Class: HelloServlet (dev.suresh.vthread.jetty)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -49,21 +49,13 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 </th>
 </tr>
 <tr>
-  <td class="name">Client</td>
+  <td class="name">HelloServlet</td>
 <td class="coverageStat">
   <span class="percent">
     0%
   </span>
   <span class="absValue">
     (0/1)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/5)
   </span>
 </td>
 <td class="coverageStat">
@@ -79,7 +71,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/29)
+    (0/2)
   </span>
 </td>
 <td class="coverageStat">
@@ -87,7 +79,15 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/203)
+    (0/24)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/86)
   </span>
 </td>
 </tr>
@@ -99,64 +99,179 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.vthread.echo
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.vthread.jetty
 &nbsp;
-&nbsp;import java.net.InetSocketAddress
-&nbsp;import java.net.Socket
-&nbsp;import java.time.*
-&nbsp;import java.util.concurrent.atomic.*
-&nbsp;import kotlinx.datetime.*
-&nbsp;import kotlinx.datetime.Clock
-&nbsp;
-&nbsp;object Client {
-&nbsp;
-&nbsp;  const val count = 10
-<b class="nc">&nbsp;  private val conns = LongAdder()</b>
-<b class="nc">&nbsp;  private val msgs = LongAdder()</b>
-<b class="nc">&nbsp;  val error = AtomicReference&lt;Throwable?&gt;(null)</b>
-&nbsp;
-&nbsp;  fun run() {
-<b class="nc">&nbsp;    println(&quot;Connecting to server on ports range: ${Server.ports}&quot;)</b>
-<b class="nc">&nbsp;    Server.ports.forEach { port -&gt;</b>
-<b class="nc">&nbsp;      (1..count).forEach { id -&gt; Thread.startVirtualThread { connect(id, port) } }</b>
-<b class="nc">&nbsp;    }</b>
-&nbsp;
-<b class="nc">&nbsp;    while (true) {</b>
-<b class="nc">&nbsp;      Thread.sleep(Duration.ofSeconds(2))</b>
-<b class="nc">&nbsp;      val currDateTime = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())</b>
-<b class="nc">&nbsp;      println(&quot;$currDateTime - Connections: ${conns.sum()}, Messages: ${msgs.sum()}&quot;)</b>
-&nbsp;    }
-&nbsp;  }
-&nbsp;
-&nbsp;  fun connect(id: Int, port: Int) {
-<b class="nc">&nbsp;    val cid = &quot;client $id-$port&quot;</b>
-<b class="nc">&nbsp;    try {</b>
-<b class="nc">&nbsp;      Socket().use { sock -&gt;</b>
-<b class="nc">&nbsp;        sock.connect(InetSocketAddress(&quot;localhost&quot;, port), 5_000)</b>
-<b class="nc">&nbsp;        sock.soTimeout = 10_000</b>
-<b class="nc">&nbsp;        conns.increment()</b>
-&nbsp;
-<b class="nc">&nbsp;        val inr = sock.inputStream.bufferedReader()</b>
-<b class="nc">&nbsp;        val out = sock.outputStream.bufferedWriter()</b>
-&nbsp;
-<b class="nc">&nbsp;        val msg = &quot;Hello from $cid&quot;</b>
-<b class="nc">&nbsp;        out.write(msg)</b>
-<b class="nc">&nbsp;        out.newLine()</b>
-<b class="nc">&nbsp;        println(&quot;Wrote: $msg and reading response&quot;)</b>
-<b class="nc">&nbsp;        inr.forEachLine {</b>
-<b class="nc">&nbsp;          msgs.increment()</b>
-<b class="nc">&nbsp;          println(it)</b>
-&nbsp;        }
-<b class="nc">&nbsp;      }</b>
-<b class="nc">&nbsp;    } catch (e: Throwable) {</b>
-<b class="nc">&nbsp;      println(&quot;$cid : ${e.message}&quot;)</b>
-&nbsp;    }
-&nbsp;  }
-&nbsp;}
+&nbsp;import io.mikael.urlbuilder.UrlBuilder
+&nbsp;import jakarta.servlet.http.HttpServlet
+&nbsp;import jakarta.servlet.http.HttpServletRequest
+&nbsp;import jakarta.servlet.http.HttpServletResponse
+&nbsp;import java.net.http.HttpClient
+&nbsp;import java.net.http.HttpRequest
+&nbsp;import java.net.http.HttpResponse.BodyHandlers
+&nbsp;import java.time.Duration
+&nbsp;import java.util.concurrent.Executors
+&nbsp;import kotlin.time.DurationUnit
+&nbsp;import kotlin.time.measureTime
+&nbsp;import org.eclipse.jetty.ee10.servlet.ServletContextHandler
+&nbsp;import org.eclipse.jetty.server.Server
+&nbsp;import org.eclipse.jetty.server.ServerConnector
+&nbsp;import org.eclipse.jetty.util.JavaVersion
+&nbsp;import org.eclipse.jetty.util.Jetty
 &nbsp;
 &nbsp;fun main() {
-&nbsp;  Client.run()
+&nbsp;  run()
 &nbsp;}
+&nbsp;
+&nbsp;fun run(args: Array&lt;String&gt;? = emptyArray()) {
+&nbsp;  val httpPort = 8080
+&nbsp;  println(&quot;Starting the Jetty server on $httpPort...&quot;)
+&nbsp;  val server = Server(VirtualThreadPool())
+&nbsp;
+&nbsp;  val connector =
+&nbsp;      ServerConnector(server).apply {
+&nbsp;        port = httpPort
+&nbsp;        acceptQueueSize = 64
+&nbsp;      }
+&nbsp;  server.connectors = arrayOf(connector)
+&nbsp;
+&nbsp;  val context = ServletContextHandler()
+&nbsp;  context.addServlet(HelloServlet::class.java, &quot;/&quot;)
+&nbsp;  server.handler = context
+&nbsp;  server.start()
+&nbsp;  println(&quot;Server started at ${server.uri}&quot;)
+&nbsp;
+&nbsp;  val took = measureTime { pumpRequests(server, 50) }
+&nbsp;  println(&quot;Took ${took.toDouble(DurationUnit.SECONDS)} seconds&quot;)
+&nbsp;
+&nbsp;  if (args.orEmpty().any { it.equals(&quot;--no-shutdown&quot;, true) }) {
+&nbsp;    server.join()
+&nbsp;  } else {
+&nbsp;    println(&quot;Shutting down the server!&quot;)
+&nbsp;    server.stop()
+&nbsp;  }
+&nbsp;}
+&nbsp;
+&nbsp;fun pumpRequests(server: Server, count: Int, deadlineInSec: Long = 5L) {
+&nbsp;  require(count &gt; 0)
+&nbsp;  println(
+&nbsp;      &quot;Sending $count concurrent requests to ${server.uri} and wait for $deadlineInSec seconds...&quot;,
+&nbsp;  )
+&nbsp;
+&nbsp;  val client =
+&nbsp;      HttpClient.newBuilder()
+&nbsp;          .version(HttpClient.Version.HTTP_1_1)
+&nbsp;          .followRedirects(HttpClient.Redirect.NORMAL)
+&nbsp;          .connectTimeout(Duration.ofSeconds(5))
+&nbsp;          .build()
+&nbsp;
+&nbsp;  val factory = Thread.ofVirtual().name(&quot;VirtualThreadPool-&quot;, 1).factory()
+&nbsp;  val execSvc = Executors.newThreadPerTaskExecutor(factory)
+&nbsp;  // val ecs = ExecutorCompletionService&lt;String&gt;(execSvc)
+&nbsp;
+&nbsp;  val results =
+&nbsp;      execSvc.use { exec -&gt;
+&nbsp;        val user = System.getProperty(&quot;user.name&quot;, &quot;user&quot;)
+&nbsp;
+&nbsp;        println(&quot;--&gt; Sending $count concurrent requests&quot;)
+&nbsp;        (1..count).map { idx -&gt;
+&nbsp;          exec.submit&lt;Result&lt;String&gt;&gt; {
+&nbsp;            try {
+&nbsp;
+&nbsp;              val uri =
+&nbsp;                  UrlBuilder.fromUri(server.uri)
+&nbsp;                      .addParameter(&quot;id&quot;, idx.toString())
+&nbsp;                      .addParameter(&quot;user&quot;, user)
+&nbsp;                      .toUri()
+&nbsp;
+&nbsp;              val req =
+&nbsp;                  HttpRequest.newBuilder()
+&nbsp;                      .uri(uri)
+&nbsp;                      .timeout(Duration.ofSeconds(2))
+&nbsp;                      .header(&quot;Content-Type&quot;, &quot;application/json&quot;)
+&nbsp;                      .GET()
+&nbsp;                      .build()
+&nbsp;              val res = client.send(req, BodyHandlers.ofString())
+&nbsp;
+&nbsp;              println(&quot;&lt;--- $idx. Response($threadInfo): ${res.statusCode()} - ${res.body()}&quot;)
+&nbsp;              Result.success(res.body())
+&nbsp;            } catch (t: Throwable) {
+&nbsp;              Result.failure(t)
+&nbsp;            }
+&nbsp;          }
+&nbsp;        }
+&nbsp;      }
+&nbsp;
+&nbsp;  // Clear the interrupt status
+&nbsp;  println(&quot;Checking if the current thread has been interrupted: ${Thread.interrupted()}&quot;)
+&nbsp;  val (ok, err) = results.map { it.get() }.partition { it.isSuccess }
+&nbsp;
+&nbsp;  err.forEachIndexed { i, r -&gt;
+&nbsp;    if (i == 0) println(&quot;=== ERRORS ===&quot;)
+&nbsp;    val msg =
+&nbsp;        when (val ex = r.exceptionOrNull()) {
+&nbsp;          is InterruptedException -&gt; &quot;Task interrupted/cancelled due to timeout!&quot;
+&nbsp;          else -&gt; ex?.cause?.message
+&nbsp;        }
+&nbsp;    println(&quot;ERROR ${i + 1} -&gt; $msg&quot;)
+&nbsp;  }
+&nbsp;
+&nbsp;  println(
+&nbsp;      &quot;&quot;&quot;
+&nbsp;    SUCCESS: ${ok.size} / ${results.size}
+&nbsp;    FAILURE: ${err.size} / ${results.size}
+&nbsp;    &quot;&quot;&quot;
+&nbsp;          .trimIndent(),
+&nbsp;  )
+&nbsp;}
+&nbsp;
+<b class="nc">&nbsp;class HelloServlet : HttpServlet() {</b>
+<b class="nc">&nbsp;  private val ID = ScopedValue.newInstance&lt;String&gt;()</b>
+<b class="nc">&nbsp;  private val USER = ScopedValue.newInstance&lt;String&gt;()</b>
+<b class="nc">&nbsp;  private val OS: String = System.getProperty(&quot;os.name&quot;)</b>
+&nbsp;
+<b class="nc">&nbsp;  init {</b>
+<b class="nc">&nbsp;    println(&quot;Initializing Jakarta Servlet &gt;&gt;&gt;&gt;&gt; &quot;)</b>
+<b class="nc">&nbsp;  }</b>
+&nbsp;
+&nbsp;  override fun doGet(req: HttpServletRequest, resp: HttpServletResponse) {
+<b class="nc">&nbsp;    val id = req.getParameter(&quot;id&quot;)</b>
+<b class="nc">&nbsp;    val user = req.getParameter(&quot;user&quot;)</b>
+<b class="nc">&nbsp;    ScopedValue.where(ID, id).where(USER, user).run {</b>
+<b class="nc">&nbsp;      resp.apply {</b>
+<b class="nc">&nbsp;        contentType = &quot;application/json&quot;</b>
+<b class="nc">&nbsp;        status = HttpServletResponse.SC_OK</b>
+<b class="nc">&nbsp;        writer?.println(exec(req))</b>
+<b class="nc">&nbsp;      }</b>
+&nbsp;    }
+&nbsp;  }
+&nbsp;
+&nbsp;  private fun exec(req: HttpServletRequest): String {
+&nbsp;    // Simulate blocking
+<b class="nc">&nbsp;    Thread.sleep(Duration.ofMillis(500))</b>
+&nbsp;    return &quot;&quot;&quot;
+&nbsp;          {
+<b class="nc">&nbsp;            &quot;Id&quot;     : ${ID.orElse(&quot;n/a&quot;)},</b>
+<b class="nc">&nbsp;            &quot;User&quot;   : ${USER.orElse(&quot;n/a&quot;)},</b>
+<b class="nc">&nbsp;            &quot;server&quot; : Jetty-${Jetty.VERSION},</b>
+<b class="nc">&nbsp;            &quot;Java&quot;   : ${JavaVersion.VERSION},</b>
+<b class="nc">&nbsp;            &quot;OS&quot;     : $OS,</b>
+<b class="nc">&nbsp;            &quot;target&quot; : ${req.fullURL},</b>
+<b class="nc">&nbsp;            &quot;Thread&quot; : ${Thread.currentThread()}</b>
+&nbsp;          }
+&nbsp;         &quot;&quot;&quot;
+<b class="nc">&nbsp;        .trimIndent()</b>
+&nbsp;  }
+&nbsp;}
+&nbsp;
+&nbsp;val HttpServletRequest.fullURL: String
+&nbsp;  get() =
+&nbsp;      when (queryString.isNullOrBlank()) {
+&nbsp;        true -&gt; requestURL.toString()
+&nbsp;        else -&gt; requestURL.append(&#39;?&#39;).append(queryString).toString()
+&nbsp;      }
+&nbsp;
+&nbsp;val threadInfo
+&nbsp;  get() = Thread.currentThread().run { &quot;$name-${threadId()}-$isVirtual&quot; }
 </code>
 </pre>
 </div>
@@ -180,7 +295,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-03-30 20:05</div>
+    <div style="float:right;">generated on 2024-06-15 20:20</div>
 </div>
 </body>
 </html>

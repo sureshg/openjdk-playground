@@ -5,7 +5,7 @@
 <html id="htmlId">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-  <title>openjdk-playground code coverage report Coverage Report > JPMSKt</title>
+  <title>openjdk-playground code coverage report Coverage Report > NonNullGenericKt</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -19,10 +19,10 @@
 <div class="breadCrumbs">
 Current scope: openjdk-playground code coverage report<span class="separator">|</span>    <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">dev.suresh.lang</a>
+    <a href="../index.html">dev.suresh.misc</a>
 </div>
 
-<h1>Coverage Summary for Class: JPMSKt (dev.suresh.lang)</h1>
+<h1>Coverage Summary for Class: NonNullGenericKt (dev.suresh.misc)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -49,7 +49,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 </th>
 </tr>
 <tr>
-  <td class="name">JPMSKt</td>
+  <td class="name">NonNullGenericKt</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -63,7 +63,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/6)
+    (0/1)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -72,7 +72,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/30)
+    (0/6)
   </span>
 </td>
 <td class="coverageStat">
@@ -80,7 +80,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/142)
+    (0/30)
   </span>
 </td>
 </tr>
@@ -92,79 +92,20 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.lang
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.misc
 &nbsp;
-&nbsp;import com.javax0.sourcebuddy.Compiler
-&nbsp;import java.io.*
-&nbsp;import java.lang.invoke.*
-&nbsp;import java.lang.reflect.Modifier
-&nbsp;import java.security.*
-&nbsp;import java.util.*
-&nbsp;import java.util.spi.*
+&nbsp;class Foo&lt;T&gt;(val bar: T)
 &nbsp;
+&nbsp;/** Unbounded T is same as &quot;T: Any?&quot; */
 &nbsp;fun main() {
-<b class="nc">&nbsp;  run()</b>
-&nbsp;}
+<b class="nc">&nbsp;  val f1: Foo&lt;String&gt; = Foo(&quot;hello&quot;)</b>
+<b class="nc">&nbsp;  println(f1.bar)</b>
 &nbsp;
-&nbsp;fun run() {
-<b class="nc">&nbsp;  val modules = ModuleLayer.boot().modules()</b>
-<b class="nc">&nbsp;  println(&quot;\nFound ${modules.size} jdk modules!&quot;)</b>
+<b class="nc">&nbsp;  val f2 = Foo(null)</b>
+<b class="nc">&nbsp;  println(f2.bar)</b>
 &nbsp;
-<b class="nc">&nbsp;  val jsModule =</b>
-<b class="nc">&nbsp;      ModuleLayer.boot().findModule(&quot;jdk.jshell&quot;).orElseGet { error(&quot;No JShell module found!&quot;) }</b>
-&nbsp;
-&nbsp;  // Using Tool API
-<b class="nc">&nbsp;  jsModule.classLoader.using {</b>
-<b class="nc">&nbsp;    val sl = ServiceLoader.load(javax.tools.Tool::class.java)</b>
-<b class="nc">&nbsp;    val jShell = sl.first { it.name() == &quot;jshell&quot; }</b>
-<b class="nc">&nbsp;    println(jShell.name())</b>
-&nbsp;  }
-&nbsp;
-&nbsp;  // Using new ToolsProvider API
-<b class="nc">&nbsp;  val jdeps =</b>
-<b class="nc">&nbsp;      ToolProvider.findFirst(&quot;jdeps&quot;).orElseGet { error(&quot;jdeps tool is missing in the JDK!&quot;) }</b>
-<b class="nc">&nbsp;  val out = StringWriter()</b>
-<b class="nc">&nbsp;  val pw = PrintWriter(out)</b>
-<b class="nc">&nbsp;  jdeps.run(pw, pw, &quot;--version&quot;)</b>
-&nbsp;
-<b class="nc">&nbsp;  val version = out.toString()</b>
-<b class="nc">&nbsp;  println(&quot;jdeps version: $version&quot;)</b>
-&nbsp;
-&nbsp;  // compileJava()
-&nbsp;  // showAllSecurityProperties()
-&nbsp;}
-&nbsp;
-&nbsp;fun reflections() {
-<b class="nc">&nbsp;  println(&quot;String isFinal = ${Modifier.isFinal(String::class.java.modifiers)}&quot;)</b>
-&nbsp;}
-&nbsp;
-&nbsp;fun compileJava() {
-<b class="nc">&nbsp;  Compiler.java()</b>
-<b class="nc">&nbsp;      .from(</b>
-&nbsp;          &quot;&quot;&quot;
-&nbsp;      | package dev.suresh;
-&nbsp;      | public class TestApp implements Runnable {
-&nbsp;      |    @Override
-&nbsp;      |    public void run() {
-&nbsp;      |      System.out.println(&quot;Hello from TestApp!&quot;);
-&nbsp;      |    }
-&nbsp;      | }
-&nbsp;      &quot;&quot;&quot;
-<b class="nc">&nbsp;              .trimMargin())</b>
-<b class="nc">&nbsp;      .compile()</b>
-<b class="nc">&nbsp;      .load()</b>
-<b class="nc">&nbsp;      .newInstance(Runnable::class.java)</b>
-<b class="nc">&nbsp;      .run()</b>
-&nbsp;}
-&nbsp;/** @see [VarHandles](https://www.baeldung.com/java-variable-handles) */
-&nbsp;private fun showAllSecurityProperties() {
-&nbsp;  // Should add this VM args &quot;--add-opens=java.base/java.security=ALL-UNNAMED&quot;
-<b class="nc">&nbsp;  val lookup = MethodHandles.lookup()</b>
-<b class="nc">&nbsp;  val varHandle =</b>
-<b class="nc">&nbsp;      MethodHandles.privateLookupIn(Security::class.java, lookup)</b>
-<b class="nc">&nbsp;          .findStaticVarHandle(Security::class.java, &quot;props&quot;, Properties::class.java)</b>
-<b class="nc">&nbsp;  val sec = varHandle.get() as Properties</b>
-<b class="nc">&nbsp;  sec.forEach { k: Any, v: Any -&gt; println(&quot;$k --&gt; $v&quot;) }</b>
+<b class="nc">&nbsp;  val f3: Foo&lt;String?&gt; = Foo(&quot;NullableString&quot;)</b>
+<b class="nc">&nbsp;  println(f3.bar)</b>
 &nbsp;}
 </code>
 </pre>
@@ -189,7 +130,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-03-30 20:05</div>
+    <div style="float:right;">generated on 2024-06-15 20:20</div>
 </div>
 </body>
 </html>

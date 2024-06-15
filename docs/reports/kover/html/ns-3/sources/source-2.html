@@ -5,7 +5,7 @@
 <html id="htmlId">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-  <title>openjdk-playground code coverage report Coverage Report > Result</title>
+  <title>openjdk-playground code coverage report Coverage Report > Counter</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -19,10 +19,10 @@
 <div class="breadCrumbs">
 Current scope: openjdk-playground code coverage report<span class="separator">|</span>    <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">dev.suresh.adt</a>
+    <a href="../index.html">dev.suresh.atomic</a>
 </div>
 
-<h1>Coverage Summary for Class: Result (dev.suresh.adt)</h1>
+<h1>Coverage Summary for Class: Counter (dev.suresh.atomic)</h1>
 
 <table class="coverageStats">
 
@@ -46,13 +46,22 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 </th>
 </tr>
 <tr>
-  <td class="name">Result</td>
+  <td class="name">Counter</td>
 <td class="coverageStat">
   <span class="percent">
     0%
   </span>
   <span class="absValue">
-    (0/7)
+    (0/3)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
   </span>
 </td>
 <td class="coverageStat">
@@ -60,81 +69,13 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/4)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/8)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/67)
+    (0/22)
   </span>
 </td>
 </tr>
   <tr>
-    <td class="name">Result$Failure</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
+    <td class="name">Counter$Companion</td>
     <td class="coverageStat"/>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/14)
-  </span>
-</td>
-  </tr>
-  <tr>
-    <td class="name">Result$Success</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-    <td class="coverageStat"/>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/1)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/14)
-  </span>
-</td>
   </tr>
 <tr>
   <td class="name"><strong>Total</strong></td>
@@ -143,7 +84,16 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/9)
+    (0/3)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
   </span>
 </td>
 <td class="coverageStat">
@@ -151,23 +101,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/4)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/10)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/95)
+    (0/22)
   </span>
 </td>
 </tr>
@@ -178,56 +112,27 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.adt;
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.atomic
 &nbsp;
-&nbsp;import java.io.Serializable;
+&nbsp;import java.util.concurrent.atomic.*
 &nbsp;
 &nbsp;/**
-&nbsp; * A discriminated union that encapsulates a successful outcome with a value of type T or a failure
-&nbsp; * with an arbitrary Throwable exception.
+&nbsp; * If you&#39;re using AtomicInteger and friends you can probably save some memory and improve locality
+&nbsp; * by using Atomic*FieldUpdaters.
 &nbsp; *
-&nbsp; * @param &lt;T&gt; Result value type.
+&nbsp; * $ ./gradlew run -PappMainClass=dev.suresh.atomic.BatchKt
 &nbsp; */
-&nbsp;sealed interface Result&lt;T&gt; extends Serializable {
+<b class="nc">&nbsp;data class Counter(@Volatile private var count: Int = 0) {</b>
 &nbsp;
-&nbsp;  static &lt;T&gt; Result&lt;T&gt; success(T value) {
-<b class="nc">&nbsp;    return new Success&lt;&gt;(value);</b>
+&nbsp;  companion object {
+<b class="nc">&nbsp;    private val COUNT = AtomicIntegerFieldUpdater.newUpdater(Counter::class.java, &quot;count&quot;)</b>
 &nbsp;  }
 &nbsp;
-&nbsp;  static &lt;T&gt; Result&lt;T&gt; failure(Throwable error) {
-<b class="nc">&nbsp;    return new Failure&lt;&gt;(error);</b>
-&nbsp;  }
+<b class="nc">&nbsp;  fun increment(delta: Int) = COUNT.addAndGet(this, delta)</b>
+&nbsp;}
 &nbsp;
-&nbsp;  default boolean isSuccess() {
-<b class="nc">&nbsp;    return this instanceof Success&lt;T&gt;;</b>
-&nbsp;  }
-&nbsp;
-&nbsp;  default boolean isFailure() {
-<b class="nc">&nbsp;    return this instanceof Failure&lt;T&gt;;</b>
-&nbsp;  }
-&nbsp;
-&nbsp;  default T getOrNull() {
-<b class="nc">&nbsp;    return this instanceof Success&lt;T&gt; s ? s.value() : null;</b>
-&nbsp;  }
-&nbsp;
-&nbsp;  default Throwable exceptionOrNull() {
-<b class="nc">&nbsp;    return this instanceof Failure&lt;T&gt; t ? t.error() : null;</b>
-&nbsp;  }
-&nbsp;
-&nbsp;  default String fString() {
-<b class="nc">&nbsp;    return &quot;&quot;&quot;</b>
-&nbsp;                ToString  -&gt; %1$s
-&nbsp;                Result    -&gt; %2$s
-&nbsp;                Success   -&gt; %3$s
-&nbsp;                Failure   -&gt; %4$s
-&nbsp;                Exception -&gt; %5$s
-&nbsp;                &quot;&quot;&quot;
-<b class="nc">&nbsp;        .formatted(toString(), getOrNull(), isSuccess(), isFailure(), exceptionOrNull());</b>
-&nbsp;  }
-&nbsp;
-<b class="nc">&nbsp;  record Success&lt;T&gt;(T value) implements Result&lt;T&gt; {}</b>
-&nbsp;
-<b class="nc">&nbsp;  record Failure&lt;T&gt;(Throwable error) implements Result&lt;T&gt; {}</b>
+&nbsp;fun main() {
+&nbsp;  println(Counter().apply { increment(100) })
 &nbsp;}
 </code>
 </pre>
@@ -252,7 +157,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-03-30 20:05</div>
+    <div style="float:right;">generated on 2024-06-15 20:20</div>
 </div>
 </body>
 </html>

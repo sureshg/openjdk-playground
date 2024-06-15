@@ -5,7 +5,7 @@
 <html id="htmlId">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-  <title>openjdk-playground code coverage report Coverage Report > Node</title>
+  <title>openjdk-playground code coverage report Coverage Report > PrimeGen</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -19,10 +19,10 @@
 <div class="breadCrumbs">
 Current scope: openjdk-playground code coverage report<span class="separator">|</span>    <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">dev.suresh.misc</a>
+    <a href="../index.html">dev.suresh.service</a>
 </div>
 
-<h1>Coverage Summary for Class: Node (dev.suresh.misc)</h1>
+<h1>Coverage Summary for Class: PrimeGen (dev.suresh.service)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -49,7 +49,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 </th>
 </tr>
 <tr>
-  <td class="name">Node</td>
+  <td class="name">PrimeGen</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -63,7 +63,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/1)
+    (0/3)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -72,7 +72,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/1)
+    (0/5)
   </span>
 </td>
 <td class="coverageStat">
@@ -80,7 +80,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/37)
+    (0/39)
   </span>
 </td>
 </tr>
@@ -92,39 +92,27 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.misc
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.service
 &nbsp;
+&nbsp;import java.security.SecureRandom
 &nbsp;import kotlin.math.*
+&nbsp;import kotlin.random.*
 &nbsp;
-&nbsp;sealed class Tree&lt;out T&gt;
+&nbsp;object PrimeGen {
 &nbsp;
-&nbsp;data object Empty : Tree&lt;Nothing&gt;()
+<b class="nc">&nbsp;  private val rand = SecureRandom().asKotlinRandom()</b>
 &nbsp;
-<b class="nc">&nbsp;data class Node&lt;T&gt;(val value: T, val right: Tree&lt;T&gt; = Empty, val left: Tree&lt;T&gt; = Empty) : Tree&lt;T&gt;()</b>
+&nbsp;  fun random(upperbound: Int): List&lt;Long&gt; {
+<b class="nc">&nbsp;    val to = rand.nextInt(upperbound - 2) + 2</b>
+<b class="nc">&nbsp;    val from = rand.nextInt(upperbound - 1) + 1</b>
+<b class="nc">&nbsp;    return primeSeq(to.toLong(), from.toLong())</b>
+&nbsp;  }
 &nbsp;
-&nbsp;fun &lt;T : Number&gt; Tree&lt;T&gt;.sum(): Long =
-&nbsp;    when (this) {
-&nbsp;      Empty -&gt; 0
-&nbsp;      is Node -&gt; value.toLong() + left.sum() + right.sum()
-&nbsp;    }
+<b class="nc">&nbsp;  fun primeSeq(min: Long, max: Long) = (min..max).filter { it.isPrime }</b>
+&nbsp;}
 &nbsp;
-&nbsp;fun &lt;T&gt; Tree&lt;T&gt;.depth(): Int =
-&nbsp;    when (this) {
-&nbsp;      Empty -&gt; 0
-&nbsp;      is Node -&gt; max(left.depth(), right.depth()) + 1
-&nbsp;    }
-&nbsp;
-&nbsp;// fun &lt;T&gt; Tree&lt;T&gt;.printTree(depth: Int = 0) {
-&nbsp;//    val indent = &quot; &quot;.repeat(depth)
-&nbsp;//    when (this) {
-&nbsp;//        Empty -&gt; return
-&nbsp;//        is Node -&gt; {
-&nbsp;//            println(&quot;$indent $value&quot;)
-&nbsp;//            println(&quot;$indent ${left.}&quot;)
-&nbsp;//            value.toLong() + left.sum() + right.sum()
-&nbsp;//        }
-&nbsp;//    }
-&nbsp;// }
+&nbsp;val Long.isPrime
+&nbsp;  get() = (2L..sqrt(this.toDouble()).toLong()).all { this % it != 0L }
 </code>
 </pre>
 </div>
@@ -148,7 +136,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-03-30 20:05</div>
+    <div style="float:right;">generated on 2024-06-15 20:20</div>
 </div>
 </body>
 </html>

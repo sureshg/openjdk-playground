@@ -5,7 +5,7 @@
 <html id="htmlId">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-  <title>openjdk-playground code coverage report Coverage Report > MainKt</title>
+  <title>openjdk-playground code coverage report Coverage Report > CollectionTest</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -19,18 +19,15 @@
 <div class="breadCrumbs">
 Current scope: openjdk-playground code coverage report<span class="separator">|</span>    <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">dev.suresh.cli</a>
+    <a href="../index.html">dev.suresh.collection</a>
 </div>
 
-<h1>Coverage Summary for Class: MainKt (dev.suresh.cli)</h1>
+<h1>Coverage Summary for Class: CollectionTest (dev.suresh.collection)</h1>
 
 <table class="coverageStats">
+
 <tr>
   <th class="name">Class</th>
-<th class="coverageStat 
-">
-  Class, %
-</th>
 <th class="coverageStat 
 ">
   Method, %
@@ -49,15 +46,35 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 </th>
 </tr>
 <tr>
-  <td class="name">MainKt</td>
+  <td class="name">CollectionTest</td>
 <td class="coverageStat">
   <span class="percent">
     0%
   </span>
   <span class="absValue">
-    (0/1)
+    (0/3)
   </span>
 </td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/22)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/212)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">CollectionTest$1Employee</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -72,7 +89,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/9)
+    (0/1)
   </span>
 </td>
 <td class="coverageStat">
@@ -80,11 +97,38 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/44)
+    (0/19)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+    <td class="coverageStat"/>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/23)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/231)
   </span>
 </td>
 </tr>
-
 </table>
 
 <br/>
@@ -92,20 +136,64 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.cli
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.collection;
 &nbsp;
-&nbsp;import com.jakewharton.crossword.*
+&nbsp;import static java.lang.System.out;
 &nbsp;
-&nbsp;fun main() {
-<b class="nc">&nbsp;  val canvas = TextCanvas(30, 30)</b>
-<b class="nc">&nbsp;  (1..10).forEach {</b>
-<b class="nc">&nbsp;    canvas.write(0, 0, &quot;\u001B[31mX\u001B[0m&quot;)</b>
-<b class="nc">&nbsp;    canvas.write(0, 2, &quot;\u001B[34mO\u001B[0m&quot;)</b>
-<b class="nc">&nbsp;    canvas.write(1, 0, &quot;Hello World $it&quot;)</b>
-<b class="nc">&nbsp;    println(canvas.toString())</b>
-<b class="nc">&nbsp;    Thread.sleep(100)</b>
-<b class="nc">&nbsp;    println(&quot;&quot;&quot;\x1B[${canvas.height}F&quot;&quot;&quot;)</b>
-<b class="nc">&nbsp;  }</b>
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.Arrays;
+&nbsp;import java.util.function.BiFunction;
+&nbsp;import java.util.function.Supplier;
+&nbsp;import java.util.stream.IntStream;
+&nbsp;import java.util.stream.LongStream;
+&nbsp;import java.util.stream.Stream;
+&nbsp;
+<b class="nc">&nbsp;public class CollectionTest {</b>
+&nbsp;
+&nbsp;  void main() {
+&nbsp;
+&nbsp;    // MethodHandles.lookup().
+<b class="nc">&nbsp;    var arr = new Integer[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};</b>
+<b class="nc">&nbsp;    Arrays.parallelSetAll(arr, i -&gt; arr[i] * 5);</b>
+&nbsp;
+<b class="nc">&nbsp;    var start = System.currentTimeMillis();</b>
+<b class="nc">&nbsp;    var list =</b>
+<b class="nc">&nbsp;        IntStream.range(1, 100_000)</b>
+<b class="nc">&nbsp;            .parallel()</b>
+<b class="nc">&nbsp;            .map(i -&gt; i * 2)</b>
+<b class="nc">&nbsp;            .collect(</b>
+&nbsp;                (Supplier&lt;ArrayList&lt;Integer&gt;&gt;) ArrayList::new, ArrayList::add, ArrayList::addAll);
+&nbsp;
+<b class="nc">&nbsp;    var end = System.currentTimeMillis();</b>
+&nbsp;
+<b class="nc">&nbsp;    out.printf(&quot;Processing took %d ms.%n&quot;, end - start);</b>
+<b class="nc">&nbsp;    out.printf(&quot;Final list size %d%n&quot;, list.size());</b>
+&nbsp;
+<b class="nc">&nbsp;    start = System.currentTimeMillis();</b>
+<b class="nc">&nbsp;    var longList = LongStream.rangeClosed(1, 100_000).parallel().map(a -&gt; a * 5).boxed().toList();</b>
+<b class="nc">&nbsp;    end = System.currentTimeMillis();</b>
+<b class="nc">&nbsp;    out.printf(&quot;Processing took %d ms.%n&quot;, end - start);</b>
+<b class="nc">&nbsp;    out.printf(&quot;Final list size %d%n&quot;, longList.size());</b>
+&nbsp;  }
+&nbsp;
+&nbsp;  public static void teeing() {
+<b class="nc">&nbsp;    record Employee(String name, int age) {}</b>
+&nbsp;
+<b class="nc">&nbsp;    BiFunction&lt;String, Integer, Employee&gt; empRef = Employee::new;</b>
+<b class="nc">&nbsp;    var emp = empRef.apply(&quot;name&quot;, 10);</b>
+<b class="nc">&nbsp;    out.println(emp);</b>
+&nbsp;
+<b class="nc">&nbsp;    var employees =</b>
+<b class="nc">&nbsp;        Stream.of(</b>
+&nbsp;            new Employee(&quot;Employee-1&quot;, 30),
+&nbsp;            new Employee(&quot;Employee-2&quot;, 40),
+&nbsp;            new Employee(&quot;Employee-3&quot;, 34),
+&nbsp;            new Employee(&quot;Employee-4&quot;, 45),
+&nbsp;            new Employee(&quot;Employee-5&quot;, 50));
+&nbsp;
+&nbsp;    // employees.collect(Collectors.teeing()
+&nbsp;
+&nbsp;  }
 &nbsp;}
 </code>
 </pre>
@@ -130,7 +218,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-03-30 20:05</div>
+    <div style="float:right;">generated on 2024-06-15 20:20</div>
 </div>
 </body>
 </html>

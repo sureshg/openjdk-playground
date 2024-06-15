@@ -5,7 +5,7 @@
 <html id="htmlId">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-  <title>openjdk-playground code coverage report Coverage Report > JConfig</title>
+  <title>openjdk-playground code coverage report Coverage Report > Director</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -19,10 +19,10 @@
 <div class="breadCrumbs">
 Current scope: openjdk-playground code coverage report<span class="separator">|</span>    <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">dev.suresh.config</a>
+    <a href="../index.html">dev.suresh.generics</a>
 </div>
 
-<h1>Coverage Summary for Class: JConfig (dev.suresh.config)</h1>
+<h1>Coverage Summary for Class: Director (dev.suresh.generics)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -49,7 +49,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 </th>
 </tr>
 <tr>
-  <td class="name">JConfig</td>
+  <td class="name">Director</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -63,7 +63,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/3)
+    (0/2)
   </span>
 </td>
     <td class="coverageStat"/>
@@ -72,7 +72,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/5)
+    (0/3)
   </span>
 </td>
 <td class="coverageStat">
@@ -80,7 +80,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/34)
+    (0/12)
   </span>
 </td>
 </tr>
@@ -92,19 +92,22 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.config;
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.generics;
 &nbsp;
-&nbsp;import java.util.Objects;
+&nbsp;public class Director extends Manager {
 &nbsp;
-<b class="nc">&nbsp;public record JConfig(String language, String version) {</b>
-&nbsp;
-&nbsp;  public JConfig() {
-<b class="nc">&nbsp;    this(null, null);</b>
+&nbsp;  public Director(String name) {
+<b class="nc">&nbsp;    super(name);</b>
 &nbsp;  }
 &nbsp;
-<b class="nc">&nbsp;  public JConfig {</b>
-<b class="nc">&nbsp;    language = Objects.requireNonNullElse(language, &quot;Java&quot;);</b>
-<b class="nc">&nbsp;    version = Objects.requireNonNullElse(version, System.getProperty(&quot;java.version&quot;));</b>
+&nbsp;  @Override
+&nbsp;  public String toString() {
+<b class="nc">&nbsp;    return &quot;&quot;&quot;</b>
+&nbsp;        Director {
+&nbsp;          name=&#39;%s&#39;
+&nbsp;        }
+&nbsp;        &quot;&quot;&quot;
+<b class="nc">&nbsp;        .formatted(getName());</b>
 &nbsp;  }
 &nbsp;}
 </code>
@@ -130,7 +133,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-03-30 20:05</div>
+    <div style="float:right;">generated on 2024-06-15 20:20</div>
 </div>
 </body>
 </html>

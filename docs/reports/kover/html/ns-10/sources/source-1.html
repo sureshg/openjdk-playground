@@ -5,7 +5,7 @@
 <html id="htmlId">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-  <title>openjdk-playground code coverage report Coverage Report > MavenResolver</title>
+  <title>openjdk-playground code coverage report Coverage Report > MDnsKt</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -19,10 +19,10 @@
 <div class="breadCrumbs">
 Current scope: openjdk-playground code coverage report<span class="separator">|</span>    <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">dev.suresh.mvn</a>
+    <a href="../index.html">dev.suresh.network</a>
 </div>
 
-<h1>Coverage Summary for Class: MavenResolver (dev.suresh.mvn)</h1>
+<h1>Coverage Summary for Class: MDnsKt (dev.suresh.network)</h1>
 
 <table class="coverageStats">
 
@@ -46,35 +46,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 </th>
 </tr>
 <tr>
-  <td class="name">MavenResolver</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/3)
-  </span>
-</td>
-    <td class="coverageStat"/>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/9)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/59)
-  </span>
-</td>
-</tr>
-  <tr>
-    <td class="name">MavenResolver$resolveTransitively$resolve$1</td>
+  <td class="name">MDnsKt</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -83,12 +55,13 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     (0/1)
   </span>
 </td>
+    <td class="coverageStat"/>
 <td class="coverageStat">
   <span class="percent">
     0%
   </span>
   <span class="absValue">
-    (0/12)
+    (0/8)
   </span>
 </td>
 <td class="coverageStat">
@@ -96,20 +69,12 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/9)
+    (0/46)
   </span>
 </td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/100)
-  </span>
-</td>
-  </tr>
-<tr>
-  <td class="name"><strong>Total</strong></td>
+</tr>
+  <tr>
+    <td class="name">MDnsKt$main$1$1</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -123,7 +88,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/12)
+    (0/10)
   </span>
 </td>
 <td class="coverageStat">
@@ -131,7 +96,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/18)
+    (0/4)
   </span>
 </td>
 <td class="coverageStat">
@@ -139,7 +104,77 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/159)
+    (0/41)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">MDnsKt$main$1$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/24)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/15)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/111)
   </span>
 </td>
 </tr>
@@ -150,48 +185,37 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.mvn
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.network
 &nbsp;
-&nbsp;import com.squareup.tools.maven.resolution.Artifact
-&nbsp;import com.squareup.tools.maven.resolution.ArtifactResolver
+&nbsp;import java.net.*
+&nbsp;import java.time.*
+&nbsp;import javax.jmdns.*
 &nbsp;
-&nbsp;/**
-&nbsp; * [maven-resolver-demo-snippets](https://github.com/apache/maven-resolver/tree/master/maven-resolver-demos/maven-resolver-demo-snippets)
-&nbsp; *
-&nbsp; * [maven-resolver-provider](https://github.com/apache/maven/tree/master/maven-resolver-provider)
-&nbsp; *
-&nbsp; * [shrinkwrap](https://github.com/shrinkwrap/resolver)
-&nbsp; *
-&nbsp; * [MavenCentral-SolrSearch](https://blog.sonatype.com/2011/06/you-dont-need-a-browser-to-use-maven-central/)
-&nbsp; */
-<b class="nc">&nbsp;class MavenResolver {</b>
+&nbsp;/** On Mac : &quot;$ dns-sd -B _services._dns-sd._udp .&quot; */
+&nbsp;fun main() {
+<b class="nc">&nbsp;  JmDNS.create(InetAddress.getLocalHost()).use {</b>
+<b class="nc">&nbsp;    it.addServiceListener(</b>
+<b class="nc">&nbsp;        &quot;_googlecast._tcp.local.&quot;,</b>
+<b class="nc">&nbsp;        object : ServiceListener {</b>
+&nbsp;          override fun serviceAdded(event: ServiceEvent?) =
+<b class="nc">&nbsp;              println(&quot;--&gt; ${event?.info?.name} added&quot;)</b>
 &nbsp;
-<b class="nc">&nbsp;  private val resolver = ArtifactResolver()</b>
+&nbsp;          override fun serviceRemoved(event: ServiceEvent?) =
+<b class="nc">&nbsp;              println(&quot;&lt;-- ${event?.info?.name} Removed&quot;)</b>
 &nbsp;
-&nbsp;  fun run() {
-<b class="nc">&nbsp;    val artifacts = resolveTransitively(&quot;org.jetbrains.kotlin:kotlin-stdlib:${App.KOTLIN_VERSION}&quot;)</b>
-<b class="nc">&nbsp;    println(&quot;\nResolved artifacts are,&quot;)</b>
-<b class="nc">&nbsp;    artifacts.forEach { println(it) }</b>
-&nbsp;  }
+<b class="nc">&nbsp;          override fun serviceResolved(event: ServiceEvent?) = println(&quot;${event?.info} resolved&quot;)</b>
+&nbsp;        })
 &nbsp;
-&nbsp;  private fun resolveTransitively(spec: String): Set&lt;String&gt; {
-<b class="nc">&nbsp;    val deps = mutableSetOf&lt;String&gt;()</b>
-<b class="nc">&nbsp;    val resolve =</b>
-<b class="nc">&nbsp;        DeepRecursiveFunction&lt;Artifact, Set&lt;String&gt;&gt; {</b>
-<b class="nc">&nbsp;          if (it.coordinate !in deps) {</b>
-<b class="nc">&nbsp;            deps.add(it.coordinate)</b>
-<b class="nc">&nbsp;            val artifact = resolver.artifactFor(it.coordinate)</b>
-<b class="nc">&nbsp;            resolver.resolve(artifact).artifact?.model?.dependencies?.forEach { dep -&gt;</b>
-<b class="nc">&nbsp;              val depSpec = &quot;${dep.groupId}:${dep.artifactId}:${dep.version}&quot;</b>
-<b class="nc">&nbsp;              if (depSpec !in deps &amp;&amp; dep.scope != &quot;test&quot;) {</b>
-<b class="nc">&nbsp;                deps.addAll(callRecursive(resolver.artifactFor(depSpec)))</b>
-&nbsp;              }
-<b class="nc">&nbsp;            }</b>
-&nbsp;          }
-<b class="nc">&nbsp;          deps</b>
-&nbsp;        }
-<b class="nc">&nbsp;    return resolve(resolver.artifactFor(spec))</b>
-&nbsp;  }
+<b class="nc">&nbsp;    it.addServiceTypeListener(</b>
+<b class="nc">&nbsp;        object : ServiceTypeListener {</b>
+&nbsp;          override fun serviceTypeAdded(event: ServiceEvent?) =
+<b class="nc">&nbsp;              println(&quot;==&gt;${event?.type} service added&quot;)</b>
+&nbsp;
+&nbsp;          override fun subTypeForServiceTypeAdded(event: ServiceEvent?) =
+<b class="nc">&nbsp;              println(&quot;==&gt;${event?.type} service sub type added&quot;)</b>
+&nbsp;        })
+<b class="nc">&nbsp;    Thread.sleep(Duration.ofSeconds(5))</b>
+<b class="nc">&nbsp;  }</b>
 &nbsp;}
 </code>
 </pre>
@@ -216,7 +240,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-03-30 20:05</div>
+    <div style="float:right;">generated on 2024-06-15 20:20</div>
 </div>
 </body>
 </html>

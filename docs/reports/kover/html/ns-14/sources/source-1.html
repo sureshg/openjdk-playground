@@ -5,7 +5,7 @@
 <html id="htmlId">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-  <title>openjdk-playground code coverage report Coverage Report > MyProcessor</title>
+  <title>openjdk-playground code coverage report Coverage Report > Hex</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -19,10 +19,10 @@
 <div class="breadCrumbs">
 Current scope: openjdk-playground code coverage report<span class="separator">|</span>    <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">dev.suresh.service</a>
+    <a href="../index.html">dev.suresh.util</a>
 </div>
 
-<h1>Coverage Summary for Class: MyProcessor (dev.suresh.service)</h1>
+<h1>Coverage Summary for Class: Hex (dev.suresh.util)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -49,7 +49,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 </th>
 </tr>
 <tr>
-  <td class="name">MyProcessor</td>
+  <td class="name">Hex</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -63,16 +63,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/3)
-  </span>
-</td>
-    <td class="coverageStat"/>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/4)
+    (0/10)
   </span>
 </td>
 <td class="coverageStat">
@@ -80,7 +71,23 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/9)
+    (0/26)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/51)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/327)
   </span>
 </td>
 </tr>
@@ -92,21 +99,87 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.service
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.util
 &nbsp;
-&nbsp;import com.google.auto.service.*
-&nbsp;import javax.annotation.processing.*
-&nbsp;import javax.lang.model.element.*
+&nbsp;/**
+&nbsp; * This is the direct port from one-nio library
+&nbsp; * [https://github.com/odnoklassniki/one-nio/tree/master/src/one/nio/util]
+&nbsp; */
+&nbsp;object Hex {
 &nbsp;
-&nbsp;@AutoService(Processor::class)
-<b class="nc">&nbsp;class MyProcessor : AbstractProcessor() {</b>
-&nbsp;  override fun init(processingEnv: ProcessingEnvironment?) {
-<b class="nc">&nbsp;    super.init(processingEnv)</b>
-<b class="nc">&nbsp;    println(&quot;Initializing MyProcessor...&quot;)</b>
+<b class="nc">&nbsp;  private val SMALL = &quot;0123456789abcdef&quot;.toCharArray()</b>
+<b class="nc">&nbsp;  private val CAPITAL = &quot;0123456789ABCDEF&quot;.toCharArray()</b>
+<b class="nc">&nbsp;  private val DIGIT_VALUE = IntArray(256)</b>
+&nbsp;
+<b class="nc">&nbsp;  init {</b>
+<b class="nc">&nbsp;    DIGIT_VALUE.fill(-1)</b>
+<b class="nc">&nbsp;    (0..9).forEach { DIGIT_VALUE[&#39;0&#39;.code + it] = it }</b>
+<b class="nc">&nbsp;    (10..15).forEach {</b>
+<b class="nc">&nbsp;      DIGIT_VALUE[&#39;A&#39;.code + it - 10] = it</b>
+<b class="nc">&nbsp;      DIGIT_VALUE[&#39;a&#39;.code + it - 10] = it</b>
+<b class="nc">&nbsp;    }</b>
 &nbsp;  }
 &nbsp;
-&nbsp;  override fun process(annotations: MutableSet&lt;out TypeElement&gt;?, roundEnv: RoundEnvironment?) =
-<b class="nc">&nbsp;      true</b>
+<b class="nc">&nbsp;  fun toHex(input: ByteArray, digits: CharArray = SMALL): String {</b>
+<b class="nc">&nbsp;    val result = CharArray(input.size * 2)</b>
+<b class="nc">&nbsp;    input.forEachIndexed { i, b -&gt;</b>
+<b class="nc">&nbsp;      result[i * 2] = digits[b.toInt() and 0xff ushr 4]</b>
+<b class="nc">&nbsp;      result[i * 2 + 1] = digits[b.toInt() and 0x0f]</b>
+<b class="nc">&nbsp;    }</b>
+<b class="nc">&nbsp;    return result.concatToString()</b>
+&nbsp;  }
+&nbsp;
+<b class="nc">&nbsp;  fun toHex(n: Int, digits: CharArray = SMALL): String {</b>
+<b class="nc">&nbsp;    val result = CharArray(8)</b>
+<b class="nc">&nbsp;    var j = n</b>
+<b class="nc">&nbsp;    for (i in 7 downTo 0) {</b>
+<b class="nc">&nbsp;      j = j ushr 4</b>
+<b class="nc">&nbsp;      result[i] = digits[j and 0x0f]</b>
+&nbsp;    }
+<b class="nc">&nbsp;    return result.concatToString()</b>
+&nbsp;  }
+&nbsp;
+<b class="nc">&nbsp;  fun toHex(n: Long, digits: CharArray = SMALL): String {</b>
+<b class="nc">&nbsp;    val result = CharArray(16)</b>
+<b class="nc">&nbsp;    var l = n</b>
+<b class="nc">&nbsp;    for (i in 15 downTo 0) {</b>
+<b class="nc">&nbsp;      l = l ushr 4</b>
+<b class="nc">&nbsp;      result[i] = digits[l.toInt() and 0x0f]</b>
+&nbsp;    }
+<b class="nc">&nbsp;    return result.concatToString()</b>
+&nbsp;  }
+&nbsp;
+&nbsp;  fun parseBytes(input: String): ByteArray {
+<b class="nc">&nbsp;    val length = input.length</b>
+<b class="nc">&nbsp;    val result = ByteArray(length / 2)</b>
+<b class="nc">&nbsp;    for (i in 0 until length step 2) {</b>
+<b class="nc">&nbsp;      result[i ushr 1] =</b>
+<b class="nc">&nbsp;          (DIGIT_VALUE[input[i].code] shl 4 or DIGIT_VALUE[input[i + 1].code]).toByte()</b>
+&nbsp;    }
+<b class="nc">&nbsp;    return result</b>
+&nbsp;  }
+&nbsp;
+&nbsp;  fun parseInt(input: String): Int {
+<b class="nc">&nbsp;    val length = input.length</b>
+<b class="nc">&nbsp;    var result = 0</b>
+<b class="nc">&nbsp;    for (i in 0 until length) {</b>
+<b class="nc">&nbsp;      val digit = DIGIT_VALUE[input[i].code]</b>
+<b class="nc">&nbsp;      require(digit &gt;= 0)</b>
+<b class="nc">&nbsp;      result = result shl 4 or digit</b>
+&nbsp;    }
+<b class="nc">&nbsp;    return result</b>
+&nbsp;  }
+&nbsp;
+&nbsp;  fun parseLong(input: String): Long {
+<b class="nc">&nbsp;    val length = input.length</b>
+<b class="nc">&nbsp;    var result: Long = 0</b>
+<b class="nc">&nbsp;    for (i in 0 until length) {</b>
+<b class="nc">&nbsp;      val digit = DIGIT_VALUE[input[i].code]</b>
+<b class="nc">&nbsp;      require(digit &gt;= 0)</b>
+<b class="nc">&nbsp;      result = result shl 4 or digit.toLong()</b>
+&nbsp;    }
+<b class="nc">&nbsp;    return result</b>
+&nbsp;  }
 &nbsp;}
 </code>
 </pre>
@@ -131,7 +204,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-03-30 20:05</div>
+    <div style="float:right;">generated on 2024-06-15 20:20</div>
 </div>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <html id="htmlId">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-  <title>openjdk-playground code coverage report Coverage Report > HiddenClassKt</title>
+  <title>openjdk-playground code coverage report Coverage Report > Node</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -19,10 +19,10 @@
 <div class="breadCrumbs">
 Current scope: openjdk-playground code coverage report<span class="separator">|</span>    <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">dev.suresh.lang</a>
+    <a href="../index.html">dev.suresh.misc</a>
 </div>
 
-<h1>Coverage Summary for Class: HiddenClassKt (dev.suresh.lang)</h1>
+<h1>Coverage Summary for Class: Node (dev.suresh.misc)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -49,7 +49,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 </th>
 </tr>
 <tr>
-  <td class="name">HiddenClassKt</td>
+  <td class="name">Node</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -66,12 +66,13 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     (0/1)
   </span>
 </td>
+    <td class="coverageStat"/>
 <td class="coverageStat">
   <span class="percent">
     0%
   </span>
   <span class="absValue">
-    (0/6)
+    (0/1)
   </span>
 </td>
 <td class="coverageStat">
@@ -79,15 +80,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/18)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
-    (0/100)
+    (0/37)
   </span>
 </td>
 </tr>
@@ -99,58 +92,39 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.lang
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.misc
 &nbsp;
-&nbsp;import java.lang.invoke.*
-&nbsp;import java.util.*
+&nbsp;import kotlin.math.*
 &nbsp;
-&nbsp;/**
-&nbsp; * Run with &quot;-XX:+UnlockDiagnosticVMOptions -XX:+ShowHiddenFrames&quot; to see the hidden classes.
-&nbsp; *
-&nbsp; * --add-opens java.base/java.util=ALL-UNNAMED
-&nbsp; *
-&nbsp; * @since JDK15
-&nbsp; */
-&nbsp;fun main() {
-<b class="nc">&nbsp;  println(&quot;Reading Foo bytes...&quot;)</b>
-<b class="nc">&nbsp;  val clBytes = Foo::class.java.toBytes() ?: error(&quot;Can&#39;t load Foo!&quot;)</b>
+&nbsp;sealed class Tree&lt;out T&gt;
 &nbsp;
-<b class="nc">&nbsp;  println(HiddenData::class.java.toBytes()?.decodeToString())</b>
-<b class="nc">&nbsp;  println(&quot;-------------------------&quot;)</b>
-<b class="nc">&nbsp;  val t = HiddenData(&quot;kotlin&quot;)</b>
-<b class="nc">&nbsp;  println(t.javaClass.toBytes()?.decodeToString())</b>
+&nbsp;data object Empty : Tree&lt;Nothing&gt;()
 &nbsp;
-<b class="nc">&nbsp;  val lookup = MethodHandles.lookup().defineHiddenClass(clBytes, true)</b>
-<b class="nc">&nbsp;  val run = lookup.findStatic(lookup.lookupClass(), &quot;run&quot;, MethodType.methodType(Void.TYPE))</b>
-&nbsp;  // run.invokeExact()
+<b class="nc">&nbsp;data class Node&lt;T&gt;(val value: T, val right: Tree&lt;T&gt; = Empty, val left: Tree&lt;T&gt; = Empty) : Tree&lt;T&gt;()</b>
 &nbsp;
-<b class="nc">&nbsp;  val mh = MethodHandles.privateLookupIn(Formatter::class.java, MethodHandles.lookup())</b>
-<b class="nc">&nbsp;  println(MethodHandles.lookup())</b>
-<b class="nc">&nbsp;  println(mh.lookupClass())</b>
-&nbsp;
-<b class="nc">&nbsp;  println(mh.lookupModes())</b>
-<b class="nc">&nbsp;  val m =</b>
-<b class="nc">&nbsp;      mh.findVirtual(</b>
-<b class="nc">&nbsp;          mh.lookupClass(),</b>
-<b class="nc">&nbsp;          &quot;parse&quot;,</b>
-<b class="nc">&nbsp;          MethodType.methodType(java.util.List::class.java, java.lang.String::class.java))</b>
-&nbsp;
-<b class="nc">&nbsp;  println(m.invoke(Formatter(), &quot;%s&quot;))</b>
-&nbsp;  // Concurrent
-&nbsp;}
-&nbsp;
-&nbsp;interface Foo {
-&nbsp;  companion object {
-&nbsp;
-&nbsp;    @JvmStatic
-&nbsp;    fun run() {
-&nbsp;      println(&quot;Inside Foo&quot;)
-&nbsp;      error(&quot;Error from $methodName&quot;)
+&nbsp;fun &lt;T : Number&gt; Tree&lt;T&gt;.sum(): Long =
+&nbsp;    when (this) {
+&nbsp;      Empty -&gt; 0
+&nbsp;      is Node -&gt; value.toLong() + left.sum() + right.sum()
 &nbsp;    }
-&nbsp;  }
-&nbsp;}
 &nbsp;
-&nbsp;data class HiddenData(val name: String)
+&nbsp;fun &lt;T&gt; Tree&lt;T&gt;.depth(): Int =
+&nbsp;    when (this) {
+&nbsp;      Empty -&gt; 0
+&nbsp;      is Node -&gt; max(left.depth(), right.depth()) + 1
+&nbsp;    }
+&nbsp;
+&nbsp;// fun &lt;T&gt; Tree&lt;T&gt;.printTree(depth: Int = 0) {
+&nbsp;//    val indent = &quot; &quot;.repeat(depth)
+&nbsp;//    when (this) {
+&nbsp;//        Empty -&gt; return
+&nbsp;//        is Node -&gt; {
+&nbsp;//            println(&quot;$indent $value&quot;)
+&nbsp;//            println(&quot;$indent ${left.}&quot;)
+&nbsp;//            value.toLong() + left.sum() + right.sum()
+&nbsp;//        }
+&nbsp;//    }
+&nbsp;// }
 </code>
 </pre>
 </div>
@@ -174,7 +148,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-03-30 20:05</div>
+    <div style="float:right;">generated on 2024-06-15 20:20</div>
 </div>
 </body>
 </html>

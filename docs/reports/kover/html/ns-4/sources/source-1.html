@@ -5,7 +5,7 @@
 <html id="htmlId">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-  <title>openjdk-playground code coverage report Coverage Report > BatchKt</title>
+  <title>openjdk-playground code coverage report Coverage Report > MainKt</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -19,10 +19,10 @@
 <div class="breadCrumbs">
 Current scope: openjdk-playground code coverage report<span class="separator">|</span>    <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">dev.suresh.atomic</a>
+    <a href="../index.html">dev.suresh.cli</a>
 </div>
 
-<h1>Coverage Summary for Class: BatchKt (dev.suresh.atomic)</h1>
+<h1>Coverage Summary for Class: MainKt (dev.suresh.cli)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -49,7 +49,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 </th>
 </tr>
 <tr>
-  <td class="name">BatchKt</td>
+  <td class="name">MainKt</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -72,7 +72,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/1)
+    (0/9)
   </span>
 </td>
 <td class="coverageStat">
@@ -80,7 +80,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/18)
+    (0/44)
   </span>
 </td>
 </tr>
@@ -92,27 +92,20 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.atomic
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.cli
 &nbsp;
-&nbsp;import java.util.concurrent.atomic.*
-&nbsp;
-&nbsp;/**
-&nbsp; * If you&#39;re using AtomicInteger and friends you can probably save some memory and improve locality
-&nbsp; * by using Atomic*FieldUpdaters.
-&nbsp; *
-&nbsp; * $ ./gradlew run -PappMainClass=dev.suresh.atomic.BatchKt
-&nbsp; */
-&nbsp;data class Counter(@Volatile private var count: Int = 0) {
-&nbsp;
-&nbsp;  companion object {
-&nbsp;    private val COUNT = AtomicIntegerFieldUpdater.newUpdater(Counter::class.java, &quot;count&quot;)
-&nbsp;  }
-&nbsp;
-&nbsp;  fun increment(delta: Int) = COUNT.addAndGet(this, delta)
-&nbsp;}
+&nbsp;import com.jakewharton.crossword.*
 &nbsp;
 &nbsp;fun main() {
-<b class="nc">&nbsp;  println(Counter().apply { increment(100) })</b>
+<b class="nc">&nbsp;  val canvas = TextCanvas(30, 30)</b>
+<b class="nc">&nbsp;  (1..10).forEach {</b>
+<b class="nc">&nbsp;    canvas.write(0, 0, &quot;\u001B[31mX\u001B[0m&quot;)</b>
+<b class="nc">&nbsp;    canvas.write(0, 2, &quot;\u001B[34mO\u001B[0m&quot;)</b>
+<b class="nc">&nbsp;    canvas.write(1, 0, &quot;Hello World $it&quot;)</b>
+<b class="nc">&nbsp;    println(canvas.toString())</b>
+<b class="nc">&nbsp;    Thread.sleep(100)</b>
+<b class="nc">&nbsp;    println(&quot;&quot;&quot;\x1B[${canvas.height}F&quot;&quot;&quot;)</b>
+<b class="nc">&nbsp;  }</b>
 &nbsp;}
 </code>
 </pre>
@@ -137,7 +130,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-03-30 20:05</div>
+    <div style="float:right;">generated on 2024-06-15 20:20</div>
 </div>
 </body>
 </html>

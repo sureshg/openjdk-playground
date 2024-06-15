@@ -96,7 +96,6 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 &nbsp;
 &nbsp;import static java.lang.System.out;
 &nbsp;
-&nbsp;import dev.suresh.adt.DOP;
 &nbsp;import dev.suresh.ffm.FFMApi;
 &nbsp;import dev.suresh.jte.RenderJte;
 &nbsp;import dev.suresh.lang.JPMSKt;
@@ -141,7 +140,6 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 &nbsp;                &quot;&quot;&quot;;
 &nbsp;    out.println(textBlock);
 &nbsp;    out.println(textBlock.translateEscapes());
-&nbsp;    out.println(STR.&quot;Record Test: \{new Person(&quot;Hello Kotlin&quot;, 8)}&quot;);
 &nbsp;
 &nbsp;    // Lossy conversion in compound assignments. Warning should be thrown if lint is enabled.
 &nbsp;    var i = 100;
@@ -151,7 +149,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 &nbsp;    new MockServer().run();
 &nbsp;    new MavenResolver().run();
 &nbsp;    new RenderJte().run();
-&nbsp;    DOP.run();
+&nbsp;
 &nbsp;    JettyServerKt.run(args);
 &nbsp;    JPMSKt.run();
 &nbsp;    HelpfulNPE.run();
@@ -160,15 +158,15 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 &nbsp;
 &nbsp;  private void securityProperties() {
 &nbsp;    var secMgr = System.getSecurityManager();
-&nbsp;    out.println(STR.&quot;Security Manager (Deprecated): \{secMgr}&quot;);
+&nbsp;    out.printf(&quot;Security Manager (Deprecated): %s%n&quot;, secMgr);
 &nbsp;
 &nbsp;    final String dnsCacheTTL = &quot;networkaddress.cache.ttl&quot;;
 &nbsp;    final String dnsCacheNegTTL = &quot;networkaddress.cache.negative.ttl&quot;;
 &nbsp;    final String disabledAlgorithms = &quot;jdk.tls.disabledAlgorithms&quot;;
 &nbsp;
-&nbsp;    out.println(STR.&quot;\{dnsCacheTTL} -&gt; \{Security.getProperty(dnsCacheTTL)}&quot;);
-&nbsp;    out.println(STR.&quot;\{dnsCacheNegTTL} -&gt; \{Security.getProperty(dnsCacheNegTTL)}&quot;);
-&nbsp;    out.println(STR.&quot;\{disabledAlgorithms} -&gt; \{Security.getProperty(disabledAlgorithms)}&quot;);
+&nbsp;    out.printf(&quot;%1s -&gt; %2s%n&quot;, dnsCacheTTL, Security.getProperty(dnsCacheTTL));
+&nbsp;    out.printf(&quot;%1s -&gt; %2s%n&quot;, dnsCacheNegTTL, Security.getProperty(dnsCacheNegTTL));
+&nbsp;    out.printf(&quot;%1s -&gt; %2s%n&quot;, disabledAlgorithms, Security.getProperty(disabledAlgorithms));
 &nbsp;
 &nbsp;    Security.setProperty(dnsCacheTTL, &quot;30&quot;);
 &nbsp;    // Large value for the cache for negative responses is problematic.
@@ -215,7 +213,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-03-30 20:05</div>
+    <div style="float:right;">generated on 2024-06-15 20:20</div>
 </div>
 </body>
 </html>

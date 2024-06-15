@@ -5,7 +5,7 @@
 <html id="htmlId">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-  <title>openjdk-playground code coverage report Coverage Report > VirtualThreadPool</title>
+  <title>openjdk-playground code coverage report Coverage Report > Manager</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -19,10 +19,10 @@
 <div class="breadCrumbs">
 Current scope: openjdk-playground code coverage report<span class="separator">|</span>    <a href="../../index.html">all classes</a>
     <span class="separator">|</span>
-    <a href="../index.html">dev.suresh.vthread.jetty</a>
+    <a href="../index.html">dev.suresh.generics</a>
 </div>
 
-<h1>Coverage Summary for Class: VirtualThreadPool (dev.suresh.vthread.jetty)</h1>
+<h1>Coverage Summary for Class: Manager (dev.suresh.generics)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -49,7 +49,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 </th>
 </tr>
 <tr>
-  <td class="name">VirtualThreadPool</td>
+  <td class="name">Manager</td>
 <td class="coverageStat">
   <span class="percent">
     0%
@@ -63,23 +63,16 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/6)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    0%
-  </span>
-  <span class="absValue">
     (0/2)
   </span>
 </td>
+    <td class="coverageStat"/>
 <td class="coverageStat">
   <span class="percent">
     0%
   </span>
   <span class="absValue">
-    (0/8)
+    (0/3)
   </span>
 </td>
 <td class="coverageStat">
@@ -87,7 +80,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
     0%
   </span>
   <span class="absValue">
-    (0/19)
+    (0/12)
   </span>
 </td>
 </tr>
@@ -99,30 +92,23 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 
 <pre>
-<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.vthread.jetty
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.suresh.generics;
 &nbsp;
-&nbsp;import java.util.concurrent.Executors
-&nbsp;import org.eclipse.jetty.util.thread.ThreadPool
+&nbsp;public class Manager extends Employee {
 &nbsp;
-<b class="nc">&nbsp;class VirtualThreadPool : ThreadPool {</b>
-&nbsp;
-<b class="nc">&nbsp;  private val execSvc = Executors.newVirtualThreadPerTaskExecutor()</b>
-&nbsp;
-&nbsp;  override fun execute(cmd: Runnable) {
-<b class="nc">&nbsp;    execSvc.submit(cmd)</b>
+&nbsp;  public Manager(String name) {
+<b class="nc">&nbsp;    super(name);</b>
 &nbsp;  }
 &nbsp;
-&nbsp;  override fun join() {
-<b class="nc">&nbsp;    while (!execSvc.isTerminated) {</b>
-<b class="nc">&nbsp;      Thread.onSpinWait()</b>
-&nbsp;    }
+&nbsp;  @Override
+&nbsp;  public String toString() {
+<b class="nc">&nbsp;    return &quot;&quot;&quot;</b>
+&nbsp;        Manager {
+&nbsp;          name=&#39;%s&#39;
+&nbsp;        }
+&nbsp;        &quot;&quot;&quot;
+<b class="nc">&nbsp;        .formatted(getName());</b>
 &nbsp;  }
-&nbsp;
-<b class="nc">&nbsp;  override fun getThreads() = Int.MAX_VALUE</b>
-&nbsp;
-<b class="nc">&nbsp;  override fun getIdleThreads() = Int.MAX_VALUE</b>
-&nbsp;
-<b class="nc">&nbsp;  override fun isLowOnThreads() = false</b>
 &nbsp;}
 </code>
 </pre>
@@ -147,7 +133,7 @@ Current scope: openjdk-playground code coverage report<span class="separator">|<
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-03-30 20:05</div>
+    <div style="float:right;">generated on 2024-06-15 20:20</div>
 </div>
 </body>
 </html>
