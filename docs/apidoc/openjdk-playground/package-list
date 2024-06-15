@@ -17,8 +17,6 @@ $dokka.location:/App/JAVA_VERSION/#/PointingToDeclaration/openjdk-playground/[r
 $dokka.location:/App/KOTLIN_VERSION/#/PointingToDeclaration/openjdk-playground/[root]/-app/-k-o-t-l-i-n_-v-e-r-s-i-o-n.html
 $dokka.location:/App/VERSION/#/PointingToDeclaration/openjdk-playground/[root]/-app/-v-e-r-s-i-o-n.html
 $dokka.location:/App/dependencies/#/PointingToDeclaration/openjdk-playground/[root]/-app/dependencies.html
-$dokka.location:/JavaApp///PointingToDeclaration/openjdk-playground/[root]/-java-app/index.html
-$dokka.location:/JavaApp/JavaApp/#/PointingToDeclaration/openjdk-playground/[root]/-java-app/-java-app.html
 $dokka.location:/Result.Error.NonRecException///PointingToDeclaration/openjdk-playground/[root]/-result/-error/-non-rec-exception/index.html
 $dokka.location:/Result.Error.NonRecException/NonRecException/#java.lang.Exception/PointingToDeclaration/openjdk-playground/[root]/-result/-error/-non-rec-exception/-non-rec-exception.html
 $dokka.location:/Result.Error.NonRecException/e/#/PointingToDeclaration/openjdk-playground/[root]/-result/-error/-non-rec-exception/e.html
@@ -32,10 +30,6 @@ $dokka.location:/Result.Success///PointingToDeclaration/openjdk-playground/[roo
 $dokka.location:/Result.Success/Success/#TypeParam(bounds=[kotlin.Any])/PointingToDeclaration/openjdk-playground/[root]/-result/-success/-success.html
 $dokka.location:/Result.Success/data/#/PointingToDeclaration/openjdk-playground/[root]/-result/-success/data.html
 $dokka.location:/Result///PointingToDeclaration/openjdk-playground/[root]/-result/index.html
-$dokka.location:dev.suresh.adt////PointingToDeclaration/openjdk-playground/dev.suresh.adt/index.html
-$dokka.location:dev.suresh.adt/DOP///PointingToDeclaration/openjdk-playground/dev.suresh.adt/-d-o-p/index.html
-$dokka.location:dev.suresh.adt/DOP/DOP/#/PointingToDeclaration/openjdk-playground/dev.suresh.adt/-d-o-p/-d-o-p.html
-$dokka.location:dev.suresh.adt/DOP/run/#/PointingToDeclaration/openjdk-playground/dev.suresh.adt/-d-o-p/run.html
 $dokka.location:dev.suresh.atomic////PointingToDeclaration/openjdk-playground/dev.suresh.atomic/index.html
 $dokka.location:dev.suresh.atomic//main/#/PointingToDeclaration/openjdk-playground/dev.suresh.atomic/main.html
 $dokka.location:dev.suresh.atomic/Counter.Companion///PointingToDeclaration/openjdk-playground/dev.suresh.atomic/-counter/-companion/index.html
@@ -233,7 +227,6 @@ $dokka.location:dev.suresh/Main/topN/#java.util.List<dev.suresh.Person>#int/Poin
 $dokka.location:dev.suresh/TestJava///PointingToDeclaration/openjdk-playground/dev.suresh/-test-java/index.html
 $dokka.location:dev.suresh/TestJava/TestJava/#/PointingToDeclaration/openjdk-playground/dev.suresh/-test-java/-test-java.html
 dev.suresh
-dev.suresh.adt
 dev.suresh.atomic
 dev.suresh.cli
 dev.suresh.collection
