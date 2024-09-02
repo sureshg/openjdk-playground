@@ -175,7 +175,7 @@ spotless-changelog             = "3.1.2"
 semver-plugin                  = "0.7.0"
 taskinfo                       = "2.2.0"
 versioncatalog-update          = "0.8.4"
-dependency-analysis            = "2.0.0"
+dependency-analysis            = "2.0.1"
 best-practices-plugin          = "0.10"
 modulegraph                    = "0.10.0"
 
