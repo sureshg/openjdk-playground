@@ -306,7 +306,7 @@ dependencies {
   dokkaPlugin(libs.dokka.mermaid)
 
   // Enable code coverage
-  subprojects.filter { !it.path.contains("catalog") }.forEach { kover(it) }
+  // subprojects.filter { !it.path.contains("catalog") }.forEach { kover(it) }
 
   // implementation(platform("org.apache.maven.resolver:maven-resolver:1.4.1"))
   // implementation("org.apache.maven:maven-resolver-provider:3.8.1")
