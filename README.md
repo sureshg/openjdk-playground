@@ -1,6 +1,6 @@
 # OpenJDK PlayGround
 
-> [!NOTE]
+> [!WARNING]
 > The repo is not maintained anymore. To see the updated playground,
 > visit [kotlin-mpp-playground](https://github.com/sureshg/kotlin-mpp-playground)
 
